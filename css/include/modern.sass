@@ -1,0 +1,382 @@
+$unit: 20px
+$small: 14px
+$lineheight: $unit * 1.5
+$smalllineheight: $small * 1.5
+$hmargin: 4*$unit
+
+html
+  padding: 0
+body
+  padding: 0
+  margin: 0
+  font-family: 'Droid Sans', Helvetica, sans-serif !important
+  font-size: $unit
+  line-height: $lineheight
+  background: $altbackground
+  color: $front
+
+a
+  text-decoration: none
+  color: $yellow
+a:visited
+  color: $blue
+a:hover
+  color: $orange
+
+
+#blackpage, #nojsredirect
+  top: 0
+  left: 0
+  width: 100%
+  min-height: 100%
+  margin-left: 0
+  margin-right: 0
+  margin-top: 0
+  margin-bottom: 0
+  position: fixed
+  text-align: center
+  background: $altbackground
+
+#content
+  background: $background
+  color: $front
+  width: 37*$unit + 2*$hmargin
+  margin: 0 auto
+  padding: 0
+  #titre h1
+    padding: 0 $hmargin
+    margin: 4*$unit auto
+    text-align: center
+  h1,h2,h3,h4,h5,h6
+    color: $lighter
+    padding: 0 $hmargin
+    margin: $unit 0
+  table
+    margin: $unit 0
+    padding: 0 $hmargin
+    tr
+      &:nth-child(odd)
+        background-color: $altbackground
+      th
+        border: solid medium $altfront
+        padding: 0.25*$unit
+        margin: 0
+      td
+        border: solid 1px $altfront
+        padding: 0.25*$unit
+        margin: 0
+  figure
+    margin: 0
+    padding: 0
+    figcaption
+      padding: 0 $hmargin
+      margin: $unit 0
+  p
+    padding: 0 $hmargin
+    margin: $unit 0
+  img
+    max-width: 100%
+    display: block
+    border-top: medium solid
+    border-bottom: medium solid
+    margin: $unit auto
+  pre
+    background: $background
+    font-family: monaco, monospace
+    font-size: 0.8*$unit
+    overflow: auto
+    padding: $unit
+    line-height: 1.4 * 0.8 * $unit
+    border-top: solid 1px $altfront
+    border-bottom: solid 1px $altfront
+  pre code
+    background: none
+    border: none
+  ul
+    list-style: none
+  ul li:before
+    content: "- "
+  ul
+    padding-left: 0
+    margin: $unit $hmargin
+    // width of '-'
+    text-indent: -($unit/2)
+  ol
+    padding-left: 0
+    margin: $unit $hmargin
+  .toc, #markdown-toc
+    a
+      color: $front
+    ol li, ul li
+      margin: ($unit/2) 0
+  ol li ul, ol li ol, ul li ol, ul li ul
+    margin: ($unit/2) (3*$unit/2)
+    list-style: none
+  li p
+    display: inline
+    margin: 0
+    padding: 0
+
+#entete > #choix > #choixrss
+  margin: 0
+  padding: 0
+#entete > #choix > #choixlang
+  float: left
+
+#choixlang
+  float: left
+#choix
+  text-align: center
+#choix > div
+  display: inline-block
+
+
+#choix
+  text-align: center
+  font-size: (3*$unit / 4)
+  background: $background
+  padding: 0 $unit
+  font-weight: bold
+  .return
+    float: right
+.cut
+  color: $front
+  font-size: (2*$unit/3)
+  opacity: .5
+  display: block
+  text-align: right
+  &:after
+    content: " »"
+  &:hover
+    opacity: 1
+hr
+  color: $altfront
+  border-color: $altfront
+  margin: 0 $hmargin
+p code, li code
+  padding: 1px 2px
+  background: $altbackground
+  border: solid 1px $altfront
+#content
+  blockquote
+    border: solid 1px $altfront
+    background: $altbackground
+    p
+      padding: 0 $unit
+    code
+      background: $altbackground
+      border: solid 1px rgba(0,0,0,0.1)
+    pre code
+      background: none
+      border: none
+
+// Specific elements
+#social,#choixrss,#comment
+  margin: $unit $hmargin
+#social
+  float: left
+  opacity: 0.3
+  &:hover
+    opacity: 1
+#choixrss
+  float: right
+  opacity: 0.3
+  &:hover
+    opacity: 1
+#comment
+  img
+    width: auto
+    max-width: 100%
+.intro
+  width: 37*$small + 2*$hmargin
+  margin: 0 auto
+  font-size: $small
+  line-height: $smalllineheight
+  color: $lighter
+  blockquote hr
+    display: none
+.left
+  float: left
+.right
+  float: right
+#content
+  img.right, img.left
+    max-width: 30%
+    border: medium solid
+  img.left
+    margin: 0 (0.5*$hmargin) 0 $hmargin
+  img.right
+    margin: 0 $hmargin 0 (0.5*$hmargin)
+.flush
+  clear: both
+
+#bottom
+  padding: $unit 0
+  text-align: center
+  font-size: $small
+  line-height: $smalllineheight
+#entete
+  padding: $unit 0
+  text-align: center
+  ul
+    text-indent: 0
+  ul li:before
+    content: ""
+  ul li
+    display: inline-block
+    span.active
+      color: $yellow
+  ul li > *
+    padding: 2px $unit
+    border: solid
+#previous_articles
+  float: left
+  text-align: left
+#next_articles
+  float: right
+  text-align: right
+.corps
+  padding-bottom: 2*$unit
+
+#tagcloud
+  margin: $unit $hmargin
+  font-size: $small
+  line-height: $smalllineheight
+#sousliens.archive > ul
+  display: none
+#sousliens.archive > h4:hover
+  cursor: pointer
+#hiddenDivs > div
+  display: none
+.list
+  margin: $unit $hmargin
+pre .list
+  margin: 0 0
+#content img#mainlogo
+  width: auto
+  margin: 0 auto
+  display: block
+  max-width: 100%
+.date, .day, .month, .year
+  display: inline-block
+  padding-left: 10px
+  text-align: right
+.day
+  width: 10px
+.month
+  width: 20px
+.year
+  width: 30px
+.date
+  margin-right: 10px
+
+.popularblock
+  display: block
+  float: left
+  margin: 1.5%
+  width: 30%
+  figure
+    width: 100%
+    height: 120px
+    overflow: hidden
+    figcaption
+      display: none
+
+// classes for colors
+.base03
+  color: $base03
+.base02
+  color: $base02
+.base01
+  color: $base01
+.base00
+  color: $base00
+.base0
+  color: $base0
+.base1
+  color: $base1
+.base2
+  color: $base2
+.base3
+  color: $base3
+.yellow
+  color: $yellow
+.orange
+  color: $orange
+.red
+  color: $red
+.magenta
+  color: $magenta
+.violet
+  color: $violet
+.blue
+  color: $blue
+.cyan
+  color: $cyan
+.green
+  color: $green
+
+// Presentation
+#content
+  section.slide.last
+    border-bottom: ($unit/5) solid $altfront
+  section.slide
+    border-top: ($unit/5) solid $altfront
+    & > *
+      padding: 0 $unit
+    margin: 0
+    background-color: $background
+    color: $front
+    padding: $unit 0
+    a
+      text-decoration: none
+      color: $lighter
+    a:visited
+      color: $altfront
+    pre
+      padding: $unit
+      margin: $unit
+    pre,code
+      background-color: $altbackground
+      border: 1px solid $altfront
+      code
+        border: none
+        background: none
+    blockquote
+      background-color: $altbackground
+      border-color: $altfront
+    h1,h2,h3,h4,h5,h6
+      color: $lighter
+    ul
+      margin: $unit 0
+      padding: 0
+      li
+        margin: 0.5*$unit 1.5*$unit
+    img
+      display: block
+      max-width: 80%
+      margin: $unit auto
+      padding: .5*$unit
+      background-color: $altbackground
+      border: solid 1px $altfront
+    img.right, img.left, figure.right, figure.left
+      max-width: 26%
+      margin: .5*$unit
+      figcaption
+        padding: 0
+        text-align: center
+    figure
+      max-width: 80%
+      margin: 0 auto
+      img
+        max-width: 80%
+.codefile
+  font-size: 0.7*$unit
+  text-align: right
+  margin-bottom: -2*$unit
+.footnotes
+  font-size: 0.8*$unit
+#next_before_articles
+  font-size: (14 * $unit / 20)
+  padding: 0 $hmargin
+  margin: $unit 0
