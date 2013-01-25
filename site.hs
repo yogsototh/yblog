@@ -11,32 +11,37 @@ import qualified Data.Map             as M
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "images/*" $ do
+    match "Scratch/images/*" $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ do
+    match "Scratch/js/*" $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "Scratch/css/*" $ do
         route   $ setExtension "css"
         compile $ getResourceString >>=
           withItemBody (unixFilter "sass" ["--trace"]) >>=
           return . fmap compressCss
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
+    match (fromList ["Scratch/about.rst", "Scratch/contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" yDefaultContext
             >>= relativizeUrls
 
-    match "posts/en/*" $ do
+    match "Scratch/posts/en/*" $ do
         route $ setExtension "html"
-        compile $ do pandocCompiler
-            >>= applyFilter abbreviationFilter
-            >>= applyFilter blogimage
+        compile $ do
+            body <- getResourceBody
+            return $ renderPandoc (fmap preFilters body)
+            >>= applyFilter postFilters
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
-    create ["archive.html"] $ do
+    create ["Scratch/archive.html"] $ do
         route idRoute
         compile $ do
             let archiveCtx =
@@ -49,6 +54,16 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
+
+    match "Scratch/index.html" $ do
+        route idRoute
+        compile $ do
+            let indexCtx = field "posts" $ \_ -> postList (take 3 . recentFirst)
+
+            getResourceBody
+                >>= applyAsTemplate indexCtx
+                >>= loadAndApplyTemplate "templates/default.html" postCtx
+                >>= relativizeUrls
 
     match "index.html" $ do
         route idRoute
@@ -65,6 +80,12 @@ main = hakyll $ do
 
 
 --------------------------------------------------------------------------------
+
+preFilters :: String -> String
+preFilters = abbreviationFilter
+
+postFilters :: String -> String
+postFilters = id
 
 applyFilter f str = return $ (fmap $ f) str
 
@@ -144,7 +165,7 @@ tradsContext = functionField "trad" $ \args item -> do
 
 
 --------------------------------------------------------------------------------
-prefixContext = field "webprefix" $ \_ -> return "/Scratch"
+prefixContext = field "webprefix" $ \_ -> return $ "/Scratch"
 
 --------------------------------------------------------------------------------
 otherlanguageContext = field "otherlanguage" $ \item -> do
@@ -179,7 +200,7 @@ postCtx =
 --------------------------------------------------------------------------------
 postList :: ([Item String] -> [Item String]) -> Compiler String
 postList sortFilter = do
-    posts   <- sortFilter <$> loadAll "posts/en/*"
+    posts   <- sortFilter <$> loadAll "Scratch/posts/en/*"
     itemTpl <- loadBody "templates/post-item.html"
     list    <- applyTemplateList itemTpl postCtx posts
     return list

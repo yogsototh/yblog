@@ -3,3 +3,4 @@ site
 site.hi
 site.o
 .sass-cache
+.*.swp
