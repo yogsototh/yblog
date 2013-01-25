@@ -29,16 +29,12 @@ main = hakyll $ do
 
     match "posts/en/*" $ do
         route $ setExtension "html"
-        compile $ do
-            getResourceBody
-            >>= applyFilter protectDollars
-            >>= applyFilter percentToDollar
-              -- >>= applyAbbrs
-              -- >>= applyFilter unprotectDollars
-            -- >> pandocCompiler
-            -- >>= loadAndApplyTemplate "templates/post.html"    postCtx
-            -- >>= loadAndApplyTemplate "templates/default.html" postCtx
-            -- >>= relativizeUrls
+        compile $ do pandocCompiler
+            >>= applyFilter abbreviationFilter
+            >>= applyFilter blogimage
+            >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= loadAndApplyTemplate "templates/default.html" postCtx
+            >>= relativizeUrls
 
     create ["archive.html"] $ do
         route idRoute
@@ -72,14 +68,8 @@ main = hakyll $ do
 
 applyFilter f str = return $ (fmap $ f) str
 
-protectDollars :: String -> String
-protectDollars = replaceAll "\\$" (\_->"__DOLLAR__")
-
-unprotectDollars :: String -> String
-unprotectDollars = replaceAll "__DOLLAR__" (\_->"$")
-
-percentToDollar :: String -> String
-percentToDollar = replaceAll "%[a-zA-Z0-9_]*" newnaming
+abbreviationFilter :: String -> String
+abbreviationFilter = replaceAll "%[a-zA-Z0-9_]*" newnaming
   where
     newnaming matched = case M.lookup (tail matched) abbreviations of
                           Nothing -> matched
