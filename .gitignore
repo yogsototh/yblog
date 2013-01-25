@@ -1,6 +1,6 @@
 _*
 site
-site.hi
-site.o
+*.hi
+*.o
 .sass-cache
 .*.swp
