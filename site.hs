@@ -44,8 +44,8 @@ markdownBehavior = do
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "Scratch/images/*" staticBehavior
-    match "Scratch/js/*"     staticBehavior
+    match "Scratch/images/**" staticBehavior
+    match "Scratch/js/**"     staticBehavior
 
     match "Scratch/css/*" $ do
         route   $ setExtension "css"
