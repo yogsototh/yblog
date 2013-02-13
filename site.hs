@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Control.Applicative ((<$>))
+import           Control.Category    ((>>>))
 import           Data.Monoid         (mappend,(<>))
 import           Hakyll
 
@@ -37,15 +38,39 @@ markdownBehavior = do
   where
     applyFilter f str = return $ (fmap $ f) str
     preFilters :: String -> String
-    preFilters = abbreviationFilter
+    preFilters =   abbreviationFilter
+                 . replaceDiv
+                 . replaceAll "enddiv" (\_->"</div>")
+                 . blogImage
     postFilters :: String -> String
-    postFilters = id
+    postFilters = replaceAll " :</p>" (\_->"&nbsp;:</p>")
+    replaceDiv :: String -> String
+    replaceDiv = replaceAll "begindiv([^)]*)" divstr
+      where name = (takeWhile (/= ')')) . (drop 9)
+            divstr matched = "<div class=\"" ++ name matched ++ "\">"
+    notin :: [Char] -> Char -> Bool
+    notin [] _ = True
+    notin (x:xs) c = if c == x then False else notin xs c
+    notquote = notin "'\""
+    blogImage :: String -> String
+    blogImage = replaceAll "(left)?blogimage([^)]*)" imgstr
+      where left = (=='l') . head
+            leftclass matched = if head matched == 'l'
+                                then " class=\"left\""
+                                else ""
+            src =     dropWhile notquote >>> tail
+                  >>> takeWhile notquote
+            alt =     dropWhile notquote >>> tail
+                  >>> dropWhile notquote >>> drop 3
+                  >>> takeWhile notquote
+            imgstr matched = "<img src=\"/Scratch/img/posts/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ ">"
 
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "Scratch/images/**" staticBehavior
-    match "Scratch/js/**"     staticBehavior
+    match "Scratch/images/**"   staticBehavior
+    match "Scratch/js/**"       staticBehavior
+    match "Scratch/css/fonts/*" staticBehavior
 
     match "Scratch/css/*" $ do
         route   $ setExtension "css"

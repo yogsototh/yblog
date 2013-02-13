@@ -25,8 +25,7 @@ rule of your markdown. See `site.hs`
 > --------------------------------------------------------------------------------
 > abbreviations :: Map String String
 > abbreviations = M.fromList
->     [ ("TLDR",   "Too long; didn't read")
->     , ("PEBKAC", "Problem exists between keyboard and chair")
+>     [ ("tldr",   "<span class=\"sc\"><abbr title=\"Too long; didn't read\">tl;dr</abbr>: </span>")
 >     , ("html", "<span class=\"sc\">html</span>")
 >     , ("css", "<span class=\"sc\">css</span>")
 >     , ("svg", "<span class=\"sc\">svg</span>")
