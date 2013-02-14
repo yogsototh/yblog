@@ -15,7 +15,7 @@ Go on [http://betterthangrep.com](http://betterthangrep.com) to download it.
 
 Sincerely, I don't understand `ack` don't become a common command on all UNIX systems. I can no more live without. For me it is as essential as `which` or `find`.
 
-newcorps
+
 
 Better than grep
 =============================================

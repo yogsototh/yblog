@@ -15,7 +15,7 @@ In fact this method works for old threads. But it fails to create new post threa
 
 Remark I didn't have any comment on my blog when I switched. Therefore my lack of influence was a good thing :-).
 
-newcorps
+
 
 Before begining, I must state that I **love** Disqus. 
 
@@ -25,7 +25,7 @@ I also know there is a jQuery plugin to make just that. Unfortunately I had some
 
 *Now let's begin.*
 
-newcorps
+
 
 # Why?
 
@@ -34,7 +34,7 @@ Why should I want to load the disqus javascript asynchronously?
   - Efficiency: I don't want my page to wait the complete execution of disqus script to load.
   - More independance: when disqus is down, my page is blocked!
 
-newcorps
+
 
 # How?
 

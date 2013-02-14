@@ -13,7 +13,7 @@ I believe the goal researched by minimalism is <strong>Focus</strong>.  But I do
 
 This is why my design is not minimalist, but I decided to remove most of the navigation stuff of all pages of my website. May be I'll prefer to hide the menu only when you are on blog article. For now, I hide the menu everywhere on the website.
 
-newcorps
+
 
 ## technical details
 

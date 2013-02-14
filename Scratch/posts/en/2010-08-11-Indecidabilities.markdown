@@ -22,7 +22,7 @@ tags: mathematics, science, philosophy, indecidability
 
 </div>
 
-newcorps
+
 
 # The Undecidabilities
 
@@ -197,7 +197,7 @@ I am the demiurge of this imaginary world.
 And I cannot know the future of this world.
 Therefore, creative power isn't equivalent to omnipotence.
 
-newcorps
+
 
 After all this, it becomes difficult to know what we can believe.
 But it would be another error to throw away all our knowledge.

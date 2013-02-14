@@ -13,7 +13,7 @@ tags: git, dcvs, programming
 
 <small> <em> "Cheap branches" aren't designed to be totally isolated branches but rather should follow a "Master Branch". There is a </em>Standard Workflow<em> to follow. If you don't follow it, you prepare yourself with some hard time with Git.</em> </small>
 
-newcorps
+
 
 # My way to decentralisation
 
@@ -55,7 +55,7 @@ I finally understood why reading a document I didn't read before. It was the *un
 
 <small><a name="note2">&#42;</a> - I never really given its chance to Mercurial. The terminology they chosen was too far from the svn one. And I was used to it.</small>
 
-newcorps
+
 
 When you see explanation about *branches* and <abbr title="Decentralized Concurrent Versioning System">DCVS</abbr> we imagine each branch is totally uncorrelated to each other, except when *merging*. Everything is magic. This is the "*Parallel World*" explanation. This way of seeing is explained more in depth in the [real good article about branches](http://betterexplained.com/articles/a-visual-guide-to-version-control/) on betterexplained. 
 
@@ -167,7 +167,7 @@ That were the Git bad side. But It has many advantages. Once you've understood t
 
 <small><a name="note3">&Dagger;</a> I must precise that I worked a lot with multi-modal logic and particularly about "Temporal Logics" (linear or not). This is why I was more inclined to see things this way. "Ah ! Just to remember my firsts love with computer science !"</small>
 
-newcorps
+
 
 # Conclusion
 
