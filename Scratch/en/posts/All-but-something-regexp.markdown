@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-02-15T11:16:12+02:00
+published: 2010-02-15
 title: Pragmatic Regular Expression Exclude
 authorName: Yann Esposito
 authorUri: yannesposito.com

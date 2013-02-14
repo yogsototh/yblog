@@ -1,7 +1,7 @@
 -----
 kind: article
 menupriority: 1
-published: 2009-08-04T19:00:00+02:00
+published: 2009-08-04
 title: A try to demystify 'Lost Highway'
 authorName: Yann Esposito
 authorUri: yannesposito.com

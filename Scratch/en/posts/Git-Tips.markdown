@@ -2,7 +2,7 @@
 isHidden: false
 menupriority: 1
 kind: article
-published: 2010-03-22T10:42:27+02:00
+published: 2010-03-22
 title: Git Tips
 authorName: Yann Esposito
 authorUri: yannesposito.com

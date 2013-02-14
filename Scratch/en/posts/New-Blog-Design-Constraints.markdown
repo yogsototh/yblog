@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-10-06T11:33:03+02:00
+published: 2010-10-06
 title: New Blog Design Constraints
 authorName: Yann Esposito
 authorUri: yannesposito.com

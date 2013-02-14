@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-08-25T19:28:20+02:00
+published: 2011-08-25
 title: Learn Vim Progressively
 authorName: Yann Esposito
 authorUri: yannesposito.com

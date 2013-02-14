@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-11T14:35:35+02:00
+published: 2009-09-11
 title: Synchronize Custom WebSite with mobileMe
 authorName: Yann Esposito
 authorUri: yannesposito.com

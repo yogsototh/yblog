@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-06-15T10:56:32+02:00
+published: 2010-06-15
 title: Get my blog engine
 authorName: Yann Esposito
 authorUri: yannesposito.com

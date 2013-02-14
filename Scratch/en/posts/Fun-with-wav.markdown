@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-10-14T11:04:58+02:00
+published: 2010-10-14
 title: Fun with wav
 authorName: Yann Esposito
 authorUri: yannesposito.com

@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-03-23T22:37:36+02:00
+published: 2010-03-23
 title: Encapsulate git
 authorName: Yann Esposito
 authorUri: yannesposito.com

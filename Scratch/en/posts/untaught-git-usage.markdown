@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-10-13T13:10:09+02:00
+published: 2009-10-13
 title: Untaught Git usage
 authorName: Yann Esposito
 authorUri: yannesposito.com

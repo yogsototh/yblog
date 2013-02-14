@@ -1,7 +1,7 @@
 -----
 menupriority:   1
 kind:           article
-published: 2009-08-18T14:44:31+02:00
+published: 2009-08-18
 title: Git for self
 authorName: Yann Esposito
 authorUri: yannesposito.com

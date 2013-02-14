@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-05-18T13:14:28+02:00
+published: 2011-05-18
 title: 40 character's passwords
 authorName: Yann Esposito
 authorUri: yannesposito.com

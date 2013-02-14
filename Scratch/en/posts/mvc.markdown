@@ -1,7 +1,7 @@
 -----
 isHidden: true
 kind: article
-published: 2009-07-06T16:15:23+02:00
+published: 2009-07-06
 title: MVC explained
 authorName: Yann Esposito
 authorUri: yannesposito.com

@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-02-18T15:29:14+02:00
+published: 2010-02-18
 title: split a file by keyword
 authorName: Yann Esposito
 authorUri: yannesposito.com

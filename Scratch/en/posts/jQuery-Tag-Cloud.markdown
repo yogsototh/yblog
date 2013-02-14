@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-23T13:18:26+02:00
+published: 2009-09-23
 title: jQuery Tag Cloud
 authorName: Yann Esposito
 authorUri: yannesposito.com

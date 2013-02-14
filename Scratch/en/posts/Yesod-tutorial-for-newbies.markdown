@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2012-01-15T19:14:40+02:00
+published: 2012-01-15
 title: Haskell web programming
 subtitle: A Yesod tutorial
 authorName: Yann Esposito

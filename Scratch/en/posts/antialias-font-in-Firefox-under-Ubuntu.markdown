@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-01-12T16:36:40+02:00
+published: 2010-01-12
 title: antialias font in Firefox under Ubuntu
 authorName: Yann Esposito
 authorUri: yannesposito.com

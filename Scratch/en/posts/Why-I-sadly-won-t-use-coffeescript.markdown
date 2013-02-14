@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-01-03T10:37:26+02:00
+published: 2011-01-03
 title: Why I won't use CoffeeScript (sadly)
 authorName: Yann Esposito
 authorUri: yannesposito.com

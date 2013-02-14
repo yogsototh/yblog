@@ -1,7 +1,7 @@
 -----
 kind: article
 menupriority: 1
-published: 2009-08-15T11:00:00+02:00
+published: 2009-08-15
 title: DRM are EVIL
 authorName: Yann Esposito
 authorUri: yannesposito.com

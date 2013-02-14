@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-12-06T11:35:34+02:00
+published: 2009-12-06
 title: iphone call filter
 authorName: Yann Esposito
 authorUri: yannesposito.com

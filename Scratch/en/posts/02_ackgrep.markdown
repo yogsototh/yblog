@@ -1,5 +1,5 @@
 -----
-published: 2009-07-22T16:15:23+02:00
+published: 2009-07-22
 kind: article
 title: Better than Grep
 authorName: Yann Esposito

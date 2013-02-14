@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-07T20:25:56+02:00
+published: 2009-09-07
 title: ssh to Listen 443 on Snow Leopard
 authorName: Yann Esposito
 authorUri: yannesposito.com

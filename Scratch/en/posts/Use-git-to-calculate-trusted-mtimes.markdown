@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-09-02T15:54:10+02:00
+published: 2010-09-02
 title: Use git to calculate trusted mtimes
 authorName: Yann Esposito
 authorUri: yannesposito.com

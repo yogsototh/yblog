@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-09-02T00:02:17+02:00
+published: 2010-09-02
 title: base64 and sha1 on iPhone
 authorName: Yann Esposito
 authorUri: yannesposito.com

@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-28T10:58:20+02:00
+published: 2009-09-28
 title: Disqus versus Intense Debate (Why I switched)
 authorName: Yann Esposito
 authorUri: yannesposito.com

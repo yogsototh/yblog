@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-01-04T12:31:47+02:00
+published: 2010-01-04
 title: Change default shell on Mac OS X
 authorName: Yann Esposito
 authorUri: yannesposito.com

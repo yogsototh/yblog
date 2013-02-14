@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-09-28T12:21:41+02:00
+published: 2011-09-28
 title: Programming Language Experience
 authorName: Yann Esposito
 authorUri: yannesposito.com

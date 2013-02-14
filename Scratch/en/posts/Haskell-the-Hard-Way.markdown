@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2012-02-08T15:17:53+02:00
+published: 2012-02-08
 title: Learn Haskell Fast and Hard
 subtitle: Blow your mind with Haskell
 authorName: Yann Esposito

@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-10-23T10:53:16+02:00
+published: 2009-10-23
 title: launch daemon from command line
 authorName: Yann Esposito
 authorUri: yannesposito.com

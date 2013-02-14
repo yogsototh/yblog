@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-06-17T16:37:22+02:00
+published: 2010-06-17
 title: Hide Yourself to your Analytics
 authorName: Yann Esposito
 authorUri: yannesposito.com

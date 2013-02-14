@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-05-24T20:05:14+02:00
+published: 2010-05-24
 title: Trees; Pragmatism and Formalism
 subtitle: When theory is more efficient than practice
 authorName: Yann Esposito

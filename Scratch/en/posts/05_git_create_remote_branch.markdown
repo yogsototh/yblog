@@ -1,7 +1,7 @@
 -----
 kind: article
 menupriority: 1
-published: 2009-08-17T14:00:00+02:00
+published: 2009-08-17
 title: Git remote branch creation
 authorName: Yann Esposito
 authorUri: yannesposito.com

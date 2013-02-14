@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-05-17T13:25:51+02:00
+published: 2010-05-17
 title: I live again!
 authorName: Yann Esposito
 authorUri: yannesposito.com

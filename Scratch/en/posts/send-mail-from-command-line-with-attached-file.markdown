@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-08-31T10:16:04+02:00
+published: 2010-08-31
 title: send mail from command line with attached file
 authorName: Yann Esposito
 authorUri: yannesposito.com

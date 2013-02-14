@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-10-30T22:34:46+02:00
+published: 2009-10-30
 title: How to handle evil IE
 authorName: Yann Esposito
 authorUri: yannesposito.com

@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-10-28T11:03:30+02:00
+published: 2009-10-28
 title: custom website synchronisation with mobileme (2)
 authorName: Yann Esposito
 authorUri: yannesposito.com

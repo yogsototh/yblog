@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-10-10T18:39:00+02:00
+published: 2010-10-10
 title: Secure eMail on Mac in few steps
 authorName: Yann Esposito
 authorUri: yannesposito.com

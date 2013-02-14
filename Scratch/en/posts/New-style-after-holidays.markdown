@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-07-31T23:59:10+02:00
+published: 2010-07-31
 title: New style after holidays
 authorName: Yann Esposito
 authorUri: yannesposito.com

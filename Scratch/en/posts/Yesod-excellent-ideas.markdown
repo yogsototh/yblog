@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-10-04T10:18:59+02:00
+published: 2011-10-04
 title: Yesod excellent ideas
 authorName: Yann Esposito
 authorUri: yannesposito.com

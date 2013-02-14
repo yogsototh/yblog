@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-10-22T20:45:18+02:00
+published: 2009-10-22
 title: Focus &gt; Minimalism
 authorName: Yann Esposito
 authorUri: yannesposito.com

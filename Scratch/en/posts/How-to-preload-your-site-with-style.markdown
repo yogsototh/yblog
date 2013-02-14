@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-10-03T14:34:11+02:00
+published: 2009-10-03
 title: How to preload your site with style
 authorName: Yann Esposito
 authorUri: yannesposito.com

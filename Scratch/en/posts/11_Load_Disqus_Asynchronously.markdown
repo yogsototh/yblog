@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-17T23:27:54+02:00
+published: 2009-09-17
 title: Load Disqus Asynchronously
 authorName: Yann Esposito
 authorUri: yannesposito.com

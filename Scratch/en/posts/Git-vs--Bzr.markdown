@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-12-14T10:46:36+02:00
+published: 2009-12-14
 title: Git vs. Bzr
 authorName: Yann Esposito
 authorUri: yannesposito.com

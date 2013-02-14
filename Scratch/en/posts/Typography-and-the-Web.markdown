@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2012-02-02T11:53:00+02:00
+published: 2012-02-02
 title: Typography and the Web
 authorName: Yann Esposito
 authorUri: yannesposito.com

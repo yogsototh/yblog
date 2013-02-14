@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-10-26T21:56:09+02:00
+published: 2009-10-26
 title: Menu waiting to hide himself
 authorName: Yann Esposito
 authorUri: yannesposito.com

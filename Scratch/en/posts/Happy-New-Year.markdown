@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-01-01T08:55:54+02:00
+published: 2011-01-01
 title: Happy New Year
 authorName: Yann Esposito
 authorUri: yannesposito.com

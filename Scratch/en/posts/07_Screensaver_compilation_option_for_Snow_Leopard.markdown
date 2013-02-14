@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-06T17:59:16+02:00
+published: 2009-09-06
 title: Screensaver compilation option for Snow Leopard<sub>&copy;</sub>
 authorName: Yann Esposito
 authorUri: yannesposito.com

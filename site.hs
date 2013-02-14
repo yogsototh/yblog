@@ -1,10 +1,14 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
+import           Control.Monad          (forM) 
 import           Control.Applicative    ((<$>))
 import           Data.Monoid            (mappend,(<>))
 import           Hakyll
 
 import           Data.Map               (Map)
+import           Data.List              (sortBy)
+import           Data.Ord               (comparing)
+import           System.Locale          (defaultTimeLocale)
 import qualified Data.Map               as M
 
 import           Abbreviations          (abbreviationFilter)
@@ -61,8 +65,8 @@ main = hakyll $ do
           withItemBody (unixFilter "sass" ["--trace"]) >>=
           return . fmap compressCss
 
-    match "Scratch/posts/en/*" markdownBehavior
-    match "Scratch/posts/fr/*" markdownBehavior
+    match "Scratch/en/posts/*" markdownBehavior
+    match "Scratch/fr/posts/*" markdownBehavior
 
     match (fromList ["Scratch/about.rst", "Scratch/contact.markdown"]) $ do
         route   $ setExtension "html"
@@ -74,7 +78,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let archiveCtx =
-                    field "posts" (\_ -> postList recentFirst) <>
+                    field "posts" (\_ -> postList createdFirst) <>
                     constField "title" "Archives"              <>
                     yDefaultContext
 
@@ -87,7 +91,7 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            let indexCtx = field "posts" $ \_ -> postList (take 3 . recentFirst)
+            let indexCtx = field "posts" $ \_ -> postList ((fmap (take 3)) . createdFirst)
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -115,15 +119,22 @@ metaKeywordContext = field "metaKeywords" $ \item -> do
         "<meta name=\"keywords\" content=\"" ++ tags ++ "\">\n"
 
 --------------------------------------------------------------------------------
+createdFirst :: [Item String] -> Compiler [Item String]
+createdFirst items = do
+  itemsWithTime <- forM items $ \item -> do
+    utc <- getItemUTC defaultTimeLocale $ itemIdentifier item
+    return (utc,item)
+  return $ map snd $ reverse $ sortBy (comparing fst) itemsWithTime
+
+--------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
-    dateField "date" "%B %e, %Y" <>
     yDefaultContext
 
 --------------------------------------------------------------------------------
-postList :: ([Item String] -> [Item String]) -> Compiler String
+postList :: ([Item String] -> Compiler [Item String]) -> Compiler String
 postList sortFilter = do
-    posts   <- sortFilter <$> loadAll "Scratch/posts/en/*"
+    posts   <- loadAll "Scratch/en/posts/*" >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
     list    <- applyTemplateList itemTpl postCtx posts
     return list

@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-07-07T15:43:43+02:00
+published: 2010-07-07
 title: Do not use CSS gradient with Chrome
 authorName: Yann Esposito
 authorUri: yannesposito.com

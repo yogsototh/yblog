@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-07-05T13:49:04+02:00
+published: 2010-07-05
 title: Cappuccino vs jQuery
 authorName: Yann Esposito
 authorUri: yannesposito.com

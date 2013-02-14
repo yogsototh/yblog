@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-11T14:27:09+02:00
+published: 2009-09-11
 title: Why I didn't keep whos.amung.us
 authorName: Yann Esposito
 authorUri: yannesposito.com

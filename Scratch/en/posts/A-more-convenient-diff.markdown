@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-08-17T11:33:30+02:00
+published: 2011-08-17
 title: A more convenient diff
 authorName: Yann Esposito
 authorUri: yannesposito.com

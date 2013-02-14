@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-10-20T11:39:36+02:00
+published: 2011-10-20
 title: Increase the power of deficient languages.
 subtitle: Fractals with SVG and m4
 authorName: Yann Esposito

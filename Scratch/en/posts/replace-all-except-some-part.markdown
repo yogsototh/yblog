@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-09-22T22:13:25+02:00
+published: 2009-09-22
 title: replace all except some part
 authorName: Yann Esposito
 authorUri: yannesposito.com

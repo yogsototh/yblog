@@ -1,5 +1,5 @@
 -----
-published: 2008-10-10T16:15:23+02:00
+published: 2008-10-10
 kind: article
 title: Nanoc
 authorName: Yann Esposito

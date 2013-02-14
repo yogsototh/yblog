@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-08-23T15:05:13+02:00
+published: 2010-08-23
 title: Now hosted by heroku
 subtitle: Host static website on Heroku
 authorName: Yann Esposito

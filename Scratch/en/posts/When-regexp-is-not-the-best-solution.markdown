@@ -2,7 +2,7 @@
 isHidden: false
 menupriority: 1
 kind: article
-published: 2010-02-23T10:09:52+02:00
+published: 2010-02-23
 title: When regexp is not the best solution
 authorName: Yann Esposito
 authorUri: yannesposito.com

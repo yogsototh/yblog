@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2011-07-10T12:41:26+02:00
+published: 2011-07-10
 title: ASCII Haskell Mandelbrot
 authorName: Yann Esposito
 authorUri: yannesposito.com

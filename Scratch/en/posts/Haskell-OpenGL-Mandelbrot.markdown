@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2012-06-15T19:16:43+02:00
+published: 2012-06-15
 title: Haskell Progressive Example
 subtitle: An OpenGL 3D extension of the Mandelbrot set
 authorName: Yann Esposito

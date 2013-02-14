@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-06-17T14:41:36+02:00
+published: 2010-06-17
 title: Track Events with Google Analytics
 subtitle: Asynchronous Complete Google Analytics with jQuery
 authorName: Yann Esposito

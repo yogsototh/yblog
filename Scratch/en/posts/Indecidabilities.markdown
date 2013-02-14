@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-08-11T10:04:31+02:00
+published: 2010-08-11
 title: Undecidabilities (part 1)
 authorName: Yann Esposito
 authorUri: yannesposito.com

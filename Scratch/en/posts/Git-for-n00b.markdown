@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2009-11-12T11:39:54+02:00
+published: 2009-11-12
 title: Git for n00b
 authorName: Yann Esposito
 authorUri: yannesposito.com

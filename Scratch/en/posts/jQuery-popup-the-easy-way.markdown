@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-06-19T00:44:50+02:00
+published: 2010-06-19
 title: jQuery popup the easy way
 authorName: Yann Esposito
 authorUri: yannesposito.com

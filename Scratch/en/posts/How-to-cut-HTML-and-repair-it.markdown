@@ -2,7 +2,7 @@
 isHidden:       false
 menupriority:   1
 kind:           article
-published: 2010-05-19T22:20:34+02:00
+published: 2010-05-19
 title: How to repair a cutted XML?
 subtitle: and how to do it without any parsor?
 authorName: Yann Esposito
