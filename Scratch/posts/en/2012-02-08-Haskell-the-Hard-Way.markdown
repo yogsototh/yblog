@@ -11,7 +11,7 @@ tags: Haskell, programming, functional, tutorial
 -----
 blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr A very short and dense tutorial for learning Haskell.
 
@@ -19,7 +19,7 @@ Thanks to [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) you 
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
 >
-> begindiv(toc)
+> <div class="toc">
 >
 > * <a href="#introduction">Introduction</a>
 >   * <a href="#install">Install</a>
@@ -55,10 +55,10 @@ Thanks to [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) you 
 > * <a href="#appendix">Appendix</a>
 >   * <a href="#more-on-infinite-tree">More on Infinite Tree</a>
 >
-> enddiv
+> </div>
 
-enddiv
-begindiv(intro)
+</div>
+<div class="intro">
 
 I really believe all developer should learn Haskell.
 I don't think all should be super Haskell ninjas,
@@ -122,7 +122,7 @@ The article contains five parts:
  > Some might not work, but most will.
  > You should see a link just below.
 
-enddiv
+</div>
 
 <hr/><a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong></a>
 

@@ -9,13 +9,13 @@ authorUri: yannesposito.com
 tags: wav, C, format, programming
 -----
 
-begindiv(intro)
+<div class="intro">
 
 %tldr Played to process a `wav` file. `C` was easier and cleaner than Ruby.
 
 edit: I wanted this program to work only on one specific machine (a x86 on a 32 bit Ubuntu). Therefore I didn't had any portability consideration. This is only a _hack_.
 
-enddiv
+</div>
 
 I had to compute the sum of the absolute values of data of a `.wav` file.
 For efficiency (and fun) reasons, I had chosen `C` language.
@@ -144,7 +144,7 @@ I am curious to know if somebody know a nice way to do this with Ruby or Python.
 
 _edit: for compatibility reasons (64bit machines) used `int16_t` instead of `short` and `int` instead of `int`._
 
-begindiv(intro)
+<div class="intro">
 
 Edit (2): after most consideration about portability I made an _hopefully_ more portable version. 
 But I must confess this task was a bit tedious.
@@ -160,7 +160,7 @@ However, it must be compiled with `gcc`.
 The new code make more tests but still don't use `mmap`.
 Here it is:
 
-enddiv
+</div>
 
 <code class="c" file="wavsum2.c">
 #include <stdio.h>

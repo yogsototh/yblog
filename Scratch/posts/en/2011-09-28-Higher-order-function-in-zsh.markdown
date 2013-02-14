@@ -10,7 +10,7 @@ tags: zsh, map, foldr, filter, functional, programming, higher order functions
 -----
 blogimage("main.jpg","Title image")
 
-begindiv(intro)
+<div class="intro">
 
 UPDATE: [Nicholas Sterling had discovered a way to implement anonymous functions](http://nicholassterling.wordpress.com/2012/03/30/a-zsh-map-function/)
 Thanks!
@@ -51,7 +51,7 @@ result 11
 
 %tldr some simple implementation of higher order function for zsh.
 
-enddiv
+</div>
 
 Why is it important to have these functions?
 Simply because, the more I programmed with zsh the more I tended to work using functional programming style.

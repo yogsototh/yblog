@@ -9,7 +9,7 @@ authorUri: yannesposito.com
 tags: Cappuccino, iPhone, web, javascript, jQuery, Cocoa, programming
 -----
 
-begindiv(intro)
+<div class="intro">
 
 <abbr class="sc" title="Too long; didn't read">tl;dr</abbr>:
 
@@ -18,16 +18,16 @@ begindiv(intro)
 * jQuery not as nice as the Cappuccino version but 106KB. iPhone compatible.
 * I'll give a try to Dashcode 3.
 
-enddiv
+</div>
 
 ---
 
-begindiv(intro)
+<div class="intro">
 
 Before start, I must say I know Cappuccino and jQuery are no more comparable than Cocoa and the C++ standard library. One is oriented for user interface while the other is and helper for low level programming.
 Nonetheless I used these two to make the same web application. This is why I compare the experience I had with each of them for this specific task.
 
-enddiv
+</div>
 
 I made a web version of my dashboard widget [YPassword](http://yannesposito.com/Softwares/YPassword.html).
 It is a simple widget to manage your online password with a *strong* security and with a totally portable way. It is not intended to replace a *keychain*.
@@ -39,12 +39,12 @@ I then made a second version with the [Cappuccino](http://cappuccino.org). You c
 
 ## What this widget do?
 
-begindiv(intro)
+<div class="intro">
 
 If you don't mind about what does my widget and just want to know how the two frameworkcompare, you should go
 directly to the [next part](#cappuccino).
 
-enddiv
+</div>
 
 I manage my password on many site with a simple method. 
 I remember a strong master password. And my password is mainly

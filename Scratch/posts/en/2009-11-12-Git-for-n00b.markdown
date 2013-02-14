@@ -10,13 +10,13 @@ subtitle: introduction
 tags: git
 -----
 
-begindiv(intro)
+<div class="intro">
 
  A detailed tutorial of <a href="http://git-scm.org">Git</a> for people knowing very few about versions systems.
 You'll understand utility of such program and how we use modern version control system.
 I try to stay as pragmatic as possible.
 
-enddiv
+</div>
 
 newcorps
 
@@ -65,12 +65,12 @@ Then, I give the command for each feature a <abbr title="Decentralized Concurent
 
 # [Git][git] for what?
 
-begindiv(intro)
+<div class="intro">
 
 If you just want to use [Git][git] **immediately**, just read dark part.
 You read this part later to understand correctly foundations of version systems and not doing strange things.
 
-enddiv
+</div>
 
 [Git][git] is a <abbr title="Decentralized Concurent Versions System">DCVS</abbr>, which means a Decentralized Concurrent Versions System.
 Let's analyze each part of this long term:
@@ -116,7 +116,7 @@ This is why versions number passed from files to the entire project.
 
 It is therefore possible to say, "I want to get back three days earlier".
 
-begindiv(black)
+<div class="black">
 
 *What gives versions system?* (I didn't mention everything at all)
 
@@ -126,7 +126,7 @@ begindiv(black)
 - gives the ability to see an historic of all modifications.
 Generally the user must add a comment for each new version.
 
-enddiv
+</div>
 
 ### concurrent:
 
@@ -184,7 +184,7 @@ Then she uses a command which pull the modification from the server to her local
 And this command update her file.
 After that, Beatrice send again the new file on the server.
 
-begindiv(black)
+<div class="black">
 
 **In what Concurrent Versions System help?**
 
@@ -196,7 +196,7 @@ SVC help to resolve such problem.
 More on that later,
 - help to know who done what and when.
 
-enddiv
+</div>
 
 ### decentralized
 
@@ -234,7 +234,7 @@ And even, use the fix for the new version with my new feature.
 > In a not decentralized version system, doing such a thing is possible but not natural.
 Decentralization means it become natural to use a branch for each separable work.
 
-begindiv(black)
+<div class="black">
 
 **Advantages given by DCVS:**
 
@@ -242,7 +242,7 @@ begindiv(black)
 - Ability to create many *atomic* patches,
 - Help the maintenance of many different versions of the same application.
 
-enddiv
+</div>
 
 ## To resume
 

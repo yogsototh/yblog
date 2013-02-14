@@ -12,11 +12,11 @@ macros: svg: '<span class="sc">svg</span>' xml: '<span class="sc">xml</span>' xs
 -----
 blogimage("main.png","Yesod logo made in SVG and m4")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr How to use m4 to increase the power of deficient languages. Two examples: improve %xslt syntax and make fractal with %svg.
 
-enddiv
+</div>
 
 %xml was a very nice idea about structuring data.
 Some people where so enthusiastic about %xml they saw it everywhere.

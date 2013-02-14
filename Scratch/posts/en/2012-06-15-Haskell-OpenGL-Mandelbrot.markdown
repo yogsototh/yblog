@@ -11,7 +11,7 @@ tags: Haskell, programming, functional, tutorial, fractal
 -----
 blogimage("BenoitBMandelbrot.jpg","The B in Benoît B. Mandelbrot stand for Benoît B. Mandelbrot")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr A progressive Haskell example. 
 A Mandelbrot set extended in 3D, rendered using OpenGL and coded with Haskell.
@@ -26,7 +26,7 @@ Imperative language could also benefit from this functional organization.
 > {:toc}
 >
 
-enddiv
+</div>
 
 ## Introduction
 

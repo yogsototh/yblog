@@ -10,7 +10,7 @@ authorUri: yannesposito.com
 tags: XML, Perl, programming, tree, theory, mathematics, regexp, script
 -----
 
-begindiv(intro)
+<div class="intro">
 
 %tldr: 
 
@@ -22,7 +22,7 @@ begindiv(intro)
 - Crushed the problem in 10 minutes
 - Conclusion: The pragmatism shouldn't mean "never use theory".
 
-enddiv
+</div>
 
 ## Abstract (longer than %tldr)
 

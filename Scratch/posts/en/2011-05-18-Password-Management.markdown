@@ -10,14 +10,14 @@ tags: password, security
 -----
 blogimage("main.png","Title image")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr How I manage safely my password with success for some years now.  
 **`sha1( password + domain_name )`**  
 I memorize only one password.
 I use a different password on all website.
 
-enddiv
+</div>
 
 Disclamer, this is an unashamed attempt to make you download my iPhone app ;-). 
 You're always here?

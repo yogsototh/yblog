@@ -11,11 +11,11 @@ macroLatex: '<span style="text-transform: uppercase">L<sup style="vertical-align
 tags: LaTeX, macros, markdown, nanoc, ruby
 -----
 
-begindiv(intro)
+<div class="intro">
 
 %tldr I made a simple macro system for my blog. Now I juste have to write %<span></span>latex and it show as %latex.
 
-enddiv
+</div>
 
 I added a macro system for my blog system.
 When we are used to %latex this lack can be hard to handle.

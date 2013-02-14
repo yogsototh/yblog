@@ -10,9 +10,9 @@ tags: programming, languages, C, C++, Java, haskell, Logo, Basic
 -----
 blogimage("dragon.jpg","Title image")
 
-begindiv(intro)
+<div class="intro">
 %tldr My short and highly subjective feelings about the programming languages I used.
-enddiv
+</div>
 
 ### `BASIC`
 

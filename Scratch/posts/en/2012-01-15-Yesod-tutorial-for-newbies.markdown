@@ -12,7 +12,7 @@ macros: html5: '<span class="sc">html5</span>' html: '<span class="sc">html</spa
 -----
 blogimage("flying_neo.jpg","Neo Flying at warp speed")
 
-begindiv(intro)
+<div class="intro">
 
 _update_: updated for yesod 0.10
 
@@ -25,7 +25,7 @@ You shouldn't need to know Haskell.
 > * Table of Content (generated)
 > {:toc}
 
-enddiv
+</div>
 
 Why Haskell?
 

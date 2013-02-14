@@ -10,14 +10,14 @@ tags: yesod, framework, web, haskell, ideas
 -----
 blogimage("main.png","Title image")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr
 
 [Yesod](http://www.yesodweb.com) is a web framework which recently reached the maturity for which you should consider to use it.
 Before telling you why you should learn Haskell and use yesod, I will talk about ideas yesod introduced and I didn't saw in other frameworks before.
 
-enddiv
+</div>
 
 ## Type safety
    
