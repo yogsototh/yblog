@@ -1,0 +1,143 @@
+-----
+isHidden:       false
+menupriority:   1
+kind:           article
+published: 2009-12-14T10:46:36+02:00
+title: Git vs. Bzr
+authorName: Yann Esposito
+authorUri: yannesposito.com
+subtitle: Why I switched from bazaar to git
+tags: git, bzr, DCVS, Bazaar 
+-----
+
+<div class="intro">
+
+Why even if I believe `git` has many bad point I believe it is the best DCVS around to work with. This is why I first tell why I prefer [Bazaar](http://bazaar-vcs.org) over [Git](http://git-scm.org). Secondly I'll talk about the only advantage of git against Bazaar which lead me to prefer it.
+
+</div>
+
+## The DCVS discovery
+
+Before beginning this article, you should know I come from *subversion*. I find subversion to be a really good CVS. But I was converted to the decentralized ones.
+
+There is two way of perceive version control system. Either you think in term of branches (see the really good article on [betterexplained](http://betterexplained.com/articles/a-visual-guide-to-version-control/)) or think in term of patches. Another way to say that, is weather you concentrate on vertices or on transitions of the graph of possible states of your project.
+
+This is the second approach who was behind `git` and this is the first behind Bazaar. `git` was created by Linus Torvald in order to close some gap in the version system used to develop the Linux kernel. And patches is a term which is more present than 'state' in the development community.
+
+I first was convinced by Bazaar. Why? Argument in favor of Bazaar were: user friendly, terminology close to the subversion one. And I tried a bit the two, and it was clearly more natural for me to use Bazaar. But after seeing so many people using `git` I decided to give it a serious try.
+
+And it was so fastidious! The `git` terminology was *horrible*! And it is nothing to say it.
+
+## Where Bazaar is better than `git`
+
+The first example, `checkout` is used to make only one thing from the technical point of vue. But from the user perspective, you make many *different* things with this word. Example:
+
+<div><code class="zsh">
+git checkout pipo
+</code></div>
+
+undo the current modification of the file `pipo`
+
+<div><code class="zsh">
+git checkout pipo
+</code></div>
+
+change the current branch to the branch `pipo`
+
+And, like me, you remark, it is exactly the same command to make two completely different things. What occur when you have a `pipo` branch and a `pipo` file? By default, it change the current branch. In order to leave the ambiguity you have to use the following syntax:
+
+<div><code class="zsh">
+git checkout ./pipo
+</code></div>
+
+Yes, hum...
+
+It works, but it is clearly not really user friendly. Furthermore, checkout had a complete different signification in older CSV like `cvs` et `svn`. `checkout` was used to get a distant project locally.
+
+Bazaar terminology is far more natural, because there is no command to change the current branch as there is only one branch per directory. Changing a branch in Bazaar is changing the current directory. I also believe it is the biggest problem of Bazaar, I'll tell you why. And to undo things in Bazaar:
+
+<div><code class="zsh">
+bzr revert pipo
+</code></div>
+
+Furthermore, most Bazaar command take a revision number in parameter. For example, to get back 3 versions earlier, it is enough to write:
+
+<div><code class="zsh">
+bzr revert -r -3 pipo
+</code></div>
+
+The `git` equivalent is far more cryptic:
+
+<div><code class="zsh">
+bzr checkout HEAD~3 pipo
+</code></div>
+
+One more time, Bazaar is far more readable.
+
+Back in time for all the project: 
+
+with Bazaar: 
+
+<div><code class="zsh">
+bzr revert -r -3 pipo
+</code></div>
+
+and with `git`? `git checkout`? Of course not! It would be too simple. What we find in the documentation (`man`) and everywhere on the net:
+
+<div><code class="zsh">
+git reset --hard HEAD~3
+</code></div>
+
+Except that this command is horrible. It forget revisions! Then you must use it with prudence. And you cannot tell other people working on the project you discard some changes. If someone had pulled the *bad* version, you are *doomed*. This is why you can also use:
+
+<div><code class="zsh">
+git checkout HEAD~3 -- . && git commit -m 'back in time'
+</code></div>
+
+Just to keep a backup branch. Without it we can definitively loose the current version HEAD. But some error may rest when there were some addition and deletion of files. *The unique way to be really clean without any risk is to use the following command:*
+
+<div><code class="zsh">
+for i in $(seq 0 2); do 
+    git revert -n --no-edit head~$i; 
+done
+git commit -m "reverted 3 versions back"
+</code></div>
+
+And with this command this is the only good way to undo things in a project and tell other contributor you reverted something. You simply revert version in backward order.
+
+The rule is simple: *NEVER use the `git reset` command on a version somebody else could have `fetched`*
+
+It was said. Discover the best method took me some time. I'd made many different tries. The safer and best way of reverting back your tree is to use this method. If you want to make it automatic just had the following alias in your `~/.gitconfig`. Of course this alias will work only on environment having `zsh` installed. Which is the cas for most UNIX (Ubuntu, Mac OS X...).
+
+<div><code class="zsh" file="gitconfig">
+[alias]
+    uncommit = !zsh -c '"if (($0)); then nb=$(( $0 - 1 )); else nb=0; fi; i=0; while ((i<=nb)); do git revert -n --no-edit HEAD~$i; ((i++)); done; git commit -m \"revert to $0 version(s) back\""'
+</code></div>
+
+# What make `git` by far the best DCVS today
+
+After talking about the negatives points of `git`, now it's time to speak about the very positive feature that make `git` the best DCVS in my humble opinion.
+
+## Cheap branching
+
+You always work into the same main directory. For example, you can work on two fix in the same time. Say `fix1` require you to work on `file1` and `fix2` to work on `file2`. You can work in any order on `file1` and `file2` in the `master` branch. And then go to branch `fix1`, commit `file1` into it. Then go to branch `fix2` and commit `file2` into it. And finally merge the two branches `fix1` and `fix2` into `master`.
+
+<div><code class="zsh">
+> vim file1
+> vim file2
+> git br fix1
+> git add file1 
+> git commit -m 'fix1'
+> git br fix2
+> git add file2
+> git commit -m 'fix2'
+> git commit master
+> git merge fix1
+> git merge fix2
+</code></div>
+
+And this is great not to worry about working in the *good* branch and coding in the same time. You just worry about your code and then about the versionning system.
+
+And I use this possibilities *a lot*. Working with bazaar, I often made the error to begin a change in the bad branch. then I have to copy my modifications, then revert. In short it was tiedous.
+
+This is why I prefer using `git` on an every day usage. If Bazaar implement the same way of cheap branching than git. I should switch again.
