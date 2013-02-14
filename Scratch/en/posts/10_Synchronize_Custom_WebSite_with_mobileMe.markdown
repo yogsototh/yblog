@@ -17,8 +17,6 @@ iDisk should soon disapear. This entry is mainly obsolescent now.
 
 I [updated my script](/Scratch/en/blog/2009-10-28-custom-website-synchronisation-with-mobileme--2-) which is now incremental. Since the writing of this article, Apple(c) had made many efforts about the bandwith of its European servers.
 
-
-
 # WebDav terror
 
 I live in France and iDisk upload is just terrible. Upload speed remind me the old 56k modem. Most operations such as list the content of a directory take at least 30 seconds (for 15 elements). Renaming a directory fail most of time.

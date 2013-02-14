@@ -18,8 +18,6 @@ I try to stay as pragmatic as possible.
 
 </div>
 
-
-
 # Begin with conclusion
 
 Here is the list of sufficient and necessary command to use [Git][git].
@@ -351,7 +349,6 @@ Now we'll see some [Git][git] usages older CVS couldn't handle.
 
 [git]: http://git-scm.org "Git"
 
-
 # Why Git is cool?
 
 Because with [Git][git] you can work on many part of some project totally independently.
@@ -380,7 +377,6 @@ With [Git][git] many people could work on the same project but not necessarily o
 One can easily fix a bug and send a patch to many different versions of a project.
 
 [git]: http://git-scm.org "Git"
-
 
 # Command List
 

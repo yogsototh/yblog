@@ -11,14 +11,13 @@ tags: web, webdesign, jQuery
 
 For developer IE is a nightmare. This is why, I use a method to disable my standard CSS and enable a IE only CSS. I use jQuery to accomplish that.
 
-<div><code class="javascript">
-$(document).ready( function() {
+<pre><code class="javascript">$(document).ready( function() {
     if ($.browser["msie"]) {
         // include the ie.js file
-        $('head').append('<script type="text/javascript" src="/js/ie.js"></scr' + 'ipt>');
+        $('head').append('&lt;script type="text/javascript" src="/js/ie.js"&gt;&lt;/scr' + 'ipt&gt;');
     }
 });
-</code></div>
+</code></pre>
 
 <div><code class="javascript" file="ie.js">
 // Remove all CSS I don't want to use on IE

@@ -11,11 +11,10 @@ tags: regex, regexp, regular expression, negate
 
 Sometimes you cannot simply write:
 
-<div><code class="ruby">
-if str.match(regexp) and 
+<pre><code class="ruby">if str.match(regexp) and 
     not str.match(other_regexp)
         do_something
-</code></div>
+</code></pre>
 
 and you have to make this behaviour with only one regular expression.
 But, there exists a major problem: the complementary of a regular language might not be regular.
@@ -48,8 +47,8 @@ Because, without it the word `bull` would be no more matched. This expression me
 And this is it. I hope it could help you.
 
 Notice this method is not always the best. For example try to write a regular expression equivalent to the following conditional expression:
-<div><code class="ruby">
-# Begin with 'a': ^a
+
+<pre><code class="ruby"># Begin with 'a': ^a
 # End with 'a': c$
 # Contain 'b': .*b.*
 # But isn't 'axbxc'
@@ -57,18 +56,17 @@ if str.match(/^a.*b.*c$/) and
         not str.match(/^axbxc$/)
     do_something
 end
-</code></div>
+</code></pre>
 
 A nice solution is:
 
-<div><code class="ruby">
-/abc|           # length 3
+<pre><code class="ruby">/abc|           # length 3
 a.bc|           # length 4
 ab.c|
 a[^x]b[^x]c|    # length 5
 a...*b.*c|      # length >5
 a.*b...*c/
-</code></div>
+</code></pre>
 
 This solution uses the maximal length of the string not to be matched.
 There certainly exists many other methods. But the important lesson is

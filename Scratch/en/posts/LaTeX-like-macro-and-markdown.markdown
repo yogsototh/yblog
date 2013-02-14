@@ -22,11 +22,14 @@ When we are used to %latex this lack can be hard to handle.
 Particularly when using mathematical notations.
 In the header of my files I simply write:
 
-<code class="yaml">
-macros:
+
+
+<pre><code class="yaml">macros:
   test: "This is a macro test"
-  latex: '<span style="text-transform: uppercase">L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span>'
-</code>
+  latex: '&lt;span style="text-transform: uppercase"&gt;L&lt;sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em"&gt;a&lt;/sup&gt;T&lt;sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em"&gt;e&lt;/sub&gt;X&lt;/span&gt;'
+</code></pre>
+
+
 
 In the body it will replace every occurrence of:
 
@@ -36,8 +39,9 @@ In the body it will replace every occurrence of:
 The source code is really simple.
 For `nanoc` user, simply put this file in your `lib` directory.
 
-<code class="ruby" file="macros.rb">
-# usage:
+
+
+<pre><code class="ruby"># usage:
 # ---
 # ...
 # macros:
@@ -46,14 +50,14 @@ For `nanoc` user, simply put this file in your `lib` directory.
 # ...
 # Here is a %test.
 #
-class Macros < Nanoc3::Filter
+class Macros &lt; Nanoc3::Filter
     identifier :falacy
     attr_accessor :macro
     def initialize(arg)
         super
         @macro={}
-        @macro[:tlal] = %{<span class="sc"><abbr title="Trop long à lire">tlàl</abbr> : </span>}
-        @macro[:tldr] = %{<span class="sc"><abbr title="Too long; didn't read">tl;dr</abbr>: </span>}
+        @macro[:tlal] = %{<span class="sc"&gt;&lt;abbr title="Trop long à lire"&gt;tlàl&lt;/abbr&gt; : &lt;/span&gt;}
+        @macro[:tldr] = %{&lt;span class="sc"&gt;&lt;abbr title="Too long; didn't read"&gt;tl;dr&lt;/abbr&gt;: &lt;/span&gt;}
         if @item.nil?
             if not arg.nil?
                 @macro.merge!( arg )
@@ -80,6 +84,8 @@ class Macros < Nanoc3::Filter
         end
     end
 end
-</code>
+</code></pre>
+
+
 
 Macros could be very useful, read [this article](http://adam.gomaa.us/blog/2007/oct/22/markdown-doesnt-scale/index.html) for example.

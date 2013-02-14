@@ -63,8 +63,9 @@ First a program which convert all gif to png in many different directories of di
 
 Before ⇒
 
-<code class="zsh">
-# for each directory in projects dir
+
+
+<pre><code class="zsh"># for each directory in projects dir
 for toProject in /path/to/projects/*(/N); do
     # toProject is /path/to/projects/foo
     # project become foo (:t for tail)
@@ -74,7 +75,9 @@ for toProject in /path/to/projects/*(/N); do
         \rm -f $toResource
     done
 done
-</code>
+</code></pre>
+
+
 
 - The `(/N)` means to select only directory and not to crash if there isn't any.
 - The `(.N)` means to select only files and not to crash if there isn't any.
@@ -100,8 +103,9 @@ Find all files in project not containing an `s` which their name contains their 
 
 Before ⇒
 
-<code class="zsh">
-for toProject in Projects/*; do
+
+
+<pre><code class="zsh">for toProject in Projects/*; do
     project=$toProject:t
     if print -- project | grep -v s >/dev/null
     then
@@ -113,7 +117,9 @@ for toProject in Projects/*; do
         done
     fi
 done
-</code>
+</code></pre>
+
+
 
 After ⇒
 

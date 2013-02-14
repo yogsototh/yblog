@@ -13,15 +13,13 @@ tags: git, tip
 
 Standard:
 
-<div><code class="zsh">
-git clone git@github.com:yogsototh/project.git
-</code></div>
+<pre><code class="zsh">git clone git@github.com:yogsototh/project.git
+</code></pre>
 
 Using HTTPS port:
 
-<div><code class="zsh">
-git clone git+ssh://git@github.com:443/yogsototh/project.git
-</code></div>
+<pre><code class="zsh">git clone git+ssh://git@github.com:443/yogsototh/project.git
+</code></pre>
 
 ## clone all branches
 
@@ -29,13 +27,12 @@ git clone git+ssh://git@github.com:443/yogsototh/project.git
 
 If you don't have much branches, you can simply use clone your project and then use the following command:
 
-<div><code class="zsh">
-git branch --track local_branch remote_branch
-</code></div>
+<pre><code class="zsh">git branch --track local_branch remote_branch
+</code></pre>
 
 for example:
-<div><code class="zsh">
-$ git clone git@github:yogsototh/example.git
+
+<pre><code class="zsh">$ git clone git@github:yogsototh/example.git
 $ git branch
 master *
 $ git branch -a
@@ -46,7 +43,7 @@ $ git branch --track experimental remotes/origin/experimental
 $ git branch
 master *
 experimental
-</code></div>
+</code></pre>
 
 If you have many branches it can be useful to use the following *script*/*long command line*.
 

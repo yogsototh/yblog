@@ -44,22 +44,17 @@ In order to hide this small artefact, here is how I do that.
 
 In a first time, I added at the top of the body the div hiding all the content.
 
-<div>
-<code class="html">
-...
-<body>
-<div id="blackpage">
+<pre><code class="html">...
+&lt;body&gt;
+&lt;div id="blackpage"&gt;
     content to display during the loading.
-</div>
+&lt;/div&gt;
 ...
-</code>
-</div>
+</code></pre>
 
 and here is the associated CSS to `#blackpage`: 
 
-<div>
-<code class="css">
-#blackpage
+<pre><code class="css">#blackpage
   top: 0 
   left: 0 
   width: 100%
@@ -74,18 +69,14 @@ and here is the associated CSS to `#blackpage`:
   padding-top: 10em
   background-color: #eee
   z-index: 9000
-</code>
-</div>
+</code></pre>
 
 and the associated jQuery code: 
 
-<div>
-<code class="javascript">
-$(document).ready(function(){
+<pre><code class="javascript">$(document).ready(function(){
     $('#blackpage').fadeOut();
 });
-</code>
-</div>
+</code></pre>
 
 Yes, it is as simple as that. And, putting the `#blackpage` div at the top of my page, I ensure to hide anything while loading.
 

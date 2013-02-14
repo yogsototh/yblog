@@ -36,8 +36,9 @@ The header is then a block of packed bytes.
 Surprisingly, I believe that reading this kind of file is easier in `C` than in most higher level language.
 Proof: I only have to search on the web the complete header format and write it in a struct.
 
-<code class="c">
-struct wavfile
+
+
+<pre><code class="c">struct wavfile
 {
     char        id[4];          // should always contain "RIFF"
     int     totallength;    // total file length minus 8
@@ -52,26 +53,34 @@ struct wavfile
     char        data[4];        // should always contain "data"
     int     bytes_in_data;
 };
-</code>
+</code></pre>
+
+
 
 To read this kind of data in Ruby, I certainly had to write a block of code for each element in the struct.
 But in `C` I simply written:
 
-<code class="c">
-fread(&header,sizeof(header),1,wav)
-</code>
+
+
+<pre><code class="c">fread(&header,sizeof(header),1,wav)
+</code></pre>
+
+
 
 Only one step to fill my data structure. Magic!
 
 Then, get an int value coded on two Bytes is also not a natural operation for high level language.
 In `C`, to read a sequence of 2 Bytes numbers I only had to write:
 
-<code class="c">
-short value=0;
+
+
+<pre><code class="c">short value=0;
 while( fread(&value,sizeof(value),1,wav) ) {
     // do something with value
 }
-</code>
+</code></pre>
+
+
 
 Finally I ended with the following code. Remark I know the wav format (16 bit / 48000Hz):
 
@@ -151,9 +160,12 @@ But I must confess this task was a bit tedious.
 The code remain as readable as before.
 But I had to use some compiler specific declaration to force the structure to be packed:
 
-<code class="c">
-__attribute__((__packed__))
-</code>
+
+
+<pre><code class="c">__attribute__((__packed__))
+</code></pre>
+
+
 
 Therefore this implementation should for big and little endian architecture. 
 However, it must be compiled with `gcc`.
@@ -308,8 +320,9 @@ except IOError:
 and [luikore](http://www.reddit.com/user/luikore)
 proposed an impressive Ruby version:
 
-<code class="ruby" file="wavsum.rb">
-data = ARGF.read
+
+
+<pre><code class="ruby">data = ARGF.read
  keys = %w[id totallength wavefmt format
        pcm channels frequency bytes_per_second
          bytes_by_capture bits_per_sample
@@ -320,4 +333,6 @@ data = ARGF.read
  keys.zip(values.take(12) << sum) {|k, v|
        puts "#{k.ljust 17}: #{v}"
  }
-</code>
+</code></pre>
+
+

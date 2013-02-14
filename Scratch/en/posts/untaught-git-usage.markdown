@@ -13,8 +13,6 @@ tags: git, dcvs, programming
 
 <small> <em> "Cheap branches" aren't designed to be totally isolated branches but rather should follow a "Master Branch". There is a </em>Standard Workflow<em> to follow. If you don't follow it, you prepare yourself with some hard time with Git.</em> </small>
 
-
-
 # My way to decentralisation
 
 ### From SVN to Bazaar
@@ -54,8 +52,6 @@ I finally understood why reading a document I didn't read before. It was the *un
 <small><a name="note1">&dagger;</a> - I speak about *ClearCase(c)*. I know there exists command line tools. But it was not the way my team used it.</small>
 
 <small><a name="note2">&#42;</a> - I never really given its chance to Mercurial. The terminology they chosen was too far from the svn one. And I was used to it.</small>
-
-
 
 When you see explanation about *branches* and <abbr title="Decentralized Concurrent Versioning System">DCVS</abbr> we imagine each branch is totally uncorrelated to each other, except when *merging*. Everything is magic. This is the "*Parallel World*" explanation. This way of seeing is explained more in depth in the [real good article about branches](http://betterexplained.com/articles/a-visual-guide-to-version-control/) on betterexplained. 
 
@@ -108,19 +104,19 @@ And I return exactly in branches Bazaar provided me.
 
 For now, I prefer (from far) Bazaar terminology. They are cleaner and more understandable.
 
-<div><code class="zsh">bzr revert</code></div>
+<pre><code class="zsh">bzr revert</code></pre>
 
 Is clearer than
 
-<div><code class="zsh">git reset --hard HEAD</code></div>
+<pre><code class="zsh">git reset --hard HEAD</code></pre>
 
 We can tell the same thing about
 
-<div><code class="zsh">bzr revert -r -3</code></div>
+<pre><code class="zsh">bzr revert -r -3</code></pre>
 
 which seems preferable to
 
-<div><code class="zsh">git reset --hard HEAD~3</code></div>
+<pre><code class="zsh">git reset --hard HEAD~3</code></pre>
 
 Until now, it is not big business. But now, things will go worse.
 If we want to revert time on all the tree we use the keyword `reset`.
@@ -129,29 +125,29 @@ If we want to revert time on all the tree we use the keyword `reset`.
 
 Now, if I want to revert time on on file. We should naturally imagine the command will be:
 
-<div><code class="zsh">git reset --hard FILE</code></div>
+<pre><code class="zsh">git reset --hard FILE</code></pre>
 
 <center>**OF COURSE NOT!**</center>
 
 The solution is:
 
-<div><code class="zsh">git checkout FILE</code></div>
+<pre><code class="zsh">git checkout FILE</code></pre>
 
 What? **`checkout`** !? Well, ok. I accept. why not?
 With Bazaar it is:
 
-<div><code class="zsh">git revert FILE</code></div>
+<pre><code class="zsh">git revert FILE</code></pre>
 
 What I personally found far more natural.
 
 But the command to change the current *cheap branch* is really hard to be accepted (from the User Interface point of view).
 With Bazaar it is:
 
-<div><code class="zsh">cd ../branch</code></div>
+<pre><code class="zsh">cd ../branch</code></pre>
 
 Well yes. With Bazaar you have to change your directory to change your branch. It needs more disk resources but it is really clear. Which is my current branch, is just a `pwd` away. For Git here is the command:
 
-<div><code class="zsh">git checkout branch</code></div>
+<pre><code class="zsh">git checkout branch</code></pre>
 
 **WTF?** I believed `checkout` was the key to get a file in some state (not the entire tree).
 
@@ -166,8 +162,6 @@ It is totally unnatural. Even if it is theoretically totally justified like you 
 That were the Git bad side. But It has many advantages. Once you've understood the *cheap branching* paradigm. All became clearer for me after. Even if there is also some difficulties with the edit of the `.git/config` files (not user friendly at all).
 
 <small><a name="note3">&Dagger;</a> I must precise that I worked a lot with multi-modal logic and particularly about "Temporal Logics" (linear or not). This is why I was more inclined to see things this way. "Ah ! Just to remember my firsts love with computer science !"</small>
-
-
 
 # Conclusion
 

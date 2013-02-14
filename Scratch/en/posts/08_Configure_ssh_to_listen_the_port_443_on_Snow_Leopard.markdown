@@ -14,11 +14,8 @@ In order to bypass *evil* company firewall and to surf safely on unsafe <sc>wifi
 
 Then from my laptop or my local computer I just have to launch the marvelous
 
-<div>
-<code class="zsh">
-ssh -p 443 -D 9050 username@host
-</code>
-</div>
+<pre><code class="zsh">ssh -p 443 -D 9050 username@host
+</code></pre>
 
 and a local <sc>socks</sc> proxy listening on port 9050 is launched. The <sc>socks</sc> proxy will transfer local requests via the ssh tunnel. Therefore I can surf locally as if I was on my own computer. I can put password and card number without fear the local <sc>wifi</sc> network to be *sniffed*. I simply need to configure my web browser to user the <sc>socks</sc> proxy on localhost and port 9050.
 
@@ -34,44 +31,41 @@ I posted the question on [Apple Discussions](discussions.apple.com) in this [dis
 
 Create the file <tt>/Library/LaunchDaemons/ssh-443.plist</tt> containing:
 
-<div>
-<code class="xml" file="ssh-443.plist">
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>Disabled</key>
-	<false/>
-	<key>Label</key>
-	<string>local.sshd</string>
-	<key>Program</key>
-	<string>/usr/libexec/sshd-keygen-wrapper</string>
-	<key>ProgramArguments</key>
-	<array>
-		<string>/usr/sbin/sshd</string>
-		<string>-i</string>
-	</array>
-	<key>Sockets</key>
-	<dict>
-		<key>Listeners</key>
-		<dict>
-			<key>SockServiceName</key>
-			<string>https</string>
-		</dict>
-	</dict>
-	<key>inetdCompatibility</key>
-	<dict>
-		<key>Wait</key>
-		<false/>
-	</dict>
-	<key>StandardErrorPath</key>
-	<string>/dev/null</string>
-        <key>SHAuthorizationRight</key>
-        <string>system.preferences</string>
-</dict>
-</plist>
-</code>
-</div>
+<pre><code class="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+	&lt;key&gt;Disabled&lt;/key&gt;
+	&lt;false/&gt;
+	&lt;key&gt;Label&lt;/key&gt;
+	&lt;string&gt;local.sshd&lt;/string&gt;
+	&lt;key&gt;Program&lt;/key&gt;
+	&lt;string&gt;/usr/libexec/sshd-keygen-wrapper&lt;/string&gt;
+	&lt;key&gt;ProgramArguments&lt;/key&gt;
+	&lt;array&gt;
+		&lt;string&gt;/usr/sbin/sshd&lt;/string&gt;
+		&lt;string&gt;-i&lt;/string&gt;
+	&lt;/array&gt;
+	&lt;key&gt;Sockets&lt;/key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;Listeners&lt;/key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;SockServiceName&lt;/key&gt;
+			&lt;string&gt;https&lt;/string&gt;
+		&lt;/dict&gt;
+	&lt;/dict&gt;
+	&lt;key&gt;inetdCompatibility&lt;/key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;Wait&lt;/key&gt;
+		&lt;false/&gt;
+	&lt;/dict&gt;
+	&lt;key&gt;StandardErrorPath&lt;/key&gt;
+	&lt;string&gt;/dev/null&lt;/string&gt;
+        &lt;key&gt;SHAuthorizationRight&lt;/key&gt;
+        &lt;string&gt;system.preferences&lt;/string&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre>
 
 It is a copy of `/System/Library/LaunchDaemons/ssh.plist` with some modifications:
 

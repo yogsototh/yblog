@@ -48,7 +48,11 @@ directly to the [next part](#cappuccino).
 
 I manage my password on many site with a simple method. 
 I remember a strong master password. And my password is mainly
-<code class="ruby">hash(masterPassword+domainName)</code>
+
+
+<pre><code class="ruby">hash(masterPassword+domainName)</code></pre>
+
+
 
 In reality I need a bit more informations to create a password:
 
@@ -60,14 +64,17 @@ In reality I need a bit more informations to create a password:
 
 The result password is this:
 
-<code class="ruby">
-domainName=domaine_Name_Of_URL(url)
+
+
+<pre><code class="ruby">domainName=domaine_Name_Of_URL(url)
 hash=sha1( masterPassword + leakedTimes + domainName )
 if ( kind == 'base64' )
     hash=base64(hash)
 end
 return hash[0..maxlength]
-</code>
+</code></pre>
+
+
 
 In fact depending of websites, some give some strange constraint to your password: 
 

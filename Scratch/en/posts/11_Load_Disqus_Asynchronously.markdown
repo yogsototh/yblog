@@ -15,8 +15,6 @@ In fact this method works for old threads. But it fails to create new post threa
 
 Remark I didn't have any comment on my blog when I switched. Therefore my lack of influence was a good thing :-).
 
-
-
 Before begining, I must state that I **love** Disqus. 
 
 I know there is a similar blog entry at [Trephine.org](http://trephine.org/t/index.php?title=Site_improvements_-_fighting_with_Disqus). Here I just add a straight and easy way to load disqus asynchronously using jQuery. 
@@ -25,16 +23,12 @@ I also know there is a jQuery plugin to make just that. Unfortunately I had some
 
 *Now let's begin.*
 
-
-
 # Why?
 
 Why should I want to load the disqus javascript asynchronously?
 
   - Efficiency: I don't want my page to wait the complete execution of disqus script to load.
   - More independance: when disqus is down, my page is blocked!
-
-
 
 # How?
 
@@ -44,22 +38,16 @@ I give a solution with jQuery, but I'm certain it will work with many other js l
 
 replace:
 
-<div>
-<code class="javascript">
-<script type="text/javascript" src="http://disqus.com/forums/YOUR_DISQUS_ID/embed.js"></script>
-</code>
-</div>
+<pre><code class="javascript">&lt;script type="text/javascript" src="http://disqus.com/forums/YOUR_DISQUS_ID/embed.js"&gt;&lt;/script&gt;
+</code></pre>
 
 by
 
-<div>
-<code class="javascript">
-window.disqus_no_style=true;
+<pre><code class="javascript">window.disqus_no_style=true;
 $(document).ready(function(){
     $.getScript("http://disqus.com/forums/YOUR_DISQUS_ID/embed.js");
 });
-</code>
-</div>
+</code></pre>
 
 If you forget the `window.disqus_no_style=true;` then your page will be blank. Simply because without this option, the javascript use a `document.write` action after the document was closed, which cause a complete erasing of it.
 

@@ -37,12 +37,11 @@ blogimage("branch_hierarchy.png","Branch hierarchy")
 
 An arrow from A to B means, you can merge A in B. If there is no arrow from A to B that means it is *forbidden* to merge A in B. Here is the corresponding rubycode:
 
-<div><code class="ruby">
-$architecture={ 
+<pre><code class="ruby">$architecture={ 
     :master => [ :dev, :client ],
     :dev => [ :master ],
     :client => [ :clientA, :clientB ] }
-</code></div>
+</code></pre>
 
 Having a `:master => [ :dev, :client ]` means you can merge `master` branch into `dev` and `client`.
 
@@ -50,12 +49,11 @@ If by mistake I make a `git checkout master && git merge clientA`, I made a mist
 
 But this script do far more than that. It also merge from top to down. The action `allmerges` will do:
 
-<div><code class="zsh">
-git co dev && git merge master
+<pre><code class="zsh">git co dev && git merge master
 git co client && git merge master
 git co clientA && git merge client
 git co clientB && git merge client
-</code></div>
+</code></pre>
 
 That means, I can update all branches. The algorithm will not make loop even if there is a cycle in the branch hierarchy.
 

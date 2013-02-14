@@ -15,23 +15,19 @@ Here is how to accomplish that easily.
 
 HTML: 
 
-<div>
-<code class="html">
-    <div id="menuButton"></div>
-    <div id="entete">
-        <ul>
-            <li> menu item 1 </li>
+<pre><code class="html">    &lt;div id="menuButton"&gt;&lt;/div&gt;
+    &lt;div id="entete"&gt;
+        &lt;ul&gt;
+            &lt;li&gt; menu item 1 &lt;/li&gt;
             ...
-            <li> menu item n </li>
-        </ul>
-    </div>
-</code>
-</div>
+            &lt;li&gt; menu item n &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+</code></pre>
 
 CSS: 
 
-<div><code class="css">
-    #entete {
+<pre><code class="css">    #entete {
       top: 1em;
       left: 0;
       position: fixed;
@@ -44,7 +40,7 @@ CSS:
       left: 0;
       position: fixed;
       width: 10em; }
-</code></div>
+</code></pre>
 
 Javascript: 
 

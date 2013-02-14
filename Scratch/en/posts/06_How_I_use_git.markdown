@@ -16,53 +16,39 @@ Unfortunately I didn't find clearly what I needed on the official Git documentat
 
 In two words, if you want to use an SVN workflow with Git (and all its advantages) here is how to proceed.
 
-
-
 ## Initialisation
 
 Suppose I've got a directory on my local computer containing a project I want to manage via Git. Here what to do: 
 
-<div>
-<code class="zsh">
-cd to/project/directory/
+<pre><code class="zsh">cd to/project/directory/
 git init
 git add
 git commit
-</code>
-</div>
+</code></pre>
 
 Now all files in the <code>to/project/directory/</code> are versionned.
 If you want not to follow some just edit the file <code>.gitignore</code>
 
 for example mine is: 
 
-<div>
-<code class="zsh">
-*.swp
+<pre><code class="zsh">*.swp
 .DS_Store
 ikog.py.bak
 output/Scratch/assets
 output/Scratch/en
 output/Scratch/fr
 output/Scratch/multi
-</code>
-</div>
+</code></pre>
 
 Next, you want to put your project on a directory accessible from the web:
 
-<div>
-<code class="zsh">
-git clone --bare . /path/to/repository
-</code>
-</div>
+<pre><code class="zsh">git clone --bare . /path/to/repository
+</code></pre>
 
 Now on any computer you can do: 
 
-<div>
-<code class="zsh">
-git clone protocol://path/to/repository local_directory
-</code>
-</div>
+<pre><code class="zsh">git clone protocol://path/to/repository local_directory
+</code></pre>
 
 and <code>local_directory</code> will contain an up-to-date project.
 
@@ -72,45 +58,32 @@ You should make this operation also on the computer used to create the repositor
 </em>
 </div>
 
-
-
 ## The workflow
 
 To resume you now have one repository on the Internet, and one or many computer associated with it. Now, what you want is to synchronize everything.
 
 Before begining your work, the first thing to do is to get all modification from the Internet to your local host: 
 
-<div>
-<code class="zsh">
-git pull
-</code>
-</div>
+<pre><code class="zsh">git pull
+</code></pre>
 
 After that you can do (many times): 
 
-<div>
-<code class="zsh">
-hack, hack, hack...
+<pre><code class="zsh">hack, hack, hack...
 git add some files
 git commit
-</code>
-</div>
+</code></pre>
 
 When you want your local modification to be on the Internet just do a simple:
 
-<div>
-<code class="zsh">
-git push
-</code>
-</div>
+<pre><code class="zsh">git push
+</code></pre>
 
 All should be ok.
 
 If you have some trouble with the <code>push</code> and <code>pull</code> verify your <code>.git/config</code> file ; it should contain the following lines:
 
-<div>
-<code class="zsh">
-...
+<pre><code class="zsh">...
 [remote "origin"]
 	url = protocol://url/of/the/repository
 	fetch = +refs/heads/*:refs/remotes/origin/*
@@ -118,8 +91,7 @@ If you have some trouble with the <code>push</code> and <code>pull</code> verify
 	remote = origin
 	merge = refs/heads/master
 ...
-</code>
-</div>
+</code></pre>
 
 ## Branches Synchronisation
 
@@ -129,11 +101,11 @@ This is why I created two simple scripts to automate this. One for creating a br
 
 Then when you want to create a new branch (locally and remotely) ; you simply have to do a: 
 
-<div><code class="zsh">git-create-new-branch branch_name</code></div>
+<pre><code class="zsh">git-create-new-branch branch_name</code></pre>
 
 and when you are on another computer and want to get locally all the remote branches you execute: 
 
-<div><code class="zsh">git-get-remote-branches</code></div>
+<pre><code class="zsh">git-get-remote-branches</code></pre>
 
 Here are the code of theese two scripts: 
 

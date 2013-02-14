@@ -14,16 +14,14 @@ Here is my new script, it first create a map which associate to each file its ha
 
 Even with this script I also have some problem. Mostly due to 'webdav' issues. For example, renaming a folder work really badly (on Linux at least). I use webdavfs. For example:
 
-<div><code class="zsh">
-mv folder folder2
-</code></div>
+<pre><code class="zsh">mv folder folder2
+</code></pre>
 
 It returns OK and I've got: 
 
-<div><code class="zsh">
-$ ls 
+<pre><code class="zsh">$ ls 
 folder folder2
-</code></div>
+</code></pre>
 
 Booh....
 

@@ -16,9 +16,12 @@ Just `mail` and `mailx`.
 
 What Internet say (via google) is
 
-<code class="zsh">
-uuencode fic.jpg fic.jpg | mail -s 'Subject'
-</code>
+
+
+<pre><code class="zsh">uuencode fic.jpg fic.jpg | mail -s 'Subject'
+</code></pre>
+
+
 
 I tried it.
 And it works almost each times.
@@ -45,9 +48,12 @@ Finally I made it manually using `sendmail`.
 I didn't dare to use `telnet`.
 The command to use is:
 
-<code class="zsh">
-sendmail -t -oi < mailcontent.txt
-</code>
+
+
+<pre><code class="zsh">sendmail -t -oi < mailcontent.txt
+</code></pre>
+
+
 
 Of course you need to create the `mailcontent.txt` file.
 It should contains:

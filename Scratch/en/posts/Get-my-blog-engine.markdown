@@ -23,24 +23,23 @@ What this system provide?
 * Typographic ameliorations (no ':' starting a line in French for example),
 * [Graphviz](http://graphviz.org) graph generation integration.
 
-
-
 # Main Documentation Page
 
 # Use It NOW!
 
 Once installed (follow the README.md instructions).
 
-<code class="zsh">
-$ cd /root/of/nanoc3_blog
+
+
+<pre><code class="zsh">$ cd /root/of/nanoc3_blog
 $ ./task/new_blog_entry Title of the blog
 $ vi latest.md
 $ ./task/recompile
-</code>
+</code></pre>
+
+
 
 Now your website reside into the `output` directory.
-
-
 
 # Documentation
 
@@ -78,11 +77,14 @@ You can use small caps using `<sc>` tags.
 
 To write source code you should use the following format:
 
-<code class="html">
-<code class="ruby" file="filename.rb">
+
+
+<pre><code class="html">&lt;code class="ruby" file="filename.rb"&gt;
 The code
-</cOde>
-</code>
+&lt;/cOde&gt;
+</code></pre>
+
+
 
 The `file` attribute is not required.
 

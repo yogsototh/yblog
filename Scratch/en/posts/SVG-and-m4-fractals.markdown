@@ -52,23 +52,32 @@ Here are some example:
 
 - Variable, instead of writing the natural `myvar = value`, here is the <sc>xslt</sc> way of doing this:
 
-<code class="xml">
-<xsl:variable name="myvar" select="value"/>
-</code>
+
+
+<pre><code class="xml">&lt;xsl:variable name="myvar" select="value"/&gt;
+</code></pre>
+
+
 
 - Printing something. Instead of `print "Hello world!"` here is the <sc>xslt</sc> equivalent:
 
-<code class="xml">
-<xsl:text 
-    disable-output-escaping="yes"><![CDATA[Hello world!
-]]></xsl:text>
-</code>
+
+
+<pre><code class="xml">&lt;xsl:text 
+    disable-output-escaping="yes"&gt;&lt;![CDATA[Hello world!
+]]&gt;&lt;/xsl:text&gt;
+</code></pre>
+
+
 
 - printing the value of a variable, instead of `print myvar` the <sc>xslt</sc> is:
 
-<code class="xml">
-<xslt:value-of select="myvar"/>
-</code>
+
+
+<pre><code class="xml">&lt;xslt:value-of select="myvar"/&gt;
+</code></pre>
+
+
 
 - Just try to imagine how verbose it is to declare a function with this language.
 
@@ -95,9 +104,12 @@ define(`yshow',`<xsl:value-of select="$1"/>')
 
 Now just compile this file:
 
-<code class="zsh">
-m4 myfile.m4 > myfile.xslt
-</code>
+
+
+<pre><code class="zsh">m4 myfile.m4 > myfile.xslt
+</code></pre>
+
+
 
 Profit! Now <sc>xslt</sc> is more readable and easier to edit!
 
@@ -175,9 +187,12 @@ define(`YTRANSCOMPLETE', `
 
 and I compiled it to <sc>svg</sc> and then to <sc>png</sc> with:
 
-<code class="zsh">
-m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
-</code>
+
+
+<pre><code class="zsh">m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
+</code></pre>
+
+
 
 The main λ is duplicated 3 times. Each transformation is named by: `YTRANSFORMONE`, `YTRANSFORMTWO` and `YTRANSFORMTHREE`.
 

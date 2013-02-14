@@ -44,8 +44,6 @@ Finally, the problem was crushed in less than 20 minutes.
 I believe the important lesson is to remember that the most efficient methodology to resolve this *pragmatic* problem was the *theoretical* one. 
 And therefore, argues opposing science, theory to pragmatism and efficiency are fallacies.
 
-
-
 # First: my experience
 
 Apparently 90% of programmer are unable to program a binary search without bug. 
@@ -59,52 +57,58 @@ I had to face a problem of the same kind at my job. The problem was simple to th
 
 The source <sc>xml</sc> was in the following general format:
 
-<code class="xml">
-<rubrique>
-    <contenu>
-        <tag1>value1</tag1>
-        <tag2>value2</tag2>
+
+
+<pre><code class="xml">&lt;rubrique&gt;
+    &lt;contenu&gt;
+        &lt;tag1&gt;value1&lt;/tag1&gt;
+        &lt;tag2&gt;value2&lt;/tag2&gt;
         ...
-    </contenu>
-    <enfant>
-        <rubrique>
+    &lt;/contenu&gt;
+    &lt;enfant&gt;
+        &lt;rubrique&gt;
             ...
-        </rubrique>
+        &lt;/rubrique&gt;
         ...
-        <rubrique>
+        &lt;rubrique&gt;
             ...
-        </rubrique>
-    </enfant>
-</menu>
-</code>
+        &lt;/rubrique&gt;
+    &lt;/enfant&gt;
+&lt;/menu&gt;
+</code></pre>
+
+
 
 and the destination format was in the following general format:
 
-<code class="xml">
-<item name="Menu0">
-    <value>
-        <item name="menu">
-            <value>
-                <item name="tag1">
-                    <value>value1</value>
-                </item>
-                <item name="tag2">
-                    <value>value2</value>
-                </item>
+
+
+<pre><code class="xml">&lt;item name="Menu0"&gt;
+    &lt;value&gt;
+        &lt;item name="menu"&gt;
+            &lt;value&gt;
+                &lt;item name="tag1"&gt;
+                    &lt;value&gt;value1&lt;/value&gt;
+                &lt;/item&gt;
+                &lt;item name="tag2"&gt;
+                    &lt;value&gt;value2&lt;/value&gt;
+                &lt;/item&gt;
                 ...
-                <item name="menu">
-                    <value>
+                &lt;item name="menu"&gt;
+                    &lt;value&gt;
                         ...
-                    </value>
-                    <value>
+                    &lt;/value&gt;
+                    &lt;value&gt;
                         ...
-                    </value>
-                </item>
-            </value>
-        </item>
-    </value>
-</item>
-</code>
+                    &lt;/value&gt;
+                &lt;/item&gt;
+            &lt;/value&gt;
+        &lt;/item&gt;
+    &lt;/value&gt;
+&lt;/item&gt;
+</code></pre>
+
+
 
 At first sight I believed it will be easy. I was so certain it will be easy that I fixed to myself the following rules:
 
@@ -258,23 +262,29 @@ r - b
 
 And look at what it implies when you write it in <sc>xml</sc>:
 
-<code class="xml">
-<r>
-  <x>
-    <a>value for a</a>
-    <b>value for b</b>
-  </x>
-  <y>
-    <c>value for c</c>
-  </y>
-</r>
-</code>
+
+
+<pre><code class="xml">&lt;r&gt;
+  &lt;x&gt;
+    &lt;a&gt;value for a&lt;/a&gt;
+    &lt;b&gt;value for b&lt;/b&gt;
+  &lt;/x&gt;
+  &lt;y&gt;
+    &lt;c&gt;value for c&lt;/c&gt;
+  &lt;/y&gt;
+&lt;/r&gt;
+</code></pre>
+
+
 
 Then deleting all `x` nodes is equivalent to pass the <sc>xml</sc> via the following search and replace script:
 
-<code class="perl">
-s/<\/?x>//g
-</code>
+
+
+<pre><code class="perl">s/&lt;\/?x&gt;//g
+</code></pre>
+
+
 
 Therefore, if there exists a one state deterministic transducer which transform my trees ;
 I can transform the <sc>xml</sc> from one format to another with just a simple list of search and replace directives.
@@ -322,21 +332,27 @@ can be done using the following one state deterministic tree transducer:
 
 Wich can be traduced by the following simple search and replace directives: 
 
-<code class="perl">
-s/C//g
+
+
+<pre><code class="perl">s/C//g
 s/E/M/g
 s/R/V/g
-</code>
+</code></pre>
+
+
 
 Once adapted to <sc>xml</sc> it becomes:
 
-<code class="perl">
-s%</?contenu>%%g
-s%<enfant>%<item name="menu">%g
-s%</enfant>%</item>%g
-s%<rubrique>%<value>%g
-s%</rubrique>%</value>%g
-</code>
+
+
+<pre><code class="perl">s%&lt;/?contenu&gt;%%g
+s%&lt;enfant&gt;%&lt;item name="menu"&gt;%g
+s%&lt;/enfant&gt;%&lt;/item&gt;%g
+s%&lt;rubrique&gt;%&lt;value&gt;%g
+s%&lt;/rubrique&gt;%&lt;/value&gt;%g
+</code></pre>
+
+
 
 That is all.
 

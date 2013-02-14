@@ -21,21 +21,16 @@ During the time I tried to integrate [Disqus](http://disqus.com/) I never tried 
 
 In order to make it fully asynchronous, you've just to download their common js and replace the following line:
 
-<div>
-<code class="javascript">
-document.getElementsByTagName("head")[0].appendChild(commentScript);
-</code>
-</div>
+<pre><code class="javascript">document.getElementsByTagName("head")[0].appendChild(commentScript);
+</code></pre>
 
 by: 
  
-<div>
-<code class="javascript">
-$(document).ready( function() {
+
+<pre><code class="javascript">$(document).ready( function() {
     document.getElementsByTagName("head")[0].appendChild(commentScript);
 });
-</code>
-</div>
+</code></pre>
 
 ## And the Winner is: [Intense Debate](http://intensedebate.com/)
 

@@ -14,27 +14,33 @@ For my main page, you can see, a list of my latest blog entry. And you have the 
 
 Here is an example:
 
-<code class="html">
-<div class="corps">
-    <div class="intro">
-        <p>Introduction</p>
-    </div>
-    <p>The first paragraph</p>
-    <img src="/img/img.png" alt="an image"/>
-    <p>Another long paragraph</p>
-</div>
-</code>
+
+
+<pre><code class="html">&lt;div class="corps"&gt;
+    &lt;div class="intro"&gt;
+        &lt;p&gt;Introduction&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p&gt;The first paragraph&lt;/p&gt;
+    &lt;img src="/img/img.png" alt="an image"/&gt;
+    &lt;p&gt;Another long paragraph&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+
 
 After the cut, I obtain:
 
-<code class="html">
-<div class="corps">
-    <div class="intro">
-        <p>Introduction</p>
-    </div>
-    <p>The first paragraph</p>
+
+
+<pre><code class="html">&lt;div class="corps"&gt;
+    &lt;div class="intro"&gt;
+        &lt;p&gt;Introduction&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;p&gt;The first paragraph&lt;/p&gt;
     <img src="/img/im
-</code>
+</code></pre>
+
+
 
 Argh! In the middle of an `<img>` tag.
 
@@ -44,23 +50,26 @@ Given with our example, when we are after the first paragraph. we only have to c
 
 Then, all you have to do, is not remember all the XML tree, but only the heap containing your parents. Suppose we treat the complete first example, the stack will pass through the following state, in order:
 
-<code class="html">
-[]           
-[div]           <div class="corps">
-[div, div]          <div class="intro">
-[div, div, p]           <p>
+
+
+<pre><code class="html">[]           
+[div]           &lt;div class="corps"&gt;
+[div, div]          &lt;div class="intro"&gt;
+[div, div, p]           &lt;p&gt;
                             Introduction
-[div, div]              </p>
-[div]               </div>
-[div, p]            <p>
+[div, div]              &lt;/p&gt;
+[div]               &lt;/div&gt;
+[div, p]            &lt;p&gt;
                         The first paragraph
-[div]               </p>
-[div]               <img src="/img/img.png" alt="an image"/>
-[div, p]            <p>
+[div]               &lt;/p&gt;
+[div]               &lt;img src="/img/img.png" alt="an image"/&gt;
+[div, p]            &lt;p&gt;
                         Another long paragraph
-[div]               </p>
-[]              </div>
-</code>
+[div]               &lt;/p&gt;
+[]              &lt;/div&gt;
+</code></pre>
+
+
 
 The algorihm, is then really simple: 
 <code class="html">
@@ -82,16 +91,17 @@ And `res` contain the repaired XML.
 
 Finally, this is the code in ruby I use. The `xml` variable contain the cutted XML.
 
-<code class="ruby" file="repair_xml.rb">
-# repair cutted XML code by closing the tags
+
+
+<pre><code class="ruby"># repair cutted XML code by closing the tags
 # work even if the XML is cut into a tag.
 # example:
-#    transform '<div> <span> toto </span> <p> hello <a href="http://tur'
-#    into      '<div> <span> toto </span> <p> hello </p></div>'
+#    transform '&lt;div&gt; &lt;span&gt; toto &lt;/span&gt; &lt;p&gt; hello &lt;a href="http://tur'
+#    into      '<div&gt; &lt;span&gt; toto &lt;/span&gt; &lt;p&gt; hello &lt;/p&gt;&lt;/div&gt;'
 def repair_xml( xml )
     parents=[]
     depth=0
-    xml.scan( %r{<(/?)(\w*)[^>]*(/?)>} ).each do |m|
+    xml.scan( %r{&lt;(/?)(\w*)[^&gt;]*(/?)>} ).each do |m|
         if m[2] == "/"
             next
         end
@@ -102,11 +112,13 @@ def repair_xml( xml )
             depth-=1
         end
     end
-    res=xml.sub(/<[^>]*$/m,'')
+    res=xml.sub(/&lt;[^&gt;]*$/m,'')
     depth-=1
-    depth.downto(0).each { |x| res<<= %{</#{parents[x]}>} }
+    depth.downto(0).each { |x| res&lt;<= %{</#{parents[x]}&gt;} }
     res
 end
-</code>
+</code></pre>
+
+
 
 I don't know if the code can help you, but the raisonning should definitively be known.

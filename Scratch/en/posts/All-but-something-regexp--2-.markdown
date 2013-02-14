@@ -40,30 +40,29 @@ a.....<span class="Constant"><strong>a......b</strong></span>..b..a....<span cla
 Until now, that was, easy. 
 Now, just pass at the case you need to match not between `a` and `b`, but between strings.
 For example:
-<div><code class="perl">
-<li>...<li>
-</code></div>
+
+<pre><code class="perl">&lt;li&gt;...&lt;li&gt;
+</code></pre>
 
 This is a bit difficult. You need to match 
-<div><code class="perl">
-<li>[anything not containing <li>]</li>
-</code></div>
+
+<pre><code class="perl">&lt;li&gt;[anything not containing &lt;li&gt;]&lt;/li&gt;
+</code></pre>
 
 The first method would be to use the same reasoning as in my [previous post](previouspost). Here is a first try:
 
-<div><code class="perl">
-<li>([^<]|<[^l]|<l[^i]|<li[^>])*</li>
-</code></div>
+<pre><code class="perl">&lt;li&gt;([^&lt;]|<[^l]|<l[^i]|<li[^&gt;])*&lt;/li&gt;
+</code></pre>
 
 But what about the following string: 
-<div><code class="perl">
-<li>...<li</li>
-</code></div>
+
+<pre><code class="perl">&lt;li&gt;...&lt;li</li&gt;
+</code></pre>
 
 That string should not match. This is why if we really want to match it correctly<sup><a href="#note1">&dagger;</a></sup> we need to add:
-<div><code class="perl">
-<li>([^<]|<[^l]|<l[^i]|<li[^>])*(|<|<l|<li)</li>
-</code></div>
+
+<pre><code class="perl">&lt;li&gt;([^&lt;]|<[^l]|<l[^i]|<li[^&gt;])*(|&lt;|<l|<li)</li&gt;
+</code></pre>
 
 Yes a bit complicated. But what if the string I wanted to match was even longer?
 
