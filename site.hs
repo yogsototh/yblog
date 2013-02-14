@@ -1,15 +1,16 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Control.Applicative ((<$>))
-import           Control.Category    ((>>>))
-import           Data.Monoid         (mappend,(<>))
+import           Control.Applicative    ((<$>))
+import           Data.Monoid            (mappend,(<>))
 import           Hakyll
 
-import           Data.Map             (Map)
-import qualified Data.Map             as M
+import           Data.Map               (Map)
+import qualified Data.Map               as M
 
-import           Abbreviations        (abbreviationFilter)
-import           Multilang            (multiContext)
+import           Abbreviations          (abbreviationFilter)
+import           YFilters               (blogImage,frenchPunctuation)
+import           Multilang              (multiContext)
+import           System.FilePath.Posix  (takeBaseName)
 
 
 --------------------------------------------------------------------------------
@@ -30,45 +31,27 @@ markdownBehavior = do
   route $ setExtension "html"
   compile $ do
     body <- getResourceBody
-    return $ renderPandoc (fmap preFilters body)
+    id <- getUnderlying
+    itemPath <- getRoute id
+    return $ renderPandoc (fmap (preFilters itemPath) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
     >>= loadAndApplyTemplate "templates/default.html" postCtx
     >>= relativizeUrls
   where
     applyFilter f str = return $ (fmap $ f) str
-    preFilters :: String -> String
-    preFilters =   abbreviationFilter
-                 . replaceDiv
-                 . replaceAll "enddiv" (\_->"</div>")
-                 . blogImage
+    preFilters :: Maybe String -> String -> String
+    preFilters itemPath =   abbreviationFilter
+                          . blogImage itemName
+                          where
+                            itemName = maybe "" takeBaseName itemPath
     postFilters :: String -> String
-    postFilters = replaceAll " :</p>" (\_->"&nbsp;:</p>")
-    replaceDiv :: String -> String
-    replaceDiv = replaceAll "begindiv([^)]*)" divstr
-      where name = (takeWhile (/= ')')) . (drop 9)
-            divstr matched = "<div class=\"" ++ name matched ++ "\">"
-    notin :: [Char] -> Char -> Bool
-    notin [] _ = True
-    notin (x:xs) c = if c == x then False else notin xs c
-    notquote = notin "'\""
-    blogImage :: String -> String
-    blogImage = replaceAll "(left)?blogimage([^)]*)" imgstr
-      where left = (=='l') . head
-            leftclass matched = if head matched == 'l'
-                                then " class=\"left\""
-                                else ""
-            src =     dropWhile notquote >>> tail
-                  >>> takeWhile notquote
-            alt =     dropWhile notquote >>> tail
-                  >>> dropWhile notquote >>> drop 3
-                  >>> takeWhile notquote
-            imgstr matched = "<img src=\"/Scratch/img/posts/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ ">"
+    postFilters = frenchPunctuation
 
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "Scratch/images/**"   staticBehavior
+    match "Scratch/img/**"   staticBehavior
     match "Scratch/js/**"       staticBehavior
     match "Scratch/css/fonts/*" staticBehavior
 
