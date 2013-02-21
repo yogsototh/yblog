@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Control.Monad          (forM) 
+import           Control.Monad          (forM)
 import           Control.Applicative    ((<$>))
 import           Data.Monoid            (mappend,(<>))
 import           Hakyll
@@ -65,8 +65,8 @@ main = hakyll $ do
           withItemBody (unixFilter "sass" ["--trace"]) >>=
           return . fmap compressCss
 
-    match "Scratch/en/posts/*" markdownBehavior
-    match "Scratch/fr/posts/*" markdownBehavior
+    match "Scratch/en/blog/*" markdownBehavior
+    match "Scratch/fr/blog/*" markdownBehavior
 
     match (fromList ["Scratch/about.rst", "Scratch/contact.markdown"]) $ do
         route   $ setExtension "html"
@@ -134,7 +134,7 @@ postCtx =
 --------------------------------------------------------------------------------
 postList :: ([Item String] -> Compiler [Item String]) -> Compiler String
 postList sortFilter = do
-    posts   <- loadAll "Scratch/en/posts/*" >>= sortFilter
+    posts   <- loadAll "Scratch/en/blog/*" >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
     list    <- applyTemplateList itemTpl postCtx posts
     return list
