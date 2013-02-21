@@ -55,7 +55,7 @@ markdownBehavior = do
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "Scratch/img/**"   staticBehavior
+    match "Scratch/img/**"      staticBehavior
     match "Scratch/js/**"       staticBehavior
     match "Scratch/css/fonts/*" staticBehavior
 
@@ -65,8 +65,9 @@ main = hakyll $ do
           withItemBody (unixFilter "sass" ["--trace"]) >>=
           return . fmap compressCss
 
-    match "Scratch/en/blog/*" markdownBehavior
-    match "Scratch/fr/blog/*" markdownBehavior
+    match "Scratch/en/blog/*.md" markdownBehavior
+    match "Scratch/fr/blog/*.md" markdownBehavior
+    -- TODO erb Behavior
 
     match (fromList ["Scratch/about.rst", "Scratch/contact.markdown"]) $ do
         route   $ setExtension "html"

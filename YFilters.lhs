@@ -34,7 +34,7 @@ It will be replaced by the corresponding `img` tag.
 >         alt =     dropWhile notquote >>> tail
 >               >>> dropWhile notquote >>> drop 3
 >               >>> takeWhile notquote
->         imgstr matched = "<img src=\"/Scratch/img/posts/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ ">"
+>         imgstr matched = "<img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ ">"
 
 The French punctuation prevent to start a line with a semicolon in French.
 
