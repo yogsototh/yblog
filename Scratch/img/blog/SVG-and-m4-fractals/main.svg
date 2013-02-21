@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+     M4 Macros
+
+
+
+
+
+ -->
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="64" y="64" width="512" height="512" viewBox="64 64 512 512"
+    id="svg2" version="1.1">
+    <g id="level_0"> <!-- some group, if I want to add other elements -->
+        <!-- the text "λ" -->
+        <text id="lambda" 
+            fill="#333" style="font-family:Ubuntu; font-size: 100px"
+            transform="rotate(180)">λ</text>
+    </g>
+    <!-- the text "esod" -->
+    <text 
+        fill="#333" 
+        style="font-family:Ubuntu; font-size: 28px; letter-spacing: -0.10em" 
+        x="-17.3" 
+        y="69" 
+        transform="translate(364,274) scale(3)">esod</text>
+    <!-- ROOT ELEMENT -->
+    <use transform="translate(364,274) scale(3)" xlink:href="#level_0" />
+
+    
+    <g id="level_1">
+        <use style="opacity: .8" transform="scale(.43) translate(-120,-69) rotate(-10)" xlink:href="#level_0" />
+        <use style="opacity: .8" transform="scale(.43) translate(-9,-67.5) rotate(10)" xlink:href="#level_0" />
+        <use style="opacity: .8" transform="scale(.43) translate(53,41) rotate(120)" xlink:href="#level_0" />
+    </g>
+    <use transform="translate(364,274) scale(3)" xlink:href="#level_1" />
+ <!-- First recursion -->
+    
+    <g id="level_2">
+        <use style="opacity: .8" transform="scale(.43) translate(-120,-69) rotate(-10)" xlink:href="#level_1" />
+        <use style="opacity: .8" transform="scale(.43) translate(-9,-67.5) rotate(10)" xlink:href="#level_1" />
+        <use style="opacity: .8" transform="scale(.43) translate(53,41) rotate(120)" xlink:href="#level_1" />
+    </g>
+    <use transform="translate(364,274) scale(3)" xlink:href="#level_2" />
+ <!-- deeper -->
+    
+    <g id="level_3">
+        <use style="opacity: .8" transform="scale(.43) translate(-120,-69) rotate(-10)" xlink:href="#level_2" />
+        <use style="opacity: .8" transform="scale(.43) translate(-9,-67.5) rotate(10)" xlink:href="#level_2" />
+        <use style="opacity: .8" transform="scale(.43) translate(53,41) rotate(120)" xlink:href="#level_2" />
+    </g>
+    <use transform="translate(364,274) scale(3)" xlink:href="#level_3" />
+ <!-- deeper -->
+    
+    <g id="level_4">
+        <use style="opacity: .8" transform="scale(.43) translate(-120,-69) rotate(-10)" xlink:href="#level_3" />
+        <use style="opacity: .8" transform="scale(.43) translate(-9,-67.5) rotate(10)" xlink:href="#level_3" />
+        <use style="opacity: .8" transform="scale(.43) translate(53,41) rotate(120)" xlink:href="#level_3" />
+    </g>
+    <use transform="translate(364,274) scale(3)" xlink:href="#level_4" />
+ <!-- even deeper -->
+    
+    <g id="level_5">
+        <use style="opacity: .8" transform="scale(.43) translate(-120,-69) rotate(-10)" xlink:href="#level_4" />
+        <use style="opacity: .8" transform="scale(.43) translate(-9,-67.5) rotate(10)" xlink:href="#level_4" />
+        <use style="opacity: .8" transform="scale(.43) translate(53,41) rotate(120)" xlink:href="#level_4" />
+    </g>
+    <use transform="translate(364,274) scale(3)" xlink:href="#level_5" />
+ <!-- Five level seems enough -->
+</svg>
