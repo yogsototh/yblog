@@ -39,6 +39,35 @@ markdownBehavior = do
     itemPath <- getRoute id
     return $ renderPandoc (fmap (preFilters itemPath) body)
     >>= applyFilter postFilters
+    >>= loadAndApplyTemplate "templates/default.html"    postCtx
+    >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+    >>= relativizeUrls
+  where
+    applyFilter f str = return $ (fmap $ f) str
+    preFilters :: Maybe String -> String -> String
+    preFilters itemPath =   abbreviationFilter
+                          . blogImage itemName
+                          . blogFigure itemName
+                          where
+                            itemName = maybe "" takeBaseName itemPath
+    postFilters :: String -> String
+    postFilters = frenchPunctuation
+
+--------------------------------------------------------------------------------
+-- change the extension to html
+-- prefilter the markdown
+-- apply pandoc (markdown -> html)
+-- postfilter the html
+-- apply templates posts then default then relitivize url
+markdownPostBehavior :: Rules ()
+markdownPostBehavior = do
+  route $ setExtension "html"
+  compile $ do
+    body <- getResourceBody
+    id <- getUnderlying
+    itemPath <- getRoute id
+    return $ renderPandoc (fmap (preFilters itemPath) body)
+    >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
     >>= relativizeUrls
@@ -54,6 +83,22 @@ markdownBehavior = do
     postFilters = frenchPunctuation
 
 --------------------------------------------------------------------------------
+archiveBehavior :: String -> Rules ()
+archiveBehavior language = do
+        route idRoute
+        compile $ do
+            let archiveCtx =
+                    field "posts" (\_ -> postList language createdFirst) <>
+                    constField "title" "Archives"               <>
+                    yDefaultContext
+
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
+                >>= relativizeUrls
+
+--------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
     match "Scratch/img/**"      staticBehavior
@@ -66,8 +111,10 @@ main = hakyll $ do
           withItemBody (unixFilter "sass" ["--trace"]) >>=
           return . fmap compressCss
 
-    match "Scratch/en/blog/*.md" markdownBehavior
-    match "Scratch/fr/blog/*.md" markdownBehavior
+    match "Scratch/en/blog/*.md" markdownPostBehavior
+    match "Scratch/fr/blog/*.md" markdownPostBehavior
+    match "Scratch/fr/*.md" markdownBehavior
+    match "Scratch/en/*.md" markdownBehavior
 
     match "Scratch/fr/blog/*.erb" $ do
       route $ setExtension "html"
@@ -83,32 +130,13 @@ main = hakyll $ do
     match "Scratch/fr/blog/code/*" staticBehavior
     -- TODO erb Behavior
 
-    match (fromList ["Scratch/about.rst", "Scratch/contact.markdown"]) $ do
-        route   $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" yDefaultContext
-            >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
-            >>= relativizeUrls
-
-    create ["Scratch/archive.html"] $ do
-        route idRoute
-        compile $ do
-            let archiveCtx =
-                    field "posts" (\_ -> postList createdFirst) <>
-                    constField "title" "Archives"               <>
-                    yDefaultContext
-
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
-                >>= relativizeUrls
-
+    create ["Scratch/en/archive.html"] (archiveBehavior "en")
+    create ["Scratch/fr/archive.html"] (archiveBehavior "fr")
 
     match "index.html" $ do
         route idRoute
         compile $ do
-            let indexCtx = field "posts" $ \_ -> postList ((fmap (take 3)) . createdFirst)
+            let indexCtx = field "posts" $ \_ -> postList "en" ((fmap (take 3)) . createdFirst)
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -116,7 +144,6 @@ main = hakyll $ do
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
-
 
 --------------------------------------------------------------------------------
 yDefaultContext = metaKeywordContext <>
@@ -155,9 +182,9 @@ postCtx =
     yDefaultContext
 
 --------------------------------------------------------------------------------
-postList :: ([Item String] -> Compiler [Item String]) -> Compiler String
-postList sortFilter = do
-    posts   <- loadAll "Scratch/en/blog/*" >>= sortFilter
+postList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
+postList language sortFilter = do
+    posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
     list    <- applyTemplateList itemTpl postCtx posts
     return list
