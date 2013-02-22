@@ -14,7 +14,7 @@ import qualified Data.Map               as M
 import           Abbreviations          (abbreviationFilter)
 import           YFilters               (blogImage,blogFigure,frenchPunctuation)
 import           Multilang              (multiContext)
-import           System.FilePath.Posix  (takeBaseName)
+import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>))
 
 
 --------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ staticBehavior = do
 -- apply templates posts then default then relitivize url
 markdownBehavior :: Rules ()
 markdownBehavior = do
-  route $ setExtension "html"
+  route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
   compile $ do
     body <- getResourceBody
     id <- getUnderlying
@@ -61,7 +61,7 @@ markdownBehavior = do
 -- apply templates posts then default then relitivize url
 markdownPostBehavior :: Rules ()
 markdownPostBehavior = do
-  route $ setExtension "html"
+  route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
   compile $ do
     body <- getResourceBody
     id <- getUnderlying
@@ -117,12 +117,12 @@ main = hakyll $ do
     match "Scratch/en/*.md" markdownBehavior
 
     match "Scratch/fr/blog/*.erb" $ do
-      route $ setExtension "html"
+      route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
       compile $ getResourceBody
             >>= loadAndApplyTemplate "templates/post.html" postCtx
             >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
     match "Scratch/en/blog/*.erb" $ do
-      route $ setExtension "html"
+      route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
       compile $ getResourceBody
             >>= loadAndApplyTemplate "templates/post.html" postCtx
             >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
