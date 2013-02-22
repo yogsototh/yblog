@@ -10,19 +10,19 @@ tags:  Coffeescript
 -----
 blogimage("main.png","Title image")
 
-begindiv(encadre)
+<div class="encadre">
 
 *Update*: I might change my mind now. Why?
 I just discovered a [js2coffee converter](https://github.com/rstacruz/js2coffee). Furthermore Denis Knauf told me about a `CoffeeScript.eval` function. 
 And as Denis said: "it is time to use Coffeescript as a javascript with Ruby-like syntax not a Ruby-like programming language".
 
-enddiv
+</div>
 
-begindiv(intro)
+<div class="intro">
 
 %tldr I would have loved to program client side using a Ruby-like syntax. But in the end, CoffeScript raised more disavantages than advantages.
 
-enddiv
+</div>
 
 Recently I read [this entry](http://news.ycombinator.com/item?id=2053956) on HackerNews.
 The most upvoted comment praised (within other) [CoffeeScript][cf].
@@ -98,8 +98,7 @@ But I believe it would be a really hard task just to simulate the access of curr
 
 Typically `@x` translate into `this.x`. But the following code will not do what I should expect. Call the foo function of the current class.
 
-<code class="ruby">
--> 
+<pre><code class="ruby">-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -107,12 +106,11 @@ class MyClass
   bar: ->
     $('#content').load( '/content.html', ( -> @foo(x) ) )
     # That won't call MyClass.foo
-</code>
+</code></pre>
 
 The only way to handle this is to make the following code:
 
-<code class="ruby">
--> 
+<pre><code class="ruby">-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -120,6 +118,6 @@ class MyClass
   bar: ->
     self=this
     $('#content').load( '/content.html', ( -> self.foo(x) ) )
-</code>
+</code></pre>
 
 Knowing this, `@` notation lose most of its interrest for me.

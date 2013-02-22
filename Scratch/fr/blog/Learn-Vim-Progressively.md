@@ -10,11 +10,11 @@ tags:  vi, vim, editor, tutoriel, apprendre
 -----
 blogimage("uber_leet_use_vim.jpg","Über leet use vim!")
 
-begindiv(intro)
+<div class="intro">
 
 %tlal Vous désirez apprendre vim (le meilleur editeur de texte connu à ce jour) le plus rapidement possible. Voici mes conseils pour vous aider. Commencez à apprendre le minimum vital, puis apprenez doucement de nouvelles commandes.
 
-enddiv
+</div>
 
 [Vim] ou l'éditeur qui vallait 3 milliards :
 

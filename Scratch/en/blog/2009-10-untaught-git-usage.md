@@ -33,7 +33,6 @@ After some web searches, I founded three main choices:
 
 After trying each other I chosen Bazaar. It has the simplest User Interface<sup><a href="#note2">&#42;</a></sup>. My choice was done.
 
-
 ### From Bazaar to Git
 
 It was really natural to learn when coming from *subversion*. The `pull` command corresponding to `update`, `push` command to `commit`. Commands like `commit` and `update` are still there if you want to use an SVN *workflow*.

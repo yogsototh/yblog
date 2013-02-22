@@ -38,9 +38,8 @@ Conflicts can arise when you change the same line of code on the same file from 
 You start from the following file
 
 <div style="width: 18em; margin-left: auto; margin-right: auto">
-<code class="zsh">
-Zoot 
-</code>
+<pre><code class="zsh">Zoot 
+</code></pre>
 </div>
 
 and you modify one line
@@ -62,8 +61,7 @@ Zoot<span class="StringConstant"><strong>, just Zoot</strong></span>
 Now when you do a:
 
 <div>
-<code class="zsh">
-$ git pull
+<pre><code class="zsh">$ git pull
 remote: Counting objects: 5, done.
 remote: Total 3 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
@@ -72,7 +70,7 @@ From /home/yogsototh/tmp/conflictTest
 Auto-merging foo
 CONFLICT (content): Merge conflict in foo
 Automatic merge failed; fix conflicts and then commit the result.
-</code>
+</code></pre>
 </div>
 
 Our file `foo` now contains: 
@@ -100,9 +98,8 @@ Zoot <span class="Constant"><strong>the not so pure</strong></span>
 and to commit
 
 <div>
-<code class="zsh">
-git commit -a -m "conflict resolved"
-</code>
+<pre><code class="zsh">git commit -a -m "conflict resolved"
+</code></pre>
 </div>
 
 Now you're ready to use [Git][git].

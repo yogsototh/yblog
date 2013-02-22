@@ -10,14 +10,14 @@ tags:  password, security
 -----
 blogimage("main.png","Title image")
 
-begindiv(intro)
+<div class="intro">
 
 %tlal Une méthode de gestion des mots de passes que j'utilise avec succès depuis quelques années.  
 **`sha1( mot_de_passe + nom_de_domaine )`**  
 Je ne mémorise qu'un seul mot de passe de très bonne qualité.
 J'utilise des mots de passe différents sur tous les sites.
 
-enddiv
+</div>
 
 Avant de commencer, je tiens à préciser qu'il s'agit d'une tentative de vous vendre mon appli iPhone ;-).
 

@@ -15,9 +15,8 @@ Que ce soit pour surfer en toute sécurité depuis un accès <sc>wifi</sc> non s
 Ensuite de mon portable ou de mon ordinateur local, je dois simplement lancé la merveilleuse commande :
 
 <div>
-<code class="zsh">
-ssh -p 443 -D 9050 username@host
-</code>
+<pre><code class="zsh">ssh -p 443 -D 9050 username@host
+</code></pre>
 </div>
 
 et un proxy <sc>socks</sc> écoute sur le port 9050. Ce proxy <sc>socks</sc> transférera toutes les requêtes locales via le tunnel ssh. Ainsi je peux surfer en local comme si je naviguais depuis mon ordinateur à la maison. Je peux écrire mon numéro de carte bleu sans avoir peur que le <sc>wifi</sc> local soit *sniffé*. Je dois simplement configurer mon navigateur web pour utiliser le proxy <sc>socks</sc> sur  `localhost` écoutant le port 9050.
@@ -71,7 +70,7 @@ Créer un fichier <tt>/Library/LaunchDaemons/ssh-443.plist</tt> contenant :
         <string>system.preferences</string>
 </dict>
 </plist>
-</code>
+</code></pre>
 </div>
 
 C'est une copie de `/System/Library/LaunchDaemons/ssh.plist` avec quelques modifications :

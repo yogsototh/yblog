@@ -9,11 +9,11 @@ authoruri: yannesposito.com
 tags:  LaTeX, macros, markdown, nanoc, ruby
 -----
 
-begindiv(intro)
+<div class="intro">
 
 %tlal J'ai fait un système simple de macros pour mon blog. Par exemple, il me suffit d'écrire %<span></span>latex et ça affiche %latex.
 
-enddiv
+</div>
 
 J'ai ajouter un système de macro pour mon système de blog.
 Lorsqu'on est habitué à %latex et que l'on commence à écrire des articles
@@ -22,8 +22,10 @@ les macros deviennent vite quelque chose d'indispensable.
 
 Dans l'entête de mes fichiers j'écris simplement:
 
-<code class="yaml">
-</code>
+<pre><code class="yaml">macros:
+  test: "This is a macro test"
+  latex: '<span style="text-transform: uppercase">L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span>'
+</code></pre>
 
 Puis dans le corps ça va remplacer :
 
@@ -77,6 +79,6 @@ class Macros < Nanoc3::Filter
         end
     end
 end
-</code>
+</code></pre>
 
 Les macros peuvent être vraiment utiles. Lisez [cet article](http://adam.gomaa.us/blog/2007/oct/22/markdown-doesnt-scale/index.html) par exemple.

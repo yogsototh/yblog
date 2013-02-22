@@ -14,10 +14,9 @@ Here is how to track all clicks on your website using google analytics asynchron
 
 First in your <sc>html</sc> you need to use [jQuery](http://jquery.com) and a javscript file I named `yga.js`:
 
-<code class="html">
-    <script type="text/javascript" src="jquery.js"></script>
+<pre><code class="html">    <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="yga.js"></script>
-</code>
+</code></pre>
 
 And here is the `yga.js` file:
 
@@ -67,7 +66,7 @@ _gaq.push(['_trackPageview']);
  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
  })();
-</code>
+</code></pre>
 
 Replace the: `UA-XXXXXXXX-1` by your google analytics code and you're done.
 

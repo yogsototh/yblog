@@ -10,7 +10,7 @@ tags:  zsh, map, foldr, filter, functional, programming, higher order functions
 -----
 blogimage("main.jpg","Title image")
 
-begindiv(intro)
+<div class="intro">
 
 UPDATE: [Nicholas Sterling a découvert un moyen de faire des fonctions anonymes](http://nicholassterling.wordpress.com/2012/03/30/a-zsh-map-function/) 
 Merci!
@@ -21,8 +21,7 @@ et `mapa` pour les fonctions arithmétiques.
 
 Exemple :
 
-<code class="zsh">
-$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
+<pre><code class="zsh">$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
 ab
 ada
 
@@ -48,11 +47,11 @@ result 7
 result 9
 result 11
 
-</code>
+</code></pre>
 
 %tlal des fonctions d'ordres supérieurs en zsh.
 
-enddiv
+</div>
 
 Tout d'abord, pourquoi c'est important d'avoir ces fonctions. 
 Plus je programmais avec zsh plus j'essayais d'avoir un style fonctionnel.
@@ -65,8 +64,7 @@ Avant :
 
 Avant ⇒
 
-<code class="zsh">
-# for each directory in projects dir
+<pre><code class="zsh"># for each directory in projects dir
 for toProject in /path/to/projects/*(/N); do
     # toProject is /path/to/projects/foo
     # project become foo (:t for tail)
@@ -76,7 +74,7 @@ for toProject in /path/to/projects/*(/N); do
         \rm -f $toResource
     done
 done
-</code>
+</code></pre>
 
 - Le `(/N)` permet de sélectionner seulement les répertoires sans casser la boucle s'il n'y a pas de "match".
 - Le `(.N)` permet de sélection seulement les fichiers, aussi sans tout arréter s'il ne trouve rien.
@@ -84,13 +82,12 @@ done
 
 Après
 
-<code class="bash">
-gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
+<pre><code class="bash">gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
 
 handle_resources() { map gif_to_png $1/resources/*.gif(.N) }
 
 map handle_resources /path/to/projects/*(/N)
-</code>
+</code></pre>
 
 Plus de bloc ! 
 Oui, c'est un poil plus difficile à lire pour les non initiés. 
@@ -103,8 +100,7 @@ Trouver les fichiers des projets qui ne contiennent pas de s dans leur nom qui o
 
 Before ⇒
 
-<code class="zsh">
-for toProject in Projects/*; do
+<pre><code class="zsh">for toProject in Projects/*; do
     project=$toProject:t
     if print -- project | grep -v s >/dev/null
     then
@@ -116,12 +112,11 @@ for toProject in Projects/*; do
         done
     fi
 done
-</code>
+</code></pre>
 
 After ⇒
 
-<code class="zsh">
-contain_no_s() { print $1 | grep -v s }
+<pre><code class="zsh">contain_no_s() { print $1 | grep -v s }
 
 function verify_file_name {                               
     local project=$1:t
@@ -130,7 +125,7 @@ function verify_file_name {
 }
 
 map verify_file_name $( filter contain_no_s Projects/* )
-</code>
+</code></pre>
 
 La première version peu paraître plus facile à lire.
 Mais la seconde est plus bien supérieure en terme d'architecture.
@@ -204,4 +199,4 @@ function filter {
     done
     print $result
 }
-</code>
+</code></pre>

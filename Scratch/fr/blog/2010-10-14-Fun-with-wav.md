@@ -9,13 +9,13 @@ authoruri: yannesposito.com
 tags:  wav, C, format, programming
 -----
 
-begindiv(intro)
+<div class="intro">
 
 %tlal Je me suis amusé à lire un fichier `wav`. Le `C` fut le langage le mieux adapté à ce traitement. Bien meilleur que Ruby par exemple.
 
 edit: Je voulais que ce programme fonctionne sur une machine spécifique. En aucun cas je ne pensais publier ce code pour une utilisation autre que celle-ci.
 
-enddiv
+</div>
 
 J'ai eu besoin de calculer la somme des valeurs absolue des données d'un fichier `wav`.
 Pour des raison d'efficacité (et aussi de fun), j'ai fait le programme en `C`.
@@ -34,8 +34,7 @@ Donc on discute de l'entête avec des nombres d'octets :
 Etonnamment je pense que lire ce type de fichier avec un langage de haut niveau aurait été plus pénible qu'en C.
 La preuve, il m'a suffit de chercher sur le net le format complet de l'entête et de l'écrire dans un struct.
 
-<code class="c">
-struct wavfile
+<pre><code class="c">struct wavfile
 {
     char        id[4];          // should always contain "RIFF"
     int     totallength;    // total file length minus 8
@@ -50,26 +49,24 @@ struct wavfile
     char        data[4];        // should always contain "data"
     int     bytes_in_data;
 };
-</code>
+</code></pre>
 
 Si j'avais eu à faire ça en Ruby, je pense qu'il m'aurait fallu pour chaque bloc de l'entête écrire un bout de code de lecture du bon nombre d'octets.
 Alors qu'en `C` il m'a suffit d'écrire: 
 
-<code class="c">
-fread(&header,sizeof(header),1,wav)
-</code>
+<pre><code class="c">fread(&header,sizeof(header),1,wav)
+</code></pre>
 
 Et en une seule étape ma structure de donnée a été remplie avec les valeurs souhaitées. Magique !
 
 Ensuite, récupérer un entier à partir de deux octets n'est pas non plus une opération naturelle dans les nouveaux langages de programmation.
 Alors qu'en `C`. Pour récupérer un entier codé sur 16 bits il suffit d'écrire :
 
-<code class="c">
-short value=0;
+<pre><code class="c">short value=0;
 while( fread(&value,sizeof(value),1,wav) ) {
     // do something with value
 }
-</code>
+</code></pre>
 
 Finallement je suis arrivé au code suivant, sachant que le format de wav était connu, avec notamment échantillonage sur 16 bits en 48000Hz :
 
@@ -131,7 +128,7 @@ int main(int argc, char *argv[]) {
     printf("%ld\n",sum);
     exit(0);
 }
-</code>
+</code></pre>
 
 Bien entendu ce code n'est qu'un _hack_.
 Mais on voit bien comment on peut facilement améliorer ce code, ajouter des cas possibles par exemple.
@@ -143,21 +140,20 @@ _màj : pour des raisons de compatibilité (machines 64 bits) j'ai utilisé `int
 Je serai curieux de savoir s'il existe un manière plus propre en Ruby que je ne connais pas.
 Certainement qu'en Python ça doit être la cas.
 
-begindiv(intro)
+<div class="intro">
 
 Màj (2) : après toutes les remarques concernant la portabilité. 
 J'ai fait une nouvelle version qui devrait être plus portable.
 Elle fait aussi plus de test pour vérifier le fichier.
 Cependant j'utilise une assertion spécifique à `gcc` pour être certain que la structure de donnée n'ai pas de "trou" :
 
-<code class="c">
-__attribute__((__packed__))
-</code>
+<pre><code class="c">__attribute__((__packed__))
+</code></pre>
 
 Le nouveau code n'utilise pas mmap et devrait être plus compatible.  
 Voici le dernier résultat :
 
-enddiv
+</div>
 
 <code class="c" file="wavsum2.c">
 #include <stdio.h>
@@ -265,7 +261,7 @@ int main(int argc, char *argv[]) {
     printf("%lld\n",sum);
     exit(0);
 }
-</code>
+</code></pre>
 
 Màj(3) : 
 Sur [reddit](http://reddit.com)
@@ -300,7 +296,7 @@ try:
 except IOError:
     print "error: can't open input file '%s'." % argv[1]
     exit(1)
-</code>
+</code></pre>
 
 et [luikore](http://www.reddit.com/user/luikore) a proposé une version Ruby assez impressionnante :
 
@@ -316,4 +312,4 @@ data = ARGF.read
  keys.zip(values.take(12) << sum) {|k, v|
        puts "#{k.ljust 17}: #{v}"
  }
-</code>
+</code></pre>

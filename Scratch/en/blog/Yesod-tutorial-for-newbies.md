@@ -11,7 +11,7 @@ tags:  yesod, haskell, programming, web
 -----
 blogimage("flying_neo.jpg","Neo Flying at warp speed")
 
-begindiv(intro)
+<div class="intro">
 
 _update_: updated for yesod 0.10
 
@@ -24,7 +24,7 @@ You shouldn't need to know Haskell.
 > * Table of Content (generated)
 > {:toc}
 
-enddiv
+</div>
 
 Why Haskell?
 
@@ -114,10 +114,9 @@ is to download the [Haskell Platform][haskellplatform].
 Once done, you need to install yesod.
 Open a terminal session and do:
 
-<code class="zsh">
-~ cabal update
+<pre><code class="zsh">~ cabal update
 ~ cabal install yesod cabal-dev
-</code>
+</code></pre>
 
 There are few steps but it should take some time to finish.
 
@@ -126,18 +125,16 @@ There are few steps but it should take some time to finish.
 You are now ready to initialize your first yesod project.
 Open a terminal and type:
 
-<code class="zsh">
-~ yesod init
-</code>
+<pre><code class="zsh">~ yesod init
+</code></pre>
 
 Enter your name, choose `yosog` for the project name and enter `Yosog` for the name of the Foundation.
 Finally choose `sqlite`.
 Now, start the development cycle:
 
-<code class="zsh">
-~ cd yosog
+<pre><code class="zsh">~ cd yosog
 ~ cabal-dev install && yesod --dev devel
-</code>
+</code></pre>
 
 This will compile the entire project. Be patient it could take a while the first time.
 Once finished a server is launched and you could visit it by clicking this link:
@@ -150,9 +147,8 @@ Congratulation! Yesod works!
 
 Note: if something is messed up use the following command line inside the project directory.
 
-<code class="zsh">
-\rm -rf dist/* ; cabal-dev install && yesod --dev devel
-</code>
+<pre><code class="zsh">\rm -rf dist/* ; cabal-dev install && yesod --dev devel
+</code></pre>
 
 </blockquote>
 
@@ -172,15 +168,14 @@ dist
 .static-cache
 static/tmp
 *.sqlite3
-</code>
+</code></pre>
 
 Then initialize your git repository:
 
-<code class="zsh">
-~ git init .
+<pre><code class="zsh">~ git init .
 ~ git add .
 ~ git commit -a -m "Initial yesod commit"
-</code>
+</code></pre>
 
 We are almost ready to start.
 
@@ -253,12 +248,11 @@ Application.hs:31:1: Not in scope: `getEchoR'
 Why? Simply because we didn't written the code for the handler `EchoR`.
 Edit the file `Handler/Home.hs` and append this:
 
-<code class="haskell">
-getEchoR :: String -> Handler RepHtml
+<pre><code class="haskell">getEchoR :: String -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         [whamlet|<h1>#{theText}|]
-</code>
+</code></pre>
 
 Don't worry if you find all of this a bit cryptic. 
 In short it just declare a function named `getEchoR` with one argument (`theText`) of type String.
@@ -293,13 +287,12 @@ Then to show the String inside an %html document, the string is put inside an %h
 Some transformations occurs like replace "<code><</code>" by "`&lt;`".
 Thanks to yesod, this tedious job is done for us.
 
-<code class="zsh">
-"http://localhost:3000/echo/some%20text<a>" :: URL
+<pre><code class="zsh">"http://localhost:3000/echo/some%20text<a>" :: URL
                     ↓
               "some text<a>"                 :: String
                     ↓
           "some text &amp;lt;a&amp;gt;"             :: Html 
-</code>
+</code></pre>
 
 Yesod is not only fast, it helps us to remain secure.
 It protects us from many common errors in other paradigms.
@@ -347,7 +340,7 @@ a { color: #A56; }
 a:hover { color: #C58; }
 a:active { color: #C58; }
 a:visited { color: #943; }
-</code>
+</code></pre>
 
 Personally I would prefer if such a minimal %css was put with the scaffolding tool.
 I am sure somebody already made such a minimal %css which give the impression 
@@ -360,8 +353,7 @@ Generally you don't want to have all your code inside a unique file.
 This is why we will separate our handlers.
 In a first time create a new file `Handler/Echo.hs` containing:
 
-<code class="haskell">
-module Handler.Echo where
+<pre><code class="haskell">module Handler.Echo where
 
 import Import
 
@@ -369,7 +361,7 @@ getEchoR :: String -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         [whamlet|<h1>#{theText}|]
-</code>
+</code></pre>
 
 Do not forget to remove the getEchoR function inside `Handler/Home.hs`.
 
@@ -383,9 +375,8 @@ Just after `Handler.Home`, add:
 We must also declare this new Handler module inside `Application.hs`.
 Just after the "`import Handler.Home`", add:
 
-<code class="haskell">
-import Handler.Echo
-</code>
+<pre><code class="haskell">import Handler.Echo
+</code></pre>
 
 This is it. 
 
@@ -398,9 +389,8 @@ It is a good practice to use `Data.Text` instead of `String`.
 
 To declare it, add this import directive to `Foundation.hs` (just after the last one):
 
-<code class="diff">
-import Data.Text
-</code>
+<pre><code class="diff">import Data.Text
+</code></pre>
 
 We have to modify `config/routes` and our handler accordingly. 
 Replace `#String` by `#Text` in `config/routes`:
@@ -420,7 +410,7 @@ getEchoR :: Text -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         [whamlet|<h1>#{theText}|]
-</code>
+</code></pre>
 
 #### Use templates
 
@@ -430,16 +420,15 @@ Create the new file `templates/echo.hamlet` containing:
 
 <code class="haskell" file="echo.hamlet">
 <h1> #{theText}
-</code>
+</code></pre>
 
 and modify the handler `Handler/Echo.hs`:
 
-<code class="haskell">
-getEchoR :: Text -> Handler RepHtml
+<pre><code class="haskell">getEchoR :: Text -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         $(widgetFile "echo")
-</code>
+</code></pre>
 
 At this point, our web application is structured between different files.
 Handler are grouped, we use `Data.Text` and our views are in templates.
@@ -480,7 +469,7 @@ postMirrorR =  do
         postedText <- runInputPost $ ireq textField "content"
         defaultLayout $ do
             $(widgetFile "posted")
-</code>
+</code></pre>
 
 Don't forget to declare it inside `yosog.cabal` and `Application.hs`.
 
@@ -498,14 +487,14 @@ Create the two corresponding templates:
 <form method=post action=@{MirrorR}>
     <input type=text name=content>
     <input type=submit>
-</code>
+</code></pre>
 
 <code class="html" file="posted.hamlet">
 <h1>You've just posted
 <p>#{postedText}#{T.reverse postedText}
 <hr>
 <p><a href=@{MirrorR}>Get back
-</code>
+</code></pre>
 
 And that is all.
 This time, we won't need to clean up.
@@ -556,8 +545,7 @@ Let's write the content of `Handler/Blog.hs`.
 We start by declaring the module and by importing some block necessary to 
 handle Html in forms.
 
-<code class="haskell">
-module Handler.Blog
+<pre><code class="haskell">module Handler.Blog
     ( getBlogR
     , postBlogR
     , getArticleR
@@ -570,7 +558,7 @@ import Data.Monoid
 -- to use Html into forms
 import Yesod.Form.Nic (YesodNic, nicHtmlField)
 instance YesodNic App
-</code>
+</code></pre>
 
 <small>Remark: it is a best practice to add the YesodNic instance inside `Foundation.hs`. 
 I put this definition here to make things easier but you should see a warning about this orphan instance.
@@ -579,12 +567,11 @@ To put the include inside Foundation.hs is left as an exercice to the reader.</s
 <small>_Hint: Do not forget to put `YesodNic` and `nicHtmlField` inside the exported objects of the module._
 </small>
 
-<code class="haskell">
-entryForm :: Form Article
+<pre><code class="haskell">entryForm :: Form Article
 entryForm = renderDivs $ Article
     <$> areq   textField "Title" Nothing
     <*> areq   nicHtmlField "Content" Nothing
-</code>
+</code></pre>
 
 This function defines a form for adding a new article.
 Don't pay attention to all the syntax. 
@@ -592,8 +579,7 @@ If you are curious you can take a look at Applicative Functor.
 You just have to remember `areq` is for required form input.
 Its arguments being: `areq type label default_value`.
 
-<code class="haskell">
--- The view showing the list of articles
+<pre><code class="haskell">-- The view showing the list of articles
 getBlogR :: Handler RepHtml
 getBlogR = do
     -- Get the list of articles inside the database.
@@ -603,7 +589,7 @@ getBlogR = do
     (articleWidget, enctype) <- generateFormPost entryForm
     defaultLayout $ do
         $(widgetFile "articles")
-</code>
+</code></pre>
 
 This handler should display a list of articles.
 We get the list from the DB and we construct the form.
@@ -625,7 +611,7 @@ $else
     ^{articleWidget}
     <div>
         <input type=submit value="Post New Article">
-</code>
+</code></pre>
 
 You should remark we added some logic inside the template.
 There is a test and a "loop".
@@ -639,8 +625,7 @@ But we have to create the submit button.
 
 Get back to `Handler/Blog.hs`.
 
-<code class="haskell">
--- we continue Handler/Blog.hs
+<pre><code class="haskell">-- we continue Handler/Blog.hs
 postBlogR :: Handler RepHtml
 postBlogR = do
     ((res,articleWidget),enctype) <- runFormPost entryForm
@@ -652,7 +637,7 @@ postBlogR = do
          _ -> defaultLayout $ do
                 setTitle "Please correct your entry form"
                 $(widgetFile "articleAddError")
-</code>
+</code></pre>
 
 This function should be used to create a new article.
 We handle the form response.
@@ -666,23 +651,21 @@ If things goes right:
 
 Here is the content of the error Page:
 
-<code class="haskell">
-<form method=post enctype=#{enctype}>
+<pre><code class="haskell"><form method=post enctype=#{enctype}>
     ^{articleWidget}
     <div>
         <input type=submit value="Post New Article">
-</code>
+</code></pre>
 
 Finally we need to display an article:
 
-<code class="haskell">
-getArticleR :: ArticleId -> Handler RepHtml
+<pre><code class="haskell">getArticleR :: ArticleId -> Handler RepHtml
 getArticleR articleId = do
     article <- runDB $ get404 articleId
     defaultLayout $ do
         setTitle $ toHtml $ articleTitle article
         $(widgetFile "article")
-</code>
+</code></pre>
 
 The `get404` function try to do a get on the DB. 
 If it fails it return a 404 page.
@@ -692,19 +675,18 @@ Here is the content of `templates/article.hamlet`:
 <code class="html" file="article.hamlet">
 <h1> #{articleTitle article}
 <article> #{articleContent article}
-</code>
+</code></pre>
 
 The blog system is finished.
 Just for fun, you can try to create an article with the following content:
 
-<code class="html">
-<p>A last try to <em>cross script</em> 
+<pre><code class="html"><p>A last try to <em>cross script</em> 
    and <em>SQL injection</em></p>
 <p>Here is the first try: 
    <script>alert("You loose");</script></p>
 <p> And Here is the last </p>
 "); DROP TABLE ARTICLE;;
-</code>
+</code></pre>
 
 ## Conclusion
 

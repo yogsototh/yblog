@@ -9,7 +9,7 @@ authoruri: yannesposito.com
 tags:  Cappuccino, iPhone, web, javascript, jQuery, Cocoa, programming
 -----
 
-begindiv(intro)
+<div class="intro">
 
 <abbr title="Trop long à lire">tlàl</abbr>:
 
@@ -18,16 +18,16 @@ begindiv(intro)
 * la version jQuery n'est pas aussi jolie que la version réalisée avec Cappuccino mais elle pèse seulement 106Ko et est compatible avec l'iPhone.
 * J'essayerai Dashcode 3
 
-enddiv
+</div>
 
 ---
 
-begindiv(intro)
+<div class="intro">
 
 Avant de commencer, je dois dire que je sais que Cappuccino et jQuery ne sont pas plus comparable que Cocoa et la *standard library* en C++. L'un est fait pour créer des interfaces utilisateurs tandis que l'autre est plus une librairie qui aide aux tâches de bas niveaux.
 Par contre je les ai utilisé tous les deux pour faire la même application. C'est pourquoi je compare l'expérience que j'ai retenu de chacun pour cette tâche.
 
-enddiv
+</div>
 
 J'ai fait une version web de mon widget [YPassword](http://yannesposito.com/Softwares/YPassword.html).
 C'est un simple widget qui permet d'organiser ses mots de passes simplement avec une grande sécurité et de façon portable. 
@@ -40,11 +40,11 @@ J'ai ensuite fait une version avec [Cappuccino](http://cappuccino.org), que vous
 
 ## Que fait ce widget ?
 
-begindiv(intro)
+<div class="intro">
 
 Si vous vous moquez de savoir ce que fait mon widget, vous pouvez allez directement à la [section suivante](#cappuccino).
 
-enddiv
+</div>
 
 J'organise mes mots de passe avec une méthode simple.
 Je mémorise un mot de passe *maître*. Et mon mot de passe est alors (principalement) : 
@@ -60,14 +60,13 @@ En réalité j'ai besoin d'un plus d'informations pour créer mon mot de passe :
 
 Le mot de passe résultant est calculé comme suit :
 
-<code class="ruby">
-domainName=domaine_Name_Of_URL(url)
+<pre><code class="ruby">domainName=domaine_Name_Of_URL(url)
 hash=sha1( masterPassword + leakedTimes + domainName )
 if ( kind == 'base64' )
     hash=base64(hash)
 end
 return hash[0..maxlength]
-</code>
+</code></pre>
 
 En fait, selon le site web, on peut avoir des contraintes très différentes :
 

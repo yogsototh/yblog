@@ -127,7 +127,7 @@ $(window).bind("load", function() {
     if (/windows/.test(navigator.userAgent.toLowerCase())) {
         $('head').append('<link rel="stylesheet" type="text/css" href="/Scratch/css/windows.css"/>');
 	} else {
-		$('head').append('<link rel="stylesheet" type="text/css" href="/Scratch/assets/css/cmu.css"/>');
+		$('head').append('<link rel="stylesheet" type="text/css" href="/Scratch/css/cmu.css"/>');
 	}
 });
 

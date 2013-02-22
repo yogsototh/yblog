@@ -11,7 +11,7 @@ tags:  Haskell, programming, functional, tutorial
 -----
 blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 
-begindiv(intro)
+<div class="intro">
 
 %tlal Un tutoriel très court mais très dense pour apprendre Haskell.
 
@@ -19,7 +19,7 @@ Merci à [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) vous 
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
 >
-> begindiv(toc)
+> <div class="toc">
 >
 > * <a href="#introduction">Introduction</a>
 >   * <a href="#install">Install</a>
@@ -55,10 +55,10 @@ Merci à [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) vous 
 > * <a href="#appendix">Appendix</a>
 >   * <a href="#more-on-infinite-tree">More on Infinite Tree</a>
 >
-> enddiv
+> </div>
 
-enddiv
-begindiv(intro)
+</div>
+<div class="intro">
 
 Je pense vraiment que
 tous les développeurs devraient apprendre Haskell.
@@ -129,7 +129,7 @@ Cet article contient cinq parties :
  > Certains ne marcheront pas, mais la majorité vous donneront un résultat.
  > Vous devriez voir un lien juste en dessous.
 
-enddiv
+</div>
 
 <hr/><a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong></a>
 
@@ -158,25 +158,22 @@ I will start with similarities between Haskell and other programming languages.
 Let's jump to the mandatory "Hello World".
 
 <div class="codehighlight">
-<code class="haskell">
-main = putStrLn "Hello World!"
-</code>
+<pre><code class="haskell">main = putStrLn "Hello World!"
+</code></pre>
 </div>
 To run it, you can save this code in a `hello.hs` and:
 
-<code class="zsh">
-~ runhaskell ./hello.hs
+<pre><code class="zsh">~ runhaskell ./hello.hs
 Hello World!
-</code>
+</code></pre>
 
 You could also download the literate Haskell source.
 You should see a link just above the introduction title.
 Download this file as `00_hello_world.lhs` and:
 
-<code class="zsh">
-~ runhaskell 00_hello_world.lhs
+<pre><code class="zsh">~ runhaskell 00_hello_world.lhs
 Hello World!
-</code>
+</code></pre>
 
 <a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong> </a>
 
@@ -185,31 +182,27 @@ Hello World!
 Now, a program asking your name and replying "Hello" using the name you entered:
 
 <div class="codehighlight">
-<code class="haskell">
-main = do
+<pre><code class="haskell">main = do
     print "What is your name?"
     name <- getLine
     print ("Hello " ++ name ++ "!")
-</code>
+</code></pre>
 </div>
 First, let us compare with a similar program in some imperative languages:
 
-<code class="python">
-# Python
+<pre><code class="python"># Python
 print "What is your name?"
 name = raw_input()
 print "Hello %s!" % name
-</code>
+</code></pre>
 
-<code class="ruby">
-# Ruby
+<pre><code class="ruby"># Ruby
 puts "What is your name?"
 name = gets.chomp
 puts "Hello #{name}!"
-</code>
+</code></pre>
 
-<code class="c">
-// In C
+<pre><code class="c">// In C
 #include <stdio.h>
 int main (int argc, char **argv) {
     char name[666]; // <- An Evil Number!
@@ -219,7 +212,7 @@ int main (int argc, char **argv) {
     printf("Hello %s!\n", name);
     return 0;
 }
-</code>
+</code></pre>
 
 The structure is the same, but there are some syntax differences.
 A major part of this tutorial will be dedicated to explaining why.
@@ -281,47 +274,41 @@ You might be used to declare functions like this:
 
 In `C`:
 
-<code class="c">
-int f(int x, int y) {
+<pre><code class="c">int f(int x, int y) {
     return x*x + y*y;
 }
-</code>
+</code></pre>
 
 In Javascript:
 
-<code class="javascript">
-function f(x,y) {
+<pre><code class="javascript">function f(x,y) {
     return x*x + y*y;
 }
-</code>
+</code></pre>
 
 in Python:
 
-<code class="python">
-def f(x,y):
+<pre><code class="python">def f(x,y):
     return x*x + y*y
-</code>
+</code></pre>
 
 in Ruby:
 
-<code class="ruby">
-def f(x,y)
+<pre><code class="ruby">def f(x,y)
     x*x + y*y
 end
-</code>
+</code></pre>
 
 In Scheme:
 
-<code class="scheme">
-(define (f x y)
+<pre><code class="scheme">(define (f x y)
     (+ (* x x) (* y y)))
-</code>
+</code></pre>
 
 Finally, the Haskell way is:
 
-<code class="haskell">
-f x y = x*x + y*y
-</code>
+<pre><code class="haskell">f x y = x*x + y*y
+</code></pre>
 
 Very clean. No parenthesis, no `def`.
 
@@ -338,13 +325,12 @@ The compiler is smart enough to discover it for you.
 Let's play a little.
 
 <div class="codehighlight">
-<code class="haskell">
--- We declare the type using ::
+<pre><code class="haskell">-- We declare the type using ::
 f :: Int -> Int -> Int
 f x y = x*x + y*y
 
 main = print (f 2 3)
-</code>
+</code></pre>
 </div>
 ~~~
 ~ runhaskell 20_very_basic.lhs
@@ -358,12 +344,11 @@ main = print (f 2 3)
 Now try
 
 <div class="codehighlight">
-<code class="haskell">
-f :: Int -> Int -> Int
+<pre><code class="haskell">f :: Int -> Int -> Int
 f x y = x*x + y*y
 
 main = print (f 2.3 4.2)
-</code>
+</code></pre>
 </div>
 You get this error:
 
@@ -388,11 +373,10 @@ don't declare the type for `f`.
 Haskell will infer the most general type for us:
 
 <div class="codehighlight">
-<code class="haskell">
-f x y = x*x + y*y
+<pre><code class="haskell">f x y = x*x + y*y
 
 main = print (f 2.3 4.2)
-</code>
+</code></pre>
 </div>
 It works! 
 Great, we don't have to declare a new function for every single type.
@@ -494,12 +478,11 @@ It is time to make a real application.
 But just before that, we should verify the type system works as expected:
 
 <div class="codehighlight">
-<code class="haskell">
-f :: Num a => a -> a -> a
+<pre><code class="haskell">f :: Num a => a -> a -> a
 f x y = x*x + y*y
 
 main = print (f 3 2.4)
-</code>
+</code></pre>
 </div>
 It works, because, `3` is a valid representation both for Fractional numbers like Float and for Integer.
 As `2.4` is a Fractional number, `3` is then interpreted as being also a Fractional number.
@@ -511,8 +494,7 @@ As `2.4` is a Fractional number, `3` is then interpreted as being also a Fractio
 If we force our function to work with different types, it will fail:
 
 <div class="codehighlight">
-<code class="haskell">
-f :: Num a => a -> a -> a
+<pre><code class="haskell">f :: Num a => a -> a -> a
 f x y = x*x + y*y
 
 x :: Int
@@ -520,7 +502,7 @@ x = 3
 y :: Float
 y = 2.4
 main = print (f x y) -- won't work because type x ≠ type y
-</code>
+</code></pre>
 </div>
 The compiler complains. 
 The two parameters must have the same type.
@@ -681,29 +663,26 @@ But it is considered a good practice to do so.
 _Infix notation_
 
 <div class="codehighlight">
-<code class="haskell">
-square :: Num a => a -> a  
+<pre><code class="haskell">square :: Num a => a -> a  
 square x = x^2
-</code>
+</code></pre>
 </div>
 Note `^` use infix notation. 
 For each infix operator there its associated prefix notation.
 You just have to put it inside parenthesis.
 
 <div class="codehighlight">
-<code class="haskell">
-square' x = (^) x 2
+<pre><code class="haskell">square' x = (^) x 2
 
 square'' x = (^2) x
-</code>
+</code></pre>
 </div>
 We can remove `x` in the left and right side!
 It's called η-reduction.
 
 <div class="codehighlight">
-<code class="haskell">
-square''' = (^2)
-</code>
+<pre><code class="haskell">square''' = (^2)
+</code></pre>
 </div>
 Note we can declare function with `'` in their name.
 Here:
@@ -715,10 +694,9 @@ _Tests_
 An implementation of the absolute function.
 
 <div class="codehighlight">
-<code class="haskell">
-absolute :: (Ord a, Num a) => a -> a
+<pre><code class="haskell">absolute :: (Ord a, Num a) => a -> a
 absolute x = if x >= 0 then x else -x
-</code>
+</code></pre>
 </div>
 Note: the `if .. then .. else` Haskell notation is more like the
 `¤?¤:¤` C operator. You cannot forget the `else`.
@@ -726,11 +704,10 @@ Note: the `if .. then .. else` Haskell notation is more like the
 Another equivalent version:
 
 <div class="codehighlight">
-<code class="haskell">
-absolute' x
+<pre><code class="haskell">absolute' x
     | x >= 0 = x
     | otherwise = -x
-</code>
+</code></pre>
 </div>
  > Notation warning: indentation is _important_ in Haskell.
  > Like in Python, a bad indentation could break your code!
@@ -738,8 +715,7 @@ absolute' x
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = do
+<pre><code class="haskell">main = do
       print $ square 10
       print $ square' 10
       print $ square'' 10
@@ -748,7 +724,7 @@ main = do
       print $ absolute (-10)
       print $ absolute' 10
       print $ absolute' (-10)
-</code>
+</code></pre>
 </div>
 </div>
 
@@ -777,8 +753,7 @@ Let's solve the following problem:
 To show differences between the functional and imperative approach,
 I'll start by providing an imperative solution (in Javascript):
 
-<code class="javascript">
-function evenSum(list) {
+<pre><code class="javascript">function evenSum(list) {
     var result = 0;
     for (var i=0; i< list.length ; i++) {
         if (list[i] % 2 ==0) {
@@ -787,7 +762,7 @@ function evenSum(list) {
     }
     return result;
 }
-</code>
+</code></pre>
 
 But, in Haskell we don't have variables, nor for loop.
 One solution to achieve the same result without loops is to use recursion.
@@ -800,8 +775,7 @@ One solution to achieve the same result without loops is to use recursion.
 Here is a `C` version of the recursive function.
 Note that for simplicity, I assume the int list ends with the first `0` value.
 
-<code class="c">
-int evenSum(int *list) {
+<pre><code class="c">int evenSum(int *list) {
     return accumSum(0,list);
 }
 
@@ -820,41 +794,37 @@ int accumSum(int n, int *list) {
         }
     }
 }
-</code>
+</code></pre>
 
 Keep this code in mind. We will translate it into Haskell.
 But before, I need to introduce three simple but useful functions we will use:
 
-<code class="haskell">
-even :: Integral a => a -> Bool
+<pre><code class="haskell">even :: Integral a => a -> Bool
 head :: [a] -> a
 tail :: [a] -> [a]
-</code>
+</code></pre>
 
 `even` verifies if a number is even.
 
-<code class="haskell">
-even :: Integral a => a -> Bool
+<pre><code class="haskell">even :: Integral a => a -> Bool
 even 3  ⇒ False
 even 2  ⇒ True
-</code>
+</code></pre>
 
 `head` returns the first element of a list:
 
-<code class="haskell">
-head :: [a] -> a
+<pre><code class="haskell">head :: [a] -> a
 head [1,2,3] ⇒ 1
 head []      ⇒ ERROR
-</code>
+</code></pre>
 
 `tail` returns all elements of a list, except the first:
 
-<code class="haskell">
-tail :: [a] -> [a]
+<pre><code class="haskell">tail :: [a] -> [a]
 tail [1,2,3] ⇒ [2,3]
 tail [3]     ⇒ []
 tail []      ⇒ ERROR
-</code>
+</code></pre>
 
 Note that for any non empty list `l`,
 `l ⇔ (head l):(tail l)`
@@ -865,8 +835,7 @@ The first Haskell solution.
 The function `evenSum` returns the sum of all even numbers in a list:
 
 <div class="codehighlight">
-<code class="haskell">
--- Version 1
+<pre><code class="haskell">-- Version 1
 evenSum :: [Integer] -> Integer
 
 evenSum l = accumSum 0 l
@@ -878,7 +847,7 @@ accumSum n l = if l == []
                        in if even x
                               then accumSum (n+x) xs
                               else accumSum n xs
-</code>
+</code></pre>
 </div>
 To test a function you can use `ghci`:
 
@@ -922,16 +891,14 @@ Coming from an imperative language all should seem right.
 In reality many things can be improved.
 First, we can generalize the type.
 
-<code class="haskell">
-evenSum :: Integral a => [a] -> a
-</code>
+<pre><code class="haskell">evenSum :: Integral a => [a] -> a
+</code></pre>
 
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = do print $ evenSum [1..10]
-</code>
+<pre><code class="haskell">main = do print $ evenSum [1..10]
+</code></pre>
 </div>
 </div>
 
@@ -943,8 +910,7 @@ Next, we can use sub functions using `where` or `let`.
 This way our `accumSum` function won't pollute the global namespace.
 
 <div class="codehighlight">
-<code class="haskell">
--- Version 2
+<pre><code class="haskell">-- Version 2
 evenSum :: Integral a => [a] -> a
 
 evenSum l = accumSum 0 l
@@ -956,14 +922,13 @@ evenSum l = accumSum 0 l
                      in if even x
                             then accumSum (n+x) xs
                             else accumSum n xs
-</code>
+</code></pre>
 </div>
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = print $ evenSum [1..10]
-</code>
+<pre><code class="haskell">main = print $ evenSum [1..10]
+</code></pre>
 </div>
 </div>
 
@@ -974,8 +939,7 @@ main = print $ evenSum [1..10]
 Next, we can use pattern matching.
 
 <div class="codehighlight">
-<code class="haskell">
--- Version 3
+<pre><code class="haskell">-- Version 3
 evenSum l = accumSum 0 l
     where 
         accumSum n [] = n
@@ -983,7 +947,7 @@ evenSum l = accumSum 0 l
              if even x
                 then accumSum (n+x) xs
                 else accumSum n xs
-</code>
+</code></pre>
 </div>
 What is pattern matching? 
 Use values instead of general parameter names[^021301].
@@ -993,30 +957,27 @@ Use values instead of general parameter names[^021301].
 Instead of saying: `foo l = if l == [] then <x> else <y>`
 You simply state:  
 
-<code class="haskell">
-foo [] =  <x>
+<pre><code class="haskell">foo [] =  <x>
 foo l  =  <y>
-</code>
+</code></pre>
 
 But pattern matching goes even further.
 It is also able to inspect the inner data of a complex value.
 We can replace
 
-<code class="haskell">
-foo l =  let x  = head l 
+<pre><code class="haskell">foo l =  let x  = head l 
              xs = tail l
          in if even x 
              then foo (n+x) xs
              else foo n xs
-</code>
+</code></pre>
 
 with
 
-<code class="haskell">
-foo (x:xs) = if even x 
+<pre><code class="haskell">foo (x:xs) = if even x 
                  then foo (n+x) xs
                  else foo n xs
-</code>
+</code></pre>
 
 This is a very useful feature.
 It makes our code both terser and easier to read.
@@ -1024,9 +985,8 @@ It makes our code both terser and easier to read.
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = print $ evenSum [1..10]
-</code>
+<pre><code class="haskell">main = print $ evenSum [1..10]
+</code></pre>
 </div>
 </div>
 
@@ -1037,21 +997,18 @@ main = print $ evenSum [1..10]
 In Haskell you can simplify function definition by η-reducing them.
 For example, instead of writing:
 
-<code class="haskell">
-f x = (some expresion) x
-</code>
+<pre><code class="haskell">f x = (some expresion) x
+</code></pre>
 
 you can simply write
 
-<code class="haskell">
-f = some expression
-</code>
+<pre><code class="haskell">f = some expression
+</code></pre>
 
 We use this method to remove the `l`:
 
 <div class="codehighlight">
-<code class="haskell">
--- Version 4
+<pre><code class="haskell">-- Version 4
 evenSum :: Integral a => [a] -> a
 
 evenSum = accumSum 0
@@ -1061,14 +1018,13 @@ evenSum = accumSum 0
              if even x
                 then accumSum (n+x) xs
                 else accumSum n xs
-</code>
+</code></pre>
 </div>
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = print $ evenSum [1..10]
-</code>
+<pre><code class="haskell">main = print $ evenSum [1..10]
+</code></pre>
 </div>
 </div>
 
@@ -1086,27 +1042,24 @@ Higher order functions are functions taking functions as parameter.
 
 Here are some examples:
 
-<code class="haskell">
-filter :: (a -> Bool) -> [a] -> [a]
+<pre><code class="haskell">filter :: (a -> Bool) -> [a] -> [a]
 map :: (a -> b) -> [a] -> [b]
 foldl :: (a -> b -> a) -> a -> [b] -> a
-</code>
+</code></pre>
 
 Let's proceed by small steps.
 
-<code class="haskell">
--- Version 5
+<pre><code class="haskell">-- Version 5
 evenSum l = mysum 0 (filter even l)
     where
       mysum n [] = n
       mysum n (x:xs) = mysum (n+x) xs
-</code>
+</code></pre>
 
 where
 
-<code class="haskell">
-filter even [1..10] ⇔  [2,4,6,8,10]
-</code>
+<pre><code class="haskell">filter even [1..10] ⇔  [2,4,6,8,10]
+</code></pre>
 
 The function `filter` takes a function of type (`a -> Bool`) and a list of type `[a]`. It returns a list containing only elements for which the function returned `true`.
 
@@ -1129,15 +1082,13 @@ myfunc list = foldl <span class="yellow">bar</span> <span class="blue">initialVa
 If you really want to know how the magic works.
 Here is the definition of `foldl`.
 
-<code class="haskell">
-foldl f z [] = z
+<pre><code class="haskell">foldl f z [] = z
 foldl f z (x:xs) = foldl f (f z x) xs
-</code>
+</code></pre>
 
-<code class="haskell">
-foldl f z [x1,...xn]
+<pre><code class="haskell">foldl f z [x1,...xn]
 ⇔  f (... (f (f z x1) x2) ...) xn
-</code>
+</code></pre>
 
 But as Haskell is lazy, it doesn't evaluate `(f z x)` and pushes it to the stack.
 This is why we generally use `foldl'` instead of `foldl`;
@@ -1147,39 +1098,35 @@ don't worry, just follow the code as if `foldl` and `foldl'` where identical.
 
 Now our new version of `evenSum` becomes:
 
-<code class="haskell">
--- Version 6
+<pre><code class="haskell">-- Version 6
 -- foldl' isn't accessible by default
 -- we need to import it from the module Data.List
 import Data.List
 evenSum l = foldl' mysum 0 (filter even l)
   where mysum acc value = acc + value
-</code>
+</code></pre>
 
 Version we can simplify by using directly a lambda notation.
 This way we don't have to create the temporary name `mysum`.
 
 <div class="codehighlight">
-<code class="haskell">
--- Version 7
+<pre><code class="haskell">-- Version 7
 -- Generally it is considered a good practice
 -- to import only the necessary function(s)
 import Data.List (foldl')
 evenSum l = foldl' (\x y -> x+y) 0 (filter even l)
-</code>
+</code></pre>
 </div>
 And of course, we note that
 
-<code class="haskell">
-(\x y -> x+y) ⇔ (+)
-</code>
+<pre><code class="haskell">(\x y -> x+y) ⇔ (+)
+</code></pre>
 
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = print $ evenSum [1..10]
-</code>
+<pre><code class="haskell">main = print $ evenSum [1..10]
+</code></pre>
 </div>
 </div>
 
@@ -1189,12 +1136,11 @@ main = print $ evenSum [1..10]
 
 Finally
 
-<code class="haskell">
--- Version 8
+<pre><code class="haskell">-- Version 8
 import Data.List (foldl')
 evenSum :: Integral a => [a] -> a
 evenSum l = foldl' (+) 0 (filter even l)
-</code>
+</code></pre>
 
 `foldl'` isn't the easiest function to intuit.
 If you are not used to it, you should study it a bit.
@@ -1215,31 +1161,28 @@ To help you understand what's going on here, a step by step evaluation:
 Another useful higher order function is `(.)`.
 The `(.)` function corresponds to the mathematical composition.
 
-<code class="haskell">
-(f . g . h) x ⇔  f ( g (h x))
-</code>
+<pre><code class="haskell">(f . g . h) x ⇔  f ( g (h x))
+</code></pre>
 
 We can take advantage of this operator to η-reduce our function:
 
-<code class="haskell">
--- Version 9
+<pre><code class="haskell">-- Version 9
 import Data.List (foldl')
 evenSum :: Integral a => [a] -> a
 evenSum = (foldl' (+) 0) . (filter even)
-</code>
+</code></pre>
 
 Also, we could rename some parts to make it clearer:
 
 <div class="codehighlight">
-<code class="haskell">
--- Version 10 
+<pre><code class="haskell">-- Version 10 
 import Data.List (foldl')
 sum' :: (Num a) => [a] -> a
 sum' = foldl' (+) 0
 evenSum :: Integral a => [a] -> a
 evenSum = sum' . (filter even)
 
-</code>
+</code></pre>
 </div>
 It is time to discuss a bit.
 What did we gain by using higher order functions?
@@ -1256,11 +1199,10 @@ We want to get the sum of all even square of element of the list.
 Update the version 10 is extremely easy:
 
 <div class="codehighlight">
-<code class="haskell">
-squareEvenSum = sum' . (filter even) . (map (^2))
+<pre><code class="haskell">squareEvenSum = sum' . (filter even) . (map (^2))
 squareEvenSum' = evenSum . (map (^2))
 squareEvenSum'' = sum' . (map (^2)) . (filter even)
-</code>
+</code></pre>
 </div>
 We just had to add another "transformation function"[^0216].
 
@@ -1304,9 +1246,8 @@ essential aspect of Haskell: _Types_.
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = print $ evenSum [1..10]
-</code>
+<pre><code class="haskell">main = print $ evenSum [1..10]
+</code></pre>
 </div>
 </div>
 
@@ -1339,9 +1280,8 @@ Haskell's saving grace is that it can _infer_ types.
 Here is a simple example.
 The `square` function in Haskell:
 
-<code class="haskell">
-square x = x * x
-</code>
+<pre><code class="haskell">square x = x * x
+</code></pre>
 
 This function can `square` any Numeral type.
 You can provide `square` with an `Int`, an `Integer`, a `Float` a `Fractional` and even `Complex`. Proof by example:
@@ -1365,8 +1305,7 @@ Prelude Data.Complex> square (2 :+ 1)
 
 Now compare with the amount of code necessary in C:
 
-<code class="c">
-int     int_square(int x) { return x*x; }
+<pre><code class="c">int     int_square(int x) { return x*x; }
 
 float   float_square(float x) {return x*x; }
 
@@ -1378,15 +1317,14 @@ complex complex_square (complex z) {
 
 complex x,y;
 y = complex_square(x);
-</code>
+</code></pre>
 
 For each type, you need to write a new function.
 The only way to work around this problem is to use some meta-programming trick.
 For example using the pre-processor.
 In C++ there is a better way, the C++ templates:
 
-<code class="c++">
-#include <iostream>
+<pre><code class="c++">#include <iostream>
 #include <complex>
 using namespace std;
 
@@ -1407,7 +1345,7 @@ int main() {
          << endl;
     return 0;
 }
-</code>
+</code></pre>
 
 C++ does a far better job than C.
 For more complex function the syntax can be hard to follow:
@@ -1434,8 +1372,7 @@ You can construct your own types.
 First you can use aliases or type synonyms.
 
 <div class="codehighlight">
-<code class="haskell">
-type Name   = String
+<pre><code class="haskell">type Name   = String
 type Color  = String
 
 showInfos :: Name ->  Color -> String
@@ -1446,7 +1383,7 @@ name = "Robin"
 color :: Color
 color = "Blue"
 main = putStrLn $ showInfos name color
-</code>
+</code></pre>
 </div>
 <a href="code/02_Hard_Part/21_Types.lhs" class="cut">02_Hard_Part/<strong>21_Types.lhs</strong> </a>
 
@@ -1455,9 +1392,8 @@ main = putStrLn $ showInfos name color
 But it doesn't protect you much.
 Try to swap the two parameter of `showInfos` and run the program:
 
-<code class="haskell">
-    putStrLn $ showInfos color name
-</code>
+<pre><code class="haskell">    putStrLn $ showInfos color name
+</code></pre>
 
 It will compile and execute.
 In fact you can replace Name, Color and String everywhere.
@@ -1466,8 +1402,7 @@ The compiler will treat them as completely identical.
 Another method is to create your own types using the keyword `data`.
 
 <div class="codehighlight">
-<code class="haskell">
-data Name   = NameConstr String
+<pre><code class="haskell">data Name   = NameConstr String
 data Color  = ColorConstr String
 
 showInfos :: Name ->  Color -> String
@@ -1477,7 +1412,7 @@ showInfos (NameConstr name) (ColorConstr color) =
 name  = NameConstr "Robin"
 color = ColorConstr "Blue"
 main = putStrLn $ showInfos name color
-</code>
+</code></pre>
 </div>
 Now if you switch parameters of `showInfos`, the compiler complains!
 A possible mistake you could never do again.
@@ -1485,50 +1420,45 @@ The only price is to be more verbose.
 
 Also remark constructor are functions:
 
-<code class="haskell">
-NameConstr  :: String -> Name
+<pre><code class="haskell">NameConstr  :: String -> Name
 ColorConstr :: String -> Color
-</code>
+</code></pre>
 
 The syntax of `data` is mainly:
 
-<code class="haskell">
-data TypeName =   ConstructorName  [types]
+<pre><code class="haskell">data TypeName =   ConstructorName  [types]
                 | ConstructorName2 [types]
                 | ...
-</code>
+</code></pre>
 
 Generally the usage is to use the same name for the
 DataTypeName and DataTypeConstructor.
 
 Example:
 
-<code class="haskell">
-data Complex = Num a => Complex a a
-</code>
+<pre><code class="haskell">data Complex = Num a => Complex a a
+</code></pre>
 
 Also you can use the record syntax:
 
-<code class="haskell">
-data DataTypeName = DataConstructor {
+<pre><code class="haskell">data DataTypeName = DataConstructor {
                       field1 :: [type of field1]
                     , field2 :: [type of field2]
                     ...
                     , fieldn :: [type of fieldn] }
-</code>
+</code></pre>
 
 And many accessors are made for you.
 Furthermore you can use another order when setting values.
 
 Example:
 
-<code class="haskell">
-data Complex = Num a => Complex { real :: a, img :: a}
+<pre><code class="haskell">data Complex = Num a => Complex { real :: a, img :: a}
 c = Complex 1.0 2.0
 z = Complex { real = 3, img = 4 }
 real c ⇒ 1.0
 img z ⇒ 4
-</code>
+</code></pre>
 
 <a href="code/02_Hard_Part/22_Types.lhs" class="cut">02_Hard_Part/<strong>22_Types.lhs</strong> </a>
 
@@ -1539,43 +1469,38 @@ img z ⇒ 4
 You already encountered a recursive type: lists.
 You can re-create lists, but with a more verbose syntax:
 
-<code class="haskell">
-data List a = Empty | Cons a (List a)
-</code>
+<pre><code class="haskell">data List a = Empty | Cons a (List a)
+</code></pre>
 
 If you really want to use an easier syntax you can use an infix name for constructors.
 
-<code class="haskell">
-infixr 5 :::
+<pre><code class="haskell">infixr 5 :::
 data List a = Nil | a ::: (List a)
-</code>
+</code></pre>
 
 The number after `infixr` is the priority.
 
 If you want to be able to print (`Show`), read (`Read`), test equality (`Eq`) and compare (`Ord`) your new data structure you can tell Haskell to derive the appropriate functions for you.
 
 <div class="codehighlight">
-<code class="haskell">
-infixr 5 :::
+<pre><code class="haskell">infixr 5 :::
 data List a = Nil | a ::: (List a) 
               deriving (Show,Read,Eq,Ord)
-</code>
+</code></pre>
 </div>
 When you add `deriving (Show)` to your data declaration, Haskell create a `show` function for you.
 We'll see soon how you can use your own `show` function.
 
 <div class="codehighlight">
-<code class="haskell">
-convertList [] = Nil
+<pre><code class="haskell">convertList [] = Nil
 convertList (x:xs) = x ::: convertList xs
-</code>
+</code></pre>
 </div>
 <div class="codehighlight">
-<code class="haskell">
-main = do
+<pre><code class="haskell">main = do
       print (0 ::: 1 ::: Nil)
       print (convertList [0,1])
-</code>
+</code></pre>
 </div>
 This prints:
 
@@ -1595,23 +1520,21 @@ blogimage("magritte-l-arbre.jpg","Magritte, l'Arbre")
 We'll just give another standard example: binary trees.
 
 <div class="codehighlight">
-<code class="haskell">
-import Data.List
+<pre><code class="haskell">import Data.List
 
 data BinTree a = Empty
                  | Node a (BinTree a) (BinTree a)
                               deriving (Show)
-</code>
+</code></pre>
 </div>
 We will also create a function which turns a list into an ordered binary tree.
 
 <div class="codehighlight">
-<code class="haskell">
-treeFromList :: (Ord a) => [a] -> BinTree a
+<pre><code class="haskell">treeFromList :: (Ord a) => [a] -> BinTree a
 treeFromList [] = Empty
 treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
                              (treeFromList (filter (>x) xs))
-</code>
+</code></pre>
 </div>
 Look at how elegant this function is.
 In plain English:
@@ -1623,9 +1546,8 @@ In plain English:
   - the right subtree is the tree created from members of the list `xs` which are strictly superior to `x`.
 
 <div class="codehighlight">
-<code class="haskell">
-main = print $ treeFromList [7,2,4,8]
-</code>
+<pre><code class="haskell">main = print $ treeFromList [7,2,4,8]
+</code></pre>
 </div>
 You should obtain the following:
 
@@ -1649,11 +1571,10 @@ And it might also be useful to make our BinTree an instance of (`Eq` and `Ord`).
 We will be able to test equality and compare trees.
 
 <div class="codehighlight">
-<code class="haskell">
-data BinTree a = Empty
+<pre><code class="haskell">data BinTree a = Empty
                  | Node a (BinTree a) (BinTree a)
                   deriving (Eq,Ord)
-</code>
+</code></pre>
 </div>
 Without the `deriving (Show)`, Haskell doesn't create a `show` method for us.
 We will create our own version of `show`.
@@ -1661,18 +1582,16 @@ To achieve this, we must declare that our newly created type `BinTree a`
 is an instance of the type class `Show`.
 The general syntax is:
 
-<code class="haskell">
-instance Show (BinTree a) where
+<pre><code class="haskell">instance Show (BinTree a) where
    show t = ... -- You declare your function here
-</code>
+</code></pre>
 
 Here is my version of how to show a binary tree.
 Don't worry about the apparent complexity.
 I made a lot of improvements in order to display even stranger objects.
 
 <div class="codehighlight">
-<code class="haskell">
--- declare BinTree a to be an instance of Show
+<pre><code class="haskell">-- declare BinTree a to be an instance of Show
 instance (Show a) => Show (BinTree a) where
   -- will start by a '<' before the root
   -- and put a : a begining of line
@@ -1716,26 +1635,24 @@ instance (Show a) => Show (BinTree a) where
           change c new x
               | x == c = new
               | otherwise = x:[] -- "x"
-</code>
+</code></pre>
 </div>
 The `treeFromList` method remains identical.
 
 <div class="codehighlight">
-<code class="haskell">
-treeFromList :: (Ord a) => [a] -> BinTree a
+<pre><code class="haskell">treeFromList :: (Ord a) => [a] -> BinTree a
 treeFromList [] = Empty
 treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
                              (treeFromList (filter (>x) xs))
-</code>
+</code></pre>
 </div>
 And now, we can play:
 
 <div class="codehighlight">
-<code class="haskell">
-main = do
+<pre><code class="haskell">main = do
   putStrLn "Int binary tree:"
   print $ treeFromList [7,2,4,8,1,3,6,21,12,23]
-</code>
+</code></pre>
 </div>
 ~~~
 Int binary tree:
@@ -1757,10 +1674,9 @@ And each following line starts with a `:`.
 But we could also use another type.
 
 <div class="codehighlight">
-<code class="haskell">
-  putStrLn "\nString binary tree:"
+<pre><code class="haskell">  putStrLn "\nString binary tree:"
   print $ treeFromList ["foo","bar","baz","gor","yog"]
-</code>
+</code></pre>
 </div>
 ~~~
 String binary tree:
@@ -1775,11 +1691,10 @@ As we can test equality and order trees, we can
 make tree of trees!
 
 <div class="codehighlight">
-<code class="haskell">
-  putStrLn "\nBinary tree of Char binary trees:"
+<pre><code class="haskell">  putStrLn "\nBinary tree of Char binary trees:"
   print ( treeFromList
            (map treeFromList ["baz","zara","bar"]))
-</code>
+</code></pre>
 </div>
 ~~~
 Binary tree of Char binary trees:
@@ -1799,25 +1714,23 @@ This is why I chose to prefix each line of tree display by `:` (except for the r
 blogimage("yo_dawg_tree.jpg","Yo Dawg Tree")
 
 <div class="codehighlight">
-<code class="haskell">
-  putStrLn "\nTree of Binary trees of Char binary trees:"
+<pre><code class="haskell">  putStrLn "\nTree of Binary trees of Char binary trees:"
   print $ (treeFromList . map (treeFromList . map treeFromList))
              [ ["YO","DAWG"]
              , ["I","HEARD"]
              , ["I","HEARD"]
              , ["YOU","LIKE","TREES"] ]
-</code>
+</code></pre>
 </div>
 Which is equivalent to
 
-<code class="haskell">
-print ( treeFromList (
+<pre><code class="haskell">print ( treeFromList (
           map treeFromList
              [ map treeFromList ["YO","DAWG"]
              , map treeFromList ["I","HEARD"]
              , map treeFromList ["I","HEARD"]
              , map treeFromList ["YOU","LIKE","TREES"] ]))
-</code>
+</code></pre>
 
 and gives:
 
@@ -1878,8 +1791,7 @@ Then what does not-strict means? From the Haskell wiki:
 For example in Haskell you can do:
 
 <div class="codehighlight">
-<code class="haskell">
--- numbers = [1,2,..]
+<pre><code class="haskell">-- numbers = [1,2,..]
 numbers :: [Integer]
 numbers = 0:map (1+) numbers
 
@@ -1888,7 +1800,7 @@ take' 0 l = []
 take' n (x:xs) = x:take' (n-1) xs
 
 main = print $ take' 10 numbers
-</code>
+</code></pre>
 </div>
 And it stops.
 
@@ -1916,17 +1828,15 @@ Also, there is a built-in function `take` which is equivalent to our `take'`.
 This code is mostly the same as the previous one.
 
 <div class="codehighlight">
-<code class="haskell">
-import Debug.Trace (trace)
+<pre><code class="haskell">import Debug.Trace (trace)
 import Data.List
 data BinTree a = Empty 
                  | Node a (BinTree a) (BinTree a) 
                   deriving (Eq,Ord)
-</code>
+</code></pre>
 </div>
 <div class="codehighlight">
-<code class="haskell">
--- declare BinTree a to be an instance of Show
+<pre><code class="haskell">-- declare BinTree a to be an instance of Show
 instance (Show a) => Show (BinTree a) where
   -- will start by a '<' before the root
   -- and put a : a begining of line
@@ -1964,7 +1874,7 @@ instance (Show a) => Show (BinTree a) where
               | x == c = new
               | otherwise = x:[] -- "x"
 
-</code>
+</code></pre>
 </div>
 </div>
 
@@ -1972,16 +1882,14 @@ Suppose we don't mind having an ordered binary tree.
 Here is an infinite binary tree:
 
 <div class="codehighlight">
-<code class="haskell">
-nullTree = Node 0 nullTree nullTree
-</code>
+<pre><code class="haskell">nullTree = Node 0 nullTree nullTree
+</code></pre>
 </div>
 A complete binary tree where each node is equal to 0.
 Now I will prove you can manipulate this object using the following function:
 
 <div class="codehighlight">
-<code class="haskell">
--- take all element of a BinTree 
+<pre><code class="haskell">-- take all element of a BinTree 
 -- up to some depth
 treeTakeDepth _ Empty = Empty
 treeTakeDepth 0 _     = Empty
@@ -1990,13 +1898,12 @@ treeTakeDepth n (Node x left right) = let
           nr = treeTakeDepth (n-1) right
           in
               Node x nl nr
-</code>
+</code></pre>
 </div>
 See what occurs for this program:
 
-<code class="haskell">
-main = print $ treeTakeDepth 4 nullTree
-</code>
+<pre><code class="haskell">main = print $ treeTakeDepth 4 nullTree
+</code></pre>
 
 This code compiles, runs and stops giving the following result:
 
@@ -2022,26 +1929,24 @@ Just to heat up your neurones a bit more,
 let's make a slightly more interesting tree:
 
 <div class="codehighlight">
-<code class="haskell">
-iTree = Node 0 (dec iTree) (inc iTree)
+<pre><code class="haskell">iTree = Node 0 (dec iTree) (inc iTree)
         where
            dec (Node x l r) = Node (x-1) (dec l) (dec r) 
            inc (Node x l r) = Node (x+1) (inc l) (inc r) 
-</code>
+</code></pre>
 </div>
 Another way to create this tree is to use a higher order function.
 This function should be similar to `map`, but should work on `BinTree` instead of list.
 Here is such a function:
 
 <div class="codehighlight">
-<code class="haskell">
--- apply a function to each node of Tree
+<pre><code class="haskell">-- apply a function to each node of Tree
 treeMap :: (a -> b) -> BinTree a -> BinTree b
 treeMap f Empty = Empty
 treeMap f (Node x left right) = Node (f x) 
                                      (treeMap f left) 
                                      (treeMap f right)
-</code>
+</code></pre>
 </div>
 _Hint_: I won't talk more about this here. 
 If you are interested by the generalization of `map` to other data structures,
@@ -2050,17 +1955,15 @@ search for functor and `fmap`.
 Our definition is now:
 
 <div class="codehighlight">
-<code class="haskell">
-infTreeTwo :: BinTree Int
+<pre><code class="haskell">infTreeTwo :: BinTree Int
 infTreeTwo = Node 0 (treeMap (\x -> x-1) infTreeTwo) 
                     (treeMap (\x -> x+1) infTreeTwo) 
-</code>
+</code></pre>
 </div>
 Look at the result for 
 
-<code class="haskell">
-main = print $ treeTakeDepth 4 infTreeTwo
-</code>
+<pre><code class="haskell">main = print $ treeTakeDepth 4 infTreeTwo
+</code></pre>
 
 ~~~
 <  0
@@ -2083,11 +1986,10 @@ main = print $ treeTakeDepth 4 infTreeTwo
 <div style="display:none">
 
 <div class="codehighlight">
-<code class="haskell">
-main = do
+<pre><code class="haskell">main = do
   print $ treeTakeDepth 4 nullTree
   print $ treeTakeDepth 4 infTreeTwo
-</code>
+</code></pre>
 </div>
 </div>
 
@@ -2153,15 +2055,14 @@ What to achieve?
  > Print the sum of the numbers
 
 <div class="codehighlight">
-<code class="haskell">
-toList :: String -> [Integer]
+<pre><code class="haskell">toList :: String -> [Integer]
 toList input = read ("[" ++ input ++ "]")
 
 main = do
   putStrLn "Enter a list of numbers (separated by comma):"
   input <- getLine
   print $ sum (toList input)
-</code>
+</code></pre>
 </div>
 It should be straightforward to understand the behavior of this program.
 Let's analyze the types in more detail.
@@ -2233,16 +2134,14 @@ Use the type `Maybe`.
 It is a very common type in Haskell.
 
 <div class="codehighlight">
-<code class="haskell">
-import Data.Maybe
-</code>
+<pre><code class="haskell">import Data.Maybe
+</code></pre>
 </div>
 What is this thing? `Maybe` is a type which takes one parameter.
 Its definition is:
 
-<code class="haskell">
-data Maybe a = Nothing | Just a
-</code>
+<pre><code class="haskell">data Maybe a = Nothing | Just a
+</code></pre>
 
 This is a nice way to tell there was an error while trying to create/compute
 a value.
@@ -2256,28 +2155,25 @@ I use a lower level function than `read`; `reads`.
 [^1]: Which itself is very similar to the javascript `eval` on a string containing JSON).
 
 <div class="codehighlight">
-<code class="haskell">
-maybeRead :: Read a => String -> Maybe a
+<pre><code class="haskell">maybeRead :: Read a => String -> Maybe a
 maybeRead s = case reads s of
                   [(x,"")]    -> Just x
                   _           -> Nothing
-</code>
+</code></pre>
 </div>
 Now to be a bit more readable, we define a function which goes like this:
 If the string has the wrong format, it will return `Nothing`.
 Otherwise, for example for "1,2,3", it will return `Just [1,2,3]`.
 
 <div class="codehighlight">
-<code class="haskell">
-getListFromString :: String -> Maybe [Integer]
+<pre><code class="haskell">getListFromString :: String -> Maybe [Integer]
 getListFromString str = maybeRead $ "[" ++ str ++ "]"
-</code>
+</code></pre>
 </div>
 We simply have to test the value in our main function.
 
 <div class="codehighlight">
-<code class="haskell">
-main :: IO ()
+<pre><code class="haskell">main :: IO ()
 main = do
   putStrLn "Enter a list of numbers (separated by comma):"
   input <- getLine
@@ -2285,7 +2181,7 @@ main = do
       case maybeList of
           Just l  -> print (sum l)
           Nothing -> error "Bad format. Good Bye."
-</code>
+</code></pre>
 </div>
 In case of error, we display a nice error message.
 
@@ -2318,8 +2214,7 @@ Our next evolution will be to prompt the user again and again until she enters a
 We keep the first part:
 
 <div class="codehighlight">
-<code class="haskell">
-import Data.Maybe
+<pre><code class="haskell">import Data.Maybe
 
 maybeRead :: Read a => String -> Maybe a
 maybeRead s = case reads s of
@@ -2327,14 +2222,13 @@ maybeRead s = case reads s of
                   _           -> Nothing
 getListFromString :: String -> Maybe [Integer]
 getListFromString str = maybeRead $ "[" ++ str ++ "]"
-</code>
+</code></pre>
 </div>
 Now, we create a function which will ask the user for an list of integers
 until the input is right.
 
 <div class="codehighlight">
-<code class="haskell">
-askUser :: IO [Integer]
+<pre><code class="haskell">askUser :: IO [Integer]
 askUser = do
   putStrLn "Enter a list of numbers (separated by comma):"
   input <- getLine
@@ -2342,7 +2236,7 @@ askUser = do
       case maybeList of
           Just l  -> return l
           Nothing -> askUser
-</code>
+</code></pre>
 </div>
 This function is of type `IO [Integer]`. 
 Such a type means that we retrieved a value of type `[Integer]` through some IO actions.
@@ -2357,12 +2251,11 @@ Just practice a little and remember to think about the type.
 Finally our main function is quite simpler:
 
 <div class="codehighlight">
-<code class="haskell">
-main :: IO ()
+<pre><code class="haskell">main :: IO ()
 main = do
   list <- askUser
   print $ sum list
-</code>
+</code></pre>
 </div>
 We have finished with our introduction to `IO`.
 This was quite fast. Here are the main things to remember:
@@ -2435,8 +2328,7 @@ It looks a bit like magic.
 For now let's just forget all about the pure parts of our program, and focus
 on the impure parts:
 
-<code class="haskell">
-askUser :: IO [Integer]
+<pre><code class="haskell">askUser :: IO [Integer]
 askUser = do
   putStrLn "Enter a list of numbers (separated by commas):"
   input <- getLine
@@ -2449,7 +2341,7 @@ main :: IO ()
 main = do
   list <- askUser
   print $ sum list
-</code>
+</code></pre>
 
 First remark; it looks like an imperative structure.
 Haskell is powerful enough to make impure code look imperative.
@@ -2468,9 +2360,8 @@ For Haskell this state is not hidden.
 It is explicitly said `main` is a function that _potentially_ changes the state of the world.
 Its type is then something like:
 
-<code class="haskell">
-main :: World -> World
-</code>
+<pre><code class="haskell">main :: World -> World
+</code></pre>
 
 Not all functions may have access to this variable.
 Those which have access to this variable are impure.
@@ -2483,27 +2374,24 @@ But the real type of main is closer to this one[^032002]:
 
 [^032002]: For the curious the real type is `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. All the `#` as to do with optimisation and I swapped the fields in my example. But mostly, the idea is exactly the same.
 
-<code class="haskell">
-main :: World -> ((),World)
-</code>
+<pre><code class="haskell">main :: World -> ((),World)
+</code></pre>
 
 The `()` type is the null type.
 Nothing to see here.
 
 Now let's rewrite our main function with this in mind:
 
-<code class="haskell">
-main w0 =
+<pre><code class="haskell">main w0 =
     let (list,w1) = askUser w0 in
     let (x,w2) = print (sum list,w1) in
     x
-</code>
+</code></pre>
 
 First, we note that all functions which have side effects must have the type:
 
-<code class="haskell">
-World -> (a,World)
-</code>
+<pre><code class="haskell">World -> (a,World)
+</code></pre>
 
 Where `a` is the type of the result.
 For example, a `getChar` function should have the type `World -> (Char,World)`.
@@ -2532,14 +2420,12 @@ Under the hood, `print` will evaluate as:
 Now, if you look at the style of the main function, it is clearly awkward.
 Let's try to do the same to the askUser function:
 
-<code class="haskell">
-askUser :: World -> ([Integer],World)
-</code>
+<pre><code class="haskell">askUser :: World -> ([Integer],World)
+</code></pre>
 
 Before:
 
-<code class="haskell">
-askUser :: IO [Integer]
+<pre><code class="haskell">askUser :: IO [Integer]
 askUser = do
   putStrLn "Enter a list of numbers:"
   input <- getLine
@@ -2547,12 +2433,11 @@ askUser = do
       case maybeList of
           Just l  -> return l
           Nothing -> askUser
-</code>
+</code></pre>
 
 After:
 
-<code class="haskell">
-askUser w0 =
+<pre><code class="haskell">askUser w0 =
     let (_,w1)     = putStrLn "Enter a list of numbers:" in
     let (input,w2) = getLine w1 in
     let (l,w3)     = case getListFromString input of
@@ -2560,7 +2445,7 @@ askUser w0 =
                       Nothing  -> askUser w2
     in
         (l,w3)
-</code>
+</code></pre>
 
 This is similar, but awkward.
 Look at all these temporary `w?` names.
@@ -2571,38 +2456,34 @@ Fortunately, there is a better way to handle this problem.
 We see a pattern.
 Each line is of the form:
 
-<code class="haskell">
-let (y,w') = action x w in
-</code>
+<pre><code class="haskell">let (y,w') = action x w in
+</code></pre>
 
 Even if for some line the first `x` argument isn't needed.
 The output type is a couple, `(answer, newWorldValue)`.
 Each function `f` must have a type similar to:
 
-<code class="haskell">
-f :: World -> (a,World)
-</code>
+<pre><code class="haskell">f :: World -> (a,World)
+</code></pre>
 
 Not only this, but we can also note that we always follow the same usage pattern:
 
-<code class="haskell">
-let (y,w1) = action1 w0 in
+<pre><code class="haskell">let (y,w1) = action1 w0 in
 let (z,w2) = action2 w1 in
 let (t,w3) = action3 w2 in
 ...
-</code>
+</code></pre>
 
 Each action can take from 0 to n parameters.
 And in particular, each action can take a parameter from the result of a line above.
 
 For example, we could also have:
 
-<code class="haskell">
-let (_,w1) = action1 x w0   in
+<pre><code class="haskell">let (_,w1) = action1 x w0   in
 let (z,w2) = action2 w1     in
 let (_,w3) = action3 x z w2 in
 ...
-</code>
+</code></pre>
 
 And of course `actionN w :: (World) -> (a,World)`.
 
@@ -2628,25 +2509,22 @@ We will `bind` the two lines.
 Let's define the `bind` function.
 Its type is quite intimidating at first:
 
-<code class="haskell">
-bind :: (World -> (a,World))
+<pre><code class="haskell">bind :: (World -> (a,World))
         -> (a -> (World -> (b,World)))
         -> (World -> (b,World))
-</code>
+</code></pre>
 
 But remember that `(World -> (a,World))` is the type for an IO action.
 Now let's rename it for clarity:
 
-<code class="haskell">
-type IO a = World -> (a, World)
-</code>
+<pre><code class="haskell">type IO a = World -> (a, World)
+</code></pre>
 
 Some example of functions:
 
-<code class="haskell">
-getLine :: IO String
+<pre><code class="haskell">getLine :: IO String
 print :: Show a => a -> IO ()
-</code>
+</code></pre>
 
 `getLine` is an IO action which takes a world as parameter and returns a couple `(String,World)`.
 Which can be summarized as: `getLine` is of type `IO String`.
@@ -2661,71 +2539,63 @@ This means it changes the state of the world, but doesn't yield anymore data.
 
 This type helps us simplify the type of `bind`:
 
-<code class="haskell">
-bind :: IO a
+<pre><code class="haskell">bind :: IO a
         -> (a -> IO b)
         -> IO b
-</code>
+</code></pre>
 
 It says that `bind` takes two IO actions as parameter and return another IO action.
 
 Now, remember the _important_ patterns. The first was:
 
-<code class="haskell">
-let (x,w1) = action1 w0 in
+<pre><code class="haskell">let (x,w1) = action1 w0 in
 let (y,w2) = action2 x w1 in
 (y,w2)
-</code>
+</code></pre>
 
 Look at the types:
 
-<code class="haskell">
-action1  :: IO a
+<pre><code class="haskell">action1  :: IO a
 action2  :: a -> IO b
 (y,w2)   :: IO b
-</code>
+</code></pre>
 
 Doesn't it seem familiar?
 
-<code class="haskell">
-(bind action1 action2) w0 =
+<pre><code class="haskell">(bind action1 action2) w0 =
     let (x, w1) = action1 w0
         (y, w2) = action2 x w1
     in  (y, w2)
-</code>
+</code></pre>
 
 The idea is to hide the World argument with this function. Let's go:
 As an example imagine if we wanted to simulate:
 
-<code class="haskell">
-let (line1,w1) = getLine w0 in
+<pre><code class="haskell">let (line1,w1) = getLine w0 in
 let ((),w2) = print line1 in
 ((),w2)
-</code>
+</code></pre>
 
 Now, using the bind function:
 
-<code class="haskell">
-(res,w2) = (bind getLine (\l -> print l)) w0
-</code>
+<pre><code class="haskell">(res,w2) = (bind getLine (\l -> print l)) w0
+</code></pre>
 
 As print is of type `(World -> ((),World))`, we know `res = ()` (null type).
 If you didn't see what was magic here, let's try with three lines this time.
 
-<code class="haskell">
-let (line1,w1) = getLine w0 in
+<pre><code class="haskell">let (line1,w1) = getLine w0 in
 let (line2,w2) = getLine w1 in
 let ((),w3) = print (line1 ++ line2) in
 ((),w3)
-</code>
+</code></pre>
 
 Which is equivalent to:
 
-<code class="haskell">
-(res,w3) = bind getLine (\line1 ->
+<pre><code class="haskell">(res,w3) = bind getLine (\line1 ->
              bind getLine (\line2 ->
                print (line1 ++ line2)))
-</code>
+</code></pre>
 
 Didn't you notice something?
 Yes, no temporary World variables are used anywhere!
@@ -2736,69 +2606,62 @@ Let's use `(>>=)` instead of `bind`.
 `(>>=)` is an infix function like
 `(+)`; reminder `3 + 4 ⇔ (+) 3 4`
 
-<code class="haskell">
-(res,w3) = getLine >>=
+<pre><code class="haskell">(res,w3) = getLine >>=
            \line1 -> getLine >>=
            \line2 -> print (line1 ++ line2)
-</code>
+</code></pre>
 
 Ho Ho Ho! Happy Christmas Everyone!
 Haskell has made syntactical sugar for us:
 
-<code class="haskell">
-do
+<pre><code class="haskell">do
   x <- action1
   y <- action2
   z <- action3
   ...
-</code>
+</code></pre>
 
 Is replaced by:
 
-<code class="haskell">
-action1 >>= \x ->
+<pre><code class="haskell">action1 >>= \x ->
 action2 >>= \y ->
 action3 >>= \z ->
 ...
-</code>
+</code></pre>
 
 Note you can use `x` in `action2` and `x` and `y` in `action3`.
 
 But what about the lines not using the `<-`?
 Easy, another function `blindBind`:
 
-<code class="haskell">
-blindBind :: IO a -> IO b -> IO b
+<pre><code class="haskell">blindBind :: IO a -> IO b -> IO b
 blindBind action1 action2 w0 =
     bind action (\_ -> action2) w0
-</code>
+</code></pre>
 
 I didn't simplify this definition for clarity purpose.
 Of course we can use a better notation, we'll use the `(>>)` operator.
 
 And
 
-<code class="haskell">
-do
+<pre><code class="haskell">do
     action1
     action2
     action3
-</code>
+</code></pre>
 
 Is transformed into
 
-<code class="haskell">
-action1 >>
+<pre><code class="haskell">action1 >>
 action2 >>
 action3
-</code>
+</code></pre>
 
 Also, another function is quite useful.
 
-<code class="haskell">
-putInIO :: a -> IO a
+<pre><code class="haskell">putInIO :: a -> IO a
 putInIO x = IO (\w -> (x,w))
-</code>
+</code></pre>
 
 This is the general way to put pure values inside the "IO context".
 The general name for `putInIO` is `return`.
@@ -2808,8 +2671,7 @@ This is quite a bad name when you learn Haskell. `return` is very different from
 
 To finish, let's translate our example:
 
-<code class="haskell">
-
+<pre><code class="haskell">
 askUser :: IO [Integer]
 askUser = do
   putStrLn "Enter a list of numbers (separated by commas):"
@@ -2823,13 +2685,12 @@ main :: IO ()
 main = do
   list <- askUser
   print $ sum list
-</code>
+</code></pre>
 
 Is translated into:
 
 <div class="codehighlight">
-<code class="haskell">
-import Data.Maybe
+<pre><code class="haskell">import Data.Maybe
 
 maybeRead :: Read a => String -> Maybe a
 maybeRead s = case reads s of
@@ -2849,7 +2710,7 @@ askUser =
 main :: IO ()
 main = askUser >>=
   \list -> print $ sum list
-</code>
+</code></pre>
 </div>
 You can compile this code to verify it keeps working.
 
@@ -2878,8 +2739,7 @@ To be an instance of this type class, you must provide the functions `(>>=)` and
 The function `(>>)` will be derived from `(>>=)`.
 Here is how the type class `Monad` is declared (mostly):
 
-<code class="haskell">
-class Monad m  where
+<pre><code class="haskell">class Monad m  where
   (>>=) :: m a -> (a -> m b) -> m b
   return :: a -> m a
 
@@ -2890,7 +2750,7 @@ class Monad m  where
   -- which I believe exists for historical reason
   fail :: String -> m a
   fail = error
-</code>
+</code></pre>
 
  > Remarks:
  >
@@ -2922,8 +2782,7 @@ Imagine a complex bank operation. You are eligible to gain about 700€ only
 if you can afford to follow a list of operations without being negative.
 
 <div class="codehighlight">
-<code class="haskell">
-deposit  value account = account + value
+<pre><code class="haskell">deposit  value account = account + value
 withdraw value account = account - value
 
 eligible :: (Num a,Ord a) => a -> Bool
@@ -2953,7 +2812,7 @@ eligible account =
 main = do
   print $ eligible 300 -- True
   print $ eligible 299 -- False
-</code>
+</code></pre>
 </div>
 <a href="code/03_Hell/02_Monads/10_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>10_Monads.lhs</strong> </a>
 
@@ -2962,8 +2821,7 @@ main = do
 Now, let's make it better using Maybe and the fact that it is a Monad
 
 <div class="codehighlight">
-<code class="haskell">
-deposit :: (Num a) => a -> a -> Maybe a
+<pre><code class="haskell">deposit :: (Num a) => a -> a -> Maybe a
 deposit value account = Just (account + value)
 
 withdraw :: (Num a,Ord a) => a -> a -> Maybe a
@@ -2983,7 +2841,7 @@ eligible account = do
 main = do
   print $ eligible 300 -- Just True
   print $ eligible 299 -- Nothing
-</code>
+</code></pre>
 </div>
 <a href="code/03_Hell/02_Monads/11_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>11_Monads.lhs</strong> </a>
 
@@ -2992,8 +2850,7 @@ main = do
 Not bad, but we can make it even better:
 
 <div class="codehighlight">
-<code class="haskell">
-deposit :: (Num a) => a -> a -> Maybe a
+<pre><code class="haskell">deposit :: (Num a) => a -> a -> Maybe a
 deposit value account = Just (account + value)
 
 withdraw :: (Num a,Ord a) => a -> a -> Maybe a
@@ -3013,7 +2870,7 @@ eligible account =
 main = do
   print $ eligible 300 -- Just True
   print $ eligible 299 -- Nothing
-</code>
+</code></pre>
 </div>
 We have proven that Monads are a good way to make our code more elegant.
 Note this idea of code organization, in particular for `Maybe` can be used
@@ -3030,14 +2887,13 @@ In fact, this is the kind of construction we make naturally.
 You could also replay these example with the definition of `(>>=)` for `Maybe`
 in mind:
 
-<code class="haskell">
-instance Monad Maybe where
+<pre><code class="haskell">instance Monad Maybe where
     (>>=) :: Maybe a -> (a -> Maybe b) -> Maybe b
     Nothing  >>= _  = Nothing
     (Just x) >>= f  = f x
 
     return x = Just x
-</code>
+</code></pre>
 
 The `Maybe` monad proved to be useful while being a very simple example.
 We saw the utility of the `IO` monad.
@@ -3055,8 +2911,7 @@ The list monad helps us to simulate non deterministic computations.
 Here we go:
 
 <div class="codehighlight">
-<code class="haskell">
-import Control.Monad (guard)
+<pre><code class="haskell">import Control.Monad (guard)
 
 allCases = [1..10]
 
@@ -3070,7 +2925,7 @@ resolve = do
 
 main = do
   print resolve
-</code>
+</code></pre>
 </div>
 MA. GIC. :
 
@@ -3081,12 +2936,11 @@ MA. GIC. :
 For the list monad, there is also a syntactical sugar:
 
 <div class="codehighlight">
-<code class="haskell">
-  print $ [ (x,y,z) | x <- allCases,
+<pre><code class="haskell">  print $ [ (x,y,z) | x <- allCases,
                       y <- allCases,
                       z <- allCases,
                       4*x + 2*y < z ]
-</code>
+</code></pre>
 </div>
 I won't list all the monads, but there are many monads.
 Using monads simplifies the manipulation of several notions in pure languages.
@@ -3131,8 +2985,7 @@ keep it as much as possible.
 This code is mostly the same as the one in the [tree section](#trees).
 
 <div class="codehighlight">
-<code class="haskell">
-import Data.List
+<pre><code class="haskell">import Data.List
 data BinTree a = Empty 
                  | Node a (BinTree a) (BinTree a) 
                   deriving (Eq,Ord)
@@ -3175,50 +3028,46 @@ instance (Show a) => Show (BinTree a) where
               | x == c = new
               | otherwise = x:[] -- "x"
 
-</code>
+</code></pre>
 </div>
 </div>
 
 Our first step is to create some pseudo-random number list:
 
 <div class="codehighlight">
-<code class="haskell">
-shuffle = map (\x -> (x*3123) `mod` 4331) [1..]
-</code>
+<pre><code class="haskell">shuffle = map (\x -> (x*3123) `mod` 4331) [1..]
+</code></pre>
 </div>
 Just as a reminder, here is the definition of `treeFromList`
 
 <div class="codehighlight">
-<code class="haskell">
-treeFromList :: (Ord a) => [a] -> BinTree a
+<pre><code class="haskell">treeFromList :: (Ord a) => [a] -> BinTree a
 treeFromList []    = Empty
 treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
                              (treeFromList (filter (>x) xs))
-</code>
+</code></pre>
 </div>
 and `treeTakeDepth`:
 
 <div class="codehighlight">
-<code class="haskell">
-treeTakeDepth _ Empty = Empty
+<pre><code class="haskell">treeTakeDepth _ Empty = Empty
 treeTakeDepth 0 _     = Empty
 treeTakeDepth n (Node x left right) = let
           nl = treeTakeDepth (n-1) left
           nr = treeTakeDepth (n-1) right
           in
               Node x nl nr
-</code>
+</code></pre>
 </div>
 See the result of:
 
 <div class="codehighlight">
-<code class="haskell">
-main = do
+<pre><code class="haskell">main = do
       putStrLn "take 10 shuffle"
       print $ take 10 shuffle
       putStrLn "\ntreeTakeDepth 4 (treeFromList shuffle)"
       print $ treeTakeDepth 4 (treeFromList shuffle)
-</code>
+</code></pre>
 </div>
 ~~~
 % runghc 02_Hard_Part/41_Infinites_Structures.lhs
@@ -3248,9 +3097,8 @@ Beware though, it will only work if you always have something to put into a bran
 
 For example 
 
-<code class="haskell">
-treeTakeDepth 4 (treeFromList [1..]) 
-</code>
+<pre><code class="haskell">treeTakeDepth 4 (treeFromList [1..]) 
+</code></pre>
 
 will loop forever. 
 Simply because it will try to access the head of `filter (<1) [2..]`.
@@ -3273,17 +3121,15 @@ Left as an exercise to the reader:
 This code is mostly the same as the preceding one.
 
 <div class="codehighlight">
-<code class="haskell">
-import Debug.Trace (trace)
+<pre><code class="haskell">import Debug.Trace (trace)
 import Data.List
 data BinTree a = Empty 
                  | Node a (BinTree a) (BinTree a) 
                   deriving (Eq,Ord)
-</code>
+</code></pre>
 </div>
 <div class="codehighlight">
-<code class="haskell">
--- declare BinTree a to be an instance of Show
+<pre><code class="haskell">-- declare BinTree a to be an instance of Show
 instance (Show a) => Show (BinTree a) where
   -- will start by a '<' before the root
   -- and put a : a begining of line
@@ -3328,7 +3174,7 @@ treeTakeDepth n (Node x left right) = let
           nr = treeTakeDepth (n-1) right
           in
               Node x nl nr
-</code>
+</code></pre>
 </div>
 </div>
 
@@ -3340,8 +3186,7 @@ We generated only `4331` different numbers.
 To resolve this we make a slightly better `shuffle` function.
 
 <div class="codehighlight">
-<code class="haskell">
-shuffle = map rand [1..]
+<pre><code class="haskell">shuffle = map rand [1..]
           where 
               rand x = ((p x) `mod` (x+c)) - ((x+c) `div` 2)
               p x = m*x^2 + n*x + o -- some polynome
@@ -3349,7 +3194,7 @@ shuffle = map rand [1..]
               n = 31
               o = 7641
               c = 1237
-</code>
+</code></pre>
 </div>
 This shuffle function has the property (hopefully) not to have an upper nor lower bound.
 But having a better shuffle list isn't enough not to enter an infinite loop.
@@ -3366,21 +3211,19 @@ Furthermore, by construction, each node value is unique in the tree.
 Here is our new version of `treeFromList`. We simply have replaced `filter` by `safefilter`.
 
 <div class="codehighlight">
-<code class="haskell">
-treeFromList :: (Ord a, Show a) => [a] -> BinTree a
+<pre><code class="haskell">treeFromList :: (Ord a, Show a) => [a] -> BinTree a
 treeFromList []    = Empty
 treeFromList (x:xs) = Node x left right
           where 
               left = treeFromList $ safefilter (<x) xs
               right = treeFromList $ safefilter (>x) xs
-</code>
+</code></pre>
 </div>
 This new function `safefilter` is almost equivalent to `filter` but don't enter infinite loop if the result is a finite list.
 If it cannot find an element for which the test is true after 10000 consecutive steps, then it considers to be the end of the search.
 
 <div class="codehighlight">
-<code class="haskell">
-safefilter :: (a -> Bool) -> [a] -> [a]
+<pre><code class="haskell">safefilter :: (a -> Bool) -> [a] -> [a]
 safefilter f l = safefilter' f l nbTry
   where
       nbTry = 10000
@@ -3390,18 +3233,17 @@ safefilter f l = safefilter' f l nbTry
                   if f x 
                      then x : safefilter' f xs nbTry 
                      else safefilter' f xs (n-1) 
-</code>
+</code></pre>
 </div>
 Now run the program and be happy:
 
 <div class="codehighlight">
-<code class="haskell">
-main = do
+<pre><code class="haskell">main = do
       putStrLn "take 10 shuffle"
       print $ take 10 shuffle
       putStrLn "\ntreeTakeDepth 8 (treeFromList shuffle)"
       print $ treeTakeDepth 8 (treeFromList $ shuffle)
-</code>
+</code></pre>
 </div>
 You should realize the time to print each value is different.
 This is because Haskell compute each value when it needs it.
@@ -3432,14 +3274,13 @@ Left as an exercise to the reader:
   treeFromList' shuffle is infinite. And prove it.
   Disclaimer, this is only a conjecture.
 
-<code class="haskell">
-treeFromList' []  n = Empty
+<pre><code class="haskell">treeFromList' []  n = Empty
 treeFromList' (x:xs) n = Node x left right
     where
         left = treeFromList' (safefilter' (<x) xs (f n)
         right = treeFromList' (safefilter' (>x) xs (f n)
         f = ???
-</code>
+</code></pre>
 
 <a href="code/04_Appendice/01_More_on_infinite_trees/11_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>11_Infinite_Trees.lhs</strong> </a>
 

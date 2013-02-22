@@ -147,7 +147,7 @@ while [[ ! -e $destRep ]]; do
 done
 
 print -P -- "  publication terminée"
-</code>
+</code></pre>
 </div>
 
 <div class="en">
@@ -253,5 +253,5 @@ while [[ ! -e $destRep ]]; do
 done
 
 print -P -- "  Publish terminated"
-</code>
+</code></pre>
 </div>

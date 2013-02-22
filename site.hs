@@ -12,7 +12,7 @@ import           System.Locale          (defaultTimeLocale)
 import qualified Data.Map               as M
 
 import           Abbreviations          (abbreviationFilter)
-import           YFilters               (blogImage,frenchPunctuation)
+import           YFilters               (blogImage,blogFigure,frenchPunctuation)
 import           Multilang              (multiContext)
 import           System.FilePath.Posix  (takeBaseName)
 
@@ -47,6 +47,7 @@ markdownBehavior = do
     preFilters :: Maybe String -> String -> String
     preFilters itemPath =   abbreviationFilter
                           . blogImage itemName
+                          . blogFigure itemName
                           where
                             itemName = maybe "" takeBaseName itemPath
     postFilters :: String -> String

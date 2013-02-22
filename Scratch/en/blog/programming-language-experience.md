@@ -10,9 +10,9 @@ tags:  programming, languages, C, C++, Java, haskell, Logo, Basic
 -----
 blogimage("dragon.jpg","Title image")
 
-begindiv(intro)
+<div class="intro">
 %tldr My short and highly subjective feelings about the programming languages I used.
-enddiv
+</div>
 
 ### `BASIC`
 
@@ -29,19 +29,17 @@ It is not even good to learn programming.
 I know some compiler exists now.
 But this is not enough to try to learn it.
 
-<code class="zsh">
-READY
+<pre><code class="zsh">READY
 10 PRINT "HELLO WORLD!"
 20 GOTO 10
 RUN
-</code>
+</code></pre>
 
 I also remember I copied some game source code from some magazine.
 Most lines were like:
 
-<code class="zsh">
-3110 DATA FA,01,FF,FF,FF,FF,00,23,22,43,DA,DE,EE,FF,FF,FF,00,03,4A,F2
-</code>
+<pre><code class="zsh">3110 DATA FA,01,FF,FF,FF,FF,00,23,22,43,DA,DE,EE,FF,FF,FF,00,03,4A,F2
+</code></pre>
 
 What a pleasure!
 
@@ -62,8 +60,7 @@ Making fractals is like a game for children.
 
 Here is the code to draw the dragon fractal:
 
-<code class="zsh">
-HIDETURTLE
+<pre><code class="zsh">HIDETURTLE
 
 PENUP
 SETXY -200 0
@@ -87,7 +84,7 @@ to dragon :degree :size
 end
 
 dragon 6 3000
-</code>
+</code></pre>
 
 ### Pascal
 
@@ -297,9 +294,8 @@ Perl is magic, but the syntax is so hideous nobody can like to work in an enviro
 Or at least, all other collaborators must be excellent programmers.
 A great feature of perl is its integration with regular expression in its syntax:
 
-<code class="perl">
-$var =~ s/toto/titi/g
-</code>
+<pre><code class="perl">$var =~ s/toto/titi/g
+</code></pre>
 
 This program will replace every `toto` by `titi` inside the `$var` variable.
 The Perl code is often very compact and generally unreadable.
@@ -402,17 +398,15 @@ It contains a linear solver.
 This is really useful to draw things.
 For example if you write:
 
-<code class="ruby">
-AA=1/3[A,B]
-</code>
+<pre><code class="ruby">AA=1/3[A,B]
+</code></pre>
 
 It will place the point `AA` between the point `A` and `B`.
 More precisely at the barycenter `(2xA + B)/3`.
 
-<code class="ruby">
-X=whatever[A,B]
+<pre><code class="ruby">X=whatever[A,B]
 X=whatever[C,D]
-</code>
+</code></pre>
 
 This second example, will place the point X at the intersection of the two segments `AB` and `CD`.
 

@@ -15,9 +15,8 @@ In order to bypass *evil* company firewall and to surf safely on unsafe <sc>wifi
 Then from my laptop or my local computer I just have to launch the marvelous
 
 <div>
-<code class="zsh">
-ssh -p 443 -D 9050 username@host
-</code>
+<pre><code class="zsh">ssh -p 443 -D 9050 username@host
+</code></pre>
 </div>
 
 and a local <sc>socks</sc> proxy listening on port 9050 is launched. The <sc>socks</sc> proxy will transfer local requests via the ssh tunnel. Therefore I can surf locally as if I was on my own computer. I can put password and card number without fear the local <sc>wifi</sc> network to be *sniffed*. I simply need to configure my web browser to user the <sc>socks</sc> proxy on localhost and port 9050.
@@ -70,7 +69,7 @@ Create the file <tt>/Library/LaunchDaemons/ssh-443.plist</tt> containing:
         <string>system.preferences</string>
 </dict>
 </plist>
-</code>
+</code></pre>
 </div>
 
 It is a copy of `/System/Library/LaunchDaemons/ssh.plist` with some modifications:

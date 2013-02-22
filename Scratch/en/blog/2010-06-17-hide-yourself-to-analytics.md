@@ -16,14 +16,13 @@ Then you need to know my method use the `jquery-cookie`.
 
 I check if the key `admin` is not set in the cookie before adding the visit.
 
-<code class="javascript">
-    var admin = $.cookie('admin');
+<pre><code class="javascript">    var admin = $.cookie('admin');
     if (! admin) {
         // put your analytics code here
     } else {
         console.log("[WARNING] you're HIDDEN to analytics");
     }
-</code>
+</code></pre>
 
 then create two <sc>html</sc> files. One to hide:
 
@@ -48,7 +47,7 @@ then create two <sc>html</sc> files. One to hide:
         <div id="info"></div> 
     </body>
 </html>
-</code>
+</code></pre>
 
 the other to be visible again (it can be useful):
 
@@ -73,7 +72,7 @@ the other to be visible again (it can be useful):
         <div id="info"></div> 
     </body>
 </html>
-</code>
+</code></pre>
 
 Now accessing these files with you browser you can *hide* or *appear* in your statistics. You just have to think to access these file from all you browser.
 

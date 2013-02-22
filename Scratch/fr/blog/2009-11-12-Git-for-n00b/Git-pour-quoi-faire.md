@@ -11,11 +11,11 @@ subtitle: Git pour quoi faire ?
 
 # [Git][git] pour quoi faire ?
 
-begindiv(intro)
+<div class="intro">
 
 Si tout ce qui vous intéresse c'est d'utiliser [Git][git] **tout de suite**. Lisez simplement les parties sur fond noir. Je vous conseille aussi de revenir relire tout ça un peu plus tard, pour mieux comprendre les fondements des systèmes de versions et ne pas faire de bêtises quand vous les utilisez.
 
-enddiv
+</div>
 
 [Git][git] est un <abbr title="Decentralized Concurent Versions System">DCVS</abbr>, c'est-à-dire un système de versions concurrentes décentralisé. Analysons chaque partie de cette appellation compliquée.
 
@@ -31,15 +31,14 @@ Lorsqu'on modifie un fichier un peu critique et qu'on a pas envie de perdre, on 
 Du coups, ce nouveau fichier joue le rôle de *backup*. Si on casse tout, on peut toujours écraser les modifications que nous avons faites. Évidemment le problème avec cette façon de faire c'est que ce n'est pas très professionnel. Et puis c'est un peu limité. Si on veut faire trois ou quatre modifications on se retrouve avec plein de fichiers. Parfois avec des nom bizarres comme :
 
 <div>
-<code class="zsh">
-fichier_important.c.bak
+<pre><code class="zsh">fichier_important.c.bak
 fichier_important.c.old
 fichier_important.c.Bakcup
 fichier_important.c.BAK.2009-11-14
 fichier_important.c.2009.11.14
 fichier_important.c.12112009
 old.fichier_important.c
-</code>
+</code></pre>
 </div>
 
 Bon alors si on veut que ça marche il faut se fixer des conventions de nommage. Les fichiers prennent beaucoup de place alors que souvent il n'y a que quelques lignes différentes entre le fichier et son backup...
@@ -52,7 +51,7 @@ Il fut un temps où les versions étaient gérées fichier par fichier. Je pense
 
 Ainsi on peut dire, «je veux revenir trois jours en arrière», et tous les fichiers se remettent à jour.
 
-begindiv(black)
+<div class="black">
 
 *Qu'apportent les systèmes de versions ?* (je n'ai pas tout mentionné)
 
@@ -61,7 +60,7 @@ begindiv(black)
 - permet de poser un *tag* sur certaines versions et ainsi pouvoir s'y référer facilement ;
 - permet d’avoir un historique des modifications. Car en général il est demandé aux utilisateurs d’ajouter un petit commentaire à chaque nouvelle version.
 
-enddiv
+</div>
 
 ### concurrentes
 
@@ -71,8 +70,7 @@ Commençons par un exemple avec un projet fait par deux personnes ; Alex et Béa
 Sur un fichier contenant une liste de dieux *Lovecraftiens* :
 
 <div style="width: 10em; margin-left: auto; margin-right: auto">
-<code class="zsh">
-Cthulhu
+<pre><code class="zsh">Cthulhu
 Shubniggurath
 Yogsototh
 </code></div>
@@ -119,7 +117,7 @@ Yogsototh
 
 En pratique, au moment où Béatrice veut envoyer ses modifications, le système de version la préviens qu'une modification a eu lieu sur le serveur. Elle utilise la commande qui rapatrie les modifications localement et qui va mettre à jour le fichier. Ensuite Béatrice renvoie le nouveau fichier sur le serveur.
 
-begindiv(black)
+<div class="black">
 
 **Qu'apportent les Systèmes de Versions Concurrentes ?**
 
@@ -128,7 +126,7 @@ begindiv(black)
 - permet de gérer les conflits. Je n'en ai pas parlé, mais quand un conflit arrive (ça peut arriver si deux personnes modifient la même ligne avec deux contenus différents), les <abbr title="Systèmes de versions concurrentes">SVC</abbr> proposent leur aide pour les résoudre. J'en dirai un mot plus loin.
 - permet de savoir qui a fait quoi et quand
 
-enddiv
+</div>
 
 ### décentralisé
 
@@ -152,7 +150,7 @@ L'exemple type :
 > 
 > Dans un système non décentralisé, cela est possible, mais fastidieux. Les systèmes décentralisés rendent ce type de comportement très naturels. Ainsi, il devient naturel de tirer des *branches* pour toutes les features, les bug...
 
-begindiv(black)
+<div class="black">
 
 **Avantages donnés par la décentralisation des systèmes de versions concurrentes : **
 
@@ -160,7 +158,7 @@ begindiv(black)
 - Possibilité de créer beaucoup de `patches` atomiques ;
 - Grande facilité de maintenance de plusieurs versions différentes de la même application.
 
-enddiv
+</div>
 
 ## Pour résumer
 

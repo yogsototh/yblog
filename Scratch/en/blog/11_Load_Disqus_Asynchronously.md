@@ -45,20 +45,18 @@ I give a solution with jQuery, but I'm certain it will work with many other js l
 replace:
 
 <div>
-<code class="javascript">
-<script type="text/javascript" src="http://disqus.com/forums/YOUR_DISQUS_ID/embed.js"></script>
-</code>
+<pre><code class="javascript"><script type="text/javascript" src="http://disqus.com/forums/YOUR_DISQUS_ID/embed.js"></script>
+</code></pre>
 </div>
 
 by
 
 <div>
-<code class="javascript">
-window.disqus_no_style=true;
+<pre><code class="javascript">window.disqus_no_style=true;
 $(document).ready(function(){
     $.getScript("http://disqus.com/forums/YOUR_DISQUS_ID/embed.js");
 });
-</code>
+</code></pre>
 </div>
 
 If you forget the `window.disqus_no_style=true;` then your page will be blank. Simply because without this option, the javascript use a `document.write` action after the document was closed, which cause a complete erasing of it.

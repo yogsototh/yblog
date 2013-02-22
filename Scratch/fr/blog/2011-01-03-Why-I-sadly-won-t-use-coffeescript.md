@@ -10,19 +10,19 @@ tags:  Coffeescript
 -----
 blogimage("main.png","Title image")
 
-begindiv(encadre)
+<div class="encadre">
 
 *Mise à jour :* Je pense que je vais finallement changer d'avis.
 Pourquoi ?
 Tout d'abord, je viens de découvrir un convertisseur javascript vers coffeescript, ensuite Denis Knauf m'a laissé un commentaire et m'a appris l'existence d'une fonction `CoffeeScript.eval`. De plus, il faut voir CoffeeScript comme javascript avec une syntaxe similaire à Ruby et pas comme un langage similaire à Ruby.
 
-enddiv
+</div>
 
-begindiv(intro)
+<div class="intro">
 
 %tlal Qu'est-ce qui n'allait pas avec Coffeescript? La meta-programmation, il faut le "vendre" aux autres, une nouvelle étape de compilation intermédiaire sans fournir les avantages de Cappuccino, la sensation que c'est un peu instable.
 
-enddiv
+</div>
 
 Le commentaire le mieux classé de [la question suivante](http://news.ycombinator.com/item?id=2053956) posée sur HackerNews mentionnait [CoffeeScript][cf].
 Récemment j'ai beaucoup programmé en javascript.
@@ -96,8 +96,7 @@ Mais il me semble que ça serait un travail très difficile rien que pour simule
 
 Typiquement `@x` est transformé en `this.x`. Mais le code suivant ne fait pas ce que j'attendrai de lui.
 
-<code class="ruby">
--> 
+<pre><code class="ruby">-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -105,12 +104,11 @@ class MyClass
   bar: ->
     $('#content').load( '/content.html', ( -> @foo(x) ) )
     # Ça n'appellera pas MyClass.foo
-</code>
+</code></pre>
 
 La seule façon de résoudre ce problème est avec le code suivant :
 
-<code class="ruby">
--> 
+<pre><code class="ruby">-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -118,6 +116,6 @@ class MyClass
   bar: ->
     self=this
     $('#content').load( '/content.html', ( -> self.foo(x) ) )
-</code>
+</code></pre>
 
 Sachant celà, la notation `@` perd tout son intérêt pour moi.

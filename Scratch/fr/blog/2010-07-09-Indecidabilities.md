@@ -11,7 +11,7 @@ tags:  mathématiques, science, philosophy, indecidability
 
 <% # toremove_ %>
 
-begindiv(intro)
+<div class="intro">
 
 %tlal Je crée un mode mathématique simple pour parler de différents types d'_indécidabilités_ :
 
@@ -20,13 +20,13 @@ begindiv(intro)
 - indécidabilité fractales ;
 - indécidabilité logique.
 
-enddiv
+</div>
 
 newcorps
 
 # Les indécidabilités
 
-begindiv(intro)
+<div class="intro">
 
 Si le monde a été fabriqué par un démiurge, on peut dire que celui-ci devait avoir le sens de l'humour. 
 Et le récit que je vais faire va vous en fournir la preuve.
@@ -38,7 +38,7 @@ L'incapacité de savoir si nous avons trouvé la vérité, ou seulement une appr
 L'incapacité de prédire certaines choses qui semblent pourtant aller de soi.
 Voilà comment tout aurait pu commencer.
 
-enddiv
+</div>
 
 leftblogimage("genesis.png")
 

@@ -23,10 +23,9 @@ Pour ceux qui souhaitent connaître les détails techniques derrière le menu ap
 L'HTML : 
 
 <div>
-<code class="html">
-<div id="menuButton"></div>
+<pre><code class="html"><div id="menuButton"></div>
 <div id="entete">#content of the menu</div>
-</code>
+</code></pre>
 </div>
 
 La CSS : 
@@ -51,14 +50,13 @@ La CSS :
   position: fixed;
   width: 10em;
   z-index: 9000; }
-</code>
+</code></pre>
 </div>
 
 Le code javascript (utilisant jQuery)
 
 <div>
-<code class="javascript">
-function hideMenu() {
+<pre><code class="javascript">function hideMenu() {
     $('#entete').animate({left:"-10em"}, 500 );
     $('#menuButton').html('&rarr;');
 }
@@ -73,7 +71,7 @@ function toggleMenu() {
         hideMenu();
     }
 }
-</code>
+</code></pre>
 </div>
 
 Le résultat est visible dans le coin en haut à droite de cet article. 

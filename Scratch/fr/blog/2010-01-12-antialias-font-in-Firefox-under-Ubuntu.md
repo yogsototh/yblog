@@ -69,7 +69,7 @@ modifiez le fichier <code>/etc/fonts/local.conf</code> en y incluant le contenu 
   </selectfont>
 
 </fontconfig>
-</code>
+</code></pre>
 </div>
 
 J'espère que ça a pu aider quelqu'un qui comme moi pleurait en regardant des fontes aussi laides.

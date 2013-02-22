@@ -14,8 +14,7 @@ My problem is simple:
 I want to filter a text except some part of it. I can match easily the part I don't want to be filtered. For example
 
 <div>
-<code class="html">
-...
+<pre><code class="html">...
 text
 ...
 BEGIN not to filter
@@ -26,14 +25,13 @@ END not to filter
 ...
 text
 ...
-</code>
+</code></pre>
 </div>
 
 I searched a better way to do that, but the best I can do is using `split` and `scan`.
 
 <div>
-<code class="ruby">
-def allExceptCode( f, content )
+<pre><code class="ruby">def allExceptCode( f, content )
     # Beware the behaviour will change if you add
     # parenthesis (groups) to the regexp!
     regexp=/<code[^>]*>.*?<\/code>|<pre[^>]*>.*?<\/pre>/m
@@ -52,27 +50,25 @@ def allExceptCode( f, content )
     end
     tmp
 end
-</code>
+</code></pre>
 </div>
 
 An usage is:
 
 <div>
-<code class="ruby">
-def filter(content)
+<pre><code class="ruby">def filter(content)
     content.gsub(/e/,'X')
 end
 ...
 allExceptCode(:filter, content)
 ...
-</code>
+</code></pre>
 </div>
 
 A better syntax would be:
 
 <div>
-<code class="ruby">
-# !!!!!!!!!! THIS SYNTAX DOES NOT WORK !!!!!!! #
+<pre><code class="ruby"># !!!!!!!!!! THIS SYNTAX DOES NOT WORK !!!!!!! #
 def allExceptCode( f, content )
     regexp=/<code[^>]*>.*?<\/code>/m
     tmp=""
@@ -85,7 +81,7 @@ def allExceptCode( f, content )
     end
     tmp
 end
-</code>
+</code></pre>
 </div>
 
 I would expect the split make a search on a regular expression and then give the matched expression into the `$&` variable. But it is not the case.

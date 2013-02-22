@@ -38,4 +38,4 @@ function colorize_diff {
 }
 
 diff -u $* | colorize_diff
-</code>
+</code></pre>

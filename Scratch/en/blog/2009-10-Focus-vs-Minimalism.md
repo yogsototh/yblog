@@ -22,10 +22,9 @@ For those who want the technical details behind the show/hide menu, here is the 
 The HTML: 
 
 <div>
-<code class="html">
-<div id="menuButton"></div>
+<pre><code class="html"><div id="menuButton"></div>
 <div id="entete">#content of the menu</div>
-</code>
+</code></pre>
 </div>
 
 The CSS: 
@@ -50,14 +49,13 @@ The CSS:
   position: fixed;
   width: 10em;
   z-index: 9000; }
-</code>
+</code></pre>
 </div>
 
 The javascript code (using jQuery)
 
 <div>
-<code class="javascript">
-function hideMenu() {
+<pre><code class="javascript">function hideMenu() {
     $('#entete').animate({left:"-10em"}, 500 );
     $('#menuButton').html('&rarr;');
 }
@@ -72,7 +70,7 @@ function toggleMenu() {
         hideMenu();
     }
 }
-</code>
+</code></pre>
 </div>
 
 And the result is shown in the top left corner of this website. 

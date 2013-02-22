@@ -11,11 +11,11 @@ tags:  m4, SVG, XSLT, XML, design, programmation, fractales
 -----
 blogimage("main.png","Yesod logo made in SVG and m4")
 
-begindiv(intro)
+<div class="intro">
 
 %tlal Utiliser m4 pour accroître le pouvoir d'%xslt et d'%svg. Example cool, les fractales.
 
-enddiv
+</div>
 
 Lorsqu'%xml fût inventé beaucoup pensaient que c'était l'avenir.
 Passer de fichiers plat à des fichiers structurés standardisés fût un grand progrès dans beaucoup de domaines.
@@ -54,30 +54,26 @@ Voici certains exemples :
 
 - Les variables, au lieu d'écrire `myvar = value`, voici la version <sc>xslt</sc> :
 
-<code class="xml">
-<xsl:variable name="myvar" select="value"/>
-</code>
+<pre><code class="xml"><xsl:variable name="myvar" select="value"/>
+</code></pre>
 
 - Afficher quelquechose. Au lieu de `print "Hello world!"`, <sc>xslt</sc> nous offre :
 
-<code class="xml">
-<xsl:text 
+<pre><code class="xml"><xsl:text 
     disable-output-escaping="yes"><![CDATA[Hello world!
 ]]></xsl:text>
-</code>
+</code></pre>
 
 - afficher la valeur d'une variable, au lieu de `print myvar`, nous avons droit à :
 
-<code class="xml">
-<xslt:value-of select="myvar"/>
-</code>
+<pre><code class="xml"><xslt:value-of select="myvar"/>
+</code></pre>
 
 - Essayez d'imaginer à quel point il est verbeux de déclarer une fonction dans ce langage.
 
 ## La solution (m4 à la rescousse)
 
-<code class="xml">
-<?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
+<pre><code class="xml"><?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
 <!-- ← start a comment, then write some m4 directives:
 
 define(`ydef',`<xsl:variable name="$1" select="$2"/>')
@@ -93,13 +89,12 @@ define(`yshow',`<xsl:value-of select="$1"/>')
     yprint(Hello world!)
     yshow(myvar)
 </xsl:template>
-</code>
+</code></pre>
 
 Maintenant compilons simplement ce fichier :
 
-<code class="zsh">
-m4 myfile.m4 > myfile.xslt
-</code>
+<pre><code class="zsh">m4 myfile.m4 > myfile.xslt
+</code></pre>
 
 Et vous pouvez profitez ! Maintenant <sc>xslt</sc> devient plus lisible et plus facile à éditer.
 
@@ -174,13 +169,12 @@ define(`YTRANSCOMPLETE', `
     YTRANSCOMPLETE(4,3) <!-- even deeper -->
     YTRANSCOMPLETE(5,4) <!-- Five level seems enough -->
 </svg>
-</code>
+</code></pre>
 
 et je l'ai compile en <sc>svg</sc> et ensuite en <sc>png</sc> avec :
 
-<code class="zsh">
-m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
-</code>
+<pre><code class="zsh">m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
+</code></pre>
 
 Le λ est dupliqué avec trois "transformations" différentes. Les transformations sont : `YTRANSFORMONE`, `YTRANSFORMTWO` et `YTRANSFORMTHREE`.
 

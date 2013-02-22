@@ -10,11 +10,11 @@ tags:  web, design, typography
 -----
 blogimage("first_sc_screenshot.png", "Screenshot of first in small caps with and without ligatures.")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr Web typography sucks and we'll have to wait forever before it will be fixed.
 
-enddiv
+</div>
 
 I stumbled upon [open typography](http://opentypography.org/). Their main message is:
 
@@ -56,10 +56,9 @@ blogimage("first_latex_screenshot.png", "LaTeX screenshot")
 
 If you take attention to detail, you'll see the first "first" contains a ligature. Of course the second render nicely. The code I used were:
 
-<code class="latex">
-\item first
+<pre><code class="latex">\item first
 \item {\sc first}
-</code>
+</code></pre>
 
 %latex was intelligent enough to create himself the ligatures when needed.
 

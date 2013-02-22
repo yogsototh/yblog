@@ -11,7 +11,7 @@ tags:  mathematics, science, philosophy, indecidability
 
 <% # toremove_ %>
 
-begindiv(intro)
+<div class="intro">
 
 %tldr I pretend to create a world to give examples of different meanings behind the word _undecidability_:
 
@@ -20,13 +20,13 @@ begindiv(intro)
 - Fractal undecidability ;
 - Logic Undecidability.
 
-enddiv
+</div>
 
 newcorps
 
 # The Undecidabilities
 
-begindiv(intro)
+<div class="intro">
 
 If a demiurge made our world, he certainly had a great sense of humor.
 After this read, you should be convinced.
@@ -38,7 +38,7 @@ The inability to know if we had find the *truth*.
 The inability to predict many things that should be natural.
 Here begin the story.
 
-enddiv
+</div>
 
 leftblogimage("genesis.png")
 

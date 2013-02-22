@@ -11,7 +11,7 @@ tags:  security, S/MIME, email, mac
 
 blogimage("main.png","Title image","clean")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr _on Mac_
 
@@ -22,7 +22,7 @@ begindiv(intro)
 - ???
 - Profit
 
-enddiv
+</div>
 
 I've (re)discovered how to become S/MIME compliant. 
 I am now suprised how easy it was. 

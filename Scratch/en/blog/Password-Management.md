@@ -10,14 +10,14 @@ tags:  password, security
 -----
 blogimage("main.png","Title image")
 
-begindiv(intro)
+<div class="intro">
 
 %tldr How I manage safely my password with success for some years now.  
 **`sha1( password + domain_name )`**  
 I memorize only one password.
 I use a different password on all website.
 
-enddiv
+</div>
 
 Disclamer, this is an unashamed attempt to make you download my iPhone app ;-). 
 You're always here?
@@ -69,9 +69,8 @@ _Hash Function_.
 Knowing the result of a hash function, it is difficult to know what was their input.
 For example:
 
-<code class="zsh">
-hash("P45sW0r|)") = 9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63
-</code>
+<pre><code class="zsh">hash("P45sW0r|)") = 9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63
+</code></pre>
 
 If someone has `9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63`,
 he will have hard time to recover `P45sW0r|)`.
@@ -82,7 +81,7 @@ of the form:
 
 <code lang="zsh">
 sha1( master_password + domain_name )
-</code>
+</code></pre>
 
 Where:
 

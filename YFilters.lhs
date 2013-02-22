@@ -3,6 +3,7 @@ YFilters
 
 > module YFilters
 >   ( blogImage
+>   , blogFigure
 >   , frenchPunctuation
 >   )
 > where
@@ -34,7 +35,22 @@ It will be replaced by the corresponding `img` tag.
 >         alt =     dropWhile notquote >>> tail
 >               >>> dropWhile notquote >>> drop 3
 >               >>> takeWhile notquote
->         imgstr matched = "<img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ ">"
+>         imgstr matched = "<img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/>"
+
+helper to draw figures
+
+> blogFigure :: String -> String -> String
+> blogFigure itemName = replaceAll "(left)?blogfigure\\([^)]*\\)" imgstr
+>   where left = (=='l') . head
+>         leftclass matched = if head matched == 'l'
+>                             then " class=\"left\""
+>                             else ""
+>         src =     dropWhile notquote >>> tail
+>               >>> takeWhile notquote
+>         alt =     dropWhile notquote >>> tail
+>               >>> dropWhile notquote >>> drop 3
+>               >>> takeWhile notquote
+>         imgstr matched = "<figure><img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/><figcaption>"  ++ alt matched ++ "</figcaption></figure>"
 
 The French punctuation prevent to start a line with a semicolon in French.
 

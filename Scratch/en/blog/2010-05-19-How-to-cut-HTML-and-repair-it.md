@@ -14,8 +14,7 @@ For my main page, you can see, a list of my latest blog entry. And you have the 
 
 Here is an example:
 
-<code class="html">
-<div class="corps">
+<pre><code class="html"><div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -23,18 +22,17 @@ Here is an example:
     <img src="/img/img.png" alt="an image"/>
     <p>Another long paragraph</p>
 </div>
-</code>
+</code></pre>
 
 After the cut, I obtain:
 
-<code class="html">
-<div class="corps">
+<pre><code class="html"><div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
     <p>The first paragraph</p>
     <img src="/img/im
-</code>
+</code></pre>
 
 Argh! In the middle of an `<img>` tag.
 
@@ -44,8 +42,7 @@ Given with our example, when we are after the first paragraph. we only have to c
 
 Then, all you have to do, is not remember all the XML tree, but only the heap containing your parents. Suppose we treat the complete first example, the stack will pass through the following state, in order:
 
-<code class="html">
-[]           
+<pre><code class="html">[]           
 [div]           <div class="corps">
 [div, div]          <div class="intro">
 [div, div, p]           <p>
@@ -60,11 +57,10 @@ Then, all you have to do, is not remember all the XML tree, but only the heap co
                         Another long paragraph
 [div]               </p>
 []              </div>
-</code>
+</code></pre>
 
 The algorihm, is then really simple: 
-<code class="html">
-let res be the XML as a string ; 
+<pre><code class="html">let res be the XML as a string ; 
 read res and each time you encouter a tag: 
     if it is an opening one: 
         push it to the stack
@@ -76,7 +72,7 @@ for each tag in the stack, pop it, and write:
     res = res + closed tag
 
 return res
-</code>
+</code></pre>
 
 And `res` contain the repaired XML.
 
@@ -107,6 +103,6 @@ def repair_xml( xml )
     depth.downto(0).each { |x| res<<= %{</#{parents[x]}>} }
     res
 end
-</code>
+</code></pre>
 
 I don't know if the code can help you, but the raisonning should definitively be known.

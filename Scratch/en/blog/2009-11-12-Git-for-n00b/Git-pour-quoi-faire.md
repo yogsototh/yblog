@@ -12,11 +12,11 @@ tags:  git
 
 # [Git][git] for what?
 
-begindiv(intro)
+<div class="intro">
 
 If you just want to use [Git][git] **immediately**, just read dark part. You read this part later to understand correctly foundations of version systems and not doing strange things.
 
-enddiv
+</div>
 
 [Git][git] is a <abbr title="Decentralized Concurent Versions System">DCVS</abbr>, which means a Decentralized Concurrent Versions System. Let's analyze each part of this long term:
 
@@ -33,15 +33,14 @@ In consequence of what, the new file, play the role of *backup*. If you break ev
 Of course, this method is not very professional and is a bit limited. If you make many modifications, you'll end with many files with strange names like:
 
 <div>
-<code class="zsh">
-fichier_important.c.bak
+<pre><code class="zsh">fichier_important.c.bak
 fichier_important.c.old
 fichier_important.c.Bakcup
 fichier_important.c.BAK.2009-11-14
 fichier_important.c.2009.11.14
 fichier_important.c.12112009
 old.fichier_important.c
-</code>
+</code></pre>
 </div>
 
 If you want to make it works correctly, you'll have to use naming convention. Files take many place even if you modify most of time only some lines.
@@ -54,7 +53,7 @@ Once upon a time versions were managed for each file separately. I think about C
 
 It is therefore possible to say, "I want to get back three days earlier".
 
-begindiv(black)
+<div class="black">
 
 *What gives versions system?* (I didn't mention everything at all)
 
@@ -63,7 +62,7 @@ begindiv(black)
 - put a *tag* on some version to be able to refer to them easily,
 - gives the ability to see an historic of all modifications. Generally the user must add a comment for each new version.
 
-enddiv
+</div>
 
 ### concurrent:
 
@@ -72,8 +71,7 @@ Version Systems are already useful to manage its own projects. They help to orga
 Let's begin by an example, a two person project ; Alex and Beatrice. On a file containing a *Lovecraft*'s gods list:
 
 <div style="width: 10em; margin-left: auto; margin-right: auto">
-<code class="zsh">
-Cthulhu
+<pre><code class="zsh">Cthulhu
 Shubniggurath
 Yogsototh
 </code></div>
@@ -119,7 +117,7 @@ Yogsototh
 
 In real life, at the moment Beatrice want to send her modifications, the versions system alert her a modification had occurred on the server. Then she uses a command which pull the modification from the server to her local computer. And this command update her file. After that, Beatrice send again the new file on the server.
 
-begindiv(black)
+<div class="black">
 
 **In what Concurrent Versions System help?**
 
@@ -128,7 +126,7 @@ begindiv(black)
 - manage conflicts. I didn't speak about it, but sometimes a conflict can occur (when two different people modify the same line on a file for example). SVC help to resolve such problem. More on that later,
 - help to know who done what and when.
 
-enddiv
+</div>
 
 ### decentralized
 
@@ -152,7 +150,7 @@ Typical example:
 > 
 > In a not decentralized version system, doing such a thing is possible but not natural. Decentralization means it become natural to use a branch for each separable work.
 
-begindiv(black)
+<div class="black">
 
 **Advantages given by DCVS: **
 
@@ -160,7 +158,7 @@ begindiv(black)
 - Ability to create many *atomic* patches,
 - Help the maintenance of many different versions of the same application.
 
-enddiv
+</div>
 
 ## To resume
 

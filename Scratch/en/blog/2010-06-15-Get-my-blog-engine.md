@@ -31,12 +31,11 @@ newcorps
 
 Once installed (follow the README.md instructions).
 
-<code class="zsh">
-$ cd /root/of/nanoc3_blog
+<pre><code class="zsh">$ cd /root/of/nanoc3_blog
 $ ./task/new_blog_entry Title of the blog
 $ vi latest.md
 $ ./task/recompile
-</code>
+</code></pre>
 
 Now your website reside into the `output` directory.
 
@@ -78,11 +77,10 @@ You can use small caps using `<sc>` tags.
 
 To write source code you should use the following format:
 
-<code class="html">
-<code class="ruby" file="filename.rb">
+<pre><code class="html"><code class="ruby" file="filename.rb">
 The code
 </cOde>
-</code>
+</code></pre>
 
 The `file` attribute is not required.
 

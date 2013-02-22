@@ -15,8 +15,7 @@ Voici la solution que j'utilise avec jQuery
 HTML : 
 
 <div>
-<code class="html">
-    <div id="menuButton"></div>
+<pre><code class="html">    <div id="menuButton"></div>
     <div id="entete">
         <ul>
             <li> menu item 1 </li>
@@ -24,7 +23,7 @@ HTML :
             <li> menu item n </li>
         </ul>
     </div>
-</code>
+</code></pre>
 </div>
 
 CSS : 

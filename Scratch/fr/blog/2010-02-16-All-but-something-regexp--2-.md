@@ -103,5 +103,4 @@ Cette solution fait un peu moins *I AM THE GREAT REGEXP M45T3R, URAN00B*, mais e
 
 <small><a name="note1"><sup>&dagger;</sup></a> Je sais que j'ai utilisé une syntaxe HTML dans mon exemple. Mais dans l'utilisation réelle que j'en ai faite, je devais matcher entre `en:` et `::`, sachant que parfois les chaines pouvaient se terminer par `e::`. </small>
 
-
 [previouspost]: /Scratch/fr/blog/2010-02-16-All-but-something-regexp--2- "All but something regexp"

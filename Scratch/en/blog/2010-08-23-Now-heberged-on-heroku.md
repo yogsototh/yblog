@@ -65,7 +65,7 @@ run lambda { [404, {
                 "Content-Type"   => "text/html",
                 "Content-Length" => File.size(errorFile).to_s
             }, File.read(errorFile)] }
-</code>
+</code></pre>
 
 and the `.gems` file needed to install `rack` middlewares.
 
@@ -73,16 +73,15 @@ and the `.gems` file needed to install `rack` middlewares.
 rack
 rack-rewrite
 rack-contrib
-</code>
+</code></pre>
 
 Now, just follow the heroku tutorial to create an application :
 
-<code class="zsh">
-git init
+<pre><code class="zsh">git init
 git add .
 heroku create
 git push heroku master
-</code>
+</code></pre>
 
 Now I'll should be able to redirect properly to my own 404 page for example.
 I hope it is helpful.

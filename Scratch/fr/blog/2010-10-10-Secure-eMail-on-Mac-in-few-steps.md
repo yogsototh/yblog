@@ -11,7 +11,7 @@ tags:  securité, courriel, S/MIME, email, mac
 
 blogimage("main.png","Title image","clean")
 
-begindiv(intro)
+<div class="intro">
 
 %tlal _avec un Mac_ 
 
@@ -20,7 +20,7 @@ begindiv(intro)
 - supprimer le fichier en mode sécurisé ;
 - utilisez Mail plutôt que l'interface web de gmail.
 
-enddiv
+</div>
 
 J'ai (re)découvert comment adoptez la norme S/MIME. 
 J'ai été surpris de voir à quel point ce fut aisé.

@@ -34,7 +34,7 @@ function initCode() {
     $('#_code').click(closePopup);
 }
 // --- end of code popup section ---
-</code>
+</code></pre>
 
 What does this code do?
 

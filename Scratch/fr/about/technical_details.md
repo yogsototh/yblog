@@ -19,7 +19,6 @@ comme
 
 </p>
 
-
 Les commentaires de blog sont gérés par
 <del>[disqus](http://disqus.com)</del> [intense debate](http://intensedebate.com). Ainsi je n'ai besoin pour héberger mons site que
 d'un serveur de pages statiques. Ce qui a de nombreux avantages. 

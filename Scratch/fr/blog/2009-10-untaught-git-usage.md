@@ -33,7 +33,6 @@ Après quelques recherches trois choix se dessinent :
 
 En me renseignant un peu sur les forums et en essayant les trois, je me suis vite rendu compte que celui possédant l'interface utilisateur la plus simple était Bazaar<sup><a href="#note2">&#42;</a></sup>. Mon choix était fait.
 
-
 ### De bazaar à Git
 
 Je me suis alors familiarisé avec Bazaar. Et je dois dire que c'était vraiment naturel en venant de subversion. La commande `pull` correspond au `update`, la commande `push` correspond au `commit`. Puis les commandes `commit` et `update` existent toujours si on en a besoin et qu'on veut utiliser un *workflow* identique à celui de subversion. 

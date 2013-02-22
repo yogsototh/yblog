@@ -33,7 +33,7 @@ def gitmtime
         return DateTime.parse( str )
     end
 end
-</code>
+</code></pre>
 
 Bien entendu je sais que c'est très lent et absolument pas optimisé.
 Mais ça fonctionne comme prévu.

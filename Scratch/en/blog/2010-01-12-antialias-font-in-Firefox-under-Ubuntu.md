@@ -69,7 +69,7 @@ Just modify the <code>/etc/fonts/local.conf</code> with the following code:
   </selectfont>
 
 </fontconfig>
-</code>
+</code></pre>
 </div>
 
 Hope it helped someone who like me had his eyes crying in face of such ugly fonts.

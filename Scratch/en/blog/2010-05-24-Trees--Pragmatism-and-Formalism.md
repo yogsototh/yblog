@@ -10,7 +10,7 @@ authoruri: yannesposito.com
 tags:  XML, Perl, programming, tree, theory, mathematics, regexp, script
 -----
 
-begindiv(intro)
+<div class="intro">
 
 %tldr: 
 
@@ -22,7 +22,7 @@ begindiv(intro)
 - Crushed the problem in 10 minutes
 - Conclusion: The pragmatism shouldn't mean "never use theory".
 
-enddiv
+</div>
 
 ## Abstract (longer than %tldr)
 
@@ -59,8 +59,7 @@ I had to face a problem of the same kind at my job. The problem was simple to th
 
 The source <sc>xml</sc> was in the following general format:
 
-<code class="xml">
-<rubrique>
+<pre><code class="xml"><rubrique>
     <contenu>
         <tag1>value1</tag1>
         <tag2>value2</tag2>
@@ -76,12 +75,11 @@ The source <sc>xml</sc> was in the following general format:
         </rubrique>
     </enfant>
 </menu>
-</code>
+</code></pre>
 
 and the destination format was in the following general format:
 
-<code class="xml">
-<item name="Menu0">
+<pre><code class="xml"><item name="Menu0">
     <value>
         <item name="menu">
             <value>
@@ -104,7 +102,7 @@ and the destination format was in the following general format:
         </item>
     </value>
 </item>
-</code>
+</code></pre>
 
 At first sight I believed it will be easy. I was so certain it will be easy that I fixed to myself the following rules:
 
@@ -258,8 +256,7 @@ r - b
 
 And look at what it implies when you write it in <sc>xml</sc>:
 
-<code class="xml">
-<r>
+<pre><code class="xml"><r>
   <x>
     <a>value for a</a>
     <b>value for b</b>
@@ -268,13 +265,12 @@ And look at what it implies when you write it in <sc>xml</sc>:
     <c>value for c</c>
   </y>
 </r>
-</code>
+</code></pre>
 
 Then deleting all `x` nodes is equivalent to pass the <sc>xml</sc> via the following search and replace script:
 
-<code class="perl">
-s/<\/?x>//g
-</code>
+<pre><code class="perl">s/<\/?x>//g
+</code></pre>
 
 Therefore, if there exists a one state deterministic transducer which transform my trees ;
 I can transform the <sc>xml</sc> from one format to another with just a simple list of search and replace directives.
@@ -322,21 +318,19 @@ can be done using the following one state deterministic tree transducer:
 
 Wich can be traduced by the following simple search and replace directives: 
 
-<code class="perl">
-s/C//g
+<pre><code class="perl">s/C//g
 s/E/M/g
 s/R/V/g
-</code>
+</code></pre>
 
 Once adapted to <sc>xml</sc> it becomes:
 
-<code class="perl">
-s%</?contenu>%%g
+<pre><code class="perl">s%</?contenu>%%g
 s%<enfant>%<item name="menu">%g
 s%</enfant>%</item>%g
 s%<rubrique>%<value>%g
 s%</rubrique>%</value>%g
-</code>
+</code></pre>
 
 That is all.
 
