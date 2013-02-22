@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/Typography-and-the-Web/first_sc_screenshot.png
 menupriority:   1
 kind:           article
 published: 2012-02-02
@@ -63,7 +64,8 @@ blogimage("first_latex_screenshot.png", "LaTeX screenshot")
 
 Si vous faites attention au détail, vous constaterez que le premier "first" contient une ligature. Bien entendu la deuxième ligne est affichée correctement. Le code que j'ai utilisé pour avoir ce rendu est simplement :
 
-<pre><code class="latex">\item first
+<code class="latex">
+\item first
 \item {\sc first}
 </code></pre>
 

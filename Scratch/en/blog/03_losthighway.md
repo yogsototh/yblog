@@ -1,5 +1,6 @@
 -----
 kind: article
+image: /Scratch/img/blog/03_losthighway/intro.jpg
 menupriority: 1
 published: 2009-08-04
 title: A try to demystify 'Lost Highway'

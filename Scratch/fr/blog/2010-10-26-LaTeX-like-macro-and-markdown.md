@@ -22,9 +22,7 @@ les macros deviennent vite quelque chose d'indispensable.
 
 Dans l'entête de mes fichiers j'écris simplement:
 
-<pre><code class="yaml">macros:
-  test: "This is a macro test"
-  latex: '<span style="text-transform: uppercase">L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span>'
+<code class="yaml">
 </code></pre>
 
 Puis dans le corps ça va remplacer :

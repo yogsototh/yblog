@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/Password-Management/main.png
 menupriority:   1
 kind:           article
 published: 2011-05-18
@@ -69,7 +70,8 @@ _Hash Function_.
 Knowing the result of a hash function, it is difficult to know what was their input.
 For example:
 
-<pre><code class="zsh">hash("P45sW0r|)") = 9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63
+<code class="zsh">
+hash("P45sW0r|)") = 9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63
 </code></pre>
 
 If someone has `9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63`,

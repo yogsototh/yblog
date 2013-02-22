@@ -14,7 +14,8 @@ My problem is simple:
 I want to filter a text except some part of it. I can match easily the part I don't want to be filtered. For example
 
 <div>
-<pre><code class="html">...
+<code class="html">
+...
 text
 ...
 BEGIN not to filter
@@ -31,7 +32,8 @@ text
 I searched a better way to do that, but the best I can do is using `split` and `scan`.
 
 <div>
-<pre><code class="ruby">def allExceptCode( f, content )
+<code class="ruby">
+def allExceptCode( f, content )
     # Beware the behaviour will change if you add
     # parenthesis (groups) to the regexp!
     regexp=/<code[^>]*>.*?<\/code>|<pre[^>]*>.*?<\/pre>/m
@@ -56,7 +58,8 @@ end
 An usage is:
 
 <div>
-<pre><code class="ruby">def filter(content)
+<code class="ruby">
+def filter(content)
     content.gsub(/e/,'X')
 end
 ...
@@ -68,7 +71,8 @@ allExceptCode(:filter, content)
 A better syntax would be:
 
 <div>
-<pre><code class="ruby"># !!!!!!!!!! THIS SYNTAX DOES NOT WORK !!!!!!! #
+<code class="ruby">
+# !!!!!!!!!! THIS SYNTAX DOES NOT WORK !!!!!!! #
 def allExceptCode( f, content )
     regexp=/<code[^>]*>.*?<\/code>/m
     tmp=""

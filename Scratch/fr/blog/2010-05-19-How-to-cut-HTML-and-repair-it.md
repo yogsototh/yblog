@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /img/img.png
 menupriority:   1
 kind:           article
 published: 2010-05-19
@@ -14,7 +15,8 @@ Sur ma page d'accueil vous pouvez voir la liste des mes derniers articles avec l
 
 Prenons un exemple :
 
-<pre><code class="html"><div class="corps">
+<code class="html">
+<div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -26,7 +28,8 @@ Prenons un exemple :
 
 Après avoir coupé, j'obtiens :
 
-<pre><code class="html"><div class="corps">
+<code class="html">
+<div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -42,7 +45,8 @@ Pour notre exemple, juste après le paragraphe `first paragraph` nous n'avons qu
 
 Donc, tout ce que nous avons à faire, c'est d'enregistrer la liste des parents dans une pile. Supposons que nous traitions le premier exemple complètement. La pile passera par les états suivants :
 
-<pre><code class="html">[]           
+<code class="html">
+[]           
 [div]           <div class="corps">
 [div, div]          <div class="intro">
 [div, div, p]           <p>
@@ -60,7 +64,8 @@ Donc, tout ce que nous avons à faire, c'est d'enregistrer la liste des parents 
 </code></pre>
 
 L'algorithme est alors très simple :
-<pre><code class="html">let res be the XML as a string ; 
+<code class="html">
+let res be the XML as a string ; 
 read res and each time you encouter a tag: 
     if it is an opening one: 
         push it to the stack

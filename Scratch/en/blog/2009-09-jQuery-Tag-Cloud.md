@@ -31,7 +31,8 @@ newcorps
 Here is the simple jQuery code:
 
 <div>
-<pre><code class="javascript">    $(document).ready( function(){$('.list').hide();} );
+<code class="javascript">
+    $(document).ready( function(){$('.list').hide();} );
     function tagSelected(id) {
         $('.list').hide();
         $('#'+id).fadeIn();
@@ -46,7 +47,8 @@ This code will hide all the div containing links to articles containing the tag.
 For each tag I create a span element:
 
 <div>
-<pre><code class="html">    <span   style="font-size: 1.0em;" 
+<code class="html">
+    <span   style="font-size: 1.0em;" 
             class="tag" 
             onClick="tagSelected('[TAG]')" 
             id="tag_[TAG]">
@@ -58,7 +60,8 @@ For each tag I create a span element:
 and a div containing links associtated to this tag:
 
 <div>
-<pre><code class="html">    <div id="[TAG]">
+<code class="html">
+    <div id="[TAG]">
         <h4>[TAG]</h4>
         <ul>
             <li> LINK 1 </li>
@@ -80,7 +83,8 @@ too difficult, to use my ruby code and translate it into javascript.
 In a first time `tags` correpond of the list of all tags.
 
 <div>
-<pre><code class="ruby">def tags
+<code class="ruby">
+def tags
     return @items.tags.join(', ')
 end
 </code></pre>
@@ -90,7 +94,8 @@ A function to create a data structure associating to each
 tag its occurence. 
 
 <div>
-<pre><code class="ruby"># generate an hash tag => number of occurence of tag
+<code class="ruby">
+# generate an hash tag => number of occurence of tag
 def tagNumber
     tags={}
     @items.each do |p|
@@ -114,7 +119,8 @@ I also need a data structure who associate to each
 tag a list of pages (at least url and title).
 
 <div>
-<pre><code class="ruby"># generate an hash tag => [ page1, page2 ... ]
+<code class="ruby">
+# generate an hash tag => [ page1, page2 ... ]
 def tagRefs
     tagLinks={}
     @items.each do |p|
@@ -141,7 +147,8 @@ tag has more than `n` (here 10) occurences, then it doesn't deserve to be
 of the maximal size.
 
 <div>
-<pre><code class="ruby">def tagRealSize
+<code class="ruby">
+def tagRealSize
     tags=tagNumber
     max=tags.values.max
     min=tags.values.min
@@ -170,7 +177,8 @@ end
 Finaly a function to generate the XHTML/jQuery code
 
 <div>
-<pre><code class="ruby"># generate an XHTML/jQuery code for tag cloud
+<code class="ruby">
+# generate an XHTML/jQuery code for tag cloud
 def tagCloud
     tagLinks=tagRefs
     tagSize=tagRealSize
@@ -223,7 +231,8 @@ You can [download the complete file](/Scratch/en/blog/2009-09-jQuery-Tag-Cloud/c
 Of course to be nice you need the associated CSS
 
 <div>
-<pre><code class="css">
+<code class="css">
+
 // Change the color when mouse over
 .tag:hover {
   color: #cc0000; }

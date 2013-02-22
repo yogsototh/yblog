@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+image: /Scratch/img/blog/06_How_I_use_git/central_architecture.png
 kind:           article
 published: 2009-08-18
 title: Git for self
@@ -23,7 +24,8 @@ newcorps
 Suppose I've got a directory on my local computer containing a project I want to manage via Git. Here what to do: 
 
 <div>
-<pre><code class="zsh">cd to/project/directory/
+<code class="zsh">
+cd to/project/directory/
 git init
 git add
 git commit
@@ -36,7 +38,8 @@ If you want not to follow some just edit the file <code>.gitignore</code>
 for example mine is: 
 
 <div>
-<pre><code class="zsh">*.swp
+<code class="zsh">
+*.swp
 .DS_Store
 ikog.py.bak
 output/Scratch/assets
@@ -49,14 +52,16 @@ output/Scratch/multi
 Next, you want to put your project on a directory accessible from the web:
 
 <div>
-<pre><code class="zsh">git clone --bare . /path/to/repository
+<code class="zsh">
+git clone --bare . /path/to/repository
 </code></pre>
 </div>
 
 Now on any computer you can do: 
 
 <div>
-<pre><code class="zsh">git clone protocol://path/to/repository local_directory
+<code class="zsh">
+git clone protocol://path/to/repository local_directory
 </code></pre>
 </div>
 
@@ -77,14 +82,16 @@ To resume you now have one repository on the Internet, and one or many computer 
 Before begining your work, the first thing to do is to get all modification from the Internet to your local host: 
 
 <div>
-<pre><code class="zsh">git pull
+<code class="zsh">
+git pull
 </code></pre>
 </div>
 
 After that you can do (many times): 
 
 <div>
-<pre><code class="zsh">hack, hack, hack...
+<code class="zsh">
+hack, hack, hack...
 git add some files
 git commit
 </code></pre>
@@ -93,7 +100,8 @@ git commit
 When you want your local modification to be on the Internet just do a simple:
 
 <div>
-<pre><code class="zsh">git push
+<code class="zsh">
+git push
 </code></pre>
 </div>
 
@@ -102,7 +110,8 @@ All should be ok.
 If you have some trouble with the <code>push</code> and <code>pull</code> verify your <code>.git/config</code> file ; it should contain the following lines:
 
 <div>
-<pre><code class="zsh">...
+<code class="zsh">
+...
 [remote "origin"]
 	url = protocol://url/of/the/repository
 	fetch = +refs/heads/*:refs/remotes/origin/*

@@ -16,7 +16,8 @@ Here is how to accomplish that easily.
 HTML: 
 
 <div>
-<pre><code class="html">    <div id="menuButton"></div>
+<code class="html">
+    <div id="menuButton"></div>
     <div id="entete">
         <ul>
             <li> menu item 1 </li>

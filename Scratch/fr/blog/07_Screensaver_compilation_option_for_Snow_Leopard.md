@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+image: /Scratch/img/blog/07_Screensaver_compilation_option_for_Snow_Leopard/xcodeConfig.png
 kind:           article
 published: 2009-09-06
 title: Compilation d'économiseur d'écran sous Snow Leopard<small>&copy;</small> 

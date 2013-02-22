@@ -16,7 +16,8 @@ Then you need to know my method use the `jquery-cookie`.
 
 I check if the key `admin` is not set in the cookie before adding the visit.
 
-<pre><code class="javascript">    var admin = $.cookie('admin');
+<code class="javascript">
+    var admin = $.cookie('admin');
     if (! admin) {
         // put your analytics code here
     } else {

@@ -77,7 +77,8 @@ rack-contrib
 
 Maintenant il suffit de suivre l'introduction rapide d'heroku pour créer une nouvelle application :
 
-<pre><code class="zsh">git init
+<code class="zsh">
+git init
 git add .
 heroku create
 git push heroku master

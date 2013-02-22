@@ -36,7 +36,8 @@ The header is then a block of packed bytes.
 Surprisingly, I believe that reading this kind of file is easier in `C` than in most higher level language.
 Proof: I only have to search on the web the complete header format and write it in a struct.
 
-<pre><code class="c">struct wavfile
+<code class="c">
+struct wavfile
 {
     char        id[4];          // should always contain "RIFF"
     int     totallength;    // total file length minus 8
@@ -56,7 +57,8 @@ Proof: I only have to search on the web the complete header format and write it 
 To read this kind of data in Ruby, I certainly had to write a block of code for each element in the struct.
 But in `C` I simply written:
 
-<pre><code class="c">fread(&header,sizeof(header),1,wav)
+<code class="c">
+fread(&header,sizeof(header),1,wav)
 </code></pre>
 
 Only one step to fill my data structure. Magic!
@@ -64,7 +66,8 @@ Only one step to fill my data structure. Magic!
 Then, get an int value coded on two Bytes is also not a natural operation for high level language.
 In `C`, to read a sequence of 2 Bytes numbers I only had to write:
 
-<pre><code class="c">short value=0;
+<code class="c">
+short value=0;
 while( fread(&value,sizeof(value),1,wav) ) {
     // do something with value
 }
@@ -148,7 +151,8 @@ But I must confess this task was a bit tedious.
 The code remain as readable as before.
 But I had to use some compiler specific declaration to force the structure to be packed:
 
-<pre><code class="c">__attribute__((__packed__))
+<code class="c">
+__attribute__((__packed__))
 </code></pre>
 
 Therefore this implementation should for big and little endian architecture. 

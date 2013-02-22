@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/loading.gif
 menupriority:   1
 kind:           article
 published: 2009-10-03
@@ -45,7 +46,8 @@ In order to hide this small artefact, here is how I do that.
 In a first time, I added at the top of the body the div hiding all the content.
 
 <div>
-<pre><code class="html">...
+<code class="html">
+...
 <body>
 <div id="blackpage">
     content to display during the loading.
@@ -57,7 +59,8 @@ In a first time, I added at the top of the body the div hiding all the content.
 and here is the associated CSS to `#blackpage`: 
 
 <div>
-<pre><code class="css">#blackpage
+<code class="css">
+#blackpage
   top: 0 
   left: 0 
   width: 100%
@@ -78,7 +81,8 @@ and here is the associated CSS to `#blackpage`:
 and the associated jQuery code: 
 
 <div>
-<pre><code class="javascript">$(document).ready(function(){
+<code class="javascript">
+$(document).ready(function(){
     $('#blackpage').fadeOut();
 });
 </code></pre>

@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/programming-language-experience/dragon.jpg
 menupriority:   1
 kind:           article
 published: 2011-09-28
@@ -30,7 +31,8 @@ Ce n'est ni un bon langage pour apprendre, ni un bon langage pour faire de vrai 
 Même si quelques années plus tard, je me remettais à programmer dans un basic avec un compilateur qui pourrait lui redonner vie.
 Je m'en était servi pour faire un livre dont vous êtes le héro :-).
 
-<pre><code class="zsh">READY
+<code class="zsh">
+READY
 10 PRINT "HELLO WORLD!"
 20 GOTO 10
 RUN
@@ -39,7 +41,8 @@ RUN
 Je m'en souviens aussi pour avoir copier des codes de jeux vidéo à partir de magasines.
 La plupart des lignes ressemblaient à
 
-<pre><code class="zsh">3110 DATA FA,01,FF,FF,FF,FF,00,23,22,43,DA,DE,EE,FF,FF,FF,00,03,4A,F2
+<code class="zsh">
+3110 DATA FA,01,FF,FF,FF,FF,00,23,22,43,DA,DE,EE,FF,FF,FF,00,03,4A,F2
 </code></pre>
 
 Quel plaisir c'était !
@@ -63,7 +66,8 @@ Je ne peux que conseiller ce langage pour apprendre à programmer et aussi pour 
 
 Voici un exemple de code et le résultat est la jolie fractale 'dragon'.
 
-<pre><code class="zsh">HIDETURTLE
+<code class="zsh">
+HIDETURTLE
 
 PENUP
 SETXY -200 0
@@ -292,7 +296,8 @@ Perl c'est assez magique, mais la syntaxe est tellement désagréable à lire qu
 A moins que tous les autres soient des cadors du Perl.
 Mais la feature qui tue, les expressions régulières :
 
-<pre><code class="perl">$var =~ s/toto/titi/g
+<code class="perl">
+$var =~ s/toto/titi/g
 </code></pre>
 
 Va remplacer toto par titi dans la valeur de la variable `$var`.
@@ -372,13 +377,15 @@ Metapost est un langage qui permet de programmer des dessins.
 Le gros plus de metapost, c'est sa capacité de résoudre automatiquement les systèmes d'équations linéaires.
 Par exemple, si vous écrivez :
 
-<pre><code class="ruby">AA=1/3[A,B]
+<code class="ruby">
+AA=1/3[A,B]
 </code></pre>
 
 Il va position le point `AA` entre `A` et `B`.
 Plus précisément, au barycentre `(2A + B)/3`.
 
-<pre><code class="ruby">X=whatever[A,B]
+<code class="ruby">
+X=whatever[A,B]
 X=whatever[C,D]
 </code></pre>
 

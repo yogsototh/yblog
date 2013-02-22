@@ -40,7 +40,7 @@ markdownBehavior = do
     return $ renderPandoc (fmap (preFilters itemPath) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
-    >>= loadAndApplyTemplate "templates/default.html" postCtx
+    >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
     >>= relativizeUrls
   where
     applyFilter f str = return $ (fmap $ f) str
@@ -68,12 +68,26 @@ main = hakyll $ do
 
     match "Scratch/en/blog/*.md" markdownBehavior
     match "Scratch/fr/blog/*.md" markdownBehavior
+
+    match "Scratch/fr/blog/*.erb" $ do
+      route $ setExtension "html"
+      compile $ getResourceBody
+            >>= loadAndApplyTemplate "templates/post.html" postCtx
+            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+    match "Scratch/en/blog/*.erb" $ do
+      route $ setExtension "html"
+      compile $ getResourceBody
+            >>= loadAndApplyTemplate "templates/post.html" postCtx
+            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+
+    match "Scratch/fr/blog/code/*" staticBehavior
     -- TODO erb Behavior
 
     match (fromList ["Scratch/about.rst", "Scratch/contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" yDefaultContext
+            >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
             >>= relativizeUrls
 
     create ["Scratch/archive.html"] $ do
@@ -81,12 +95,13 @@ main = hakyll $ do
         compile $ do
             let archiveCtx =
                     field "posts" (\_ -> postList createdFirst) <>
-                    constField "title" "Archives"              <>
+                    constField "title" "Archives"               <>
                     yDefaultContext
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
                 >>= relativizeUrls
 
 
@@ -97,7 +112,7 @@ main = hakyll $ do
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" postCtx
+                >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
@@ -106,11 +121,17 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 yDefaultContext = metaKeywordContext <>
                   multiContext <>
+                  imageContext <>
                   prefixContext <>
                   defaultContext
 
 --------------------------------------------------------------------------------
 prefixContext = field "webprefix" $ \_ -> return $ "/Scratch"
+
+--------------------------------------------------------------------------------
+imageContext = field "image" $ \item -> do
+  metadata <- getMetadata (itemIdentifier item)
+  return $ maybe "/Scratch/img/presentation.png" id $ M.lookup "image" metadata
 
 --------------------------------------------------------------------------------
 metaKeywordContext = field "metaKeywords" $ \item -> do

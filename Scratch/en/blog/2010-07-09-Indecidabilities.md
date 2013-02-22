@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/2010-07-09-Indecidabilities/genesis.png
 menupriority:   1
 kind:           article
 published: 2010-08-11

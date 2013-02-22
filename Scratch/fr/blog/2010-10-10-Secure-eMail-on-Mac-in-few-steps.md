@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/2010-10-10-Secure-eMail-on-Mac-in-few-steps/main.png
 menupriority:   1
 kind:           article
 published: 2010-10-10

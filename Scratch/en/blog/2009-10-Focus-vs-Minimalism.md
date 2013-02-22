@@ -22,7 +22,8 @@ For those who want the technical details behind the show/hide menu, here is the 
 The HTML: 
 
 <div>
-<pre><code class="html"><div id="menuButton"></div>
+<code class="html">
+<div id="menuButton"></div>
 <div id="entete">#content of the menu</div>
 </code></pre>
 </div>
@@ -55,7 +56,8 @@ The CSS:
 The javascript code (using jQuery)
 
 <div>
-<pre><code class="javascript">function hideMenu() {
+<code class="javascript">
+function hideMenu() {
     $('#entete').animate({left:"-10em"}, 500 );
     $('#menuButton').html('&rarr;');
 }

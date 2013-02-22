@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/2011-01-03-Why-I-sadly-won-t-use-coffeescript/main.png
 menupriority:   1
 kind:           article
 published: 2011-01-03
@@ -98,7 +99,8 @@ But I believe it would be a really hard task just to simulate the access of curr
 
 Typically `@x` translate into `this.x`. But the following code will not do what I should expect. Call the foo function of the current class.
 
-<pre><code class="ruby">-> 
+<code class="ruby">
+-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -110,7 +112,8 @@ class MyClass
 
 The only way to handle this is to make the following code:
 
-<pre><code class="ruby">-> 
+<code class="ruby">
+-> 
 class MyClass
   foo: ->
     alert('ok')

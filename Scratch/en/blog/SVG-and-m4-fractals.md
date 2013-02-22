@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/SVG-and-m4-fractals/main.png
 menupriority:   1
 kind:           article
 published: 2011-10-20
@@ -51,26 +52,30 @@ Here are some example:
 
 - Variable, instead of writing the natural `myvar = value`, here is the <sc>xslt</sc> way of doing this:
 
-<pre><code class="xml"><xsl:variable name="myvar" select="value"/>
+<code class="xml">
+<xsl:variable name="myvar" select="value"/>
 </code></pre>
 
 - Printing something. Instead of `print "Hello world!"` here is the <sc>xslt</sc> equivalent:
 
-<pre><code class="xml"><xsl:text 
+<code class="xml">
+<xsl:text 
     disable-output-escaping="yes"><![CDATA[Hello world!
 ]]></xsl:text>
 </code></pre>
 
 - printing the value of a variable, instead of `print myvar` the <sc>xslt</sc> is:
 
-<pre><code class="xml"><xslt:value-of select="myvar"/>
+<code class="xml">
+<xslt:value-of select="myvar"/>
 </code></pre>
 
 - Just try to imagine how verbose it is to declare a function with this language.
 
 ## The cure (m4 to the rescue)
 
-<pre><code class="xml"><?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
+<code class="xml">
+<?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
 <!-- ← start a comment, then write some m4 directives:
 
 define(`ydef',`<xsl:variable name="$1" select="$2"/>')
@@ -90,7 +95,8 @@ define(`yshow',`<xsl:value-of select="$1"/>')
 
 Now just compile this file:
 
-<pre><code class="zsh">m4 myfile.m4 > myfile.xslt
+<code class="zsh">
+m4 myfile.m4 > myfile.xslt
 </code></pre>
 
 Profit! Now <sc>xslt</sc> is more readable and easier to edit!
@@ -169,7 +175,8 @@ define(`YTRANSCOMPLETE', `
 
 and I compiled it to <sc>svg</sc> and then to <sc>png</sc> with:
 
-<pre><code class="zsh">m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
+<code class="zsh">
+m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
 </code></pre>
 
 The main λ is duplicated 3 times. Each transformation is named by: `YTRANSFORMONE`, `YTRANSFORMTWO` and `YTRANSFORMTHREE`.

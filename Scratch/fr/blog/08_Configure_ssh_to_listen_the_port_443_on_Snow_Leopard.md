@@ -15,7 +15,8 @@ Que ce soit pour surfer en toute sécurité depuis un accès <sc>wifi</sc> non s
 Ensuite de mon portable ou de mon ordinateur local, je dois simplement lancé la merveilleuse commande :
 
 <div>
-<pre><code class="zsh">ssh -p 443 -D 9050 username@host
+<code class="zsh">
+ssh -p 443 -D 9050 username@host
 </code></pre>
 </div>
 

@@ -22,14 +22,16 @@ During the time I tried to integrate [Disqus](http://disqus.com/) I never tried 
 In order to make it fully asynchronous, you've just to download their common js and replace the following line:
 
 <div>
-<pre><code class="javascript">document.getElementsByTagName("head")[0].appendChild(commentScript);
+<code class="javascript">
+document.getElementsByTagName("head")[0].appendChild(commentScript);
 </code></pre>
 </div>
 
 by: 
 
 <div>
-<pre><code class="javascript">$(document).ready( function() {
+<code class="javascript">
+$(document).ready( function() {
     document.getElementsByTagName("head")[0].appendChild(commentScript);
 });
 </code></pre>

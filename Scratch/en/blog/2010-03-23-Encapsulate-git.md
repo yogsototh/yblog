@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/2010-03-23-Encapsulate-git/dynamic_branching.png
 menupriority:   1
 kind:           article
 published: 2010-03-23

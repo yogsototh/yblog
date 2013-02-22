@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/Learn-Vim-Progressively/uber_leet_use_vim.jpg
 menupriority:   1
 kind:           article
 published: 2011-08-25

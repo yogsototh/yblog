@@ -15,7 +15,8 @@ In order to bypass *evil* company firewall and to surf safely on unsafe <sc>wifi
 Then from my laptop or my local computer I just have to launch the marvelous
 
 <div>
-<pre><code class="zsh">ssh -p 443 -D 9050 username@host
+<code class="zsh">
+ssh -p 443 -D 9050 username@host
 </code></pre>
 </div>
 

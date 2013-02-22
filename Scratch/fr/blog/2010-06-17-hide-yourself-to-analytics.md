@@ -17,7 +17,8 @@ Cette méthode nécessite l'utilisation de `jquery-cookie`.
 
 Avant de comptabiliser les visites, je vérifie que la clé `admin` n'est pas utilisée dans mes cookies.
 
-<pre><code class="javascript">    var admin = $.cookie('admin');
+<code class="javascript">
+    var admin = $.cookie('admin');
     if (! admin) {
         // put your analytics code here
     } else {

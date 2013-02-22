@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+image: /Scratch/img/blog/06_How_I_use_git/central_architecture.png
 kind:           article
 published: 2009-08-18
 title: Git en solo
@@ -29,7 +30,8 @@ newcorps
 Disons que j'ai déjà un projet et que je veuille en créer un nouveau.
 
 <div>
-<pre><code class="zsh">cd to/project/directory/
+<code class="zsh">
+cd to/project/directory/
 git init
 git add
 git commit
@@ -40,7 +42,8 @@ Maintenant tous les fichiers du répertoire <code>to/project/directory/</code> s
 
 Par exemple voici le mien : 
 <div>
-<pre><code class="zsh">*.swp
+<code class="zsh">
+*.swp
 .DS_Store
 ikog.py.bak
 output/Scratch/assets
@@ -53,7 +56,8 @@ output/Scratch/multi
 Ensuite, il faut placer ce projet dans un répertoire accessible via Internet.
 
 <div>
-<pre><code class="zsh">git clone --bare . /path/to/repository
+<code class="zsh">
+git clone --bare . /path/to/repository
 </code></pre>
 </div>
 
@@ -65,7 +69,8 @@ Màj: La meilleure solution est d'installer <a href="https://github.com/sitaramc
 Maintenant à partir de n'importe quel ordinateur, voici ce que vous pouvez faire : 
 
 <div>
-<pre><code class="zsh">git clone protocol://path/to/repository local_directory
+<code class="zsh">
+git clone protocol://path/to/repository local_directory
 </code></pre>
 </div>
 
@@ -86,14 +91,16 @@ Pour résumer vous avez maintenant un repository sur Internet et un ou plusieurs
 Avant de commencer à travailler, la première chose à faire est de récupérer les modification à partir d'Internet vers votre poste local : 
 
 <div>
-<pre><code class="zsh">git pull
+<code class="zsh">
+git pull
 </code></pre>
 </div>
 
 Ensuit vous pouvez travailler en faisant (plusieurs fois) : 
 
 <div>
-<pre><code class="zsh">hack, hack, hack...
+<code class="zsh">
+hack, hack, hack...
 git add some files
 git commit
 </code></pre>
@@ -102,7 +109,8 @@ git commit
 Quang vous voulez envoyez les modifications locales sur Internet, il suffit de faire :
 
 <div>
-<pre><code class="zsh">git push
+<code class="zsh">
+git push
 </code></pre>
 </div>
 
@@ -111,7 +119,8 @@ Tout devrait être bon.
 Si vous avez des problèmes avec le <code>push</code> et le <code>pull</code> ; vérifiez votre fichier <code>.git/config</code>. Il devrait contenir les lignes suivantes :
 
 <div>
-<pre><code class="zsh">...
+<code class="zsh">
+...
 [remote "origin"]
 	url = protocol://url/of/the/repository
 	fetch = +refs/heads/*:refs/remotes/origin/*

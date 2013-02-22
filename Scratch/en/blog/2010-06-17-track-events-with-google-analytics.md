@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/2010-06-17-track-events-with-google-analytics/GA_events.png
 menupriority:   1
 kind:           article
 published: 2010-06-17
@@ -14,7 +15,8 @@ Here is how to track all clicks on your website using google analytics asynchron
 
 First in your <sc>html</sc> you need to use [jQuery](http://jquery.com) and a javscript file I named `yga.js`:
 
-<pre><code class="html">    <script type="text/javascript" src="jquery.js"></script>
+<code class="html">
+    <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="yga.js"></script>
 </code></pre>
 

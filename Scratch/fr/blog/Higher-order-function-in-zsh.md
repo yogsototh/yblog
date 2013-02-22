@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/Higher-order-function-in-zsh/main.jpg
 menupriority:   1
 kind:           article
 published: 2011-09-28
@@ -21,7 +22,8 @@ et `mapa` pour les fonctions arithmétiques.
 
 Exemple :
 
-<pre><code class="zsh">$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
+<code class="zsh">
+$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
 ab
 ada
 
@@ -64,7 +66,8 @@ Avant :
 
 Avant ⇒
 
-<pre><code class="zsh"># for each directory in projects dir
+<code class="zsh">
+# for each directory in projects dir
 for toProject in /path/to/projects/*(/N); do
     # toProject is /path/to/projects/foo
     # project become foo (:t for tail)
@@ -82,7 +85,8 @@ done
 
 Après
 
-<pre><code class="bash">gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
+<code class="bash">
+gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
 
 handle_resources() { map gif_to_png $1/resources/*.gif(.N) }
 
@@ -100,7 +104,8 @@ Trouver les fichiers des projets qui ne contiennent pas de s dans leur nom qui o
 
 Before ⇒
 
-<pre><code class="zsh">for toProject in Projects/*; do
+<code class="zsh">
+for toProject in Projects/*; do
     project=$toProject:t
     if print -- project | grep -v s >/dev/null
     then
@@ -116,7 +121,8 @@ done
 
 After ⇒
 
-<pre><code class="zsh">contain_no_s() { print $1 | grep -v s }
+<code class="zsh">
+contain_no_s() { print $1 | grep -v s }
 
 function verify_file_name {                               
     local project=$1:t

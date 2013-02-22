@@ -1,5 +1,6 @@
 -----
 title: Contact
+image: /Scratch/img/about/avatar.png
 menupriority: 1
 -----
 # Comment me contacter

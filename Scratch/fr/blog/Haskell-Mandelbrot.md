@@ -58,7 +58,8 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$&&&&&&&&&&WWWWOUC,                         j    llW&&$
 
 Here is the more readable version. I believe with this far more readable version, no more explanation is needed.
 
-<pre><code class="haskell">nbvert = 30
+<code class="haskell">
+nbvert = 30
 nbhor = 79
 zoomfactor = 1.01
 init_bottom_left = C (-2.0,-2.0)

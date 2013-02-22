@@ -34,7 +34,7 @@ fixmeta() {
 }
 
 fixcode() {
-	perl -pe 's#^(<code class="[^"]*">)\n#<pre>$1#g;s#^</code>$#</code></pre>#g'
+	perl -pe 's#^(<code class="[^"]*")\n#<pre>$1#g;s#^</code>$#</code></pre>#g'
 }
 
 fixmetablock() {
@@ -47,17 +47,33 @@ fixmetablock() {
 	| removemacros
 }
 
+
 for src in $srcdir/**/*.{erb,md}; do
+	tmp=/tmp/tmp$$.tmp
 	dst=$dstdir/${src##$srcdir/}
 	[[ ! -d ${dst:h} ]] && mkdir -p ${dst:h}
 	<$src \
 		| fixcode \
 		| fixdiv \
 		| fixmetablock \
-		>$dst
-	if $(grep '<%' $src >/dev/null); then
-		print "=== $src ==="
-		grep '<%' $src
-		print "=========="
+		>$tmp
+	# search for blogimage
+	imgfilename="$(grep "blogimage" $tmp | head -n 1 | perl -pe 's#[^"]*"([^"]*)".*$#$1#' )"
+	# search for img if no blogimage
+	[[ $imgfilename = "" ]] && imgfilename="$(egrep "<img" $tmp | head -n 1 | perl -pe 's#.*src="([^"]*)".*$#$1#' )"
+	if [[ $imgfilename != "" ]]; then
+		imgdir=""
+		[[ ${imgfilename[1]} != '/' ]] && imgdir="/Scratch/img/blog/${${dst:t}:r}/"
+		{
+		head -n 2 $tmp
+		print -- "image: $imgdir$imgfilename"
+		print -- "image: $imgdir$imgfilename" >&2
+		tail -n +3 $tmp
+		} >$dst
+	else
+		<$tmp >$dst
+	fi
+	if $(grep '<%' $dst >/dev/null); then
+		print "=== $dst ==="
 	fi
 done

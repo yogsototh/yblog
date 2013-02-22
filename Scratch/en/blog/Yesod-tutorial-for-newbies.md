@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/Yesod-tutorial-for-newbies/flying_neo.jpg
 menupriority:   1
 kind:           article
 published: 2012-01-15
@@ -114,7 +115,8 @@ is to download the [Haskell Platform][haskellplatform].
 Once done, you need to install yesod.
 Open a terminal session and do:
 
-<pre><code class="zsh">~ cabal update
+<code class="zsh">
+~ cabal update
 ~ cabal install yesod cabal-dev
 </code></pre>
 
@@ -125,14 +127,16 @@ There are few steps but it should take some time to finish.
 You are now ready to initialize your first yesod project.
 Open a terminal and type:
 
-<pre><code class="zsh">~ yesod init
+<code class="zsh">
+~ yesod init
 </code></pre>
 
 Enter your name, choose `yosog` for the project name and enter `Yosog` for the name of the Foundation.
 Finally choose `sqlite`.
 Now, start the development cycle:
 
-<pre><code class="zsh">~ cd yosog
+<code class="zsh">
+~ cd yosog
 ~ cabal-dev install && yesod --dev devel
 </code></pre>
 
@@ -147,7 +151,8 @@ Congratulation! Yesod works!
 
 Note: if something is messed up use the following command line inside the project directory.
 
-<pre><code class="zsh">\rm -rf dist/* ; cabal-dev install && yesod --dev devel
+<code class="zsh">
+\rm -rf dist/* ; cabal-dev install && yesod --dev devel
 </code></pre>
 
 </blockquote>
@@ -172,7 +177,8 @@ static/tmp
 
 Then initialize your git repository:
 
-<pre><code class="zsh">~ git init .
+<code class="zsh">
+~ git init .
 ~ git add .
 ~ git commit -a -m "Initial yesod commit"
 </code></pre>
@@ -248,7 +254,8 @@ Application.hs:31:1: Not in scope: `getEchoR'
 Why? Simply because we didn't written the code for the handler `EchoR`.
 Edit the file `Handler/Home.hs` and append this:
 
-<pre><code class="haskell">getEchoR :: String -> Handler RepHtml
+<code class="haskell">
+getEchoR :: String -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         [whamlet|<h1>#{theText}|]
@@ -287,7 +294,8 @@ Then to show the String inside an %html document, the string is put inside an %h
 Some transformations occurs like replace "<code><</code>" by "`&lt;`".
 Thanks to yesod, this tedious job is done for us.
 
-<pre><code class="zsh">"http://localhost:3000/echo/some%20text<a>" :: URL
+<code class="zsh">
+"http://localhost:3000/echo/some%20text<a>" :: URL
                     ↓
               "some text<a>"                 :: String
                     ↓
@@ -353,7 +361,8 @@ Generally you don't want to have all your code inside a unique file.
 This is why we will separate our handlers.
 In a first time create a new file `Handler/Echo.hs` containing:
 
-<pre><code class="haskell">module Handler.Echo where
+<code class="haskell">
+module Handler.Echo where
 
 import Import
 
@@ -375,7 +384,8 @@ Just after `Handler.Home`, add:
 We must also declare this new Handler module inside `Application.hs`.
 Just after the "`import Handler.Home`", add:
 
-<pre><code class="haskell">import Handler.Echo
+<code class="haskell">
+import Handler.Echo
 </code></pre>
 
 This is it. 
@@ -389,7 +399,8 @@ It is a good practice to use `Data.Text` instead of `String`.
 
 To declare it, add this import directive to `Foundation.hs` (just after the last one):
 
-<pre><code class="diff">import Data.Text
+<code class="diff">
+import Data.Text
 </code></pre>
 
 We have to modify `config/routes` and our handler accordingly. 
@@ -424,7 +435,8 @@ Create the new file `templates/echo.hamlet` containing:
 
 and modify the handler `Handler/Echo.hs`:
 
-<pre><code class="haskell">getEchoR :: Text -> Handler RepHtml
+<code class="haskell">
+getEchoR :: Text -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         $(widgetFile "echo")
@@ -545,7 +557,8 @@ Let's write the content of `Handler/Blog.hs`.
 We start by declaring the module and by importing some block necessary to 
 handle Html in forms.
 
-<pre><code class="haskell">module Handler.Blog
+<code class="haskell">
+module Handler.Blog
     ( getBlogR
     , postBlogR
     , getArticleR
@@ -567,7 +580,8 @@ To put the include inside Foundation.hs is left as an exercice to the reader.</s
 <small>_Hint: Do not forget to put `YesodNic` and `nicHtmlField` inside the exported objects of the module._
 </small>
 
-<pre><code class="haskell">entryForm :: Form Article
+<code class="haskell">
+entryForm :: Form Article
 entryForm = renderDivs $ Article
     <$> areq   textField "Title" Nothing
     <*> areq   nicHtmlField "Content" Nothing
@@ -579,7 +593,8 @@ If you are curious you can take a look at Applicative Functor.
 You just have to remember `areq` is for required form input.
 Its arguments being: `areq type label default_value`.
 
-<pre><code class="haskell">-- The view showing the list of articles
+<code class="haskell">
+-- The view showing the list of articles
 getBlogR :: Handler RepHtml
 getBlogR = do
     -- Get the list of articles inside the database.
@@ -625,7 +640,8 @@ But we have to create the submit button.
 
 Get back to `Handler/Blog.hs`.
 
-<pre><code class="haskell">-- we continue Handler/Blog.hs
+<code class="haskell">
+-- we continue Handler/Blog.hs
 postBlogR :: Handler RepHtml
 postBlogR = do
     ((res,articleWidget),enctype) <- runFormPost entryForm
@@ -651,7 +667,8 @@ If things goes right:
 
 Here is the content of the error Page:
 
-<pre><code class="haskell"><form method=post enctype=#{enctype}>
+<code class="haskell">
+<form method=post enctype=#{enctype}>
     ^{articleWidget}
     <div>
         <input type=submit value="Post New Article">
@@ -659,7 +676,8 @@ Here is the content of the error Page:
 
 Finally we need to display an article:
 
-<pre><code class="haskell">getArticleR :: ArticleId -> Handler RepHtml
+<code class="haskell">
+getArticleR :: ArticleId -> Handler RepHtml
 getArticleR articleId = do
     article <- runDB $ get404 articleId
     defaultLayout $ do
@@ -680,7 +698,8 @@ Here is the content of `templates/article.hamlet`:
 The blog system is finished.
 Just for fun, you can try to create an article with the following content:
 
-<pre><code class="html"><p>A last try to <em>cross script</em> 
+<code class="html">
+<p>A last try to <em>cross script</em> 
    and <em>SQL injection</em></p>
 <p>Here is the first try: 
    <script>alert("You loose");</script></p>

@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+image: /Scratch/img/loading.gif
 kind:           article
 published: 2009-10-03
 title: Charger une page web avec style
@@ -44,7 +45,8 @@ Pour cacher ce petit 'artefact', voici comment je m'y suis pris.
 D'abort il faut ajouter tout en haut du body cette fois un div qui va être le voile noir qui va tout cacher.
 
 <div>
-<pre><code class="html">...
+<code class="html">
+...
 <body>
 <div id="blackpage">
     content to display during the loading.
@@ -56,7 +58,8 @@ D'abort il faut ajouter tout en haut du body cette fois un div qui va être le v
 et le CSS correspondant au div `#blackpage` : 
 
 <div>
-<pre><code class="css">#blackpage
+<code class="css">
+#blackpage
   top: 0 
   left: 0 
   width: 100%
@@ -77,7 +80,8 @@ et le CSS correspondant au div `#blackpage` :
 ainsi que le code jQuery associé : 
 
 <div>
-<pre><code class="javascript">$(document).ready(function(){
+<code class="javascript">
+$(document).ready(function(){
     $('#blackpage').fadeOut();
 });
 </code></pre>

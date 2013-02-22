@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/Password-Management/main.png
 menupriority:   1
 kind:           article
 published: 2011-05-18

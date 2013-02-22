@@ -16,7 +16,8 @@ Just `mail` and `mailx`.
 
 What Internet say (via google) is
 
-<pre><code class="zsh">uuencode fic.jpg fic.jpg | mail -s 'Subject'
+<code class="zsh">
+uuencode fic.jpg fic.jpg | mail -s 'Subject'
 </code></pre>
 
 I tried it.
@@ -44,7 +45,8 @@ Finally I made it manually using `sendmail`.
 I didn't dare to use `telnet`.
 The command to use is:
 
-<pre><code class="zsh">sendmail -t -oi < mailcontent.txt
+<code class="zsh">
+sendmail -t -oi < mailcontent.txt
 </code></pre>
 
 Of course you need to create the `mailcontent.txt` file.

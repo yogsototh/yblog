@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+image: /Scratch/img/blog/Typography-and-the-Web/first_sc_screenshot.png
 menupriority:   1
 kind:           article
 published: 2012-02-02
@@ -56,7 +57,8 @@ blogimage("first_latex_screenshot.png", "LaTeX screenshot")
 
 If you take attention to detail, you'll see the first "first" contains a ligature. Of course the second render nicely. The code I used were:
 
-<pre><code class="latex">\item first
+<code class="latex">
+\item first
 \item {\sc first}
 </code></pre>
 

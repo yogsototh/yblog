@@ -34,7 +34,8 @@ Donc on discute de l'entête avec des nombres d'octets :
 Etonnamment je pense que lire ce type de fichier avec un langage de haut niveau aurait été plus pénible qu'en C.
 La preuve, il m'a suffit de chercher sur le net le format complet de l'entête et de l'écrire dans un struct.
 
-<pre><code class="c">struct wavfile
+<code class="c">
+struct wavfile
 {
     char        id[4];          // should always contain "RIFF"
     int     totallength;    // total file length minus 8
@@ -54,7 +55,8 @@ La preuve, il m'a suffit de chercher sur le net le format complet de l'entête e
 Si j'avais eu à faire ça en Ruby, je pense qu'il m'aurait fallu pour chaque bloc de l'entête écrire un bout de code de lecture du bon nombre d'octets.
 Alors qu'en `C` il m'a suffit d'écrire: 
 
-<pre><code class="c">fread(&header,sizeof(header),1,wav)
+<code class="c">
+fread(&header,sizeof(header),1,wav)
 </code></pre>
 
 Et en une seule étape ma structure de donnée a été remplie avec les valeurs souhaitées. Magique !
@@ -62,7 +64,8 @@ Et en une seule étape ma structure de donnée a été remplie avec les valeurs 
 Ensuite, récupérer un entier à partir de deux octets n'est pas non plus une opération naturelle dans les nouveaux langages de programmation.
 Alors qu'en `C`. Pour récupérer un entier codé sur 16 bits il suffit d'écrire :
 
-<pre><code class="c">short value=0;
+<code class="c">
+short value=0;
 while( fread(&value,sizeof(value),1,wav) ) {
     // do something with value
 }
@@ -147,7 +150,8 @@ J'ai fait une nouvelle version qui devrait être plus portable.
 Elle fait aussi plus de test pour vérifier le fichier.
 Cependant j'utilise une assertion spécifique à `gcc` pour être certain que la structure de donnée n'ai pas de "trou" :
 
-<pre><code class="c">__attribute__((__packed__))
+<code class="c">
+__attribute__((__packed__))
 </code></pre>
 
 Le nouveau code n'utilise pas mmap et devrait être plus compatible.  
