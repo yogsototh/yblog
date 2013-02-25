@@ -36,6 +36,11 @@ French translation of words.
 
 > data Trad = Trad { frTrad :: String, enTrad :: String }
 
+The site prefix is into this file for now. I will certainly put this into a config file later.
+
+> sitePrefix :: String
+> sitePrefix = "/Scratch"
+
 The `multiContext` contains all other contexts.
 For information, a Hakyll context is some kind of
 "Item -> Map String String" or in other words a dictionary dependent of the
@@ -59,7 +64,7 @@ For me this is easy, the language of an item is where it is in fr or en.
 >   filepath <- return $ toFilePath (itemIdentifier item)
 >   return $ if (languageFromPath filepath == "fr" ) then "fr" else "en"
 >     where
->       languageFromPath = take 2 . drop 1
+>       languageFromPath = take 2 . drop (length sitePrefix) 
 > --------------------------------------------------------------------------------
 > languageContext :: Context a
 > languageContext = field "language" itemLang
@@ -80,8 +85,8 @@ The context containing the path of the similar element for the other language
 >   itemRoute <- (getRoute . itemIdentifier) item
 >   return $ maybe "/" changeLanguage itemRoute
 >   where
->     changeLanguage ('/':'S':'c':'r':'a':'t':'c':'h':'/':'e':'n':'/':xs) = "/Scratch/fr/" ++ xs
->     changeLanguage ('/':'S':'c':'r':'a':'t':'c':'h':'/':'f':'r':'/':xs) = "/Scratch/en/" ++ xs
+>     changeLanguage ('S':'c':'r':'a':'t':'c':'h':'/':'e':'n':'/':xs) = sitePrefix ++ "/fr/" ++ xs
+>     changeLanguage ('S':'c':'r':'a':'t':'c':'h':'/':'f':'r':'/':xs) = sitePrefix ++ "/en/" ++ xs
 >     changeLanguage xs = xs
 
 Next the dictionary containing all traductions of standards templates.
