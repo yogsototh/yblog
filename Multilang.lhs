@@ -19,7 +19,9 @@ content pages. Therefore, the easies way was to only provide `Context`s.
 >   ( multiContext
 >   , tradsContext
 >   , languageContext
->   , otherlanguageContext)
+>   , otherlanguageContext
+>   , otherLanguagePathContext
+>   )
 > where
 
 Some mandatory imports
@@ -41,6 +43,7 @@ current generating item.
 
 > multiContext = tradsContext <>
 >                languageContext <>
+>                otherLanguagePathContext <>
 >                otherlanguageContext
 
 Let's start by the easiest. Get the current item language.
@@ -65,12 +68,24 @@ Next context, return the other language.
 >   lang <- itemLang item
 >   return $ if (lang == "en") then "fr" else "en"
 
+The context containing the path of the similar element for the other language
+
+> --------------------------------------------------------------------------------
+> otherLanguagePathContext = field "otherLanguagePath" $ \item -> do
+>   -- route :: Maybe FilePath
+>   route <- (getRoute . itemIdentifier) item
+>   return $ maybe "Unknown" changeLanguage route
+>   where
+>     changeLanguage ('/':'S':'c':'r':'a':'t':'c':'h':'/':'e':'n':'/':xs) = "/Scratch/fr/" ++ xs
+>     changeLanguage ('/':'S':'c':'r':'a':'t':'c':'h':'/':'f':'r':'/':xs) = "/Scratch/en/" ++ xs
+>     changeLanguage xs = xs
+
 Next the dictionary containing all traductions of standards templates.
 
 > --------------------------------------------------------------------------------
 > trads :: Map String Trad
 > trads = M.fromList $ map toTrad [
->          ("changeLanguage", ("En Français", "In English"))
+>          ("changeLanguage", ("English", "Français"))
 >         ,("switchCss", ("Changer de theme","Change Theme"))
 >         ,("loading", ("Chargement en cours","Loading"))
 >         ,("welcome", ("Bientôt","Soon"))

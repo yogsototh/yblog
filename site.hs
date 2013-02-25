@@ -39,8 +39,8 @@ markdownBehavior = do
     itemPath <- getRoute id
     return $ renderPandoc (fmap (preFilters itemPath) body)
     >>= applyFilter postFilters
-    >>= loadAndApplyTemplate "templates/default.html"    postCtx
-    >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+    >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
+    >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
     >>= relativizeUrls
   where
     applyFilter f str = return $ (fmap $ f) str
