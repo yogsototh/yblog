@@ -17,17 +17,19 @@ Cette méthode nécessite l'utilisation de `jquery-cookie`.
 
 Avant de comptabiliser les visites, je vérifie que la clé `admin` n'est pas utilisée dans mes cookies.
 
-<pre><code class="javascript">    var admin = $.cookie('admin');
+~~~~~~ {.javascript}
+    var admin = $.cookie('admin');
     if (! admin) {
         // put your analytics code here
     } else {
         console.log("[WARNING] you're HIDDEN to analytics");
     }
-</code></pre>
+~~~~~~
 
 et il suffit de créer deux fichier <sc>html</sc>. Un pour se cacher :
 
-<pre><code class="html" file="become_hidden.html"><?xml version="1.0" encoding="utf-8"?>
+~~~~~~ {.html}
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
@@ -47,11 +49,12 @@ et il suffit de créer deux fichier <sc>html</sc>. Un pour se cacher :
         <div id="info"></div> 
     </body>
 </html>
-</code></pre>
+~~~~~~
 
 et un autre pour redevenir visible (ça peut être utile) :
 
-<pre><code class="html" file="become_visible.html"><?xml version="1.0" encoding="utf-8"?>
+~~~~~~ {.html}
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
@@ -71,7 +74,7 @@ et un autre pour redevenir visible (ça peut être utile) :
         <div id="info"></div> 
     </body>
 </html>
-</code></pre>
+~~~~~~
 
 Maintenant en accédant à ces fichiers depuis votre navigateur vous pouvez *disparaître* des systèmes d'analyses ou bien être considéré comme tous les autres individus.
 Pensez à accéder à ces fichiers depuis tous les navigateurs que vous utilisez et vos visites ne seront plus comptabilisées.

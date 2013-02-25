@@ -15,7 +15,8 @@ Sur ma page d'accueil vous pouvez voir la liste des mes derniers articles avec l
 
 Prenons un exemple :
 
-<pre><code class="html"><div class="corps">
+~~~~~~ {.html}
+<div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -23,17 +24,18 @@ Prenons un exemple :
     <img src="/img/img.png" alt="an image"/>
     <p>Another long paragraph</p>
 </div>
-</code></pre>
+~~~~~~
 
 Après avoir coupé, j'obtiens :
 
-<pre><code class="html"><div class="corps">
+~~~~~~ {.html}
+<div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
     <p>The first paragraph</p>
     <img src="/img/im
-</code></pre>
+~~~~~~
 
 En plein milieu d'un tag `<img>` !
 
@@ -43,7 +45,8 @@ Pour notre exemple, juste après le paragraphe `first paragraph` nous n'avons qu
 
 Donc, tout ce que nous avons à faire, c'est d'enregistrer la liste des parents dans une pile. Supposons que nous traitions le premier exemple complètement. La pile passera par les états suivants :
 
-<pre><code class="html">[]           
+~~~~~~ {.html}
+[]           
 [div]           <div class="corps">
 [div, div]          <div class="intro">
 [div, div, p]           <p>
@@ -58,10 +61,11 @@ Donc, tout ce que nous avons à faire, c'est d'enregistrer la liste des parents 
                         Another long paragraph
 [div]               </p>
 []              </div>
-</code></pre>
+~~~~~~
 
 L'algorithme est alors très simple :
-<pre><code class="html">let res be the XML as a string ; 
+~~~~~~ {.html}
+let res be the XML as a string ; 
 read res and each time you encouter a tag: 
     if it is an opening one: 
         push it to the stack
@@ -73,13 +77,14 @@ for each tag in the stack, pop it, and write:
     res = res + closed tag
 
 return res
-</code></pre>
+~~~~~~
 
 Et `res` contiend le XML réparé.
 
 Finallement, voici le code en ruby que j'utilise. La variable `xml` contient le XML coupé.
 
-<pre><code class="ruby" file="repair_xml.rb"># repair cutted XML code by closing the tags
+~~~~~~ {.ruby}
+# repair cutted XML code by closing the tags
 # work even if the XML is cut into a tag.
 # example:
 #    transform '<div> <span> toto </span> <p> hello <a href="http://tur'
@@ -103,6 +108,6 @@ def repair_xml( xml )
     depth.downto(0).each { |x| res<<= %{</#{parents[x]}>} }
     res
 end
-</code></pre>
+~~~~~~
 
 Je ne sais pas si ce code pourra vous être utile. Par contre le raisonnement pour y parvenir mérite d'être connu.

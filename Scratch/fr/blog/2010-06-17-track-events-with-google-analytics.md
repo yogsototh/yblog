@@ -15,13 +15,15 @@ Voici comment analyser tous les clics que font vos utilisateurs sur votre blog e
 
 Dans le html, il faut utiliser [jQuery](http://jquery.com) et un fichier que j'ai appelé `yga.js` :
 
-<pre><code class="html">    <script type="text/javascript" src="jquery.js"></script>
+~~~~~~ {.html}
+    <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="yga.js"></script>
-</code></pre>
+~~~~~~
 
 Voici le contenu du fichier `yga.js` :
 
-<pre><code class="javascript" file="yga.js">$(document).ready( function() {
+~~~~~~ {.javascript}
+$(document).ready( function() {
     // add an event to all link for google analytics
     $('a').click(function () {
         // tell analytics to save event
@@ -66,7 +68,7 @@ _gaq.push(['_trackPageview']);
  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
  })();
-</code></pre>
+~~~~~~
 
 Remplacez le : `UA-XXXXXXXX-1` par votre code google analytics. Maintenant l'installation est finie.
 

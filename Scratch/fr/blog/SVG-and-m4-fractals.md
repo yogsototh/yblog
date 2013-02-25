@@ -55,26 +55,30 @@ Voici certains exemples :
 
 - Les variables, au lieu d'écrire `myvar = value`, voici la version <sc>xslt</sc> :
 
-<pre><code class="xml"><xsl:variable name="myvar" select="value"/>
-</code></pre>
+~~~~~~ {.xml}
+<xsl:variable name="myvar" select="value"/>
+~~~~~~
 
 - Afficher quelquechose. Au lieu de `print "Hello world!"`, <sc>xslt</sc> nous offre :
 
-<pre><code class="xml"><xsl:text 
+~~~~~~ {.xml}
+<xsl:text 
     disable-output-escaping="yes"><![CDATA[Hello world!
 ]]></xsl:text>
-</code></pre>
+~~~~~~
 
 - afficher la valeur d'une variable, au lieu de `print myvar`, nous avons droit à :
 
-<pre><code class="xml"><xslt:value-of select="myvar"/>
-</code></pre>
+~~~~~~ {.xml}
+<xslt:value-of select="myvar"/>
+~~~~~~
 
 - Essayez d'imaginer à quel point il est verbeux de déclarer une fonction dans ce langage.
 
 ## La solution (m4 à la rescousse)
 
-<pre><code class="xml"><?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
+~~~~~~ {.xml}
+<?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
 <!-- ← start a comment, then write some m4 directives:
 
 define(`ydef',`<xsl:variable name="$1" select="$2"/>')
@@ -90,12 +94,13 @@ define(`yshow',`<xsl:value-of select="$1"/>')
     yprint(Hello world!)
     yshow(myvar)
 </xsl:template>
-</code></pre>
+~~~~~~
 
 Maintenant compilons simplement ce fichier :
 
-<pre><code class="zsh">m4 myfile.m4 > myfile.xslt
-</code></pre>
+~~~~~~ {.zsh}
+m4 myfile.m4 > myfile.xslt
+~~~~~~
 
 Et vous pouvez profitez ! Maintenant <sc>xslt</sc> devient plus lisible et plus facile à éditer.
 
@@ -126,7 +131,8 @@ Plutôt que copier du %xml, j'ai utilisé m4.
 
 Et voici le code commenté :
 
-<pre><code class="xml" file="yesodlogo.m4"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+~~~~~~ {.xml}
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
      M4 Macros
 define(`YTRANSFORMONE', `scale(.43) translate(-120,-69) rotate(-10)')
@@ -169,12 +175,13 @@ define(`YTRANSCOMPLETE', `
     YTRANSCOMPLETE(4,3) <!-- even deeper -->
     YTRANSCOMPLETE(5,4) <!-- Five level seems enough -->
 </svg>
-</code></pre>
+~~~~~~
 
 et je l'ai compile en <sc>svg</sc> et ensuite en <sc>png</sc> avec :
 
-<pre><code class="zsh">m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
-</code></pre>
+~~~~~~ {.zsh}
+m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
+~~~~~~
 
 Le λ est dupliqué avec trois "transformations" différentes. Les transformations sont : `YTRANSFORMONE`, `YTRANSFORMTWO` et `YTRANSFORMTHREE`.
 

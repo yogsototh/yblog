@@ -31,11 +31,12 @@ What this system provide?
 
 Once installed (follow the README.md instructions).
 
-<pre><code class="zsh">$ cd /root/of/nanoc3_blog
+~~~~~~ {.zsh}
+$ cd /root/of/nanoc3_blog
 $ ./task/new_blog_entry Title of the blog
 $ vi latest.md
 $ ./task/recompile
-</code></pre>
+~~~~~~
 
 Now your website reside into the `output` directory.
 
@@ -77,9 +78,11 @@ You can use small caps using `<sc>` tags.
 
 To write source code you should use the following format:
 
-<pre><code class="html"><pre><code class="ruby" file="filename.rb">The code
+~~~~~~ {.html}
+~~~~~~ {.ruby}
+The code
 </cOde>
-</code></pre>
+~~~~~~
 
 The `file` attribute is not required.
 

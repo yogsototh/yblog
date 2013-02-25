@@ -18,7 +18,8 @@ J'utilise [git](http://git-scm.org) pour _versionner_ mon site web.
 Et cet outil me permet de récupérer la dernière date de _vraie_ modification d'un fichier.
 Voici comment je m'y prend avec [nanoc](http://nanoc.stoneship.org) :
 
-<pre><code class="ruby" file="gitmtime.rb">def gitmtime
+~~~~~~ {.ruby}
+def gitmtime
     filepath=@item.path.sub('/Scratch/','content/html/').sub(/\/$/,'')
     ext=%{.#{@item[:extension]}}
     filepath<<=ext
@@ -32,7 +33,7 @@ Voici comment je m'y prend avec [nanoc](http://nanoc.stoneship.org) :
         return DateTime.parse( str )
     end
 end
-</code></pre>
+~~~~~~
 
 Bien entendu je sais que c'est très lent et absolument pas optimisé.
 Mais ça fonctionne comme prévu.

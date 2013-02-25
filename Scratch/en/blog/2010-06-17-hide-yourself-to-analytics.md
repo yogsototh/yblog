@@ -16,17 +16,19 @@ Then you need to know my method use the `jquery-cookie`.
 
 I check if the key `admin` is not set in the cookie before adding the visit.
 
-<pre><code class="javascript">    var admin = $.cookie('admin');
+~~~~~~ {.javascript}
+    var admin = $.cookie('admin');
     if (! admin) {
         // put your analytics code here
     } else {
         console.log("[WARNING] you're HIDDEN to analytics");
     }
-</code></pre>
+~~~~~~
 
 then create two <sc>html</sc> files. One to hide:
 
-<pre><code class="html" file="become_hidden.html"><?xml version="1.0" encoding="utf-8"?>
+~~~~~~ {.html}
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
@@ -46,11 +48,12 @@ then create two <sc>html</sc> files. One to hide:
         <div id="info"></div> 
     </body>
 </html>
-</code></pre>
+~~~~~~
 
 the other to be visible again (it can be useful):
 
-<pre><code class="html" file="become_visible.html"><?xml version="1.0" encoding="utf-8"?>
+~~~~~~ {.html}
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
@@ -70,7 +73,7 @@ the other to be visible again (it can be useful):
         <div id="info"></div> 
     </body>
 </html>
-</code></pre>
+~~~~~~
 
 Now accessing these files with you browser you can *hide* or *appear* in your statistics. You just have to think to access these file from all you browser.
 

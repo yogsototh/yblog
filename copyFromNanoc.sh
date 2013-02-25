@@ -38,7 +38,8 @@ fixmeta() {
 }
 
 fixcode() {
-	perl -pe 's#^(<code class="[^"]*"([^>]*)?>)\n#<pre>$1#g;s#^</code>$#</code></pre>#g'
+	perl -pe 's#^<code class="([^"]*)"([^>]*)?>\n#~~~~~~ {.$1}\n#g;s#^</code>$#~~~~~~#g' \
+	| perl -pe 's#^<pre><code class="([^"]*)"([^>]*)?>\n#~~~~~~ {.$1}\n#g;s#^</code></pre>$#~~~~~~#g'
 }
 
 fixmetablock() {

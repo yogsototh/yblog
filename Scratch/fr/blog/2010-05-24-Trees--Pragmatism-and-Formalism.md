@@ -61,7 +61,8 @@ Transformer un <sc>xml</sc> d'un format à un autre.
 
 Voici le format général du <sc>xml</sc> source :
 
-<pre><code class="xml"><rubrique>
+~~~~~~ {.xml}
+<rubrique>
     <contenu>
         <tag1>value1</tag1>
         <tag2>value2</tag2>
@@ -77,11 +78,12 @@ Voici le format général du <sc>xml</sc> source :
         </rubrique>
     </enfant>
 </menu>
-</code></pre>
+~~~~~~
 
 et le format d'arrivé est celui-ci :
 
-<pre><code class="xml"><item name="Menu0">
+~~~~~~ {.xml}
+<item name="Menu0">
     <value>
         <item name="menu">
             <value>
@@ -104,7 +106,7 @@ et le format d'arrivé est celui-ci :
         </item>
     </value>
 </item>
-</code></pre>
+~~~~~~
 
 À première vue, cela m'a paru simple. J'étais certain de pouvoir y arriver en me fixant les règles suivantes :
 
@@ -261,7 +263,8 @@ r - b
 
 Et regardez ce que ça implique quand on l'écrit en <sc>xml</sc> :
 
-<pre><code class="xml"><r>
+~~~~~~ {.xml}
+<r>
   <x>
     <a>value for a</a>
     <b>value for b</b>
@@ -270,12 +273,13 @@ Et regardez ce que ça implique quand on l'écrit en <sc>xml</sc> :
     <c>value for c</c>
   </y>
 </r>
-</code></pre>
+~~~~~~
 
 Alors supprimer tous les nœuds `x` revient à faire passer le <sc>xml</sc> à travers le filtre suivant :
 
-<pre><code class="perl">s/<\/?x>//g
-</code></pre>
+~~~~~~ {.perl}
+s/<\/?x>//g
+~~~~~~
 
 Par conséquent, s'il existe un transducteur déterministe à un état qui permet de transformer mes arbres ; 
 je suis capable de transformer le <sc>xml</sc> d'un format à l'autre en utilisant une simple liste de *search and replace*.
@@ -323,19 +327,21 @@ peut-être fait en utilisant le transducteur déterministe à un état suivant:
 
 Ce qui peut-être traduit par les simples directives Perl suivantes :
 
-<pre><code class="perl">s/C//g
+~~~~~~ {.perl}
+s/C//g
 s/E/M/g
 s/R/V/g
-</code></pre>
+~~~~~~
 
 Une fois adapté au <sc>xml</sc> cela devient :
 
-<pre><code class="perl">s%</?contenu>%%g
+~~~~~~ {.perl}
+s%</?contenu>%%g
 s%<enfant>%<item name="menu">%g
 s%</enfant>%</item>%g
 s%<rubrique>%<value>%g
 s%</rubrique>%</value>%g
-</code></pre>
+~~~~~~
 
 Et c'est tout.
 

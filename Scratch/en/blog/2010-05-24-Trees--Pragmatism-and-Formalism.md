@@ -59,7 +59,8 @@ I had to face a problem of the same kind at my job. The problem was simple to th
 
 The source <sc>xml</sc> was in the following general format:
 
-<pre><code class="xml"><rubrique>
+~~~~~~ {.xml}
+<rubrique>
     <contenu>
         <tag1>value1</tag1>
         <tag2>value2</tag2>
@@ -75,11 +76,12 @@ The source <sc>xml</sc> was in the following general format:
         </rubrique>
     </enfant>
 </menu>
-</code></pre>
+~~~~~~
 
 and the destination format was in the following general format:
 
-<pre><code class="xml"><item name="Menu0">
+~~~~~~ {.xml}
+<item name="Menu0">
     <value>
         <item name="menu">
             <value>
@@ -102,7 +104,7 @@ and the destination format was in the following general format:
         </item>
     </value>
 </item>
-</code></pre>
+~~~~~~
 
 At first sight I believed it will be easy. I was so certain it will be easy that I fixed to myself the following rules:
 
@@ -256,7 +258,8 @@ r - b
 
 And look at what it implies when you write it in <sc>xml</sc>:
 
-<pre><code class="xml"><r>
+~~~~~~ {.xml}
+<r>
   <x>
     <a>value for a</a>
     <b>value for b</b>
@@ -265,12 +268,13 @@ And look at what it implies when you write it in <sc>xml</sc>:
     <c>value for c</c>
   </y>
 </r>
-</code></pre>
+~~~~~~
 
 Then deleting all `x` nodes is equivalent to pass the <sc>xml</sc> via the following search and replace script:
 
-<pre><code class="perl">s/<\/?x>//g
-</code></pre>
+~~~~~~ {.perl}
+s/<\/?x>//g
+~~~~~~
 
 Therefore, if there exists a one state deterministic transducer which transform my trees ;
 I can transform the <sc>xml</sc> from one format to another with just a simple list of search and replace directives.
@@ -318,19 +322,21 @@ can be done using the following one state deterministic tree transducer:
 
 Wich can be traduced by the following simple search and replace directives: 
 
-<pre><code class="perl">s/C//g
+~~~~~~ {.perl}
+s/C//g
 s/E/M/g
 s/R/V/g
-</code></pre>
+~~~~~~
 
 Once adapted to <sc>xml</sc> it becomes:
 
-<pre><code class="perl">s%</?contenu>%%g
+~~~~~~ {.perl}
+s%</?contenu>%%g
 s%<enfant>%<item name="menu">%g
 s%</enfant>%</item>%g
 s%<rubrique>%<value>%g
 s%</rubrique>%</value>%g
-</code></pre>
+~~~~~~
 
 That is all.
 

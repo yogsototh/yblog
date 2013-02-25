@@ -52,26 +52,30 @@ Here are some example:
 
 - Variable, instead of writing the natural `myvar = value`, here is the <sc>xslt</sc> way of doing this:
 
-<pre><code class="xml"><xsl:variable name="myvar" select="value"/>
-</code></pre>
+~~~~~~ {.xml}
+<xsl:variable name="myvar" select="value"/>
+~~~~~~
 
 - Printing something. Instead of `print "Hello world!"` here is the <sc>xslt</sc> equivalent:
 
-<pre><code class="xml"><xsl:text 
+~~~~~~ {.xml}
+<xsl:text 
     disable-output-escaping="yes"><![CDATA[Hello world!
 ]]></xsl:text>
-</code></pre>
+~~~~~~
 
 - printing the value of a variable, instead of `print myvar` the <sc>xslt</sc> is:
 
-<pre><code class="xml"><xslt:value-of select="myvar"/>
-</code></pre>
+~~~~~~ {.xml}
+<xslt:value-of select="myvar"/>
+~~~~~~
 
 - Just try to imagine how verbose it is to declare a function with this language.
 
 ## The cure (m4 to the rescue)
 
-<pre><code class="xml"><?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
+~~~~~~ {.xml}
+<?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
 <!-- ← start a comment, then write some m4 directives:
 
 define(`ydef',`<xsl:variable name="$1" select="$2"/>')
@@ -87,12 +91,13 @@ define(`yshow',`<xsl:value-of select="$1"/>')
     yprint(Hello world!)
     yshow(myvar)
 </xsl:template>
-</code></pre>
+~~~~~~
 
 Now just compile this file:
 
-<pre><code class="zsh">m4 myfile.m4 > myfile.xslt
-</code></pre>
+~~~~~~ {.zsh}
+m4 myfile.m4 > myfile.xslt
+~~~~~~
 
 Profit! Now <sc>xslt</sc> is more readable and easier to edit!
 
@@ -122,7 +127,8 @@ If I had to do this for each step, I had make a lot of copy/paste in my %svg, be
 
 and here is the commented code:
 
-<pre><code class="xml" file="yesodlogo.m4"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+~~~~~~ {.xml}
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
      M4 Macros
 define(`YTRANSFORMONE', `scale(.43) translate(-120,-69) rotate(-10)')
@@ -165,12 +171,13 @@ define(`YTRANSCOMPLETE', `
     YTRANSCOMPLETE(4,3) <!-- even deeper -->
     YTRANSCOMPLETE(5,4) <!-- Five level seems enough -->
 </svg>
-</code></pre>
+~~~~~~
 
 and I compiled it to <sc>svg</sc> and then to <sc>png</sc> with:
 
-<pre><code class="zsh">m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
-</code></pre>
+~~~~~~ {.zsh}
+m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
+~~~~~~
 
 The main λ is duplicated 3 times. Each transformation is named by: `YTRANSFORMONE`, `YTRANSFORMTWO` and `YTRANSFORMTHREE`.
 

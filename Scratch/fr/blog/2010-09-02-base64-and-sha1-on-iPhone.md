@@ -15,17 +15,19 @@ voici deux fonctions à intégrer à votre application iPhone pour afficher l'en
 Pour l'usage c'est très simple, copiez le code dans la classe de votre choix.
 Puis :
 
-<pre><code class="objective-c">#import <CommonCrypto/CommonDigest.h>
+~~~~~~ {.objective-c}
+#import <CommonCrypto/CommonDigest.h>
 ...
 NSString *b64_hash = [self b64_sha1:@"some NSString to be sha1'ed"];
 ...
 NSString *hex_hash = [self hex_sha1:@"some NSString to be sha1'ed"];
-</code></pre>
+~~~~~~
 
 L'algorithme pour l'encodage en `base64` doit être programmé sur iPhone.
 Il n'y a pas de librairie officielle qui s'occupe de ça.
 
-<pre><code class="c" file="iphone_base64_sha1.c">
+~~~~~~ {.c}
+
 - (unsigned char *)sha1:(NSString *)baseString result:(unsigned char *)result {
     char *c_baseString=(char *)[baseString UTF8String];
     CC_SHA1(c_baseString, strlen(c_baseString), result);
@@ -67,4 +69,4 @@ Il n'y a pas de librairie officielle qui s'occupe de ça.
     [self sha1:inputString result:result];
     return [self hexadecimalRepresentation:result];
 }
-</code></pre>
+~~~~~~

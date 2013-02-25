@@ -30,32 +30,35 @@ En d'autres termes, si vous souhaitez utiliser le type de *workflow* que SVN pro
 Disons que j'ai déjà un projet et que je veuille en créer un nouveau.
 
 <div>
-<pre><code class="zsh">cd to/project/directory/
+~~~~~~ {.zsh}
+cd to/project/directory/
 git init
 git add
 git commit
-</code></pre>
+~~~~~~
 </div>
 
 Maintenant tous les fichiers du répertoire <code>to/project/directory/</code> sont *versionnés*. Si vous voulez ignorer certains fichiers il suffit de modifier le fichier <code>.gitignore</code>.
 
 Par exemple voici le mien : 
 <div>
-<pre><code class="zsh">*.swp
+~~~~~~ {.zsh}
+*.swp
 .DS_Store
 ikog.py.bak
 output/Scratch/assets
 output/Scratch/en
 output/Scratch/fr
 output/Scratch/multi
-</code></pre>
+~~~~~~
 </div>
 
 Ensuite, il faut placer ce projet dans un répertoire accessible via Internet.
 
 <div>
-<pre><code class="zsh">git clone --bare . /path/to/repository
-</code></pre>
+~~~~~~ {.zsh}
+git clone --bare . /path/to/repository
+~~~~~~
 </div>
 
 <div class="encadre"><em>
@@ -66,8 +69,9 @@ Màj: La meilleure solution est d'installer <a href="https://github.com/sitaramc
 Maintenant à partir de n'importe quel ordinateur, voici ce que vous pouvez faire : 
 
 <div>
-<pre><code class="zsh">git clone protocol://path/to/repository local_directory
-</code></pre>
+~~~~~~ {.zsh}
+git clone protocol://path/to/repository local_directory
+~~~~~~
 </div>
 
 et <code>local_directory</code> contiendra un projet à jour.
@@ -87,24 +91,27 @@ Pour résumer vous avez maintenant un repository sur Internet et un ou plusieurs
 Avant de commencer à travailler, la première chose à faire est de récupérer les modification à partir d'Internet vers votre poste local : 
 
 <div>
-<pre><code class="zsh">git pull
-</code></pre>
+~~~~~~ {.zsh}
+git pull
+~~~~~~
 </div>
 
 Ensuit vous pouvez travailler en faisant (plusieurs fois) : 
 
 <div>
-<pre><code class="zsh">hack, hack, hack...
+~~~~~~ {.zsh}
+hack, hack, hack...
 git add some files
 git commit
-</code></pre>
+~~~~~~
 </div>
 
 Quang vous voulez envoyez les modifications locales sur Internet, il suffit de faire :
 
 <div>
-<pre><code class="zsh">git push
-</code></pre>
+~~~~~~ {.zsh}
+git push
+~~~~~~
 </div>
 
 Tout devrait être bon.
@@ -112,7 +119,8 @@ Tout devrait être bon.
 Si vous avez des problèmes avec le <code>push</code> et le <code>pull</code> ; vérifiez votre fichier <code>.git/config</code>. Il devrait contenir les lignes suivantes :
 
 <div>
-<pre><code class="zsh">...
+~~~~~~ {.zsh}
+...
 [remote "origin"]
 	url = protocol://url/of/the/repository
 	fetch = +refs/heads/*:refs/remotes/origin/*
@@ -120,7 +128,7 @@ Si vous avez des problèmes avec le <code>push</code> et le <code>pull</code> ; 
 	remote = origin
 	merge = refs/heads/master
 ...
-</code></pre>
+~~~~~~
 </div>
 
 ## Synchronisation des branches
@@ -141,7 +149,8 @@ et quand je suis sur un autre ordinateur et que je veux récupérer les branches
 Voici le code des deux script (en zsh) : 
 
 <div>
-<pre><code class="zsh" file="git-create-new-branch">#!/usr/bin/env zsh
+~~~~~~ {.zsh}
+#!/usr/bin/env zsh
 
 if (($#<1)); then
     print -- "usage: $0:t branch_name" >&2
@@ -153,11 +162,12 @@ git br ${branch}
 git co ${branch}
 git config branch.${branch}.remote origin
 git config branch.${branch}.merge refs/heads/${branch}
-</code></pre>
+~~~~~~
 </div>
 
 <div>
-<pre><code class="zsh" file="git-get-remote-branches">#!/usr/bin/env zsh
+~~~~~~ {.zsh}
+#!/usr/bin/env zsh
 
 # recup branches not on local
 localbranches=( $(git br | sed 's/\*/ /') )
@@ -170,5 +180,5 @@ for br in $remoteMissingBranches; do
   git config branch.${branch}.remote origin
   git config branch.${branch}.merge refs/heads/${branch}
 done
-</code></pre>
+~~~~~~
 </div>

@@ -1,11 +1,9 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Control.Monad          (forM)
-import           Control.Applicative    ((<$>))
-import           Data.Monoid            (mappend,(<>))
+import           Data.Monoid            ((<>))
 import           Hakyll
 
-import           Data.Map               (Map)
 import           Data.List              (sortBy)
 import           Data.Ord               (comparing)
 import           System.Locale          (defaultTimeLocale)
@@ -32,11 +30,11 @@ staticBehavior = do
 -- apply templates posts then default then relitivize url
 markdownBehavior :: Rules ()
 markdownBehavior = do
-  route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
+  route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
   compile $ do
     body <- getResourceBody
-    id <- getUnderlying
-    itemPath <- getRoute id
+    identifier <- getUnderlying
+    itemPath <- getRoute identifier
     return $ renderPandoc (fmap (preFilters itemPath) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
@@ -61,11 +59,11 @@ markdownBehavior = do
 -- apply templates posts then default then relitivize url
 markdownPostBehavior :: Rules ()
 markdownPostBehavior = do
-  route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
+  route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
   compile $ do
     body <- getResourceBody
-    id <- getUnderlying
-    return $ renderPandoc (fmap (preFilters (toFilePath id)) body)
+    identifier <- getUnderlying
+    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
@@ -116,12 +114,12 @@ main = hakyll $ do
     match "Scratch/en/*.md" markdownBehavior
 
     match "Scratch/fr/blog/*.erb" $ do
-      route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
+      route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
       compile $ getResourceBody
             >>= loadAndApplyTemplate "templates/post.html" postCtx
             >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
     match "Scratch/en/blog/*.erb" $ do
-      route $ customRoute (\id -> let p=toFilePath id in takeDirectory p </> takeBaseName p </> "index.html" )
+      route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
       compile $ getResourceBody
             >>= loadAndApplyTemplate "templates/post.html" postCtx
             >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
@@ -145,6 +143,7 @@ main = hakyll $ do
     match "templates/*" $ compile templateCompiler
 
 --------------------------------------------------------------------------------
+yDefaultContext :: Context String
 yDefaultContext = metaKeywordContext <>
                   multiContext <>
                   imageContext <>
@@ -152,14 +151,17 @@ yDefaultContext = metaKeywordContext <>
                   defaultContext
 
 --------------------------------------------------------------------------------
+prefixContext :: Context a
 prefixContext = field "webprefix" $ \_ -> return $ "/Scratch"
 
 --------------------------------------------------------------------------------
+imageContext :: Context a
 imageContext = field "image" $ \item -> do
   metadata <- getMetadata (itemIdentifier item)
   return $ maybe "/Scratch/img/presentation.png" id $ M.lookup "image" metadata
 
 --------------------------------------------------------------------------------
+metaKeywordContext :: Context a
 metaKeywordContext = field "metaKeywords" $ \item -> do
   metadata <- getMetadata (itemIdentifier item)
   return $ maybe "" renderMeta $ M.lookup "tags" metadata

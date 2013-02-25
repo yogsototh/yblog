@@ -22,7 +22,8 @@ et `mapa` pour les fonctions arithmétiques.
 
 Exemple :
 
-<pre><code class="zsh">$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
+~~~~~~ {.zsh}
+$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
 ab
 ada
 
@@ -48,7 +49,7 @@ result 7
 result 9
 result 11
 
-</code></pre>
+~~~~~~
 
 %tlal des fonctions d'ordres supérieurs en zsh.
 
@@ -65,7 +66,8 @@ Avant :
 
 Avant ⇒
 
-<pre><code class="zsh"># for each directory in projects dir
+~~~~~~ {.zsh}
+# for each directory in projects dir
 for toProject in /path/to/projects/*(/N); do
     # toProject is /path/to/projects/foo
     # project become foo (:t for tail)
@@ -75,7 +77,7 @@ for toProject in /path/to/projects/*(/N); do
         \rm -f $toResource
     done
 done
-</code></pre>
+~~~~~~
 
 - Le `(/N)` permet de sélectionner seulement les répertoires sans casser la boucle s'il n'y a pas de "match".
 - Le `(.N)` permet de sélection seulement les fichiers, aussi sans tout arréter s'il ne trouve rien.
@@ -83,12 +85,13 @@ done
 
 Après
 
-<pre><code class="bash">gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
+~~~~~~ {.bash}
+gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
 
 handle_resources() { map gif_to_png $1/resources/*.gif(.N) }
 
 map handle_resources /path/to/projects/*(/N)
-</code></pre>
+~~~~~~
 
 Plus de bloc ! 
 Oui, c'est un poil plus difficile à lire pour les non initiés. 
@@ -101,7 +104,8 @@ Trouver les fichiers des projets qui ne contiennent pas de s dans leur nom qui o
 
 Before ⇒
 
-<pre><code class="zsh">for toProject in Projects/*; do
+~~~~~~ {.zsh}
+for toProject in Projects/*; do
     project=$toProject:t
     if print -- project | grep -v s >/dev/null
     then
@@ -113,11 +117,12 @@ Before ⇒
         done
     fi
 done
-</code></pre>
+~~~~~~
 
 After ⇒
 
-<pre><code class="zsh">contain_no_s() { print $1 | grep -v s }
+~~~~~~ {.zsh}
+contain_no_s() { print $1 | grep -v s }
 
 function verify_file_name {                               
     local project=$1:t
@@ -126,7 +131,7 @@ function verify_file_name {
 }
 
 map verify_file_name $( filter contain_no_s Projects/* )
-</code></pre>
+~~~~~~
 
 La première version peu paraître plus facile à lire.
 Mais la seconde est plus bien supérieure en terme d'architecture.
@@ -137,7 +142,8 @@ Vous pouvez télécharger [une version à jour du code (merci à Arash Rouhani)]
 Une ancienne version est [ici](https://github.com/yogsototh/zsh_functional).
 Voici le code source (de la première version) :
 
-<pre><code class="zsh" file="functional.sh">#!/usr/bin/env zsh
+~~~~~~ {.zsh}
+#!/usr/bin/env zsh
 
 # Provide higer-order functions 
 
@@ -199,4 +205,4 @@ function filter {
     done
     print $result
 }
-</code></pre>
+~~~~~~

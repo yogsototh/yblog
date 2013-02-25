@@ -21,7 +21,8 @@ With this last version you should use `map` if you use external function.
 
 Example: 
 
-<pre><code class="zsh">$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
+~~~~~~ {.zsh}
+$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
 ab
 ada
 
@@ -47,7 +48,7 @@ result 7
 result 9
 result 11
 
-</code></pre>
+~~~~~~
 
 %tldr some simple implementation of higher order function for zsh.
 
@@ -63,7 +64,8 @@ First a program which convert all gif to png in many different directories of di
 
 Before ⇒
 
-<pre><code class="zsh"># for each directory in projects dir
+~~~~~~ {.zsh}
+# for each directory in projects dir
 for toProject in /path/to/projects/*(/N); do
     # toProject is /path/to/projects/foo
     # project become foo (:t for tail)
@@ -73,7 +75,7 @@ for toProject in /path/to/projects/*(/N); do
         \rm -f $toResource
     done
 done
-</code></pre>
+~~~~~~
 
 - The `(/N)` means to select only directory and not to crash if there isn't any.
 - The `(.N)` means to select only files and not to crash if there isn't any.
@@ -81,12 +83,13 @@ done
 
 After ⇒
 
-<pre><code class="bash">gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
+~~~~~~ {.bash}
+gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
 
 handle_resources() { map gif_to_png $1/resources/*.gif(.N) }
 
 map handle_resources /path/to/projects/*(/N)
-</code></pre>
+~~~~~~
 
 No more bloc!
 It might be a little bit harder to read if you're not used to functional programming notation.
@@ -98,7 +101,8 @@ Find all files in project not containing an `s` which their name contains their 
 
 Before ⇒
 
-<pre><code class="zsh">for toProject in Projects/*; do
+~~~~~~ {.zsh}
+for toProject in Projects/*; do
     project=$toProject:t
     if print -- project | grep -v s >/dev/null
     then
@@ -110,11 +114,12 @@ Before ⇒
         done
     fi
 done
-</code></pre>
+~~~~~~
 
 After ⇒
 
-<pre><code class="zsh">contain_no_s() { print $1 | grep -v s }
+~~~~~~ {.zsh}
+contain_no_s() { print $1 | grep -v s }
 
 function verify_file_name {                               
     local project=$1:t
@@ -123,7 +128,7 @@ function verify_file_name {
 }
 
 map verify_file_name $( filter contain_no_s Projects/* )
-</code></pre>
+~~~~~~
 
 Also, the first verstion is a bit easier to read. 
 But the second one is clearly far superior in architecture.
@@ -134,7 +139,8 @@ You can find an [updated version of the code (thanks to Arash Rouhani)](https://
 An older version is [here thought](https://github.com/yogsototh/zsh_functional).
 Here is the (first version) source code:
 
-<pre><code class="zsh" file="functional.sh">#!/usr/bin/env zsh
+~~~~~~ {.zsh}
+#!/usr/bin/env zsh
 
 # Provide higer-order functions 
 
@@ -196,4 +202,4 @@ function filter {
     done
     print $result
 }
-</code></pre>
+~~~~~~

@@ -11,7 +11,8 @@ tags:  jQuery, javascript, popup, blog, web
 
 Here is a fast and easy way to create jQuery popup.
 
-<pre><code class="javascript" file="essai.js">// --- code popup ---
+~~~~~~ {.javascript}
+// --- code popup ---
 function openPopup() {
     $(this).clone(false).appendTo($("#_code"));
     $("#_code").show();
@@ -33,7 +34,7 @@ function initCode() {
     $('#_code').click(closePopup);
 }
 // --- end of code popup section ---
-</code></pre>
+~~~~~~
 
 What does this code do?
 

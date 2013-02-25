@@ -70,8 +70,9 @@ _Hash Function_.
 Knowing the result of a hash function, it is difficult to know what was their input.
 For example:
 
-<pre><code class="zsh">hash("P45sW0r|)") = 9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63
-</code></pre>
+~~~~~~ {.zsh}
+hash("P45sW0r|)") = 9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63
+~~~~~~
 
 If someone has `9f00fd5dbba232b7c03afd2b62b5fce5cdc7df63`,
 he will have hard time to recover `P45sW0r|)`.
@@ -82,7 +83,7 @@ of the form:
 
 <code lang="zsh">
 sha1( master_password + domain_name )
-</code></pre>
+~~~~~~
 
 Where:
 

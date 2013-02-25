@@ -14,16 +14,18 @@ here are two functions to add to your code to have `base64` and `hexadecimal` ve
 
 To use it, simply copy the code in your class and use as this:
 
-<pre><code class="objective-c">#import <CommonCrypto/CommonDigest.h>
+~~~~~~ {.objective-c}
+#import <CommonCrypto/CommonDigest.h>
 ...
 NSString *b64_hash = [self b64_sha1:@"some NSString to be sha1'ed"];
 ...
 NSString *hex_hash = [self hex_sha1:@"some NSString to be sha1'ed"];
-</code></pre>
+~~~~~~
 
 The `base64` algorithm must be programmed by hand on iPhone!
 
-<pre><code class="c" file="iphone_base64_sha1.c">
+~~~~~~ {.c}
+
 - (unsigned char *)sha1:(NSString *)baseString result:(unsigned char *)result {
     char *c_baseString=(char *)[baseString UTF8String];
     CC_SHA1(c_baseString, strlen(c_baseString), result);
@@ -65,4 +67,4 @@ The `base64` algorithm must be programmed by hand on iPhone!
     [self sha1:inputString result:result];
     return [self hexadecimalRepresentation:result];
 }
-</code></pre>
+~~~~~~

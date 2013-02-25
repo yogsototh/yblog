@@ -31,14 +31,15 @@ Lorsqu'on modifie un fichier un peu critique et qu'on a pas envie de perdre, on 
 Du coups, ce nouveau fichier joue le rôle de *backup*. Si on casse tout, on peut toujours écraser les modifications que nous avons faites. Évidemment le problème avec cette façon de faire c'est que ce n'est pas très professionnel. Et puis c'est un peu limité. Si on veut faire trois ou quatre modifications on se retrouve avec plein de fichiers. Parfois avec des nom bizarres comme :
 
 <div>
-<pre><code class="zsh">fichier_important.c.bak
+~~~~~~ {.zsh}
+fichier_important.c.bak
 fichier_important.c.old
 fichier_important.c.Bakcup
 fichier_important.c.BAK.2009-11-14
 fichier_important.c.2009.11.14
 fichier_important.c.12112009
 old.fichier_important.c
-</code></pre>
+~~~~~~
 </div>
 
 Bon alors si on veut que ça marche il faut se fixer des conventions de nommage. Les fichiers prennent beaucoup de place alors que souvent il n'y a que quelques lignes différentes entre le fichier et son backup...
@@ -70,7 +71,8 @@ Commençons par un exemple avec un projet fait par deux personnes ; Alex et Béa
 Sur un fichier contenant une liste de dieux *Lovecraftiens* :
 
 <div style="width: 10em; margin-left: auto; margin-right: auto">
-<pre><code class="zsh">Cthulhu
+~~~~~~ {.zsh}
+Cthulhu
 Shubniggurath
 Yogsototh
 </code></div>

@@ -43,6 +43,7 @@ while true; do
 	if [[ "$curids" != "$oldids" ]]; then
 		oldids=$curids
 		print "KILLING $son"
-		kill $son && compileAndLaunch
+		kill $son
+		compileAndLaunch
 	fi
 done

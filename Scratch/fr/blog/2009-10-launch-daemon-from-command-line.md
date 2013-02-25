@@ -14,7 +14,7 @@ Lorsque que vous souhaitez lancer une commande qui ne soit pas tuée après la f
 
 <div><code class="zsh">
 nohup cmd &
-</code></pre>
+~~~~~~
 <small>où <code>cmd</code> est la commande que vous souhaitez lancer.</small>
 </div>
 

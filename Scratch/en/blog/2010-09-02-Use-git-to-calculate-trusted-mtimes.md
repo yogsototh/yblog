@@ -18,7 +18,8 @@ I use [git](http://git-scm.org) to version my website.
 And fortunately I can know the last date of _real_ change of a file.
 This is how I do this with [nanoc](http://nanoc.stoneship.org):
 
-<pre><code class="ruby" file="gitmtime.rb">def gitmtime
+~~~~~~ {.ruby}
+def gitmtime
     filepath=@item.path.sub('/Scratch/','content/html/').sub(/\/$/,'')
     ext=%{.#{@item[:extension]}}
     filepath<<=ext
@@ -32,7 +33,7 @@ This is how I do this with [nanoc](http://nanoc.stoneship.org):
         return DateTime.parse( str )
     end
 end
-</code></pre>
+~~~~~~
 
 Of course I know it is really slow and absolutely not optimized.
 But it works as expected.

@@ -20,10 +20,8 @@ When we are used to %latex this lack can be hard to handle.
 Particularly when using mathematical notations.
 In the header of my files I simply write:
 
-<pre><code class="yaml">macros:
-  test: "This is a macro test"
-  latex: '<span style="text-transform: uppercase">L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span>'
-</code></pre>
+~~~~~~ {.yaml}
+~~~~~~
 
 In the body it will replace every occurrence of:
 
@@ -33,7 +31,8 @@ In the body it will replace every occurrence of:
 The source code is really simple.
 For `nanoc` user, simply put this file in your `lib` directory.
 
-<pre><code class="ruby" file="macros.rb"># usage:
+~~~~~~ {.ruby}
+# usage:
 # ---
 # ...
 # macros:
@@ -76,6 +75,6 @@ class Macros < Nanoc3::Filter
         end
     end
 end
-</code></pre>
+~~~~~~
 
 Macros could be very useful, read [this article](http://adam.gomaa.us/blog/2007/oct/22/markdown-doesnt-scale/index.html) for example.

@@ -17,14 +17,14 @@ Voici une parmi de nombreuses autres façon d'utiliser [Git][git]. Cette méthod
 
 La façon immédiate de travailler avec [Git][git] :
 
-+ récupérer les modifications des autres `git pull`
-+ voir les détails de ces modifications `git log`
++ récupérer les modifications des autres <span class="black">`git pull`</span>
++ voir les détails de ces modifications <span class="black">`git log`</span>
 + Plusieurs fois:
   + *Faire une modification atomique*
-  + verifier le details de ses modifications `git status` et `git diff`
-  + indiquer si nécessaire que de nouveaux fichiers doivent être *versionnés* `git add [file]`
-  + enregistrer ses modifications <br/>`git commit -a -m "message"`
-  + envoyer ses modifications aux autres `git push` (refaire un `git pull` si le push renvoie une erreur).
+  + verifier le details de ses modifications <span class="black">`git status`</span> et <span class="black">`git diff`</span>
+  + indiquer si nécessaire que de nouveaux fichiers doivent être *versionnés* <span class="black">`git add [file]`</span>
+  + enregistrer ses modifications <br/><span class="black">`git commit -a -m "message"`</span>
+  + envoyer ses modifications aux autres <span class="black">`git push`</span> (refaire un `git pull` si le push renvoie une erreur).
 
 Voilà, avec ces quelques commandes vous pouvez utiliser [Git][git] sur un projet avec d'autres personnes. Même si c'est suffisant, il faut quand même connaître une chose avant de se lancer ; la gestion des *conflits*.
 
@@ -37,8 +37,9 @@ Les conflits peuvent survenir lorsque vous modifiez les même lignes de codes su
 Vous partez du fichier suivant : 
 
 <div style="width: 18em; margin-left: auto; margin-right: auto">
-<pre><code class="zsh">Zoot 
-</code></pre>
+~~~~~~ {.zsh}
+Zoot 
+~~~~~~
 </div>
 
 et vous modifiez une ligne
@@ -60,16 +61,17 @@ Zoot<span class="StringConstant"><strong>, just Zoot</strong></span>
 Maintenant quand vous lancez la commande
 
 <div>
-<pre><code class="zsh">$ git pull
+~~~~~~ {.zsh}
+$ git pull
 remote: Counting objects: 5, done.
 remote: Total 3 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
-From /home/yogsototh/tmp/conflictTest
+From /home/e640846/tmp/conflictTest
    d3ea395..2dc7ffb  master     -> origin/master
 Auto-merging foo
 CONFLICT (content): Merge conflict in foo
 Automatic merge failed; fix conflicts and then commit the result.
-</code></pre>
+~~~~~~
 </div>
 
 Notre fichier `foo` contient alors : 
@@ -97,8 +99,9 @@ Zoot <span class="Constant"><strong>the not so pure</strong></span>
 et de 'commiter' tout simplement : 
 
 <div>
-<pre><code class="zsh">git commit -a -m "conflict resolved"
-</code></pre>
+~~~~~~ {.zsh}
+git commit -a -m "conflict resolved"
+~~~~~~
 </div>
 
 Maintenant vous êtes fin prêt pour utiliser [Git][git].

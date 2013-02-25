@@ -36,7 +36,8 @@ The header is then a block of packed bytes.
 Surprisingly, I believe that reading this kind of file is easier in `C` than in most higher level language.
 Proof: I only have to search on the web the complete header format and write it in a struct.
 
-<pre><code class="c">struct wavfile
+~~~~~~ {.c}
+struct wavfile
 {
     char        id[4];          // should always contain "RIFF"
     int     totallength;    // total file length minus 8
@@ -51,28 +52,31 @@ Proof: I only have to search on the web the complete header format and write it 
     char        data[4];        // should always contain "data"
     int     bytes_in_data;
 };
-</code></pre>
+~~~~~~
 
 To read this kind of data in Ruby, I certainly had to write a block of code for each element in the struct.
 But in `C` I simply written:
 
-<pre><code class="c">fread(&header,sizeof(header),1,wav)
-</code></pre>
+~~~~~~ {.c}
+fread(&header,sizeof(header),1,wav)
+~~~~~~
 
 Only one step to fill my data structure. Magic!
 
 Then, get an int value coded on two Bytes is also not a natural operation for high level language.
 In `C`, to read a sequence of 2 Bytes numbers I only had to write:
 
-<pre><code class="c">short value=0;
+~~~~~~ {.c}
+short value=0;
 while( fread(&value,sizeof(value),1,wav) ) {
     // do something with value
 }
-</code></pre>
+~~~~~~
 
 Finally I ended with the following code. Remark I know the wav format (16 bit / 48000Hz):
 
-<pre><code class="c" file="wavsum.c">#include <stdio.h>
+~~~~~~ {.c}
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -129,7 +133,7 @@ int main(int argc, char *argv[]) {
     printf("%ld\n",sum);
     exit(0);
 }
-</code></pre>
+~~~~~~
 
 Of course it is only a hack. 
 But we can see how easy and clean it should be to improve.
@@ -147,8 +151,9 @@ But I must confess this task was a bit tedious.
 The code remain as readable as before.
 But I had to use some compiler specific declaration to force the structure to be packed:
 
-<pre><code class="c">__attribute__((__packed__))
-</code></pre>
+~~~~~~ {.c}
+__attribute__((__packed__))
+~~~~~~
 
 Therefore this implementation should for big and little endian architecture. 
 However, it must be compiled with `gcc`.
@@ -157,7 +162,8 @@ Here it is:
 
 </div>
 
-<pre><code class="c" file="wavsum2.c">#include <stdio.h>
+~~~~~~ {.c}
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h> // for memcmp
 #include <stdint.h> // for int16_t and int32_t
@@ -262,14 +268,15 @@ int main(int argc, char *argv[]) {
     printf("%lld\n",sum);
     exit(0);
 }
-</code></pre>
+~~~~~~
 
 _Edit(3)_: 
 On [reddit](http://reddit.com)
 [Bogdanp](http://www.reddit.com/user/Bogdanp)
 proposed a Python version:
 
-<pre><code class="python" file="wavsum.py">#!/usr/bin/env python
+~~~~~~ {.python}
+#!/usr/bin/env python
 from struct import calcsize, unpack
 from sys import argv, exit
 
@@ -296,12 +303,13 @@ try:
 except IOError:
     print "error: can't open input file '%s'." % argv[1]
     exit(1)
-</code></pre>
+~~~~~~
 
 and [luikore](http://www.reddit.com/user/luikore)
 proposed an impressive Ruby version:
 
-<pre><code class="ruby" file="wavsum.rb">data = ARGF.read
+~~~~~~ {.ruby}
+data = ARGF.read
  keys = %w[id totallength wavefmt format
        pcm channels frequency bytes_per_second
          bytes_by_capture bits_per_sample
@@ -312,4 +320,4 @@ proposed an impressive Ruby version:
  keys.zip(values.take(12) << sum) {|k, v|
        puts "#{k.ljust 17}: #{v}"
  }
-</code></pre>
+~~~~~~

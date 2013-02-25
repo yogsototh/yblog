@@ -22,17 +22,19 @@ Lorsque j'ai commencé à intégrer [Disqus](http://disqus.com/) je n'ai jamais 
 Pour le rendre complètement asynchrone il suffit de récupérer leur js commun et de remplacer la ligne suivante :
 
 <div>
-<pre><code class="javascript">document.getElementsByTagName("head")[0].appendChild(commentScript);
-</code></pre>
+~~~~~~ {.javascript}
+document.getElementsByTagName("head")[0].appendChild(commentScript);
+~~~~~~
 </div>
 
 par (si vous utilisez jQuery) : 
 
 <div>
-<pre><code class="javascript">$(document).ready( function() {
+~~~~~~ {.javascript}
+$(document).ready( function() {
     document.getElementsByTagName("head")[0].appendChild(commentScript);
 });
-</code></pre>
+~~~~~~
 </div>
 
 ## And the Winner is: [Intense Debate](http://intensedebate.com/)

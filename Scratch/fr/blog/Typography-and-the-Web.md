@@ -64,9 +64,10 @@ blogimage("first_latex_screenshot.png", "LaTeX screenshot")
 
 Si vous faites attention au détail, vous constaterez que le premier "first" contient une ligature. Bien entendu la deuxième ligne est affichée correctement. Le code que j'ai utilisé pour avoir ce rendu est simplement :
 
-<pre><code class="latex">\item first
+~~~~~~ {.latex}
+\item first
 \item {\sc first}
-</code></pre>
+~~~~~~
 
 %latex a été suffisamment intelligent pour créer les ligatures si nécessaire.
 

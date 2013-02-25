@@ -15,7 +15,7 @@ When you want to launch a command and this command should not be killed after yo
 
 <div><code class="zsh">
 nohup cmd &
-</code></pre>
+~~~~~~
 <small>where <code>cmd</code> is your command.</small>
 </div>
 

@@ -60,13 +60,14 @@ In reality I need a bit more informations to create a password:
 
 The result password is this:
 
-<pre><code class="ruby">domainName=domaine_Name_Of_URL(url)
+~~~~~~ {.ruby}
+domainName=domaine_Name_Of_URL(url)
 hash=sha1( masterPassword + leakedTimes + domainName )
 if ( kind == 'base64' )
     hash=base64(hash)
 end
 return hash[0..maxlength]
-</code></pre>
+~~~~~~
 
 In fact depending of websites, some give some strange constraint to your password: 
 

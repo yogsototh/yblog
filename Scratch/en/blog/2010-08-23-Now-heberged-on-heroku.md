@@ -22,7 +22,8 @@ The root of my files is `/output`. You only need to create a `config.ru`[^1] fil
 
 [^1]: I was inspired by this [article](http://gmarik.info/blog/2010/05/10/blogging-with-jekyll-and-heroku-for-free). 
 
-<pre><code class="ruby" file="config.ru">require 'rubygems'
+~~~~~~ {.ruby}
+require 'rubygems'
 require 'rack'
 require 'rack/contrib'
 require 'rack-rewrite'
@@ -64,22 +65,24 @@ run lambda { [404, {
                 "Content-Type"   => "text/html",
                 "Content-Length" => File.size(errorFile).to_s
             }, File.read(errorFile)] }
-</code></pre>
+~~~~~~
 
 and the `.gems` file needed to install `rack` middlewares.
 
-<pre><code class="ruby" file=".gems">rack
+~~~~~~ {.ruby}
+rack
 rack-rewrite
 rack-contrib
-</code></pre>
+~~~~~~
 
 Now, just follow the heroku tutorial to create an application :
 
-<pre><code class="zsh">git init
+~~~~~~ {.zsh}
+git init
 git add .
 heroku create
 git push heroku master
-</code></pre>
+~~~~~~
 
 Now I'll should be able to redirect properly to my own 404 page for example.
 I hope it is helpful.

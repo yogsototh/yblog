@@ -18,14 +18,14 @@ Here is one from many way to use [Git][git]. This method is sufficient to work o
 
 Work with [Git][git] immediately:
 
-+ Get modification done by others `git pull`,
-+ See details of these modifications `git log`,
++ Get modification done by others <span class="black">`git pull`</span>,
++ See details of these modifications <span class="black">`git log`</span>,
 + Many times:
   + *Make an atomic modification*
-  + Verify details of this modification: `git status` and `git diff`,
-  + Add some file to be versionned if necessary:<br/>`git add [file]`,
-  + Save you modifications <br/>`git commit -a -m "message"`,
-  + Send your modifications to others: `git push` (redo a `git pull` if push return an error).
+  + Verify details of this modification: <span class="black">`git status`</span> and <span class="black">`git diff`</span>,
+  + Add some file to be versionned if necessary:<br/><span class="black">`git add [file]`</span>,
+  + Save you modifications <br/><span class="black">`git commit -a -m "message"`</span>,
+  + Send your modifications to others: <span class="black">`git push`</span> (redo a `git pull` if push return an error).
 
 With these few commands you can use [Git][git]. Even if it is sufficient, you need to know one more thing before really begin ; How to manage *conflicts*.
 
@@ -38,8 +38,9 @@ Conflicts can arise when you change the same line of code on the same file from 
 You start from the following file
 
 <div style="width: 18em; margin-left: auto; margin-right: auto">
-<pre><code class="zsh">Zoot 
-</code></pre>
+~~~~~~ {.zsh}
+Zoot 
+~~~~~~
 </div>
 
 and you modify one line
@@ -61,16 +62,17 @@ Zoot<span class="StringConstant"><strong>, just Zoot</strong></span>
 Now when you do a:
 
 <div>
-<pre><code class="zsh">$ git pull
+~~~~~~ {.zsh}
+$ git pull
 remote: Counting objects: 5, done.
 remote: Total 3 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
-From /home/yogsototh/tmp/conflictTest
+From /home/e640846/tmp/conflictTest
    d3ea395..2dc7ffb  master     -> origin/master
 Auto-merging foo
 CONFLICT (content): Merge conflict in foo
 Automatic merge failed; fix conflicts and then commit the result.
-</code></pre>
+~~~~~~
 </div>
 
 Our file `foo` now contains: 
@@ -98,8 +100,9 @@ Zoot <span class="Constant"><strong>the not so pure</strong></span>
 and to commit
 
 <div>
-<pre><code class="zsh">git commit -a -m "conflict resolved"
-</code></pre>
+~~~~~~ {.zsh}
+git commit -a -m "conflict resolved"
+~~~~~~
 </div>
 
 Now you're ready to use [Git][git].

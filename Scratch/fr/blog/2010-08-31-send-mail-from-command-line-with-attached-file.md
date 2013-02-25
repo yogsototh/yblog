@@ -15,8 +15,9 @@ Je n'avais ni `pine` ni `mutt`. Seulement `mail` et `mailx`.
 
 Ce qu'on trouve sur internet pour envoyer un mail avec fichier attaché c'est ça :
 
-<pre><code class="zsh">uuencode fic.jpg fic.jpg | mail -s 'Subject'
-</code></pre>
+~~~~~~ {.zsh}
+uuencode fic.jpg fic.jpg | mail -s 'Subject'
+~~~~~~
 
 Bon, alors, bête et discipliné j'ai essayé. 
 Et bien, ça marche _presque_ tout le temps. 
@@ -45,8 +46,9 @@ Donc finalement le mieux est de faire ça "à la main" avec `sendmail`.
 Je n'ai quand même pas utilisé `telnet`.
 La commande à lancer est :
 
-<pre><code class="zsh">sendmail -t -oi < mailcontent.txt
-</code></pre>
+~~~~~~ {.zsh}
+sendmail -t -oi < mailcontent.txt
+~~~~~~
 
 Bien entendu il faut créer le fichier `mailcontent.txt` qui contient :
 
@@ -75,7 +77,7 @@ Et pour avoir le code il suffit de lancer la commande :
 
 <code classs="zsh">
 uuencode -m fic.jpg fic.jpg
-</code></pre>
+~~~~~~
 
 Et voilà. 
 Parfois la technique c'est tellement simple.

@@ -14,7 +14,8 @@ Voici comment faire pour ne plus utiliser les fontes Microsoft© sous Linux Ubun
 modifiez le fichier <code>/etc/fonts/local.conf</code> en y incluant le contenu suivant : 
 
 <div>
-<pre><code class="xml" file="local.conf">
+~~~~~~ {.xml}
+
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -68,7 +69,7 @@ modifiez le fichier <code>/etc/fonts/local.conf</code> en y incluant le contenu 
   </selectfont>
 
 </fontconfig>
-</code></pre>
+~~~~~~
 </div>
 
 J'espère que ça a pu aider quelqu'un qui comme moi pleurait en regardant des fontes aussi laides.

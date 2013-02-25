@@ -99,7 +99,8 @@ But I believe it would be a really hard task just to simulate the access of curr
 
 Typically `@x` translate into `this.x`. But the following code will not do what I should expect. Call the foo function of the current class.
 
-<pre><code class="ruby">-> 
+~~~~~~ {.ruby}
+-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -107,11 +108,12 @@ class MyClass
   bar: ->
     $('#content').load( '/content.html', ( -> @foo(x) ) )
     # That won't call MyClass.foo
-</code></pre>
+~~~~~~
 
 The only way to handle this is to make the following code:
 
-<pre><code class="ruby">-> 
+~~~~~~ {.ruby}
+-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -119,6 +121,6 @@ class MyClass
   bar: ->
     self=this
     $('#content').load( '/content.html', ( -> self.foo(x) ) )
-</code></pre>
+~~~~~~
 
 Knowing this, `@` notation lose most of its interrest for me.

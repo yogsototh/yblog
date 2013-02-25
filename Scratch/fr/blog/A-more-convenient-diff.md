@@ -15,7 +15,8 @@ C'est pourquoi, lorsque vous utilisez `git`, il vous montre un formatage plus ag
 
 Voici le script que j'utilise lorsque je veux avoir un `diff` à la git.
 
-<pre><code class="zsh" file="ydiff">#!/usr/bin/env zsh
+~~~~~~ {.zsh}
+#!/usr/bin/env zsh
 
 # Load colors helpers
 autoload -U colors && colors
@@ -37,4 +38,4 @@ function colorize_diff {
 }
 
 diff -u $* | colorize_diff
-</code></pre>
+~~~~~~

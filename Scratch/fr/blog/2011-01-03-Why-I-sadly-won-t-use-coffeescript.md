@@ -97,7 +97,8 @@ Mais il me semble que ça serait un travail très difficile rien que pour simule
 
 Typiquement `@x` est transformé en `this.x`. Mais le code suivant ne fait pas ce que j'attendrai de lui.
 
-<pre><code class="ruby">-> 
+~~~~~~ {.ruby}
+-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -105,11 +106,12 @@ class MyClass
   bar: ->
     $('#content').load( '/content.html', ( -> @foo(x) ) )
     # Ça n'appellera pas MyClass.foo
-</code></pre>
+~~~~~~
 
 La seule façon de résoudre ce problème est avec le code suivant :
 
-<pre><code class="ruby">-> 
+~~~~~~ {.ruby}
+-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -117,6 +119,6 @@ class MyClass
   bar: ->
     self=this
     $('#content').load( '/content.html', ( -> self.foo(x) ) )
-</code></pre>
+~~~~~~
 
 Sachant celà, la notation `@` perd tout son intérêt pour moi.
