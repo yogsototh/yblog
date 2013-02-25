@@ -17,8 +17,19 @@ compileAndLaunch
 
 print -- "JOBS = $son"
 
+md5() {
+	if [[ $md5 = "" ]]; then
+		if which md5sum >/dev/null; then
+			md5=$(which md5sum)
+		else
+			md5="openssl md5"
+		fi
+	fi
+	eval $md5 $*
+}
+
 getState(){
-	cat $filesToWatch | md5sum | awk '{print $1}'
+	cat $filesToWatch | md5 | awk '{print $1}'
 }
 
 # what the Haskell files
