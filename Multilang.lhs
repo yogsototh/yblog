@@ -41,6 +41,8 @@ For information, a Hakyll context is some kind of
 "Item -> Map String String" or in other words a dictionary dependent of the
 current generating item.
 
+> --------------------------------------------------------------------------------
+> multiContext :: Context a
 > multiContext = tradsContext <>
 >                languageContext <>
 >                otherLanguagePathContext <>
@@ -59,11 +61,13 @@ For me this is easy, the language of an item is where it is in fr or en.
 >     where
 >       languageFromPath = take 2 . drop 1
 > --------------------------------------------------------------------------------
+> languageContext :: Context a
 > languageContext = field "language" itemLang
 
 Next context, return the other language.
 
 > --------------------------------------------------------------------------------
+> otherlanguageContext :: Context a
 > otherlanguageContext = field "otherlanguage" $ \item -> do
 >   lang <- itemLang item
 >   return $ if (lang == "en") then "fr" else "en"
@@ -71,10 +75,10 @@ Next context, return the other language.
 The context containing the path of the similar element for the other language
 
 > --------------------------------------------------------------------------------
+> otherLanguagePathContext :: Context a
 > otherLanguagePathContext = field "otherLanguagePath" $ \item -> do
->   -- route :: Maybe FilePath
->   route <- (getRoute . itemIdentifier) item
->   return $ maybe "Unknown" changeLanguage route
+>   itemRoute <- (getRoute . itemIdentifier) item
+>   return $ maybe "/" changeLanguage itemRoute
 >   where
 >     changeLanguage ('/':'S':'c':'r':'a':'t':'c':'h':'/':'e':'n':'/':xs) = "/Scratch/fr/" ++ xs
 >     changeLanguage ('/':'S':'c':'r':'a':'t':'c':'h':'/':'f':'r':'/':xs) = "/Scratch/en/" ++ xs
@@ -93,6 +97,7 @@ Next the dictionary containing all traductions of standards templates.
 >         where
 >           toTrad (k,(f,e)) = (k, Trad { frTrad = f, enTrad = e })
 > --------------------------------------------------------------------------------
+> tradsContext :: Context a
 > tradsContext = functionField "trad" $ \args item -> do
 >                 k <- getArgs args
 >                 v <- getValue k trads
