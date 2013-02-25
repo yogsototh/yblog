@@ -49,7 +49,7 @@ markdownBehavior = do
                           . blogImage itemName
                           . blogFigure itemName
                           where
-                            itemName = maybe "" takeBaseName itemPath
+                            itemName = maybe "" (takeBaseName . takeDirectory) itemPath
     postFilters :: String -> String
     postFilters = frenchPunctuation
 
@@ -65,20 +65,19 @@ markdownPostBehavior = do
   compile $ do
     body <- getResourceBody
     id <- getUnderlying
-    itemPath <- getRoute id
-    return $ renderPandoc (fmap (preFilters itemPath) body)
+    return $ renderPandoc (fmap (preFilters (toFilePath id)) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
     >>= relativizeUrls
   where
     applyFilter f str = return $ (fmap $ f) str
-    preFilters :: Maybe String -> String -> String
+    preFilters :: String -> String -> String
     preFilters itemPath =   abbreviationFilter
                           . blogImage itemName
                           . blogFigure itemName
                           where
-                            itemName = maybe "" takeBaseName itemPath
+                            itemName = takeBaseName itemPath
     postFilters :: String -> String
     postFilters = frenchPunctuation
 
