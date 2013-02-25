@@ -1,1 +1,1 @@
-ghc -O2 site.hs && ./site clean && ./site preview
+ghc -O2 -Wall site.hs && ./site clean && ./site preview
