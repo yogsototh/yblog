@@ -30,8 +30,7 @@ newcorps
 Disons que j'ai déjà un projet et que je veuille en créer un nouveau.
 
 <div>
-<code class="zsh">
-cd to/project/directory/
+<pre><code class="zsh">cd to/project/directory/
 git init
 git add
 git commit
@@ -42,8 +41,7 @@ Maintenant tous les fichiers du répertoire <code>to/project/directory/</code> s
 
 Par exemple voici le mien : 
 <div>
-<code class="zsh">
-*.swp
+<pre><code class="zsh">*.swp
 .DS_Store
 ikog.py.bak
 output/Scratch/assets
@@ -56,8 +54,7 @@ output/Scratch/multi
 Ensuite, il faut placer ce projet dans un répertoire accessible via Internet.
 
 <div>
-<code class="zsh">
-git clone --bare . /path/to/repository
+<pre><code class="zsh">git clone --bare . /path/to/repository
 </code></pre>
 </div>
 
@@ -69,8 +66,7 @@ Màj: La meilleure solution est d'installer <a href="https://github.com/sitaramc
 Maintenant à partir de n'importe quel ordinateur, voici ce que vous pouvez faire : 
 
 <div>
-<code class="zsh">
-git clone protocol://path/to/repository local_directory
+<pre><code class="zsh">git clone protocol://path/to/repository local_directory
 </code></pre>
 </div>
 
@@ -91,16 +87,14 @@ Pour résumer vous avez maintenant un repository sur Internet et un ou plusieurs
 Avant de commencer à travailler, la première chose à faire est de récupérer les modification à partir d'Internet vers votre poste local : 
 
 <div>
-<code class="zsh">
-git pull
+<pre><code class="zsh">git pull
 </code></pre>
 </div>
 
 Ensuit vous pouvez travailler en faisant (plusieurs fois) : 
 
 <div>
-<code class="zsh">
-hack, hack, hack...
+<pre><code class="zsh">hack, hack, hack...
 git add some files
 git commit
 </code></pre>
@@ -109,8 +103,7 @@ git commit
 Quang vous voulez envoyez les modifications locales sur Internet, il suffit de faire :
 
 <div>
-<code class="zsh">
-git push
+<pre><code class="zsh">git push
 </code></pre>
 </div>
 
@@ -119,8 +112,7 @@ Tout devrait être bon.
 Si vous avez des problèmes avec le <code>push</code> et le <code>pull</code> ; vérifiez votre fichier <code>.git/config</code>. Il devrait contenir les lignes suivantes :
 
 <div>
-<code class="zsh">
-...
+<pre><code class="zsh">...
 [remote "origin"]
 	url = protocol://url/of/the/repository
 	fetch = +refs/heads/*:refs/remotes/origin/*
@@ -149,8 +141,7 @@ et quand je suis sur un autre ordinateur et que je veux récupérer les branches
 Voici le code des deux script (en zsh) : 
 
 <div>
-<code class="zsh" file="git-create-new-branch">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="git-create-new-branch">#!/usr/bin/env zsh
 
 if (($#<1)); then
     print -- "usage: $0:t branch_name" >&2
@@ -166,8 +157,7 @@ git config branch.${branch}.merge refs/heads/${branch}
 </div>
 
 <div>
-<code class="zsh" file="git-get-remote-branches">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="git-get-remote-branches">#!/usr/bin/env zsh
 
 # recup branches not on local
 localbranches=( $(git br | sed 's/\*/ /') )

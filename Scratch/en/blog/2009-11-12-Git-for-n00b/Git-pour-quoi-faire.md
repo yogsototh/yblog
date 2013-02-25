@@ -33,8 +33,7 @@ In consequence of what, the new file, play the role of *backup*. If you break ev
 Of course, this method is not very professional and is a bit limited. If you make many modifications, you'll end with many files with strange names like:
 
 <div>
-<code class="zsh">
-fichier_important.c.bak
+<pre><code class="zsh">fichier_important.c.bak
 fichier_important.c.old
 fichier_important.c.Bakcup
 fichier_important.c.BAK.2009-11-14
@@ -72,8 +71,7 @@ Version Systems are already useful to manage its own projects. They help to orga
 Let's begin by an example, a two person project ; Alex and Beatrice. On a file containing a *Lovecraft*'s gods list:
 
 <div style="width: 10em; margin-left: auto; margin-right: auto">
-<code class="zsh">
-Cthulhu
+<pre><code class="zsh">Cthulhu
 Shubniggurath
 Yogsototh
 </code></div>

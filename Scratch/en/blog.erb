@@ -1,0 +1,122 @@
+-----
+kind: blog
+image: /Scratch/img/blog/Learn-Vim-Progressively/uber_leet_use_vim.jpg
+title: Blog
+menupriority: 2
+noSubMenu: true
+-----
+<% 
+    number_of_articles=18
+    number_of_char_for_resume=800
+    language=@item_rep.path.sub(/\/Scratch\//,'').sub(/\/.*$/,'') 
+    last_articles = @items.select do |a| 
+            a.reps[0].path =~ /\/#{language}\//  && a[:kind] == 'article'
+    end
+    last_articles=last_articles.sort { |x,y| y[:created_at] <=> x[:created_at] }[0..(number_of_articles-1)]
+
+def dArr
+    return %{<span class="nicer">&dArr;</span>}
+end
+%>
+
+<ul class="sameline">
+<li> <a href="#popular-articles">Popular Articles <%=dArr%></a> </li>
+<li> <a href="#last-articles"><%= number_of_articles %> Latest Articles <%=dArr%></a> </li>
+<li> <a href="#tagcloud">Tag Cloud <%=dArr%></a></li>
+<li> <a href="#archives">Achives <%=dArr%></a></li>
+<li> <a href="#two-words-about-the-content">Two words about the content <%=dArr%></a></li>
+</ul>
+<div class="flush"></div>
+
+<h2 id="popular-articles">
+Popular Articles
+</h2>
+
+<div class="popularblock">
+    <a href="/Scratch/en/blog/Learn-Vim-Progressively/">
+        <figure>
+            <img src="/Scratch/img/blog/Learn-Vim-Progressively/uber_leet_use_vim.jpg" alt="Ü83R 1337 use Vim!"/>
+            <figcaption>
+            Learn Vim Progressively <span class="nicer">»</span>
+            </figcaption>
+        </figure>
+    </a>
+</div>
+
+<div class="popularblock">
+    <a href="/Scratch/en/blog/Yesod-tutorial-for-newbies/">
+        <figure>
+            <img src="/Scratch/img/blog/Yesod-tutorial-for-newbies/flying_neo.jpg" alt="Neo Flying at warp speed"/>
+            <figcaption>
+            Haskell web programming <span class="nicer">»</span>
+            </figcaption>
+        </figure>
+    </a>
+</div>
+
+<div class="popularblock">
+    <a href="/Scratch/en/blog/Haskell-the-Hard-Way/">
+        <figure>
+        <img src="/Scratch/img/blog/Haskell-the-Hard-Way/magritte_pleasure_principle.jpg" alt="Magritte pleasure principle"/>
+        <figcaption>
+        Learn Haskell Fast and Hard <span class="nicer">»</span>
+        </figcaption>
+        </figure>
+    </a>
+</div>
+
+<div class="flush"></div>
+
+<h2 id="last-articles">
+<%= number_of_articles %> lastest Articles
+</h2>
+
+</div>
+
+<div class="corps">
+<% 
+i=2
+last_articles.each do |a|
+    i+=1 %>
+    <%= showArticle(a, language) %>
+    <% if i % 3 == 2 %>
+        <div class="flush"></div>
+    <% end %>
+<% end %>
+</div>
+
+<div class="corps">
+<div>
+<%= tagCloud %>
+</div>
+</div>
+
+<h2 id="archives">Archives</h2>
+
+<%= generateBlogSubMenu(language) %>
+
+<h2 id="two-words-about-the-content"> 
+Two words about the content
+</h2>
+
+<div class="corps">
+
+<p>
+Here you'll can find mostly technical articles.
+Some are just reminder of technical tips.
+But some are long and technically detailled articles.
+</p>
+<hr/>
+<p> 
+I do my best to traduce each page in French and in English.
+It is not always easy as English is not my natural language.
+I used to make many errors, orthographic, grammatical, typographical&hellip;
+</p>
+<p>
+<strong> Thanks not to judge me based on these errors! And don't forget content is more important than presentation! </strong>
+</p><p> 
+The first impression I'll let you if we meet in real life should be different from the one I let you based on my website.
+</p><p> 
+I wish you to find something useful or interesting on this website.
+</p>
+

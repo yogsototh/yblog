@@ -15,8 +15,7 @@ In order to bypass *evil* company firewall and to surf safely on unsafe <sc>wifi
 Then from my laptop or my local computer I just have to launch the marvelous
 
 <div>
-<code class="zsh">
-ssh -p 443 -D 9050 username@host
+<pre><code class="zsh">ssh -p 443 -D 9050 username@host
 </code></pre>
 </div>
 
@@ -35,8 +34,7 @@ I posted the question on [Apple Discussions](discussions.apple.com) in this [dis
 Create the file <tt>/Library/LaunchDaemons/ssh-443.plist</tt> containing:
 
 <div>
-<code class="xml" file="ssh-443.plist">
-<?xml version="1.0" encoding="UTF-8"?>
+<pre><code class="xml" file="ssh-443.plist"><?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>

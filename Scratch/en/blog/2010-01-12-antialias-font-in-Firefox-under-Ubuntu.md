@@ -14,8 +14,7 @@ How to stop using bad Microsoft© font under Ubuntu Linux in order to user nice 
 Just modify the <code>/etc/fonts/local.conf</code> with the following code: 
 
 <div>
-<code class="xml" file="local.conf">
-
+<pre><code class="xml" file="local.conf">
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>

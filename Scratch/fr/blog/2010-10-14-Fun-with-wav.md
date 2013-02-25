@@ -34,8 +34,7 @@ Donc on discute de l'entête avec des nombres d'octets :
 Etonnamment je pense que lire ce type de fichier avec un langage de haut niveau aurait été plus pénible qu'en C.
 La preuve, il m'a suffit de chercher sur le net le format complet de l'entête et de l'écrire dans un struct.
 
-<code class="c">
-struct wavfile
+<pre><code class="c">struct wavfile
 {
     char        id[4];          // should always contain "RIFF"
     int     totallength;    // total file length minus 8
@@ -55,8 +54,7 @@ struct wavfile
 Si j'avais eu à faire ça en Ruby, je pense qu'il m'aurait fallu pour chaque bloc de l'entête écrire un bout de code de lecture du bon nombre d'octets.
 Alors qu'en `C` il m'a suffit d'écrire: 
 
-<code class="c">
-fread(&header,sizeof(header),1,wav)
+<pre><code class="c">fread(&header,sizeof(header),1,wav)
 </code></pre>
 
 Et en une seule étape ma structure de donnée a été remplie avec les valeurs souhaitées. Magique !
@@ -64,8 +62,7 @@ Et en une seule étape ma structure de donnée a été remplie avec les valeurs 
 Ensuite, récupérer un entier à partir de deux octets n'est pas non plus une opération naturelle dans les nouveaux langages de programmation.
 Alors qu'en `C`. Pour récupérer un entier codé sur 16 bits il suffit d'écrire :
 
-<code class="c">
-short value=0;
+<pre><code class="c">short value=0;
 while( fread(&value,sizeof(value),1,wav) ) {
     // do something with value
 }
@@ -73,8 +70,7 @@ while( fread(&value,sizeof(value),1,wav) ) {
 
 Finallement je suis arrivé au code suivant, sachant que le format de wav était connu, avec notamment échantillonage sur 16 bits en 48000Hz :
 
-<code class="c" file="wavsum.c">
-#include <stdio.h>
+<pre><code class="c" file="wavsum.c">#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 
@@ -150,8 +146,7 @@ J'ai fait une nouvelle version qui devrait être plus portable.
 Elle fait aussi plus de test pour vérifier le fichier.
 Cependant j'utilise une assertion spécifique à `gcc` pour être certain que la structure de donnée n'ai pas de "trou" :
 
-<code class="c">
-__attribute__((__packed__))
+<pre><code class="c">__attribute__((__packed__))
 </code></pre>
 
 Le nouveau code n'utilise pas mmap et devrait être plus compatible.  
@@ -159,8 +154,7 @@ Voici le dernier résultat :
 
 </div>
 
-<code class="c" file="wavsum2.c">
-#include <stdio.h>
+<pre><code class="c" file="wavsum2.c">#include <stdio.h>
 #include <stdlib.h>
 #include <string.h> // for memcmp
 #include <stdint.h> // for int16_t and int32_t
@@ -272,8 +266,7 @@ Sur [reddit](http://reddit.com)
 [Bogdanp](http://www.reddit.com/user/Bogdanp)
 a proposé une version en Python :
 
-<code class="python" file="wavsum.py">
-#!/usr/bin/env python
+<pre><code class="python" file="wavsum.py">#!/usr/bin/env python
 from struct import calcsize, unpack
 from sys import argv, exit
 
@@ -304,8 +297,7 @@ except IOError:
 
 et [luikore](http://www.reddit.com/user/luikore) a proposé une version Ruby assez impressionnante :
 
-<code class="ruby" file="wavsum.rb">
-data = ARGF.read
+<pre><code class="ruby" file="wavsum.rb">data = ARGF.read
  keys = %w[id totallength wavefmt format
        pcm channels frequency bytes_per_second
          bytes_by_capture bits_per_sample

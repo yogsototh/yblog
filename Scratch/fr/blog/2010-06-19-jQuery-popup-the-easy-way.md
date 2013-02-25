@@ -11,8 +11,7 @@ tags:  jQuery, javascript, popup, blog, web
 
 Voici une façon simple et rapide pour faire des popups avec jQuery.
 
-<code class="javascript" file="essai.js">
-// --- code popup ---
+<pre><code class="javascript" file="essai.js">// --- code popup ---
 function openPopup() {
     $(this).clone(false).appendTo($("#_code"));
     $("#_code").show();

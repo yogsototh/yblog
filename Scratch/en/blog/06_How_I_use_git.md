@@ -24,8 +24,7 @@ newcorps
 Suppose I've got a directory on my local computer containing a project I want to manage via Git. Here what to do: 
 
 <div>
-<code class="zsh">
-cd to/project/directory/
+<pre><code class="zsh">cd to/project/directory/
 git init
 git add
 git commit
@@ -38,8 +37,7 @@ If you want not to follow some just edit the file <code>.gitignore</code>
 for example mine is: 
 
 <div>
-<code class="zsh">
-*.swp
+<pre><code class="zsh">*.swp
 .DS_Store
 ikog.py.bak
 output/Scratch/assets
@@ -52,16 +50,14 @@ output/Scratch/multi
 Next, you want to put your project on a directory accessible from the web:
 
 <div>
-<code class="zsh">
-git clone --bare . /path/to/repository
+<pre><code class="zsh">git clone --bare . /path/to/repository
 </code></pre>
 </div>
 
 Now on any computer you can do: 
 
 <div>
-<code class="zsh">
-git clone protocol://path/to/repository local_directory
+<pre><code class="zsh">git clone protocol://path/to/repository local_directory
 </code></pre>
 </div>
 
@@ -82,16 +78,14 @@ To resume you now have one repository on the Internet, and one or many computer 
 Before begining your work, the first thing to do is to get all modification from the Internet to your local host: 
 
 <div>
-<code class="zsh">
-git pull
+<pre><code class="zsh">git pull
 </code></pre>
 </div>
 
 After that you can do (many times): 
 
 <div>
-<code class="zsh">
-hack, hack, hack...
+<pre><code class="zsh">hack, hack, hack...
 git add some files
 git commit
 </code></pre>
@@ -100,8 +94,7 @@ git commit
 When you want your local modification to be on the Internet just do a simple:
 
 <div>
-<code class="zsh">
-git push
+<pre><code class="zsh">git push
 </code></pre>
 </div>
 
@@ -110,8 +103,7 @@ All should be ok.
 If you have some trouble with the <code>push</code> and <code>pull</code> verify your <code>.git/config</code> file ; it should contain the following lines:
 
 <div>
-<code class="zsh">
-...
+<pre><code class="zsh">...
 [remote "origin"]
 	url = protocol://url/of/the/repository
 	fetch = +refs/heads/*:refs/remotes/origin/*
@@ -139,8 +131,7 @@ and when you are on another computer and want to get locally all the remote bran
 Here are the code of theese two scripts: 
 
 <div>
-<code class="zsh" file="git-create-new-branch">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="git-create-new-branch">#!/usr/bin/env zsh
 
 if (($#<1)); then
     print -- "usage: $0:t branch_name" >&2
@@ -156,8 +147,7 @@ git config branch.${branch}.merge refs/heads/${branch}
 </div>
 
 <div>
-<code class="zsh" file="git-get-remote-branches">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="git-get-remote-branches">#!/usr/bin/env zsh
 
 # recup branches not on local
 localbranches=( $(git br | sed 's/\*/ /') )

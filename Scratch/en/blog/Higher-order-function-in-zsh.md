@@ -21,8 +21,7 @@ With this last version you should use `map` if you use external function.
 
 Example: 
 
-<code class="zsh">
-$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
+<pre><code class="zsh">$ filterl 'echo $1|grep a >/dev/null' ab cd ef ada
 ab
 ada
 
@@ -64,8 +63,7 @@ First a program which convert all gif to png in many different directories of di
 
 Before ⇒
 
-<code class="zsh">
-# for each directory in projects dir
+<pre><code class="zsh"># for each directory in projects dir
 for toProject in /path/to/projects/*(/N); do
     # toProject is /path/to/projects/foo
     # project become foo (:t for tail)
@@ -83,8 +81,7 @@ done
 
 After ⇒
 
-<code class="bash">
-gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
+<pre><code class="bash">gif_to_png() { convert $1 ${1:r}.png && \rm -f $1 }
 
 handle_resources() { map gif_to_png $1/resources/*.gif(.N) }
 
@@ -101,8 +98,7 @@ Find all files in project not containing an `s` which their name contains their 
 
 Before ⇒
 
-<code class="zsh">
-for toProject in Projects/*; do
+<pre><code class="zsh">for toProject in Projects/*; do
     project=$toProject:t
     if print -- project | grep -v s >/dev/null
     then
@@ -118,8 +114,7 @@ done
 
 After ⇒
 
-<code class="zsh">
-contain_no_s() { print $1 | grep -v s }
+<pre><code class="zsh">contain_no_s() { print $1 | grep -v s }
 
 function verify_file_name {                               
     local project=$1:t
@@ -139,8 +134,7 @@ You can find an [updated version of the code (thanks to Arash Rouhani)](https://
 An older version is [here thought](https://github.com/yogsototh/zsh_functional).
 Here is the (first version) source code:
 
-<code class="zsh" file="functional.sh">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="functional.sh">#!/usr/bin/env zsh
 
 # Provide higer-order functions 
 

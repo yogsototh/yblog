@@ -15,15 +15,13 @@ Voici comment analyser tous les clics que font vos utilisateurs sur votre blog e
 
 Dans le html, il faut utiliser [jQuery](http://jquery.com) et un fichier que j'ai appelé `yga.js` :
 
-<code class="html">
-    <script type="text/javascript" src="jquery.js"></script>
+<pre><code class="html">    <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="yga.js"></script>
 </code></pre>
 
 Voici le contenu du fichier `yga.js` :
 
-<code class="javascript" file="yga.js">
-$(document).ready( function() {
+<pre><code class="javascript" file="yga.js">$(document).ready( function() {
     // add an event to all link for google analytics
     $('a').click(function () {
         // tell analytics to save event

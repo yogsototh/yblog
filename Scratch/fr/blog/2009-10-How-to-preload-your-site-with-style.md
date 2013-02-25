@@ -45,8 +45,7 @@ Pour cacher ce petit 'artefact', voici comment je m'y suis pris.
 D'abort il faut ajouter tout en haut du body cette fois un div qui va être le voile noir qui va tout cacher.
 
 <div>
-<code class="html">
-...
+<pre><code class="html">...
 <body>
 <div id="blackpage">
     content to display during the loading.
@@ -58,8 +57,7 @@ D'abort il faut ajouter tout en haut du body cette fois un div qui va être le v
 et le CSS correspondant au div `#blackpage` : 
 
 <div>
-<code class="css">
-#blackpage
+<pre><code class="css">#blackpage
   top: 0 
   left: 0 
   width: 100%
@@ -80,8 +78,7 @@ et le CSS correspondant au div `#blackpage` :
 ainsi que le code jQuery associé : 
 
 <div>
-<code class="javascript">
-$(document).ready(function(){
+<pre><code class="javascript">$(document).ready(function(){
     $('#blackpage').fadeOut();
 });
 </code></pre>

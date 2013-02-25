@@ -55,30 +55,26 @@ Voici certains exemples :
 
 - Les variables, au lieu d'écrire `myvar = value`, voici la version <sc>xslt</sc> :
 
-<code class="xml">
-<xsl:variable name="myvar" select="value"/>
+<pre><code class="xml"><xsl:variable name="myvar" select="value"/>
 </code></pre>
 
 - Afficher quelquechose. Au lieu de `print "Hello world!"`, <sc>xslt</sc> nous offre :
 
-<code class="xml">
-<xsl:text 
+<pre><code class="xml"><xsl:text 
     disable-output-escaping="yes"><![CDATA[Hello world!
 ]]></xsl:text>
 </code></pre>
 
 - afficher la valeur d'une variable, au lieu de `print myvar`, nous avons droit à :
 
-<code class="xml">
-<xslt:value-of select="myvar"/>
+<pre><code class="xml"><xslt:value-of select="myvar"/>
 </code></pre>
 
 - Essayez d'imaginer à quel point il est verbeux de déclarer une fonction dans ce langage.
 
 ## La solution (m4 à la rescousse)
 
-<code class="xml">
-<?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
+<pre><code class="xml"><?xml version="1.0" standalone="yes"?> <!-- YES its %xml -->
 <!-- ← start a comment, then write some m4 directives:
 
 define(`ydef',`<xsl:variable name="$1" select="$2"/>')
@@ -98,8 +94,7 @@ define(`yshow',`<xsl:value-of select="$1"/>')
 
 Maintenant compilons simplement ce fichier :
 
-<code class="zsh">
-m4 myfile.m4 > myfile.xslt
+<pre><code class="zsh">m4 myfile.m4 > myfile.xslt
 </code></pre>
 
 Et vous pouvez profitez ! Maintenant <sc>xslt</sc> devient plus lisible et plus facile à éditer.
@@ -131,8 +126,7 @@ Plutôt que copier du %xml, j'ai utilisé m4.
 
 Et voici le code commenté :
 
-<code class="xml" file="yesodlogo.m4">
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pre><code class="xml" file="yesodlogo.m4"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
      M4 Macros
 define(`YTRANSFORMONE', `scale(.43) translate(-120,-69) rotate(-10)')
@@ -179,8 +173,7 @@ define(`YTRANSCOMPLETE', `
 
 et je l'ai compile en <sc>svg</sc> et ensuite en <sc>png</sc> avec :
 
-<code class="zsh">
-m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
+<pre><code class="zsh">m4 yesodlogo.m4 > yesodlogo.svg && convert yesodlogo.svg yesodlogo.png
 </code></pre>
 
 Le λ est dupliqué avec trois "transformations" différentes. Les transformations sont : `YTRANSFORMONE`, `YTRANSFORMTWO` et `YTRANSFORMTHREE`.

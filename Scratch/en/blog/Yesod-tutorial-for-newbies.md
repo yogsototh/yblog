@@ -115,8 +115,7 @@ is to download the [Haskell Platform][haskellplatform].
 Once done, you need to install yesod.
 Open a terminal session and do:
 
-<code class="zsh">
-~ cabal update
+<pre><code class="zsh">~ cabal update
 ~ cabal install yesod cabal-dev
 </code></pre>
 
@@ -127,16 +126,14 @@ There are few steps but it should take some time to finish.
 You are now ready to initialize your first yesod project.
 Open a terminal and type:
 
-<code class="zsh">
-~ yesod init
+<pre><code class="zsh">~ yesod init
 </code></pre>
 
 Enter your name, choose `yosog` for the project name and enter `Yosog` for the name of the Foundation.
 Finally choose `sqlite`.
 Now, start the development cycle:
 
-<code class="zsh">
-~ cd yosog
+<pre><code class="zsh">~ cd yosog
 ~ cabal-dev install && yesod --dev devel
 </code></pre>
 
@@ -151,8 +148,7 @@ Congratulation! Yesod works!
 
 Note: if something is messed up use the following command line inside the project directory.
 
-<code class="zsh">
-\rm -rf dist/* ; cabal-dev install && yesod --dev devel
+<pre><code class="zsh">\rm -rf dist/* ; cabal-dev install && yesod --dev devel
 </code></pre>
 
 </blockquote>
@@ -167,8 +163,7 @@ in a corner to see what occurs.
 
 Copy this `.gitignore` file into the `yosog` folder.
 
-<code class="zsh" file=".gitignore">
-cabal-dev
+<pre><code class="zsh" file=".gitignore">cabal-dev
 dist
 .static-cache
 static/tmp
@@ -177,8 +172,7 @@ static/tmp
 
 Then initialize your git repository:
 
-<code class="zsh">
-~ git init .
+<pre><code class="zsh">~ git init .
 ~ git add .
 ~ git commit -a -m "Initial yesod commit"
 </code></pre>
@@ -254,8 +248,7 @@ Application.hs:31:1: Not in scope: `getEchoR'
 Why? Simply because we didn't written the code for the handler `EchoR`.
 Edit the file `Handler/Home.hs` and append this:
 
-<code class="haskell">
-getEchoR :: String -> Handler RepHtml
+<pre><code class="haskell">getEchoR :: String -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         [whamlet|<h1>#{theText}|]
@@ -294,8 +287,7 @@ Then to show the String inside an %html document, the string is put inside an %h
 Some transformations occurs like replace "<code><</code>" by "`&lt;`".
 Thanks to yesod, this tedious job is done for us.
 
-<code class="zsh">
-"http://localhost:3000/echo/some%20text<a>" :: URL
+<pre><code class="zsh">"http://localhost:3000/echo/some%20text<a>" :: URL
                     ↓
               "some text<a>"                 :: String
                     ↓
@@ -324,8 +316,7 @@ It is nice to note, the default template is based on %html5 boilerplate.
 Let's change the default %css. 
 Add a file named `default-layout.lucius` inside the `templates/` directory containing:
 
-<code class="css" file="default-layout.lucius">
-body {
+<pre><code class="css" file="default-layout.lucius">body {
     font-family: Helvetica, sans-serif; 
     font-size: 18px; }
 #main {
@@ -361,8 +352,7 @@ Generally you don't want to have all your code inside a unique file.
 This is why we will separate our handlers.
 In a first time create a new file `Handler/Echo.hs` containing:
 
-<code class="haskell">
-module Handler.Echo where
+<pre><code class="haskell">module Handler.Echo where
 
 import Import
 
@@ -384,8 +374,7 @@ Just after `Handler.Home`, add:
 We must also declare this new Handler module inside `Application.hs`.
 Just after the "`import Handler.Home`", add:
 
-<code class="haskell">
-import Handler.Echo
+<pre><code class="haskell">import Handler.Echo
 </code></pre>
 
 This is it. 
@@ -399,8 +388,7 @@ It is a good practice to use `Data.Text` instead of `String`.
 
 To declare it, add this import directive to `Foundation.hs` (just after the last one):
 
-<code class="diff">
-import Data.Text
+<pre><code class="diff">import Data.Text
 </code></pre>
 
 We have to modify `config/routes` and our handler accordingly. 
@@ -412,8 +400,7 @@ Replace `#String` by `#Text` in `config/routes`:
 
 And do the same in `Handler/Echo.hs`:
 
-<code class="haskell" file="Echo.hs">
-module Handler.Echo where
+<pre><code class="haskell" file="Echo.hs">module Handler.Echo where
 
 import Import
 
@@ -429,14 +416,12 @@ Some %html (more precisely hamlet) is written directly inside our handler.
 We should put this part inside another file.
 Create the new file `templates/echo.hamlet` containing:
 
-<code class="haskell" file="echo.hamlet">
-<h1> #{theText}
+<pre><code class="haskell" file="echo.hamlet"><h1> #{theText}
 </code></pre>
 
 and modify the handler `Handler/Echo.hs`:
 
-<code class="haskell">
-getEchoR :: Text -> Handler RepHtml
+<pre><code class="haskell">getEchoR :: Text -> Handler RepHtml
 getEchoR theText = do
     defaultLayout $ do
         $(widgetFile "echo")
@@ -465,8 +450,7 @@ First, add a new route:
 This time the path `/mirror` will accept GET and POST requests.
 Add the corresponding new Handler file:
 
-<code class="haskell" file="Mirror.hs">
-module Handler.Mirror where
+<pre><code class="haskell" file="Mirror.hs">module Handler.Mirror where
 
 import Import
 import qualified Data.Text as T
@@ -494,15 +478,13 @@ look at [the yesod book](http://www.yesodweb.com/book/forms).
 
 Create the two corresponding templates:
 
-<code class="html" file="mirror.hamlet">
-<h1> Enter your text
+<pre><code class="html" file="mirror.hamlet"><h1> Enter your text
 <form method=post action=@{MirrorR}>
     <input type=text name=content>
     <input type=submit>
 </code></pre>
 
-<code class="html" file="posted.hamlet">
-<h1>You've just posted
+<pre><code class="html" file="posted.hamlet"><h1>You've just posted
 <p>#{postedText}#{T.reverse postedText}
 <hr>
 <p><a href=@{MirrorR}>Get back
@@ -557,8 +539,7 @@ Let's write the content of `Handler/Blog.hs`.
 We start by declaring the module and by importing some block necessary to 
 handle Html in forms.
 
-<code class="haskell">
-module Handler.Blog
+<pre><code class="haskell">module Handler.Blog
     ( getBlogR
     , postBlogR
     , getArticleR
@@ -580,8 +561,7 @@ To put the include inside Foundation.hs is left as an exercice to the reader.</s
 <small>_Hint: Do not forget to put `YesodNic` and `nicHtmlField` inside the exported objects of the module._
 </small>
 
-<code class="haskell">
-entryForm :: Form Article
+<pre><code class="haskell">entryForm :: Form Article
 entryForm = renderDivs $ Article
     <$> areq   textField "Title" Nothing
     <*> areq   nicHtmlField "Content" Nothing
@@ -593,8 +573,7 @@ If you are curious you can take a look at Applicative Functor.
 You just have to remember `areq` is for required form input.
 Its arguments being: `areq type label default_value`.
 
-<code class="haskell">
--- The view showing the list of articles
+<pre><code class="haskell">-- The view showing the list of articles
 getBlogR :: Handler RepHtml
 getBlogR = do
     -- Get the list of articles inside the database.
@@ -610,8 +589,7 @@ This handler should display a list of articles.
 We get the list from the DB and we construct the form.
 Just take a look at the corresponding template:
 
-<code class="html" file="articles.hamlet">
-<h1> Articles
+<pre><code class="html" file="articles.hamlet"><h1> Articles
 $if null articles
     -- Show a standard message if there is no article
     <p> There are no articles in the blog
@@ -640,8 +618,7 @@ But we have to create the submit button.
 
 Get back to `Handler/Blog.hs`.
 
-<code class="haskell">
--- we continue Handler/Blog.hs
+<pre><code class="haskell">-- we continue Handler/Blog.hs
 postBlogR :: Handler RepHtml
 postBlogR = do
     ((res,articleWidget),enctype) <- runFormPost entryForm
@@ -667,8 +644,7 @@ If things goes right:
 
 Here is the content of the error Page:
 
-<code class="haskell">
-<form method=post enctype=#{enctype}>
+<pre><code class="haskell"><form method=post enctype=#{enctype}>
     ^{articleWidget}
     <div>
         <input type=submit value="Post New Article">
@@ -676,8 +652,7 @@ Here is the content of the error Page:
 
 Finally we need to display an article:
 
-<code class="haskell">
-getArticleR :: ArticleId -> Handler RepHtml
+<pre><code class="haskell">getArticleR :: ArticleId -> Handler RepHtml
 getArticleR articleId = do
     article <- runDB $ get404 articleId
     defaultLayout $ do
@@ -690,16 +665,14 @@ If it fails it return a 404 page.
 The rest should be clear. 
 Here is the content of `templates/article.hamlet`:
 
-<code class="html" file="article.hamlet">
-<h1> #{articleTitle article}
+<pre><code class="html" file="article.hamlet"><h1> #{articleTitle article}
 <article> #{articleContent article}
 </code></pre>
 
 The blog system is finished.
 Just for fun, you can try to create an article with the following content:
 
-<code class="html">
-<p>A last try to <em>cross script</em> 
+<pre><code class="html"><p>A last try to <em>cross script</em> 
    and <em>SQL injection</em></p>
 <p>Here is the first try: 
    <script>alert("You loose");</script></p>

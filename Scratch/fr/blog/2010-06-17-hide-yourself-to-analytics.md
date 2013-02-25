@@ -17,8 +17,7 @@ Cette méthode nécessite l'utilisation de `jquery-cookie`.
 
 Avant de comptabiliser les visites, je vérifie que la clé `admin` n'est pas utilisée dans mes cookies.
 
-<code class="javascript">
-    var admin = $.cookie('admin');
+<pre><code class="javascript">    var admin = $.cookie('admin');
     if (! admin) {
         // put your analytics code here
     } else {
@@ -28,8 +27,7 @@ Avant de comptabiliser les visites, je vérifie que la clé `admin` n'est pas ut
 
 et il suffit de créer deux fichier <sc>html</sc>. Un pour se cacher :
 
-<code class="html" file="become_hidden.html">
-<?xml version="1.0" encoding="utf-8"?>
+<pre><code class="html" file="become_hidden.html"><?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
@@ -53,8 +51,7 @@ et il suffit de créer deux fichier <sc>html</sc>. Un pour se cacher :
 
 et un autre pour redevenir visible (ça peut être utile) :
 
-<code class="html" file="become_visible.html">
-<?xml version="1.0" encoding="utf-8"?>
+<pre><code class="html" file="become_visible.html"><?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">

@@ -15,8 +15,7 @@ For my main page, you can see, a list of my latest blog entry. And you have the 
 
 Here is an example:
 
-<code class="html">
-<div class="corps">
+<pre><code class="html"><div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -28,8 +27,7 @@ Here is an example:
 
 After the cut, I obtain:
 
-<code class="html">
-<div class="corps">
+<pre><code class="html"><div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -45,8 +43,7 @@ Given with our example, when we are after the first paragraph. we only have to c
 
 Then, all you have to do, is not remember all the XML tree, but only the heap containing your parents. Suppose we treat the complete first example, the stack will pass through the following state, in order:
 
-<code class="html">
-[]           
+<pre><code class="html">[]           
 [div]           <div class="corps">
 [div, div]          <div class="intro">
 [div, div, p]           <p>
@@ -64,8 +61,7 @@ Then, all you have to do, is not remember all the XML tree, but only the heap co
 </code></pre>
 
 The algorihm, is then really simple: 
-<code class="html">
-let res be the XML as a string ; 
+<pre><code class="html">let res be the XML as a string ; 
 read res and each time you encouter a tag: 
     if it is an opening one: 
         push it to the stack
@@ -83,8 +79,7 @@ And `res` contain the repaired XML.
 
 Finally, this is the code in ruby I use. The `xml` variable contain the cutted XML.
 
-<code class="ruby" file="repair_xml.rb">
-# repair cutted XML code by closing the tags
+<pre><code class="ruby" file="repair_xml.rb"># repair cutted XML code by closing the tags
 # work even if the XML is cut into a tag.
 # example:
 #    transform '<div> <span> toto </span> <p> hello <a href="http://tur'

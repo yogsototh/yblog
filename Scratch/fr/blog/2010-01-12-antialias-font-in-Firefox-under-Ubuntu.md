@@ -14,8 +14,7 @@ Voici comment faire pour ne plus utiliser les fontes Microsoft© sous Linux Ubun
 modifiez le fichier <code>/etc/fonts/local.conf</code> en y incluant le contenu suivant : 
 
 <div>
-<code class="xml" file="local.conf">
-
+<pre><code class="xml" file="local.conf">
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>

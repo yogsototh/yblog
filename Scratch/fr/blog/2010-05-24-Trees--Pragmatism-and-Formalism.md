@@ -61,8 +61,7 @@ Transformer un <sc>xml</sc> d'un format à un autre.
 
 Voici le format général du <sc>xml</sc> source :
 
-<code class="xml">
-<rubrique>
+<pre><code class="xml"><rubrique>
     <contenu>
         <tag1>value1</tag1>
         <tag2>value2</tag2>
@@ -82,8 +81,7 @@ Voici le format général du <sc>xml</sc> source :
 
 et le format d'arrivé est celui-ci :
 
-<code class="xml">
-<item name="Menu0">
+<pre><code class="xml"><item name="Menu0">
     <value>
         <item name="menu">
             <value>
@@ -263,8 +261,7 @@ r - b
 
 Et regardez ce que ça implique quand on l'écrit en <sc>xml</sc> :
 
-<code class="xml">
-<r>
+<pre><code class="xml"><r>
   <x>
     <a>value for a</a>
     <b>value for b</b>
@@ -277,8 +274,7 @@ Et regardez ce que ça implique quand on l'écrit en <sc>xml</sc> :
 
 Alors supprimer tous les nœuds `x` revient à faire passer le <sc>xml</sc> à travers le filtre suivant :
 
-<code class="perl">
-s/<\/?x>//g
+<pre><code class="perl">s/<\/?x>//g
 </code></pre>
 
 Par conséquent, s'il existe un transducteur déterministe à un état qui permet de transformer mes arbres ; 
@@ -327,16 +323,14 @@ peut-être fait en utilisant le transducteur déterministe à un état suivant:
 
 Ce qui peut-être traduit par les simples directives Perl suivantes :
 
-<code class="perl">
-s/C//g
+<pre><code class="perl">s/C//g
 s/E/M/g
 s/R/V/g
 </code></pre>
 
 Une fois adapté au <sc>xml</sc> cela devient :
 
-<code class="perl">
-s%</?contenu>%%g
+<pre><code class="perl">s%</?contenu>%%g
 s%<enfant>%<item name="menu">%g
 s%</enfant>%</item>%g
 s%<rubrique>%<value>%g

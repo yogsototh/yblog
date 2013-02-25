@@ -35,8 +35,7 @@ Cette page est seulement en anglais désolé.
 
 Once installed (follow the README.md instructions).
 
-<code class="zsh">
-$ cd /root/of/nanoc3_blog
+<pre><code class="zsh">$ cd /root/of/nanoc3_blog
 $ ./task/new_blog_entry Title of the blog
 $ vi latest.md
 $ ./task/recompile
@@ -82,9 +81,7 @@ You can use small caps using `<sc>` tags.
 
 To write source code you should use the following format:
 
-<code class="html">
-<code class="ruby" file="filename.rb">
-The code
+<pre><code class="html"><pre><code class="ruby" file="filename.rb">The code
 </cOde>
 </code></pre>
 

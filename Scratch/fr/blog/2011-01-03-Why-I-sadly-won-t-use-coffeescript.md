@@ -97,8 +97,7 @@ Mais il me semble que ça serait un travail très difficile rien que pour simule
 
 Typiquement `@x` est transformé en `this.x`. Mais le code suivant ne fait pas ce que j'attendrai de lui.
 
-<code class="ruby">
--> 
+<pre><code class="ruby">-> 
 class MyClass
   foo: ->
     alert('ok')
@@ -110,8 +109,7 @@ class MyClass
 
 La seule façon de résoudre ce problème est avec le code suivant :
 
-<code class="ruby">
--> 
+<pre><code class="ruby">-> 
 class MyClass
   foo: ->
     alert('ok')

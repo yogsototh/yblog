@@ -34,7 +34,7 @@ fixmeta() {
 }
 
 fixcode() {
-	perl -pe 's#^(<code class="[^"]*")\n#<pre>$1#g;s#^</code>$#</code></pre>#g'
+	perl -pe 's#^(<code class="[^"]*"([^>]*)?>)\n#<pre>$1#g;s#^</code>$#</code></pre>#g'
 }
 
 fixmetablock() {
@@ -67,7 +67,6 @@ for src in $srcdir/**/*.{erb,md}; do
 		{
 		head -n 2 $tmp
 		print -- "image: $imgdir$imgfilename"
-		print -- "image: $imgdir$imgfilename" >&2
 		tail -n +3 $tmp
 		} >$dst
 	else

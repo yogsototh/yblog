@@ -37,8 +37,7 @@ Les conflits peuvent survenir lorsque vous modifiez les même lignes de codes su
 Vous partez du fichier suivant : 
 
 <div style="width: 18em; margin-left: auto; margin-right: auto">
-<code class="zsh">
-Zoot 
+<pre><code class="zsh">Zoot 
 </code></pre>
 </div>
 
@@ -61,8 +60,7 @@ Zoot<span class="StringConstant"><strong>, just Zoot</strong></span>
 Maintenant quand vous lancez la commande
 
 <div>
-<code class="zsh">
-$ git pull
+<pre><code class="zsh">$ git pull
 remote: Counting objects: 5, done.
 remote: Total 3 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (3/3), done.
@@ -99,8 +97,7 @@ Zoot <span class="Constant"><strong>the not so pure</strong></span>
 et de 'commiter' tout simplement : 
 
 <div>
-<code class="zsh">
-git commit -a -m "conflict resolved"
+<pre><code class="zsh">git commit -a -m "conflict resolved"
 </code></pre>
 </div>
 

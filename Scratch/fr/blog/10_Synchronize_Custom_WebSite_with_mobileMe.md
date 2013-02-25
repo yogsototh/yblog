@@ -45,8 +45,7 @@ Mon script prend un paramètre `-s` pour ne faire que le "swap". Il prend aussi 
 Pour utiliser le script vous devriez remplacer la valeur de la variable `mobileMeUser` par votre nom d'utilisateur mobileMe(c).
 
 <div class="fr">
-<code class="zsh" file="publish">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="publish">#!/usr/bin/env zsh
 
 # Script synchronisant le site sur me.com
 # normalement, le site est indisponible le moins de temps possible
@@ -151,8 +150,7 @@ print -P -- "  publication terminée"
 </div>
 
 <div class="en">
-<code class="zsh" file="publish">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="publish">#!/usr/bin/env zsh
 
 # Author: Yann Esposito
 #   Mail: yann.esposito@gmail.com

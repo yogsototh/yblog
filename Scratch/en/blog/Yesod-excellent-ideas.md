@@ -30,8 +30,7 @@ Strings for URL, HTML, JavaScript, CSS, SQL, etc...
 To prevent malicious usage you have to protect each strings to be sure, no script will pass from one point to another.
 Suppose a user enter this user name:
 
-<code class="javascript">
-Newton<script>alert("An apple fall")</script>
+<pre><code class="javascript">Newton<script>alert("An apple fall")</script>
 </code></pre>
 
 You must transform each `<` into `&lt;`.
@@ -49,8 +48,7 @@ Here is an example:
 As `AnotherPageR` is of type URL and it could not contains something nefarious.
 It will be an URL safe. Not something like:
 
-<code class="html">
-falselink"><script> bad_code(); </script><a href="pipo
+<pre><code class="html">falselink"><script> bad_code(); </script><a href="pipo
 </code></pre>
 
 ## Widgets
@@ -82,8 +80,7 @@ You can declare a widget as this (note I use a very high meta-language):
 
 The real syntax is:
 
-<code class="haskell">
-toWidgetHeader cassiusFile "button.cassius"
+<pre><code class="haskell">toWidgetHeader cassiusFile "button.cassius"
 toWidgetHeader juliusFile "button.julius"
 toWidget       hamletFile "buttonTemplate.hamlet"
 </code></pre>
@@ -97,8 +94,7 @@ Another good reason to use yesod.
 
 And when your page render, yesod makes it easy to render everything nicely:
 
-<code class="haskell">
-myBigWidget =  menuWidget >> contentWidget >> footerWidget
+<pre><code class="haskell">myBigWidget =  menuWidget >> contentWidget >> footerWidget
 </code></pre>
 
 Furthermore, if you use say 10 widgets each with a bit of CSS, yesod will create a unique and compressed CSS file. Except if you expressed a need to change the header by using different CSS. 
@@ -115,8 +111,7 @@ On the other hand yesod compiles the routes.
 Therefore it can optimize it.
 Of course two routes must not interfere.
 
-<code class="html">
-/blog/2003  Date2003R
+<pre><code class="html">/blog/2003  Date2003R
 /blog/$DATE DateR
 </code></pre>
 
@@ -124,8 +119,7 @@ is invalid by default (you can make it valid, but I don't think it is a good ide
 
 You'd better
 
-<code class="html">
-/blog/$DATE DateR
+<pre><code class="html">/blog/$DATE DateR
 </code></pre>
 
 and test if `date = 2003` inside the handler.

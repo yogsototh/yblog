@@ -32,8 +32,7 @@ Des chaînes de caractère pour les URL, le HTML, le Javascript, les CSS, les re
 Pour éviter des utilisation malicieuses vous devez protéger chaque chaîne de caractère entre chaque étape.
 Par exemple supposons que vous entriez comme nom :
 
-<code class="javascript">
-Newton<script>alert("An apple fall")</script>
+<pre><code class="javascript">Newton<script>alert("An apple fall")</script>
 </code></pre>
 
 Sans une protection correcte, le message "An apple fall" sera affiché à chaque fois que quelqu'un essayera d'accéder au nom de cet utilisateur.
@@ -49,8 +48,7 @@ Yesod fait de son mieux pour typer les objets manipulés et ainsi il fera ce qu'
 
 Comme `AnotherPageR` est une URL elle ne pourra contiendra pas (par défaut) de caractère dangereux comme par exemple :
 
-<code class="html">
-falselink"><script> bad_code(); </script><a href="pipo
+<pre><code class="html">falselink"><script> bad_code(); </script><a href="pipo
 </code></pre>
 
 ## Les widgets
@@ -82,8 +80,7 @@ Vous pouvez déclarer un widget comme suit (je n'utilise pas la vrai syntaxe) :
 
 La vraie syntaxe est :
 
-<code class="haskell">
-toWidgetHeader cassiusFile "button.cassius"
+<pre><code class="haskell">toWidgetHeader cassiusFile "button.cassius"
 toWidgetHeader juliusFile "button.julius"
 toWidget       hamletFile "buttonTemplate.hamlet"
 </code></pre>
@@ -97,8 +94,7 @@ Encore une bonne raison d'utiliser yesod.
 
 Lorsque vous générez votre page, yesod se débrouille pour que tout fonctionne ensemble:
 
-<code class="haskell">
-myBigWidget =  menuWidget >> contentWidget >> footerWidget
+<pre><code class="haskell">myBigWidget =  menuWidget >> contentWidget >> footerWidget
 </code></pre>
 
 De plus, si vous utilisez 10 widgets avec un peu de CSS, yesod fabriquera un unique fichier CSS pour vous. Bien entendu si vous préférez avoir une dizaine de fichier CSS vous pouvez aussi le faire.
@@ -114,8 +110,7 @@ La seule façon de découvrir la bonne règle est d'essayer de matcher l'url dem
 Au lieu d'essayer chaque expression régulière, yesod regroupe et compile les routes pour les optimiser.
 Bien entendu pour pouvoir profiter de cet avantage au mieux, il ne faut pas que deux routes interfèrent entres elles.
 
-<code class="html">
-/blog/2003  Date2003R
+<pre><code class="html">/blog/2003  Date2003R
 /blog/$DATE DateR
 </code></pre>
 
@@ -124,8 +119,7 @@ Si vous voulez vraiment vous pouvez le faire foncionner quand même, mais il me 
 
 Il vaut mieux faire :
 
-<code class="html">
-/blog/$DATE DateR
+<pre><code class="html">/blog/$DATE DateR
 </code></pre>
 
 et faire le test "est-ce que date = 2003 ?" dans le «handler».

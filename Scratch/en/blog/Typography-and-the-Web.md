@@ -57,8 +57,7 @@ blogimage("first_latex_screenshot.png", "LaTeX screenshot")
 
 If you take attention to detail, you'll see the first "first" contains a ligature. Of course the second render nicely. The code I used were:
 
-<code class="latex">
-\item first
+<pre><code class="latex">\item first
 \item {\sc first}
 </code></pre>
 

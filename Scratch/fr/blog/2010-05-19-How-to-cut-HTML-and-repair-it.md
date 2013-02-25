@@ -15,8 +15,7 @@ Sur ma page d'accueil vous pouvez voir la liste des mes derniers articles avec l
 
 Prenons un exemple :
 
-<code class="html">
-<div class="corps">
+<pre><code class="html"><div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -28,8 +27,7 @@ Prenons un exemple :
 
 Après avoir coupé, j'obtiens :
 
-<code class="html">
-<div class="corps">
+<pre><code class="html"><div class="corps">
     <div class="intro">
         <p>Introduction</p>
     </div>
@@ -45,8 +43,7 @@ Pour notre exemple, juste après le paragraphe `first paragraph` nous n'avons qu
 
 Donc, tout ce que nous avons à faire, c'est d'enregistrer la liste des parents dans une pile. Supposons que nous traitions le premier exemple complètement. La pile passera par les états suivants :
 
-<code class="html">
-[]           
+<pre><code class="html">[]           
 [div]           <div class="corps">
 [div, div]          <div class="intro">
 [div, div, p]           <p>
@@ -64,8 +61,7 @@ Donc, tout ce que nous avons à faire, c'est d'enregistrer la liste des parents 
 </code></pre>
 
 L'algorithme est alors très simple :
-<code class="html">
-let res be the XML as a string ; 
+<pre><code class="html">let res be the XML as a string ; 
 read res and each time you encouter a tag: 
     if it is an opening one: 
         push it to the stack
@@ -83,8 +79,7 @@ Et `res` contiend le XML réparé.
 
 Finallement, voici le code en ruby que j'utilise. La variable `xml` contient le XML coupé.
 
-<code class="ruby" file="repair_xml.rb">
-# repair cutted XML code by closing the tags
+<pre><code class="ruby" file="repair_xml.rb"># repair cutted XML code by closing the tags
 # work even if the XML is cut into a tag.
 # example:
 #    transform '<div> <span> toto </span> <p> hello <a href="http://tur'

@@ -1,17 +1,20 @@
 -----
 title: About
+menupriority: 4
 -----
 
 ## To better know me
 
-![Me](/Scratch/img/about/yann1.jpg)
+![A photo of me](/Scratch/img/about/yann1.jpg)
 
------------  --------------------------------
-Name         Yann Esposito
-Education    Post Ph. D. in Computer Science
-School       Université de Provence
-Job          IT at Sophia Antipolis (France)
------------  --------------------------------
+<div>
+    <desc miscellanious informations>
+    Name : Yann Esposito ::
+    Education : Post Ph. D. in Computer Science  ::
+    School : Université de Provence ::
+    Job : IT at Sophia Antipolis (France) ::
+    </desc>
+</div>
 
 Books I like:
 

@@ -16,8 +16,7 @@ Then you need to know my method use the `jquery-cookie`.
 
 I check if the key `admin` is not set in the cookie before adding the visit.
 
-<code class="javascript">
-    var admin = $.cookie('admin');
+<pre><code class="javascript">    var admin = $.cookie('admin');
     if (! admin) {
         // put your analytics code here
     } else {
@@ -27,8 +26,7 @@ I check if the key `admin` is not set in the cookie before adding the visit.
 
 then create two <sc>html</sc> files. One to hide:
 
-<code class="html" file="become_hidden.html">
-<?xml version="1.0" encoding="utf-8"?>
+<pre><code class="html" file="become_hidden.html"><?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
@@ -52,8 +50,7 @@ then create two <sc>html</sc> files. One to hide:
 
 the other to be visible again (it can be useful):
 
-<code class="html" file="become_visible.html">
-<?xml version="1.0" encoding="utf-8"?>
+<pre><code class="html" file="become_visible.html"><?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">

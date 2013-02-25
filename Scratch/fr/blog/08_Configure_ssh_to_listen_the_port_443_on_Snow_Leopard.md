@@ -15,8 +15,7 @@ Que ce soit pour surfer en toute sécurité depuis un accès <sc>wifi</sc> non s
 Ensuite de mon portable ou de mon ordinateur local, je dois simplement lancé la merveilleuse commande :
 
 <div>
-<code class="zsh">
-ssh -p 443 -D 9050 username@host
+<pre><code class="zsh">ssh -p 443 -D 9050 username@host
 </code></pre>
 </div>
 
@@ -36,8 +35,7 @@ Merci à tous ceux qui m'ont aidé. Et la solution est :
 Créer un fichier <tt>/Library/LaunchDaemons/ssh-443.plist</tt> contenant :
 
 <div>
-<code class="xml" file="ssh-443.plist">
-<?xml version="1.0" encoding="UTF-8"?>
+<pre><code class="xml" file="ssh-443.plist"><?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>

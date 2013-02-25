@@ -60,8 +60,7 @@ En réalité j'ai besoin d'un plus d'informations pour créer mon mot de passe :
 
 Le mot de passe résultant est calculé comme suit :
 
-<code class="ruby">
-domainName=domaine_Name_Of_URL(url)
+<pre><code class="ruby">domainName=domaine_Name_Of_URL(url)
 hash=sha1( masterPassword + leakedTimes + domainName )
 if ( kind == 'base64' )
     hash=base64(hash)

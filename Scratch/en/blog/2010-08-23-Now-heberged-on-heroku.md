@@ -22,8 +22,7 @@ The root of my files is `/output`. You only need to create a `config.ru`[^1] fil
 
 [^1]: I was inspired by this [article](http://gmarik.info/blog/2010/05/10/blogging-with-jekyll-and-heroku-for-free). 
 
-<code class="ruby" file="config.ru">
-require 'rubygems'
+<pre><code class="ruby" file="config.ru">require 'rubygems'
 require 'rack'
 require 'rack/contrib'
 require 'rack-rewrite'
@@ -69,16 +68,14 @@ run lambda { [404, {
 
 and the `.gems` file needed to install `rack` middlewares.
 
-<code class="ruby" file=".gems">
-rack
+<pre><code class="ruby" file=".gems">rack
 rack-rewrite
 rack-contrib
 </code></pre>
 
 Now, just follow the heroku tutorial to create an application :
 
-<code class="zsh">
-git init
+<pre><code class="zsh">git init
 git add .
 heroku create
 git push heroku master

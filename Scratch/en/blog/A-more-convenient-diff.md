@@ -15,8 +15,7 @@ This is why, when you use `git` it will use a better formatting and colorize it.
 
 Here is the script I use when I want to use human readable `diff` à la git.  
 
-<code class="zsh" file="ydiff">
-#!/usr/bin/env zsh
+<pre><code class="zsh" file="ydiff">#!/usr/bin/env zsh
 
 # Load colors helpers
 autoload -U colors && colors

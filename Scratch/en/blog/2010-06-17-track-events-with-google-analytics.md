@@ -15,15 +15,13 @@ Here is how to track all clicks on your website using google analytics asynchron
 
 First in your <sc>html</sc> you need to use [jQuery](http://jquery.com) and a javscript file I named `yga.js`:
 
-<code class="html">
-    <script type="text/javascript" src="jquery.js"></script>
+<pre><code class="html">    <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="yga.js"></script>
 </code></pre>
 
 And here is the `yga.js` file:
 
-<code class="javascript" file="yga.js">
-$(document).ready( function() {
+<pre><code class="javascript" file="yga.js">$(document).ready( function() {
     // add an event to all link for google analytics
     $('a').click(function () {
         // tell analytics to save event

@@ -10,8 +10,7 @@ tags:  mandelbrot, haskell, ASCII, golfed
 -----
 Voici le code "obfusqué" :
 
-<code class="haskell" file="animandel.hs">
-a=27;b=79;c=C(-2.0,-1.0);d=C(1.0,1.0);e=C(-2.501,-1.003)
+<pre><code class="haskell" file="animandel.hs">a=27;b=79;c=C(-2.0,-1.0);d=C(1.0,1.0);e=C(-2.501,-1.003)
 newtype C = C (Double,Double) deriving (Show,Eq)
 instance Num C where C(x,y)*C(z,t)=C(z*x-y*t,y*z+x*t);C(x,y)+C(z,t)=C(x+z,y+t);abs(C(x,y))=C(sqrt(x*x+y*y),0.0)
 r(C(x,y))=x;i(C(x,y))=y
@@ -58,8 +57,7 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$&&&&&&&&&&WWWWOUC,                         j    llW&&$
 
 Here is the more readable version. I believe with this far more readable version, no more explanation is needed.
 
-<code class="haskell">
-nbvert = 30
+<pre><code class="haskell">nbvert = 30
 nbhor = 79
 zoomfactor = 1.01
 init_bottom_left = C (-2.0,-2.0)
