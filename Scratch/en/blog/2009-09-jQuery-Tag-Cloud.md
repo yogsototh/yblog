@@ -18,13 +18,13 @@ But you can easily translate from Ruby to Javascript.
 
 Here is what you should obtain:
 
-newcorps
+---
 
 <div>
 <%= tagCloud %>
 </div>
 
-newcorps
+---
 
 # jQuery
 
@@ -68,7 +68,7 @@ and a div containing links associtated to this tag:
 </code></pre>
 </div>
 
-newcorps
+---
 
 # nanoc
 

@@ -25,7 +25,7 @@ Que pouvez-vous attendre de ce système de blog ?
 
 Pour vous donner une idée plus précise, voici la documentation que j'ai faite (en anglais) pour accompagner le code.
 
-newcorps
+---
 
 # Main Documentation Page
 
@@ -43,7 +43,7 @@ $ ./task/recompile
 
 Now your website reside into the `output` directory.
 
-newcorps
+---
 
 # Documentation
 

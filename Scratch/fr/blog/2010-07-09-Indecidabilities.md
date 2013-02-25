@@ -23,7 +23,7 @@ tags:  mathématiques, science, philosophy, indecidability
 
 </div>
 
-newcorps
+---
 
 # Les indécidabilités
 
@@ -211,7 +211,7 @@ C'est simple, je suis le démiurge de ce monde imaginaire.
 Et même moi, je dois me soumettre à cette règle.
 Comme quoi, avoir la possibilité de créer le monde et la toute puissance sont deux choses différentes.
 
-newcorps
+---
 
 Après tout ceci, il peut sembler difficile de savoir en quoi nous pouvons croire.
 Mais ce serait une erreur de jeter le bébé avec l'eau du bain.

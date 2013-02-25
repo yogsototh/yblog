@@ -22,6 +22,10 @@ removemacros(){
 	$_.gsub!(/^macros:\n( +.*\n)+/,"")'
 }
 
+removeNewCorps(){
+	perl -pe 's#newcorps#---#'
+}
+
 fixmeta() {
 	awk 'BEGIN {inblock=0}
 	/^-+/ && inblock==1 { inblock=2 }
@@ -56,6 +60,7 @@ for src in $srcdir/**/*.{erb,md}; do
 		| fixcode \
 		| fixdiv \
 		| fixmetablock \
+		| removeNewCorps \
 		>$tmp
 	# search for blogimage
 	imgfilename="$(grep "blogimage" $tmp | head -n 1 | perl -pe 's#[^"]*"([^"]*)".*$#$1#' )"
@@ -73,6 +78,6 @@ for src in $srcdir/**/*.{erb,md}; do
 		<$tmp >$dst
 	fi
 	if $(grep '<%' $dst >/dev/null); then
-		print "=== $dst ==="
+		print "Contains erb: $dst"
 	fi
 done

@@ -44,7 +44,7 @@ Finally, the problem was crushed in less than 20 minutes.
 I believe the important lesson is to remember that the most efficient methodology to resolve this *pragmatic* problem was the *theoretical* one. 
 And therefore, argues opposing science, theory to pragmatism and efficiency are fallacies.
 
-newcorps
+---
 
 # First: my experience
 

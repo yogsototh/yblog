@@ -14,7 +14,7 @@ tags:  jQuery, design, web
 C'est pourquoi mon design n'est pas minimaliste. Mais j'ai décidé d'enlever la majorité des objets servant à la navigation pour améliorer l'attention sur l'article. Peut-être que plus tard, je préfèrerai laisser le menu dans les pages normales du site pour ne le cacher que dans les articles de blog.
 Pour l'instant je le cache partout.
 
-newcorps
+---
 
 ## Détails techniques
 

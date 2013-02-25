@@ -12,7 +12,7 @@ tags:  git, dcvs, programming
 
 <small> <em> Le fait est que les *branches légères* ne sont pas destinée à être des branches isolées. Ainsi, il y a un </em>"workflow standard"<em> qui s'il n'est pas suivi rend l'utilisation de Git inappropriée.  </em> </small>
 
-newcorps
+---
 
 # La décentralisation en action
 
@@ -53,7 +53,7 @@ C'est en lisant un article j'ai enfin compris ce qu'il me manquait. C'est la par
 
 <small><a name="note2">&#42;</a> - Je n'ai pas vraiment donné sa chance à Mercurial, la terminologie qu'ils utilisaient était trop éloignée de celle de svn à laquelle je m'étais habituée.</small>
 
-newcorps
+---
 
 Lorsqu'on voit les présentations autour de la notion de *branche* et de <abbr title="Système de Version Concurentes Décentralisé"><sc>dcvs</sc></abbr>, on s'imagine dans un monde où chaque branche est totalement isolée des autres sauf au moment de "merger" les différences les unes des autres. 
 Tout est magique. C'est la façon de voir "*Mondes Parallèles*". Cette façon de voir est expliquée dans le [très bon article sur les branches](http://betterexplained.com/articles/a-visual-guide-to-version-control/) sur betterexplained.
@@ -163,7 +163,7 @@ Bon alors, voilà, les défauts de Git. Mais, il a par contre beaucoup d'avantag
 
 <small><a name="note3">&Dagger;</a> - Il faut aussi préciser qu'ayant travaillé sur les logiques multi-modales et en particulier sur les logiques temporelles (linéaires ou non), j'étais plus enclin à adhérer à cette vision des choses. "Ah mes premiers amours dans la recherche scientifique !"</small>
 
-newcorps
+---
 
 # Conclusion
 

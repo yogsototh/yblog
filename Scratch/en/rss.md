@@ -13,7 +13,7 @@ You have the capability to subscribe to my RSS flux. But what it is all about?
 
 You can visit [what is rss](http://www.whatisrss.com) or even better look this cool video: [RSS explained](http://www.youtube.com/watch?v=0klgLsSxGsU). 
 
-newcorps
+---
 
 ## My explanation
 

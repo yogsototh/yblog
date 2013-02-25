@@ -23,7 +23,7 @@ Cependant, dans la documentation officielle, je n'ai pas trouvé clairement ce q
 
 En d'autres termes, si vous souhaitez utiliser le type de *workflow* que SVN proposait avec Git (et ses avantages), voici comment procéder.
 
-newcorps
+---
 
 ## Initialisation
 
@@ -78,7 +78,7 @@ Je vous conseille de faire la même opération sur l'ordinateur qui à servi à 
 </em>
 </div>
 
-newcorps
+---
 
 ## L'utilisation courante
 

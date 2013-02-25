@@ -17,7 +17,7 @@ Unfortunately I didn't find clearly what I needed on the official Git documentat
 
 In two words, if you want to use an SVN workflow with Git (and all its advantages) here is how to proceed.
 
-newcorps
+---
 
 ## Initialisation
 
@@ -69,7 +69,7 @@ You should make this operation also on the computer used to create the repositor
 </em>
 </div>
 
-newcorps
+---
 
 ## The workflow
 

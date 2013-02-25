@@ -44,7 +44,7 @@ Finalement, le problème fut résolu en moins de 20 minutes.
 Je pense que la leçon à retenir de cette expérience est de se souvenir que la méthodologie la plus efficace pour résoudre ce problème *pragamtique* était la méthode *théorique*. 
 Ça ne signifie pas que la méthode théorique est toujours la meilleure, mais en tout cas, il ne faut pas l'écarter.
 
-newcorps
+---
 
 # L'anecdote
 

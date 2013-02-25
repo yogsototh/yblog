@@ -27,7 +27,7 @@ But the first hypothesis remain coherent. And, we should probably make an in dep
 
 One of the strength of this movie is to understand there is many other coherent hypothesis. It is an expression of the [Rashomon effect](http://en.wikipedia.org/wiki/Rashomon_effect). Many different persons could describe in a coherent manner what they saw. But each description contradicts the others.
 
-newcorps
+---
 
 ## Conclusion
 

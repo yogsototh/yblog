@@ -15,7 +15,7 @@ Il suffit d'aller sur [http://betterthangrep.com](http://betterthangrep.com) pou
 
 Sincèrement, je ne comprend pas qu'`ack` ne soit pas une commande implémentée par défaut sur les systèmes UNIX. Je ne peux vraiment plus m'en passer, il m'est devenu aussi essentiel qu'un `which` ou un `find`.
 
-newcorps
+---
 
 Mieux que grep
 =============================================

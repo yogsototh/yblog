@@ -23,7 +23,7 @@ What this system provide?
 * Typographic ameliorations (no ':' starting a line in French for example),
 * [Graphviz](http://graphviz.org) graph generation integration.
 
-newcorps
+---
 
 # Main Documentation Page
 
@@ -39,7 +39,7 @@ $ ./task/recompile
 
 Now your website reside into the `output` directory.
 
-newcorps
+---
 
 # Documentation
 

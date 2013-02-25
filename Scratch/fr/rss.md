@@ -15,7 +15,7 @@ On vous propose de vous abonner au flux RSS. Mais de quoi s'agit il ?
 
 Si vous n'êtes pas anglophobe je vous recommande la lecture de [what is rss](http://www.whatisrss.com) ou encore mieux, de regarder cette vidéo [RSS explained](http://www.youtube.com/watch?v=0klgLsSxGsU). 
 
-newcorps
+---
 
 ## Mon explication
 

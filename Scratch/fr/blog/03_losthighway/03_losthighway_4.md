@@ -31,7 +31,7 @@ La première me semble aussi cohérente. C'est cette première hypothèse que j'
 
 Ce qui montre la force de ce film c'est de se dire qu'il y a de nombreuses autres hypothèses qui pourraient aussi bien fonctionner. C'est le fameux [effet Rashomon](http://en.wikipedia.org/wiki/Rashomon_effect). Plusieurs personnes peuvent décrire de façon cohérentes ce qu'elles ont vu, mais toutes les descriptions sont incohérentes entres-elles.
 
-newcorps
+---
 
 ## Conclusion
 

@@ -17,7 +17,7 @@ iDisk va bientôt disparaître. Cet article est donc presque complètement obsol
 J'ai mis à jour mon script [avec une version incrémentale](/Scratch/fr/blog/2009-10-28-custom-website-synchronisation-with-mobileme--2-) bien plus pratique.
 En plus depuis l'écriture de cet article Apple(c) semble avoir nettement amélioré la vitesse de ses serveurs en Europe.
 
-newcorps
+---
 
 # WebDav terror
 
