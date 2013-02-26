@@ -53,6 +53,15 @@ I give an **interpretation** and not an **explanation**. Just to tell my vision 
 There is certainly many coherent explanations.
 
 I write this post because I believe I had found an interpretation which seems coherent for most of the movie.
+-----
+kind: article
+menupriority: 1
+published: 2009-08-04
+title: A try to demystify 'Lost Highway'
+author: Yann Esposito
+authoruri: yannesposito.com
+subtitle: Movie's keys
+-----
 
 # Movie's keys
 
@@ -85,6 +94,16 @@ Because of the dialog at the begining of the movie. Cops ask Fred if he's own a 
 
 Then, what we see is not reality but the Fred's perception. Fred is the God of the reality we see. This is why some God/Devil interpretation of the movie works not so bad.
 
+-----
+kind: article
+image: /Scratch/img/blog/03_losthighway_2/mysteryman.jpg
+menupriority: 2
+published: 2009-08-04
+title: A try to demystify 'Lost Highway'
+author: Yann Esposito
+authoruri: yannesposito.com
+subtitle: Who is the mystery man?
+-----
 
 ## Who is the mysterious man?
 
@@ -100,6 +119,15 @@ It also force Fred to remember the reality.
 
 When he makes love to his wife (Renee), he sees the face of the Mysterious Man instead of his wife's face. In reality, it's the same person for Fred. It should be her who's the origin of his interior badness.
 
+-----
+kind: article
+menupriority: 3
+published: 2009-08-04
+title: A try to demystify 'Lost Highway'
+author: Yann Esposito
+authoruri: yannesposito.com
+subtitle: Who's at the origin of the video tapes?
+-----
 
 ## Who's at the origin of the video tapes?
 
@@ -108,6 +136,15 @@ Their reason should be:
 
   + Remember the reality to Fred. From Fred point-of-view, video tapes are the reality. He tries to forget reality. But, finally, the video tapes go to the end: the murder of his wife.
   + It may also be a reference to pornographic video tapes, made by Renee.
+-----
+kind: article
+menupriority: 4
+published: 2009-08-04
+title: A try to demystify 'Lost Highway'
+author: Yann Esposito
+authoruri: yannesposito.com
+subtitle: What really happened?
+-----
 
 ## What really happened?
 

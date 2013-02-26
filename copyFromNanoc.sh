@@ -52,8 +52,9 @@ fixmetablock() {
 	| removemacros
 }
 
-
-for src in $srcdir/**/*.{erb,md}; do
+filelist=( $srcdir/**/*.{erb,md} )
+for src in $filelist; do
+	(( i++%10 == 0 )) && print -- "$i/${#filelist} ($((i*100/${#filelist}))%)"
 	tmp=/tmp/tmp$$.tmp
 	dst=$dstdir/${src##$srcdir/}
 	[[ ! -d ${dst:h} ]] && mkdir -p ${dst:h}
@@ -81,4 +82,14 @@ for src in $srcdir/**/*.{erb,md}; do
 	if $(grep '<%' $dst >/dev/null); then
 		print "Contains erb: $dst"
 	fi
+done
+
+# Fix specific blog posts
+print -- "Fix Multipage Entries"
+for dir in $dstdir/??/blog/*(/); do
+	print -- $dir
+	fics=( $(awk '/menupriority:/{print $2" "FILENAME;nextfile}' $dir/*.md | sort -n | awk '{print $2}') )
+	{cat $dir.md ; for fic in $fics; awk 'BEGIN{show=0} show>=2{print} /^--+/{show++}' $fic} > $dir.tmp \
+	&& mv -f $dir.tmp $dir.md \
+	&& \rm -rf $dir
 done

@@ -229,6 +229,18 @@ body, h1, h2, h3, h4, #entete, .tagname
 body
   font-family: Georgia, Palatino, "Century Schoolbook L", "Times New Roman", Times, serif
 
+#choix
+  font-style: italic
+#navigation
+  letter-spacing: .25em
+  margin: 1em auto 2em
+  font-size: 1.25em
+  text-align: center
+  font-weight: bold
+  .sep
+    opacity: .3
+    font-style: italic
+
 /* Header Numbering */
 .article #afterheader
   counter-reset: niv02
@@ -300,7 +312,7 @@ acronym
 
 =clearbutton
   display: block
-  width: 25%
+  width: 20%
   cursor: pointer
   margin: 1em 0
   padding: 1em
@@ -338,7 +350,7 @@ acronym
 .nojsbutton
   font-size: 2.5em
 
-#clickcomment, #choixlang > a, #choixrss > a, .return > a
+#clickcomment, #choixrss > a
   +clearbutton
 
 .return > a, #choixrss > a
@@ -347,11 +359,11 @@ acronym
 #choix
   .return > a, #choixrss > a
     margin-top: 0
-  #return
+  #switchcss
     float: right
   #choixlang
     float: left
-    width: 25%
+  #choixlang, #switchcss
     a
       margin-top: 0
       width: 100%
@@ -515,7 +527,7 @@ $hauteur_menu: 4em
 
 // Le Contenu
 #content
-  line-height: 4em
+  line-height: 2em
   margin-left: auto
   margin-right: auto
   margin-top: 0
@@ -740,35 +752,6 @@ img.inside
 pre
   overflow-x: auto
   overflow-y: hidden
-
-.navigationprev, .navigationnext
-  padding: 0px
-  margin-left: 0.2em
-  margin-right: 0.2em
-  margin-bottom: 0
-  margin-top: $VMarginCorps
-  width: 45%
-
-.navigation .navigationprev,
-.navigation .navigationnext
-  width: 30%
-  margin-top: 0
-
-.navigation
-  height: 4em
-  border-bottom: $lighterColorBorderBottom solid 1px
-
-.presarticleleft,
-.presarticleright
-  font-size: 1em
-
-.navigationprev
-  float: left
-  text-align: left
-
-.navigationnext
-  float: right
-  text-align: right
 
 .impact, .darkimpact
   text-align: left

@@ -3,7 +3,7 @@ function initCode() {
         if (! /chrome/.test(userAgent) ) {
             // Disable animation in chrome
             // It seems they have some progress to do :(
-            $('head').append('<link rel="stylesheet" href="/Scratch/assets/css/dynamic.css" type="text/css" />');
+            $('head').append('<link rel="stylesheet" href="/Scratch/css/dynamic.css" type="text/css" />');
         }
     }
 }
@@ -78,11 +78,11 @@ function detectClient() {
 //     $('#blackpage').append('<div class="preintro"><div class="corps">'+msgintro+'</div></div>');
 // });
 
-var pref='/Scratch/assets/css';
+var pref='/Scratch/css';
 var styleindex=0;
 var styles=[ pref+'/scientific.css'
-		  , pref+'/modern.css'
-		  , pref+'/darkmodern.css'];
+		   , pref+'/modern.css'
+		   , pref+'/darkmodern.css'];
 
 function reloadStylesheets() {
 	var queryString = '?reload=' + new Date().getTime();
@@ -109,6 +109,7 @@ function switchcss() {
 		setTimeout(function(){switchCssTo($.cookie('css'));}, 1000);
 	}
 	$('#switchcss').click(function(){
+        console.log("Switched to " + styles[styleindex+1 % styles.length]);
 		switchCssTo(styles[ (styleindex+1) % styles.length ]);
 		});
 }

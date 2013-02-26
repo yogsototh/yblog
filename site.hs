@@ -38,8 +38,8 @@ markdownBehavior = do
     return $ renderPandoc (fmap (preFilters itemPath) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
-    >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
     >>= relativizeUrls
+    >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
   where
     applyFilter f str = return $ (fmap $ f) str
     preFilters :: Maybe String -> String -> String
@@ -66,8 +66,8 @@ markdownPostBehavior = do
     return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
-    >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
     >>= relativizeUrls
+    >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
   where
     applyFilter f str = return $ (fmap $ f) str
     preFilters :: String -> String -> String
@@ -92,8 +92,8 @@ archiveBehavior language = do
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
                 >>= relativizeUrls
+                >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -137,8 +137,8 @@ main = hakyll $ do
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
                 >>= relativizeUrls
+                >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
 
     match "templates/*" $ compile templateCompiler
 

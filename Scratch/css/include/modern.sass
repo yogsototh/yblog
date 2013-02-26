@@ -17,12 +17,31 @@ body
 
 a
   text-decoration: none
-  color: $yellow
-a:visited
-  color: $blue
-a:hover
   color: $orange
+a:visited
+  color: $violet
+a:hover
+  color: $blue
+  text-shadow: 0 0 1px $red
 
+.corps
+  a
+    color: $front
+    &:after
+      content: '*'
+      line-height: 0
+      font-size: .66em
+      vertical-align: super
+    &:visited
+      color: $front
+
+#navigation
+  text-align: center
+  padding: 1em
+  letter-spacing: .25em
+  .sep
+    opacity: .3
+    font-style: italic
 
 #blackpage, #nojsredirect
   top: 0
@@ -35,10 +54,10 @@ a:hover
   margin-bottom: 0
   position: fixed
   text-align: center
-  background: $altbackground
+  background: $background
 
 #content
-  background: $background
+  background: $textbackground
   color: $front
   width: 37*$unit + 2*$hmargin
   margin: 0 auto
@@ -56,7 +75,7 @@ a:hover
     padding: 0 $hmargin
     tr
       &:nth-child(odd)
-        background-color: $altbackground
+        background-color: $background
       th
         border: solid medium $altfront
         padding: 0.25*$unit
@@ -125,19 +144,23 @@ a:hover
 
 #choixlang
   float: left
+#switchcss
+  float: right
 #choix
   text-align: center
 #choix > div
   display: inline-block
 
 
+#header
+  background: $background
+
 #choix
   text-align: center
   font-size: (3*$unit / 4)
-  background: $background
   padding: 0 $unit
   font-weight: bold
-  .return
+  #switchcss
     float: right
 .cut
   color: $front
@@ -155,16 +178,16 @@ hr
   margin: 0 $hmargin
 p code, li code
   padding: 1px 2px
-  background: $altbackground
+  background: $background
   border: solid 1px $altfront
 #content
   blockquote
     border: solid 1px $altfront
-    background: $altbackground
+    background: $background
     p
       padding: 0 $unit
     code
-      background: $altbackground
+      background: $background
       border: solid 1px rgba(0,0,0,0.1)
     pre code
       background: none
@@ -225,7 +248,7 @@ p code, li code
   ul li
     display: inline-block
     span.active
-      color: $yellow
+      color: $orange
   ul li > *
     padding: 2px $unit
     border: solid
@@ -337,13 +360,13 @@ pre .list
       padding: $unit
       margin: $unit
     pre,code
-      background-color: $altbackground
+      background-color: $background
       border: 1px solid $altfront
       code
         border: none
         background: none
     blockquote
-      background-color: $altbackground
+      background-color: $background
       border-color: $altfront
     h1,h2,h3,h4,h5,h6
       color: $lighter
@@ -357,7 +380,7 @@ pre .list
       max-width: 80%
       margin: $unit auto
       padding: .5*$unit
-      background-color: $altbackground
+      background-color: $background
       border: solid 1px $altfront
     img.right, img.left, figure.right, figure.left
       max-width: 26%
@@ -380,3 +403,20 @@ pre .list
   font-size: (14 * $unit / 20)
   padding: 0 $hmargin
   margin: $unit 0
+
+.inlineblockimg
+  width: 60px
+  margin: 0 8px
+  text-align: center
+  vertical-align: middle
+  display: inline-block
+img.inlineimage
+  max-height: 48px
+  max-width: 48px
+  border: solid
+  box-shadow: none
+  margin: 0 auto
+  vertical-align: middle
+  font-size: 7px
+  font-family: Helvetica, sans-serif
+  overflow: hidden
