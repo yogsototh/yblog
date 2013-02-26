@@ -7,8 +7,8 @@ menupriority: 1
 
 <img src="/Scratch/img/about/avatar.png" alt="Avatar" class="clean left"/>
 
-%mailperso
-  Suivez moi sur [twitter](http://twitter.com/yogsototh)  
-  Mes "bookmarks" [pinboard](http://pinboard.in/u:yogsototh)  
-  Open Source [github](http://github.com/yogsototh)  
+%mailperso  
+Suivez moi sur [twitter](http://twitter.com/yogsototh)  
+Mes "bookmarks" [pinboard](http://pinboard.in/u:yogsototh)  
+Open Source [github](http://github.com/yogsototh)  
 [stackoverflow](http://stackoverflow.com/users/40569/yogsototh)  

@@ -1,5 +1,5 @@
 -----
-title: À propos
+title: Qui est derrière ce site?
 menupriority: 4
 -----
 
@@ -7,14 +7,12 @@ menupriority: 4
 
 ![Une photo de moi](/Scratch/img/about/yann1.jpg)
 
-<div>
-    <desc informations générales>
-    Nom : Yann Esposito ::
-    Diplôme : Doctorat d'Informatique ::
-    École : Université de Provence ::
-    Emplois : Informaticien à Sophia Antipolis ::
-    </desc>
-</div>
+--------  ----------------------------------
+Nom       Yann Esposito
+Diplôme   Doctorat d'Informatique
+École     Université de Provence
+Emplois   Informaticien à Sophia Antipolis
+--------  ----------------------------------
 
 Livres que j'aime :
 
@@ -43,6 +41,6 @@ Je suis un passioné. Passioné par :
 
 Mais avant tout j'adore apprendre.
 Par exemple, j'ai appris de nombreux langages de programmation:
-`C`, `C++`, `Objective-C`, `Python`, `Java`,
-`Perl`, `awk`, `bash`, `zsh`, `LaTeX`, `Metapost`, `CamL`, `Haskell`...
+`Haskell`, `Python`, `Ruby`, `C`, `C++`, `Objective-C`, `Java`,
+`Perl`, `awk`, `bash`, `zsh`, %latex, `Metapost`, `CamL`...
 

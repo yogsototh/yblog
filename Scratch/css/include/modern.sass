@@ -84,10 +84,10 @@ a:hover
         border: solid 1px $altfront
         padding: 0.25*$unit
         margin: 0
-  figure
+  figure, .figure
     margin: 0
     padding: 0
-    figcaption
+    figcaption, .caption
       padding: 0 $hmargin
       margin: $unit 0
   p
@@ -298,11 +298,11 @@ pre .list
   float: left
   margin: 1.5%
   width: 30%
-  figure
+  figure, .figure
     width: 100%
     height: 120px
     overflow: hidden
-    figcaption
+    figcaption, .caption
       display: none
 
 // classes for colors
@@ -382,13 +382,13 @@ pre .list
       padding: .5*$unit
       background-color: $background
       border: solid 1px $altfront
-    img.right, img.left, figure.right, figure.left
+    img.right, img.left, figure.right, figure.left, .figure.right, .figure.left
       max-width: 26%
       margin: .5*$unit
       figcaption
         padding: 0
         text-align: center
-    figure
+    figure, .figure
       max-width: 80%
       margin: 0 auto
       img

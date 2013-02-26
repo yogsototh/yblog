@@ -108,10 +108,11 @@ main = hakyll $ do
           withItemBody (unixFilter "sass" ["--trace"]) >>=
           return . fmap compressCss
 
-    match "Scratch/en/blog/*.md" markdownPostBehavior
-    match "Scratch/fr/blog/*.md" markdownPostBehavior
-    match "Scratch/fr/*.md" markdownBehavior
-    match "Scratch/en/*.md" markdownBehavior
+    match "Scratch/*/blog/*.md" markdownPostBehavior
+    match "Scratch/*/*.md" markdownBehavior
+    match "Scratch/*/about/*.md" markdownBehavior
+    match "Scratch/*/softwares/*.md" markdownBehavior
+    match "Scratch/*/softwares/ypassword/*.md" markdownBehavior
 
     match "Scratch/fr/blog/*.erb" $ do
       route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
