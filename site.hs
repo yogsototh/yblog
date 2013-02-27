@@ -14,6 +14,69 @@ import           YFilters               (blogImage,blogFigure,frenchPunctuation)
 import           Multilang              (multiContext)
 import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>))
 
+--------------------------------------------------------------------------------
+main :: IO ()
+main = hakyll $ do
+    match "Scratch/img/**"      staticBehavior
+    match "Scratch/js/**"       staticBehavior
+    match "Scratch/css/fonts/*" staticBehavior
+
+    -- SASS
+    match "Scratch/css/*" $ do
+        route   $ setExtension "css"
+        compile $ getResourceString >>=
+          withItemBody (unixFilter "sass" ["--trace"]) >>=
+          return . fmap compressCss
+
+    -- Blog posts
+    match "Scratch/*/blog/*.md" markdownPostBehavior
+
+    -- Blog posts with erb extension
+    match "Scratch/fr/blog/*.erb" $ do
+      route $ niceRoute
+      compile $ getResourceBody
+            >>= loadAndApplyTemplate "templates/post.html" postCtx
+            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+    match "Scratch/en/blog/*.erb" $ do
+      route $ niceRoute
+      compile $ getResourceBody
+            >>= loadAndApplyTemplate "templates/post.html" postCtx
+            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+
+    -- Basic files
+    match "Scratch/*/*.md" markdownBehavior
+    match "Scratch/*/about/*.md" markdownBehavior
+    match "Scratch/*/softwares/*.md" markdownBehavior
+    match "Scratch/*/softwares/ypassword/*.md" markdownBehavior
+    match "Scratch/fr/blog/code/*" staticBehavior
+
+    -- Archives
+    match "Scratch/en/blog.md" (archiveBehavior "en")
+    match "Scratch/fr/blog.md" (archiveBehavior "fr")
+
+    -- Homepage
+    match "index.html" $ do
+        route idRoute
+        compile $ do
+            let indexCtx = (field "enposts" $ \_ -> homePostList "en" ((fmap (take 3)) . createdFirst)) <>
+                           (field "frposts" $ \_ -> homePostList "fr" ((fmap (take 3)) . createdFirst)) <>
+                           yDefaultContext
+            getResourceBody
+                >>= applyAsTemplate indexCtx
+                >>= relativizeUrls
+                >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
+
+    match "templates/*" $ compile templateCompiler
+
+--------------------------------------------------------------------------------
+--
+-- replace a foo/bar.md by foo/bar/index.html
+-- this way the url looks like: foo/bar in most browsers
+niceRoute :: Routes
+niceRoute = customRoute createIndexRoute
+  where
+    createIndexRoute ident = takeDirectory p </> takeBaseName p </> "index.html"
+                             where p=toFilePath ident
 
 --------------------------------------------------------------------------------
 -- Simply copy in the right place
@@ -22,7 +85,9 @@ staticBehavior = do
   route   idRoute
   compile copyFileCompiler
 
+
 --------------------------------------------------------------------------------
+--
 -- change the extension to html
 -- prefilter the markdown
 -- apply pandoc (markdown -> html)
@@ -30,7 +95,7 @@ staticBehavior = do
 -- apply templates posts then default then relitivize url
 markdownBehavior :: Rules ()
 markdownBehavior = do
-  route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
+  route $ niceRoute
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
@@ -59,7 +124,7 @@ markdownBehavior = do
 -- apply templates posts then default then relitivize url
 markdownPostBehavior :: Rules ()
 markdownPostBehavior = do
-  route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
+  route $ niceRoute
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
@@ -82,66 +147,30 @@ markdownPostBehavior = do
 --------------------------------------------------------------------------------
 archiveBehavior :: String -> Rules ()
 archiveBehavior language = do
-        route idRoute
-        compile $ do
-            let archiveCtx =
-                    field "posts" (\_ -> postList language createdFirst) <>
-                    constField "title" "Archives"               <>
-                    yDefaultContext
-
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= relativizeUrls
-                >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
-
---------------------------------------------------------------------------------
-main :: IO ()
-main = hakyll $ do
-    match "Scratch/img/**"      staticBehavior
-    match "Scratch/js/**"       staticBehavior
-    match "Scratch/css/fonts/*" staticBehavior
-
-    match "Scratch/css/*" $ do
-        route   $ setExtension "css"
-        compile $ getResourceString >>=
-          withItemBody (unixFilter "sass" ["--trace"]) >>=
-          return . fmap compressCss
-
-    match "Scratch/*/blog/*.md" markdownPostBehavior
-    match "Scratch/*/*.md" markdownBehavior
-    match "Scratch/*/about/*.md" markdownBehavior
-    match "Scratch/*/softwares/*.md" markdownBehavior
-    match "Scratch/*/softwares/ypassword/*.md" markdownBehavior
-
-    match "Scratch/fr/blog/*.erb" $ do
-      route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
-      compile $ getResourceBody
-            >>= loadAndApplyTemplate "templates/post.html" postCtx
-            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
-    match "Scratch/en/blog/*.erb" $ do
-      route $ customRoute (\ident -> let p=toFilePath ident in takeDirectory p </> takeBaseName p </> "index.html" )
-      compile $ getResourceBody
-            >>= loadAndApplyTemplate "templates/post.html" postCtx
-            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
-
-    match "Scratch/fr/blog/code/*" staticBehavior
-    -- TODO erb Behavior
-
-    create ["Scratch/en/archive.html"] (archiveBehavior "en")
-    create ["Scratch/fr/archive.html"] (archiveBehavior "fr")
-
-    match "index.html" $ do
-        route idRoute
-        compile $ do
-            let indexCtx = field "posts" $ \_ -> postList "en" ((fmap (take 3)) . createdFirst)
-
-            getResourceBody
-                >>= applyAsTemplate indexCtx
-                >>= relativizeUrls
-                >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
-
-    match "templates/*" $ compile templateCompiler
+  route $ niceRoute
+  compile $ do
+    body <- getResourceBody
+    identifier <- getUnderlying
+    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
+    >>= applyFilter postFilters
+    >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
+    >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+    >>= relativizeUrls
+    >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
+  where
+    applyFilter f str = return $ (fmap $ f) str
+    preFilters :: String -> String -> String
+    preFilters itemPath =   abbreviationFilter
+                          . blogImage itemName
+                          . blogFigure itemName
+                          where
+                            itemName = takeBaseName itemPath
+    archiveCtx =
+      field "posts" (\_ -> postList language createdFirst) <>
+      constField "title" "Archives"                        <>
+      yDefaultContext
+    postFilters :: String -> String
+    postFilters = frenchPunctuation
 
 --------------------------------------------------------------------------------
 yDefaultContext :: Context String
@@ -188,5 +217,13 @@ postList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler Stri
 postList language sortFilter = do
     posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
+    list    <- applyTemplateList itemTpl postCtx posts
+    return list
+
+--------------------------------------------------------------------------------
+homePostList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
+homePostList language sortFilter = do
+    posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
+    itemTpl <- loadBody "templates/home-post-item.html"
     list    <- applyTemplateList itemTpl postCtx posts
     return list
