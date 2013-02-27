@@ -31,17 +31,12 @@ main = hakyll $ do
     -- Blog posts
     match "Scratch/*/blog/*.md" markdownPostBehavior
 
-    -- Blog posts with erb extension
-    match "Scratch/fr/blog/*.erb" $ do
-      route $ niceRoute
-      compile $ getResourceBody
-            >>= loadAndApplyTemplate "templates/post.html" postCtx
-            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
-    match "Scratch/en/blog/*.erb" $ do
-      route $ niceRoute
-      compile $ getResourceBody
-            >>= loadAndApplyTemplate "templates/post.html" postCtx
-            >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+    -- Blog posts with html extension aren't filtered
+    match "Scratch/*/blog/*.html" $ htmlPostBehavior
+
+    -- Archives
+    match "Scratch/en/blog.md" (archiveBehavior "en")
+    match "Scratch/fr/blog.md" (archiveBehavior "fr")
 
     -- Basic files
     match "Scratch/*/*.md" markdownBehavior
@@ -50,9 +45,6 @@ main = hakyll $ do
     match "Scratch/*/softwares/ypassword/*.md" markdownBehavior
     match "Scratch/fr/blog/code/*" staticBehavior
 
-    -- Archives
-    match "Scratch/en/blog.md" (archiveBehavior "en")
-    match "Scratch/fr/blog.md" (archiveBehavior "fr")
 
     -- Homepage
     match "index.html" $ do
@@ -63,7 +55,6 @@ main = hakyll $ do
                            yDefaultContext
             getResourceBody
                 >>= applyAsTemplate indexCtx
-                >>= relativizeUrls
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
 
     match "templates/*" $ compile templateCompiler
@@ -85,6 +76,18 @@ staticBehavior = do
   route   idRoute
   compile copyFileCompiler
 
+--------------------------------------------------------------------------------
+applyFilter :: (Monad m, Functor f) => (String -> String) -> f String -> m (f String)
+applyFilter transformator str = return $ (fmap $ transformator) str
+
+--------------------------------------------------------------------------------
+htmlPostBehavior :: Rules ()
+htmlPostBehavior = do
+  route $ niceRoute
+  compile $ getResourceBody
+        >>= applyFilter (abbreviationFilter . frenchPunctuation)
+        >>= loadAndApplyTemplate "templates/post.html" postCtx
+        >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
 
 --------------------------------------------------------------------------------
 --
@@ -103,10 +106,8 @@ markdownBehavior = do
     return $ renderPandoc (fmap (preFilters itemPath) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
-    >>= relativizeUrls
     >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
   where
-    applyFilter f str = return $ (fmap $ f) str
     preFilters :: Maybe String -> String -> String
     preFilters itemPath =   abbreviationFilter
                           . blogImage itemName
@@ -131,10 +132,8 @@ markdownPostBehavior = do
     return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
-    >>= relativizeUrls
     >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
   where
-    applyFilter f str = return $ (fmap $ f) str
     preFilters :: String -> String -> String
     preFilters itemPath =   abbreviationFilter
                           . blogImage itemName
@@ -155,10 +154,8 @@ archiveBehavior language = do
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
     >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-    >>= relativizeUrls
     >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
   where
-    applyFilter f str = return $ (fmap $ f) str
     preFilters :: String -> String -> String
     preFilters itemPath =   abbreviationFilter
                           . blogImage itemName
@@ -167,7 +164,6 @@ archiveBehavior language = do
                             itemName = takeBaseName itemPath
     archiveCtx =
       field "posts" (\_ -> postList language createdFirst) <>
-      constField "title" "Archives"                        <>
       yDefaultContext
     postFilters :: String -> String
     postFilters = frenchPunctuation

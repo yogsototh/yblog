@@ -293,17 +293,22 @@ pre .list
 .date
   margin-right: 10px
 
-.popularblock
-  display: block
-  float: left
-  margin: 1.5%
-  width: 30%
-  figure, .figure
-    width: 100%
-    height: 120px
-    overflow: hidden
-    figcaption, .caption
-      display: none
+#content
+  .popularblock
+    display: block
+    float: left
+    margin: 1.5%
+    width: 30%
+    a:after
+      content: ""
+    figure, .figure
+      width: 100%
+      overflow: hidden
+      img
+        height: 120px
+      figcaption, .caption
+        padding: 0
+        text-align: center
 
 // classes for colors
 .base03
