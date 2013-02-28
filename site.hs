@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Control.Monad          (forM)
-import           Data.Monoid            ((<>))
+import           Data.Monoid            ((<>),mconcat)
 import           Hakyll
 
 import           Data.List              (sortBy)
@@ -17,42 +17,47 @@ import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>))
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "Scratch/img/**"      staticBehavior
-    match "Scratch/js/**"       staticBehavior
-    match "Scratch/css/fonts/*" staticBehavior
+    match ("Scratch/img/**" .||. "Scratch/js/**" .||. "Scratch/css/fonts/*")
+      staticBehavior
 
-    -- SASS
+    -- Compressed SASS
     match "Scratch/css/*" $ do
         route   $ setExtension "css"
         compile $ getResourceString >>=
-          withItemBody (unixFilter "sass" ["--trace"]) >>=
-          return . fmap compressCss
+                  withItemBody (unixFilter "sass" ["--trace"]) >>=
+                  return . fmap compressCss
 
     -- Blog posts
     match "Scratch/*/blog/*.md" markdownPostBehavior
 
-    -- Blog posts with html extension aren't filtered
-    match "Scratch/*/blog/*.html" $ htmlPostBehavior
+    -- Blog posts with html extension
+    match "Scratch/*/blog/*.html" htmlPostBehavior
 
     -- Archives
     match "Scratch/en/blog.md" (archiveBehavior "en")
     match "Scratch/fr/blog.md" (archiveBehavior "fr")
 
-    -- Basic files
-    match "Scratch/*/*.md" markdownBehavior
-    match "Scratch/*/about/*.md" markdownBehavior
-    match "Scratch/*/softwares/*.md" markdownBehavior
-    match "Scratch/*/softwares/ypassword/*.md" markdownBehavior
-    match "Scratch/fr/blog/code/*" staticBehavior
+    -- RSS
+    create ["Scratch/en/blog/feed/feed.xml"] (feedBehavior "en")
+    create ["Scratch/fr/blog/feed/feed.xml"] (feedBehavior "fr")
 
+    -- Basic files
+    match (    "Scratch/*/*.md"
+          .||. "Scratch/*/about/*.md"
+          .||. "Scratch/*/softwares/*.md"
+          .||. "Scratch/*/softwares/ypassword/*.md" ) markdownBehavior
+
+    -- Blog code files
+    match "Scratch/fr/blog/code/*" staticBehavior
 
     -- Homepage
     match "index.html" $ do
         route idRoute
         compile $ do
-            let indexCtx = (field "enposts" $ \_ -> homePostList "en" ((fmap (take 3)) . createdFirst)) <>
-                           (field "frposts" $ \_ -> homePostList "fr" ((fmap (take 3)) . createdFirst)) <>
-                           yDefaultContext
+            let indexCtx =
+                    (field "enposts" $ \_ -> homePostList "en" createdFirst) <>
+                    (field "frposts" $ \_ -> homePostList "fr" createdFirst) <>
+                    yDefaultContext
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
@@ -86,6 +91,7 @@ htmlPostBehavior = do
   route $ niceRoute
   compile $ getResourceBody
         >>= applyFilter (abbreviationFilter . frenchPunctuation)
+        >>= saveSnapshot "content"
         >>= loadAndApplyTemplate "templates/post.html" postCtx
         >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
 
@@ -131,6 +137,7 @@ markdownPostBehavior = do
     identifier <- getUnderlying
     return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
+    >>= saveSnapshot "content"
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
   where
@@ -204,6 +211,29 @@ createdFirst items = do
   return $ map snd $ reverse $ sortBy (comparing fst) itemsWithTime
 
 --------------------------------------------------------------------------------
+feedBehavior :: String -> Rules ()
+feedBehavior language = do
+      route idRoute
+      compile $ do
+        loadAllSnapshots (fromGlob $ "Scratch/" ++ language ++ "/blog/*") "content"
+        >>= (fmap (take 10)) . createdFirst
+        >>= renderAtom (feedConfiguration "Yann Esposito") feedCtx
+
+--------------------------------------------------------------------------------
+feedCtx :: Context String
+feedCtx = mconcat [bodyField "description", yDefaultContext]
+
+--------------------------------------------------------------------------------
+feedConfiguration :: String -> FeedConfiguration
+feedConfiguration title = FeedConfiguration
+  { feedTitle = "yannesposito - " ++ title
+  , feedDescription = "Personal blog of Yann Esposito"
+  , feedAuthorName = "Yann Esposito"
+  , feedAuthorEmail = "yann.esposito@gmail.com"
+  , feedRoot = "http://yannesposito.com"
+  }
+
+--------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
     yDefaultContext
@@ -221,5 +251,5 @@ homePostList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler 
 homePostList language sortFilter = do
     posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/home-post-item.html"
-    list    <- applyTemplateList itemTpl postCtx posts
+    list    <- applyTemplateList itemTpl postCtx (take 3 posts)
     return list
