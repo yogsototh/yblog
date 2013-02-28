@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-image: /keynote/categories/img/mp/cat-hask-endofunctor.png
+image: http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-hask-endofunctor.png
 menupriority:   1
 kind:           article
 published: 2012-12-12
@@ -10,12 +10,12 @@ authoruri: yannesposito.com
 layout: article3
 tags:  category theory, math, functor
 -----
-<img src="/keynote/categories/img/mp/cat-hask-endofunctor.png" alt="Cateogry of Hask's endofunctors"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-hask-endofunctor.png" alt="Cateogry of Hask's endofunctors"/>
 
 <p>Yesterday I was happy to make a presentation about Category Theory at <a href="http://www.meetup.com/riviera-scala-clojure">Riviera Scala Clojure Meetup</a> (note I used only Haskell for my examples).</p>
 
-<ul><li><a href="/keynote/categories.html">Click here to go to the HTML presentation.</a>
-</li><li><a href="/keynote/categories.pdf">Click Here to download the PDF slides (%latex not rendered properly)</a>
+<ul><li><a href="http://yogsosoth.github.com/Category-Theory-Presentation/categories.html">Click here to go to the HTML presentation.</a>
+</li><li><a href="http://yogsosoth.github.com/Category-Theory-Presentation/categories.pdf">Click Here to download the PDF slides (%latex not rendered properly)</a>
 </li></ul>
 
 <p>If you don't want to read them through an HTML presentations framework or downloading a big PDF
@@ -65,14 +65,14 @@ just continue to read as a standard web page.
 <section class="slide">
 <h2 id="not-really-about-cat-glory">Not really about: Cat <span class="and">&amp;</span> glory</h2>
 <figure>
-<img src="/keynote/categories/img/categlory.jpg" alt="Cat n glory" /> <figcaption>credit to Tokuhiro Kawai (川井徳寛)</figcaption>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/categlory.jpg" alt="Cat n glory" /> <figcaption>credit to Tokuhiro Kawai (川井徳寛)</figcaption>
 </figure>
 
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="general-overview">General Overview</h2>
 <div style="float:right; width: 18%">
-<img src="/keynote/categories/img/eilenberg.gif" alt="Samuel Eilenberg"/> <img src="/keynote/categories/img/maclaine.jpg" alt="Saunders Mac Lane"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/eilenberg.gif" alt="Samuel Eilenberg"/> <img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/maclaine.jpg" alt="Saunders Mac Lane"/>
 </div>
 
 <p><em>Recent Math Field</em><br />1942-45, Samuel Eilenberg <span class="and">&amp;</span> Saunders Mac Lane</p>
@@ -98,7 +98,7 @@ just continue to read as a standard web page.
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="math-programming-relation">Math Programming relation</h2>
-<img class="right" src="/keynote/categories/img/buddha.gif" alt="Buddha Fractal"/>
+<img class="right" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/buddha.gif" alt="Buddha Fractal"/>
 <p>Programming <em><span class="orange">is</span></em> doing Math</p>
 <p>Strong relations between type theory and category theory.</p>
 <p>Not convinced?<br />Certainly a <em>vocabulary</em> problem.</p>
@@ -106,7 +106,7 @@ just continue to read as a standard web page.
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="vocabulary">Vocabulary</h2>
-<img class="right" src="/keynote/categories/img/mindblown.gif" alt="mind blown"/>
+<img class="right" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mindblown.gif" alt="mind blown"/>
 <p>Math vocabulary used in this presentation:</p>
 <blockquote style="width:55%">
 <p>Category, Morphism, Associativity, Preorder, Functor, Endofunctor, Categorial property, Commutative diagram, Isomorph, Initial, Dual, Monoid, Natural transformation, Monad, Klesli arrows, κατα-morphism, ...</p>
@@ -114,7 +114,7 @@ just continue to read as a standard web page.
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="programmer-translation">Programmer Translation</h2>
-<img class="right" src="/keynote/categories/img/readingcat.jpg" alt="lolcat"/>
+<img class="right" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/readingcat.jpg" alt="lolcat"/>
 <table style="width:50%">
 <tr><th>
 Mathematician
@@ -186,14 +186,14 @@ LOLCat
 <section class="slide">
 <h2>Category: Objects</h2>
 
-<img src="/keynote/categories/img/mp/objects.png" alt="objects" />
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/objects.png" alt="objects" />
 
 <p>\(\ob{\mathcal{C}}\) is a collection</p>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Category: Morphisms</h2>
 
-<img src="/keynote/categories/img/mp/morphisms.png" alt="morphisms"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/morphisms.png" alt="morphisms"/>
 
 <p>\(A\) and \(B\) objects of \(\C\)<br/>
 \(\hom{A,B}\) is a collection of morphisms<br/>
@@ -205,18 +205,18 @@ LOLCat
 <p>Composition (∘): associate to each couple \(f:A→B, g:B→C\)
     $$g∘f:A\rightarrow C$$
 </p>
-<img src="/keynote/categories/img/mp/composition.png" alt="composition"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/composition.png" alt="composition"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Category laws: neutral element</h2>
 <p>for each object \(X\), there is an \(\id_X:X→X\),<br/>
 such that for each \(f:A→B\):</p>
-<img src="/keynote/categories/img/mp/identity.png" alt="identity"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/identity.png" alt="identity"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Category laws: Associativity</h2>
 <p> Composition is associative:</p>
-<img src="/keynote/categories/img/mp/associativecomposition.png" alt="associative composition"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/associativecomposition.png" alt="associative composition"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Commutative diagrams</h2>
@@ -224,7 +224,7 @@ such that for each \(f:A→B\):</p>
 <p>Two path with the same source and destination are equal.</p>
 <figure class="left" style="max-width: 40%;margin-left: 5%;">
     <img
-      src="/keynote/categories/img/mp/commutative-diagram-assoc.png"
+      src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/commutative-diagram-assoc.png"
       alt="Commutative Diagram (Associativity)"/>
     <figcaption>
     \((h∘g)∘f = h∘(g∘f) \)
@@ -232,7 +232,7 @@ such that for each \(f:A→B\):</p>
 </figure>
 <figure class="right" style="max-width:31%;margin-right: 10%;">
     <img
-      src="/keynote/categories/img/mp/commutative-diagram-id.png"
+      src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/commutative-diagram-id.png"
       alt="Commutative Diagram (Identity law)"/>
     <figcaption>
     \(id_B∘f = f = f∘id_A \)
@@ -243,7 +243,7 @@ such that for each \(f:A→B\):</p>
 <h2>Question Time!</h2>
 
 <figure style="width:70%; margin:0 auto">
-<img src="/keynote/categories/img/batquestion.jpg" width="100%"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/batquestion.jpg" width="100%"/>
 <figcaption>
 <em>- French-only joke -</em>
 </figcaption>
@@ -253,20 +253,20 @@ such that for each \(f:A→B\):</p>
 <h2>Can this be a category?</h2>
 <p>\(\ob{\C},\hom{\C}\) fixed, is there a valid ∘?</p>
 <figure class="left">
-    <img src="/keynote/categories/img/mp/cat-example1.png" alt="Category example 1"/>
+    <img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-example1.png" alt="Category example 1"/>
     <figcaption class="slide">
         <span class="green">YES</span>
     </figcaption>
 </figure>
 <figure class="left">
-    <img src="/keynote/categories/img/mp/cat-example2.png" alt="Category example 2"/>
+    <img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-example2.png" alt="Category example 2"/>
     <figcaption class="slide">
         no candidate for \(g∘f\)
         <br/><span class="red">NO</span>
     </figcaption>
 </figure>
 <figure class="left">
-    <img src="/keynote/categories/img/mp/cat-example3.png" alt="Category example 3"/>
+    <img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-example3.png" alt="Category example 3"/>
     <figcaption class="slide">
     <span class="green">YES</span>
     </figcaption>
@@ -275,14 +275,14 @@ such that for each \(f:A→B\):</p>
 <section class="slide">
 <h2>Can this be a category?</h2>
 <figure class="left">
-    <img src="/keynote/categories/img/mp/cat-example4.png" alt="Category example 4"/>
+    <img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-example4.png" alt="Category example 4"/>
     <figcaption class="slide">
         no candidate for \(f:C→B\)
         <br/><span class="red">NO</span>
     </figcaption>
 </figure>
 <figure class="right" style="min-width: 50%">
-    <img src="/keynote/categories/img/mp/cat-example5.png" alt="Category example 5"/>
+    <img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-example5.png" alt="Category example 5"/>
     <figcaption class="slide">
     \((h∘g)∘f=\id_B∘f=f\)<br/>
     \(h∘(g∘f)=h∘\id_A=h\)<br/>
@@ -295,7 +295,7 @@ such that for each \(f:A→B\):</p>
 <h2>Categories Examples</h2>
 
 <figure style="width:70%; margin:0 auto">
-<img src="/keynote/categories/img/basket_of_cats.jpg" alt="Basket of cats"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/basket_of_cats.jpg" alt="Basket of cats"/>
 <figcaption>
 <em>- Basket of Cats -</em>
 </figcaption>
@@ -318,7 +318,7 @@ such that for each \(f:A→B\):</p>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Categories Everywhere?</h2>
-<img class="right" src="/keynote/categories/img/cats-everywhere.jpg" alt="Cats everywhere"/>
+<img class="right" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/cats-everywhere.jpg" alt="Cats everywhere"/>
 <ul>
     <li>\(\Mon\): (monoids, monoid morphisms,∘)</li>
     <li>\(\Vec\): (Vectorial spaces, linear functions,∘)</li>
@@ -333,7 +333,7 @@ such that for each \(f:A→B\):</p>
 <h2>Smaller Examples</h2>
 
 <h3>Strings</h3>
-<img class="right" style="max-width:17%" src="/keynote/categories/img/mp/strings.png" alt="Monoids are one object categories"/>
+<img class="right" style="max-width:17%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/strings.png" alt="Monoids are one object categories"/>
 <ul>
     <li> \(\ob{Str}\) is a singleton </li>
     <li> \(\hom{Str}\) each string </li>
@@ -349,7 +349,7 @@ such that for each \(f:A→B\):</p>
 
 <h3>Graph</h3>
 <figure class="right" style="max-width:40%" >
-<img src="/keynote/categories/img/mp/graph-category.png" alt="Each graph is a category"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/graph-category.png" alt="Each graph is a category"/>
 </figure>
 <ul>
     <li> \(\ob{G}\) are vertices</li>
@@ -365,12 +365,12 @@ such that for each \(f:A→B\):</p>
 <h2>Number construction</h2>
 
 <h3>Each Numbers as a whole category</h3>
-<img src="/keynote/categories/img/mp/numbers.png" alt="Each number as a category"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/numbers.png" alt="Each number as a category"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Degenerated Categories: Monoids</h2>
 
-<img class="right" style="max-width:17%" src="/keynote/categories/img/mp/monoid.png" alt="Monoids are one object categories"/>
+<img class="right" style="max-width:17%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/monoid.png" alt="Monoids are one object categories"/>
 <p>Each Monoid \((M,e,⊙): \ob{M}=\{∙\},\hom{M}=M,\circ = ⊙\)</p>
 <p class="orange">Only one object.</p>
 <p>Examples:</p>
@@ -388,12 +388,12 @@ such that for each \(f:A→B\):</p>
 
 <p><em class="orange">At most one morphism between two objects.</em></p>
 
-<img src="/keynote/categories/img/mp/preorder.png" alt="preorder category"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/preorder.png" alt="preorder category"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Degenerated Categories: Discrete Categories</h2>
 
-<img class="right" src="/keynote/categories/img/mp/set.png" alt="Any set can be a category"/>
+<img class="right" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/set.png" alt="Any set can be a category"/>
 <h3>Any Set</h3>
 <p>Any set \(E: \ob{E}=E, \hom{x,y}=\{x\} ⇔  x=y \)</p>
 <p class="orange">Only identities</p>
@@ -419,7 +419,7 @@ such that for each \(f:A→B\):</p>
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="isomorph">Isomorph</h2>
-<p><img class="right" alt="isomorph cats" src="/keynote/categories/img/isomorph-cats.jpg" /> <em class="orange">isomorphism</em>: \(f:A→B\) which can be &quot;undone&quot; <em>i.e.</em><br />\(∃g:B→A\), \(g∘f=id_A\) <span class="and">&amp;</span> \(f∘g=id_B\)<br />in this case, \(A\) <span class="and">&amp;</span> \(B\) are <em class="orange">isomorphic</em>.</p>
+<p><img class="right" alt="isomorph cats" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/isomorph-cats.jpg" /> <em class="orange">isomorphism</em>: \(f:A→B\) which can be &quot;undone&quot; <em>i.e.</em><br />\(∃g:B→A\), \(g∘f=id_A\) <span class="and">&amp;</span> \(f∘g=id_B\)<br />in this case, \(A\) <span class="and">&amp;</span> \(B\) are <em class="orange">isomorphic</em>.</p>
 <p><span class="orange">A≌B</span> means A and B are essentially the same.<br />In Category Theory, <span class="orange">=</span> is in fact mostly <span class="orange">≌</span>.<br />For example in commutative diagrams.</p>
 <div class="flush"></div></section>
 <section class="slide">
@@ -442,28 +442,28 @@ A <em>functor</em> <span class="orange">\(\F\)</span> from <span class="blue">\(
 <section class="slide">
 <h2>Functor Example (ob → ob)</h2>
 
-<img width="65%" src="/keynote/categories/img/mp/functor.png" alt="Functor"/>
+<img width="65%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/functor.png" alt="Functor"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Functor Example (hom → hom)</h2>
 
-<img width="65%" src="/keynote/categories/img/mp/functor-morphism.png" alt="Functor"/>
+<img width="65%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/functor-morphism.png" alt="Functor"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Functor Example</h2>
 
-<img width="65%" src="/keynote/categories/img/mp/functor-morphism-color.png" alt="Functor"/>
+<img width="65%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/functor-morphism-color.png" alt="Functor"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Endofunctors</h2>
 
 <p>An <em>endofunctor</em> for \(\C\) is a functor \(F:\C→\C\).</p>
-<img width="75%"  src="/keynote/categories/img/mp/endofunctor.png" alt="Endofunctor"/>
+<img width="75%"  src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/endofunctor.png" alt="Endofunctor"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Category of Categories</h2>
 
-<img style="min-width:43%; width: 43%" class="right" src="/keynote/categories/img/fractalcat.jpg" />
+<img style="min-width:43%; width: 43%" class="right" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/fractalcat.jpg" />
 
 <p>Categories and functors form a category: \(\Cat\)</p>
 <ul><li>\(\ob{\Cat}\) are categories
@@ -492,7 +492,7 @@ A <em>functor</em> <span class="orange">\(\F\)</span> from <span class="blue">\(
 
 <p>Category \(\Hask\):</p>
 
-<img class="right" style="max-width:30%" src="/keynote/categories/img/mp/hask.png" alt="Haskell Category Representation"/>
+<img class="right" style="max-width:30%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/hask.png" alt="Haskell Category Representation"/>
 
 <ul><li>
 \(\ob{\Hask} = \) Haskell types
@@ -582,7 +582,7 @@ fmap head [[1,2,3],[4,5,6]] == [1,4]</code></pre>
 
 <p>Put normal function inside a container. Ex: list, trees...<p>
 
-<img width="70%" src="/keynote/categories/img/mp/boxfunctor.png" alt="Haskell Functor as a box play"/>
+<img width="70%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/boxfunctor.png" alt="Haskell Functor as a box play"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Haskell Functor properties</h2>
@@ -599,7 +599,7 @@ fmap head [[1,2,3],[4,5,6]] == [1,4]</code></pre>
 <p>Haskell functor can be seen as boxes containing all Haskell types and functions.
 Haskell types look like a fractal:</p>
 
-<img width="70%" src="/keynote/categories/img/mp/hask-endofunctor.png" alt="Haskell functor representation"/>
+<img width="70%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/hask-endofunctor.png" alt="Haskell functor representation"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Functor as boxes</h2>
@@ -607,7 +607,7 @@ Haskell types look like a fractal:</p>
 <p>Haskell functor can be seen as boxes containing all Haskell types and functions.
 Haskell types look like a fractal:</p>
 
-<img width="70%" src="/keynote/categories/img/mp/hask-endofunctor-objects.png" alt="Haskell functor representation"/>
+<img width="70%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/hask-endofunctor-objects.png" alt="Haskell functor representation"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2>Functor as boxes</h2>
@@ -615,7 +615,7 @@ Haskell types look like a fractal:</p>
 <p>Haskell functor can be seen as boxes containing all Haskell types and functions.
 Haskell types look like a fractal:</p>
 
-<img width="70%" src="/keynote/categories/img/mp/hask-endofunctor-morphisms.png" alt="Haskell functor representation"/>
+<img width="70%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/hask-endofunctor-morphisms.png" alt="Haskell functor representation"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="non-haskell-hasks-functors">&quot;Non Haskell&quot; Hask's Functors</h2>
@@ -652,7 +652,7 @@ Haskell types look like a fractal:</p>
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="category-of-hask-endofunctors">Category of \(\Hask\) Endofunctors</h2>
-<img width="50%" src="/keynote/categories/img/mp/cat-hask-endofunctor.png" alt="Category of Hask endofunctors" />
+<img width="50%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/cat-hask-endofunctor.png" alt="Category of Hask endofunctors" />
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="category-of-functors">Category of Functors</h2>
@@ -667,7 +667,7 @@ Haskell types look like a fractal:</p>
 <section class="slide">
 <h2 id="natural-transformations">Natural Transformations</h2>
 <p>Let \(F\) and \(G\) be two functors from \(\C\) to \(\D\).</p>
-<p><img src="/keynote/categories/img/mp/natural-transformation.png" alt="Natural transformation commutative diagram" class="right"/> <em>A natural transformation:</em> familly η ; \(η_X\in\hom{\D}\) for \(X\in\ob{\C}\) s.t.</p>
+<p><img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/natural-transformation.png" alt="Natural transformation commutative diagram" class="right"/> <em>A natural transformation:</em> familly η ; \(η_X\in\hom{\D}\) for \(X\in\ob{\C}\) s.t.</p>
 <p>ex: between Haskell functors; <code>F a -&gt; G a</code><br />Rearragement functions only.</p>
 <div class="flush"></div></section>
 <section class="slide">
@@ -677,9 +677,9 @@ toList :: [a] -> List a
 toList [] = Nil
 toList (x:xs) = Cons x (toList xs)</code></pre>
 <p><code>toList</code> is a natural transformation. It is also a morphism from <code>[]</code> to <code>List</code> in the Category of \(\Hask\) endofunctors.</p>
-<img style="float:left;width:30%;margin-left: 1em;" src="/keynote/categories/img/mp/nattrans-list-tree.png" alt="natural transformation commutative diagram"/>
+<img style="float:left;width:30%;margin-left: 1em;" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/nattrans-list-tree.png" alt="natural transformation commutative diagram"/>
 <figure style="float:right;width:50%">
-<img style="width:40%" src="/keynote/categories/img/mp/list-tree-endofunctor-morphism.png" alt="natural transformation commutative diagram"/>
+<img style="width:40%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/list-tree-endofunctor-morphism.png" alt="natural transformation commutative diagram"/>
 </figure>
 
 <div class="flush"></div></section>
@@ -690,9 +690,9 @@ toHList :: List a -> [a]
 toHList Nil = []
 toHList (Cons x xs) = x:toHList xs</code></pre>
 <p><code>toHList</code> is a natural transformation. It is also a morphism from <code>List</code> to <code>[]</code> in the Category of \(\Hask\) endofunctors.</p>
-<img style="float:left;width:30%;margin-left:1em" src="/keynote/categories/img/mp/nattrans-tree-list.png" alt="natural transformation commutative diagram"/>
+<img style="float:left;width:30%;margin-left:1em" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/nattrans-tree-list.png" alt="natural transformation commutative diagram"/>
 <figure style="float:right;width:50%">
-<img style="width:40%" src="/keynote/categories/img/mp/tree-list-endofunctor-morphism.png" alt="natural transformation commutative diagram"/> <figcaption><code>toList . toHList = id</code> <span class="and">&amp;</span> <code>toHList . toList = id</code> <span style="visibility:hidden"><span class="and">&amp;</span></span><br/> therefore <code>[]</code> <span class="and">&amp;</span> <code>List</code> are <span class="orange">isomorph</span>. </figcaption>
+<img style="width:40%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/tree-list-endofunctor-morphism.png" alt="natural transformation commutative diagram"/> <figcaption><code>toList . toHList = id</code> <span class="and">&amp;</span> <code>toHList . toList = id</code> <span style="visibility:hidden"><span class="and">&amp;</span></span><br/> therefore <code>[]</code> <span class="and">&amp;</span> <code>List</code> are <span class="orange">isomorph</span>. </figcaption>
 </figure>
 
 <div class="flush"></div></section>
@@ -702,9 +702,9 @@ toHList (Cons x xs) = x:toHList xs</code></pre>
 toMaybe [] = Nothing
 toMaybe (x:xs) = Just x</code></pre>
 <p><code>toMaybe</code> is a natural transformation. It is also a morphism from <code>[]</code> to <code>Maybe</code> in the Category of \(\Hask\) endofunctors.</p>
-<img style="float:left;width:30%;margin-left:1em;" src="/keynote/categories/img/mp/nattrans-list-maybe.png" alt="natural transformation commutative diagram"/>
+<img style="float:left;width:30%;margin-left:1em;" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/nattrans-list-maybe.png" alt="natural transformation commutative diagram"/>
 <figure style="float:right;width:50%">
-<img style="width:40%" src="/keynote/categories/img/mp/list-maybe-endofunctor-morphism.png" alt="natural transformation commutative diagram"/>
+<img style="width:40%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/list-maybe-endofunctor-morphism.png" alt="natural transformation commutative diagram"/>
 </figure>
 
 <div class="flush"></div></section>
@@ -714,9 +714,9 @@ toMaybe (x:xs) = Just x</code></pre>
 mToList Nothing = []
 mToList Just x  = [x]</code></pre>
 <p><code>toMaybe</code> is a natural transformation. It is also a morphism from <code>[]</code> to <code>Maybe</code> in the Category of \(\Hask\) endofunctors.</p>
-<img style="float:left;width:30%;margin-left:1em;" src="/keynote/categories/img/mp/nattrans-maybe-list.png" alt="natural transformation commutative diagram"/>
+<img style="float:left;width:30%;margin-left:1em;" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/nattrans-maybe-list.png" alt="natural transformation commutative diagram"/>
 <figure style="float:right;width:50%">
-<img style="width:40%" src="/keynote/categories/img/mp/maybe-list-endofunctor-morphsm.png" alt="relation between [] and Maybe"/> <figcaption>There is <span class="red">no isomorphism</span>.<br/> Hint: <code>Bool</code> lists longer than 1. </figcaption>
+<img style="width:40%" src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/mp/maybe-list-endofunctor-morphsm.png" alt="relation between [] and Maybe"/> <figcaption>There is <span class="red">no isomorphism</span>.<br/> Hint: <code>Bool</code> lists longer than 1. </figcaption>
 </figure>
 
 <div class="flush"></div></section>
@@ -875,11 +875,11 @@ drawPoint p = do
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="fold"><code>fold</code></h2>
-<img src="/keynote/categories/img/tower_folded.gif" alt="fold" style="width:50%;max-width:50%"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/tower_folded.gif" alt="fold" style="width:50%;max-width:50%"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="κατα-morphism">κατα-morphism</h2>
-<img src="/keynote/categories/img/earth_catamorphed.gif" alt="catamorphism" style="width:90%;max-width:90%"/>
+<img src="http://yogsosoth.github.com/Category-Theory-Presentation/categories/img/earth_catamorphed.gif" alt="catamorphism" style="width:90%;max-width:90%"/>
 <div class="flush"></div></section>
 <section class="slide">
 <h2 id="κατα-morphism-fold-generalization">κατα-morphism: fold generalization</h2>
