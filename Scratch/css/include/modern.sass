@@ -1,4 +1,4 @@
-$unit: 20px
+$unit: 16px
 $small: 14px
 $lineheight: $unit * 1.5
 $smalllineheight: $small * 1.5
@@ -77,11 +77,11 @@ a:hover
       &:nth-child(odd)
         background-color: $background
       th
-        border: solid medium $altfront
+        border: solid medium $border
         padding: 0.25*$unit
         margin: 0
       td
-        border: solid 1px $altfront
+        border: solid 1px $border
         padding: 0.25*$unit
         margin: 0
   figure, .figure
@@ -102,12 +102,12 @@ a:hover
   pre
     background: $background
     font-family: monaco, monospace
-    font-size: 0.8*$unit
+    font-size: $unit
     overflow: auto
     padding: $unit
     line-height: 1.4 * 0.8 * $unit
-    border-top: solid 1px $altfront
-    border-bottom: solid 1px $altfront
+    border-top: solid 1px $border
+    border-bottom: solid 1px $border
   pre code
     background: none
     border: none
@@ -174,15 +174,15 @@ a:hover
     opacity: 1
 hr
   color: $altfront
-  border-color: $altfront
+  border-color: $border
   margin: 0 $hmargin
 p code, li code
   padding: 1px 2px
   background: $background
-  border: solid 1px $altfront
+  border: solid 1px $border
 #content
   blockquote
-    border: solid 1px $altfront
+    border: solid 1px $border
     background: $background
     p
       padding: 0 $unit
@@ -361,13 +361,13 @@ pre .list
       margin: $unit
     pre,code
       background-color: $background
-      border: 1px solid $altfront
+      border: 1px solid $border
       code
         border: none
         background: none
     blockquote
       background-color: $background
-      border-color: $altfront
+      border-color: $border
     h1,h2,h3,h4,h5,h6
       color: $lighter
     ul
@@ -381,7 +381,7 @@ pre .list
       margin: $unit auto
       padding: .5*$unit
       background-color: $background
-      border: solid 1px $altfront
+      border: solid 1px $border
     img.right, img.left, figure.right, figure.left, .figure.right, .figure.left
       max-width: 26%
       margin: .5*$unit
