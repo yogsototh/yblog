@@ -22,12 +22,6 @@ The significant stuff will be in a pure functional bubble.
 The display details will be put in an external module playing the role of a wrapper.
 Imperative language could also benefit from this functional organization.
 
-> <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
-> 
-> * This will be replaced by the ToC
-> {:toc}
->
-
 </div>
 
 ## Introduction

@@ -22,12 +22,6 @@ Les détails de rendu sont séparés dans un module externe.
 Le code descriptif intéressant est concentré dans un environnement pur et fonctionnel.
 Vous pouvez vous inspirer de ce code utilisant le paradigme fonctional dans tous les languages.
 
-> <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
-> 
-> * This will be replaced by the ToC
-> {:toc}
->
-
 </div>
 
 ## Introduction
