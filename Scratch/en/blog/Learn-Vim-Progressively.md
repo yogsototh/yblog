@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/Learn-Vim-Progressively/uber_leet_use_vim.jpg
 menupriority:   1
 kind:           article
@@ -13,7 +14,7 @@ blogimage("uber_leet_use_vim.jpg","Über leet use vim!")
 
 <div class="intro">
 
-%tldr You want to teach yourself vim (the best text editor known to human kind) in the fastest way possible. This my way of doing it. You start by learning the minimal to survive, then you integrate all the tricks slowly.
+%tldr You want to teach yourself vim (the best text editor known to human kind) in the fastest way possible. This is my way of doing it. You start by learning the minimal to survive, then you integrate all the tricks slowly.
 
 </div>
 
@@ -71,11 +72,11 @@ And now, here are the commands that you need in order to survive in _Normal_ mod
 > 
 > Recommended:
 > 
-> - `hjkl` (highly recommended but not mandatory) →  basic cursor move (<-&darr;&uarr;→). Hint: `j` looks like a down arrow.
+> - `hjkl` (highly recommended but not mandatory) →  basic cursor move (←↓↑→). Hint: `j` looks like a down arrow.
 > - `:help <command>` → Show help about `<command>`. You can use `:help` without a `<command>` to get general help.
 
 Only 5 commands. That is all you need to get started.
-Once these command start to become natural (maybe after day or so), you should move on to level 2.
+Once these command start to become natural (maybe after a day or so), you should move on to level 2.
 
 But first, just a little remark about _Normal mode_.
 In standard editors, to copy you have to use the `Ctrl` key (`Ctrl-c` generally).
@@ -310,7 +311,7 @@ blogimage("append-to-many-lines.gif","Append to many lines")
 These are the most important commands, but you should look at `:help split`.
 
 > - `:split` → create a split (`:vsplit` create a vertical split)
-> - `<C-w><dir>` : where dir is any of `hjkl` or <-&darr;&uarr;→ to change the split.
+> - `<C-w><dir>` : where dir is any of `hjkl` or ←↓↑→ to change the split.
 > - `<C-w>_` (resp. `<C-w>|`) : maximise the size of the split (resp. vertical split)
 > - `<C-w>+` (resp. `<C-w>-`) : Grow (resp. shrink) split
 

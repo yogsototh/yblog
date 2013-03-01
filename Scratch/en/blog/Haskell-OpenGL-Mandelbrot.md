@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/Haskell-OpenGL-Mandelbrot/BenoitBMandelbrot.jpg
 menupriority:   1
 kind:           article

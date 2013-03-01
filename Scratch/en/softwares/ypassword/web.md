@@ -1,5 +1,6 @@
 -----
 title: YPassword
+theme: scientific
 subtitle: Cappuccino Web Application
 menupriority: 1
 noSubMenu: true

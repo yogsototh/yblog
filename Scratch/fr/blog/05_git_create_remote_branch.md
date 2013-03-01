@@ -1,5 +1,6 @@
 -----
 kind: article
+theme: scientific
 menupriority: 1
 published: 2009-08-17
 title: Création de branches externe avec Git

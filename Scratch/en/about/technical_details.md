@@ -1,5 +1,6 @@
 -----
 title: Technical details
+theme: scientific
 subtitle: How this website live.
 menupriority: 4
 -----

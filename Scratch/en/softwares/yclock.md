@@ -1,5 +1,6 @@
 -----
 title: YClock
+theme: scientific
 menupriority: 3
 noSubMenu: true
 hidden: false

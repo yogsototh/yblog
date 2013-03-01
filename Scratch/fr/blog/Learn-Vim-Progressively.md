@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/Learn-Vim-Progressively/uber_leet_use_vim.jpg
 menupriority:   1
 kind:           article
@@ -316,7 +317,7 @@ Celà permet de manipuler plusieurs buffer sur la même fenêtre.
 Voici les commandes principales :
 
 > - `:split` →  crée un split (`:vsplit` crée un split vertical)
-> - `<C-w><dir>` →  où dir est l'un de `hjkl` ou <-&darr;&uarr;→ permet de changer de split.
+> - `<C-w><dir>` →  où dir est l'un de `hjkl` ou ←↓↑→ permet de changer de split.
 > - `<C-w>_` (resp. `<C-w>|`) →  Maximise la taille du split (resp. split vertical)
 > - `<C-w>+` (resp. `<C-w>-`) →  Agrandi (resp. diminue) le split
 

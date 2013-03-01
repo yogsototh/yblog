@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+theme: scientific
 kind:           article
 published: 2009-10-22
 title: <em>Focus</em> &gt; Minimalisme

@@ -1,5 +1,6 @@
 -----
 published: 2008-10-10
+theme: scientific
 kind: article
 title: nanoc
 author: Yann Esposito

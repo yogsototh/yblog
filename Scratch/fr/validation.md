@@ -1,5 +1,6 @@
 -----
 title: validation
+theme: scientific
 isHidden: true
 title: Validation
 menupriority: 500

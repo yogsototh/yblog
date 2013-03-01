@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/Higher-order-function-in-zsh/main.jpg
 menupriority:   1
 kind:           article

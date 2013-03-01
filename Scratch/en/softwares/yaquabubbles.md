@@ -1,5 +1,6 @@
 -----
 title: YAquaBubbles
+theme: scientific
 subtitle: bubble in the ocean
 menupriority: 2
 noSubMenu: true

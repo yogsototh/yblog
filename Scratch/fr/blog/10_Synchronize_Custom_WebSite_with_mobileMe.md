@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+theme: scientific
 kind:           article
 published: 2009-09-11
 title: Héberger son site personnel sur le site mobileMe

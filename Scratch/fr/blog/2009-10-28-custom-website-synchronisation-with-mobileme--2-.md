@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+theme: scientific
 kind:           article
 published: 2009-10-28
 title: Synchronisation avec mobileme (2)

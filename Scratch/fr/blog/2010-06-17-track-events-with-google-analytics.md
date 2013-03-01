@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/2010-06-17-track-events-with-google-analytics/GA_events.png
 menupriority:   1
 kind:           article

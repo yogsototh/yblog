@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/2010-03-23-Encapsulate-git/dynamic_branching.png
 menupriority:   1
 kind:           article

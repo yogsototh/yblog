@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+theme: scientific
 kind:           article
 published: 2009-09-22
 title: Remplacer tout sauf une partie

@@ -1,5 +1,6 @@
 -----
 title: Autres sites
+theme: scientific
 menupriority: 5
 -----
 <%= block( %{YPassword}, 

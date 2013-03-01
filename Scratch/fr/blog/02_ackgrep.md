@@ -1,5 +1,6 @@
 -----
 published: 2009-07-22
+theme: scientific
 kind: article
 title: Mieux que grep
 author: Yann Esposito

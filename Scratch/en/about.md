@@ -1,5 +1,6 @@
 -----
 title: About
+theme: scientific
 -----
 
 ![I look like this](/Scratch/img/about/yann1.jpg)

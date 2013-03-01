@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/programming-language-experience/dragon.jpg
 menupriority:   1
 kind:           article

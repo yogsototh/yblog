@@ -1,5 +1,6 @@
 -----
 kind: article
+theme: scientific
 image: /Scratch/img/blog/03_losthighway/intro.jpg
 menupriority: 1
 published: 2009-08-04

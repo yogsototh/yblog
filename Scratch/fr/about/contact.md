@@ -1,5 +1,6 @@
 -----
 title: Contact
+theme: scientific
 image: /Scratch/img/about/avatar.png
 menupriority: 1
 -----

@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 menupriority:   1
 kind:           article
 published: 2010-08-23

@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/loading.gif
 menupriority:   1
 kind:           article

@@ -1,5 +1,6 @@
 -----
 title: Qui est derrière ce site?
+theme: scientific
 menupriority: 4
 -----
 

@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+theme: scientific
 image: /Scratch/img/blog/06_How_I_use_git/central_architecture.png
 kind:           article
 published: 2009-08-18

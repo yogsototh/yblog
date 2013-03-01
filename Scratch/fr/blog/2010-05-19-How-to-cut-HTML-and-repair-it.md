@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /img/img.png
 menupriority:   1
 kind:           article

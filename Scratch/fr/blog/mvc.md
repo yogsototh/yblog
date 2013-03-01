@@ -1,5 +1,6 @@
 -----
 isHidden: true
+theme: scientific
 kind: article
 published: 2009-07-06
 title: Les raisons du MVC

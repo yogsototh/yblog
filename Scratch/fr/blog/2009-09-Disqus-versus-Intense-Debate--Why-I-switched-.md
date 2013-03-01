@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+theme: scientific
 kind:           article
 published: 2009-09-28
 title: Disqus contre Intense Debate (pourquois j'ai changé)

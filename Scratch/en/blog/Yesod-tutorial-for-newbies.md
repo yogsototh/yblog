@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/Yesod-tutorial-for-newbies/flying_neo.jpg
 menupriority:   1
 kind:           article

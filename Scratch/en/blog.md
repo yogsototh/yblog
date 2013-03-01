@@ -1,5 +1,6 @@
 -----
 title: Blog
+theme: scientific
 -----
 
 Popular Articles

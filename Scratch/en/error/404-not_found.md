@@ -1,5 +1,6 @@
 -----
 is_hidden: true
+theme: scientific
 title: Page not found
 error_number: 404
 error_message: Page not found

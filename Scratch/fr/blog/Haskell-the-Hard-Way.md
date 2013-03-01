@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/Haskell-the-Hard-Way/magritte_pleasure_principle.jpg
 menupriority:   1
 kind:           article

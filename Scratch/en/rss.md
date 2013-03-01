@@ -1,5 +1,6 @@
 -----
 title: What is this RSS thing?
+theme: scientific
 image: /Scratch/img/menu/rss-128.png
 noSubMenu: true
 isHidden: true

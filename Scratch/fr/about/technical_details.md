@@ -1,5 +1,6 @@
 -----
 title: Détails techniques
+theme: scientific
 subtitle: Comment vie ce site
 menupriority: 3
 -----

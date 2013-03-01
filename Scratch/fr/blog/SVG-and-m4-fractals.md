@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/SVG-and-m4-fractals/main.png
 menupriority:   1
 kind:           article

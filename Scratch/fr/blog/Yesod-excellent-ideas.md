@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/Yesod-excellent-ideas/main.png
 menupriority:   1
 kind:           article

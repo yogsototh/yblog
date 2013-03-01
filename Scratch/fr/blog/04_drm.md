@@ -1,5 +1,6 @@
 -----
 kind: article
+theme: scientific
 menupriority: 1
 published: 2009-08-15
 title: Les protections anti-copies sont LE MAL

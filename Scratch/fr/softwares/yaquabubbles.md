@@ -1,5 +1,6 @@
 -----
 title: YAquaBubbles
+theme: scientific
 subtitle: Des bulles flottantes
 menupriority: 2
 noSubMenu: true

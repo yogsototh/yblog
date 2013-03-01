@@ -1,5 +1,6 @@
 -----
 menupriority:   1
+theme: scientific
 kind:           article
 published: 2009-10-26
 title: Un menu qui attends avant de se cacher

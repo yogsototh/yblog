@@ -1,5 +1,6 @@
 -----
 isHidden:       false
+theme: scientific
 image: /Scratch/img/blog/2011-01-03-Why-I-sadly-won-t-use-coffeescript/main.png
 menupriority:   1
 kind:           article

@@ -1,5 +1,6 @@
 -----
 title: YPassword
+theme: scientific
 menupriority: 1
 noSubMenu: true
 hidden: false

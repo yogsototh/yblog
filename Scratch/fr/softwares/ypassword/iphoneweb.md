@@ -1,5 +1,6 @@
 -----
 title: YPassword
+theme: scientific
 subtitle: Web Interface for iPhone
 menupriority: 1
 noSubMenu: true
