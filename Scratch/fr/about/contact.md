@@ -4,6 +4,11 @@ theme: scientific
 image: /Scratch/img/about/avatar.png
 menupriority: 1
 -----
+
+> - [contact](/Scratch/fr/about/contact/)
+> - [ancien](/Scratch/fr/about/old/)
+> - [détails techniques](/Scratch/fr/about/technical_details/)
+
 # Comment me contacter
 
 <img src="/Scratch/img/about/avatar.png" alt="Avatar" class="clean left"/>

@@ -4,6 +4,10 @@ theme: scientific
 menupriority: 4
 -----
 
+> - [contact](/Scratch/fr/about/contact/)
+> - [ancien](/Scratch/fr/about/old/)
+> - [détails techniques](/Scratch/fr/about/technical_details/)
+
 ## Pour mieux me connaître
 
 ![Une photo de moi](/Scratch/img/about/yann1.jpg)

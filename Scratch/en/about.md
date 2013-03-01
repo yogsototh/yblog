@@ -3,6 +3,10 @@ title: About
 theme: scientific
 -----
 
+> - [contact](/Scratch/fr/about/contact/)
+> - [ancien](/Scratch/fr/about/old/)
+> - [détails techniques](/Scratch/fr/about/technical_details/)
+
 ![I look like this](/Scratch/img/about/yann1.jpg)
 
 ----------  ----------------------------------

@@ -2,8 +2,12 @@
 title: Contact
 theme: scientific
 image: /Scratch/img/about/avatar.png
-menupriority: 1
 -----
+
+> - [contact](/Scratch/en/about/contact/)
+> - [old](/Scratch/en/about/old/)
+> - [technical details](/Scratch/en/about/technical_details/)
+
 # How to contact me
 
 <img src="/Scratch/img/about/avatar.png" alt="Avatar" class="clean left"/>

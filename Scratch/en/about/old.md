@@ -1,21 +1,12 @@
 -----
 title: Other websites
 theme: scientific
-menupriority: 5
 -----
-<%= block( %{YPassword}, 
-    %{http://ypassword.espozito.com}, 
-    %{Official YPassword website} 
-) %>
 
-<%= block( %{Research}, 
-    %{http://yann.esposito.free.fr/recherche.php?css=blue&amp;lang=en}, 
-    %{My research activities.} 
-) %>
+> - [contact](/Scratch/en/about/contact/)
+> - [old](/Scratch/en/about/old/)
+> - [technical details](/Scratch/en/about/technical_details/)
 
-<%= block( %{Student website}, 
-    %{http://yann.esposito.free.fr/}, 
-    %{My student website. &#x271E; 2007} 
-) %>
-
-<div class="flush"></div>
+- [Official YPassword website](http://ypassword.espozito.com)
+- [My research activities.](http://yann.esposito.free.fr/recherche.php?css=blue&amp;lang=en)
+- [My student website. &#x271E; 2007](http://yann.esposito.free.fr/)
