@@ -135,7 +135,8 @@ markdownPostBehavior = do
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
-    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
+    prefilteredText <- return $ (fmap (preFilters (toFilePath identifier)) body)
+    return $ renderPandoc prefilteredText
     >>= applyFilter postFilters
     >>= saveSnapshot "content"
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
