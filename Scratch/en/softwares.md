@@ -5,20 +5,7 @@ menupriority: 3
 noSubMenu: true
 hidden: false
 -----
-<%= block( %{YPassword}, 
-    %{/Scratch/en/softwares/ypassword}, 
-    %{YPassword is a password manager that make your web life more secure} 
-) %>
 
-<%= block( %{YAquaBubbles}, 
-   %{/Scratch/en/softwares/yaquabubbles}, 
-   %{Nice underwater floating bubbles}
-    ) %>
-
-<%= block( %{YClock}, 
-   %{/Scratch/en/softwares/yclock}, 
-   %{Biohazard logo inspired clock},
-    "right"
-    ) %>
-
-<div class="flush"></div>
+- [**YPassword** a password manager](/Scratch/en/softwares/ypassword)
+- [**YAquabubbles**, a nice underwater floating bubbles](/Scratch/en/softwares/yaquabubbles)
+- [**YClock**, a biohazard logo inspired clock](/Scratch/en/softwares/yclock)

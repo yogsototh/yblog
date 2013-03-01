@@ -17,7 +17,10 @@ import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>))
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match ("Scratch/img/**" .||. "Scratch/js/**" .||. "Scratch/css/fonts/*")
+    match (     "Scratch/img/**"
+          .||.  "Scratch/js/**"
+          .||.  "Scratch/css/fonts/*"
+          .||.  "CNAME")
       staticBehavior
 
     -- Compressed SASS
@@ -42,10 +45,11 @@ main = hakyll $ do
     create ["Scratch/fr/blog/feed/feed.xml"] (feedBehavior "fr")
 
     -- Basic files
-    match (    "Scratch/*/*.md"
+    match ("Scratch/*/*.md"
           .||. "Scratch/*/about/*.md"
           .||. "Scratch/*/softwares/*.md"
           .||. "Scratch/*/softwares/ypassword/*.md" ) markdownBehavior
+    match "404.md" markdownBehaviorWithSimpleRoute
 
     -- Blog code files
     match "Scratch/fr/blog/code/*" staticBehavior
@@ -105,6 +109,27 @@ htmlPostBehavior = do
 markdownBehavior :: Rules ()
 markdownBehavior = do
   route $ niceRoute
+  compile $ do
+    body <- getResourceBody
+    identifier <- getUnderlying
+    itemPath <- getRoute identifier
+    return $ renderPandoc (fmap (preFilters itemPath) body)
+    >>= applyFilter postFilters
+    >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
+    >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
+  where
+    preFilters :: Maybe String -> String -> String
+    preFilters itemPath =   abbreviationFilter
+                          . blogImage itemName
+                          . blogFigure itemName
+                          where
+                            itemName = maybe "" (takeBaseName . takeDirectory) itemPath
+    postFilters :: String -> String
+    postFilters = frenchPunctuation
+
+markdownBehaviorWithSimpleRoute :: Rules ()
+markdownBehaviorWithSimpleRoute = do
+  route $ setExtension "html"
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
