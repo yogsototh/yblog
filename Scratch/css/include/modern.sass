@@ -17,11 +17,11 @@ body
 
 a
   text-decoration: none
-  color: $orange
-a:visited
-  color: $violet
-a:hover
   color: $blue
+a:visited
+  color: $cyan
+a:hover
+  color: $orange
   text-shadow: 0 0 1px $red
 
 .corps
@@ -67,9 +67,10 @@ a:hover
     margin: 4*$unit auto
     text-align: center
   h1,h2,h3,h4,h5,h6
+    font-weight: 200
     color: $lighter
     padding: 0 $hmargin
-    margin: $unit 0
+    margin: 4*$unit 0
   table
     margin: $unit 0
     padding: 0 $hmargin
@@ -98,7 +99,7 @@ a:hover
     display: block
     border-top: medium solid
     border-bottom: medium solid
-    margin: $unit auto
+    margin: 4*$unit auto
   pre
     background: $background
     font-family: monaco, monospace
@@ -345,12 +346,12 @@ pre .list
     min-height: 20em
     border-top: ($unit/10) solid $base02
     border-bottom: ($unit/10) solid $base02
-    & > *
-      padding: 0 $unit
-    margin: 1em 0
+    margin: 4*$unit 0
     background-color: $background
     color: $front
     padding: $unit 0
+    & > *
+      padding: 0 $unit
     a
       text-decoration: none
       color: $lighter
