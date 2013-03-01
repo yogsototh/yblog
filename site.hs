@@ -19,6 +19,7 @@ main :: IO ()
 main = hakyll $ do
     match (     "Scratch/img/**"
           .||.  "Scratch/js/**"
+          .||.  "Scratch/files/**"
           .||.  "Scratch/css/fonts/*"
           .||.  "CNAME")
       staticBehavior
