@@ -1,0 +1,23 @@
+body {
+    font-family: Helvetica, sans-serif; 
+    font-size: 18px; }
+#main {
+    padding: 1em;
+    border: #CCC solid 2px;
+    border-radius: 5px;
+    margin: 1em;
+    width: 37em;
+    margin: 1em auto;
+    background: #F2F2F2;
+    line-height: 1.5em;
+    color: #333; }
+.required { margin: 1em 0; }
+.optional { margin: 1em 0; }
+label { width: 8em; display: inline-block; }
+input, textarea { background: #FAFAFA}
+textarea { width: 27em; height: 9em;}
+ul { list-style: square; }
+a { color: #A56; }
+a:hover { color: #C58; }
+a:active { color: #C58; }
+a:visited { color: #943; }

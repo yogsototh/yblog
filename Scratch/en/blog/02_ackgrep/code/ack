@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+(($#<1)) && { print 'usage: ack "regexp"' >&2; exit 1 }
+
+listeFic=( **/*(.) )
+autoload zargs
+zargs -- $listeFic -- grep $1 | perl -ne 'use Term::ANSIColor;
+if (m/([^:]*)(:.*)('$1')(.*)/) {
+    print color("green").$1;
+    print color("reset").$2;
+    print color("black","on_yellow").$3;
+    print color("reset").$4."\n";
+} '
+    

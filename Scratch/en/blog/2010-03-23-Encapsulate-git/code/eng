@@ -1,0 +1,102 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+# architecture
+#
+# master <-> dev
+# master -> client
+# clien -> clientA | clientB
+#
+# merge using two of these branches should be 
+#   restricted to these rules
+# merge to one of these branch and an unknown one should
+#   raise a warning, and may the option to add this new branch
+#   to the hierarchy
+
+$architecture={ 
+    :master => [ :dev, :client ],
+    :dev => [ :master ],
+    :client => [ :clientA, :clientB ] }
+
+def get_current_branch()
+    (`git branch --no-color | awk '$1 == "*" {print $2}'`).chop.intern
+end
+
+if ARGV.length == 0
+    puts %{usage: $0:t [git_command or local_command]
+    
+local commands:
+    allmerges: merge from top to down}
+    exit 0
+end
+
+require 'set'
+$known_branches=Set.new
+$architecture.each do |k,v| 
+    $known_branches.add(k)
+    v.each { |b| $known_branches.add(b) }
+end
+
+def rec_merge(branch)
+    if $architecture[branch].nil?
+        return
+    end
+    $architecture[branch].each do |b|
+        if $flag.has_key?(b.to_s + branch.to_s)
+            next
+        end
+        flagname=branch.to_s + b.to_s
+        if $flag.has_key?(flagname)
+            next
+        end
+        if system %{eng checkout #{b}}
+            if get_current_branch != b
+                puts "Can't checkout to #{b}"
+                exit 2
+            end
+            if system %{eng merge #{branch}}
+                $flag[flagname]=true
+                rec_merge(b)
+            else
+                exit 1
+            end
+        else
+            exit 1
+        end
+    end
+end
+
+def do_all_merges
+    puts 'Will merge from father to sons'
+    current_branch=get_current_branch
+    $flag={}
+    rec_merge(:master)
+    system %{git co #{current_branch}}
+end
+
+def do_merge
+    current_branch=get_current_branch
+    src_branch=ARGV[1].intern
+    puts %{do_merge: #{src_branch} => #{current_branch}}
+    if $known_branches.include?(current_branch)
+        if $known_branches.include?(src_branch)
+            if $architecture.has_key?(src_branch) and 
+                $architecture[src_branch].include?(current_branch)
+                system %{git merge #{src_branch}}
+            else
+                puts %{Forbidden merge: #{src_branch} => #{current_branch}}
+            end
+        else
+            puts %{Warning! #{src_branch} not mentionned in rb configuration}
+            sleep 2
+            system %{git merge #{src_branch}}
+            puts %{Warning! #{src_branch} not mentionned in rb configuration}
+        end
+    end
+end
+
+case ARGV[0] 
+    when 'allmerges' then do_all_merges
+    when 'merge' then do_merge
+    else system %{git #{ARGV.join(' ')}}
+end

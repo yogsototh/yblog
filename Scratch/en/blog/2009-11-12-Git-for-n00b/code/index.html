@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        <meta name="keywords" content="git">        <link rel="shortcut icon" type="image/x-icon" href="/Scratch/img/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="/Scratch/assets/css/scientific.css" />
+        <link rel="stylesheet" type="text/css" href="/Scratch/css/solarized.css" />
+        <link rel="stylesheet" type="text/css" href="/Scratch/css/idc.css" />
+        <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/yannespositocomen"/>
+        <link rel="alternate" lang="fr" xml:lang="fr" title="Git pour les nuls" type="text/html" hreflang="fr" href="/Scratch/fr/blog/2009-11-12-Git-for-n00b/Git-pour-quoi-faire/" /> 
+        <link rel="alternate" lang="en" xml:lang="en" title="Git for n00b" type="text/html" hreflang="en" href="/Scratch/en/blog/2009-11-12-Git-for-n00b/Git-pour-quoi-faire/" /> 
+        <!--[if lt IE 9]>
+        <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+        <![endif]-->
+        <title>Git for n00b</title>
+    </head>
+    <body lang="en" class="article">
+        <script type="text/javascript">// <![CDATA[
+            document.write('<div id="blackpage"><div>Loading...<img src="/Scratch/img/loading.gif" alt="loading..."/></div></div>');
+            // ]]>
+        </script>
+
+        <div id="content">
+            <div id="choix">
+                <div class="return"><a href="#entete">&darr; Menu &darr;</a></div>
+                <div id="choixlang"><a href="/Scratch/fr/blog/2009-11-12-Git-for-n00b/Git-pour-quoi-faire/" onclick="setLanguage('fr')">en Français</a>
+                </div>
+				<script type="text/javascript">// <![CDATA[
+				document.write('<div id="switchcss"><a href="#">Change style</a></div>');
+				// ]]>
+				</script>
+                <div class="flush"></div>
+            </div>
+            <div id="titre">
+                <h1>
+                    Git for n00b
+                </h1>
+                
+                <h2>
+                    Git for what?
+                </h2>
+                
+            </div>
+            <div class="flush"></div>
+
+            
+
+            <div id="sousliens"><ul><li><a href="/Scratch/en/blog/2009-11-12-Git-for-n00b/">introduction <span class="nicer">&raquo;</span></a></li><li><span class="active" title="You're here.">Git for what? <span class="nicer">&raquo;</span></span></li><li><a href="/Scratch/en/blog/2009-11-12-Git-for-n00b/conf-et-install/">Configure before Use <span class="nicer">&raquo;</span></a></li><li><a href="/Scratch/en/blog/2009-11-12-Git-for-n00b/c-est-parti-pour-l-aventure/">The Adventure Begins <span class="nicer">&raquo;</span></a></li><li><a href="/Scratch/en/blog/2009-11-12-Git-for-n00b/comprendre/">Understanding <span class="nicer">&raquo;</span></a></li><li><a href="/Scratch/en/blog/2009-11-12-Git-for-n00b/commandes-avancees/">Command List <span class="nicer">&raquo;</span></a></li></ul></div>
+
+            <div class="flush"></div>
+            <div id="afterheader">
+                <div class="corps">
+                    <h1 class="first" id="gitgit-for-what"><a href="http://git-scm.org" title="Git">Git</a> for what?</h1>
+
+
+<div class="intro">
+
+
+<p>If you just want to use <a href="http://git-scm.org" title="Git">Git</a> <strong>immediately</strong>, just read dark part. You read this part later to understand correctly foundations of version systems and not doing strange things.</p>
+
+
+</div>
+
+
+<p><a href="http://git-scm.org" title="Git">Git</a> is a <abbr title="Decentralized Concurent Versions System">DCVS</abbr>, which means a Decentralized Concurrent Versions System. Let&rsquo;s analyze each part of this long term:</p>
+
+<h3 id="versions-system">Versions System</h3>
+
+<p>Firstly, versions system manage files.
+When somebody work with files without a versions system, the following happens frequently:</p>
+
+<p>When you modify a somehow critical file you don&rsquo;t want to loose. You copy naturally this file with another name. For example:</p>
+
+<div>
+
+<pre><code class="zsh">$ cp fichier_important.c fichier_important.c.bak</code></pre>
+
+</div>
+
+<p>In consequence of what, the new file, play the role of <em>backup</em>. If you break everything, you can always return in the last state by overwriting your modifications.
+Of course, this method is not very professional and is a bit limited. If you make many modifications, you&rsquo;ll end with many files with strange names like:</p>
+
+<div>
+
+
+<pre><code class="zsh">fichier_important.c.bak
+fichier_important.c.old
+fichier_important.c.Bakcup
+fichier_important.c.BAK.2009-11-14
+fichier_important.c.2009.11.14
+fichier_important.c.12112009
+old.fichier_important.c
+</code></pre>
+
+
+</div>
+
+<p>If you want to make it works correctly, you&rsquo;ll have to use naming convention. Files take many place even if you modify most of time only some lines.</p>
+
+<p><em>Fortunately, versions system are here to help.</em></p>
+
+<p>You only have to signal you want a new version of a file and the versions system will do the job for you. It will record the backup where it could be easily recovered. Generally, systems version do it better than you, making the backup only of the modified lines and not the total file.</p>
+
+<p>Once upon a time versions were managed for each file separately. I think about CVS. Then it naturally appears projects are a coherent set of files. Recover each file separately was a tedious work. This is why versions number passed from files to the entire project.</p>
+
+<p>It is therefore possible to say, &ldquo;I want to get back three days earlier&rdquo;.</p>
+
+
+<div class="black">
+
+
+<p><em>What gives versions system?</em> (I didn&rsquo;t mention everything at all)</p>
+
+<ul>
+  <li>automatic backups: <em>back in time</em>,</li>
+  <li>gives the ability to see differences between each version,</li>
+  <li>put a <em>tag</em> on some version to be able to refer to them easily,</li>
+  <li>gives the ability to see an historic of all modifications. Generally the user must add a comment for each new version.</li>
+</ul>
+
+
+</div>
+
+
+<h3 id="concurrent">concurrent:</h3>
+
+<p>Version Systems are already useful to manage its own projects. They help to organize and resolve partially backup problems. I say partially because you have to backup your repository on a decent file system. But versions system are really interesting is on projects done by many people.</p>
+
+<p>Let&rsquo;s begin by an example, a two person project&nbsp;; Alex and Beatrice. On a file containing a <em>Lovecraft</em>&rsquo;s gods list:</p>
+
+<div style="width: 10em; margin-left: auto; margin-right: auto">
+
+
+<pre><code class="zsh">Cthulhu
+Shubniggurath
+Yogsototh
+</code></pre>
+
+</div>
+
+<p>Say Alex is home and modify the file: 
+&lt;div style="width: 10em; margin-left: auto; margin-right: auto"&gt;
+&lt;pre class="twilight"&gt;
+Cthulhu
+Shubniggurath
+<span class="StringConstant"><strong>Soggoth</strong></span>
+Yogsototh
+&lt;/pre&gt;
+&lt;/div&gt;</p>
+
+<p>after that he send the file on the project server. Then on the server there is the Alex file:</p>
+
+<p>A bit later, Beatrice who had not get the Alex file on the server make the modification:</p>
+
+<div style="width: 10em; margin-left: auto; margin-right: auto">
+<pre class="twilight">
+Cthulhu
+<span class="Constant"><strong>Dagon</strong></span>
+Shubniggurath
+Yogsototh
+</pre>
+</div>
+
+<p>Beatrice send her file on the server</p>
+
+<p>Alex modification is <em>lost</em>. One more time, versions system are here to help.</p>
+
+<p>A version system would had <em>merge</em> the two files at the time Beatrice send the file on the server. And like by magic, on the server the file would be:</p>
+
+<div style="width: 10em; margin-left: auto; margin-right: auto">
+<pre class="twilight">
+Cthulhu
+<span class="Constant"><strong>Dagon</strong></span>
+Shubniggurath
+<span class="StringConstant"><strong>Soggoth</strong></span>
+Yogsototh
+</pre>
+</div>
+
+<p>In real life, at the moment Beatrice want to send her modifications, the versions system alert her a modification had occurred on the server. Then she uses a command which pull the modification from the server to her local computer. And this command update her file. After that, Beatrice send again the new file on the server.</p>
+
+
+<div class="black">
+
+
+<p><strong>In what Concurrent Versions System help?</strong></p>
+
+<ul>
+  <li>get without any problem others modifications,</li>
+  <li>send without any problem its own modifications to others,</li>
+  <li>manage conflicts. I didn&rsquo;t speak about it, but sometimes a conflict can occur (when two different people modify the same line on a file for example). SVC help to resolve such problem. More on that later,</li>
+  <li>help to know who done what and when.</li>
+</ul>
+
+
+</div>
+
+
+<h3 id="decentralized">decentralized</h3>
+
+<p>This word became popular only recently about CVS. And it mainly means two things:</p>
+
+<p>First, until really recently (SVN), you&rsquo;ll have to be connected to the distant server to get informations about a project. Like get the history. New decentralized systems work with a local <em>REPOSITORY</em> (directory containing backups and many informations linked to the versions system functionalities). Hence, one can view the history of a project without the need of being connected.</p>
+
+<p>All instances of a project can live <em>independently</em>.</p>
+
+<p>To be more precise, DCVS are base on the <em>branch</em> notion.</p>
+
+<p>Practically, it has great importance. It means, everybody work separately, and the system help to glue all their work.</p>
+
+<p>It is even more than just that. It help to code independently each feature and bug fixes. Under other system it was far more difficult.</p>
+
+<p>Typical example:</p>
+
+<blockquote>
+  <p>I develop my project. I&rsquo;m ameliorating something. An urgent bug is reported.</p>
+
+  <p>With a DCVS I can easily, get back to the version with the bug. Fix it. Send the fix. Get back to my feature work. And even, use the fix for the new version with my new feature.</p>
+
+  <p>In a not decentralized version system, doing such a thing is possible but not natural. Decentralization means it become natural to use a branch for each separable work.</p>
+</blockquote>
+
+
+<div class="black">
+
+
+<p>**Advantages given by DCVS: **</p>
+
+<ul>
+  <li>Ability to work offline,</li>
+  <li>Ability to create many <em>atomic</em> patches,</li>
+  <li>Help the maintenance of many different versions of the same application.</li>
+</ul>
+
+
+</div>
+
+
+<h2 id="to-resume">To resume</h2>
+
+<p>Let&rsquo;s resume what we can easily do with DCVS:</p>
+
+<p><strong>Versions Systems</strong></p>
+
+<ul>
+  <li>back in time,</li>
+  <li>list differences between versions,</li>
+  <li>name some versions to refer to them easily</li>
+  <li>show history of modifications</li>
+</ul>
+
+<p><strong>Concurrent</strong></p>
+
+<ul>
+  <li>get others modifications,</li>
+  <li>send its modifications to others,</li>
+  <li>know who done what and when,</li>
+  <li>conflicts management.</li>
+</ul>
+
+<p><strong>Decentralized</strong></p>
+
+<ul>
+  <li>Easily manipulate branches</li>
+</ul>
+
+<p>Now let&rsquo;s see how to obtain all these things easily with <a href="http://git-scm.org" title="Git">Git</a>.</p>
+
+
+                </div>
+                
+                
+                <div class="navigation">
+                    <div class="navigationprev"><a href="/Scratch/en/blog/2009-11-12-Git-for-n00b/"><span class="nicer">«</span>&nbsp;previous</a></div>
+                    <div class="navigationnext"><a href="/Scratch/en/blog/2009-11-12-Git-for-n00b/conf-et-install/">next&nbsp;<span class="nicer">»</span></a></div>
+                </div>
+                <div class="flush"></div>
+                
+
+                <div id="social">
+                    <div class="left">  <a href="https://twitter.com/share" class="twitter-share-button" data-via="yogsototh">Tweet</a>
+       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+     </div>
+                    <div  class="left"> <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="106"></div>
+    <script type="text/javascript">
+      (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+     </div>
+                    <div class="flush"></div>
+                </div>
+                <div id="choixrss">
+                    <a id="rss" href="http://feeds.feedburner.com/yannespositocomen">
+                        Subscribe
+                    </a>
+                </div>
+                <div class="flush"></div>
+
+                <div class="corps" id="comment">
+                    <h2 class="first">comments</h2>
+
+					<div id="disqus_thread"></div>
+        			<script type="text/javascript">
+        			    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        			    var disqus_shortname = 'yannesposito'; // required: replace example with your forum shortname
+
+        			    /* * * DON'T EDIT BELOW THIS LINE * * */
+        			    (function() {
+        			        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        			        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        			        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        			    })();
+        			</script>
+        			<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        			<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+
+                <div id="entete" class="corps_spaced">
+                    <div id="liens">
+                        <ul><li><a href="/Scratch/en/">Home</a></li>
+<li><a href="/Scratch/en/blog/">Blog</a></li>
+<li><a href="/Scratch/en/softwares/">Softwares</a></li>
+<li><a href="/Scratch/en/about/">About</a></li></ul>
+                    </div>
+                    <div class="flush"></div>
+                    <hr/>
+                    <div id="next_before_articles">
+                        <div id="previous_articles">
+                            previous entries
+                            
+                            <div class="previous_article">
+                                <a href="/Scratch/en/blog/2009-10-30-How-to-handle-evil-IE/"><span class="nicer">«</span>&nbsp;How to handle evil IE</a>
+                            </div>
+                            
+                            
+                            <div class="previous_article">
+                                <a href="/Scratch/en/blog/2009-10-28-custom-website-synchronisation-with-mobileme--2-/"><span class="nicer">«</span>&nbsp;custom website synchronisation with mobileme (2)</a>
+                            </div>
+                            
+                            
+                            <div class="previous_article">
+                                <a href="/Scratch/en/blog/2009-10-Wait-to-hide-a-menu-in-jQuery/"><span class="nicer">«</span>&nbsp;Menu waiting to hide himself</a>
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="next_articles">
+                            next entries
+                            
+                            <div class="next_article">
+                                <a href="/Scratch/en/blog/2009-12-06-iphone-call-filter/">iphone call filter&nbsp;<span class="nicer">»</span></a>
+                            </div>
+                            
+                            
+                            <div class="next_article">
+                                <a href="/Scratch/en/blog/2009-12-14-Git-vs--Bzr/">Git vs. Bzr&nbsp;<span class="nicer">»</span></a>
+                            </div>
+                            
+                            
+                            <div class="next_article">
+                                <a href="/Scratch/en/blog/2010-01-04-Change-default-shell-on-Mac-OS-X/">Change default shell on Mac OS X&nbsp;<span class="nicer">»</span></a>
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="flush"></div>
+                    </div>
+                </div>
+
+
+                <div id="bottom">
+                    <div>
+                        <a href="https://twitter.com/yogsototh">Follow @yogsototh</a>
+                    </div>
+                    <div>
+                        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Copyright ©, Yann Esposito</a>
+                    </div>
+                    <div id="lastmod">
+                        Created: 11/12/2009
+                        Modified: 05/09/2010
+                    </div>
+                    <div>
+                        Entirely done with
+                        <a href="http://www.vim.org">Vim</a>
+                        and
+                        <a href="http://nanoc.stoneship.org">nanoc</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="/Scratch/js/jquery-1.3.1.min.js"></script>
+    <script type="text/javascript" src="/Scratch/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/Scratch/js/index.js"></script>
+    <script type="text/javascript" src="/Scratch/js/highlight/highlight.pack.js"></script>
+    <script type="text/javascript" src="/Scratch/js/article.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</html>
