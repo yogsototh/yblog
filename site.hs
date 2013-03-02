@@ -21,6 +21,7 @@ main = hakyll $ do
           .||.  "Scratch/js/**"
           .||.  "Scratch/files/**"
           .||.  "Scratch/css/fonts/*"
+          .||.  "Scratch/*/blog/*/**"
           .||.  "CNAME")
       staticBehavior
 
@@ -51,9 +52,6 @@ main = hakyll $ do
           .||. "Scratch/*/softwares/*.md"
           .||. "Scratch/*/softwares/ypassword/*.md" ) markdownBehavior
     match "404.md" markdownBehaviorWithSimpleRoute
-
-    -- Blog code files
-    match "Scratch/fr/blog/code/*" staticBehavior
 
     -- Homepage
     match "index.html" $ do
