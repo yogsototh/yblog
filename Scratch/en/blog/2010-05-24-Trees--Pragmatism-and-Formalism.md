@@ -145,85 +145,11 @@ I began by make by removing most of the verbosity.
 I first renamed `<item name="Menu">` by simpler name `M` for example.
 I obtained something like:
 
-<graph title="The source tree">
-    subgraph cluster_x {
-        node [label="C"] C_x ;
-        node [label="E"] E_x ;
-        node [label="a1"] tag1_x ;
-        node [label="a2"] tag2_x ;
-        node [label="R", color="#333333", fillcolor="#333333", fontcolor="white"] R_x ;
-        R_x -> C_x;
-        C_x -> tag1_x ;
-        C_x -> tag2_x ;
-        R_x -> E_x ;
-    }
-    subgraph cluster_y {
-        node [label="C"] C_y ;
-        node [label="E"] E_y ;
-        node [label="a1"] tag1_y ;
-        node [label="a2"] tag2_y ;
-        node [label="R", color="#333333", fillcolor="#333333", fontcolor="white"] R_y ;
-        R_y -> C_y;
-        C_y -> tag1_y ;
-        C_y -> tag2_y ;
-        R_y -> E_y ;
-    }
-    subgraph cluster_z {
-        node [label="C"] C_z ;
-        node [label="E"] E_z ;
-        node [label="a1"] tag1_z ;
-        node [label="a2"] tag2_z ;
-        node [label="R", color="#333333", style="filled", fillcolor="#333333", fontcolor="white"] R_z ;
-        R_z -> C_z;
-        C_z -> tag1_z ;
-        C_z -> tag2_z ;
-        R_z -> E_z ;
-    }
-    E_x -> R_y ;
-    E_x -> R_z ;
-
-</graph>
+<img src="code/The_source_tree.png" alt="The source tree"/>
 
 and
 
-<graph title="The destination tree">
-    subgraph cluster_x {
-        node [label="M"] E_x ;
-        node [label="a1"] tag1_x ;
-        node [label="V"] value_tag1_x ;
-        node [label="a2"] tag2_x ;
-        node [label="V"] value_tag2_x ;
-        node [label="V", color="#333333", fillcolor="#333333", fontcolor="white"] R_x ;
-        R_x -> value_tag1_x -> tag1_x ;
-        R_x -> value_tag2_x -> tag2_x ;
-        R_x -> E_x ;
-    }
-    subgraph cluster_y {
-        node [label="M"] E_y ;
-        node [label="a1"] tag1_y ;
-        node [label="V"] value_tag1_y ;
-        node [label="a2"] tag2_y ;
-        node [label="V"] value_tag2_y ;
-        node [label="V", color="#333333", fillcolor="#333333", fontcolor="white"] R_y ;
-        R_y -> value_tag1_y -> tag1_y ;
-        R_y -> value_tag2_y -> tag2_y ;
-        R_y -> E_y ;
-    }
-    subgraph cluster_z {
-        node [label="M"] E_z ;
-        node [label="a1"] tag1_z ;
-        node [label="V"] value_tag1_z ;
-        node [label="a2"] tag2_z ;
-        node [label="V"] value_tag2_z ;
-        node [label="V", color="#333333", fillcolor="#333333", fontcolor="white"] R_z ;
-        R_z -> value_tag1_z -> tag1_z ;
-        R_z -> value_tag2_z -> tag2_z ;
-        R_z -> E_z ;
-    }
-    E_x -> R_y ;
-    E_x -> R_z ;
-
-</graph>
+<img src="code/The_destination_tree.png" alt="The destination tree"/>
 
 Then I made myself the following reflexion:
 
