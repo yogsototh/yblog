@@ -69,15 +69,16 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateCompiler
 
+--------------------------------------------------------------------------------
+--
+-- replace url of the form foo/bar/index.html by foo/bar
 removeIndexHtml :: Item String -> Compiler (Item String)
-removeIndexHtml item = return $ fmap removeIndex item
+removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item
   where
-    removeIndex = withUrls removeIndexStr
-      where
-        removeIndexStr :: String -> String
-        removeIndexStr str@(x:xs) | str == "/index.html" = ""
-                                  | otherwise = x:removeIndexStr xs
-        removeIndexStr [] = []
+    removeIndexStr :: String -> String
+    removeIndexStr str@(x:xs) | str == "/index.html" = ""
+                              | otherwise = x:removeIndexStr xs
+    removeIndexStr [] = []
 
 --------------------------------------------------------------------------------
 --
