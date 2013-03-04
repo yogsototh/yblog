@@ -59,7 +59,8 @@ a:hover
 #content
   background: $textbackground
   color: $front
-  width: 37*$unit + 2*$hmargin
+  width: 100%
+  max-width: 37*$unit + 2*$hmargin
   margin: 0 auto
   padding: 0
   #titre h1
@@ -137,6 +138,13 @@ a:hover
     margin: 0
     padding: 0
 
+@media only screen and (max-width: 37*$unit)
+  #content
+    padding: 0
+    width: 100%
+    .corps
+      padding: 0 1em
+
 #entete > #choix > #choixrss
   margin: 0
   padding: 0
@@ -207,7 +215,8 @@ p code, li code
     width: auto
     max-width: 100%
 .intro
-  width: 37*$small + 2*$hmargin
+  width: 100%
+  max-width: 37*$small + 2*$hmargin
   margin: 0 auto
   font-size: $small
   line-height: $smalllineheight
