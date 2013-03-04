@@ -428,7 +428,6 @@ $VPadCorps: 3em
 $VMarginCorps: 3em
 
 // ATTENTION DOIT ETRE 0 pour le bon callage
-$HMarginCorps: 0
 $content_width: 47em
 
 body
@@ -538,6 +537,15 @@ $hauteur_menu: 4em
   clear: both
   width: $content_width
 
+@media only screen and (max-width: 480px)
+  #content
+    width: 450px
+    padding: 0
+    img
+      max-width: 300px
+    .corps
+      padding: 0
+
 $contentMargin: 0em
 
 .encadre, .black, .intro, .resume, .shadow
@@ -582,7 +590,7 @@ $fontcorps: 1.25
   line-height: 1.5em
   text-align: justify
   padding: $VPadCorps 3em
-  margin: 0 $HMarginCorps
+  margin: 0
   clear: both
   p, ol, ul, blockquote, pre, code
     margin-top: 1.5em
