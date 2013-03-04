@@ -65,8 +65,19 @@ main = hakyll $ do
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
                 >>= relativizeUrls
+                >>= removeIndexHtml
 
     match "templates/*" $ compile templateCompiler
+
+removeIndexHtml :: Item String -> Compiler (Item String)
+removeIndexHtml item = return $ fmap removeIndex item
+  where
+    removeIndex = withUrls removeIndexStr
+      where
+        removeIndexStr :: String -> String
+        removeIndexStr str@(x:xs) | str == "/index.html" = ""
+                                  | otherwise = x:removeIndexStr xs
+        removeIndexStr [] = []
 
 --------------------------------------------------------------------------------
 --
@@ -99,6 +110,7 @@ htmlPostBehavior = do
         >>= loadAndApplyTemplate "templates/post.html" postCtx
         >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
         >>= relativizeUrls
+        >>= removeIndexHtml
 
 --------------------------------------------------------------------------------
 --
@@ -119,6 +131,7 @@ markdownBehavior = do
     >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
     >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
     >>= relativizeUrls
+    >>= removeIndexHtml
   where
     preFilters :: Maybe String -> String -> String
     preFilters itemPath =   abbreviationFilter
@@ -141,6 +154,7 @@ markdownBehaviorWithSimpleRoute = do
     >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
     >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
     >>= relativizeUrls
+    >>= removeIndexHtml
   where
     preFilters :: Maybe String -> String -> String
     preFilters itemPath =   abbreviationFilter
@@ -170,6 +184,7 @@ markdownPostBehavior = do
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
     >>= relativizeUrls
+    >>= removeIndexHtml
   where
     preFilters :: String -> String -> String
     preFilters itemPath =   abbreviationFilter
@@ -193,6 +208,7 @@ archiveBehavior language = do
     >>= loadAndApplyTemplate "templates/default.html" archiveCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
     >>= relativizeUrls
+    >>= removeIndexHtml
   where
     preFilters :: String -> String -> String
     preFilters itemPath =   abbreviationFilter
