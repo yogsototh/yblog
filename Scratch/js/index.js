@@ -78,12 +78,28 @@ function detectClient() {
 //     $('#blackpage').append('<div class="preintro"><div class="corps">'+msgintro+'</div></div>');
 // });
 
-var pref='/Scratch/css';
+// -----------------------------------
+var pref='Scratch/css';
 var styleindex=0;
 var styles=[ pref+'/scientific.css'
 		   , pref+'/modern.css'
 		   , pref+'/darkmodern.css'];
 
+function badPref() {
+    var badPrefix=true;
+    styles.forEach(function(trystyle){
+		if ($('link[href="'+trystyle+'"]').length > 0) {
+            badPrefix=false; }});
+    return badPrefix;
+}
+
+var maxDepth=10;
+while (badPref() && (maxDepth++>0)) {
+    pref="../" + pref
+    styles=[ pref+'/scientific.css'
+		   , pref+'/modern.css'
+		   , pref+'/darkmodern.css'];
+}
 function reloadStylesheets() {
 	var queryString = '?reload=' + new Date().getTime();
 	$('link[rel="stylesheet"]').each(function () {
@@ -109,7 +125,7 @@ function switchcss() {
 		setTimeout(function(){switchCssTo($.cookie('css'));}, 1000);
 	}
 	$('#switchcss').click(function(){
-        console.log("Switched to " + styles[styleindex+1 % styles.length]);
+        // console.log("Switched to " + styles[styleindex+1 % styles.length]);
 		switchCssTo(styles[ (styleindex+1) % styles.length ]);
 		});
 }
