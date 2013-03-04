@@ -1,7 +1,7 @@
 -----
 kind: article
 theme: scientific
-image: /Scratch/img/blog/03_losthighway/intro.jpg
+image: /Scratch/img/blog/Lost_Highway_Demistified/intro.jpg
 menupriority: 1
 published: 2009-08-04
 title: A try to demystify 'Lost Highway'
@@ -94,17 +94,6 @@ Because of the dialog at the begining of the movie. Cops ask Fred if he's own a 
 > "How I remember them, not necessarily the way they happened."  
 
 Then, what we see is not reality but the Fred's perception. Fred is the God of the reality we see. This is why some God/Devil interpretation of the movie works not so bad.
-
------
-kind: article
-image: /Scratch/img/blog/03_losthighway_2/mysteryman.jpg
-menupriority: 2
-published: 2009-08-04
-title: A try to demystify 'Lost Highway'
-author: Yann Esposito
-authoruri: yannesposito.com
-subtitle: Who is the mystery man?
------
 
 ## Who is the mysterious man?
 
