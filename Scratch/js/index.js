@@ -55,28 +55,11 @@ var userAgent;
 
 function detectClient() {
     userAgent = navigator.userAgent.toLowerCase();
-    /*
-    if (/msie/.test(userAgent) ) {
-        $('body').prepend('<div id="iemessage"><p><span><em>Avec <a href="http://www.firefox.com"> Firefox </a>, <a href="http://www.apple.com/safari">Safari</a> ou <a href="http://google.com/chrome">Chrome</a> cette page est bien plus jolie !</em></span><br/><br/><span><em>This page is far nicer when opened with <a href="http://www.firefox.com"> Firefox </a>, <a href="http://www.apple.com/safari">Safari</a> or <a href="http://google.com/chrome">Chrome</a>!</em></span></p></div>');
-    }*/ 
     if (/ip(od|hone)/.test(userAgent)) {
-        $('head').append('<meta name="viewport" content="width=device-width; initial-scale=0.5; maximum-scale=2.0;">');
-        $('head').append('<link rel="stylesheet" type="text/css" href="/Scratch/css/iPhone.css"/>');
+        $('head').append('<meta name="viewport" content="width=device-width; initial-scale=1.0;">');
     }
     return userAgent;
 }
-
-// $(document).ready(function(){
-//     var msgh1=$('#titre h1').html();
-//     var msgh2=$('#titre h2').html();
-//     var msgintro=$('.corps').html();
-//     if (!msgh1) { msgh1=""; }
-//     if (!msgh2) { msgh2=""; }
-//     if (!msgintro) { msgintro=""; }
-//     $('#blackpage').prepend('<div class="preh1">'+msgh1+'</div>');
-//     $('#blackpage').prepend('<div class="preh2">'+msgh2+'</div>');
-//     $('#blackpage').append('<div class="preintro"><div class="corps">'+msgintro+'</div></div>');
-// });
 
 // -----------------------------------
 var pref='Scratch/css';
@@ -125,7 +108,6 @@ function switchcss() {
 		setTimeout(function(){switchCssTo($.cookie('css'));}, 1000);
 	}
 	$('#switchcss').click(function(){
-        // console.log("Switched to " + styles[styleindex+1 % styles.length]);
 		switchCssTo(styles[ (styleindex+1) % styles.length ]);
 		});
 }

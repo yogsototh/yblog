@@ -535,16 +535,17 @@ $hauteur_menu: 4em
   margin-top: 0
   position: relative
   clear: both
-  width: $content_width
+  width: 100%
+  max-width: $content_width
 
-@media only screen and (max-width: 480px)
+@media only screen and (max-width: $content_width - 2em)
   #content
-    width: 450px
     padding: 0
+    width: 100%
     img
-      max-width: 300px
+      max-width: 80%
     .corps
-      padding: 0
+      padding: 0 1em
 
 $contentMargin: 0em
 
