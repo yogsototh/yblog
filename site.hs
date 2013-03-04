@@ -64,6 +64,7 @@ main = hakyll $ do
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
+                >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
 
@@ -97,6 +98,7 @@ htmlPostBehavior = do
         >>= saveSnapshot "content"
         >>= loadAndApplyTemplate "templates/post.html" postCtx
         >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+        >>= relativizeUrls
 
 --------------------------------------------------------------------------------
 --
@@ -116,6 +118,7 @@ markdownBehavior = do
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
     >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
+    >>= relativizeUrls
   where
     preFilters :: Maybe String -> String -> String
     preFilters itemPath =   abbreviationFilter
@@ -137,6 +140,7 @@ markdownBehaviorWithSimpleRoute = do
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
     >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
+    >>= relativizeUrls
   where
     preFilters :: Maybe String -> String -> String
     preFilters itemPath =   abbreviationFilter
@@ -165,6 +169,7 @@ markdownPostBehavior = do
     >>= saveSnapshot "content"
     >>= loadAndApplyTemplate "templates/post.html"    postCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+    >>= relativizeUrls
   where
     preFilters :: String -> String -> String
     preFilters itemPath =   abbreviationFilter
@@ -187,6 +192,7 @@ archiveBehavior language = do
     >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
     >>= loadAndApplyTemplate "templates/default.html" archiveCtx
     >>= loadAndApplyTemplate "templates/boilerplate.html" archiveCtx
+    >>= relativizeUrls
   where
     preFilters :: String -> String -> String
     preFilters itemPath =   abbreviationFilter
