@@ -94,7 +94,7 @@ function badPref() {
 }
 
 var maxDepth=10;
-while (badPref() && (maxDepth++>0)) {
+while (badPref() && (maxDepth-->0)) {
     pref="../" + pref
     styles=[ pref+'/scientific.css'
 		   , pref+'/modern.css'
