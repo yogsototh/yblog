@@ -31,15 +31,15 @@ Movies I like:
 
 [My online bookmarks on pinboard](http://pinboard.in/u:yogsototh)
 
-[My resume](/resume)
+[My resume](http://resume.espozito.com)
 
 ## Shortly
 
 I’m a passionate guy. Passionate about
 
   - Computer Science: [I’ve got a post Ph. D. degree in Computer Science](http://yann.esposito.free.fr/recherche.php).
-  - Programming: [I developed two scientific apps](http://yann.esposito.free.fr/logiciels.php), [two Mac screen savers](/YBlog/Softwares.html), an [iOS app](http://ypassword.espozito.com) and many other things; [see my github](http://github.com/yogsototh)
-  - Computer Security: [I designed a secure web protocol (similar to TOR)](http://yann.esposito.free.fr/enseignement/rez0.php#projet), [a method to securely remember strong passwords](/YBlog/Computer/Entries/2008/7/30_Easy,_secure_and_portable_password_management_system.html) ([programmed a dashboard widget](/YBlog/YPassword.html) and a shell script to use this method).
+  - Programming: [I developed two scientific apps](http://yann.esposito.free.fr/logiciels.php), [two Mac screen savers](/Scratch/en/softwares), an [iOS app](http://ypassword.espozito.com) and many other things; [see my github](http://github.com/yogsototh)
+  - Computer Security: [I designed a secure web protocol (similar to TOR)](http://yann.esposito.free.fr/enseignement/rez0.php#projet), a method to securely remember strong passwords, ([programmed a dashboard widget](/Scratch/en/softwares/ypassword/) and a shell script to use this method).
 
 But before all, I love to learn.
 For example, I learned many programming languages:
