@@ -60,7 +60,7 @@ main = hakyll $ do
             let indexCtx =
                     (field "enposts" $ \_ -> homePostList "en" createdFirst) <>
                     (field "frposts" $ \_ -> homePostList "fr" createdFirst) <>
-                    yDefaultContext
+                    yContext
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
@@ -91,6 +91,7 @@ niceRoute = customRoute createIndexRoute
                              where p=toFilePath ident
 
 --------------------------------------------------------------------------------
+--
 -- Simply copy in the right place
 staticBehavior :: Rules ()
 staticBehavior = do
@@ -108,10 +109,22 @@ htmlPostBehavior = do
   compile $ getResourceBody
         >>= applyFilter (abbreviationFilter . frenchPunctuation)
         >>= saveSnapshot "content"
-        >>= loadAndApplyTemplate "templates/post.html" postCtx
-        >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+        >>= loadAndApplyTemplate "templates/post.html" yContext
+        >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
         >>= relativizeUrls
         >>= removeIndexHtml
+
+--------------------------------------------------------------------------------
+preFilters :: String -> String -> String
+preFilters itemPath =   abbreviationFilter
+                      . blogImage itemName
+                      . blogFigure itemName
+                      where
+                        itemName = takeBaseName itemPath
+
+--------------------------------------------------------------------------------
+postFilters :: String -> String
+postFilters = frenchPunctuation
 
 --------------------------------------------------------------------------------
 --
@@ -126,22 +139,12 @@ markdownBehavior = do
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
-    itemPath <- getRoute identifier
-    return $ renderPandoc (fmap (preFilters itemPath) body)
+    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
-    >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
-    >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
+    >>= loadAndApplyTemplate "templates/default.html" yContext
+    >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
     >>= relativizeUrls
     >>= removeIndexHtml
-  where
-    preFilters :: Maybe String -> String -> String
-    preFilters itemPath =   abbreviationFilter
-                          . blogImage itemName
-                          . blogFigure itemName
-                          where
-                            itemName = maybe "" (takeBaseName . takeDirectory) itemPath
-    postFilters :: String -> String
-    postFilters = frenchPunctuation
 
 markdownBehaviorWithSimpleRoute :: Rules ()
 markdownBehaviorWithSimpleRoute = do
@@ -149,22 +152,12 @@ markdownBehaviorWithSimpleRoute = do
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
-    itemPath <- getRoute identifier
-    return $ renderPandoc (fmap (preFilters itemPath) body)
+    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
-    >>= loadAndApplyTemplate "templates/default.html"    yDefaultContext
-    >>= loadAndApplyTemplate "templates/boilerplate.html" yDefaultContext
+    >>= loadAndApplyTemplate "templates/default.html"    yContext
+    >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
     >>= relativizeUrls
     >>= removeIndexHtml
-  where
-    preFilters :: Maybe String -> String -> String
-    preFilters itemPath =   abbreviationFilter
-                          . blogImage itemName
-                          . blogFigure itemName
-                          where
-                            itemName = maybe "" (takeBaseName . takeDirectory) itemPath
-    postFilters :: String -> String
-    postFilters = frenchPunctuation
 
 --------------------------------------------------------------------------------
 -- change the extension to html
@@ -182,19 +175,11 @@ markdownPostBehavior = do
     return $ renderPandoc prefilteredText
     >>= applyFilter postFilters
     >>= saveSnapshot "content"
-    >>= loadAndApplyTemplate "templates/post.html"    postCtx
-    >>= loadAndApplyTemplate "templates/boilerplate.html" postCtx
+    >>= loadAndApplyTemplate "templates/post.html"    yContext
+    >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
     >>= relativizeUrls
     >>= removeIndexHtml
   where
-    preFilters :: String -> String -> String
-    preFilters itemPath =   abbreviationFilter
-                          . blogImage itemName
-                          . blogFigure itemName
-                          where
-                            itemName = takeBaseName itemPath
-    postFilters :: String -> String
-    postFilters = frenchPunctuation
 
 --------------------------------------------------------------------------------
 archiveBehavior :: String -> Rules ()
@@ -211,21 +196,13 @@ archiveBehavior language = do
     >>= relativizeUrls
     >>= removeIndexHtml
   where
-    preFilters :: String -> String -> String
-    preFilters itemPath =   abbreviationFilter
-                          . blogImage itemName
-                          . blogFigure itemName
-                          where
-                            itemName = takeBaseName itemPath
     archiveCtx =
       field "posts" (\_ -> postList language createdFirst) <>
-      yDefaultContext
-    postFilters :: String -> String
-    postFilters = frenchPunctuation
+      yContext
 
 --------------------------------------------------------------------------------
-yDefaultContext :: Context String
-yDefaultContext = metaKeywordContext <>
+yContext :: Context String
+yContext = metaKeywordContext <>
                   multiContext <>
                   imageContext <>
                   prefixContext <>
@@ -266,10 +243,9 @@ feedBehavior language = do
         loadAllSnapshots (fromGlob $ "Scratch/" ++ language ++ "/blog/*") "content"
         >>= (fmap (take 10)) . createdFirst
         >>= renderAtom (feedConfiguration "Yann Esposito") feedCtx
-
---------------------------------------------------------------------------------
-feedCtx :: Context String
-feedCtx = mconcat [bodyField "description", yDefaultContext]
+      where
+        feedCtx :: Context String
+        feedCtx = mconcat [bodyField "description", yContext]
 
 --------------------------------------------------------------------------------
 feedConfiguration :: String -> FeedConfiguration
@@ -282,16 +258,11 @@ feedConfiguration title = FeedConfiguration
   }
 
 --------------------------------------------------------------------------------
-postCtx :: Context String
-postCtx =
-    yDefaultContext
-
---------------------------------------------------------------------------------
 postList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
 postList language sortFilter = do
     posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
-    list    <- applyTemplateList itemTpl postCtx posts
+    list    <- applyTemplateList itemTpl yContext posts
     return list
 
 --------------------------------------------------------------------------------
@@ -299,5 +270,5 @@ homePostList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler 
 homePostList language sortFilter = do
     posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/home-post-item.html"
-    list    <- applyTemplateList itemTpl postCtx (take 3 posts)
+    list    <- applyTemplateList itemTpl yContext (take 3 posts)
     return list
