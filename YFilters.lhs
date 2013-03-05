@@ -15,6 +15,7 @@ Some helpers
 > notin :: [Char] -> Char -> Bool
 > notin [] _ = True
 > notin (x:xs) c = if c == x then False else notin xs c
+> notquote :: Char -> Bool
 > notquote = notin "'\""
 
 If you write
@@ -26,8 +27,7 @@ It will be replaced by the corresponding `img` tag.
 
 > blogImage :: String -> String -> String
 > blogImage itemName = replaceAll "(left)?blogimage\\([^)]*\\)" imgstr
->   where left = (=='l') . head
->         leftclass matched = if head matched == 'l'
+>   where leftclass matched = if head matched == 'l'
 >                             then " class=\"left\""
 >                             else ""
 >         src =     dropWhile notquote >>> tail
@@ -41,8 +41,7 @@ helper to draw figures
 
 > blogFigure :: String -> String -> String
 > blogFigure itemName = replaceAll "(left)?blogfigure\\([^)]*\\)" imgstr
->   where left = (=='l') . head
->         leftclass matched = if head matched == 'l'
+>   where leftclass matched = if head matched == 'l'
 >                             then " class=\"left\""
 >                             else ""
 >         src =     dropWhile notquote >>> tail
