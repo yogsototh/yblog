@@ -22,6 +22,8 @@ main = hakyll $ do
           .||.  "Scratch/files/**"
           .||.  "Scratch/css/fonts/*"
           .||.  "Scratch/*/blog/*/**"
+          .||.  "YBlog/**"
+          .||.  "YPassword/**"
           .||.  "CNAME")
       staticBehavior
 
