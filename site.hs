@@ -7,7 +7,6 @@ import           Hakyll
 import           Data.List              (sortBy)
 import           Data.Ord               (comparing)
 import           System.Locale          (defaultTimeLocale)
-import qualified Data.Map               as M
 
 import           Abbreviations          (abbreviationFilter)
 import           YFilters               (blogImage,blogFigure,frenchPunctuation)
