@@ -22,6 +22,8 @@ main = hakyll $ do
           .||.  "Scratch/files/**"
           .||.  "Scratch/css/fonts/*"
           .||.  "Scratch/*/blog/*/**"
+          .||.  "YBlog/**"
+          .||.  "YPassword/**"
           .||.  "CNAME")
       staticBehavior
 
@@ -209,23 +211,23 @@ yContext = metaKeywordContext <>
                   defaultContext
 
 --------------------------------------------------------------------------------
-prefixContext :: Context a
+prefixContext :: Context String
 prefixContext = field "webprefix" $ \_ -> return $ "/Scratch"
 
 --------------------------------------------------------------------------------
 imageContext :: Context a
 imageContext = field "image" $ \item -> do
-  metadata <- getMetadata (itemIdentifier item)
-  return $ maybe "/Scratch/img/presentation.png" id $ M.lookup "image" metadata
+  image <- getMetadataField (itemIdentifier item) "image"
+  return $ maybe "/Scratch/img/presentation.png" id image
+
 
 --------------------------------------------------------------------------------
-metaKeywordContext :: Context a
+metaKeywordContext :: Context String
 metaKeywordContext = field "metaKeywords" $ \item -> do
-  metadata <- getMetadata (itemIdentifier item)
-  return $ maybe "" renderMeta $ M.lookup "tags" metadata
+  tags <- getMetadataField (itemIdentifier item) "tags"
+  return $ maybe "" showMetaTags tags
     where
-      renderMeta tags =
-        "<meta name=\"keywords\" content=\"" ++ tags ++ "\">\n"
+      showMetaTags t = "<meta name=\"keywords\" content=\"" ++ t ++ "\">\n"
 
 --------------------------------------------------------------------------------
 createdFirst :: [Item String] -> Compiler [Item String]
