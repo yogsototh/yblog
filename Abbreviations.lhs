@@ -2,12 +2,10 @@ Abbreviations
 =============
 
 Declare abbreviations to be used in your content.
-For example.
+For example "%tldr" will be transformed in "Too long; didn't read".
 
-"%TLDR" will be transformed in "Too long; didn't read".
-
-You simply have to add `abbreviationFilter` has a pre filter in the
-rule of your markdown. See `site.hs`
+You simply have to add `abbreviationFilter` has a pre-filter in the
+rules (see `site.hs`).
 
 > module Abbreviations
 >   (abbreviationFilter)
@@ -15,14 +13,19 @@ rule of your markdown. See `site.hs`
 > import           Data.Map       (Map)
 > import qualified Data.Map    as M
 > import           Hakyll
-> --------------------------------------------------------------------------------
+
+The `abbreviationFilter` make all the work, given the content it returns
+the filtered one.
+
 > abbreviationFilter :: String -> String
 > abbreviationFilter = replaceAll "%[a-zA-Z0-9_]*" newnaming
 >   where
 >     newnaming matched = case M.lookup (tail matched) abbreviations of
 >                           Nothing -> matched
 >                           Just v -> v
-> --------------------------------------------------------------------------------
+
+All the abbreviations are declared here:
+
 > abbreviations :: Map String String
 > abbreviations = M.fromList
 >     [ ("tldr",   "<span class=\"sc\"><abbr title=\"Too long; didn't read\">tl;dr</abbr>: </span>")
