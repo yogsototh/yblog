@@ -52,6 +52,13 @@ $codeBlockBackgroundColor: #002b36
   font-style: normal
 
 @font-face
+  font-family: 'social'
+  src: url('fonts/social_font.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+.social
+  font-family: social
+@font-face
   font-family: 'ComputerModern'
   src: url('fonts/cmunrb.eot')
   src: local('☺'), url('fonts/cmunrb.svg') format('svg'), url('fonts/cmunrb.ttf') format('truetype')
@@ -231,8 +238,6 @@ body, h1, h2, h3, h4, #entete, .tagname
 body
   font-family: Georgia, Palatino, "Century Schoolbook L", "Times New Roman", Times, serif
 
-#choix
-  font-style: italic
 #navigation
   letter-spacing: .25em
   margin: 1em auto 2em
@@ -297,6 +302,7 @@ acronym
 
 #titre
   letter-spacing: -0.06em
+  margin: 2em 0
   border:
     bottom: 4px double $lighterText
     top: 4px double $lighterText
@@ -374,7 +380,8 @@ acronym
 // -- TYPOGRAPHY --
 .small
   font-size: 0.8em
-
+.tiny
+  font-size: 0.6em
 .sc
   +sc
 
@@ -838,13 +845,6 @@ table.impact tr td
   text-align: right
 
 
-#rss
-  font-size: 1.2em
-  text-align: center
-  display: block
-  width: 100%
-  float: right
-  padding: 1em 0.1em
 
 .corps .return a
   color: $lighterColor
@@ -1060,12 +1060,11 @@ a.cut
   border-left: 4px solid $borderColor
 
 #social
+  font-size: 2em
   text-align: center
-  font-size: 1.25em
-  padding: 0 3em
   opacity: .3
-  & > *
-    display: block
+  .message
+    font-size: 10px
   &:hover
     opacity: 1
 

@@ -145,9 +145,6 @@ a:hover
     .corps
       padding: 0 1em
 
-#entete > #choix > #choixrss
-  margin: 0
-  padding: 0
 #entete > #choix > #choixlang
   float: left
 
@@ -203,19 +200,13 @@ p code, li code
       border: none
 
 // Specific elements
-#social,#choixrss,#comment
+#social,#comment
   margin: $unit $hmargin
 #social
   text-align: center
   opacity: 0.3
   &:hover
     opacity: 1
-  & > *
-    width: 120px
-    float: left
-    margin: 0 auto
-    display: block
-    text-align: left
 #comment
   img
     width: auto
@@ -438,24 +429,3 @@ pre .list
     font-size: 7px
     font-family: Helvetica, sans-serif
     overflow: hidden
-
-a.rss
-  background-color: #F8F8F8
-  background-image: -moz-linear-gradient(center top , white, #DEDEDE)
-  border: 1px solid #CCCCCC
-  border-radius: 3px 3px 3px 3px
-  color: $orange
-  cursor: pointer
-  display: inline-block
-  font-size: 13px
-  font-weight: bold
-  height: 20px
-  font-family: sans-serif
-  line-height: 20px
-  overflow: hidden
-  padding: 0 5px
-  position: relative
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
-  margin: 0
-  &:hover
-    background-image: -moz-linear-gradient(center top , white, #F3F3F3)

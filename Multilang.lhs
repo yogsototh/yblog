@@ -98,6 +98,7 @@ Next the dictionary containing all traductions of standards templates.
 >         ,("switchCss", ("Changer de theme","Change Theme"))
 >         ,("loading", ("Chargement en cours","Loading"))
 >         ,("welcome", ("Bientôt","Soon"))
+>         ,("socialPrivacy", ("Ces liens sociaux préservent votre vie privée","These social sharing links preserve your privacy"))
 >         ]
 >         where
 >           toTrad (k,(f,e)) = (k, Trad { frTrad = f, enTrad = e })
