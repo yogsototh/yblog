@@ -4,6 +4,22 @@ $lineheight: $unit * 1.5
 $smalllineheight: $small * 1.5
 $hmargin: 4*$unit
 
+@font-face
+  font-family: 'social'
+  src: url('fonts/social_font.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+.social
+  font-family: social
+#social
+  font-size: 2em
+  text-align: center
+  opacity: .3
+  .message
+    font-size: 10px
+  &:hover
+    opacity: 1
+
 html
   padding: 0
 body
@@ -410,6 +426,10 @@ pre .list
   font-size: (14 * $unit / 20)
   padding: 0 $hmargin
   margin: $unit 0
+
+#totop
+  text-align: center
+  margin: 0 auto
 
 #content
   .inlineblockimg
