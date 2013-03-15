@@ -90,7 +90,7 @@ I will provide you two solutions with the following properties:
 <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
     target="_blank">Like this</a>
 
-<a href="https://plusone.google.com/_/+1/confirm?hl=en&url=$url$"
+<a href="https://plus.google.com/share?url=$url$"
     target="_blank">+1 this</a>
 ```
 But you have to replace `$url$` by the current %url.
@@ -109,7 +109,7 @@ document.write(
 + '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
     +'target="_blank">Like this<'+'/a> - '
 
-+ '<'+'a href="https://plusone.google.com/_/+1/confirm?hl=en&url='+url+'" '
++ '<'+'a href="https://plus.google.com/share?url='+url+'" '
     +'target="_blank">+1 this<'+'/a>');
 </script>
 ```
@@ -126,7 +126,7 @@ document.write(
 + '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
     +'target="_blank">Like this<'+'/a> - '
 
-+ '<'+'a href="https://plusone.google.com/_/+1/confirm?hl=en&url='+url+'" '
++ '<'+'a href="https://plus.google.com/share?url='+url+'" '
     +'target="_blank">+1 this<'+'/a>');
 </script>
 </div>
@@ -168,7 +168,7 @@ Now add this to your %html:
    target="_blank"
    class="social">&#0096;</a>
 ·
-<a href="https://plusone.google.com/_/+1/confirm?hl=en&url=$url$"
+<a href="https://plus.google.com/share?url=$url$"
     target="_blank"
     class="social">&#0103;</a>
 ```
@@ -187,7 +187,7 @@ document.write(
        + ' target="_blank"'
        + ' class="social">&#0096;<'+'/a>'
     + ' · '
-    + '<a href="https://plusone.google.com/_/+1/confirm?hl=en&url='+url+'"'
+    + '<a href="https://plus.google.com/share?url='+url+'"'
         + ' target="_blank"'
         + ' class="social">&#0103;<'+'/a>');
 </script>
@@ -206,7 +206,7 @@ document.write(
        + ' target="_blank"'
        + ' class="social">&#0096;<'+'/a>'
     + ' · '
-    + '<a href="https://plusone.google.com/_/+1/confirm?hl=en&url='+url+'"'
+    + '<a href="https://plus.google.com/share?url='+url+'"'
         + ' target="_blank"'
         + ' class="social">&#0103;<'+'/a>');
 </script>
