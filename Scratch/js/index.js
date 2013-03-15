@@ -116,8 +116,8 @@ function animatedToTop() {
     $('#totop a').click(function(){
         $('body,html').animate({scrollTop:0},800);});
 }
-function animatedToBottom() {
-    $('#tomenu a').click(function(){
+function animatedToMenu() {
+    $('.tomenu a').click(function(){
         $('body,html').animate({
             scrollTop: $('#navigation').offset().top - ($(window).height()/2)},800);});
 }
@@ -128,7 +128,7 @@ $(document).ready(function() {
     if ( ! /msie/.test(client) ) { initCode(); }
     $('#blackpage').fadeOut('slow',function(){ $('#blackpage').remove(); });
     animatedToTop();
-    animatedToBottom();
+    animatedToMenu();
     analytics();
     switchcss();
 });
