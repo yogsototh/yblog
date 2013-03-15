@@ -112,11 +112,23 @@ function switchcss() {
 		});
 }
 
+function animatedToTop() {
+    $('#totop a').click(function(){
+        $('body,html').animate({scrollTop:0},800);});
+}
+function animatedToBottom() {
+    $('#tomenu a').click(function(){
+        $('body,html').animate({
+            scrollTop: $('#navigation').offset().top - ($(window).height()/2)},800);});
+}
+
 // Ce que l'on va lancer à l'init.
 $(document).ready(function() {
     var client=detectClient();
     if ( ! /msie/.test(client) ) { initCode(); }
     $('#blackpage').fadeOut('slow',function(){ $('#blackpage').remove(); });
+    animatedToTop();
+    animatedToBottom();
     analytics();
     switchcss();
 });
