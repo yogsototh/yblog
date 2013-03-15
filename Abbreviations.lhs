@@ -31,6 +31,7 @@ All the abbreviations are declared here:
 >     [ ("tldr",   "<span class=\"sc\"><abbr title=\"Too long; didn't read\">tl;dr</abbr>: </span>")
 >     , ("tlal",   "<span class=\"sc\"><abbr title=\"Trop long; pas lu\">tlpl</abbr>: </span>")
 >     , ("tlpl",   "<span class=\"sc\"><abbr title=\"Trop long; pas lu\">tlpl</abbr>: </span>")
+>     , ("imho",   "<span class=\"sc\"><abbr title=\"In my Humble Opinion\">imho</abbr></span>")
 >     , ("html", "<span class=\"sc\">html</span>")
 >     , ("css", "<span class=\"sc\">css</span>")
 >     , ("svg", "<span class=\"sc\">svg</span>")

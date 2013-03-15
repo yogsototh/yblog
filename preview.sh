@@ -8,7 +8,7 @@ compileAndLaunch() {
 			print -- "REBUILDING" && \
 			./site clean && \
 			print -- "SERVING" && \
-			./site preview
+            ./recompile & ./site preview
 	} &
 	son=$!
 }

@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+ONCE=0
+[[ $1 = "once" ]] && { ONCE=1 }
+
 languages=( fr en )
 typeset -a exclu
 
@@ -14,20 +17,24 @@ function join {
   print $res
 }
 
-for fic in multi/**/*(.); do
-    for language in $languages; do
-        dest=Scratch/$language/${fic#multi/}
-        exclu=()
-        if [[ ! -e $dest || $fic -nt $dest ]]; then
-            print $dest
-            [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
-            for l in $languages; do
-                case $l in
-                    $language) continue ;;
-                esac
-                exclu=( $exclu $l )
-            done
-            awk '! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }' < $fic > $dest
-        fi
+while true; do
+    for fic in multi/**/*(.); do
+        for language in $languages; do
+            dest=Scratch/$language/${fic#multi/}
+            exclu=()
+            if [[ ! -e $dest || $fic -nt $dest ]]; then
+                print $dest
+                [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
+                for l in $languages; do
+                    case $l in
+                        $language) continue ;;
+                    esac
+                    exclu=( $exclu $l )
+                done
+                awk '! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }' < $fic > $dest
+            fi
+        done
     done
+    ((ONCE == 1)) && break
+    sleep 2
 done
