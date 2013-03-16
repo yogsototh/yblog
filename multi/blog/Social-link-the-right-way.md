@@ -1,7 +1,7 @@
 ---
 kind:           article
 published:      2013-03-14
-image: /Scratch/img/blog/Social link the right way/main.png
+image: /Scratch/img/blog/Social-link-the-right-way/main.png
 en: title: Social link the right way
 fr: title: Être correct avec les boutons share
 author: Yann Esposito

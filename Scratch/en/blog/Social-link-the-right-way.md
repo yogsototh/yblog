@@ -1,7 +1,7 @@
 ---
 kind:           article
 published:      2013-03-14
-image: /Scratch/img/blog/Social link the right way/main.png
+image: /Scratch/img/blog/Social-link-the-right-way/main.png
 title: Social link the right way
 author: Yann Esposito
 authoruri: yannesposito.com

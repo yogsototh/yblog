@@ -33,6 +33,7 @@ All the abbreviations are declared here:
 >     , ("tlpl",   "<span class=\"sc\"><abbr title=\"Trop long; pas lu\">tlpl</abbr>: </span>")
 >     , ("imho",   "<span class=\"sc\"><abbr title=\"In my Humble Opinion\">imho</abbr></span>")
 >     , ("url",   "<span class=\"sc\"><abbr title=\"Uniform Ressource Locator\">url</abbr></span>")
+>     , ("cms",   "<span class=\"sc\"><abbr title=\"Content Management System\">cms</abbr></span>")
 >     , ("html", "<span class=\"sc\">html</span>")
 >     , ("css", "<span class=\"sc\">css</span>")
 >     , ("svg", "<span class=\"sc\">svg</span>")
