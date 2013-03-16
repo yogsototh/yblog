@@ -2,7 +2,7 @@
 kind:           article
 published:      2013-03-14
 image: /Scratch/img/blog/Social link the right way/main.png
-title: Social link the right way
+title: Être correct avec les boutons share
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
@@ -13,10 +13,30 @@ blogimage("main.png","Main image")
 <div class="intro">
 
 
-%tlal Les réseaux sociaux utilisent leur boutons pour vous traquer.
-Vous leur donnez cette possibilité gratuitement.
-Celà va à l'encontre de l'intéret de vos utilisateurs tout en ralentissant votre site.
-Ajoutez des boutons sociaux correctement en utilisant des liens statiques.
+%tlal Les boutons des réseaux sociaux traquent vos utilisateurs,
+ont un design incohérent avec celui de votre site,
+utilisent des ressources,
+ralentissent le rendu de vos pages.
+
+Faite les choses bien.
+Utilisez des liens statiques.
+
+Si vous n'avez pas envie de lire, copiez et collez simplement le code suivant dans votre %html :
+
+``` js
+<script>
+var url=document.location;
+document.write(
+  '<'+'a href="https://twitter.com/home?status='+url+'" '
+    +'target="_blank">Tweet this<'+'/a> - '
+
++ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
+    +'target="_blank">Like this<'+'/a> - '
+
++ '<'+'a href="https://plus.google.com/share?url='+url+'" '
+    +'target="_blank">Share on G+<'+'/a>');
+</script>
+```
 
 </div>
 
@@ -87,7 +107,7 @@ I will provide you two solutions with the following properties:
     target="_blank">Like this</a>
 
 <a href="https://plus.google.com/share?url=$url$"
-    target="_blank">+1 this</a>
+    target="_blank">Share on G+</a>
 ```
 But you have to replace `$url$` by the current %url.
 
@@ -106,7 +126,7 @@ document.write(
     +'target="_blank">Like this<'+'/a> - '
 
 + '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">+1 this<'+'/a>');
+    +'target="_blank">Share on G+<'+'/a>');
 </script>
 ```
 
@@ -123,7 +143,7 @@ document.write(
     +'target="_blank">Like this<'+'/a> - '
 
 + '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">+1 this<'+'/a>');
+    +'target="_blank">Share on G+<'+'/a>');
 </script>
 </div>
 

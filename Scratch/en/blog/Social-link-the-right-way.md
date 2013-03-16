@@ -22,6 +22,23 @@ Do it right.
 Use static links instead.
 
 
+If you don't want to read, just copy/paste this in your %html:
+
+``` js
+<script>
+var url=document.location;
+document.write(
+  '<'+'a href="https://twitter.com/home?status='+url+'" '
+    +'target="_blank">Tweet this<'+'/a> - '
+
++ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
+    +'target="_blank">Like this<'+'/a> - '
+
++ '<'+'a href="https://plus.google.com/share?url='+url+'" '
+    +'target="_blank">Share on G+<'+'/a>');
+</script>
+```
+
 </div>
 
 ## The problem
@@ -91,7 +108,7 @@ I will provide you two solutions with the following properties:
     target="_blank">Like this</a>
 
 <a href="https://plus.google.com/share?url=$url$"
-    target="_blank">+1 this</a>
+    target="_blank">Share on G+</a>
 ```
 But you have to replace `$url$` by the current %url.
 
@@ -110,7 +127,7 @@ document.write(
     +'target="_blank">Like this<'+'/a> - '
 
 + '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">+1 this<'+'/a>');
+    +'target="_blank">Share on G+<'+'/a>');
 </script>
 ```
 
@@ -127,7 +144,7 @@ document.write(
     +'target="_blank">Like this<'+'/a> - '
 
 + '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">+1 this<'+'/a>');
+    +'target="_blank">Share on G+<'+'/a>');
 </script>
 </div>
 
