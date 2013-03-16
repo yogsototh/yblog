@@ -9,6 +9,7 @@ cd $hakylldir       && \
 git pull            && \
 ./rebuild.sh        && \
 cd $pubdir          && \
+git checkout gh-pages && \
 print -- "get latest modif from github" && \
 git pull && \
 print -- "Remove all files except .git" && \
