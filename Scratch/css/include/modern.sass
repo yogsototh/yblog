@@ -40,6 +40,26 @@ a:hover
   color: $orange
   text-shadow: 0 0 1px $red
 
+=sc
+  text-transform: uppercase
+  font-size: 0.8em
+.sc
+  +sc
+abbr,
+acronym
+  +sc
+  &:after
+    content: "*"
+    vertical-align: super
+    line-height: 0
+    font-size: .66em
+    color: $highlightColor
+  text:
+    decoration: none
+  border:
+    bottom:
+      width: 0
+
 .corps
   a
     color: $front
@@ -427,7 +447,7 @@ pre .list
   padding: 0 $hmargin
   margin: $unit 0
 
-#totop
+#totop, #tomenu
   text-align: center
   margin: 0 auto
 
