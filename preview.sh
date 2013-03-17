@@ -7,8 +7,12 @@ compileAndLaunch() {
 		ghc -O2 -Wall -odir _comp -hidir _comp site.hs && \
 			print -- "REBUILDING" && \
 			./site clean && \
-			print -- "SERVING" && \
-            ./recompile & ./site preview
+			print -- "SERVING"
+            oldprocesses=( $(ps x|grep './recompile'|grep -v grep|awk '{print $1}') )
+            (( ${#oldprocesses} == 0 )) && { ./recompile & }
+            while true; do
+                ./site preview
+            done
 	} &
 	son=$!
 }
