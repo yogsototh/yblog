@@ -27,6 +27,7 @@ If you don't want to read, just copy/paste this in your %html:
 ``` js
 <script>
 (function(){
+    if (document.readyState === 'loading') {
 var url=document.location;
 document.write(
   '<'+'a href="https://twitter.com/home?status='+url+'" '
@@ -37,6 +38,7 @@ document.write(
 
 + '<'+'a href="https://plus.google.com/share?url='+url+'" '
     +'target="_blank">Share on G+<'+'/a>');
+}
 })();
 </script>
 ```
@@ -121,6 +123,7 @@ If you don't want to write the %url yourself, you could use some minimal js:
 ``` js
 <script>
 (function(){
+    if (document.readyState === 'loading') {
 var url=document.location;
 document.write(
   '<'+'a href="https://twitter.com/home?status='+url+'" '
@@ -131,6 +134,7 @@ document.write(
 
 + '<'+'a href="https://plus.google.com/share?url='+url+'" '
     +'target="_blank">Share on G+<'+'/a>');
+}
 })();
 </script>
 ```
@@ -140,6 +144,7 @@ Here is the result:
 <div style="text-align:center" class="nostar">
 <script>
 (function(){
+    if (document.readyState === 'loading') {
 var url=document.location;
 document.write(
   '<'+'a href="https://twitter.com/home?status='+url+'" '
@@ -150,6 +155,7 @@ document.write(
 
 + '<'+'a href="https://plus.google.com/share?url='+url+'" '
     +'target="_blank">Share on G+<'+'/a>');
+}
 })();
 </script>
 </div>
@@ -201,6 +207,7 @@ Now add this to your %html:
 ``` html
 <script>
 (function(){
+    if (document.readyState === 'loading') {
 var url=document.location;
 document.write(
     '<a href="https://twitter.com/home?status='+url+'"'
@@ -214,6 +221,7 @@ document.write(
     + '<a href="https://plus.google.com/share?url='+url+'"'
         + ' target="_blank"'
         + ' class="social">&#0103;<'+'/a>');
+}
 })();
 </script>
 ```
@@ -223,6 +231,7 @@ Here is the result:
 <div style="font-size: 2em; text-align: center;" class="nostar">
 <script>
 (function(){
+    if (document.readyState === 'loading') {
 var url=document.location;
 document.write(
     '<a href="https://twitter.com/home?status='+url+'"'
@@ -236,6 +245,7 @@ document.write(
     + '<a href="https://plus.google.com/share?url='+url+'"'
         + ' target="_blank"'
         + ' class="social">&#0103;<'+'/a>');
+}
 })();
 </script>
 </div>
