@@ -24,22 +24,27 @@ Use static links instead.
 
 If you don't want to read, just copy/paste this in your %html:
 
-``` js
+``` html
+<div class="sociallinks"></div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
+(function(){window.addEventListener("DOMContentLoaded",function(){
 var url=document.location;
-document.write(
-  '<'+'a href="https://twitter.com/home?status='+url+'" '
-    +'target="_blank">Tweet this<'+'/a> - '
-
-+ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
-    +'target="_blank">Like this<'+'/a> - '
-
-+ '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">Share on G+<'+'/a>');
-}
-})();
+var link=function(href,txt){
+    var node=document.createElement('a');
+    node.setAttribute('href',href);
+    node.setAttribute('target','_blank');
+    node.appendChild(document.createTextNode(txt));
+    return node;};
+var elems=[
+     link('https://twitter.com/home?status='+url,'Tweet this')
+    ,document.createTextNode(' - ')
+    ,link('http://www.facebook.com/sharer/sharer.php?u='+url,'Like this')
+    ,document.createTextNode(' - ')
+    ,link('https://plus.google.com/share?url='+url,'Share on g+')];
+var divs=document.getElementsByClassName("sociallinks");
+for (var i=0 ; i!=divs.length ; i++){
+    for (var e=0 ; e!=elems.length ; e++){
+        divs[i].appendChild(elems[e].cloneNode(true));}}})})();
 </script>
 ```
 
@@ -120,44 +125,55 @@ But you have to replace `$url$` by the current %url.
 
 If you don't want to write the %url yourself, you could use some minimal js:
 
-``` js
+``` html
+<div class="sociallinks"></div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
+(function(){window.addEventListener("DOMContentLoaded",function(){
 var url=document.location;
-document.write(
-  '<'+'a href="https://twitter.com/home?status='+url+'" '
-    +'target="_blank">Tweet this<'+'/a> - '
-
-+ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
-    +'target="_blank">Like this<'+'/a> - '
-
-+ '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">Share on G+<'+'/a>');
-}
-})();
+var link=function(href,txt){
+        var node=document.createElement('a');
+        node.setAttribute('href',href);
+        node.setAttribute('target','_blank');
+        node.appendChild(document.createTextNode(txt));
+        return node;};
+var elems=[
+ link('https://twitter.com/home?status='+url,'Tweet this')
+,link('http://www.facebook.com/sharer/sharer.php?u='+url,'Like this')
+,link('https://plus.google.com/share?url='+url,'Share on g+')];
+var divs=document.getElementsByClassName("sociallinks");
+for (var i=0;i<div.length;i++){
+    for (var e=0;e<elems.length;e++){
+        divs[i].appendChild(elems[e].cloneNode(true)); } }
+}})();
 </script>
 ```
 
 Here is the result:
 
 <div style="text-align:center" class="nostar">
+
+<div class="sociallinks"></div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
+(function(){window.addEventListener("DOMContentLoaded",function(){
 var url=document.location;
-document.write(
-  '<'+'a href="https://twitter.com/home?status='+url+'" '
-    +'target="_blank">Tweet this<'+'/a> - '
-
-+ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
-    +'target="_blank">Like this<'+'/a> - '
-
-+ '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">Share on G+<'+'/a>');
-}
-})();
+var link=function(href,txt){
+    var node=document.createElement('a');
+    node.setAttribute('href',href);
+    node.setAttribute('target','_blank');
+    node.appendChild(document.createTextNode(txt));
+    return node;};
+var elems=[
+     link('https://twitter.com/home?status='+url,'Tweet this')
+    ,document.createTextNode(' - ')
+    ,link('http://www.facebook.com/sharer/sharer.php?u='+url,'Like this')
+    ,document.createTextNode(' - ')
+    ,link('https://plus.google.com/share?url='+url,'Share on g+')];
+var divs=document.getElementsByClassName("sociallinks");
+for (var i=0 ; i!=divs.length ; i++){
+    for (var e=0 ; e!=elems.length ; e++){
+        divs[i].appendChild(elems[e].cloneNode(true));}}})})();
 </script>
+
 </div>
 
 ## Good looking solutions
@@ -206,23 +222,26 @@ Now add this to your %html:
 
 ``` html
 <script>
-(function(){
-    if (document.readyState === 'loading') {
+<div class="sociallinksunicode"></div>
+<script>
+(function(){window.addEventListener("DOMContentLoaded",function(){
 var url=document.location;
-document.write(
-    '<a href="https://twitter.com/home?status='+url+'"'
-        + ' target="_blank"'
-        + ' class="social">&#116;<'+'/a>'
-    + ' · '
-    + '<' + 'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'"'
-       + ' target="_blank"'
-       + ' class="social">&#0096;<'+'/a>'
-    + ' · '
-    + '<a href="https://plus.google.com/share?url='+url+'"'
-        + ' target="_blank"'
-        + ' class="social">&#0103;<'+'/a>');
-}
-})();
+var link=function(href,txt){
+    var node=document.createElement('a');
+    node.setAttribute('href',href);
+    node.setAttribute('target','_blank');
+    node.appendChild(document.createTextNode(txt));
+    return node;};
+var elems=[
+     link('https://twitter.com/home?status='+url,'&#116;')
+    ,document.createTextNode(' - ')
+    ,link('http://www.facebook.com/sharer/sharer.php?u='+url,'&#0096;')
+    ,document.createTextNode(' - ')
+    ,link('https://plus.google.com/share?url='+url,'&#0103;')];
+var divs=document.getElementsByClassName("sociallinksunicode");
+for (var i=0 ; i!=divs.length ; i++){
+    for (var e=0 ; e!=elems.length ; e++){
+        divs[i].appendChild(elems[e].cloneNode(true));}}})})();
 </script>
 ```
 
