@@ -19,13 +19,22 @@ utilisation d'`index.html`, etc...
 
 </div>
 
-I will explain how I actually blog.
-And also, I might provide a longer Hakyll tutorial than the official one.
+The website your are reading is done with [Hakyll][hakyll]
 
-First Hakyll can be considered as a minimal %cms.
-You write your content in some place.
-Generally a bunch of files.
-And it generates a nice website.
+[hakyll]: http://jaspervdj.be/hakyll
 
-Mainly, for each file, you apply some filters.
-Then you apply some 
+[Hakyll][hakyll] can be considered as a minimal %cms.
+But more generally it is a way to organize file generation.
+
+My current workflow is:
+
+1. open a Terminal, launch my script `preview.sh`.
+2. open my browser on [localhost:8000](http://localhost:8000).
+3. Write (customized) markdown files
+4. Time to time, I reload the browser to the corresponding file.
+5. Return to 3 up until I am satisfied with the result.
+
+Mainly, when I modify a markdown file, it generates an %html file.
+
+It sounds easy, but there are a lot of decisions and parameters to think about.
+I will show you which they are.
