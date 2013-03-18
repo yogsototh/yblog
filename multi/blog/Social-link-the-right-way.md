@@ -33,22 +33,23 @@ fr: Utilisez des liens statiques.
 en: If you don't want to read, just copy/paste this in your %html:
 fr: Si vous n'avez pas envie de lire, copiez et collez simplement le code suivant dans votre %html :
 
-``` js
+``` html
+<div id="sociallinks">
+  <a href="https://twitter.com/home?status=$url$"
+     target="_blank">Tweet this</a> -
+  <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
+     target="_blank">Like this</a> -
+  <a href="https://plus.google.com/share?url=$url$"
+     target="_blank">Share on G+</a>
+</div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
-var url=document.location;
-document.write(
-  '<'+'a href="https://twitter.com/home?status='+url+'" '
-    +'target="_blank">Tweet this<'+'/a> - '
-
-+ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
-    +'target="_blank">Like this<'+'/a> - '
-
-+ '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">Share on G+<'+'/a>');
-}
-})();
+(function(){window.addEventListener("DOMContentLoaded",function(){
+    var url=document.location;
+    var links=document.getElementById("sociallinks")
+                      .getElementsByTagName('a');
+    for (var i=0;i!=links.length;i++){
+        links[i].setAttribute("href",
+            links[i].href.replace('$url$',url));}})})();
 </script>
 ```
 
@@ -129,44 +130,48 @@ But you have to replace `$url$` by the current %url.
 
 If you don't want to write the %url yourself, you could use some minimal js:
 
-``` js
+``` html
+<div id="sociallinks">
+  <a href="https://twitter.com/home?status=$url$"
+     target="_blank">Tweet this</a> -
+  <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
+     target="_blank">Like this</a> -
+  <a href="https://plus.google.com/share?url=$url$"
+     target="_blank">Share on G+</a>
+</div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
-var url=document.location;
-document.write(
-  '<'+'a href="https://twitter.com/home?status='+url+'" '
-    +'target="_blank">Tweet this<'+'/a> - '
-
-+ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
-    +'target="_blank">Like this<'+'/a> - '
-
-+ '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">Share on G+<'+'/a>');
-}
-})();
+(function(){window.addEventListener("DOMContentLoaded",function(){
+    var url=document.location;
+    var links=document.getElementById("sociallinks")
+                      .getElementsByTagName('a');
+    for (var i=0;i!=links.length;i++){
+        links[i].setAttribute("href",
+            links[i].href.replace('$url$',url));}})})();
 </script>
 ```
 
 Here is the result:
 
 <div style="text-align:center" class="nostar">
+
+<div id="sociallinks">
+  <a href="https://twitter.com/home?status=$url$"
+     target="_blank">Tweet this</a> -
+  <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
+     target="_blank">Like this</a> -
+  <a href="https://plus.google.com/share?url=$url$"
+     target="_blank">Share on G+</a>
+</div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
-var url=document.location;
-document.write(
-  '<'+'a href="https://twitter.com/home?status='+url+'" '
-    +'target="_blank">Tweet this<'+'/a> - '
-
-+ '<'+'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'" '
-    +'target="_blank">Like this<'+'/a> - '
-
-+ '<'+'a href="https://plus.google.com/share?url='+url+'" '
-    +'target="_blank">Share on G+<'+'/a>');
-}
-})();
+(function(){window.addEventListener("DOMContentLoaded",function(){
+    var url=document.location;
+    var links=document.getElementById("sociallinks")
+                      .getElementsByTagName('a');
+    for (var i=0;i!=links.length;i++){
+        links[i].setAttribute("href",
+            links[i].href.replace('$url$',url));}})})();
 </script>
+
 </div>
 
 ## Good looking solutions
@@ -211,51 +216,57 @@ Now add this to your %html:
     class="social">&#0103;</a>
 ```
 
-**Solution 2 (just copy/paste):**
+**Solution 2 (same with a bit more js):**
 
 ``` html
+<div id="sociallinksunicode">
+<a href="https://twitter.com/home?status=$url$"
+    target="_blank"
+    class="social">&#116;</a>
+·
+<a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
+   target="_blank"
+   class="social">&#0096;</a>
+·
+<a href="https://plus.google.com/share?url=$url$"
+    target="_blank"
+    class="social">&#0103;</a>
+</div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
-var url=document.location;
-document.write(
-    '<a href="https://twitter.com/home?status='+url+'"'
-        + ' target="_blank"'
-        + ' class="social">&#116;<'+'/a>'
-    + ' · '
-    + '<' + 'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'"'
-       + ' target="_blank"'
-       + ' class="social">&#0096;<'+'/a>'
-    + ' · '
-    + '<a href="https://plus.google.com/share?url='+url+'"'
-        + ' target="_blank"'
-        + ' class="social">&#0103;<'+'/a>');
-}
-})();
+(function(){window.addEventListener("DOMContentLoaded",function(){
+    var url=document.location;
+    var links=document.getElementById("sociallinksunicode")
+                      .getElementsByTagName('a');
+    for (var i=0;i!=links.length;i++){
+        links[i].setAttribute("href",
+            links[i].href.replace('$url$',url));}})})();
 </script>
 ```
 
 Here is the result:
 
 <div style="font-size: 2em; text-align: center;" class="nostar">
+<div id="sociallinksunicode">
+<a href="https://twitter.com/home?status=$url$"
+    target="_blank"
+    class="social">&#116;</a>
+·
+<a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
+   target="_blank"
+   class="social">&#0096;</a>
+·
+<a href="https://plus.google.com/share?url=$url$"
+    target="_blank"
+    class="social">&#0103;</a>
+</div>
 <script>
-(function(){
-    if (document.readyState === 'loading') {
-var url=document.location;
-document.write(
-    '<a href="https://twitter.com/home?status='+url+'"'
-        + ' target="_blank"'
-        + ' class="social">&#116;<'+'/a>'
-    + ' · '
-    + '<' + 'a href="http://www.facebook.com/sharer/sharer.php?u='+url+'"'
-       + ' target="_blank"'
-       + ' class="social">&#0096;<'+'/a>'
-    + ' · '
-    + '<a href="https://plus.google.com/share?url='+url+'"'
-        + ' target="_blank"'
-        + ' class="social">&#0103;<'+'/a>');
-}
-})();
+(function(){window.addEventListener("DOMContentLoaded",function(){
+    var url=document.location;
+    var links=document.getElementById("sociallinksunicode")
+                      .getElementsByTagName('a');
+    for (var i=0;i!=links.length;i++){
+        links[i].setAttribute("href",
+            links[i].href.replace('$url$',url));}})})();
 </script>
 </div>
 
