@@ -69,13 +69,20 @@ var styles=[ pref+'/scientific.css'
 		   , pref+'/darkmodern.css'];
 
 // -- fix for ie (I HATE YOU Internet Explorer!)
+if (!('indexOf' in Array.prototype)) {
+    Array.prototype.indexOf = function(find, i /*opt*/) {
+        if (i===undefined) i=0;
+        if (i<0) i+= this.length;
+        if (i<0) i= 0;
+        for (var n= this.length; i<n; i++)
+            if (i in this && this[i]===find)
+                return i;
+        return -1;};}
 if (!('forEach' in Array.prototype)) {
-    Array.prototype.forEach= function(action, that /*opt*/) {
-        for (var i= 0, n= this.length; i<n; i++)
+    Array.prototype.forEach = function(action, that /*opt*/) {
+        for (var i=0, n=this.length; i<n; i++)
             if (i in this)
-                action.call(that, this[i], i, this);
-    };
-}
+                action.call(that, this[i], i, this);};}
 
 function badPref() {
     var badPrefix=true;
