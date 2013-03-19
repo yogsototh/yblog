@@ -176,3 +176,138 @@ As Sir Robin said just before dying before the Bridge of Death:
 > -- <cite>Sir Robin,
 > the Not-Quite-So-Brave-As-Sir-Lancelot</cite>
 
+## Real customization
+
+Now that we understand the basic functionality.
+How to:
+
+- use SASS?
+- add keywords?
+- simplify %url?
+- create an archive page?
+- create an RSS feed?
+- filter the content?
+- add abbreviations support?
+- manage two languages?
+
+### Use SASS
+
+That's easy.
+Simply call the executable using `unixFilter`.
+Of course you'll have to install SASS (`gem install sass`).
+And we also use compressCss to gain some space.
+
+``` haskell
+match "css/*" $ do
+    route   $ setExtension "css"
+    compile $ getResourceString >>=
+              withItemBody (unixFilter "sass" ["--trace"]) >>=
+              return . fmap compressCss
+```
+
+### Add keywords
+
+In order to help to reference your website on the web, it is nice
+to add some keywords as meta datas to your %html page.
+
+``` html
+<meta name="keywords"
+      content="Cthulhu, Yog-Sothoth, Shub-Niggurath">
+```
+
+In order to add keywords, we could not directly use the markdown metadatas.
+Because, without any, there should be any meta tag in the %html.
+
+An easy answer is to create a `Context` that will contains the meta tag.
+
+``` haskell
+-- metaKeywordContext will return a Context containing a String
+metaKeywordContext :: Context String
+-- can be reached using $metaKeywords$ in the templates
+-- Use the current item (markdown file)
+metaKeywordContext = field "metaKeywords" $ \item -> do
+  -- tags contains the content of the "tags" metadata
+  -- inside the item (understand the source)
+  tags <- getMetadataField (itemIdentifier item) "tags"
+  -- if tags is empty return an empty string
+  -- in the other case return
+  --   <meta name="keywords" content="$tags$">
+  return $ maybe "" showMetaTags tags
+    where
+      showMetaTags t = "<meta name=\"keywords\" content=\""
+                       ++ t ++ "\">\n"
+```
+
+Then we pass this `Context` to the `loadAndApplyTemplate` function:
+
+``` haskell
+match "posts/*.md" do
+  route $ setExtension "html"
+  compile $ pandocCompiler
+    -- use the template with the current content
+    >>= loadAndApplyTemplate "templates/post.html"
+            (defaultContext {-hi-}<> metaKeywordContext{-/hi-})
+```
+
+### Simplify %url
+
+What I mean is to use url of the form:
+
+```
+http://domain.name/post/title-of-the-post/
+```
+
+I prefer this than having to add file with `.html` extension.
+We have to change the default Hakyll route behavior.
+We create another function `niceRoute`.
+
+``` haskell
+-- replace a foo/bar.md by foo/bar/index.html
+-- this way the url looks like: foo/bar in most browsers
+niceRoute :: Routes
+niceRoute = customRoute createIndexRoute
+  where
+    createIndexRoute ident =
+        takeDirectory p </> takeBaseName p </> "index.html"
+    where p=toFilePath ident
+```
+
+Not too difficult. But! There might be a problem.
+What if there is a `foo/index.html` link instead of a clean `foo/` in some content?
+
+Very simple, we simply remove all '/index.html' to all our links.
+
+``` haskell
+-- replace url of the form foo/bar/index.html by foo/bar
+removeIndexHtml :: Item String -> Compiler (Item String)
+removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item
+  where
+    removeIndexStr :: String -> String
+    removeIndexStr str@(x:xs) | str == "/index.html" = ""
+                              | otherwise = x:removeIndexStr xs
+    removeIndexStr [] = []
+```
+
+And we apply this filter at the end of our compilation
+
+``` haskell
+match "posts/*.md" do
+  route $ setExtension "html"
+  compile $ pandocCompiler
+    -- use the template with the current content
+    >>= loadAndApplyTemplate "templates/post.html" defaultContext
+    {-hi-}>>= removeIndexStr{-/hi-}
+```
+
+### Create an archive page
+
+To create an archive page, things will start to become more difficult.
+Fortunately, an archive page is present in the initial hakyll example.
+
+### Create an RSS feed
+
+### Filter the content
+
+### Add abbreviations support
+
+### Manage two languages
