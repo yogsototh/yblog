@@ -277,13 +277,12 @@ Ensuite `@a` va rejouer la macro enregistrée dans le registre `a` comme si c'es
 > Exemple :
 > Sur une ligne contenant seulement un 1 tapez :
 >
-> - `qaYp<C-a>q` → 
-> 
->   - `qa` → début de l'enregistrement.
->   - `Yp` → copier cette ligne.
->   - `<C-a>` → incrémente le nombre.
->   - `q` → arrête d'enregistrer.
-> 
+> - `qaYp<C-a>q` →
+>     - `qa` → début de l'enregistrement.
+>     - `Yp` → copier cette ligne.
+>     - `<C-a>` → incrémente le nombre.
+>     - `q` → arrête d'enregistrer.
+>
 > - `@a` → écrit un 2 sous le 1.
 > - Écrivez `100@@`. Cela va créer une liste de nombre croissants jusqu'à 103.
 

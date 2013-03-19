@@ -272,13 +272,12 @@ Then `@a` will replay the macro saved into the register `a` as if you typed it.
 >
 > On a line containing only the number 1, type this:
 >
-> - `qaYp<C-a>q` → 
->   
->   - `qa` start recording. 
->   - `Yp` duplicate this line.
->   - `<C-a>` increment the number.
->   - `q` stop recording.
-> 
+> - `qaYp<C-a>q` →
+>     - `qa` start recording.
+>     - `Yp` duplicate this line.
+>     - `<C-a>` increment the number.
+>     - `q` stop recording.
+>
 > - `@a` → write 2 under the 1
 > - `@@` → write 3 under the 2
 > - Now do `100@@` will create a list of increasing numbers until 103.
