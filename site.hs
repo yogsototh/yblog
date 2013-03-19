@@ -9,7 +9,8 @@ import           Data.Ord               (comparing)
 import           System.Locale          (defaultTimeLocale)
 
 import           Abbreviations          (abbreviationFilter)
-import           YFilters               (blogImage,blogFigure,frenchPunctuation)
+import           YFilters               (blogImage,blogFigure
+                                        ,frenchPunctuation,highlight)
 import           Multilang              (multiContext)
 import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>))
 
@@ -108,7 +109,7 @@ htmlPostBehavior :: Rules ()
 htmlPostBehavior = do
   route $ niceRoute
   compile $ getResourceBody
-        >>= applyFilter (abbreviationFilter . frenchPunctuation)
+        >>= applyFilter (abbreviationFilter . frenchPunctuation . highlight)
         >>= saveSnapshot "content"
         >>= loadAndApplyTemplate "templates/post.html" yContext
         >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
@@ -125,7 +126,7 @@ preFilters itemPath =   abbreviationFilter
 
 --------------------------------------------------------------------------------
 postFilters :: String -> String
-postFilters = frenchPunctuation
+postFilters = frenchPunctuation . highlight
 
 --------------------------------------------------------------------------------
 --

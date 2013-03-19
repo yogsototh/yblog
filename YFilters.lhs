@@ -5,6 +5,7 @@ YFilters
 >   ( blogImage
 >   , blogFigure
 >   , frenchPunctuation
+>   , highlight
 >   )
 > where
 > import           Hakyll
@@ -55,3 +56,13 @@ The French punctuation prevent to start a line with a semicolon in French.
 
 > frenchPunctuation :: String -> String
 > frenchPunctuation = replaceAll " :</p>" (\_-> "&nbsp;:</p>")
+
+I would like to be able to highlight some part of code when I write
+`{-hi-}...{-/hi-}`. This way I will also be compatible with School of Haskell.
+
+> highlight :: String -> String
+> highlight =
+>     (replaceAll "{-hi-}" (\_-> "<span class=\"highlight\">"))
+>   . (replaceAll "{-/hi-}" (\_-> "</span>"))
+>   . (replaceAll "<span class=\"co\">{-hi-}</span>" (\_-> "<span class=\"highlight\">"))
+>   . (replaceAll "<span class=\"co\">{-/hi-}</span>" (\_-> "</span>"))

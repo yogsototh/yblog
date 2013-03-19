@@ -218,7 +218,6 @@ ul
 
 ul
   padding-left: 0
-  margin-left: 1.5ex
   text-indent: -1.5ex
 ol
   padding-left: 0
@@ -226,8 +225,8 @@ ol
 .toc
   ol li, ul li
     margin: .5em 0
-ol li ul, ol li ol, ul li ol, ul li ul
-  margin: .5em 1.5em
+ol li ol, ul li ol, ul li ul
+  margin: 0em 2em 0.6em
   list-style: none
 
 
@@ -614,8 +613,7 @@ $fontcorps: 1.25
   p, ol, ul, blockquote
     line-height: 1.5em
   ul li ul, ol li ul, ul li ol, ol li ol
-    margin-top: 0
-    margin-bottom: 0
+    margin: 0 2em 0.6em
 
 $corps_width: ($content_width - 2 * $contentMargin) / $fontcorps
 $hpadding: 1
@@ -1168,6 +1166,9 @@ a.rss
   color: $cyan
 .green
   color: $green
+
+.highlight
+  background-color: $base2
 
 #header
   opacity: .25
