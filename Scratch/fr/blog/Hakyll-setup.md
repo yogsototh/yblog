@@ -19,12 +19,12 @@ utilisation d'`index.html`, etc...
 
 </div>
 
-The website your are reading is done with [Hakyll][hakyll]
+This website is done with [Hakyll][hakyll].
 
 [hakyll]: http://jaspervdj.be/hakyll
 
 [Hakyll][hakyll] can be considered as a minimal %cms.
-But more generally it is a way to organize file generation.
+But more generally it is a library helping file generation.
 
 My current workflow is:
 
@@ -32,29 +32,38 @@ My current workflow is:
     a. open a Terminal, launch my script `preview.sh`.
     b. open my browser on [localhost:8000](http://localhost:8000).
 2. Work:
-    a. Write (customized) markdown files
-    b. Time to time, I reload the browser to the corresponding file.
+    a. Edit markdown files
+    b. Reload the page in the browser to see the result
 3. Deploy:
     a. launch the script `fastpublish.sh` (mainly do a git push)
 
-Its main work can be abstracted as:
+Being short sighted we could say the role of Hakyll is to:
 
->creating (resp. updating) %html file when I create (resp. change) a markdown file.
+>create (resp. update) %html file when I create (resp. change) a markdown file.
 
-While it sounds easy, there are in fact a lot of hidden details.
+While it sounds easy, there are a lot of hidden details:
+
+- Add metadatas like keywords.
+- Create an archive page containing a list of all the posts.
+- Deal with static files.
+- Creating an RSS feed.
+- Filter the content with some function.
+- Dealing with dependencies.
+
 The work of Hakyll is to help you with these.
+But let's start with the basic concepts.
 
 ## The concepts and syntax
 
-For each file you will create, you have to give, a destination path and
-a list of filters.
+For each file you create, you have to provide:
+- a destination path
+- a list of content filters.
 
-First, let's start with the simplest case.
-You simply want to deal with static files (images, fonts, etc...).
+First, let's start with the simplest case: static files (images, fonts, etc...).
 Generally, you have a source directory (here is the current directory)
 and a destination directory `_site`.
 
-You write:
+The Hakyll code is:
 
 ``` haskell
 -- for each file in the static directory
@@ -66,8 +75,8 @@ match "static/*" do
 ```
 
 This program will copy ``static/foo.jpg`` to ``_site/static/foo.jpg``.
-A bit overkill for a simple `cp`, but here is something more interesting.
-We want to write a markdown file and generate an %html one.
+I concede this is a bit overkill for a simple `cp`.
+Now how to write a markdown file and generate an %html one?
 
 ``` haskell
 -- for each file with md extension in the "posts/" directory
@@ -89,7 +98,7 @@ If the file ``posts/foo.md``, contained
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 ```
 
-The file ``posts/foo.md``, would contains
+The file ``posts/foo.md``, would contain
 
 ``` html
 <h1>Cthulhu</h1>
@@ -130,8 +139,8 @@ Now our `cthulhu.html` contains (indention added for readability):
     <title>How could I get the title?</title>
   </head>
   <body>
-    {-hi-}<h1>Cthulhu</h1>
-    <p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
+    {-hi-}<h1>Cthulhu</h1>{-/hi-}
+    {-/hi-}<p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
   </body>
 </html>
 ```
@@ -141,7 +150,9 @@ But we have a problem. How could we change the title?
 Or for example, add keywords?
 
 The solution is to use `Context`s.
-For this, we first need to add some metadatas to our markdown.
+For this, we first need to add some metadatas to our markdown[^1].
+
+[^1]: We could also add the metadatas in an external file (`foo.md.metadata`).
 
 ``` markdown
 {-hi-}---
@@ -564,7 +575,7 @@ trads = M.fromList $ map toTrad [
 
 Then I create a context taking an argument:
 
-```
+``` haskell
 tradsContext :: Context a
 tradsContext = functionField "trad" $ \args item -> do
   -- get the key
@@ -595,3 +606,52 @@ But I just wanted to show how to pass parameters to a metadata tag.
 The full code is [here](http://github.com/yogsototh/yblog.git).
 And except from the main file, I use literate Haskell.
 This way the code should be easier to understand.
+
+If you want to know why I switched from nanoc:
+
+My preceding nanoc website was a bit too messy.
+So much in fact, that the dependency system
+recompiled the entire website for any change.
+
+So I had to do something about it.
+And I had two choices.
+
+1. Correct my old code (in Ruby)
+2. Duplicate the core functionalities with Hakyll (in Haskell)
+
+I am also quite convinced I added too much functionalities in my old nanoc code.
+Starting from scratch (almost) is a nice way to remove a lot of unused crap.
+
+So far I am very happy with the switch.
+Hakyll is very fast compared to nanoc (about 3x to 5x faster for a complete build).
+
+I didn't broke the dependency system this time.
+As soon as I modify and save the markdown source,
+I can reload the page in the browser.
+
+I removed a lot of feature thought.
+Some of them will be difficult to achieve with Hakyll.
+A typical example:
+
+In nanoc I could take a file like this as source:
+
+``` markdown
+# Title
+
+content
+
+<code file="foo.hs">
+main = putStrLn "Cthulhu!"
+</code>
+```
+
+And it will create a file `foo.hs` which could then be downloaded.
+
+``` html
+<h1>Title</h1>
+
+<p>content</p>
+
+<a href="code/foo.hs">Download foo.hs</a>
+<pre><code>main = putStrLn "Cthulhu!"</code></pre>
+```
