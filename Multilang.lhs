@@ -64,7 +64,7 @@ For me this is easy, the language of an item is where it is in fr or en.
 >   filepath <- return $ toFilePath (itemIdentifier item)
 >   return $ if (languageFromPath filepath == "fr" ) then "fr" else "en"
 >     where
->       languageFromPath = take 2 . drop (length sitePrefix) 
+>       languageFromPath = take 2 . drop (length sitePrefix)
 > --------------------------------------------------------------------------------
 > languageContext :: Context a
 > languageContext = field "language" itemLang

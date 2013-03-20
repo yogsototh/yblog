@@ -41,8 +41,7 @@ a:hover
   text-shadow: 0 0 1px $red
 
 =sc
-  text-transform: uppercase
-  font-size: 0.8em
+  font-variant: small-caps
 .sc
   +sc
 abbr,
@@ -53,7 +52,6 @@ acronym
     vertical-align: super
     line-height: 0
     font-size: .66em
-    color: $highlightColor
   text:
     decoration: none
   border:
@@ -138,6 +136,7 @@ acronym
     border-bottom: medium solid
     margin: 4*$unit auto
   pre
+    margin: 4*$unit 0
     background: $background
     font-family: monaco, monospace
     font-size: $unit
@@ -471,4 +470,4 @@ pre .list
     overflow: hidden
 
 .highlight
-  background-color: rgba(255,255,127,0.5)
+  background-color: $base02

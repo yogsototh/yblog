@@ -181,7 +181,6 @@ markdownPostBehavior = do
     >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
     >>= relativizeUrls
     >>= removeIndexHtml
-  where
 
 --------------------------------------------------------------------------------
 archiveBehavior :: String -> Rules ()
@@ -244,15 +243,15 @@ feedBehavior language = do
       compile $ do
         loadAllSnapshots (fromGlob $ "Scratch/" ++ language ++ "/blog/*") "content"
         >>= (fmap (take 10)) . createdFirst
-        >>= renderAtom (feedConfiguration "Yann Esposito") feedCtx
+        >>= renderAtom feedConfiguration feedCtx
       where
         feedCtx :: Context String
         feedCtx = mconcat [bodyField "description", yContext]
 
 --------------------------------------------------------------------------------
-feedConfiguration :: String -> FeedConfiguration
-feedConfiguration title = FeedConfiguration
-  { feedTitle = "yannesposito - " ++ title
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration
+  { feedTitle = "yannesposito.com"
   , feedDescription = "Personal blog of Yann Esposito"
   , feedAuthorName = "Yann Esposito"
   , feedAuthorEmail = "yann.esposito@gmail.com"
