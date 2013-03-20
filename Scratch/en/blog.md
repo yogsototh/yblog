@@ -5,7 +5,7 @@ theme: scientific
 
 Popular Articles
 ----------------
-
+<div id="popular">
 <div class="popularblock">
     <a href="/Scratch/en/blog/Learn-Vim-Progressively/">
         <figure>
@@ -40,6 +40,7 @@ Popular Articles
 </div>
 
 <div class="flush"></div>
+</div>
 
 Archive
 -------

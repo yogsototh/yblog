@@ -26,16 +26,36 @@ This website is done with [Hakyll][hakyll].
 [Hakyll][hakyll] can be considered as a minimal %cms.
 But more generally it is a library helping file generation.
 
-My current workflow is:
+From the user perspective I blog this way:
 
-1. Initialize my environment:
-    a. open a Terminal, launch my script `preview.sh`.
-    b. open my browser on [localhost:8000](http://localhost:8000).
-2. Work:
-    a. Edit markdown files
-    b. Reload the page in the browser to see the result
-3. Deploy:
-    a. launch the script `fastpublish.sh` (mainly do a git push)
+1. I open an editor (vim in my case) and edit a markdown file.
+   It looks like this
+
+``` markdown
+A First Level Header
+====================
+
+A Second Level Header
+---------------------
+
+Who would cross the Bridge of Death must answer me
+these questions three, ere the other side he see.
+This is just a regular paragraph.
+
+Ask me the questions, bridgekeeper. I am not afraid.
+
+### Header 3
+
+> This is a blockquote.
+>
+> This is the second paragraph in the blockquote.
+>
+> ## This is an H2 in a blockquote
+```
+
+2. I open a browser and reload time to time to see the change.
+3. Once I finished I've written a very minimal script which mainly to a git push.
+   My blog is hosted on [github](http//github.com).
 
 Being short sighted we could say the role of Hakyll is to:
 
@@ -56,6 +76,7 @@ But let's start with the basic concepts.
 ## The concepts and syntax
 
 For each file you create, you have to provide:
+
 - a destination path
 - a list of content filters.
 
@@ -619,12 +640,11 @@ And I had two choices.
 1. Correct my old code (in Ruby)
 2. Duplicate the core functionalities with Hakyll (in Haskell)
 
-I am also quite convinced I added too much functionalities in my old nanoc code.
-Starting from scratch (almost) is a nice way to remove a lot of unused crap.
+I added too much functionalities in my nanoc system.
+Starting from scratch (almost) remove efficiently a lot of unused crap.
 
 So far I am very happy with the switch.
-Hakyll is very fast compared to nanoc (about 3x to 5x faster for a complete build).
-
+A complete build is about 4x faster.
 I didn't broke the dependency system this time.
 As soon as I modify and save the markdown source,
 I can reload the page in the browser.
