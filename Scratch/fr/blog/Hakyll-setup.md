@@ -75,6 +75,9 @@ But let's start with the basic concepts.
 
 ## The concepts and syntax
 
+
+blogimage("overview.png","Overview")
+
 For each file you create, you have to provide:
 
 - a destination path
@@ -635,7 +638,7 @@ So much in fact, that the dependency system
 recompiled the entire website for any change.
 
 So I had to do something about it.
-And I had two choices.
+I had two choices:
 
 1. Correct my old code (in Ruby)
 2. Duplicate the core functionalities with Hakyll (in Haskell)

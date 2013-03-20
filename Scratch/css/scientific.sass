@@ -285,11 +285,12 @@ p
       padding-left: 1.5em
 
 =sc
-  font-variant: small-caps
+  text-transform: uppercase
+  font-size: 0.8em
+  // Safari bug: font-variant: small-caps
 
 abbr,
 acronym
-  +sc
   &:after
     content: "*"
     vertical-align: super
