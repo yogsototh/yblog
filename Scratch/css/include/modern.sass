@@ -46,7 +46,6 @@ a:hover
   +sc
 abbr,
 acronym
-  +sc
   &:after
     content: "*"
     vertical-align: super
@@ -89,12 +88,17 @@ acronym
   position: fixed
   text-align: center
   background: $background
+=goodsize
+  display: block
+  margin-left: auto
+  margin-right: auto
+  width: 100%
+  max-width: 37*$unit + 2*$hmargin
 
 #content
   background: $textbackground
   color: $front
   width: 100%
-  max-width: 37*$unit + 2*$hmargin
   margin: 0 auto
   padding: 0
   #titre h1
@@ -103,12 +107,15 @@ acronym
     text-align: center
     font-weight: 200
   h1,h2,h3,h4,h5,h6
+    +goodsize
     padding: 0 $hmargin
-    margin: 4*$unit 0
+    margin-top: 4*$unit
+    margin-bottom: 4*$unit
     color: $lighter
   table
-    margin: $unit 0
-    padding: 0 $hmargin
+    +goodsize
+    margin-top: 2*$unit
+    margin-bottom: 2*$unit
     tr
       &:nth-child(odd)
         background-color: $background
@@ -121,14 +128,19 @@ acronym
         padding: 0.25*$unit
         margin: 0
   figure, .figure
-    margin: 0
+    margin: 2*$unit
     padding: 0
+    img
+      margin: $unit auto
+      padding: 0
     figcaption, .caption
-      padding: 0 $hmargin
-      margin: $unit 0
+      +goodsize
+      text-align: center
+      padding: 0
   p
-    padding: 0 $hmargin
-    margin: $unit 0
+    +goodsize
+    padding: 0
+    margin: $unit auto
   img
     max-width: 100%
     display: block
@@ -146,6 +158,7 @@ acronym
     border-top: solid 1px $border
     border-bottom: solid 1px $border
   pre code
+    +goodsize
     background: none
     border: none
   ul
@@ -168,6 +181,8 @@ acronym
   ol li ul, ol li ol, ul li ol, ul li ul
     margin: ($unit/2) (3*$unit/2)
     list-style: none
+  ul,ol
+    +goodsize
   li p
     display: inline
     margin: 0
@@ -194,13 +209,13 @@ acronym
 
 
 #header
-  border-bottom: 8px solid $altbackground
+  opacity: .5
+  &:hover
+    opacity: 1
 
 #choix
   text-align: center
-  font-size: (3*$unit / 4)
   padding: 0 $unit
-  font-weight: bold
   #switchcss
     float: right
 .cut
@@ -214,17 +229,19 @@ acronym
   &:hover
     opacity: 1
 hr
+  +goodsize
   color: $altfront
   border-color: $border
-  margin: 0 $hmargin
 p code, li code
   padding: 1px 2px
   background: $background
   border: solid 1px $border
 #content
   blockquote
-    border: solid 1px $border
-    background: $background
+    +goodsize
+    border: solid 2px $border
+    &>ul,&>ol
+      margin-left: 1em
     p
       padding: 0 $unit
     code
@@ -249,8 +266,9 @@ p code, li code
 .intro
   width: 100%
   max-width: 37*$small + 2*$hmargin
-  margin: 0 auto
+  margin: 4*$unit auto
   font-size: $small
+  font-style: italic
   line-height: $smalllineheight
   color: $lighter
   blockquote hr
@@ -329,13 +347,16 @@ pre .list
   width: 30px
 .date
   margin-right: 10px
-
+.article .corps
+  .footnotes, .nostar, sup
+    a:after
+      content: ""
 #content
   .popularblock
     display: block
     float: left
-    margin: 1.5%
-    width: 30%
+    margin: 0 auto
+    width: (37*$unit + 2*$hmargin)/3
     a:after
       content: ""
     figure, .figure
@@ -343,7 +364,8 @@ pre .list
       overflow: hidden
       img
         height: 120px
-      figcaption, .caption
+      figcaption, p.caption
+        +goodsize
         padding: 0
         text-align: center
 
@@ -387,7 +409,9 @@ pre .list
     min-height: 20em
     border-top: ($unit/10) solid $base02
     border-bottom: ($unit/10) solid $base02
-    margin: 4*$unit 0
+    +goodsize
+    margin-top: 4*$unit
+    margin-bottom: 4*$unit
     background-color: $background
     color: $front
     padding: $unit 0
@@ -410,10 +434,11 @@ pre .list
     blockquote
       background-color: $background
       border-color: $border
+      width: 80%
     h1,h2,h3,h4,h5,h6
       color: $lighter
     ul
-      margin: $unit 0
+      margin: $unit 1em $unit 0
       padding: 0
       li
         margin: 0.5*$unit 1.5*$unit
@@ -471,3 +496,5 @@ pre .list
 
 .highlight
   background-color: $base02
+#header,#social,#navigation,#totop,#comment,#tomenu,#bottom,#popular
+  +goodsize
