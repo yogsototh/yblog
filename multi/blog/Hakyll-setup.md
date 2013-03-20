@@ -1,7 +1,7 @@
 ---
 kind:           article
 published:      2013-03-16
-image: /Scratch/img/blog/Hakyll setup/main.png
+image: /Scratch/img/blog/Hakyll-setup/main.png
 en: title: Hakyll setup
 fr: title: Hakyll setup
 author: Yann Esposito
@@ -61,7 +61,7 @@ Ask me the questions, bridgekeeper. I am not afraid.
 3. Once I finished I've written a very minimal script which mainly to a git push.
    My blog is hosted on [github](http//github.com).
 
-Being short sighted we could say the role of Hakyll is to:
+Being short sighted one could reduce the role of Hakyll to:
 
 >create (resp. update) %html file when I create (resp. change) a markdown file.
 
