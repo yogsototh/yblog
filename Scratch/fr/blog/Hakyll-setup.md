@@ -94,7 +94,9 @@ Le code Hakyll est :
 ``` haskell
 -- pour chaque fichier dans le répertoire static
 match "static/*" do
+  -- on ne change pas le nom ni le répertoire
   route   idRoute
+  -- on ne modifie pas le contenu
   compile copyFileCompiler
 ```
 
@@ -105,7 +107,9 @@ Maintenant comment faire pour transformer automatiquement un fichier markdown da
 ``` haskell
 -- pour chaque fichier avec un extension md
 match "posts/*.md" do
+  -- changer son extension en html
   route $ setExtension "html"
+  -- utiliser la librairie pandoc pour compiler le markdown en html
   compile $ pandocCompiler
 ```
 

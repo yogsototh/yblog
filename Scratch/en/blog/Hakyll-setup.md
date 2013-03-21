@@ -95,10 +95,8 @@ The Hakyll code is:
 -- for each file in the static directory
 match "static/*" do
   -- don't change its name nor directory
-  -- on ne change pas le nom ni le répertoire
   route   idRoute
   -- don't change its content
-  -- on ne modifie pas le contenu
   compile copyFileCompiler
 ```
 
@@ -110,10 +108,8 @@ Now how to write a markdown file and generate an %html one?
 -- for each file with md extension in the "posts/" directory
 match "posts/*.md" do
   -- change its extension to html
-  -- changer son extension en html
   route $ setExtension "html"
   -- use pandoc library to compile the markdown content into html
-  -- utiliser la librairie pandoc pour compiler le markdown en html
   compile $ pandocCompiler
 ```
 

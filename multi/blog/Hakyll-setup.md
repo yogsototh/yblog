@@ -152,10 +152,10 @@ en: -- for each file in the static directory
 fr: -- pour chaque fichier dans le répertoire static
 match "static/*" do
 en:   -- don't change its name nor directory
-en:   -- on ne change pas le nom ni le répertoire
+fr:   -- on ne change pas le nom ni le répertoire
   route   idRoute
 en:   -- don't change its content
-en:   -- on ne modifie pas le contenu
+fr:   -- on ne modifie pas le contenu
   compile copyFileCompiler
 ```
 
@@ -171,10 +171,10 @@ en: -- for each file with md extension in the "posts/" directory
 fr: -- pour chaque fichier avec un extension md
 match "posts/*.md" do
 en:   -- change its extension to html
-en:   -- changer son extension en html
+fr:   -- changer son extension en html
   route $ setExtension "html"
 en:   -- use pandoc library to compile the markdown content into html
-en:   -- utiliser la librairie pandoc pour compiler le markdown en html
+fr:   -- utiliser la librairie pandoc pour compiler le markdown en html
   compile $ pandocCompiler
 ```
 
