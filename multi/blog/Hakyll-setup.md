@@ -231,7 +231,7 @@ fr: Maintenant si ``templates/posts.html`` contient:
 </html>
 ```
 
-en: Now our `cthulhu.html` contains (indention added for readability):
+en: Now our `cthulhu.html` contains (indentation added for readability):
 fr: Maintenant notre `ctuhlhu.html` contient
 
 ``` html
@@ -405,9 +405,10 @@ removeIndexHtml :: Item String -> Compiler (Item String)
 removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item
   where
     removeIndexStr :: String -> String
-    removeIndexStr str@(x:xs) | str == "/index.html" = ""
-                              | otherwise = x:removeIndexStr xs
-    removeIndexStr [] = []
+    removeIndexStr url = case splitFileName url of
+        (dir, "index.html") | isLocal dir -> dir
+        _                                 -> dir
+        where islocal uri = not (isInfixOf "://" uri)
 ```
 
 And we apply this filter at the end of our compilation

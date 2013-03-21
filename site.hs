@@ -4,7 +4,7 @@ import           Control.Monad          (forM)
 import           Data.Monoid            ((<>),mconcat)
 import           Hakyll
 
-import           Data.List              (sortBy)
+import           Data.List              (sortBy,isInfixOf)
 import           Data.Ord               (comparing)
 import           System.Locale          (defaultTimeLocale)
 
@@ -12,7 +12,7 @@ import           Abbreviations          (abbreviationFilter)
 import           YFilters               (blogImage,blogFigure
                                         ,frenchPunctuation,highlight)
 import           Multilang              (multiContext)
-import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>))
+import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>),splitFileName)
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -76,11 +76,13 @@ main = hakyll $ do
 -- replace url of the form foo/bar/index.html by foo/bar
 removeIndexHtml :: Item String -> Compiler (Item String)
 removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item
-  where
-    removeIndexStr :: String -> String
-    removeIndexStr str@(x:xs) | str == "/index.html" = ""
-                              | otherwise = x:removeIndexStr xs
-    removeIndexStr [] = []
+
+removeIndexStr :: String -> String
+removeIndexStr url = case splitFileName url of
+    (dir, "index.html") | isLocal dir -> dir
+                        | otherwise   -> url
+    _                                 -> url
+    where isLocal uri = not (isInfixOf "://" uri)
 
 --------------------------------------------------------------------------------
 --
@@ -204,10 +206,16 @@ archiveBehavior language = do
 --------------------------------------------------------------------------------
 yContext :: Context String
 yContext = metaKeywordContext <>
+                  shortLinkContext <>
                   multiContext <>
                   imageContext <>
                   prefixContext <>
                   defaultContext
+
+--------------------------------------------------------------------------------
+shortLinkContext :: Context String
+shortLinkContext = field "shorturl" $
+                    fmap (maybe "" (removeIndexStr . toUrl)) .getRoute . itemIdentifier
 
 --------------------------------------------------------------------------------
 prefixContext :: Context String

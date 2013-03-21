@@ -317,9 +317,10 @@ removeIndexHtml :: Item String -> Compiler (Item String)
 removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item
   where
     removeIndexStr :: String -> String
-    removeIndexStr str@(x:xs) | str == "/index.html" = ""
-                              | otherwise = x:removeIndexStr xs
-    removeIndexStr [] = []
+    removeIndexStr url = case splitFileName url of
+        (dir, "index.html") | isLocal dir -> dir
+        _                                 -> dir
+        where islocal uri = not (isInfixOf "://" uri)
 ```
 
 And we apply this filter at the end of our compilation
