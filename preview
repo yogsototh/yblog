@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+compileAndPreview(){
+    print -- "Compiling and building"
+    ghc -O2 -Wall -odir _comp -hidir _comp site.hs && \
+    ./site clean && \
+    while true; do ./site preview; done
+}
+
+./watch-multi & compileAndPreview
