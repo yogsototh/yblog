@@ -267,9 +267,16 @@ feedConfiguration = FeedConfiguration
   }
 
 --------------------------------------------------------------------------------
+--
+-- load a list of Item but remove their body
+lightLoadAll :: Pattern -> Compiler [Item String]
+lightLoadAll pattern = do
+  identifers <- getMatches pattern
+  return [Item identifier "" | identifier <- identifers]
+--------------------------------------------------------------------------------
 postList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
 postList language sortFilter = do
-    posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
+    posts   <- lightLoadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
     list    <- applyTemplateList itemTpl yContext posts
     return list
@@ -277,7 +284,7 @@ postList language sortFilter = do
 --------------------------------------------------------------------------------
 homePostList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
 homePostList language sortFilter = do
-    posts   <- loadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
+    posts   <- lightLoadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/home-post-item.html"
     list    <- applyTemplateList itemTpl yContext (take 3 posts)
     return list
