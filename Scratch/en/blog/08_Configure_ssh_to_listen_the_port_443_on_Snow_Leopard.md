@@ -17,7 +17,7 @@ Then from my laptop or my local computer I just have to launch the marvelous
 
 <div>
 ~~~~~~ {.zsh}
-ssh -p 443 -D 9050 username@host
+ssh -f -p 443 -ND 9050 username@host
 ~~~~~~
 </div>
 

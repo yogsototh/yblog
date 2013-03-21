@@ -17,7 +17,7 @@ Ensuite de mon portable ou de mon ordinateur local, je dois simplement lancé la
 
 <div>
 ~~~~~~ {.zsh}
-ssh -p 443 -D 9050 username@host
+ssh -f -p 443 -ND 9050 username@host
 ~~~~~~
 </div>
 
