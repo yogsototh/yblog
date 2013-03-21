@@ -34,6 +34,7 @@ All the abbreviations are declared here:
 >     , ("imho",   "<span class=\"sc\"><abbr title=\"In my Humble Opinion\">imho</abbr></span>")
 >     , ("url",   "<span class=\"sc\"><abbr title=\"Uniform Ressource Locator\">url</abbr></span>")
 >     , ("cms",   "<span class=\"sc\"><abbr title=\"Content Management System\">cms</abbr></span>")
+>     , ("rss",   "<span class=\"sc\"><abbr title=\"Rich Site Summary\">rss</abbr></span>")
 >     , ("html", "<span class=\"sc\">html</span>")
 >     , ("css", "<span class=\"sc\">css</span>")
 >     , ("svg", "<span class=\"sc\">svg</span>")

@@ -19,102 +19,100 @@ utilisation d'`index.html`, etc...
 
 </div>
 
-This website is done with [Hakyll][hakyll].
+Ce site web est fait avec [Hakyll][hakyll].
 
 [hakyll]: http://jaspervdj.be/hakyll
 
-[Hakyll][hakyll] can be considered as a minimal %cms.
-But more generally it is a library helping file generation.
+[Hakyll][hakyll] peut être vu comme un %cms minimaliste.
+D'une façon plus générale, il s'agit d'une bibliothèque qui
+facilite la création automatique de fichiers.
 
-From the user perspective I blog this way:
+D'un point de vue utilisateur voici comment j'écris mes articles :
 
-1. I open an editor (vim in my case) and edit a markdown file.
-   It looks like this
+1. J'ouvre un éditeur de texte (vim dans mon cas). 
+   J'édite un fichier markdow qui ressemble à ça :
 
 ``` markdown
-A First Level Header
-====================
+Un titre de page
+================
 
-A Second Level Header
----------------------
+Un titre de chapitre
+--------------------
 
-Who would cross the Bridge of Death must answer me
-these questions three, ere the other side he see.
-This is just a regular paragraph.
+Azur, nos bêtes sont bondées d'un cri.
+Je m'éveille songeant au fruit noir de l'anibe dans sa cupule
+véruqueuse et tronquée.
 
-Ask me the questions, bridgekeeper. I am not afraid.
+Saint John Perse.
 
-### Header 3
+### Titre 3
 
-> This is a blockquote.
+> C'est un blockquote.
 >
-> This is the second paragraph in the blockquote.
+> C'est un second paragraphe dans le blockquote
 >
-> ## This is an H2 in a blockquote
+> ## C'est un H2 dans un blockquote
 ```
 
-2. I open a browser and reload time to time to see the change.
-3. Once I finished I've written a very minimal script which mainly to a git push.
-   My blog is hosted on [github](http//github.com).
+2. J'ouvre mon navigateur et je rafraichis de temps en temps pour voir les changements.
+3. Une fois satisfait, je lance un script minimal qui fait grosso modo un simple `git push`.
+   Mon blog est hébergé sur [github](http//github.com).
 
-Being short sighted one could reduce the role of Hakyll to:
+A ne pas y regarder de trop près, on peut réduire le rôle d'Hakyll à :
 
->create (resp. update) %html file when I create (resp. change) a markdown file.
+> Créer (resp. mettre à jour) un fichier %html
+> lorsque je crée (resp. modifie) un fichier markdown.
 
-While it sounds easy, there are a lot of hidden details:
+Bien que cela semble facile, il y a de nombreux détails cachés :
 
-- Add metadatas like keywords.
-- Create an archive page containing a list of all the posts.
-- Deal with static files.
-- Creating an RSS feed.
-- Filter the content with some function.
-- Dealing with dependencies.
+- Ajouter des métadatas comme des mots clés
+- Créer un page archive qui contient la liste de tous les articles
+- Gérer les fichier statiques
+- Créer un flux %rss
+- Filtrer le contenu
+- Gérer les dépendances
 
-The work of Hakyll is to help you with these.
-But let's start with the basic concepts.
+Le travail d'Hakyll est de vous aider avec tout ça.
+Commençons par expliquer les concepts basiques.
 
-## The concepts and syntax
-
+## Les concepts et la syntaxe
 
 blogimage("overview.png","Overview")
 
-For each file you create, you have to provide:
+Pour chaque fichier que vous créer, il faut fournir :
 
-- a destination path
-- a list of content filters.
+- un chemin de destination
+- une liste de filtres du contenu
 
-First, let's start with the simplest case: static files (images, fonts, etc...).
-Generally, you have a source directory (here is the current directory)
-and a destination directory `_site`.
+Commençons par le cas le plus simple ; les fichiers statiques
+(images, fontes, etc...)
+Généralement, vous avec un répertoire source (ici le répertoire courant)
+et une répertoire destination ``_site``.
 
-The Hakyll code is:
+Le code Hakyll est :
 
 ``` haskell
--- for each file in the static directory
+-- pour chaque fichier dans le répertoire static
 match "static/*" do
-  -- don't change its name nor directory
   route   idRoute
-  -- don't change its content
   compile copyFileCompiler
 ```
 
-This program will copy ``static/foo.jpg`` to ``_site/static/foo.jpg``.
-I concede this is a bit overkill for a simple `cp`.
-Now how to write a markdown file and generate an %html one?
+Ce programme va copier ``static/foo.jpg`` dans ``_site/static/foo.jpg``.
+C'est un peu lourd pour un simple `cp`.
+Maintenant comment faire pour transformer automatiquement un fichier markdown dans le bon %html?
 
 ``` haskell
--- for each file with md extension in the "posts/" directory
+-- pour chaque fichier avec un extension md
 match "posts/*.md" do
-  -- change its extension to html
   route $ setExtension "html"
-  -- use pandoc library to compile the markdown content into html
   compile $ pandocCompiler
 ```
 
-If you create a file ``posts/foo.md``,
-it will create a file ``_site/posts/foo.html``.
+Si vous créez un fichier ``posts/toto.md``,
+cela créera un fichier ```_site/posts/toto.html```.
 
-If the file ``posts/foo.md``, contained
+Si le fichier ``posts/foo.md`` contient
 
 ``` markdown
 # Cthulhu
@@ -122,17 +120,17 @@ If the file ``posts/foo.md``, contained
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 ```
 
-The file ``posts/foo.md``, would contain
+le fichier ``posts/foo.md``, contiendra
 
 ``` html
 <h1>Cthulhu</h1>
 <p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>
 ```
 
-But horror! ``_site/posts/cthulhu.html`` is not a valid %html file.
-It doesn't have any header nor footer, etc...
-This is where you use templates.
-I simply add a new directive in the compile block.
+Mais horreur ! ```_site/posts/cthulhu.html``` n'est pas un %html complet.
+Il ne possède ni header, ni footer, etc...
+C'est ici que nous utilisons des templates.
+J'ajoute une nouvelle directive dans le bloc "compile".
 
 ``` haskell
 match "posts/*.md" do
@@ -142,7 +140,7 @@ match "posts/*.md" do
     {-hi-}>>= loadAndApplyTemplate "templates/post.html" defaultContext{-/hi-}
 ```
 
-Now if ``templates/posts.html`` contains:
+Maintenant si ``templates/posts.html`` contient:
 
 ``` html
 <html>
@@ -155,7 +153,7 @@ Now if ``templates/posts.html`` contains:
 </html>
 ```
 
-Now our `cthulhu.html` contains (indention added for readability):
+Maintenant notre `ctuhlhu.html` contient
 
 ``` html
 <html>
@@ -169,14 +167,15 @@ Now our `cthulhu.html` contains (indention added for readability):
 </html>
 ```
 
-See, its easy
-But we have a problem. How could we change the title?
-Or for example, add keywords?
+C'est facile.
+Mais il reste un problème à résoudre.
+Comment pouvons-nous changer le titre ?
+Ou par exemple, ajouter des mots clés ?
 
-The solution is to use `Context`s.
-For this, we first need to add some metadatas to our markdown[^1].
+La solution est d'utiliser les `Context`s.
+Pour cela, nous devrons ajouter des _metadonnées_ à notre markdown[^1].
 
-[^1]: We could also add the metadatas in an external file (`foo.md.metadata`).
+[^1]: Nous pouvons aussi ajouter ces métadonnées dans un fichier externe (`toto.md.metadata`).
 
 ``` markdown
 {-hi-}---
@@ -187,7 +186,7 @@ title: Cthulhu
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 ```
 
-And modify slightly our template:
+Et modifier légèrement notre template :
 
 ``` html
 <html>
@@ -200,12 +199,12 @@ And modify slightly our template:
 </html>
 ```
 
-As Sir Robin said just before dying before the Bridge of Death:
 
-> **"That's EASY!"**
->
-> -- <cite>Sir Robin,
-> the Not-Quite-So-Brave-As-Sir-Lancelot</cite>
+Super facile!
+
+La suite de l'article est en Anglais.
+Je la traduirai volontier si suffisamment
+de personnes me le demande gentillement.
 
 ## Real customization
 
@@ -216,7 +215,7 @@ How to:
 - add keywords?
 - simplify %url?
 - create an archive page?
-- create an RSS feed?
+- create an %rss feed?
 - filter the content?
 - add abbreviations support?
 - manage two languages?
@@ -421,9 +420,9 @@ createdFirst items = do
 It wasn't so easy.
 But it works pretty well.
 
-### Create an RSS feed
+### Create an %rss feed
 
-To create an RSS feed, we have to:
+To create an %rss feed, we have to:
 
 - select only the lasts posts.
 - generate partially rendered posts (no css, js, etc...)
@@ -439,7 +438,7 @@ Here is how:
 match "posts/*.md" do
   route $ setExtension "html"
   compile $ pandocCompiler
-    -- save a snapshot to be used later in RSS generation
+    -- save a snapshot to be used later in %rss generation
     {-hi-}>>= saveSnapshot "content"{-/hi-}
     >>= loadAndApplyTemplate "templates/post.html" defaultContext
 ```

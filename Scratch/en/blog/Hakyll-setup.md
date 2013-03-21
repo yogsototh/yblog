@@ -25,6 +25,7 @@ This website is done with [Hakyll][hakyll].
 
 [Hakyll][hakyll] can be considered as a minimal %cms.
 But more generally it is a library helping file generation.
+We can view it as an advanced build system (like `make`).
 
 From the user perspective I blog this way:
 
@@ -59,14 +60,15 @@ Ask me the questions, bridgekeeper. I am not afraid.
 
 Being short sighted one could reduce the role of Hakyll to:
 
->create (resp. update) %html file when I create (resp. change) a markdown file.
+> create (resp. update) %html file
+> when I create (resp. change) a markdown file.
 
 While it sounds easy, there are a lot of hidden details:
 
 - Add metadatas like keywords.
 - Create an archive page containing a list of all the posts.
 - Deal with static files.
-- Creating an RSS feed.
+- Creating an %rss feed.
 - Filter the content with some function.
 - Dealing with dependencies.
 
@@ -75,7 +77,6 @@ But let's start with the basic concepts.
 
 ## The concepts and syntax
 
-
 blogimage("overview.png","Overview")
 
 For each file you create, you have to provide:
@@ -83,9 +84,10 @@ For each file you create, you have to provide:
 - a destination path
 - a list of content filters.
 
-First, let's start with the simplest case: static files (images, fonts, etc...).
+First, let's start with the simplest case: static files
+(images, fonts, etc...).
 Generally, you have a source directory (here is the current directory)
-and a destination directory `_site`.
+and a destination directory ``_site``.
 
 The Hakyll code is:
 
@@ -93,8 +95,10 @@ The Hakyll code is:
 -- for each file in the static directory
 match "static/*" do
   -- don't change its name nor directory
+  -- on ne change pas le nom ni le répertoire
   route   idRoute
   -- don't change its content
+  -- on ne modifie pas le contenu
   compile copyFileCompiler
 ```
 
@@ -106,15 +110,17 @@ Now how to write a markdown file and generate an %html one?
 -- for each file with md extension in the "posts/" directory
 match "posts/*.md" do
   -- change its extension to html
+  -- changer son extension en html
   route $ setExtension "html"
   -- use pandoc library to compile the markdown content into html
+  -- utiliser la librairie pandoc pour compiler le markdown en html
   compile $ pandocCompiler
 ```
 
 If you create a file ``posts/foo.md``,
-it will create a file ``_site/posts/foo.html``.
+it will create a file ```_site/posts/foo.html```.
 
-If the file ``posts/foo.md``, contained
+If the file ``posts/foo.md`` contains
 
 ``` markdown
 # Cthulhu
@@ -122,14 +128,14 @@ If the file ``posts/foo.md``, contained
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 ```
 
-The file ``posts/foo.md``, would contain
+the file ``posts/foo.md``, will contain
 
 ``` html
 <h1>Cthulhu</h1>
 <p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>
 ```
 
-But horror! ``_site/posts/cthulhu.html`` is not a valid %html file.
+But horror! ```_site/posts/cthulhu.html``` is not a complete %html file.
 It doesn't have any header nor footer, etc...
 This is where you use templates.
 I simply add a new directive in the compile block.
@@ -174,7 +180,7 @@ But we have a problem. How could we change the title?
 Or for example, add keywords?
 
 The solution is to use `Context`s.
-For this, we first need to add some metadatas to our markdown[^1].
+For this, we first need to add some _metadatas_ to our markdown[^1].
 
 [^1]: We could also add the metadatas in an external file (`foo.md.metadata`).
 
@@ -207,6 +213,8 @@ As Sir Robin said just before dying before the Bridge of Death:
 > -- <cite>Sir Robin,
 > the Not-Quite-So-Brave-As-Sir-Lancelot</cite>
 
+
+
 ## Real customization
 
 Now that we understand the basic functionality.
@@ -216,7 +224,7 @@ How to:
 - add keywords?
 - simplify %url?
 - create an archive page?
-- create an RSS feed?
+- create an %rss feed?
 - filter the content?
 - add abbreviations support?
 - manage two languages?
@@ -421,9 +429,9 @@ createdFirst items = do
 It wasn't so easy.
 But it works pretty well.
 
-### Create an RSS feed
+### Create an %rss feed
 
-To create an RSS feed, we have to:
+To create an %rss feed, we have to:
 
 - select only the lasts posts.
 - generate partially rendered posts (no css, js, etc...)
@@ -439,7 +447,7 @@ Here is how:
 match "posts/*.md" do
   route $ setExtension "html"
   compile $ pandocCompiler
-    -- save a snapshot to be used later in RSS generation
+    -- save a snapshot to be used later in %rss generation
     {-hi-}>>= saveSnapshot "content"{-/hi-}
     >>= loadAndApplyTemplate "templates/post.html" defaultContext
 ```
