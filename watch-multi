@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+ONCE=0
+[[ $1 = "once" ]] && { ONCE=1 }
+
+languages=( fr en )
+typeset -a exclu
+
+function join {
+  char=$1
+  shift
+  res=$1
+  shift
+  for arg in $@; do
+    res=$res$char$arg
+  done
+  print $res
+}
+
+while true; do
+  for language in $languages; do
+    exclu=()
+    for l in $languages; do
+      case $l in
+        $language) continue ;;
+      esac
+      exclu=( $exclu $l )
+    done
+    for fic in multi/**/*(.); do
+      dest=Scratch/$language/${fic#multi/}
+      [[ ! -e $dest || $fic -nt $dest ]] || continue
+      print $dest
+      [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
+      awkprg='! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }'
+      awk "$awkprg" < $fic > $dest
+    done
+  done
+  ((ONCE == 1)) && break
+  sleep 2
+done
