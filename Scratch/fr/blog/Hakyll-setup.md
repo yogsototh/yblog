@@ -5,7 +5,7 @@ image: /Scratch/img/blog/Hakyll-setup/main.png
 title: Hakyll setup
 author: Yann Esposito
 authoruri: yannesposito.com
-tags: programming
+tags: programming, hakyll, Haskell, nanoc
 theme: scientific
 ---
 blogimage("main.png","Main image")
