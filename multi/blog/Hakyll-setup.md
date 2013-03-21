@@ -531,12 +531,12 @@ Here is how:
 match "posts/*.md" do
   route $ setExtension "html"
   compile $ pandocCompiler
-    -- save a snapshot to be used later in %rss generation
+    -- save a snapshot to be used later in rss generation
     {-hi-}>>= saveSnapshot "content"{-/hi-}
     >>= loadAndApplyTemplate "templates/post.html" defaultContext
 ```
 
-Now to each post there is a snapshot named "content" associated.
+Now for each post there is a snapshot named "content" associated.
 Furthermore feed don't need a source markdown file.
 Then we create a new file from no one.
 Instead of using `match`, we use `create`:
