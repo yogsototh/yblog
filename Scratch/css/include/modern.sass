@@ -148,14 +148,13 @@ acronym
     border-bottom: medium solid
     margin: 4*$unit auto
   pre
-    +goodsize
-    margin-top: 4*$unit
-    margin-bottom: 4*$unit
+    margin: 4*$unit auto
+    max-width: 37*$unit + 2*$hmargin
     background: $background
     font-family: monaco, monospace
-    font-size: $unit
+    font-size: $small
     overflow: auto
-    padding: $unit
+    padding: $unit + $unit - $small
     line-height: 1.4 * 0.8 * $unit
     border: solid 1px $border
   pre code
