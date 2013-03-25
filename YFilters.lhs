@@ -36,7 +36,7 @@ It will be replaced by the corresponding `img` tag.
 >         alt =     dropWhile notquote >>> tail
 >               >>> dropWhile notquote >>> drop 3
 >               >>> takeWhile notquote
->         imgstr matched = "<img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/>"
+>         imgstr matched = "<div>\n<img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/>\n</div>"
 
 helper to draw figures
 
@@ -50,7 +50,7 @@ helper to draw figures
 >         alt =     dropWhile notquote >>> tail
 >               >>> dropWhile notquote >>> drop 3
 >               >>> takeWhile notquote
->         imgstr matched = "<figure><img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/><figcaption>"  ++ alt matched ++ "</figcaption></figure>"
+>         imgstr matched = "<figure>\n<img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/>\n<figcaption>"  ++ alt matched ++ "</figcaption>\n</figure>"
 
 The French punctuation prevent to start a line with a semicolon in French.
 
