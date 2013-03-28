@@ -1,5 +1,7 @@
 _*
 site
+cabal-dev
+dist
 *.hi
 *.o
 .sass-cache
