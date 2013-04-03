@@ -111,7 +111,7 @@ Et vous pouvez profitez ! Maintenant <sc>xslt</sc> devient plus lisible et plus 
 
 Tout d'abord, laissez moi vous montrer le résultat :
 
-<a href="blogimagedirmain.svg">
+<a href="/Scratch/img/blog/SVG-and-m4-fractals/main.svg">
 blogimage("main.png","Yesod logo made in SVG and m4")
 Cliquez sur l'image pour voir le %svg directement. Attention, si vous n'avez pas un ordinateur récent, ça risque de ramer.
 </a>

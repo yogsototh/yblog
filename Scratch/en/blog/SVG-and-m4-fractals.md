@@ -109,7 +109,7 @@ At its beginning some people believed it would be the new Flash. Apparently, it 
 
 Let me show you the result:
 
-<a href="blogimagedirmain.svg">
+<a href="/Scratch/img/blog/SVG-and-m4-fractals/main.svg">
 blogimage("main.png","Yesod logo made in SVG and m4")
 Click to view directly the %svg. It might slow down your computers if you have an old one.
 </a>
