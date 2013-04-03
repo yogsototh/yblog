@@ -45,7 +45,8 @@ Entre chaque passage d'une représentation à une autre, un transformation is fa
 
 Yesod fait de son mieux pour typer les objets manipulés et ainsi il fera ce qu'il faut pour ne pas mettre du script dans une URL par exemple.
 
-<code class="html"><a href=@[AnotherPageR]>Go to the other page
+~~~~~~ {.html}
+<a href=@[AnotherPageR]>Go to the other page
 ~~~~~~
 
 Comme `AnotherPageR` est une URL elle ne pourra contiendra pas (par défaut) de caractère dangereux comme par exemple :

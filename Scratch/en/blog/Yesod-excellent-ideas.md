@@ -44,8 +44,10 @@ And the right protection is made by default to prevent problems.
 Yesod does its best to handle cross scripting issues. Both between the client and the server and between the server and your DB.
 Here is an example:
 
-<code class="html"><a href=@[AnotherPageR]>Go to the other page
+~~~~~~ {.html}
+<a href=@[AnotherPageR]>Go to another page
 ~~~~~~
+
 
 As `AnotherPageR` is of type URL and it could not contains something nefarious.
 It will be an URL safe. Not something like:
