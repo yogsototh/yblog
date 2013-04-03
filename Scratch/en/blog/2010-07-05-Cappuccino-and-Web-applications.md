@@ -14,7 +14,7 @@ tags:  Cappuccino, iPhone, web, javascript, jQuery, Cocoa, programming
 
 <abbr class="sc" title="Too long; didn't read">tl;dr</abbr>:
 
-* Tried to make [YPassword](http://yannesposito.com/Softwares/YPassword.html) in jQuery and with Cappuccino.
+* Tried to make [YPassword](http://yannesposito.com/softwares/yPassword) in jQuery and with Cappuccino.
 * Cappuccino nice in desktop browser but 1.4MB, not compatible with iPhone.
 * jQuery not as nice as the Cappuccino version but 106KB. iPhone compatible.
 * I'll give a try to Dashcode 3.
@@ -30,7 +30,7 @@ Nonetheless I used these two to make the same web application. This is why I com
 
 </div>
 
-I made a web version of my dashboard widget [YPassword](http://yannesposito.com/Softwares/YPassword.html).
+I made a web version of my dashboard widget [YPassword](http://yannesposito.com/softwares/yPassword).
 It is a simple widget to manage your online password with a *strong* security and with a totally portable way. It is not intended to replace a *keychain*.
 It is more a password generator.
 

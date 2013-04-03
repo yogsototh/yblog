@@ -14,7 +14,7 @@ tags:  Cappuccino, iPhone, web, javascript, jQuery, Cocoa, programming
 
 <abbr title="Trop long à lire">tlàl</abbr>:
 
-* J'ai essayé de faire une version de [YPassword](http://yannesposito.com/Softwares/YPassword.html) en jQuery et avec Cappuccino.
+* J'ai essayé de faire une version de [YPassword](http://yannesposito.com/softwares/ypassword) en jQuery et avec Cappuccino.
 * Cappuccino est très bien sur les navigateurs non mobile mais l'application pèse 1.4Mo et n'est pas compatible avec l'iPhone.
 * la version jQuery n'est pas aussi jolie que la version réalisée avec Cappuccino mais elle pèse seulement 106Ko et est compatible avec l'iPhone.
 * J'essayerai Dashcode 3
@@ -30,8 +30,8 @@ Par contre je les ai utilisé tous les deux pour faire la même application. C'e
 
 </div>
 
-J'ai fait une version web de mon widget [YPassword](http://yannesposito.com/Softwares/YPassword.html).
-C'est un simple widget qui permet d'organiser ses mots de passes simplement avec une grande sécurité et de façon portable. 
+J'ai fait une version web de mon widget [YPassword](http://yannesposito.com/softwares/ypassword).
+C'est un simple widget qui permet d'organiser ses mots de passes simplement avec une grande sécurité et de façon portable.
 Ce n'est pas un widget créé pour remplacer le *trousseau d'accès*, mais
 plus un générateur de mots de passe.
 
@@ -48,7 +48,7 @@ Si vous vous moquez de savoir ce que fait mon widget, vous pouvez allez directem
 </div>
 
 J'organise mes mots de passe avec une méthode simple.
-Je mémorise un mot de passe *maître*. Et mon mot de passe est alors (principalement) : 
+Je mémorise un mot de passe *maître*. Et mon mot de passe est alors (principalement) :
 <code class="ruby">hash(motDePasseMaitre+NomDeDomaine)</code>
 
 En réalité j'ai besoin d'un plus d'informations pour créer mon mot de passe :
