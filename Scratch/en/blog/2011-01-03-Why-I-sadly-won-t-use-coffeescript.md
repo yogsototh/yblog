@@ -31,8 +31,8 @@ The most upvoted comment praised (within other) [CoffeeScript][cf].
 Recently I used _a lot_ of javascript. After trying
 [Sproutcore](http://sproutcore.com),
 [Cappuccino](http://cappuccino.org), looking at
-[backbone.js](documentcloud.github.com/backbone/) _&_
-[javascriptMVC](javascriptmvc.com),
+[backbone.js](http://documentcloud.github.com/backbone/) _&_
+[javascriptMVC](http://javascriptmvc.com),
 I've finally decided to make my own minimal javascript MVC framework.[^1]
 
 [cf]: http://coffeescript.org

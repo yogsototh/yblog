@@ -31,8 +31,8 @@ Récemment j'ai beaucoup programmé en javascript.
 Après avoir essayé
 [Sroutcore](http://sproutcore.com),
 [Cappuccino](http://cappuccino.org),
-[backbone.js](documentcloud.github.com/backbone/) _&_
-[javascriptMVC](javascriptmvc.com),
+[backbone.js](http://documentcloud.github.com/backbone/) _&_
+[javascriptMVC](http://javascriptmvc.com),
 Je me suis décidé à créer mon propre framework MVC minimal pour client javascript.[^1]
 
 [cf]: http://coffeescript.org
