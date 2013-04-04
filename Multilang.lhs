@@ -94,11 +94,16 @@ Next the dictionary containing all traductions of standards templates.
 > --------------------------------------------------------------------------------
 > trads :: Map String Trad
 > trads = M.fromList $ map toTrad [
->          ("changeLanguage", ("English", "Français"))
+>          ("welcome",   ("Bientôt","Soon"))
 >         ,("switchCss", ("Changer de theme","Change Theme"))
->         ,("loading", ("Chargement en cours","Loading"))
->         ,("welcome", ("Bientôt","Soon"))
->         ,("socialPrivacy", ("Ces liens sociaux préservent votre vie privée","These social sharing links preserve your privacy"))
+>         ,("loading",   ("Chargement en cours","Loading"))
+>         ,("Home",      ("Accueil","Home"))
+>         ,("Blog",      ("Blog","Blog"))
+>         ,("Softwares", ("Logiciels","Softwares"))
+>         ,("About",     ("Auteur","About"))
+>         ,("Follow",    ("Suivre","Follow"))
+>         ,("changeLanguage", ("English", "Français"))
+>         ,("socialPrivacy",  ("Ces liens sociaux préservent votre vie privée","These social sharing links preserve your privacy"))
 >         ]
 >         where
 >           toTrad (k,(f,e)) = (k, Trad { frTrad = f, enTrad = e })

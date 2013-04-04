@@ -13,6 +13,10 @@ import           YFilters               (blogImage,blogFigure
                                         ,frenchPunctuation,highlight)
 import           Multilang              (multiContext)
 import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>),splitFileName)
+import           Control.Monad          (forM_)
+
+langs :: [String]
+langs=["en","fr"]
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -40,13 +44,12 @@ main = hakyll $ do
     -- Blog posts with html extension
     match "Scratch/*/blog/*.html" htmlPostBehavior
 
-    -- Archives
-    match "Scratch/en/blog.md" (archiveBehavior "en")
-    match "Scratch/fr/blog.md" (archiveBehavior "fr")
-
-    -- RSS
-    create ["Scratch/en/blog/feed/feed.xml"] (feedBehavior "en")
-    create ["Scratch/fr/blog/feed/feed.xml"] (feedBehavior "fr")
+    -- for each language
+    forM_ langs $ \lang -> do
+      -- Archives
+      match (fromGlob $ "Scratch/"++lang++"/blog.md") (archiveBehavior lang)
+      -- RSS
+      create [fromFilePath ("Scratch/"++lang++"/blog/feed/feed.xml")] (feedBehavior lang)
 
     -- Basic files
     match ("Scratch/*/*.md"
