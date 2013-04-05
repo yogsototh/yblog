@@ -56,7 +56,7 @@ Ask me the questions, bridgekeeper. I am not afraid.
 
 2. I open a browser and reload time to time to see the change.
 3. Once I finished I've written a very minimal script which mainly to a git push.
-   My blog is hosted on [github](http//github.com).
+   My blog is hosted on [github](http://github.com).
 
 Being short sighted one could reduce the role of Hakyll to:
 

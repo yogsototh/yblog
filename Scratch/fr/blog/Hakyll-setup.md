@@ -56,7 +56,7 @@ Saint John Perse.
 
 2. J'ouvre mon navigateur et je rafraichis de temps en temps pour voir les changements.
 3. Une fois satisfait, je lance un script minimal qui fait grosso modo un simple `git push`.
-   Mon blog est hébergé sur [github](http//github.com).
+   Mon blog est hébergé sur [github](http://github.com).
 
 A ne pas y regarder de trop près, on peut réduire le rôle d'Hakyll à :
 

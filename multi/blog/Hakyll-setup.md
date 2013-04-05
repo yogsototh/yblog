@@ -88,10 +88,10 @@ fr: ```
 
 en: 2. I open a browser and reload time to time to see the change.
 en: 3. Once I finished I've written a very minimal script which mainly to a git push.
-en:    My blog is hosted on [github](http//github.com).
+en:    My blog is hosted on [github](http://github.com).
 fr: 2. J'ouvre mon navigateur et je rafraichis de temps en temps pour voir les changements.
 fr: 3. Une fois satisfait, je lance un script minimal qui fait grosso modo un simple `git push`.
-fr:    Mon blog est hébergé sur [github](http//github.com).
+fr:    Mon blog est hébergé sur [github](http://github.com).
 
 en: Being short sighted one could reduce the role of Hakyll to:
 fr: A ne pas y regarder de trop près, on peut réduire le rôle d'Hakyll à :
