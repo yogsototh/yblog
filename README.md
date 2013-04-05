@@ -10,8 +10,9 @@ If you want to use this blog for you.
     \rm -rf Scratch/*/*{.md,html}
     \rm -rf multi/posts/*
 
-3. compile
+3. compile and launch preview
 
-    ./rebuild.sh
+    ./preview
 
-4. Create your own blog posts in multi (if you use different languages)
+4. Create your own entries in `multi` (if you use different languages)
+   or directly inside Scratch/
