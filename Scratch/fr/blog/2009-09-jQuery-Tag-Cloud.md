@@ -9,7 +9,7 @@ authoruri: yannesposito.com
 tags:  jQuery, javascript, web, ruby
 -----
 Here is how I done the tag cloud of my blog. It is done mostly in jQuery.
-All my site is static and pages are generated with [nanoc](nanoc.stoneship.org).
+All my site is static and pages are generated with [nanoc](http://nanoc.stoneship.org).
 It is (in my humble opinion) the modern geek way to make a website.
 
 This is why I'll give only a Ruby Generator, not a full javascript generator. 

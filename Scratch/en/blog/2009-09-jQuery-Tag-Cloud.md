@@ -10,11 +10,11 @@ authoruri: yannesposito.com
 tags:  jQuery, javascript, web, ruby
 -----
 Here is how I done the tag cloud of my blog. It is done mostly in jQuery.
-All my site is static and pages are generated with [nanoc](nanoc.stoneship.org).
-It is (in my humble opinion) the modern geek way to make a website. 
+All my site is static and pages are generated with [nanoc](http://nanoc.stoneship.org).
+It is (in my humble opinion) the modern geek way to make a website.
 The tagcloud should work for machine with and without javascript.
 
-This is why I'll give only a Ruby Generator, not a full javascript generator. 
+This is why I'll give only a Ruby Generator, not a full javascript generator.
 But you can easily translate from Ruby to Javascript.
 
 Here is what you should obtain:
@@ -49,12 +49,12 @@ For each tag I create a span element:
 
 <div>
 ~~~~~~ {.html}
-    <span   style="font-size: 1.0em;" 
-            class="tag" 
-            onClick="tagSelected('[TAG]')" 
+    <span   style="font-size: 1.0em;"
+            class="tag"
+            onClick="tagSelected('[TAG]')"
             id="tag_[TAG]">
         [TAG]
-    </span> 
+    </span>
 ~~~~~~
 </div>
 
@@ -68,7 +68,7 @@ and a div containing links associtated to this tag:
             <li> LINK 1 </li>
             <li> LINK 2 </li>
         </ul>
-    </div> 
+    </div>
 ~~~~~~
 </div>
 
@@ -91,8 +91,8 @@ end
 ~~~~~~
 </div>
 
-A function to create a data structure associating to each 
-tag its occurence. 
+A function to create a data structure associating to each
+tag its occurence.
 
 <div>
 ~~~~~~ {.ruby}
@@ -162,9 +162,9 @@ def tagRealSize
             tagSize[t]=minSize
         else
             # normalized value between 0 and 1
-            # if not tag appear more than 10 times, 
+            # if not tag appear more than 10 times,
             # then it cannot have the maximal size
-            tagSize[t]=[ ( n - min + 0.0 ) / ( max - min ) , 
+            tagSize[t]=[ ( n - min + 0.0 ) / ( max - min ) ,
                          (n - min) / 10.0 ].min
             # from normalized size to real size
             tagSize[t]=( tagSize[t] ) * (maxSize - minSize) + minSize
@@ -201,9 +201,9 @@ def tagCloud
         # for example, replace ' ' by '&nbsp;'
         protected=t.gsub(/&/,'&amp;').gsub(/ /,'&nbsp;').gsub(/</,'&lt;').gsub(/>/,'&gt;')
         tagCloud <<= %{
-            <span style="font-size: #{s}em;" 
-                  class="tag" 
-                  onClick="tagSelected('#{tag_in_id}')" 
+            <span style="font-size: #{s}em;"
+                  class="tag"
+                  onClick="tagSelected('#{tag_in_id}')"
                   id="tag_#{tag_in_id}">
                 #{protected}
             </span> }
