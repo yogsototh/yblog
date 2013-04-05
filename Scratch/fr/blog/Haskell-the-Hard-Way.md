@@ -133,7 +133,7 @@ Cet article contient cinq parties :
 
 </div>
 
-<hr/><a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong></a>
 
 <h2 id="introduction">Introduction</h2>
 
@@ -180,9 +180,9 @@ Download this file as `00_hello_world.lhs` and:
 Hello World!
 ~~~~~~
 
-<a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong> </a>
 
-<hr/><a href="code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong></a>
 
 Now, a program asking your name and replying "Hello" using the name you entered:
 
@@ -232,9 +232,9 @@ This means, `main` will cause side effects.
 
 Just remember that Haskell can look a lot like mainstream imperative languages.
 
-<a href="code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong> </a>
 
-<hr/><a href="code/01_basic/10_Introduction/20_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>20_very_basic.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/20_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>20_very_basic.lhs</strong></a>
 
 <h3 id="very-basic-haskell">Very basic Haskell</h3>
 
@@ -353,9 +353,9 @@ main = print (f 2 3)
 13
 ~~~
 
-<a href="code/01_basic/10_Introduction/20_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>20_very_basic.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/20_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>20_very_basic.lhs</strong> </a>
 
-<hr/><a href="code/01_basic/10_Introduction/21_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>21_very_basic.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/21_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>21_very_basic.lhs</strong></a>
 
 Now try
 
@@ -381,9 +381,9 @@ You get this error:
 
 The problem: `4.2` isn't an Int.
 
-<a href="code/01_basic/10_Introduction/21_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>21_very_basic.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/21_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>21_very_basic.lhs</strong> </a>
 
-<hr/><a href="code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong></a>
 
 The solution, 
 don't declare the type for `f`.
@@ -489,9 +489,9 @@ The `\` is used because it looks like `λ` and is ASCII.
 If you are not used to functional programming your brain should start to heat up.
 It is time to make a real application.
 
-<a href="code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong> </a>
 
-<hr/><a href="code/01_basic/10_Introduction/23_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>23_very_basic.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/23_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>23_very_basic.lhs</strong></a>
 
 But just before that, we should verify the type system works as expected:
 
@@ -506,9 +506,9 @@ main = print (f 3 2.4)
 It works, because, `3` is a valid representation both for Fractional numbers like Float and for Integer.
 As `2.4` is a Fractional number, `3` is then interpreted as being also a Fractional number.
 
-<a href="code/01_basic/10_Introduction/23_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>23_very_basic.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/23_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>23_very_basic.lhs</strong> </a>
 
-<hr/><a href="code/01_basic/10_Introduction/24_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>24_very_basic.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/24_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>24_very_basic.lhs</strong></a>
 
 If we force our function to work with different types, it will fail:
 
@@ -531,7 +531,7 @@ If you believe it is a bad idea, and the compiler should make the transformation
 from a type to another for you, you should really watch this great (and funny) video:
 [WAT](https://www.destroyallsoftware.com/talks/wat)
 
-<a href="code/01_basic/10_Introduction/24_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>24_very_basic.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/10_Introduction/24_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>24_very_basic.lhs</strong> </a>
 
 <h2 id="essential-haskell">Essential Haskell</h2>
 
@@ -660,7 +660,7 @@ f $ g $ h x     ⇔  f (g (h x))
 (f . g . h) x   ⇔  f (g (h x))
 ~~~
 
-<hr/><a href="code/01_basic/20_Essential_Haskell/10a_Functions.lhs" class="cut">01_basic/20_Essential_Haskell/<strong>10a_Functions.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/20_Essential_Haskell/10a_Functions.lhs" class="cut">01_basic/20_Essential_Haskell/<strong>10a_Functions.lhs</strong></a>
 
 <h3 id="useful-notations-for-functions">Useful notations for functions</h3>
 
@@ -754,7 +754,7 @@ main = do
 </div>
 </div>
 
-<a href="code/01_basic/20_Essential_Haskell/10a_Functions.lhs" class="cut">01_basic/20_Essential_Haskell/<strong>10a_Functions.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/01_basic/20_Essential_Haskell/10a_Functions.lhs" class="cut">01_basic/20_Essential_Haskell/<strong>10a_Functions.lhs</strong> </a>
 
 <h2 id="hard-part">Hard Part</h2>
 
@@ -861,7 +861,7 @@ tail []      ⇒ ERROR
 Note that for any non empty list `l`,
 `l ⇔ (head l):(tail l)`
 
-<hr/><a href="code/02_Hard_Part/11_Functions.lhs" class="cut">02_Hard_Part/<strong>11_Functions.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/11_Functions.lhs" class="cut">02_Hard_Part/<strong>11_Functions.lhs</strong></a>
 
 The first Haskell solution.
 The function `evenSum` returns the sum of all even numbers in a list:
@@ -937,9 +937,9 @@ main = do print $ evenSum [1..10]
 </div>
 </div>
 
-<a href="code/02_Hard_Part/11_Functions.lhs" class="cut">02_Hard_Part/<strong>11_Functions.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/11_Functions.lhs" class="cut">02_Hard_Part/<strong>11_Functions.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/12_Functions.lhs" class="cut">02_Hard_Part/<strong>12_Functions.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/12_Functions.lhs" class="cut">02_Hard_Part/<strong>12_Functions.lhs</strong></a>
 
 Next, we can use sub functions using `where` or `let`.
 This way our `accumSum` function won't pollute the global namespace.
@@ -969,9 +969,9 @@ main = print $ evenSum [1..10]
 </div>
 </div>
 
-<a href="code/02_Hard_Part/12_Functions.lhs" class="cut">02_Hard_Part/<strong>12_Functions.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/12_Functions.lhs" class="cut">02_Hard_Part/<strong>12_Functions.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/13_Functions.lhs" class="cut">02_Hard_Part/<strong>13_Functions.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/13_Functions.lhs" class="cut">02_Hard_Part/<strong>13_Functions.lhs</strong></a>
 
 Next, we can use pattern matching.
 
@@ -1032,9 +1032,9 @@ main = print $ evenSum [1..10]
 </div>
 </div>
 
-<a href="code/02_Hard_Part/13_Functions.lhs" class="cut">02_Hard_Part/<strong>13_Functions.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/13_Functions.lhs" class="cut">02_Hard_Part/<strong>13_Functions.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/14_Functions.lhs" class="cut">02_Hard_Part/<strong>14_Functions.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/14_Functions.lhs" class="cut">02_Hard_Part/<strong>14_Functions.lhs</strong></a>
 
 In Haskell you can simplify function definition by η-reducing them.
 For example, instead of writing:
@@ -1074,9 +1074,9 @@ main = print $ evenSum [1..10]
 </div>
 </div>
 
-<a href="code/02_Hard_Part/14_Functions.lhs" class="cut">02_Hard_Part/<strong>14_Functions.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/14_Functions.lhs" class="cut">02_Hard_Part/<strong>14_Functions.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/15_Functions.lhs" class="cut">02_Hard_Part/<strong>15_Functions.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/15_Functions.lhs" class="cut">02_Hard_Part/<strong>15_Functions.lhs</strong></a>
 
 <h4 id="higher-order-functions">Higher Order Functions</h4>
 
@@ -1185,9 +1185,9 @@ main = print $ evenSum [1..10]
 </div>
 </div>
 
-<a href="code/02_Hard_Part/15_Functions.lhs" class="cut">02_Hard_Part/<strong>15_Functions.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/15_Functions.lhs" class="cut">02_Hard_Part/<strong>15_Functions.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/16_Functions.lhs" class="cut">02_Hard_Part/<strong>16_Functions.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/16_Functions.lhs" class="cut">02_Hard_Part/<strong>16_Functions.lhs</strong></a>
 
 Finally
 
@@ -1312,7 +1312,7 @@ main = print $ evenSum [1..10]
 </div>
 </div>
 
-<a href="code/02_Hard_Part/16_Functions.lhs" class="cut">02_Hard_Part/<strong>16_Functions.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/16_Functions.lhs" class="cut">02_Hard_Part/<strong>16_Functions.lhs</strong> </a>
 
 <h3 id="types">Types</h3>
 
@@ -1428,7 +1428,7 @@ Generally, in Haskell:
 
  > "if it compiles it certainly does what you intended"
 
-<hr/><a href="code/02_Hard_Part/21_Types.lhs" class="cut">02_Hard_Part/<strong>21_Types.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/21_Types.lhs" class="cut">02_Hard_Part/<strong>21_Types.lhs</strong></a>
 
 <h4 id="type-construction">Type construction</h4>
 
@@ -1450,9 +1450,9 @@ color = "Blue"
 main = putStrLn $ showInfos name color
 ~~~~~~
 </div>
-<a href="code/02_Hard_Part/21_Types.lhs" class="cut">02_Hard_Part/<strong>21_Types.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/21_Types.lhs" class="cut">02_Hard_Part/<strong>21_Types.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/22_Types.lhs" class="cut">02_Hard_Part/<strong>22_Types.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/22_Types.lhs" class="cut">02_Hard_Part/<strong>22_Types.lhs</strong></a>
 
 But it doesn't protect you much.
 Try to swap the two parameter of `showInfos` and run the program:
@@ -1532,9 +1532,9 @@ real c ⇒ 1.0
 img z ⇒ 4
 ~~~~~~
 
-<a href="code/02_Hard_Part/22_Types.lhs" class="cut">02_Hard_Part/<strong>22_Types.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/22_Types.lhs" class="cut">02_Hard_Part/<strong>22_Types.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/23_Types.lhs" class="cut">02_Hard_Part/<strong>23_Types.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/23_Types.lhs" class="cut">02_Hard_Part/<strong>23_Types.lhs</strong></a>
 
 <h4 id="recursive-type">Recursive type</h4>
 
@@ -1586,9 +1586,9 @@ This prints:
 0 ::: (1 ::: Nil)
 ~~~
 
-<a href="code/02_Hard_Part/23_Types.lhs" class="cut">02_Hard_Part/<strong>23_Types.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/23_Types.lhs" class="cut">02_Hard_Part/<strong>23_Types.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/30_Trees.lhs" class="cut">02_Hard_Part/<strong>30_Trees.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/30_Trees.lhs" class="cut">02_Hard_Part/<strong>30_Trees.lhs</strong></a>
 
 <h4 id="trees">Trees</h4>
 
@@ -1637,9 +1637,9 @@ Node 7 (Node 2 Empty (Node 4 Empty Empty)) (Node 8 Empty Empty)
 
 This is an informative but quite unpleasant representation of our tree.
 
-<a href="code/02_Hard_Part/30_Trees.lhs" class="cut">02_Hard_Part/<strong>30_Trees.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/30_Trees.lhs" class="cut">02_Hard_Part/<strong>30_Trees.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/31_Trees.lhs" class="cut">02_Hard_Part/<strong>31_Trees.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/31_Trees.lhs" class="cut">02_Hard_Part/<strong>31_Trees.lhs</strong></a>
 
 Just for fun, let's code a better display for our trees.
 I simply had fun making a nice function to display trees in a general way.
@@ -1858,9 +1858,9 @@ See how awesome this structure is.
 We can make trees containing not only integers, strings and chars, but also other trees.
 And we can even make a tree containing a tree of trees!
 
-<a href="code/02_Hard_Part/31_Trees.lhs" class="cut">02_Hard_Part/<strong>31_Trees.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/31_Trees.lhs" class="cut">02_Hard_Part/<strong>31_Trees.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/40_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>40_Infinites_Structures.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/40_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>40_Infinites_Structures.lhs</strong></a>
 
 <h3 id="infinite-structures">Infinite Structures</h3>
 
@@ -1909,9 +1909,9 @@ Also, note in Haskell there is a notation for infinite lists
 And most functions will work with them.
 Also, there is a built-in function `take` which is equivalent to our `take'`.
 
-<a href="code/02_Hard_Part/40_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>40_Infinites_Structures.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/40_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>40_Infinites_Structures.lhs</strong> </a>
 
-<hr/><a href="code/02_Hard_Part/41_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>41_Infinites_Structures.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/41_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>41_Infinites_Structures.lhs</strong></a>
 
 <div style="display:none">
 
@@ -2093,7 +2093,7 @@ main = do
 </div>
 </div>
 
-<a href="code/02_Hard_Part/41_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>41_Infinites_Structures.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/02_Hard_Part/41_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>41_Infinites_Structures.lhs</strong> </a>
 
 <h2 id="hell-difficulty-part">Hell Difficulty Part</h2>
 
@@ -2112,7 +2112,7 @@ And in particular:
 Be prepared, the answers might be complex.
 But they all be very rewarding.
 
-<hr/><a href="code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong></a>
 
 <h3 id="deal-with-io">Deal With IO</h3>
 
@@ -2211,9 +2211,9 @@ value <- action2    -- where
 These two kinds of line will correspond to two different ways of sequencing actions.
 The meaning of this sentence should be clearer by the end of the next section.
 
-<a href="code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong> </a>
 
-<hr/><a href="code/03_Hell/01_IO/02_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>02_progressive_io_example.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/02_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>02_progressive_io_example.lhs</strong></a>
 
 Now let's see how this program behaves.
 For example, what occur if the user enter something strange?
@@ -2311,9 +2311,9 @@ I certainly forget many advantages, but the three main reasons are:
 
 This is why you should generally put as most code as possible inside pure functions.
 
-<a href="code/03_Hell/01_IO/02_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>02_progressive_io_example.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/02_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>02_progressive_io_example.lhs</strong> </a>
 
-<hr/><a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong></a>
 
 Our next evolution will be to prompt the user again and again until she enters a valid answer.
 
@@ -2383,7 +2383,7 @@ If you practice a bit, you should be able to _use_ `IO`.
  > 
  > - Make a program that sums all of its arguments. Hint: use the function `getArgs`.
 
-<a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong> </a>
 
 <h3 id="io-trick-explained">IO trick explained</h3>
 
@@ -2806,7 +2806,7 @@ This is the general way to put pure values inside the "IO context".
 The general name for `putInIO` is `return`.
 This is quite a bad name when you learn Haskell. `return` is very different from what you might be used to.
 
-<hr/><a href="code/03_Hell/01_IO/21_Detailled_IO.lhs" class="cut">03_Hell/01_IO/<strong>21_Detailled_IO.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/21_Detailled_IO.lhs" class="cut">03_Hell/01_IO/<strong>21_Detailled_IO.lhs</strong></a>
 
 To finish, let's translate our example:
 
@@ -2857,9 +2857,9 @@ You can compile this code to verify it keeps working.
 
 Imagine what it would look like without the `(>>)` and `(>>=)`.
 
-<a href="code/03_Hell/01_IO/21_Detailled_IO.lhs" class="cut">03_Hell/01_IO/<strong>21_Detailled_IO.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/01_IO/21_Detailled_IO.lhs" class="cut">03_Hell/01_IO/<strong>21_Detailled_IO.lhs</strong> </a>
 
-<hr/><a href="code/03_Hell/02_Monads/10_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>10_Monads.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/10_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>10_Monads.lhs</strong></a>
 
 <h3 id="monads">Monads</h3>
 
@@ -2957,9 +2957,9 @@ main = do
   print $ eligible 299 -- False
 ~~~~~~
 </div>
-<a href="code/03_Hell/02_Monads/10_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>10_Monads.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/10_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>10_Monads.lhs</strong> </a>
 
-<hr/><a href="code/03_Hell/02_Monads/11_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>11_Monads.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/11_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>11_Monads.lhs</strong></a>
 
 Now, let's make it better using Maybe and the fact that it is a Monad
 
@@ -2987,9 +2987,9 @@ main = do
   print $ eligible 299 -- Nothing
 ~~~~~~
 </div>
-<a href="code/03_Hell/02_Monads/11_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>11_Monads.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/11_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>11_Monads.lhs</strong> </a>
 
-<hr/><a href="code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong></a>
 
 Not bad, but we can make it even better:
 
@@ -3045,9 +3045,9 @@ The `Maybe` monad proved to be useful while being a very simple example.
 We saw the utility of the `IO` monad.
 But now a cooler example, lists.
 
-<a href="code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong> </a>
 
-<hr/><a href="code/03_Hell/02_Monads/13_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>13_Monads.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/13_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>13_Monads.lhs</strong></a>
 
 <h4 id="the-list-monad">The list monad</h4>
 
@@ -3106,14 +3106,14 @@ You know monads[^03021301]!
 
 [^03021301]: Well, you'll certainly need to practice a bit to get used to them and to understand when you can use them and create your own. But you already made a big step in this direction.
 
-<a href="code/03_Hell/02_Monads/13_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>13_Monads.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/03_Hell/02_Monads/13_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>13_Monads.lhs</strong> </a>
 
 <h2 id="appendix">Appendix</h2>
 
 This section is not so much about learning Haskell.
 It is just here to discuss some details further.
 
-<hr/><a href="code/04_Appendice/01_More_on_infinite_trees/10_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>10_Infinite_Trees.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/04_Appendice/01_More_on_infinite_trees/10_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>10_Infinite_Trees.lhs</strong></a>
 
 <h3 id="more-on-infinite-tree">More on Infinite Tree</h3>
 
@@ -3266,9 +3266,9 @@ Left as an exercise to the reader:
 - Find an upper bound for `n`.
 - Prove there is no `shuffle` list so that, for any depth, the program ends.
 
-<a href="code/04_Appendice/01_More_on_infinite_trees/10_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>10_Infinite_Trees.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/04_Appendice/01_More_on_infinite_trees/10_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>10_Infinite_Trees.lhs</strong> </a>
 
-<hr/><a href="code/04_Appendice/01_More_on_infinite_trees/11_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>11_Infinite_Trees.lhs</strong></a>
+<hr/><a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/04_Appendice/01_More_on_infinite_trees/11_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>11_Infinite_Trees.lhs</strong></a>
 
 <div style="display:none">
 
@@ -3443,7 +3443,7 @@ treeFromList' (x:xs) n = Node x left right
         f = ???
 ~~~~~~
 
-<a href="code/04_Appendice/01_More_on_infinite_trees/11_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>11_Infinite_Trees.lhs</strong> </a>
+<a href="/Scratch/en/blog/Haskell-the-Hard-Way/code/04_Appendice/01_More_on_infinite_trees/11_Infinite_Trees.lhs" class="cut">04_Appendice/01_More_on_infinite_trees/<strong>11_Infinite_Trees.lhs</strong> </a>
 
 ## Thanks
 
