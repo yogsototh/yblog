@@ -726,10 +726,12 @@ Then you shouldn't jump directly to web programming.
 Haskell is a very complex and unusual language.
 My advice to go as fast as possible in using Haskell for web programming is:
 
+
 1. Start by [try Haskell in your browser](http://tryhaskell.org)
-2. Then read the excellent [Learn you a Haskell for Great Good](http://learnyouahaskell.com)
-3. If you have difficulties in understanding concepts like monads, you should really read [these articles](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html). For me they were enlightening.
-4. If you feel confident, you should be able to follows the [yesod book](http://yesodweb.com/book) and if you find difficult to follows the yesod book, you should read [real world Haskell](http://book.realworldhaskell.org) first (it is a must read).
+2. Read my tutorial [Learn Haskell Fast and Hard on School of Haskell](https://www.fpcomplete.com/school/haskell-fast-hard) or directly [on this blog](/Scratch/en/blog/Haskell-the-Hard-Way/)
+3. Then read the excellent [Learn you a Haskell for Great Good](http://learnyouahaskell.com)
+4. If you have difficulties in understanding concepts like monads, you should really read [these articles](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html). For me they were enlightening.
+5. If you feel confident, you should be able to follows the [yesod book](http://yesodweb.com/book) and if you find difficult to follows the yesod book, you should read [real world Haskell](http://book.realworldhaskell.org) first (it is a must read).
 
 Also, note that:
 
