@@ -12,7 +12,7 @@ tags:  screensaver, Apple, mac, Xcode
 -----
 # How to recompile your screensaver to be Snow Leopard(c) compatible
 
-I upgraded to Mac OS X 10.6 Snow Leopard(c), and my [YClock](/YBlog/YClock.html) screensaver didn't work on it. After searching on google, the problem seems to be just a recompilation away.
+I upgraded to Mac OS X 10.6 Snow Leopard(c), and my [YClock](/Scratch/en/softwares/yclock/) screensaver didn't work on it. After searching on google, the problem seems to be just a recompilation away.
 Unfortunately, even recompiling it in 64 bit it didn't work either.
 After a bit more research (thanks to [ElectricSheep](http://community.electricsheep.org/node/236) ).
 

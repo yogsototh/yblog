@@ -31,7 +31,7 @@ Here I don't want to talk about how great <sc>socks</sc> proxy via ssh tunneling
 
 I have Mac with Snow Leopard(c) at home and it is far from enough to modify the `/etc/sshd.config` file. The system use `launchd` to launch starting daemons.
 
-I posted the question on [Apple Discussions](discussions.apple.com) in this [discussion thread](http://discussions.apple.com/thread.jspa?messageID=10141032). Thanks to all guys who helped me. And the solution is:
+I posted the question on [Apple Discussions](http://discussions.apple.com) in this [discussion thread](http://discussions.apple.com/thread.jspa?messageID=10141032). Thanks to all guys who helped me. And the solution is:
 
 Create the file <tt>/Library/LaunchDaemons/ssh-443.plist</tt> containing:
 
