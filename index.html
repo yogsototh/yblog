@@ -2,16 +2,12 @@
 title: Home
 theme: scientific
 ------
-<div id="titre">
-    <h1>
-        <span style="color: #93a1a1; font-family: cmunrm, Georgia, serif; font-weight: normal; text-shadow: 0 0 2px #DDD;"">yann<span style="color:#002b36; text-shadow: 0 0 2px #CCC;">esposito</span>.com</span>
-        <div id="content">
-        </h1>
-    </div>
-    <div class="flush"></div>
-    <div id="afterheader">
+<div id="titre"><h1>
+    <span style="color: #93a1a1; font-family: cmunrm, Georgia, serif; font-weight: normal; text-shadow: 0 0 2px #DDD;"">yann<span style="color:#002b36; text-shadow: 0 0 2px #CCC;">esposito</span>.com</span>
+</h1></div>
+<div id="afterheader">
         <div class="corps" style="padding: 1em 0">
-            <div class="english left" style="font-size: 0.8em; text-align: left; width: 30%;">
+            <div class="english left" style="font-size: 0.8em; text-align: left; width: 30%; min-width: 13em;">
                 <div style="color: #AAA">
                     English
                 </div>
@@ -20,28 +16,48 @@ theme: scientific
                         Blog <span class="nicer">»</span>
                     </a>
                 </h3>
+    <div>
+        <h4 style="margin:0 0 .2em 0">Latest</h4>
+        <small><em> $enposts$ </em></small>
+    </div>
 
-                <small><em> $enposts$ </em></small>
+    <div>
+        <h4 style="margin:0 0 .2em 0">Popular</h4>
+        <small><em>
+                <a href="Scratch/en/blog/Learn-Vim-Progressively">Learn Vim Progressively&nbsp;<span class="nicer">»</span></a><br/>
+                <a href="Scratch/en/blog/Haskell-the-Hard-Way">Learn Haskell Fast <span class="and">&amp;</span> Hard&nbsp;<span class="nicer">»</span></a><br/>
+            <a href="Scratch/en/blog/Yesod-tutorial-for-newbies">Haskell Web Programming<span class="nicer">»</span></a>
+        </em></small>
+    </div>
 
                 <h3><a href="/Scratch/en/softwares" onclick="setLanguage('en')"> Softwares <span class="nicer">»</span> </a></h3>
                 <h3><a href="/Scratch/en/about/contact" onclick="setLanguage('en')">Contact <span class="nicer">»</span> </a></h3>
                 <h3> <a href="http://resume.espozito.com"> Resume <span class="nicer">»</span> </a> </h3>
             </div>
-            <div class="francais right"style="text-align: right; width: 32%; font-size: 0.8em">
+            <div class="francais right"style="text-align: right; width: 32%; font-size: 0.8em; min-width: 13em">
                 <div style="color: #AAA">Français</div>
                 <h3>
                     <a href="/Scratch/fr/blog" onclick="setLanguage('fr')">
                         Blog <span class="nicer">»</span>
                     </a>
                 </h3>
-                <small>
-                    <em> $frposts$ </em>
-                </small>
+    <div>
+        <h4 style="margin:0 0 .2em 0">Derniers</h4>
+        <small><em> $frposts$ </em></small>
+    </div>
+    <div>
+        <h4 style="margin:0 0 .2em 0">Populaires</h4>
+        <small><em>
+                <a href="Scratch/fr/blog/Learn-Vim-Progressively">Apprenez Vim Progressivement&nbsp;<span class="nicer">»</span></a><br/>
+                <a href="Scratch/fr/blog/Haskell-the-Hard-Way">Haskell comme un vrai!<span class="and">&amp;</span> Hard&nbsp;<span class="nicer">»</span></a><br/>
+            <a href="Scratch/fr/blog/Yesod-tutorial-for-newbies">Programmation Web avec Haskell<span class="nicer">»</span></a>
+        </em></small>
+    </div>
                 <h3> <a href="/Scratch/fr/softwares" onclick="setLanguage('fr')"> Logiciels <span class="nicer">»</span> </a> </h3>
                 <h3> <a href="/Scratch/fr/about/contact" onclick="setLanguage('fr')"> Contact <span class="nicer">»</span> </a> </h3>
                 <h3> <a href="http://yann.esposito.free.fr/enseignement/enseignement.php"> Enseignement <span class="nicer">»</span> </a> </h3>
             </div>
-            <img class="clean" src="/Scratch/img/presentation.png" alt="Presentation drawing" width="30%"/>
+            <img class="clean" src="/Scratch/img/presentation.png" alt="Presentation drawing" style="width:30%; min-width:10em"/>
             <div class="flush"></div>
             <center style="padding-top: 1em; border-top: 4px double #CCCCD0">
                 <h2 style="font-size: 15px;">
