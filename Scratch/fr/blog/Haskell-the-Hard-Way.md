@@ -467,9 +467,9 @@ More precisely `f 3 4` is equivalent to `(f 3) 4`.
 Note `f 3` is a function:
 
 ~~~
-f :: Num a :: a -> a -> a
+f :: Num a => a -> a -> a
 
-g :: Num a :: a -> a
+g :: Num a => a -> a
 g = f 3
 
 g y ⇔ 3*3 + y*y
@@ -2724,9 +2724,9 @@ let ((),w3) = print (line1 ++ line2) in
 Which is equivalent to:
 
 ~~~~~~ {.haskell}
-(res,w3) = bind getLine (\line1 ->
+(res,w3) = (bind getLine (\line1 ->
              bind getLine (\line2 ->
-               print (line1 ++ line2)))
+               print (line1 ++ line2)))) w0
 ~~~~~~
 
 Didn't you notice something?
@@ -2739,9 +2739,9 @@ Let's use `(>>=)` instead of `bind`.
 `(+)`; reminder `3 + 4 ⇔ (+) 3 4`
 
 ~~~~~~ {.haskell}
-(res,w3) = getLine >>=
-           \line1 -> getLine >>=
-           \line2 -> print (line1 ++ line2)
+(res,w3) = (getLine >>=
+           (\line1 -> getLine >>=
+           (\line2 -> print (line1 ++ line2)))) w0
 ~~~~~~
 
 Ho Ho Ho! Happy Christmas Everyone!

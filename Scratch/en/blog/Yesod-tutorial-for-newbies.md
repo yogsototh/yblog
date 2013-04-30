@@ -219,11 +219,11 @@ let's make a minimal echo application.
 >
 > Make a server that when accessed `/echo/[some text]` should return a web page containing "some text" inside an `h1` bloc.
 
-~~~ {.bash}
-~/Sites/yosog $ yesod add-handler
-Name of route (without trailing R): Echo
-Enter route pattern (ex: /entry/#EntryId): /echo/#String
-Enter space-separated list of methods (ex: GET POST): GET
+~~~ {.no-highlight}
+~/Sites/yosog $ {-hi-}yesod add-handler{-/hi-}
+Name of route (without trailing R): {-hi-}Echo{-/hi-}
+Enter route pattern (ex: /entry/#EntryId): {-hi-}/echo/#String{-/hi-}
+Enter space-separated list of methods (ex: GET POST): {-hi-}GET{-/hi-}
 ~~~
 
 Almost all work is done for us. The `add-handler` do the following:
@@ -394,11 +394,11 @@ In our example it should return "JormungaddagnumroJ".
 
 First, add a new handler:
 
-~~~ {.nohighlight}
- ~/Sites/yosog (master) $ yesod add-handler
-Name of route (without trailing R): Mirror
-Enter route pattern (ex: /entry/#EntryId): /mirror
-Enter space-separated list of methods (ex: GET POST): GET POST
+~~~ {.no-highlight}
+ ~/Sites/yosog (master) $ {-hi-}yesod add-handler{-/hi-}
+Name of route (without trailing R): {-hi-}Mirror{-/hi-}
+Enter route pattern (ex: /entry/#EntryId): {-hi-}/mirror{-/hi-}
+Enter space-separated list of methods (ex: GET POST): {-hi-}GET POST{-/hi-}
 ~~~
 
 This time the path `/mirror` will accept GET and POST requests.
