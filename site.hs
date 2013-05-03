@@ -163,7 +163,6 @@ markdownBehaviorWithSimpleRoute = do
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/default.html"    yContext
     >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
-    >>= relativizeUrls
     >>= removeIndexHtml
 
 --------------------------------------------------------------------------------
