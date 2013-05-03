@@ -237,7 +237,7 @@ metaKeywordContext = field "metaKeywords" $ \item -> do
   tags <- getMetadataField (itemIdentifier item) "tags"
   return $ maybe "" showMetaTags tags
     where
-      showMetaTags t = "<meta name=\"keywords\" content=\"" ++ t ++ "\">\n"
+      showMetaTags t = "<meta name=\"keywords\" content=\"" ++ t ++ "\"/>\n"
 
 --------------------------------------------------------------------------------
 createdFirst :: [Item String] -> Compiler [Item String]
