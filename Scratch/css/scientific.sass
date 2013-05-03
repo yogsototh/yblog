@@ -214,7 +214,10 @@ ul
   list-style: none
 
 .corps ul li:before
-  content: "- "
+  content: "-"
+  display: inline-block
+  margin-left: 1.5ex
+  width: 0
 
 ul
   padding-left: 0
@@ -439,7 +442,6 @@ h1 > .date
 $VPadCorps: 3em
 $VMarginCorps: 3em
 
-// ATTENTION DOIT ETRE 0 pour le bon callage
 $content_width: 47em
 
 body
@@ -917,7 +919,9 @@ a:hover .nicer
   color: $lighterText
   font-family: "Lucida Grande", Tahoma
 
-
+.and
+  color: $lighterText
+  font-family: "Hoefler Text",Palatino,Georgia
 
 .block
   +innerblock
