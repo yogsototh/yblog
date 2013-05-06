@@ -3,35 +3,18 @@ title: About
 theme: scientific
 -----
 
-> - [contact](/Scratch/en/about/contact/)
-> - [old](/Scratch/en/about/old/)
-> - [technical details](/Scratch/en/about/technical_details/)
+<img src="/Scratch/img/about/avatar.png" alt="Avatar" class="clean left"/>
+
+**@** %mailperso  
+[<span class="social">&#116;</span> @yogsototh](http://twitter.com/yogsototh)  
+[<span class="social">&#0103;</span> +yogsotoh](https://plus.google.com/117858550730178181663)  
+[<img src="/Scratch/img/pinboard.png"  class="simple" style="height: 16px"/> yogsototh](http://pinboard.in/u:yogsototh)  
+[<img src="/Scratch/img/GitHub-Mark-32px.png"  class="simple" style="height: 16px"/> yogsototh](http://github.com/yogsototh)  
+[<img src="/Scratch/img/stackoverflow-logo.png"  class="simple" style="height: 16px"/> yogsototh](http://stackoverflow.com/users/40569/yogsototh)  
+
+## One photo
 
 ![I look like this](/Scratch/img/about/yann1.jpg)
-
-----------  ----------------------------------
-Name        Yann Esposito
-Education   Post Ph. D. in Computer Science
-School      Université de Provence
-Job         IT at Sophia Antipolis (France)
-----------  ----------------------------------
-
-Books I like:
-
-  - Goëdel, Escher &amp; Bach  *[Hofstadter]*
-  - On Numbers And Games *[Conway]*
-  - Baudolino *[Eco]*
-
-Movies I like:
-
-  - Eraserhead *[Lynch]*
-  - Mullholland Drive *[Lynch]*
-  - Naked Lunch *[Cronenberg]*
-  - eXistenZ *[Cronenberg]*
-
-[My online bookmarks on pinboard](http://pinboard.in/u:yogsototh)
-
-[My resume](http://resume.espozito.com)
 
 ## Shortly
 
@@ -43,6 +26,25 @@ I’m a passionate guy. Passionate about
 
 But before all, I love to learn.
 For example, I learned many programming languages:
-`C`, `C++`, `Objective-C`, `Python`, `Java`,
-`Perl`, `awk`, `bash`, `zsh`, `LaTeX`, `Metapost`, `camL`, `Haskell`...
+[Haskell](http://haskell.org),
+[Clo<i>j</i>ure](http://clojure.org),
+javascript, C, C++, Objective-C,
+[Python](http://python.org),
+[Ruby](http://ruby-lang.org),
+Java,
+[Perl](http://perl.org),
+awk,
+bash,
+[zsh](http://www.zsh.org),
+[%latex](http://www.latex-project.org),
+[metapost](http://www.tug.org/metapost.html),
+[camL](http://caml.inria.fr),
+[Scheme](http://mitpress.mit.edu/sicp/full-text/book/book.html)...
 
+[My full resume](http://resume.espozito.com)
+
+## Old stuff
+
+- [Official YPassword website &#x271E;](http://ypassword.espozito.com)
+- [Research activities &#x271E;](http://yann.esposito.free.fr/recherche.php?css=blue&amp;lang=en)
+- [My student website &#x271E; 2007](http://yann.esposito.free.fr/)

@@ -157,7 +157,7 @@ Now if ``templates/posts.html`` contains:
 </html>
 ```
 
-Now our `cthulhu.html` contains (indentation added for readability):
+our `cthulhu.html` contains (indentation added for readability):
 
 ``` html
 <html>
@@ -166,14 +166,14 @@ Now our `cthulhu.html` contains (indentation added for readability):
   </head>
   <body>
     {-hi-}<h1>Cthulhu</h1>{-/hi-}
-    {-/hi-}<p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
+    {-hi-}<p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
   </body>
 </html>
 ```
 
-See, its easy
-But we have a problem. How could we change the title?
-Or for example, add keywords?
+See, it's easy
+But we have a problem. How could we change the title
+or add keywords?
 
 The solution is to use `Context`s.
 For this, we first need to add some _metadatas_ to our markdown[^1].

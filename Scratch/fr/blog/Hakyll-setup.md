@@ -166,7 +166,7 @@ Maintenant notre `ctuhlhu.html` contient
   </head>
   <body>
     {-hi-}<h1>Cthulhu</h1>{-/hi-}
-    {-/hi-}<p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
+    {-hi-}<p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
   </body>
 </html>
 ```

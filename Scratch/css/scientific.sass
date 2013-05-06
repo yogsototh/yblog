@@ -625,15 +625,23 @@ $hpadding: 1
   border: 1px solid $imageBorderColor
   background-color: $imageBackgroundColor
   padding: 0.5em
-  box-shadow: 0 10px 15px #CCC
+  box-shadow: 0 0px 5px #CCC inset
   border-radius: 3px
+.corps a img,
+.corps li img,
+  display: inline-block
+  border: none
+  padding: 0
+  margin: 0
+  box-shadow: none
 .corps a:hover img
   background-color: $revealColor + #100 - #011
 
 figure, .figure
   margin: 3em 0
+  text-align: center
   img
-    box-shadow: 0 10px 15px #CCC inset
+    box-shadow: 0 0px 5px #CCC inset
   figcaption, .caption
     text-align: center
     margin: .5em 0
@@ -1088,26 +1096,28 @@ a.cut
       max-width: 80%
       max-height: 6em
 
-.inlineblockimg
-  width: 48px
-  margin: 8px
-  text-align: center
-  vertical-align: middle
-  display: inline-block
-  line-height: 0.8em
-  overflow: hidden
-  border: solid 1px
-img.inlineimage
-  padding: 0
-  max-height: 48px
-  max-width: 48px
-  border: none
-  box-shadow: none
-  margin: 0 auto
-  vertical-align: middle
-  font-size: 7px
-  font-family: Helvetica, sans-serif
-  overflow: hidden
+.corps
+  .inlineblockimg
+    width: 48px
+    margin: 8px
+    text-align: center
+    vertical-align: middle
+    display: inline-block
+    line-height: 0.8em
+    overflow: hidden
+    border: solid 1px
+  img.inlineimage
+    display: block
+    padding: 0
+    max-height: 48px
+    max-width: 48px
+    border: none
+    box-shadow: none
+    margin: 0 auto
+    vertical-align: middle
+    font-size: 7px
+    font-family: Helvetica, sans-serif
+    overflow: hidden
 
 section.slide
   border-color: $borderColor

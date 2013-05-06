@@ -231,7 +231,7 @@ fr: Maintenant si ``templates/posts.html`` contient:
 </html>
 ```
 
-en: Now our `cthulhu.html` contains (indentation added for readability):
+en: our `cthulhu.html` contains (indentation added for readability):
 fr: Maintenant notre `ctuhlhu.html` contient
 
 ``` html
@@ -241,14 +241,14 @@ fr: Maintenant notre `ctuhlhu.html` contient
   </head>
   <body>
     {-hi-}<h1>Cthulhu</h1>{-/hi-}
-    {-/hi-}<p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
+    {-hi-}<p>ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn</p>{-/hi-}
   </body>
 </html>
 ```
 
-en: See, its easy
-en: But we have a problem. How could we change the title?
-en: Or for example, add keywords?
+en: See, it's easy
+en: But we have a problem. How could we change the title
+en: or add keywords?
 fr: C'est facile.
 fr: Mais il reste un problème à résoudre.
 fr: Comment pouvons-nous changer le titre ?

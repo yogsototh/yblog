@@ -4,39 +4,20 @@ theme: scientific
 menupriority: 4
 -----
 
-> - [contact](/Scratch/fr/about/contact/)
-> - [ancien](/Scratch/fr/about/old/)
-> - [détails techniques](/Scratch/fr/about/technical_details/)
+<img src="/Scratch/img/about/avatar.png" alt="Avatar" class="clean left"/>
 
-## Pour mieux me connaître
+**@** %mailperso  
+[<span class="social">&#116;</span> @yogsototh](http://twitter.com/yogsototh)  
+[<span class="social">&#0103;</span> +yogsotoh](https://plus.google.com/117858550730178181663)  
+[<img src="/Scratch/img/pinboard.png"  class="simple" style="height: 16px"/> yogsototh](http://pinboard.in/u:yogsototh)  
+[<img src="/Scratch/img/GitHub-Mark-32px.png"  class="simple" style="height: 16px"/> yogsototh](http://github.com/yogsototh)  
+[<img src="/Scratch/img/stackoverflow-logo.png"  class="simple" style="height: 16px"/> yogsototh](http://stackoverflow.com/users/40569/yogsototh)  
 
-![Une photo de moi](/Scratch/img/about/yann1.jpg)
+## Une photo
 
---------  ----------------------------------
-Nom       Yann Esposito
-Diplôme   Doctorat d'Informatique
-École     Université de Provence
-Emplois   Informaticien à Sophia Antipolis
---------  ----------------------------------
+![C'est moi](/Scratch/img/about/yann1.jpg)
 
-Livres que j'aime :
-
-  - Goëdel, Escher &amp; Bach  *[Hofstadter]*
-  - On Numbers And Games *[Conway]*
-  - Baudolino *[Eco]*
-
-Films que j'aime :
-
-  - Eraserhead *[Lynch]*
-  - Mullholland Drive *[Lynch]*
-  - Naked Lunch *[Cronenberg]*
-  - eXistenZ *[Cronenberg]*
-
-[Mes bookmarks sur pinboard](http://pinboard.in/u:yogsototh)
-
-[Mon cv (en anglais)](http://resume.espozito.com)
-
-## En deux mots
+## En quelques mots
 
 Je suis un passioné. Passioné par :
 
@@ -46,6 +27,25 @@ Je suis un passioné. Passioné par :
 
 Mais avant tout j'adore apprendre.
 Par exemple, j'ai appris de nombreux langages de programmation:
-`Haskell`, `Python`, `Ruby`, `C`, `C++`, `Objective-C`, `Java`,
-`Perl`, `awk`, `bash`, `zsh`, %latex, `Metapost`, `CamL`...
+[Haskell](http://haskell.org),
+[Clo<i>j</i>ure](http://clojure.org),
+javascript, C, C++, Objective-C,
+[Python](http://python.org),
+[Ruby](http://ruby-lang.org),
+Java,
+[Perl](http://perl.org),
+awk,
+bash,
+[zsh](http://www.zsh.org),
+[%latex](http://www.latex-project.org),
+[metapost](http://www.tug.org/metapost.html),
+[camL](http://caml.inria.fr),
+[Scheme](http://mitpress.mit.edu/sicp/full-text/book/book.html)...
 
+[Mon CV](http://cv.espozito.com)
+
+## Anciennes
+
+- [Site officiel YPassword &#x271E;](http://ypassword.espozito.com)
+- [Activités de recherche &#x271E;](http://yann.esposito.free.fr/recherche.php?css=blue&amp;lang=fr)
+- [Mon site étudiant &#x271E; 2007](http://yann.esposito.free.fr/)
