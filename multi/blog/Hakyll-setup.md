@@ -87,7 +87,7 @@ fr: > ## C'est un H2 dans un blockquote
 fr: ```
 
 en: 2. I open a browser and reload time to time to see the change.
-en: 3. Once I finished I've written a very minimal script which mainly to a git push.
+en: 3. Once I finished I've written a very minimal script which mainly do a `git push`.
 en:    My blog is hosted on [github](http://github.com).
 fr: 2. J'ouvre mon navigateur et je rafraichis de temps en temps pour voir les changements.
 fr: 3. Une fois satisfait, je lance un script minimal qui fait grosso modo un simple `git push`.
