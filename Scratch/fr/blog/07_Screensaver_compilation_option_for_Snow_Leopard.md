@@ -4,7 +4,7 @@ theme: scientific
 image: /Scratch/img/blog/07_Screensaver_compilation_option_for_Snow_Leopard/xcodeConfig.png
 kind:           article
 published: 2009-09-06
-title: Compilation d'économiseur d'écran sous Snow Leopard<small>&copy;</small> 
+title: Compilation d'économiseur d'écran sous OS X<small>&copy;</small> 
 author: Yann Esposito
 authoruri: yannesposito.com
 tags:  screensaver, Apple, mac, Xcode

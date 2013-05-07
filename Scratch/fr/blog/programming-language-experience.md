@@ -5,7 +5,7 @@ image: /Scratch/img/blog/programming-language-experience/dragon.jpg
 menupriority:   1
 kind:           article
 published: 2011-09-28
-title: Mon expérience avec les languages de programmation
+title: Expérience avec les languages de programmations
 author: Yann Esposito
 authoruri: yannesposito.com
 tags:  programming, languages, C, C++, Java, haskell, Logo, Basic

@@ -5,7 +5,7 @@ image: /Scratch/img/blog/2011-01-03-Why-I-sadly-won-t-use-coffeescript/main.png
 menupriority:   1
 kind:           article
 published: 2011-01-03
-title: Pourquoi je n'utiliserai pas CoffeeScript (malheureusement)
+title: Pas de CoffeeScript pour moi (malheureusement)
 author: Yann Esposito
 authoruri: yannesposito.com
 tags:  Coffeescript
