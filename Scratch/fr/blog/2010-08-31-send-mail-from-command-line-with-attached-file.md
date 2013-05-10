@@ -4,7 +4,7 @@ theme: scientific
 menupriority:   1
 kind:           article
 published: 2010-08-31
-title: Envoyer un mail en ligne de commande avec un fichier attaché
+title: Mail en ligne de commande avec un fichier join
 author: Yann Esposito
 authoruri: yannesposito.com
 tags:  email, shell, web
