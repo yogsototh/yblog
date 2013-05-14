@@ -1,6 +1,0 @@
-
-
-
-0  ^           fi     t)       4fi          g_  $
-│  │           │      │         │           │   │
-   x = (name_1,vision_3); #this is a comment.    

@@ -160,9 +160,10 @@ $(window).bind("load", function() {
 
 
 // --- Google Analytics ---
+var UACode='UA-00000000-1';
 if ( ! $.cookie('admin') ) {
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-10612400-1']);
+    _gaq.push(['_setAccount', UACode]);
     _gaq.push(['_trackPageview']);
 
     (function() {
