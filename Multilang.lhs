@@ -5,10 +5,7 @@ This file contain all the contexts I use to handle multi-language with Hakyll.
 
 This module provide:
 
-1. A big dictionary :
-
-	keyword :: String -> (french :: String, english :: String)
-
+1. A big dictionary
 2. A way to detect the current Hakyll item language.
 3. A way to provide links to other language corresponding item.
 
@@ -30,16 +27,19 @@ Some mandatory imports
 > import           Data.Map		   (Map)
 > import qualified Data.Map		as  M
 > import           Data.Monoid	   ((<>))
+> import           Config          (langs)
+> import           Data.List       (isPrefixOf)
 
 The data structure data contains the necessary informations for English and
 French translation of words.
 
-> data Trad = Trad { frTrad :: String, enTrad :: String }
+> data Language = L String deriving (Ord,Eq)
+> data Trad = Trad (Map Language String)
 
 The site prefix is into this file for now. I will certainly put this into a config file later.
 
 > sitePrefix :: String
-> sitePrefix = "/Scratch"
+> sitePrefix = "Scratch"
 
 The `multiContext` contains all other contexts.
 For information, a Hakyll context is some kind of
@@ -64,7 +64,7 @@ For me this is easy, the language of an item is where it is in fr or en.
 >   filepath <- return $ toFilePath (itemIdentifier item)
 >   return $ if (languageFromPath filepath == "fr" ) then "fr" else "en"
 >     where
->       languageFromPath = take 2 . drop (length sitePrefix)
+>       languageFromPath = take 2 . drop (1 + (length sitePrefix))
 > --------------------------------------------------------------------------------
 > languageContext :: Context a
 > languageContext = field "language" itemLang
@@ -75,7 +75,7 @@ Next context, return the other language.
 > otherlanguageContext :: Context a
 > otherlanguageContext = field "otherlanguage" $ \item -> do
 >   lang <- itemLang item
->   return $ if (lang == "en") then "fr" else "en"
+>   return $ if (lang == head langs) then (langs !! 1) else (head langs)
 
 The context containing the path of the similar element for the other language
 
@@ -85,38 +85,47 @@ The context containing the path of the similar element for the other language
 >   itemRoute <- (getRoute . itemIdentifier) item
 >   return $ maybe "/" changeLanguage itemRoute
 >   where
->     changeLanguage ('S':'c':'r':'a':'t':'c':'h':'/':'e':'n':'/':xs) = sitePrefix ++ "/fr/" ++ xs
->     changeLanguage ('S':'c':'r':'a':'t':'c':'h':'/':'f':'r':'/':xs) = sitePrefix ++ "/en/" ++ xs
->     changeLanguage xs = xs
+>     langPrefixes = map (\l -> sitePrefix ++ "/" ++ l) langs
+>     fstlang = head langPrefixes
+>     sndlang = head (tail langPrefixes)
+>     changeLanguage url =
+>       if (isPrefixOf (head langPrefixes) url)
+>          then sndlang ++ (drop (length fstlang) url)
+>          else if any (\p -> isPrefixOf p url) (tail langPrefixes)
+>                  then fstlang ++ (drop (length sndlang) url)
+>                  else url
 
 Next the dictionary containing all traductions of standards templates.
 
 > --------------------------------------------------------------------------------
 > trads :: Map String Trad
 > trads = M.fromList $ map toTrad [
->          ("welcome",   ("Bientôt","Soon"))
->         ,("switchCss", ("Changer de theme","Change Theme"))
->         ,("loading",   ("Chargement en cours","Loading"))
->         ,("Home",      ("Accueil","Home"))
->         ,("Blog",      ("Blog","Blog"))
->         ,("Softwares", ("Logiciels","Softwares"))
->         ,("About",     ("Auteur","About"))
->         ,("Follow",    ("Suivre","Follow"))
->         ,("changeLanguage", ("English", "Français"))
->         ,("socialPrivacy",  ("Ces liens sociaux préservent votre vie privée","These social sharing links preserve your privacy"))
+>          ("welcome",        ["Soon","Bientôt"])
+>         ,("switchCss",      ["Change Theme","Changer de theme"])
+>         ,("loading",        ["Loading","Chargement en cours"])
+>         ,("Home",           ["Home","Accueil"])
+>         ,("Blog",           ["Blog","Blog"])
+>         ,("Softwares",      ["Softwares","Logiciels"])
+>         ,("About",          ["About","Auteur"])
+>         ,("Follow",         ["Follow","Suivre"])
+>         ,("changeLanguage", ["Français","English"])
+>         ,("socialPrivacy",  ["These social sharing links preserve your privacy"
+>                             ,"Ces liens sociaux préservent votre vie privée"])
 >         ]
 >         where
->           toTrad (k,(f,e)) = (k, Trad { frTrad = f, enTrad = e })
+>           toTrad (k,tradList) =
+>               (k, Trad (M.fromList
+>                 (zipWith (\lang trad  -> (L lang,trad)) langs tradList)))
+>
 > --------------------------------------------------------------------------------
 > tradsContext :: Context a
 > tradsContext = functionField "trad" $ \args item -> do
 >                 k <- getArgs args
->                 v <- getValue k trads
+>                 Trad v <- getValue k trads
 >                 lang <- itemLang item
->                 case lang of
->                   "en" -> return (enTrad v)
->                   "fr" -> return (frTrad v)
->                   _    -> fail $ lang ++ " is not a supported language"
+>                 case M.lookup (L lang) v of
+>                   Just translation -> return translation
+>                   Nothing -> fail $ "Couldn't find translation in " ++ lang ++ " for " ++ k
 >                 where
 >                   getArgs [k] = return k
 >                   getArgs _   = fail "Wrong arg for trad"
