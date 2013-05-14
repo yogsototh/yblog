@@ -3,7 +3,7 @@
 ONCE=0
 [[ $1 = "once" ]] && { ONCE=1 }
 
-languages=( fr en )
+languages=( fr en de )
 typeset -a exclu
 
 function join {
@@ -19,19 +19,20 @@ function join {
 
 while true; do
   for language in $languages; do
-    exclu=()
+      exclu=()
     for l in $languages; do
       case $l in
         $language) continue ;;
       esac
-      exclu=( $exclu $l )
+      exclu=($exclu $l)
     done
     for fic in multi/**/*(.); do
       dest=Scratch/$language/${fic#multi/}
       [[ ! -e $dest || $fic -nt $dest ]] || continue
       print $dest
       [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
-      awkprg='! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }'
+      excluregexp="${(j:|:)exclu}"
+      awkprg='! /^('$excluregexp'): / { sub(/^'$language': /,""); print $0 }'
       awk "$awkprg" < $fic > $dest
     done
   done
