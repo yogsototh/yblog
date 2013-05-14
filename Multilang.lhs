@@ -27,7 +27,7 @@ Some mandatory imports
 > import           Data.Map		   (Map)
 > import qualified Data.Map		as  M
 > import           Data.Monoid	   ((<>))
-> import           Config          (langs)
+> import           Config          (langs,fstlang,sndlang)
 > import           Data.List       (isPrefixOf)
 
 The data structure data contains the necessary informations for English and
@@ -62,9 +62,11 @@ For me this is easy, the language of an item is where it is in fr or en.
 > itemLang :: Item a -> Compiler String
 > itemLang item = do
 >   filepath <- return $ toFilePath (itemIdentifier item)
->   return $ if (languageFromPath filepath == "fr" ) then "fr" else "en"
->     where
->       languageFromPath = take 2 . drop (1 + (length sitePrefix))
+>   if length filepath > (1+(length sitePrefix))
+>     then return $ languageFromPath filepath
+>     else return $ fstlang
+>   where
+>       languageFromPath = take 2 . drop (1+(length sitePrefix))
 > --------------------------------------------------------------------------------
 > languageContext :: Context a
 > languageContext = field "language" itemLang
@@ -75,7 +77,7 @@ Next context, return the other language.
 > otherlanguageContext :: Context a
 > otherlanguageContext = field "otherlanguage" $ \item -> do
 >   lang <- itemLang item
->   return $ if (lang == head langs) then (langs !! 1) else (head langs)
+>   return $ if (lang == fstlang) then sndlang else fstlang
 
 The context containing the path of the similar element for the other language
 
@@ -86,13 +88,13 @@ The context containing the path of the similar element for the other language
 >   return $ maybe "/" changeLanguage itemRoute
 >   where
 >     langPrefixes = map (\l -> sitePrefix ++ "/" ++ l) langs
->     fstlang = head langPrefixes
->     sndlang = head (tail langPrefixes)
+>     fstlangpref = head langPrefixes
+>     sndlangpref = head (tail langPrefixes)
 >     changeLanguage url =
->       if (isPrefixOf (head langPrefixes) url)
->          then sndlang ++ (drop (length fstlang) url)
+>       if (isPrefixOf fstlangpref url)
+>          then sndlangpref ++ (drop (length fstlangpref) url)
 >          else if any (\p -> isPrefixOf p url) (tail langPrefixes)
->                  then fstlang ++ (drop (length sndlang) url)
+>                  then fstlangpref ++ (drop (length sndlangpref) url)
 >                  else url
 
 Next the dictionary containing all traductions of standards templates.
@@ -100,17 +102,17 @@ Next the dictionary containing all traductions of standards templates.
 > --------------------------------------------------------------------------------
 > trads :: Map String Trad
 > trads = M.fromList $ map toTrad [
->          ("welcome",        ["Soon","Bientôt"])
->         ,("switchCss",      ["Change Theme","Changer de theme"])
->         ,("loading",        ["Loading","Chargement en cours"])
->         ,("Home",           ["Home","Accueil"])
->         ,("Blog",           ["Blog","Blog"])
->         ,("Softwares",      ["Softwares","Logiciels"])
->         ,("About",          ["About","Auteur"])
->         ,("Follow",         ["Follow","Suivre"])
->         ,("changeLanguage", ["Français","English"])
+>          ("welcome",        ["Soon","Bientôt","DE"])
+>         ,("switchCss",      ["Change Theme","Changer de theme","DE"])
+>         ,("loading",        ["Loading","Chargement en cours","DE"])
+>         ,("Home",           ["Home","Accueil","DE"])
+>         ,("Blog",           ["Blog","Blog","DE"])
+>         ,("Softwares",      ["Softwares","Logiciels","DE"])
+>         ,("About",          ["About","Auteur","DE"])
+>         ,("Follow",         ["Follow","Suivre","DE"])
+>         ,("changeLanguage", ["Français","English","DE"])
 >         ,("socialPrivacy",  ["These social sharing links preserve your privacy"
->                             ,"Ces liens sociaux préservent votre vie privée"])
+>                             ,"Ces liens sociaux préservent votre vie privée","DE"])
 >         ]
 >         where
 >           toTrad (k,tradList) =
@@ -121,11 +123,9 @@ Next the dictionary containing all traductions of standards templates.
 > tradsContext :: Context a
 > tradsContext = functionField "trad" $ \args item -> do
 >                 k <- getArgs args
->                 Trad v <- getValue k trads
+>                 Trad langmap <- getValue k trads
 >                 lang <- itemLang item
->                 case M.lookup (L lang) v of
->                   Just translation -> return translation
->                   Nothing -> fail $ "Couldn't find translation in " ++ lang ++ " for " ++ k
+>                 getValue (L lang) langmap
 >                 where
 >                   getArgs [k] = return k
 >                   getArgs _   = fail "Wrong arg for trad"
