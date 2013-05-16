@@ -14,11 +14,13 @@ If you want to use this blog for you.
         ./preview
 
 4. Add an avatar.png image in `Scratch/img/about`
-5. Create your own entries in `multi` (if you use different languages)
+5. You might want to change `Multilang.lhs` inside `trads` to put your own translation.
+6. You might want to add some abbreviations time to time `Abbreviations.lhs`.
+7. Create your own entries in `multi` (if you use different languages)
    or directly inside Scratch/
-6. For google analytics, modify the identifier `UA-0000000-1` in `Scratch/js/index.js`
-7. For the disqus commment modify the `disqus_shortname` value in `templates/post.html`.
-8. To publish to github pages, modify the github conf inside `publish.sh` and `fastpublish.sh`.
+8. For google analytics, modify the identifier `UA-0000000-1` in `Scratch/js/index.js`
+9. For the disqus commment modify the `disqus_shortname` value in `templates/post.html`.
+10. To publish to github pages, modify the github conf inside `publish.sh` and `fastpublish.sh`.
 
 
 ## Workflow
