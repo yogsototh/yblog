@@ -3,7 +3,8 @@
 ONCE=0
 [[ $1 = "once" ]] && { ONCE=1 }
 
-languages=( fr en )
+languages=( $(runghc showlangs.hs) )
+print "languages to watch (in Config.hs) are: $languages"
 typeset -a exclu
 
 function join {
