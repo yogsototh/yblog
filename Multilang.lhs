@@ -16,8 +16,6 @@ content pages. Therefore, the easies way was to only provide `Context`s.
 >   ( multiContext
 >   , tradsContext
 >   , languageContext
->   , otherlanguageContext
->   , otherLanguagePathContext
 >   , otherLanguageLinksContext
 >   )
 > where
@@ -28,7 +26,7 @@ Some mandatory imports
 > import           Data.Map		   (Map)
 > import qualified Data.Map		as  M
 > import           Data.Monoid	   ((<>))
-> import           Config          (langs,fstlang,sndlang)
+> import           Config          (langs,fstlang)
 > import           Data.List       (isPrefixOf)
 
 The data structure data contains the necessary informations for English and
@@ -51,9 +49,7 @@ current generating item.
 > multiContext :: Context a
 > multiContext = tradsContext <>
 >                languageContext <>
->                otherLanguagePathContext <>
->                otherLanguageLinksContext <>
->                otherlanguageContext
+>                otherLanguageLinksContext
 
 Let's start by the easiest. Get the current item language.
 For me this is easy, the language of an item is where it is in fr or en.
@@ -73,51 +69,25 @@ For me this is easy, the language of an item is where it is in fr or en.
 > languageContext :: Context a
 > languageContext = field "language" itemLang
 
-Next context, return the other language.
-
-> --------------------------------------------------------------------------------
-> otherlanguageContext :: Context a
-> otherlanguageContext = field "otherlanguage" $ \item -> do
->   lang <- itemLang item
->   return $ if (lang == fstlang) then sndlang else fstlang
-
-The context containing the path of the similar element for the other language
-
-> --------------------------------------------------------------------------------
-> otherLanguagePathContext :: Context a
-> otherLanguagePathContext = field "otherLanguagePath" $ \item -> do
->   itemRoute <- (getRoute . itemIdentifier) item
->   return $ maybe "/" changeLanguage itemRoute
->   where
->     langPrefixes = map (\l -> sitePrefix ++ "/" ++ l) langs
->     fstlangpref = head langPrefixes
->     sndlangpref = head (tail langPrefixes)
->     changeLanguage url =
->       if (isPrefixOf fstlangpref url)
->          then sndlangpref ++ (drop (length fstlangpref) url)
->          else if any (\p -> isPrefixOf p url) (tail langPrefixes)
->                  then fstlangpref ++ (drop (length sndlangpref) url)
->                  else url
-
 Next the dictionary containing all traductions of standards templates.
 
 > --------------------------------------------------------------------------------
 > trads :: Map String Trad
 > trads = M.fromList $ map toTrad [
->          ("welcome",        ["Soon","Bientôt","DE"])
->         ,("switchCss",      ["Change Theme","Changer de theme","DE"])
->         ,("loading",        ["Loading","Chargement en cours","DE"])
->         ,("Home",           ["Home","Accueil","DE"])
->         ,("Blog",           ["Blog","Blog","DE"])
->         ,("Softwares",      ["Softwares","Logiciels","DE"])
->         ,("About",          ["About","Auteur","DE"])
->         ,("Follow",         ["Follow","Suivre","DE"])
->         ,("changeLanguage", ["Français","English","DE"])
->         ,("fr", ["Français","French","Frenchozy"])
->         ,("en", ["Anglais","English","Engliztch"])
->         ,("de", ["Allemand","German","Germany"])
+>          ("welcome",        ["Soon","Bientôt","bald"])
+>         ,("switchCss",      ["Change Theme","Changer de theme","Sie ändern Thema"])
+>         ,("loading",        ["Loading","Chargement en cours","Verladung"])
+>         ,("Home",           ["Home","Accueil","Willkommen"])
+>         ,("Blog",           ["Blog","Blog","Blog"])
+>         ,("Softwares",      ["Softwares","Logiciels","Software"])
+>         ,("About",          ["About","Auteur","über"])
+>         ,("Follow",         ["Follow","Suivre","folgen"])
+>         ,("fr",             ["French", "Français", "Französisch"])
+>         ,("en",             ["English","Anglais" , "Englisch"])
+>         ,("de",             ["German", "Allemand", "Deutsch"])
 >         ,("socialPrivacy",  ["These social sharing links preserve your privacy"
->                             ,"Ces liens sociaux préservent votre vie privée","DE"])
+>                             ,"Ces liens sociaux préservent votre vie privée"
+>                             ,"Diese Social Sharing Links bewahren Sie Ihre Privatsphäre"])
 >         ]
 >         where
 >           toTrad (k,tradList) =
@@ -164,8 +134,8 @@ This context will contain all links to the other languages
 >     changeLanguageTo language url =
 >        if (isPrefixOf (sitePrefix ++ "/") url)
 >             && (length url > preflen)
->             && (url !! preflen == '/')
->          then sitePrefix ++ "/" ++ language ++ (drop (preflen) url)
->          else url
+>             && (url !! (preflen-1) == '/')
+>          then "/" ++ sitePrefix ++ "/" ++ language ++ "/" ++ (drop (preflen) url)
+>          else "/" ++ url
 >       where
 >         preflen = 4+length sitePrefix
