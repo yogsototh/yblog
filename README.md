@@ -5,10 +5,13 @@ I use Hakyll to generate my website.
 If you want to use this blog for you.
 
 1. Clone the branch 'clean' from my repository
+
+        git clone http://github.com/yogsototh/yblog -b clean
+
 2. Configure your languages in `Config.hs`
 3. compile and launch preview
 
-    ./preview
+        ./preview
 
 4. Add an avatar.png image in `Scratch/img/about`
 5. Create your own entries in `multi` (if you use different languages)
