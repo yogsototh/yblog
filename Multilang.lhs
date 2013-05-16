@@ -18,6 +18,7 @@ content pages. Therefore, the easies way was to only provide `Context`s.
 >   , languageContext
 >   , otherlanguageContext
 >   , otherLanguagePathContext
+>   , otherLanguageLinksContext
 >   )
 > where
 
@@ -51,6 +52,7 @@ current generating item.
 > multiContext = tradsContext <>
 >                languageContext <>
 >                otherLanguagePathContext <>
+>                otherLanguageLinksContext <>
 >                otherlanguageContext
 
 Let's start by the easiest. Get the current item language.
@@ -111,6 +113,9 @@ Next the dictionary containing all traductions of standards templates.
 >         ,("About",          ["About","Auteur","DE"])
 >         ,("Follow",         ["Follow","Suivre","DE"])
 >         ,("changeLanguage", ["Français","English","DE"])
+>         ,("fr", ["Français","French","Frenchozy"])
+>         ,("en", ["Anglais","English","Engliztch"])
+>         ,("de", ["Allemand","German","Germany"])
 >         ,("socialPrivacy",  ["These social sharing links preserve your privacy"
 >                             ,"Ces liens sociaux préservent votre vie privée","DE"])
 >         ]
@@ -133,3 +138,34 @@ Next the dictionary containing all traductions of standards templates.
 >                                         Just value -> return value
 >                                         Nothing -> fail "Traduction not found"
 
+This context will contain all links to the other languages
+
+> --------------------------------------------------------------------------------
+> otherLanguageLinksContext :: Context a
+> otherLanguageLinksContext = field "otherLanguageLinks" $ \item -> do
+>   lang <- itemLang item
+>   otherlangs <- return $ filter  (/=lang) langs
+>   mItemRoute <- (getRoute . itemIdentifier) item
+>   itemRoute <- return $ case mItemRoute of
+>                             Nothing -> ""
+>                             Just i -> i
+>   urls <- return $ map (\l -> changeLanguageTo l itemRoute) otherlangs
+>   labels <- return $ map (\l -> tradFor l lang) otherlangs
+>   urlsandlabels <- return $ zip urls labels
+>   return $ concat $ map linkFromUrlAndLabel urlsandlabels
+>   where
+>     linkFromUrlAndLabel (url,label) = "<a href=\"" ++ url ++ "\">"++label++"</a> "
+>     tradFor str lang =
+>         case M.lookup str trads of
+>           Nothing -> error "Lack trad for: '" ++ str ++ "'"
+>           Just (Trad m) -> case M.lookup (L lang) m of
+>                             Nothing -> error $ "Lack trad for: '" ++ str ++ "' in '" ++ lang
+>                             Just trd -> trd
+>     changeLanguageTo language url =
+>        if (isPrefixOf (sitePrefix ++ "/") url)
+>             && (length url > preflen)
+>             && (url !! preflen == '/')
+>          then sitePrefix ++ "/" ++ language ++ (drop (preflen) url)
+>          else url
+>       where
+>         preflen = 4+length sitePrefix
