@@ -1,6 +1,6 @@
 module Config where
 
-import           Hakyll
+import Hakyll (FeedConfiguration(..))
 
 --------------------------------------------------------------------------------
 -- Important all item of lang must have a length of 2.
