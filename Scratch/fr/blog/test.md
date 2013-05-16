@@ -3,8 +3,8 @@ published: 2013-05-14
 theme: scientific
 kind: article
 title: Test Français
-author: Yann Esposito
-authoruri: yannesposito.com
+author: John Doe
+authoruri: yourdomain.com
 -----
 
 Juste un test

@@ -53,8 +53,8 @@ published:      $now
 image: /$imgdirname/main.png
 en: title: $title
 fr: title: $title
-author: Yann Esposito
-authoruri: yannesposito.com
+author: John Doe
+authoruri: yourdomain.com
 tags: programming
 theme: scientific
 ---

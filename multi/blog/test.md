@@ -5,8 +5,8 @@ kind: article
 fr: title: Test Français
 en: title: Test English
 de: title: Test Deutch
-author: Yann Esposito
-authoruri: yannesposito.com
+author: John Doe
+authoruri: yourdomain.com
 -----
 
 en: Just a test

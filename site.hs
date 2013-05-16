@@ -15,7 +15,7 @@ import           Multilang              (multiContext)
 import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>),splitFileName)
 import           Control.Monad          (forM_)
 
-import           Config                 (langs)
+import           Config                 (langs,feedConfiguration)
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -252,16 +252,6 @@ feedBehavior language = do
       where
         feedCtx :: Context String
         feedCtx = mconcat [bodyField "description", yContext]
-
---------------------------------------------------------------------------------
-feedConfiguration :: FeedConfiguration
-feedConfiguration = FeedConfiguration
-  { feedTitle = "yannesposito.com"
-  , feedDescription = "Personal blog of Yann Esposito"
-  , feedAuthorName = "Yann Esposito"
-  , feedAuthorEmail = "yann.esposito@gmail.com"
-  , feedRoot = "http://yannesposito.com"
-  }
 
 --------------------------------------------------------------------------------
 --

@@ -1,9 +1,10 @@
 #!/usr/bin/env zsh
 
+githubURI="git@github.com:yogsototh/yannesposito.com.git"
 hakylldir=$HOME/Sites/yblog
 pubdir=$hakylldir/_publish
 
-[[ ! -e $pubdir ]] && git clone git@github.com:yogsototh/yannesposito.com.git _publish
+[[ ! -e $pubdir ]] && git clone $githubURI _publish
 
 cd $hakylldir       && \
 git pull            && \
