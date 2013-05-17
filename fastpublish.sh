@@ -4,7 +4,7 @@ githubURI="git@github.com:yogsototh/yannesposito.com.git"
 hakylldir=$HOME/Sites/yblog
 pubdir=$hakylldir/_publish
 
-[[ ! -e $pubdir ]] && git clone $githubURI _publish
+[[ ! -e $pubdir ]] && git clone -b gh-pages $githubURI _publish
 
 cd $hakylldir       && \
 git pull            && \

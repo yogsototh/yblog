@@ -49,6 +49,8 @@ Modify the `disqus_shortname` value in `templates/post.html`.
 
 To publish to github pages, modify the github conf inside `publish.sh` and `fastpublish.sh`.
 
+It is up to you to create a gh-pages branch before launching these scripts.
+
 # Workflow
 
 1. Open a terminal and type `./preview`
