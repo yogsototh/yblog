@@ -74,20 +74,20 @@ Next the dictionary containing all traductions of standards templates.
 > --------------------------------------------------------------------------------
 > trads :: Map String Trad
 > trads = M.fromList $ map toTrad [
->          ("welcome",        ["Soon","Bientôt","bald"])
->         ,("switchCss",      ["Change Theme","Changer de theme","Sie ändern Thema"])
->         ,("loading",        ["Loading","Chargement en cours","Verladung"])
->         ,("Home",           ["Home","Accueil","Willkommen"])
+>          ("welcome",        ["Soon","Bientôt","Bald"])
+>         ,("switchCss",      ["Change Theme","Changer de theme","Thema ändern"])
+>         ,("loading",        ["Loading","Chargement en cours","Laden"])
+>         ,("Home",           ["Home","Accueil","Startseite"])
 >         ,("Blog",           ["Blog","Blog","Blog"])
 >         ,("Softwares",      ["Softwares","Logiciels","Software"])
->         ,("About",          ["About","Auteur","über"])
->         ,("Follow",         ["Follow","Suivre","folgen"])
+>         ,("About",          ["About","Auteur","Über"])
+>         ,("Follow",         ["Follow","Suivre","Folgen"])
 >         ,("fr",             ["French", "Français", "Französisch"])
 >         ,("en",             ["English","Anglais" , "Englisch"])
 >         ,("de",             ["German", "Allemand", "Deutsch"])
 >         ,("socialPrivacy",  ["These social sharing links preserve your privacy"
 >                             ,"Ces liens sociaux préservent votre vie privée"
->                             ,"Diese Social Sharing Links bewahren Sie Ihre Privatsphäre"])
+>                             ,"Diese Links zu sozialen Netzwerken bewahren Ihre Privatsphäre"])
 >         ]
 >         where
 >           toTrad (k,tradList) =
