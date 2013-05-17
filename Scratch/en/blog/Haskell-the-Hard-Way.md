@@ -1,21 +1,21 @@
 -----
-isHidden:       false
 theme: scientific
 image: /Scratch/img/blog/Haskell-the-Hard-Way/magritte_pleasure_principle.jpg
 menupriority:   1
-kind:           article
+kind: article
 published: 2012-02-08
 title: Learn Haskell Fast and Hard
 subtitle: Blow your mind with Haskell
 author: Yann Esposito
 authoruri: yannesposito.com
-tags:  Haskell, programming, functional, tutorial
+tags: Haskell, programming, functional, tutorial
 -----
 blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 
 <div class="intro">
 
 %tldr A very short and dense tutorial for learning Haskell.
+
 
 Thanks to [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) you can find a Russian translation here: [Part 1](http://habrahabr.ru/post/152889/) _&_ [Part 2](http://habrahabr.ru/post/153383/) ; 
 
@@ -62,10 +62,10 @@ Thanks to [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) you 
 </div>
 <div class="intro">
 
-I really believe all developer should learn Haskell.
-I don't think all should be super Haskell ninjas,
-but at least, they should discover what Haskell has to offer.
-Learning Haskell open your mind.
+I really believe all developers should learn Haskell.
+I don't think everyone needs to be super Haskell ninjas,
+but they should at least discover what Haskell has to offer.
+Learning Haskell opens your mind.
 
 Mainstream languages share the same foundations:
 
@@ -77,10 +77,10 @@ Mainstream languages share the same foundations:
 [^0001]: Even if most recent languages try to hide them, they are present.
 
 Haskell is very different.
-This language uses a lot of concepts I had never heard about before.
+The language uses a lot of concepts I had never heard about before.
 Many of those concepts will help you become a better programmer.
 
-But, learning Haskell can be hard.
+But learning Haskell can be hard.
 It was for me.
 In this article I try to provide what I lacked during my learning.
 
@@ -94,10 +94,11 @@ It is because it is hard that Haskell is interesting.
 The conventional method to learning Haskell is to read two books. 
 First ["Learn You a Haskell"](http://learnyouahaskell.com) and just after ["Real World Haskell"](http://www.realworldhaskell.org).
 I also believe this is the right way to go.
-But, to learn what Haskell is all about, you'll have to read them in detail.
+But to learn what Haskell is all about, you'll have to read them in detail.
 
-On the other hand, this article is a very brief and dense overview of all major aspects of Haskell.
-I also added some informations I lacked while I learned Haskell.
+In contrast, this article is a very brief and dense overview of all major aspects of Haskell.
+I also added some information I lacked while I learned Haskell.
+
 
 The article contains five parts:
 
@@ -114,8 +115,9 @@ The article contains five parts:
 - Appendix:
     - More on infinite tree; a more math oriented discussion about infinite trees
 
- > Note: Each time you'll see a separator with a filename ending in `.lhs`, 
- > you could click the filename to get this file. 
+
+ > Note: Each time you see a separator with a filename ending in `.lhs`
+ > you can click the filename to get this file.
  > If you save the file as `filename.lhs`, you can run it with 
  > <pre>
  > runhaskell filename.lhs
@@ -123,6 +125,7 @@ The article contains five parts:
  >
  > Some might not work, but most will.
  > You should see a link just below.
+
 
 </div>
 
@@ -146,7 +149,7 @@ Tools:
 
 blogimage("munch_TheScream.jpg","The Scream")
 
-Many book/articles about Haskell start by introducing some esoteric formula (quick sort, Fibonacci, etc...).
+Many books/articles about Haskell start by introducing some esoteric formula (quick sort, Fibonacci, etc...).
 I will do the exact opposite.
 At first I won't show you any Haskell super power.
 I will start with similarities between Haskell and other programming languages.
@@ -187,7 +190,7 @@ main = do
     print ("Hello " ++ name ++ "!")
 ~~~~~~
 </div>
-First, let us compare with a similar program in some imperative languages:
+First, let us compare this with similar programs in a few imperative languages:
 
 ~~~~~~ {.python}
 # Python
@@ -217,11 +220,11 @@ int main (int argc, char **argv) {
 ~~~~~~
 
 The structure is the same, but there are some syntax differences.
-A major part of this tutorial will be dedicated to explaining why.
+The main part of this tutorial will be dedicated to explaining why.
 
-In Haskell, there is a `main` function and every object has a type.
+In Haskell there is a `main` function and every object has a type.
 The type of `main` is `IO ()`.
-This means, `main` will cause side effects.
+This means `main` will cause side effects.
 
 Just remember that Haskell can look a lot like mainstream imperative languages.
 
@@ -248,13 +251,13 @@ Instead of being in your way like in `C`, `C++` or `Java`, the type system is he
 _Purity_
 
 Generally your functions won't modify anything in the outside world.
-This means, it can't modify the value of a variable, can't get user input, can't write on the screen, can't launch a missile.
+This means they can't modify the value of a variable, can't get user input, can't write on the screen, can't launch a missile.
 On the other hand, parallelism will be very easy to achieve.
-Haskell makes it clear where effects occur and where you are pure.
+Haskell makes it clear where effects occur and where your code is pure.
 Also, it will be far easier to reason about your program.
 Most bugs will be prevented in the pure parts of your program.
 
-Furthermore pure functions follow a fundamental law in Haskell:
+Furthermore, pure functions follow a fundamental law in Haskell:
 
  > Applying a function with the same parameters always returns the same value.
 
@@ -262,9 +265,9 @@ _Laziness_
 
 Laziness by default is a very uncommon language design.
 By default, Haskell evaluates something only when it is needed.
-In consequence, it provides a very elegant way to manipulate infinite structures for example.
+In consequence, it provides a very elegant way to manipulate infinite structures, for example.
 
-A last warning on how you should read Haskell code.
+A last warning about how you should read Haskell code.
 For me, it is like reading scientific papers.
 Some parts are very clear, but when you see a formula, just focus and read slower.
 Also, while learning Haskell, it _really_ doesn't matter much if you don't understand syntax details.
@@ -272,7 +275,7 @@ If you meet a `>>=`, `<$>`, `<-` or any other weird symbol, just ignore them and
 
 <h4 id="function-declaration">Function declaration</h4>
 
-You might be used to declare functions like this:
+You might be used to declaring functions like this:
 
 In `C`:
 
@@ -282,7 +285,7 @@ int f(int x, int y) {
 }
 ~~~~~~
 
-In Javascript:
+In JavaScript:
 
 ~~~~~~ {.javascript}
 function f(x,y) {
@@ -322,13 +325,13 @@ Very clean. No parenthesis, no `def`.
 
 Don't forget, Haskell uses functions and types a lot.
 It is thus very easy to define them.
-The syntax was particularly well thought for these objects.
+The syntax was particularly well thought out for these objects.
 
 <h4 id="a-type-example">A Type Example</h4>
 
-The usual way is to declare the type of your function.
-This is not mandatory.
-The compiler is smart enough to discover it for you.
+Although it is not mandatory, type information for functions is usually made
+explicit. It's not mandatory because the compiler is smart enough to discover
+it for you. It's a good idea because it indicates intent and understanding.
 
 Let's play a little.
 
@@ -360,7 +363,7 @@ f x y = x*x + y*y
 main = print (f 2.3 4.2)
 ~~~~~~
 </div>
-You get this error:
+You should get this error:
 
 ~~~
 21_very_basic.lhs:6:23:
@@ -378,9 +381,7 @@ The problem: `4.2` isn't an Int.
 
 <hr/><a href="code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong></a>
 
-The solution, 
-don't declare the type for `f`.
-Haskell will infer the most general type for us:
+The solution: don't declare a type for `f` for the moment and let Haskell infer the most general type for us:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -390,7 +391,7 @@ main = print (f 2.3 4.2)
 ~~~~~~
 </div>
 It works! 
-Great, we don't have to declare a new function for every single type.
+Luckily, we don't have to declare a new function for every single type.
 For example, in `C`, you'll have to declare a function for `int`, for `float`, for `long`, for `double`, etc...
 
 But, what type should we declare?
@@ -427,20 +428,24 @@ To understand it, just look at a list of progressive examples:
 
 In the type `a -> a -> a`, the letter `a` is a _type variable_. 
 It means `f` is a function with two arguments and both arguments and the result have the same type.
-The type variable `a` could take many different type value.
+The type variable `a` could take many different type values.
 For example `Int`, `Integer`, `Float`...
 
-So instead of having a forced type like in `C` with declaring the function for `int`, `long`, `float`, `double`, etc... 
-We declare only one function like in a dynamically typed language.
+So instead of having a forced type like in `C` and having to declare a function
+for `int`, `long`, `float`, `double`, etc., we declare only one function like
+in a dynamically typed language.
 
-Generally `a` can be any type. 
-For example a `String`, an `Int`, but also more complex types, like `Trees`, other functions, etc...
-But here our type is prefixed with `Num a => `. 
+This is sometimes called parametric polymorphism. It's also called having your
+cake and eating it too.
+
+Generally `a` can be any type, for example a `String` or an `Int`, but also
+more complex types, like `Trees`, other functions, etc. But here our type is
+prefixed with `Num a => `.
 
 `Num` is a _type class_.
 A type class can be understood as a set of types.
 `Num` contains only types which behave like numbers.
-More precisely, `Num` is class containing types who implement a specific list of functions, and in particular `(+)` and `(*)`.
+More precisely, `Num` is class containing types which implement a specific list of functions, and in particular `(+)` and `(*)`.
 
 Type classes are a very powerful language construct.
 We can do some incredibly powerful stuff with this.
@@ -454,7 +459,7 @@ This is a function from type `a` to (`a -> a`).
 Yes, strange. 
 In fact, in Haskell no function really has two arguments.
 Instead all functions have only one argument.
-But we will note that taking two arguments is equivalent to taking one argument and returning a function taking the second argument as parameter.
+But we will note that taking two arguments is equivalent to taking one argument and returning a function taking the second argument as a parameter.
 
 More precisely `f 3 4` is equivalent to `(f 3) 4`. 
 Note `f 3` is a function:
@@ -470,8 +475,8 @@ g y ⇔ 3*3 + y*y
 
 Another notation exists for functions. 
 The lambda notation allows us to create functions without assigning them a name.
-We call them anonymous function.
-We could have written:
+We call them anonymous functions.
+We could also have written:
 
 ~~~
 g = \y -> 3*3 + y*y
@@ -479,7 +484,7 @@ g = \y -> 3*3 + y*y
 
 The `\` is used because it looks like `λ` and is ASCII.
 
-If you are not used to functional programming your brain should start to heat up.
+If you are not used to functional programming your brain should be starting to heat up.
 It is time to make a real application.
 
 <a href="code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong> </a>
@@ -520,8 +525,8 @@ main = print (f x y) -- won't work because type x ≠ type y
 The compiler complains. 
 The two parameters must have the same type.
 
-If you believe it is a bad idea, and the compiler should make the transformation 
-from a type to another for you, you should really watch this great (and funny) video:
+If you believe that this is a bad idea, and that the compiler should make the transformation 
+from one type to another for you, you should really watch this great (and funny) video:
 [WAT](https://www.destroyallsoftware.com/talks/wat)
 
 <a href="code/01_basic/10_Introduction/24_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>24_very_basic.lhs</strong> </a>
@@ -530,15 +535,15 @@ from a type to another for you, you should really watch this great (and funny) v
 
 blogimage("kandinsky_gugg.jpg","Kandinsky Gugg")
 
-I suggest you to skim this part.
-Think of it like a reference.
+I suggest that you skim this part.
+Think of it as a reference.
 Haskell has a lot of features.
-Many informations are missing here.
-Get back here if notation feels strange.
+A lot of information is missing here.
+Come back here if the notation feels strange.
 
 I use the `⇔` symbol to state that two expression are equivalent.
 It is a meta notation, `⇔` does not exists in Haskell.
-I will also use `⇒` to show what is the return of an expression.
+I will also use `⇒` to show what the return value of an expression is.
 
 <h3 id="notations">Notations</h3>
 
@@ -564,7 +569,7 @@ x^n     for n an integral (understand Int or Integer)
 x**y    for y any kind of number (Float for example)
 ~~~
 
-`Integer` have no limit except the capacity of your machine:
+`Integer` has no limit except the capacity of your machine:
 
 ~~~
 4^103
@@ -614,15 +619,15 @@ In Haskell strings are list of `Char`.
  > _Remark_:
  > In real code you shouldn't use list of char to represent text.
  > You should mostly use `Data.Text` instead.
- > If you want to represent stream of ASCII char, you should use `Data.ByteString`.
+ > If you want to represent a stream of ASCII char, you should use `Data.ByteString`.
 
 <h5 id="tuples">Tuples</h5>
 
 The type of couple is `(a,b)`.
-Elements in a tuple can have different type.
+Elements in a tuple can have different types.
 
 ~~~
--- All these tuple are valid
+-- All these tuples are valid
 (2,"foo")
 (3,'a',[2,3])
 ((2,"a"),"c",3)
@@ -669,7 +674,7 @@ f :: a -> b -> c    ⇔ f is a function from a to (b→c)
 f :: (a -> b) -> c  ⇔ f is a function from (a→b) to c
 ~~~
 
-Defining the type of a function before its declaration isn't mandatory.
+Remember that defining the type of a function before its declaration isn't mandatory.
 Haskell infers the most general type for you.
 But it is considered a good practice to do so.
 
@@ -681,7 +686,7 @@ square :: Num a => a -> a
 square x = x^2
 ~~~~~~
 </div>
-Note `^` use infix notation. 
+Note `^` uses infix notation.
 For each infix operator there its associated prefix notation.
 You just have to put it inside parenthesis.
 
@@ -700,7 +705,7 @@ It's called η-reduction.
 square''' = (^2)
 ~~~~~~
 </div>
-Note we can declare function with `'` in their name.
+Note we can declare functions with `'` in their name.
 Here:
 
  > `square` ⇔  `square'` ⇔ `square''` ⇔ `square '''`
@@ -728,7 +733,7 @@ absolute' x
 ~~~~~~
 </div>
  > Notation warning: indentation is _important_ in Haskell.
- > Like in Python, a bad indentation could break your code!
+ > Like in Python, bad indentation can break your code!
 
 <div style="display:none">
 
@@ -758,7 +763,7 @@ The hard part can now begin.
 blogimage("hr_giger_biomechanicallandscape_500.jpg","Biomechanical Landscape by H.R. Giger")
 
 In this section, I will give a short example of the impressive refactoring ability provided by Haskell.
-We will select a problem and solve it using a standard imperative way.
+We will select a problem and solve it in a standard imperative way.
 Then I will make the code evolve.
 The end result will be both more elegant and easier to adapt.
 
@@ -769,8 +774,8 @@ Let's solve the following problem:
  > example:
  > `[1,2,3,4,5] ⇒  2 + 4 ⇒  6`
 
-To show differences between the functional and imperative approach,
-I'll start by providing an imperative solution (in Javascript):
+To show differences between functional and imperative approaches,
+I'll start by providing an imperative solution (in JavaScript):
 
 ~~~~~~ {.javascript}
 function evenSum(list) {
@@ -784,16 +789,16 @@ function evenSum(list) {
 }
 ~~~~~~
 
-But, in Haskell we don't have variables, nor for loop.
+In Haskell, by contrast, we don't have variables or a for loop.
 One solution to achieve the same result without loops is to use recursion.
 
  > _Remark_:
  > Recursion is generally perceived as slow in imperative languages.
- > But it is generally not the case in functional programming.
+ > But this is generally not the case in functional programming.
  > Most of the time Haskell will handle recursive functions efficiently.
 
 Here is a `C` version of the recursive function.
-Note that for simplicity, I assume the int list ends with the first `0` value.
+Note that for simplicity I assume the int list ends with the first `0` value.
 
 ~~~~~~ {.c}
 int evenSum(int *list) {
@@ -818,7 +823,7 @@ int accumSum(int n, int *list) {
 ~~~~~~
 
 Keep this code in mind. We will translate it into Haskell.
-But before, I need to introduce three simple but useful functions we will use:
+First, however, I need to introduce three simple but useful functions we will use:
 
 ~~~~~~ {.haskell}
 even :: Integral a => a -> Bool
@@ -892,7 +897,7 @@ Ok, modules loaded: Main.
 
 Here is an example of execution[^2]: 
 
-[^2]: I know I'm cheating. But I will talk about non-strict later.
+[^2]: I know I'm cheating. But I will talk about non-strictness later.
 
 <pre>
 *Main> evenSum [1..5]
@@ -914,7 +919,7 @@ accumSum (0+2+4) []
 </pre>
 
 Coming from an imperative language all should seem right.
-In reality many things can be improved.
+In fact, many things can be improved here.
 First, we can generalize the type.
 
 ~~~~~~ {.haskell}
@@ -935,7 +940,7 @@ main = do print $ evenSum [1..10]
 <hr/><a href="code/02_Hard_Part/12_Functions.lhs" class="cut">02_Hard_Part/<strong>12_Functions.lhs</strong></a>
 
 Next, we can use sub functions using `where` or `let`.
-This way our `accumSum` function won't pollute the global namespace.
+This way our `accumSum` function won't pollute the namespace of our module.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1029,7 +1034,7 @@ main = print $ evenSum [1..10]
 
 <hr/><a href="code/02_Hard_Part/14_Functions.lhs" class="cut">02_Hard_Part/<strong>14_Functions.lhs</strong></a>
 
-In Haskell you can simplify function definition by η-reducing them.
+In Haskell you can simplify function definitions by η-reducing them.
 For example, instead of writing:
 
 ~~~~~~ {.haskell}
@@ -1077,7 +1082,7 @@ blogimage("escher_polygon.png","Escher")
 
 To make things even better we should use higher order functions.
 What are these beasts?
-Higher order functions are functions taking functions as parameter.
+Higher order functions are functions taking functions as parameters.
 
 Here are some examples:
 
@@ -1105,8 +1110,8 @@ filter even [1..10] ⇔  [2,4,6,8,10]
 
 The function `filter` takes a function of type (`a -> Bool`) and a list of type `[a]`. It returns a list containing only elements for which the function returned `true`.
 
-Our next step is to use another way to simulate a loop.
-We will use the `foldl` function to accumulate a value.
+Our next step is to use another technique to accomplish the same thing as a loop.
+We will use the `foldl` function to accumulate a value as we pass through the list.
 The function `foldl` captures a general coding pattern:
 
 <pre>
@@ -1121,8 +1126,7 @@ Which can be replaced by:
 myfunc list = foldl <span class="yellow">bar</span> <span class="blue">initialValue</span> <span class="green">list</span>
 </pre>
 
-If you really want to know how the magic works.
-Here is the definition of `foldl`.
+If you really want to know how the magic works, here is the definition of `foldl`:
 
 ~~~~~~ {.haskell}
 foldl f z [] = z
@@ -1134,11 +1138,11 @@ foldl f z [x1,...xn]
 ⇔  f (... (f (f z x1) x2) ...) xn
 ~~~~~~
 
-But as Haskell is lazy, it doesn't evaluate `(f z x)` and pushes it to the stack.
+But as Haskell is lazy, it doesn't evaluate `(f z x)` and  simply pushes it onto the stack.
 This is why we generally use `foldl'` instead of `foldl`;
 `foldl'` is a _strict_ version of `foldl`.
 If you don't understand what lazy and strict means,
-don't worry, just follow the code as if `foldl` and `foldl'` where identical.
+don't worry, just follow the code as if `foldl` and `foldl'` were identical.
 
 Now our new version of `evenSum` becomes:
 
@@ -1151,7 +1155,7 @@ evenSum l = foldl' mysum 0 (filter even l)
   where mysum acc value = acc + value
 ~~~~~~
 
-Version we can simplify by using directly a lambda notation.
+We can also simplify this by using directly a lambda notation.
 This way we don't have to create the temporary name `mysum`.
 
 <div class="codehighlight">
@@ -1191,10 +1195,10 @@ evenSum :: Integral a => [a] -> a
 evenSum l = foldl' (+) 0 (filter even l)
 ~~~~~~
 
-`foldl'` isn't the easiest function to intuit.
+`foldl'` isn't the easiest function to grasp.
 If you are not used to it, you should study it a bit.
 
-To help you understand what's going on here, a step by step evaluation:
+To help you understand what's going on here, let's look at a step by step evaluation:
 
 <pre>
   <span class="yellow">evenSum [1,2,3,4]</span>
@@ -1208,7 +1212,7 @@ To help you understand what's going on here, a step by step evaluation:
 </pre>
 
 Another useful higher order function is `(.)`.
-The `(.)` function corresponds to the mathematical composition.
+The `(.)` function corresponds to mathematical composition.
 
 ~~~~~~ {.haskell}
 (f . g . h) x ⇔  f ( g (h x))
@@ -1233,22 +1237,22 @@ sum' :: (Num a) => [a] -> a
 sum' = foldl' (+) 0
 evenSum :: Integral a => [a] -> a
 evenSum = sum' . (filter even)
-
+ 
 ~~~~~~
 </div>
-It is time to discuss a bit.
+It is time to discuss the direction our code has moved as we introduced more functional idioms.
 What did we gain by using higher order functions?
 
-At first, you can say it is terseness.
-But in fact, it has more to do with better thinking.
-Suppose we want to modify slightly our function.
-We want to get the sum of all even square of element of the list.
+At first, you might think the main difference is terseness. But in fact, it has
+more to do with better thinking. Suppose we want to modify our function
+slightly, for example, to get the sum of all even squares of elements of the
+list.
 
 ~~~
 [1,2,3,4] ▷ [1,4,9,16] ▷ [4,16] ▷ 20
 ~~~
 
-Update the version 10 is extremely easy:
+Updating version 10 is extremely easy:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1259,23 +1263,23 @@ squareEvenSum'' = sum' . (map (^2)) . (filter even)
 </div>
 We just had to add another "transformation function"[^0216].
 
-[^0216]: You should remark `squareEvenSum''` is more efficient that the two other versions. The order of `(.)` is important.
+[^0216]: Notice that `squareEvenSum''` is more efficient that the two other versions. The order of `(.)` is important.
 
 ~~~
 map (^2) [1,2,3,4] ⇔ [1,4,9,16]
 ~~~
 
-The `map` function simply apply a function to all element of a list.
+The `map` function simply applies a function to all the elements of a list.
 
-We didn't had to modify anything _inside_ the function definition.
-It feels more modular.
+We didn't have to modify anything _inside_ the function definition.
+This makes the code more modular.
 But in addition you can think more mathematically about your function.
-You can then use your function as any other one.
-You can compose, map, fold, filter using your new function.
+You can also use your function interchangably with others, as needed.
+That is, you can compose, map, fold, filter using your new function.
 
-To modify version 1 is left as an exercise to the reader ☺.
+Modifying version 1 is left as an exercise to the reader ☺.
 
-If you believe we reached the end of generalization, then know you are very wrong.
+If you believe we have reached the end of generalization, then know you are very wrong.
 For example, there is a way to not only use this function on lists but on any recursive type.
 If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/0
 1/db-utwente-40501F46.pdf).
@@ -1288,10 +1292,11 @@ One of the great powers of Haskell is the ability to create DSLs
 (Domain Specific Language)
 making it easy to change the programming paradigm.
 
-In fact, Haskell is also great when you want to write imperative style programming.
-Understanding this was really hard for me when learning Haskell.
-A lot of effort has been done to explain to you how much functional approach is superior.
-Then when you start the imperative style of Haskell, it is hard to understand why and how.
+In fact, Haskell is also great when you want to write imperative style
+programming. Understanding this was really hard for me to grasp when first
+learning Haskell. A lot of effort tends to go into explaining the superiority
+of the functional approach. Then when you start using an imperative style with
+Haskell, it can be hard to understand when and how to use it.
 
 But before talking about this Haskell super-power, we must talk about another
 essential aspect of Haskell: _Types_.
@@ -1313,26 +1318,25 @@ blogimage("salvador-dali-the-madonna-of-port-lligat.jpg","Dali, the madonna of p
 
  > %tldr
  >
- > - `type Name = AnotherType` is just an alias and the compiler doesn't do any difference between `Name` and `AnotherType`.
- > - `data Name = NameConstructor AnotherType` make a difference.
+ > - `type Name = AnotherType` is just an alias and the compiler doesn't mark any difference between `Name` and `AnotherType`.
+ > - `data Name = NameConstructor AnotherType` does mark a difference.
  > - `data` can construct structures which can be recursives.
- > - `deriving` is magic and create functions for you.
+ > - `deriving` is magic and creates functions for you.
 
 In Haskell, types are strong and static.
 
 Why is this important? It will help you _greatly_ to avoid mistakes.
 In Haskell, most bugs are caught during the compilation of your program.
 And the main reason is because of the type inference during compilation.
-It will be easy to detect where you used the wrong parameter at the wrong place for example.
+Type inference makes it easy to detect where you used the wrong parameter at the wrong place, for example.
 
 <h4 id="type-inference">Type inference</h4>
 
-Static typing is generally essential to reach fast execution time.
+Static typing is generally essential for fast execution.
 But most statically typed languages are bad at generalizing concepts.
 Haskell's saving grace is that it can _infer_ types.
 
-Here is a simple example.
-The `square` function in Haskell:
+Here is a simple example, the `square` function in Haskell:
 
 ~~~~~~ {.haskell}
 square x = x * x
@@ -1376,9 +1380,8 @@ y = complex_square(x);
 ~~~~~~
 
 For each type, you need to write a new function.
-The only way to work around this problem is to use some meta-programming trick.
-For example using the pre-processor.
-In C++ there is a better way, the C++ templates:
+The only way to work around this problem is to use some meta-programming trick, for example using the pre-processor.
+In C++ there is a better way, C++ templates:
 
 ~~~~~~ {.c++}
 #include <iostream>
@@ -1404,19 +1407,19 @@ int main() {
 }
 ~~~~~~
 
-C++ does a far better job than C.
-For more complex function the syntax can be hard to follow:
-look at
+C++ does a far better job than C in this regard.
+But for more complex functions the syntax can be hard to follow:
+see
 [this article](http://bartoszmilewski.com/2009/10/21/what-does-haskell-have-to-do-with-c/)
 for example.
 
 In C++ you must declare that a function can work with different types.
-In Haskell this is the opposite.
+In Haskell, the opposite is the case.
 The function will be as general as possible by default.
 
 Type inference gives Haskell the feeling of freedom that dynamically
 typed languages provide.
-But unlike dynamically typed languages, most errors are caught before the execution.
+But unlike dynamically typed languages, most errors are caught before run time.
 Generally, in Haskell:
 
  > "if it compiles it certainly does what you intended"
@@ -1426,7 +1429,7 @@ Generally, in Haskell:
 <h4 id="type-construction">Type construction</h4>
 
 You can construct your own types.
-First you can use aliases or type synonyms.
+First, you can use aliases or type synonyms.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1475,10 +1478,9 @@ main = putStrLn $ showInfos name color
 ~~~~~~
 </div>
 Now if you switch parameters of `showInfos`, the compiler complains!
-A possible mistake you could never do again.
-The only price is to be more verbose. 
+So this is a potential mistake you will never make again and the only price is to be more verbose. 
 
-Also remark constructor are functions:
+Also notice that constructors are functions:
 
 ~~~~~~ {.haskell}
 NameConstr  :: String -> Name
@@ -1545,7 +1547,7 @@ infixr 5 :::
 data List a = Nil | a ::: (List a)
 ~~~~~~
 
-The number after `infixr` is the priority.
+The number after `infixr` gives the precedence.
 
 If you want to be able to print (`Show`), read (`Read`), test equality (`Eq`) and compare (`Ord`) your new data structure you can tell Haskell to derive the appropriate functions for you.
 
@@ -1556,7 +1558,7 @@ data List a = Nil | a ::: (List a)
               deriving (Show,Read,Eq,Ord)
 ~~~~~~
 </div>
-When you add `deriving (Show)` to your data declaration, Haskell create a `show` function for you.
+When you add `deriving (Show)` to your data declaration, Haskell creates a `show` function for you.
 We'll see soon how you can use your own `show` function.
 
 <div class="codehighlight">
@@ -1640,8 +1642,7 @@ You can safely skip this part if you find it too difficult to follow.
 
 We have a few changes to make.
 We remove the `deriving (Show)` from the declaration of our `BinTree` type.
-And it might also be useful to make our BinTree an instance of (`Eq` and `Ord`).
-We will be able to test equality and compare trees.
+And it might also be useful to make our BinTree an instance of (`Eq` and `Ord`) so we will be able to test equality and compare trees.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1847,7 +1848,7 @@ Notice how duplicate trees aren't inserted;
 there is only one tree corresponding to `"I","HEARD"`.
 We have this for (almost) free, because we have declared Tree to be an instance of `Eq`.
 
-See how awesome this structure is.
+See how awesome this structure is:
 We can make trees containing not only integers, strings and chars, but also other trees.
 And we can even make a tree containing a tree of trees!
 
@@ -1859,12 +1860,12 @@ And we can even make a tree containing a tree of trees!
 
 blogimage("escher_infinite_lizards.jpg","Escher")
 
-It is often stated that Haskell is _lazy_.
+It is often said that Haskell is _lazy_.
 
-In fact, if you are a bit pedantic, you should state that [Haskell is _non-strict_](http://www.haskell.org/haskellwiki/Lazy_vs._non-strict).
+In fact, if you are a bit pedantic, you should say that [Haskell is _non-strict_](http://www.haskell.org/haskellwiki/Lazy_vs._non-strict).
 Laziness is just a common implementation for non-strict languages.
 
-Then what does not-strict means? From the Haskell wiki:
+Then what does "not-strict" mean? From the Haskell wiki:
 
  > Reduction (the mathematical term for evaluation) proceeds from the outside in.
  >
@@ -1899,7 +1900,7 @@ Also, note in Haskell there is a notation for infinite lists
 [1,3..] ⇔ [1,3,5,7,9,11...]
 ~~~
 
-And most functions will work with them.
+and most functions will work with them.
 Also, there is a built-in function `take` which is equivalent to our `take'`.
 
 <a href="code/02_Hard_Part/40_Infinites_Structures.lhs" class="cut">02_Hard_Part/<strong>40_Infinites_Structures.lhs</strong> </a>
@@ -2039,7 +2040,7 @@ treeMap f (Node x left right) = Node (f x)
 ~~~~~~
 </div>
 _Hint_: I won't talk more about this here. 
-If you are interested by the generalization of `map` to other data structures,
+If you are interested in the generalization of `map` to other data structures,
 search for functor and `fmap`.
 
 Our definition is now:
@@ -2103,7 +2104,7 @@ And in particular:
 - Why is there a strange imperative-like notation for dealing with IO?
 
 Be prepared, the answers might be complex.
-But they all be very rewarding.
+But they are all very rewarding.
 
 <hr/><a href="code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong></a>
 
@@ -2185,7 +2186,7 @@ do
 
 If `something :: IO a` then `x :: a`.
 
-Another important note about using `IO`.
+Another important note about using `IO`:
 All lines in a do block must be of one of the two forms:
 
 ~~~
@@ -2209,7 +2210,7 @@ The meaning of this sentence should be clearer by the end of the next section.
 <hr/><a href="code/03_Hell/01_IO/02_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>02_progressive_io_example.lhs</strong></a>
 
 Now let's see how this program behaves.
-For example, what occur if the user enter something strange?
+For example, what happens if the user enters something strange?
 Let's try:
 
 ~~~
@@ -2220,12 +2221,11 @@ Let's try:
 ~~~
 
 Argh! An evil error message and a crash! 
-The first evolution will be to answer with a more friendly message.
+Our first improvement will simply be to answer with a more friendly message.
 
 In order to do this, we must detect that something went wrong.
-Here is one way to do this.
-Use the type `Maybe`.
-It is a very common type in Haskell.
+Here is one way to do this: use the type `Maybe`.
+This is a very common type in Haskell.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2286,20 +2286,20 @@ In case of error, we display a nice error message.
 
 Note that the type of each expression in the main's do block remains of the form `IO a`.
 The only strange construction is `error`. 
-I'll say `error msg` will simply take the needed type (here `IO ()`).
+I'll just say here that `error msg` takes the needed type (here `IO ()`).
 
 One very important thing to note is the type of all the functions defined so far.
 There is only one function which contains `IO` in its type: `main`. 
 This means main is impure.
 But main uses `getListFromString` which is pure.
-It is then clear just by looking at declared types which functions are pure and
+So it's clear just by looking at declared types which functions are pure and
 which are impure.
 
 Why does purity matter?
-I certainly forget many advantages, but the three main reasons are:
+Among the many advantages, here are three:
 
-- It is far easier to think about pure code than impure one.
-- Purity protects you from all the hard to reproduce bugs due to side effects.
+- It is far easier to think about pure code than impure code.
+- Purity protects you from all the hard-to-reproduce bugs that are due to side effects.
 - You can evaluate pure functions in any order or in parallel without risk.
 
 This is why you should generally put as most code as possible inside pure functions.
@@ -2308,7 +2308,7 @@ This is why you should generally put as most code as possible inside pure functi
 
 <hr/><a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong></a>
 
-Our next evolution will be to prompt the user again and again until she enters a valid answer.
+Our next iteration will be to prompt the user again and again until she enters a valid answer.
 
 We keep the first part:
 
@@ -2324,7 +2324,7 @@ getListFromString :: String -> Maybe [Integer]
 getListFromString str = maybeRead $ "[" ++ str ++ "]"
 ~~~~~~
 </div>
-Now, we create a function which will ask the user for an list of integers
+Now we create a function which will ask the user for an list of integers
 until the input is right.
 
 <div class="codehighlight">
@@ -2346,10 +2346,9 @@ Some people might explain while waving their hands:
  > «This is an `[Integer]` inside an `IO`»
 
 If you want to understand the details behind all of this, you'll have to read the next section.
-But sincerely, if you just want to _use_ IO.
-Just practice a little and remember to think about the type.
+But really, if you just want to _use_ IO just practice a little and remember to think about the type.
 
-Finally our main function is quite simpler:
+Finally our main function is much simpler:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2446,21 +2445,21 @@ main = do
   print $ sum list
 ~~~~~~
 
-First remark; it looks like an imperative structure.
+First remark: this looks imperative.
 Haskell is powerful enough to make impure code look imperative.
 For example, if you wish you could create a `while` in Haskell.
-In fact, for dealing with `IO`, imperative style is generally more appropriate.
+In fact, for dealing with `IO`, an imperative style is generally more appropriate.
 
-But you should had noticed the notation is a bit unusual.
+But you should have noticed that the notation is a bit unusual.
 Here is why, in detail.
 
 In an impure language, the state of the world can be seen as a huge hidden global variable.
 This hidden variable is accessible by all functions of your language.
 For example, you can read and write a file in any function.
-The fact that a file exists or not can be seen as different states of the world.
+Whether a file exists or not is a difference in the possible states that the world can take.
 
-For Haskell this state is not hidden.
-It is explicitly said `main` is a function that _potentially_ changes the state of the world.
+In Haskell this state is not hidden.
+Rather, it is _explicitly_ said that `main` is a function that _potentially_ changes the state of the world.
 Its type is then something like:
 
 ~~~~~~ {.haskell}
@@ -2471,18 +2470,18 @@ Not all functions may have access to this variable.
 Those which have access to this variable are impure.
 Functions to which the world variable isn't provided are pure[^032001].
 
-[^032001]: There are some _unsafe_ exceptions to this rule. But you shouldn't see such use on a real application except maybe for debugging purpose.
+[^032001]: There are some _unsafe_ exceptions to this rule. But you shouldn't see such use in a real application except maybe for debugging purposes.
 
 Haskell considers the state of the world as an input variable to `main`.
 But the real type of main is closer to this one[^032002]:
 
-[^032002]: For the curious the real type is `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. All the `#` as to do with optimisation and I swapped the fields in my example. But mostly, the idea is exactly the same.
+[^032002]: For the curious the real type is `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. All the `#` has to do with optimisation and I swapped the fields in my example. But this is the basic idea.
 
 ~~~~~~ {.haskell}
 main :: World -> ((),World)
 ~~~~~~
 
-The `()` type is the null type.
+The `()` type is the unit type.
 Nothing to see here.
 
 Now let's rewrite our main function with this in mind:
@@ -2500,7 +2499,7 @@ First, we note that all functions which have side effects must have the type:
 World -> (a,World)
 ~~~~~~
 
-Where `a` is the type of the result.
+where `a` is the type of the result.
 For example, a `getChar` function should have the type `World -> (Char,World)`.
 
 Another thing to note is the trick to fix the order of evaluation.
@@ -2510,13 +2509,13 @@ In Haskell, in order to evaluate `f a b`, you have many choices:
 - first eval `b` then `a` then `f a b`.
 - eval `a` and `b` in parallel then `f a b`
 
-This is true, because we should work in a pure language.
+This is true because we're working in a pure part of the language.
 
 Now, if you look at the main function, it is clear you must eval the first
-line before the second one since, to evaluate the second line you have
+line before the second one since to evaluate the second line you have
 to get a parameter given by the evaluation of the first line.
 
-Such trick works nicely.
+This trick works nicely.
 The compiler will at each step provide a pointer to a new real world id.
 Under the hood, `print` will evaluate as:
 
@@ -2560,7 +2559,7 @@ askUser w0 =
 This is similar, but awkward.
 Look at all these temporary `w?` names.
 
-The lesson, is, naive IO implementation in Pure functional languages is awkward!
+The lesson is: naive IO implementation in Pure functional languages is awkward!
 
 Fortunately, there is a better way to handle this problem.
 We see a pattern.
@@ -2601,7 +2600,7 @@ let (_,w3) = action3 x z w2 in
 
 And of course `actionN w :: (World) -> (a,World)`.
 
- > IMPORTANT, there are only two important patterns to consider:
+ > IMPORTANT: there are only two important patterns to consider:
  >
  > ~~~
  > let (x,w1) = action1 w0 in
@@ -2636,23 +2635,22 @@ Now let's rename it for clarity:
 type IO a = World -> (a, World)
 ~~~~~~
 
-Some example of functions:
+Some examples of functions:
 
 ~~~~~~ {.haskell}
 getLine :: IO String
 print :: Show a => a -> IO ()
 ~~~~~~
 
-`getLine` is an IO action which takes a world as parameter and returns a couple `(String,World)`.
-Which can be summarized as: `getLine` is of type `IO String`.
-Which we also see as, an IO action which will return a String "embeded inside an IO".
+`getLine` is an IO action which takes world as a parameter and returns a couple `(String,World)`.
+This can be summarized as: `getLine` is of type `IO String`, which we also see as an IO action which will return a String "embeded inside an IO".
 
 The function `print` is also interesting.
 It takes one argument which can be shown.
 In fact it takes two arguments.
 The first is the value to print and the other is the state of world.
 It then returns a couple of type `((),World)`.
-This means it changes the state of the world, but doesn't yield anymore data.
+This means that it changes the state of the world, but doesn't yield any more data.
 
 This type helps us simplify the type of `bind`:
 
@@ -2662,7 +2660,7 @@ bind :: IO a
         -> IO b
 ~~~~~~
 
-It says that `bind` takes two IO actions as parameter and return another IO action.
+It says that `bind` takes two IO actions as parameters and returns another IO action.
 
 Now, remember the _important_ patterns. The first was:
 
@@ -2718,7 +2716,7 @@ Which is equivalent to:
 
 ~~~~~~ {.haskell}
 (res,w3) = (bind getLine (\line1 ->
-             bind getLine (\line2 ->
+             (bind getLine (\line2 ->
                print (line1 ++ line2))))) w0
 ~~~~~~
 
@@ -2737,7 +2735,7 @@ Let's use `(>>=)` instead of `bind`.
            (\line2 -> print (line1 ++ line2)))) w0
 ~~~~~~
 
-Ho Ho Ho! Happy Christmas Everyone!
+Ho Ho Ho! Merry Christmas Everyone!
 Haskell has made syntactical sugar for us:
 
 ~~~~~~ {.haskell}
@@ -2758,7 +2756,7 @@ action3 >>= (\z ->
 )))
 ~~~~~~
 
-Note you can use `x` in `action2` and `x` and `y` in `action3`.
+Note that you can use `x` in `action2` and `x` and `y` in `action3`.
 
 But what about the lines not using the `<-`?
 Easy, another function `blindBind`:
@@ -2769,7 +2767,7 @@ blindBind action1 action2 w0 =
     bind action (\_ -> action2) w0
 ~~~~~~
 
-I didn't simplify this definition for clarity purpose.
+I didn't simplify this definition for the purposes of clarity.
 Of course we can use a better notation, we'll use the `(>>)` operator.
 
 And
@@ -2847,7 +2845,7 @@ main = askUser >>=
   \list -> print $ sum list
 ~~~~~~
 </div>
-You can compile this code to verify it keeps working.
+You can compile this code to verify that it works.
 
 Imagine what it would look like without the `(>>)` and `(>>=)`.
 
@@ -2857,7 +2855,7 @@ Imagine what it would look like without the `(>>)` and `(>>=)`.
 
 <h3 id="monads">Monads</h3>
 
-blogimage("dali_reve.jpg","Dali, reve. It represents a weapon out of the mouth of a tiger, itself out of the mouth of another tiger, itself out of the mouth of a fish itself out of a grenade. I could have choosen a picture of the Human centipede as it is a very good representation of what a monad really is. But just to thing about it, I find this disgusting and that wasn't the purpose of this document.")
+blogimage("dali_reve.jpg","Dali, reve. It represents a weapon out of the mouth of a tiger, itself out of the mouth of another tiger, itself out of the mouth of a fish itself out of a grenade. I could have choosen a picture of the Human centipede as it is a very good representation of what a monad really is. But just to think about it, I find this disgusting and that wasn't the purpose of this document.")
 
 Now the secret can be revealed: `IO` is a _monad_.
 Being a monad means you have access to some syntactical sugar with the `do` notation.
@@ -2869,10 +2867,10 @@ But mainly, you have access to a coding pattern which will ease the flow of your
  >   There are a lot of _pure_ monads.
  > - Monad are more about sequencing
 
-For the Haskell language `Monad` is a type class.
+In Haskell, `Monad` is a type class.
 To be an instance of this type class, you must provide the functions `(>>=)` and `return`.
-The function `(>>)` will be derived from `(>>=)`.
-Here is how the type class `Monad` is declared (mostly):
+The function `(>>)` is derived from `(>>=)`.
+Here is how the type class `Monad` is declared (basically):
 
 ~~~~~~ {.haskell}
 class Monad m  where
@@ -2883,7 +2881,7 @@ class Monad m  where
   f >> g = f >>= \_ -> g
 
   -- You should generally safely ignore this function
-  -- which I believe exists for historical reason
+  -- which I believe exists for historical reasons
   fail :: String -> m a
   fail = error
 ~~~~~~
@@ -2891,10 +2889,9 @@ class Monad m  where
  > Remarks:
  >
  > - the keyword `class` is not your friend.
- >   A Haskell class is _not_ a class like in object model.
+ >   A Haskell class is _not_ a class of the kind you will find in object-oriented programming.
  >   A Haskell class has a lot of similarities with Java interfaces.
- >   A better word should have been `typeclass`.
- >   That means a set of types.
+ >   A better word would have been `typeclass`, since that means a set of types.
  >   For a type to belong to a class, all functions of the class must be provided for this type.
  > - In this particular example of type class, the type `m` must be a type that takes an argument.
  >   for example `IO a`, but also `Maybe a`, `[a]`, etc...
@@ -2909,13 +2906,13 @@ class Monad m  where
 
 <h4 id="maybe-monad">Maybe is a monad</h4>
 
-There are a lot of different types that are instance of `Monad`.
+There are a lot of different types that are instances of `Monad`.
 One of the easiest to describe is `Maybe`.
 If you have a sequence of `Maybe` values, you can use monads to manipulate them.
 It is particularly useful to remove very deep `if..then..else..` constructions.
 
 Imagine a complex bank operation. You are eligible to gain about 700€ only
-if you can afford to follow a list of operations without being negative.
+if you can afford to follow a list of operations without your balance dipping below zero.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -3013,7 +3010,7 @@ main = do
 </div>
 We have proven that Monads are a good way to make our code more elegant.
 Note this idea of code organization, in particular for `Maybe` can be used
-in most imperative language.
+in most imperative languages.
 In fact, this is the kind of construction we make naturally.
 
  > An important remark:
@@ -3021,7 +3018,7 @@ In fact, this is the kind of construction we make naturally.
  > The first element in the sequence being evaluated to `Nothing` will stop
  > the complete evaluation. 
  > This means you don't execute all lines.
- > You have this for free, thanks to laziness.
+ > You get this for free, thanks to laziness.
 
 You could also replay these example with the definition of `(>>=)` for `Maybe`
 in mind:
@@ -3037,7 +3034,7 @@ instance Monad Maybe where
 
 The `Maybe` monad proved to be useful while being a very simple example.
 We saw the utility of the `IO` monad.
-But now a cooler example, lists.
+But now for a cooler example, lists.
 
 <a href="code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong> </a>
 
@@ -3047,7 +3044,7 @@ But now a cooler example, lists.
 
 blogimage("golconde.jpg","Golconde de Magritte")
 
-The list monad helps us to simulate non deterministic computations.
+The list monad helps us to simulate non-deterministic computations.
 Here we go:
 
 <div class="codehighlight">
@@ -3074,7 +3071,7 @@ MA. GIC. :
 [(1,1,7),(1,1,8),(1,1,9),(1,1,10),(1,2,9),(1,2,10)]
 ~~~
 
-For the list monad, there is also a syntactical sugar:
+For the list monad, there is also this syntactic sugar:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -3084,12 +3081,12 @@ For the list monad, there is also a syntactical sugar:
                       4*x + 2*y < z ]
 ~~~~~~
 </div>
-I won't list all the monads, but there are many monads.
+I won't list all the monads, but there are many of them.
 Using monads simplifies the manipulation of several notions in pure languages.
-In particular, monad are very useful for:
+In particular, monads are very useful for:
 
 - IO,
-- non deterministic computation,
+- non-deterministic computation,
 - generating pseudo random numbers,
 - keeping configuration state,
 - writing state,
