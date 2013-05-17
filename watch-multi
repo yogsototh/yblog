@@ -1,22 +1,25 @@
 #!/usr/bin/env zsh
 
+checkfile=".last_multi_watched"
+
+[[ -e $checkfile ]] && \
+(( $(find $checkfile -mmin -1 | wc -l ) > 0)) && {
+    print -- "watching in progress"
+    exit 0
+}
+
 ONCE=0
 [[ $1 = "once" ]] && { ONCE=1 }
 
-languages=( $(runghc showlangs.hs) )
+packageconf="$(print -- cabal-dev/packages-*.conf(N))"
+[[ $packageconf = "" ]] && {
+    print -- "Please, wait the end of compilation and relaunch preview again"
+    exit 1
+}
+
+languages=( $(runghc -package-conf=$packageconf showlangs.hs) )
 print "languages to watch (in Config.hs) are: $languages"
 typeset -a exclu
-
-function join {
-  char=$1
-  shift
-  res=$1
-  shift
-  for arg in $@; do
-    res=$res$char$arg
-  done
-  print $res
-}
 
 while true; do
   for language in $languages; do
@@ -37,5 +40,6 @@ while true; do
     done
   done
   ((ONCE == 1)) && break
+  touch $checkfile
   sleep 2
 done
