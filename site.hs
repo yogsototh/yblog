@@ -15,17 +15,16 @@ import           Multilang              (multiContext)
 import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>),splitFileName)
 import           Control.Monad          (forM_)
 
-langs :: [String]
-langs=["en","fr"]
+import           Config                 (langs,feedConfiguration)
 
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
     match (     "Scratch/img/**"
           .||.  "Scratch/js/**"
-          .||.  "Scratch/files/**"
           .||.  "Scratch/css/fonts/*"
           .||.  "Scratch/*/blog/*/**"
+          .||.  "Scratch/files/**"
           .||.  "YBlog/**"
           .||.  "YPassword/**"
           .||.  "CNAME")
@@ -63,9 +62,8 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let indexCtx =
-                    (field "enposts" $ \_ -> homePostList "en" createdFirst) <>
-                    (field "frposts" $ \_ -> homePostList "fr" createdFirst) <>
-                    yContext
+                 yContext <>
+                  (mconcat $ map (\lang -> field (lang ++ "posts") $ \_->homePostList lang createdFirst) langs)
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
@@ -257,16 +255,6 @@ feedBehavior language = do
       where
         feedCtx :: Context String
         feedCtx = mconcat [bodyField "description", yContext]
-
---------------------------------------------------------------------------------
-feedConfiguration :: FeedConfiguration
-feedConfiguration = FeedConfiguration
-  { feedTitle = "yannesposito.com"
-  , feedDescription = "Personal blog of Yann Esposito"
-  , feedAuthorName = "Yann Esposito"
-  , feedAuthorEmail = "yann.esposito@gmail.com"
-  , feedRoot = "http://yannesposito.com"
-  }
 
 --------------------------------------------------------------------------------
 --
