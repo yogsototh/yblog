@@ -6,3 +6,4 @@ dist
 .sass-cache
 .*.swp
 .DS_Store
+.last_multi_watched
