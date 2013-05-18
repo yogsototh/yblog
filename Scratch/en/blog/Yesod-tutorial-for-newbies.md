@@ -15,9 +15,9 @@ blogimage("flying_neo.jpg","Neo Flying at warp speed")
 
 <div class="intro">
 
-_update_: updated for yesod 1.1.9
+_update_: updated for Yesod 1.1.9
 
-%tldr A simple yesod tutorial.
+%tldr A simple Yesod tutorial.
 Yesod is a Haskell web framework.
 You shouldn't need to know Haskell.
 
@@ -32,33 +32,32 @@ Its efficiency (see [Snap Benchmark][snapbench] _&_
 Haskell is an order of magnitude faster than interpreted languages
 like [Ruby][haskellvsruby] and [Python][haskellvspython][^speeddigression].
 
-Haskell is a high level language and make it harder to shoot you in the foot
-than `C`, `C++` or `Java` for example.
-One of the best property of Haskell being:
+Haskell is a high level language that makes it harder to shoot yourself in the foot
+than `C`, `C++` or `Java`, for example.
+One of the best properties of Haskell is:
 
-> "If your program compile it will be
+> "If your program compiles it will be
 >  very close to what the programmer intended".
 
-Haskell web frameworks handle parallel tasks perfectly.
-For example even better than node.js[^nodejstroll].
+Haskell web frameworks handle parallel tasks perfectly---even better than
+node.js[^nodejstroll], for example.
 
 leftblogimage("thousands_smiths.jpg","Thousands of Agent Smith")
 
-From the pure technical point of view,
+From a purely technical point of view,
 Haskell seems to be the perfect web development tool.
 Weaknesses of Haskell certainly won't be technical:
 
 - Hard to grasp Haskell
 - Hard to find a Haskell programmer
 - The Haskell community is smaller than the community for `/.*/`
-- There is not yet an [heroku](http://heroku.com) for Haskell.
+- There is not yet a [heroku](http://heroku.com) for Haskell.
   In fact, I use heroku to host my websites but this isn't straightforward
   (see the [how to](https://github.com/yesodweb/yesod/wiki/Deploying-Yesod-Apps-to-Heroku)).
 
-I won't say these are not important drawbacks.
-But, with Haskell your web application will have both properties
-to absorb an impressive number of parallel requests securely
-and to adapt to change.
+I won't say these are not important drawbacks. But with Haskell your web
+application will be able to both absorb an impressive number of parallel
+requests securely and to adapt to change.
 
 Actually there are three main Haskell web frameworks:
 
@@ -67,40 +66,40 @@ Actually there are three main Haskell web frameworks:
 3. [Yesod](http://yesodweb.com)
 
 I don't think there is a real winner between these three framework.
-The choice I made for yesod is highly subjective.
+The choice I made for Yesod is highly subjective.
 I just lurked a bit and tried some tutorials.
-I had the feeling yesod make a better job at helping newcomers.
-Furthermore, apparently the yesod team seems the most active.
-Of course I might be wrong since it is a matter of feeling.
+I had the feeling Yesod did a better job at helping newcomers.
+Furthermore, the Yesod team seems the most active.
+Of course I might be wrong since this is just an impression.
 
 blogimage("owl_draw.png","1. Draw some circles. 2. Draw the rest of the fucking owl")
 
 Why did I write this article?
-The yesod documentation and particularly the book are excellent.
+The Yesod documentation and particularly the book are excellent.
 But I missed an intermediate tutorial.
 This tutorial won't explain all details.
 I tried to give a step by step of how to start from a five minute tutorial
 to an almost production ready architecture.
 Furthermore explaining something to others is a great way to learn.
-If you are used to Haskell and Yesod, this tutorial won't learn you much.
-If you are completely new to Haskell and Yesod it might hopefully helps you.
+If you are used to Haskell and Yesod, this tutorial won't teach you much.
+If you are completely new to Haskell and Yesod, hopefully it will help you.
 Also if you find yourself too confused by the syntax, it might helps to read this
 [article](http://blog.ezyang.com/2011/11/how-to-read-haskell/)
 
-During this tutorial you'll install, initialize and configure your first yesod project.
-Then there is a very minimal 5 minutes yesod tutorial to heat up and verify the awesomeness of yesod.
-Then we will clean up the 5 minutes tutorial to use some "best practices".
-Finally there will be a more standard real world example; a minimal blog system.
+During this tutorial you'll install, initialize, and configure your first Yesod project.
+Then there is a very minimal 5 minute Yesod tutorial to get us warmed up and confirm the awesomeness of Yesod.
+Then we will clean up the 5 minute tutorial to use some "best practices".
+Finally there will be a more standard real world example: a minimal blog system.
 
 [snapbench]: http://snapframework.com/blog/2010/11/17/snap-0.3-benchmarks
 
 [warpbench]: http://www.yesodweb.com/blog/2011/03/preliminary-warp-cross-language-benchmarks
 
-[^benchmarkdigression]: One can argue these benchmark contains many problems. But the benchmarks are just here to give an order of idea. Mainly Haskell is very fast.
+[^benchmarkdigression]: One can argue these benchmark contains many problems.  But the benchmarks are just here to give the basic idea, namely that Haskell is very fast.
 
 [^speeddigression]: Generally _high level_ Haskell is slower than C, but _low level_ Haskell is equivalent to C speed. It means that even if you can easily link C code with Haskell, this is not needed to reach the same speed. Furthermore writing a web service in C/C++ seems to be a very bad idea. You can take a look at a [discussion on HN about this](http://news.ycombinator.com/item?id=3449388).
 
-[^nodejstroll]: If you are curious, you can search about [the Fibonacci node.js troll](http://www.unlimitednovelty.com/2011/10/nodejs-has-jumped-shark.html). Without any tweaking, [Haskell handled this problem perfectly](http://mathias-biilmann.net/posts/2011/10/is-haskell-the-cure). I tested it myself using yesod instead of Snap.
+[^nodejstroll]: If you are curious, you can search about [the Fibonacci node.js troll](http://www.unlimitednovelty.com/2011/10/nodejs-has-jumped-shark.html). Without any tweaking, [Haskell handled this problem perfectly](http://mathias-biilmann.net/posts/2011/10/is-haskell-the-cure). I tested it myself using Yesod instead of Snap.
 
 [haskellvsruby]: http://shootout.alioth.debian.org/u64q/benchmark.php?test=all&lang=ghc&lang2=yarv
 
@@ -117,7 +116,7 @@ is to download the [Haskell Platform][haskellplatform].
 
 [haskellplatform]: http://www.haskell.org/platform
 
-Once done, you need to install yesod.
+Once done, you need to install Yesod.
 Open a terminal session and do:
 
 ~~~~~~ {.bash}
@@ -129,7 +128,7 @@ There are few steps but it should take some time to finish.
 
 ### Initialize
 
-You are now ready to initialize your first yesod project.
+You are now ready to initialize your first Yesod project.
 Open a terminal and type:
 
 ~~~~~~ {.bash}
@@ -145,8 +144,8 @@ Now, start the development cycle:
 ~ cabal-dev install && yesod --dev devel
 ~~~~~~
 
-This will compile the entire project. Be patient it could take a while the first time.
-Once finished a server is launched and you could visit it by clicking this link:
+This will compile the entire project. Be patient, since it will take a while the first time.
+Once finished a server is launched and you can visit it by clicking this link:
 
 [`http://localhost:3000`](http://localhost:3000)
 
@@ -154,7 +153,7 @@ Congratulation! Yesod works!
 
 <blockquote>
 
-Note: if something is messed up use the following command line inside the project directory.
+Note: if something is messed up use the following command at the command line inside the project directory.
 
 ~~~~~~ {.bash}
 \rm -rf dist/* ; cabal-dev install && yesod --dev devel
@@ -162,8 +161,8 @@ Note: if something is messed up use the following command line inside the projec
 
 </blockquote>
 
-Until the end of the tutorial, use another terminal and let this one open
-in a corner to see what occurs.
+For the rest of the tutorial, use another terminal and keep this one open
+in a corner to see what happens.
 
 ### Configure git
 
@@ -181,11 +180,11 @@ You just have to initialize your git repository:
 
 We are almost ready to start.
 
-### Some last minute words
+### A few words before we start
 
 Up until here, we have a directory containing a bunch of files
 and a local web server listening the port 3000.
-If we modify a file inside this directory, yesod should try
+If we modify a file inside this directory, Yesod should try
 to recompile as fast as possible the site.
 Instead of explaining the role of every file,
 let's focus only on the important files/directories for this tutorial:
@@ -206,13 +205,13 @@ Obviously:
 During this tutorial we'll modify other files as well,
 but we won't explore them in detail.
 
-Also note, shell commands are executed in the root directory of your project instead specified otherwise.
+Also note, shell commands are executed in the root directory of your project unless specified otherwise.
 
 We are now ready to start!
 
 ## Echo
 
-To verify the quality of the security of the yesod framework,
+To verify the quality of the security of the Yesod framework,
 let's make a minimal echo application.
 
 > Goal:
@@ -226,9 +225,9 @@ Enter route pattern (ex: /entry/#EntryId): {-hi-}/echo/#String{-/hi-}
 Enter space-separated list of methods (ex: GET POST): {-hi-}GET{-/hi-}
 ~~~
 
-Almost all work is done for us. The `add-handler` do the following:
+Almost all the work is done for us. The `add-handler` does the following:
 
-Update the `config/route` file by appending:
+Updates the `config/route` file by appending:
 
 ~~~
 /echo/#String EchoR GET
@@ -236,12 +235,12 @@ Update the `config/route` file by appending:
 
 This line contains three elements: the %url pattern, a handler name, an %http method.
 
-- create a `Handler/Echo.hs` file
-- import `Handler.Echo` in the main `Application.hs` file
-- declare `Handler.Echo` in the cabal file for building the application
+- creates a `Handler/Echo.hs` file
+- imports `Handler.Echo` in the main `Application.hs` file
+- declares `Handler.Echo` in the cabal file for building the application
 
 Now try to go to [`localhost:3000/echo/foo`](http://localhost:3000/echo/foo).
-You should get a message explaining `getEchoR` is not yet implemented.
+You should get a message explaining that `getEchoR` is not yet implemented.
 
 So let's take a look at `Handler/Echo.hs`:
 
@@ -255,7 +254,7 @@ getEchoR = error "Not yet implemented: getEchoR"
 ~~~
 
 This should be straightforward.
-Now we changes it by:
+Now we can replace it with this:
 
 ~~~ {.haskell}
 module Handler.Echo where
@@ -267,11 +266,11 @@ getEchoR theText = defaultLayout [whamlet|<h1>#{theText}|]
 ~~~
 
 Don't worry if you find all of this a bit cryptic.
-In short it just declare a function named `getEchoR` with one argument (`theText`) of type `String`.
-When this function is called, it return a `Handler RepHtml` whatever it is.
+In short it just declares a function named `getEchoR` with one argument (`theText`) of type `String`.
+When this function is called, it returns a `Handler RepHtml` whatever it is.
 But mainly this will encapsulate our expected result inside an %html text.
 
-After saving the file, you should see yesod recompile the application.
+After saving the file, you should see Yesod recompile the application.
 When the compilation is finished you'll see the message: `Starting devel application`.
 
 Now you can visit: [`http://localhost:3000/echo/Yesod%20rocks!`](http://localhost:3000/echo/Yesod%20rocks!)
@@ -283,7 +282,7 @@ TADA! It works!
 blogimage("neo_bullet_proof.jpg","Neo stops a myriad of bullets")
 
 Even this extremely minimal web application has some impressive properties.
-For exemple, imagine an attacker entering this %url:
+For example, imagine an attacker entering this %url:
 
 <div class="small">
 
@@ -295,17 +294,17 @@ For exemple, imagine an attacker entering this %url:
 
 You can click on it to test it.
 
-The special characters are protected for us.
-A malicious user could not hide some bad script inside.
+The special characters are protected for us, preventing a malicious user from
+hiding a bad script within the url.
 
 This behavior is a direct consequence of _type safety_.
 The %url string is put inside a %url type.
 Then the interesting part in the %url is put inside a String type.
-To pass from %url type to String type some transformation are made.
-For example, replace all "`%20`" by space characters.
+To pass from %url type to String type some transformations are made.
+For example, all instances of "`%20`" are replaced by space characters.
 Then to show the String inside an %html document, the string is put inside an %html type.
 Some transformations occurs like replace "<code><</code>" by "`&lt;`".
-Thanks to yesod, this tedious job is done for us.
+Thanks to Yesod, this tedious job is done for us.
 
 ~~~~~~ {.bash}
 "http://localhost:3000/echo/some%20text%3Ca%3E" :: URL
@@ -317,7 +316,7 @@ Thanks to yesod, this tedious job is done for us.
 
 Yesod is not only fast, it helps us to remain secure.
 It protects us from many common errors in other paradigms.
-Yes, I am looking at you PHP!
+Yes, I am looking at you, PHP!
 
 ### Cleaning up
 
@@ -388,9 +387,9 @@ leftblogimage("mirror.jpg","Neo touching a mirror")
 
 Let's make another minimal application.
 You should see a form containing a text field and a validation button.
-When you enter some text (for example "Jormungad") and validate,
-the next page present you the content and its reverse appended to it.
-In our example it should return "JormungaddagnumroJ".
+When you enter some text (for example "Jormungad") and validate it,
+the next page presents the content to you with its reverse appended to it.
+In our example, it should return "JormungaddagnumroJ".
 
 First, add a new handler:
 
@@ -420,11 +419,11 @@ postMirrorR =  do
 ~~~~~~
 
 We will need to use the `reverse` function provided by `Data.Text`
-which explain the additional import.
+which explains the additional import.
 
-The only new thing here is the line that get the POST parameter named "content".
-If you want to know more detail about it and form in general you can take
-look at [the yesod book](http://www.yesodweb.com/book/forms).
+The only new thing here is the line that gets the POST parameter named "content".
+If you want to know more detail about it and forms in general you can take a
+look at [the Yesod book](http://www.yesodweb.com/book/forms).
 
 Create the two corresponding templates
 (`templates/mirror.hamlet` and `templates/posted.hamlet`):
@@ -445,13 +444,13 @@ Create the two corresponding templates
 
 And that is all.
 This time, we won't need to clean up.
-We may have used another way to generate the form
-but we'll see this in the next section.
+We might have generated the form a different way,
+but we'll see how to do this in the next section.
 
 Just try it by [clicking here](http://localhost:3000/mirror).
 
 Also you can try to enter strange values (like `<script>alert('Bad');</script>`).
-Like before, your application is quite secure.
+As before, your application is quite secure.
 
 ## A Blog
 
@@ -464,7 +463,7 @@ This example will be very minimal:
 - `POST` on `/blog` should create a new article,
 - `GET`  on `/blog/<article id>` should display the content of the article.
 
-As before add some handlers
+As before, we'll start by adding some handlers:
 
 ~~~
 ~/Sites/yosog (master) $ yesod add-handler
@@ -564,18 +563,18 @@ $else
         <input type=submit value="Post New Article">
 ~~~~~~
 
-You should remark we added some logic inside the template.
+Notice we added some logic inside the template.
 There is a test and a "loop".
 
 Another very interesting part is the creation of the form.
-The `articleWidget` was created by yesod.
-We have given him the right parameters
-(input required or optional, labels, default values).
-And now we have a protected form made for us.
-But we have to create the submit button.
+The `articleWidget` was created by Yesod.
+We have given it the right parameters
+(input required or optional, labels, default values),
+and now we have a protected form made for us.
+But now we have to create the submit button.
 
-You could take a first look by [clicking here](localhost:3000/blog).
-Of course, you could not post something yet.
+You can take a first look by [clicking here](localhost:3000/blog).
+Of course, you can't post something yet.
 
 Get back to `Handler/Blog.hs`.
 
@@ -595,9 +594,8 @@ postBlogR = do
 
 This function should be used to create a new article.
 We handle the form response.
-If there is an error we display an error page.
-For example if we left some required value blank.
-If things goes right:
+If there is an error we display an error page, for example if we left some required value blank.
+If things go well:
 
 - we add the new article inside the DB (`runDB $ insert article`)
 - we add a message to be displayed (`setMessage $ ...`)
@@ -624,8 +622,8 @@ getArticleR articleId = do
         $(widgetFile "article")
 ~~~~~~
 
-The `get404` function try to do a get on the DB.
-If it fails it return a 404 page.
+The `get404` function tries to do a get on the DB.
+If it fails, it returns a 404 page.
 The rest should be clear.
 Here is the content of `templates/article.hamlet`:
 
@@ -652,20 +650,21 @@ I made it very minimal.
 If you already know Haskell and you want to go further,
 you should take a look at the
 recent [i18n blog tutorial](http://yesodweb.com/blog/2012/01/blog-example).
-It will be obvious I inspired my own tutorial on it.
-You'll learn in a very straightforward way how easy it is to use authorizations,
+It will be obvious I based my own tutorial on it.
+You'll learn in a very straightforward way how easy it is to use authorization,
 Time and internationalization.
 
-If, on the other hand you don't know Haskell.
-Then you shouldn't jump directly to web programming.
+If, on the other hand, you don't know Haskell, then you shouldn't jump directly
+to web programming with it.
 Haskell is a very complex and unusual language.
 My advice to go as fast as possible in using Haskell for web programming is:
 
-1. Start by [try Haskell in your browser](http://tryhaskell.org)
+1. Start by [trying Haskell in your browser](http://tryhaskell.org)
 2. Read my tutorial [Learn Haskell Fast and Hard on School of Haskell](https://www.fpcomplete.com/school/haskell-fast-hard) or directly [on this blog](/Scratch/en/blog/Haskell-the-Hard-Way/)
 3. Then read the excellent [Learn you a Haskell for Great Good](http://learnyouahaskell.com)
-4. If you have difficulties in understanding concepts like monads, you should really read [these articles](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html). For me they were enlightening.
-5. If you feel confident, you should be able to follows the [yesod book](http://yesodweb.com/book) and if you find difficult to follows the yesod book, you should read [real world Haskell](http://book.realworldhaskell.org) first.
+4. If you have difficulty understanding concepts like monads, you should really read [these articles](http://homepages.inf.ed.ac.uk/wadler/topics/monads.html). For me they were enlightening.
+5. If you feel confident, you should be able to follow the
+   [Yesod book](http://yesodweb.com/book) but if you find it difficult to follow the Yesod book, you should read [real world Haskell](http://book.realworldhaskell.org) first.
 
 Also, note that:
 
@@ -674,8 +673,8 @@ Also, note that:
 - Use [hlint](http://community.haskell.org/~ndm/hlint/) as soon as possible to get good habits.
 
 As you should see, if you don't already know Haskell,
-the path is long but I guaranty you it will be very rewarding!
+the path is long but I guarantee you it will be very rewarding!
 
-_ps:_ You can download the source of this yesod blog tutorial at
+_ps:_ You can download the source of this Yesod blog tutorial at
 [github.com/yogsototh/yosog](http://github.com/yogsototh/yosog).
 
