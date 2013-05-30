@@ -3,7 +3,12 @@
 hakylldir=$HOME/Sites/yblog
 pubdir=$hakylldir/_publish
 
-[[ ! -e $pubdir ]] && git clone -b gh-pages git@github.com:yogsototh/yannesposito.com.git _publish
+
+[[ ! -e $pubdir ]] && \
+    cd ${pubdir:h} && \
+    {
+        git clone -b gh-pages git@github.com:yogsototh/yannesposito.com.git _publish || exit 1
+    }
 
 cd $hakylldir       && \
 git pull            && \
