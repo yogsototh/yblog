@@ -147,6 +147,7 @@ $(document).ready(function() {
     animatedToMenu();
     analytics();
     switchcss();
+    $.scrollDepth();
 });
 
 $(window).bind("load", function() {
