@@ -281,6 +281,11 @@ pre
   padding: 1em
   line-height: 1.1em
 
+pre > code
+  display: inline-block
+  height: 1em
+  line-height: 1em
+
 p
   margin-bottom: 1.2em
 
@@ -288,6 +293,7 @@ p
   blockquote
     +innerblock
     +highlight
+    margin: 1.5em 0
     &>ul
       padding-left: 1.5em
 
@@ -453,7 +459,6 @@ body
   font-size: 16px
   pre
     font-size: 0.9em
-    line-height: 1.35em
 
 @media only screen and (min-width: 1024px) and (max-width: 1600px)
   body
@@ -621,11 +626,19 @@ $fontcorps: 1.25
   padding: $VPadCorps 3em
   margin: 0
   clear: both
-  p, ol, ul, blockquote, pre, code
+  p, ol, ul, blockquote, & > pre, & > code
     margin-top: 1.5em
     margin-bottom: 1.5em
-  pre code
+  p > code, li > code
+    display: inline-block
+    height: 1em
+    line-height: 1em
     margin: 0
+  li > code
+    text-indent: 0
+  &, ul li, ol li
+    blockquote > ul
+      margin: 0
   p, ol, ul, blockquote
     line-height: 1.5em
   ul li ul, ol li ul, ul li ol, ol li ol
@@ -641,8 +654,7 @@ $hpadding: 1
   padding: 0.5em
   box-shadow: 0 0 5px #CCC inset
   border-radius: 3px
-.corps a img,
-.corps li img,
+.corps p > a > img
   display: inline-block
   border: none
   padding: 0
@@ -1018,6 +1030,7 @@ sup
   padding: 0 .3em
   margin-left: 2px
   border-radius:  3px
+  vertical-align: top
   -moz-border-radius:  3px
   -webkit-border-radius:  3px
   &:hover
@@ -1097,6 +1110,7 @@ a.cut
 
 .popularblock
   width: 30.3333%
+  min-width: 150px
   margin: 0 1.5%
   float: left
   figure
