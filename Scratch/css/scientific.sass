@@ -622,11 +622,19 @@ $fontcorps: 1.25
   padding: $VPadCorps 3em
   margin: 0
   clear: both
-  p, ol, ul, blockquote, pre, code
+  p, ol, ul, blockquote, & > pre, & > code
     margin-top: 1.5em
     margin-bottom: 1.5em
-  pre code
+  p > code, li > code
+    display: inline-block
+    height: 1em
+    line-height: 1em
     margin: 0
+  li > code
+    text-indent: 0
+  &, ul li, ol li
+    blockquote > ul
+      margin: 0
   p, ol, ul, blockquote
     line-height: 1.5em
   ul li ul, ol li ul, ul li ol, ol li ol
@@ -642,8 +650,7 @@ $hpadding: 1
   padding: 0.5em
   box-shadow: 0 0 5px #CCC inset
   border-radius: 3px
-.corps a img,
-.corps li img,
+.corps p > a > img
   display: inline-block
   border: none
   padding: 0
