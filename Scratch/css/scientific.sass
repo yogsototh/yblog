@@ -282,9 +282,8 @@ pre
   line-height: 1.1em
 
 pre > code
-  display: inline-block
-  height: 1em
-  line-height: 1em
+  display: block
+  line-height: 1.1em
 
 p
   margin-bottom: 1.2em
@@ -458,7 +457,7 @@ body
   text-align: center
   font-size: 16px
   pre
-    font-size: 0.9em
+    font-size: 0.8em
 
 @media only screen and (min-width: 1024px) and (max-width: 1600px)
   body
@@ -1206,6 +1205,11 @@ a.rss
 
 .highlight
   background-color: $base2
+  box-shadow: 0 0 2px $yellow inset
+  padding: 0 3px
+  height: 1.1em
+  line-height: 1em
+  display: inline-block
 
 #header
   opacity: .25
@@ -1213,3 +1217,8 @@ a.rss
     opacity: 1
 .strike
   text-decoration: line-through
+
+.cssdebug
+  pre > code:before
+    content: "----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80***85***90"
+    display: block
