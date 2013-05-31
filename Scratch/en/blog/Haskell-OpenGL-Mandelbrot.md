@@ -15,10 +15,10 @@ blogimage("BenoitBMandelbrot.jpg","The B in Benoît B. Mandelbrot stand for Beno
 
 <div class="intro">
 
-%tldr A progressive Haskell example. 
+%tldr A progressive Haskell example.
 A Mandelbrot set extended in 3D, rendered using OpenGL and coded with Haskell.
 In the end the code will be very clean.
-The significant stuff will be in a pure functional bubble. 
+The significant stuff will be in a pure functional bubble.
 The display details will be put in an external module playing the role of a wrapper.
 Imperative language could also benefit from this functional organization.
 
@@ -27,7 +27,7 @@ Imperative language could also benefit from this functional organization.
 ## Introduction
 
 In my
-[preceding article](/Scratch/en/blog/Haskell-the-Hard-Way/) I introduced Haskell. 
+[preceding article](/Scratch/en/blog/Haskell-the-Hard-Way/) I introduced Haskell.
 
 This article goes further.
 It will show how to use functional programming with interactive programs.
@@ -37,13 +37,13 @@ The code organization can be used in most imperative language.
 
 As Haskell is designed for functional paradigm, it is easier to use in this context.
 In reality, the firsts sections will use an imperative paradigm.
-As you can use functional paradigm in imperative language, 
+As you can use functional paradigm in imperative language,
 you can also use imperative paradigm in functional languages.
 
 This article is about creating an useful and clean program.
 It can interact with the user in real time.
 It uses OpenGL, a library with imperative programming foundations.
-Despite this fact, 
+Despite this fact,
 most of the final code will remain in the pure part (no `IO`).
 
 I believe the main audience for this article are:
@@ -110,7 +110,7 @@ For efficiency reason[^010001], I will not use the default Haskell `Complex` dat
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
-data Complex = C (Float,Float) deriving (Show,Eq)
+data Complex = C Float Float deriving (Show,Eq)
 ~~~~~~
 </div>
 
@@ -118,10 +118,10 @@ data Complex = C (Float,Float) deriving (Show,Eq)
 ~~~~~~ {.haskell}
 instance Num Complex where
     fromInteger n = C (fromIntegral n,0.0)
-    C (x,y) * C (z,t) = C (z*x - y*t, y*z + x*t)
-    C (x,y) + C (z,t) = C (x+z, y+t)
-    abs (C (x,y))     = C (sqrt (x*x + y*y),0.0)
-    signum (C (x,y))  = C (signum x , 0.0)
+    (C x y) * (C z t) = C (z*x - y*t) (y*z + x*t)
+    (C x y) + (C z t) = C (x+z) (y+t)
+    abs (C x y)     = C (sqrt (x*x + y*y)) 0.0
+    signum (C x y)  = C (signum x) (0.0)
 ~~~~~~
 </div>
 
@@ -130,13 +130,13 @@ We declare some useful functions for manipulating complex numbers:
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 complex :: Float -> Float -> Complex
-complex x y = C (x,y)
+complex x y = C x y
 
 real :: Complex -> Float
-real (C (x,y))    = x
+real (C x y)    = x
 
 im :: Complex -> Float
-im   (C (x,y))    = y
+im   (C x y)    = y
 
 magnitude :: Complex -> Float
 magnitude = real.abs
@@ -190,7 +190,7 @@ Here is the function which will render something on the screen:
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 drawMandelbrot =
-  -- We will print Points (not triangles for example) 
+  -- We will print Points (not triangles for example)
   renderPrimitive Points $ do
     mapM_ drawColoredPoint allPoints
   where
@@ -198,7 +198,7 @@ drawMandelbrot =
           color c -- set the current color to c
           -- then draw the point at position (x,y,0)
           -- remember we're in 3D
-          vertex $ Vertex3 x y 0 
+          vertex $ Vertex3 x y 0
 ~~~~~~
 </div>
 
@@ -206,7 +206,7 @@ The `mapM_` function is mainly the same as map but inside a monadic context.
 More precisely, this can be transformed as a list of actions where the order is important:
 
 ~~~
-drawMandelbrot = 
+drawMandelbrot =
   renderPrimitive Points $ do
     color color1
     vertex $ Vertex3 x1 y1 0
@@ -215,8 +215,8 @@ drawMandelbrot =
     vertex $ Vertex3 xN yN 0
 ~~~
 
-We also need some kind of global variables. 
-In fact, global variable are a proof of a design problem. 
+We also need some kind of global variables.
+In fact, global variable are a proof of a design problem.
 We will get rid of them later.
 
 <div class="codehighlight">
@@ -232,8 +232,8 @@ In OpenGL the default coordinate are from -1 to 1.
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 allPoints :: [(GLfloat,GLfloat,Color3 GLfloat)]
-allPoints = [ (x/width,y/height,colorFromValue $ mandel x y) | 
-                  x <- [-width..width], 
+allPoints = [ (x/width,y/height,colorFromValue $ mandel x y) |
+                  x <- [-width..width],
                   y <- [-height..height]]
 
 ~~~~~~
@@ -244,7 +244,7 @@ We need a function which transform an integer value to some color:
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 colorFromValue n =
-  let 
+  let
       t :: Int -> GLfloat
       t i = 0.5 + 0.5*cos( fromIntegral i / 10 )
   in
@@ -252,12 +252,12 @@ colorFromValue n =
 ~~~~~~
 </div>
 
-And now the `mandel` function. 
+And now the `mandel` function.
 Given two coordinates in pixels, it returns some integer value:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
-mandel x y = 
+mandel x y =
   let r = 2.0 * x / width
       i = 2.0 * y / height
   in
@@ -272,7 +272,7 @@ Let us define \\(f_c: \mathbb{C} \to \mathbb{C}\\)
 
 $$ f_c(z) = z^2 + c $$
 
-The sequence is: 
+The sequence is:
 
 $$ 0 \rightarrow f_c(0) \rightarrow f_c(f_c(0)) \rightarrow \cdots \rightarrow f^n_c(0) \rightarrow \cdots $$
 
@@ -282,7 +282,7 @@ Of course, instead of trying to test the real limit, we just make a test after a
 ~~~~~~ {.haskell}
 f :: Complex -> Complex -> Int -> Int
 f c z 0 = 0
-f c z n = if (magnitude z > 2 ) 
+f c z n = if (magnitude z > 2 )
           then n
           else f c ((z*z)+c) (n-1)
 ~~~~~~
@@ -298,7 +298,7 @@ This property is a direct consequence of purity.
 If you look closely, you see that `allPoints` is a pure list.
 Therefore, calling `allPoints` will always render the same result and Haskell is clever enough to use this property.
 While Haskell doesn't garbage collect `allPoints` the result is reused for free.
-We did not specified this value should be saved for later use. 
+We did not specified this value should be saved for later use.
 It is saved for us.
 
 See what occurs if we make the window bigger:
@@ -324,8 +324,8 @@ import Graphics.UI.GLUT
 import Data.IORef
 -- Use UNPACK data because it is faster
 -- The ! is for strict instead of lazy
-data Complex = C  {-# UNPACK #-} !Float 
-                  {-# UNPACK #-} !Float 
+data Complex = C  {-# UNPACK #-} !Float
+                  {-# UNPACK #-} !Float
                deriving (Show,Eq)
 instance Num Complex where
     fromInteger n = C (fromIntegral n) 0.0
@@ -372,9 +372,9 @@ height = 320 :: GLfloat
 
 </div>
 
-This time, instead of drawing all points, 
+This time, instead of drawing all points,
 we will simply draw the edges of the Mandelbrot set.
-The method I use is a rough approximation. 
+The method I use is a rough approximation.
 I consider the Mandelbrot set to be almost convex.
 The result will be good enough for the purpose of this tutorial.
 
@@ -384,7 +384,7 @@ We replace the `Points` by `LineLoop`
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 drawMandelbrot =
-  -- We will print Points (not triangles for example) 
+  -- We will print Points (not triangles for example)
   renderPrimitive LineLoop $ do
     mapM_ drawColoredPoint allPoints
   where
@@ -392,17 +392,17 @@ drawMandelbrot =
           color c -- set the current color to c
           -- then draw the point at position (x,y,0)
           -- remember we're in 3D
-          vertex $ Vertex3 x y 0 
+          vertex $ Vertex3 x y 0
 ~~~~~~
 </div>
 
 And now, we should change our list of points.
-Instead of drawing every point of the visible surface, 
+Instead of drawing every point of the visible surface,
 we will choose only point on the surface.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
-allPoints = positivePoints ++ 
+allPoints = positivePoints ++
       map (\(x,y,c) -> (x,-y,c)) (reverse positivePoints)
 ~~~~~~
 </div>
@@ -424,7 +424,7 @@ positivePoints = do
 ~~~~~~
 </div>
 
-This function is interesting. 
+This function is interesting.
 For those not used to the list monad here is a natural language version of this function:
 
 ~~~~~~ {.no-highlight}
@@ -441,16 +441,16 @@ To find the smallest number such that `mandel x y > 0` we use a simple dichotomy
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 -- given f min max nbtest,
--- considering 
+-- considering
 --  - f is an increasing function
 --  - f(min)=0
 --  - f(max)≠0
 -- then maxZeroIndex f min max nbtest returns x such that
 --    f(x - ε)=0 and f(x + ε)≠0
---    where ε=(max-min)/2^(nbtest+1) 
+--    where ε=(max-min)/2^(nbtest+1)
 maxZeroIndex func minval maxval 0 = (minval+maxval)/2
-maxZeroIndex func minval maxval n = 
-  if (func medpoint) /= 0 
+maxZeroIndex func minval maxval n =
+  if (func medpoint) /= 0
        then maxZeroIndex func minval medpoint (n-1)
        else maxZeroIndex func medpoint maxval (n-1)
   where medpoint = (minval+maxval)/2
@@ -466,7 +466,7 @@ blogimage("HGLMandelEdges.png","The edges of the mandelbrot set")
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 colorFromValue n =
-  let 
+  let
       t :: Int -> GLfloat
       t i = 0.5 + 0.5*cos( fromIntegral i / 10 )
   in
@@ -476,7 +476,7 @@ colorFromValue n =
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
-mandel x y = 
+mandel x y =
   let r = 2.0 * x / width
       i = 2.0 * y / height
   in
@@ -488,7 +488,7 @@ mandel x y =
 ~~~~~~ {.haskell}
 f :: Complex -> Complex -> Int -> Int
 f c z 0 = 0
-f c z n = if (magnitude z > 2 ) 
+f c z n = if (magnitude z > 2 )
           then n
           else f c ((z*z)+c) (n-1)
 ~~~~~~
@@ -515,31 +515,29 @@ most of the code is some OpenGL boilerplate.
 If you just want to skim this section,
 here is a high level representation:
 
- > - OpenGL Boilerplate
- >  
- >   - set some IORef (understand variables) for states  
- >   - Drawing: 
- > 
- >      - set doubleBuffer, handle depth, window size...
- >      - Use state to apply some transformations
- >  
- >   - Keyboard: hitting some key change the state of IORef
- > 
- > - Generate 3D Object
+ >   - OpenGL Boilerplate
+ >        - set some `IORef` (understand variables) for states
+ >        - Drawing:
+ >            - set doubleBuffer, handle depth, window size...
+ >            - Use state to apply some transformations
+ >        - Keyboard: hitting some key change the state of `IORef`
  >
- >   ~~~ 
- >   allPoints :: [ColoredPoint]  
- >   allPoints =
- >       for all (x,y), -width<x<width, 0<y<height
- >       Let z be the minimal depth such that
- >           mandel x y z > 0
- >       add the points 
- >              (x, y, z,color) 
- >              (x,-y, z,color) 
- >              (x, y,-z,color) 
- >              (x,-y,-z,color) 
- >           + neighbors to make triangles
- >   ~~~
+ >   - Generate 3D Object
+ >     <div></div>
+ >
+ >     ~~~~~~ {.haskell}
+ >     allPoints :: [ColoredPoint]
+ >     allPoints =
+ >         for all (x,y), -width<x<width, 0<y<height
+ >         Let z be the minimal depth such that
+ >             mandel x y z > 0
+ >         add the points
+ >                (x, y, z,color)
+ >                (x,-y, z,color)
+ >                (x, y,-z,color)
+ >                (x,-y,-z,color)
+ >             + neighbors to make triangles
+ >     ~~~~~~
 
 <div style="display:none">
 
@@ -554,24 +552,24 @@ type ColoredPoint = (GLfloat,GLfloat,GLfloat,Color3 GLfloat)
 
 </div>
 
-We declare a new type `ExtComplex` (for extended complex). 
+We declare a new type `ExtComplex` (for extended complex).
 An extension of complex numbers with a third component:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
-data ExtComplex = C (GLfloat,GLfloat,GLfloat) 
+data ExtComplex = C GLfloat GLfloat GLfloat
                   deriving (Show,Eq)
 instance Num ExtComplex where
-    -- The shape of the 3D mandelbrot 
+    -- The shape of the 3D mandelbrot
     -- will depend on this formula
-    C (x,y,z) * C (x',y',z') = C (x*x' - y*y' - z*z', 
-                                  x*y' + y*x' + z*z', 
-                                  x*z' + z*x' )
+    (C x y z) * (C x' y' z') = C (x*x' - y*y' - z*z')
+                                 (x*y' + y*x' + z*z')
+                                 (x*z' + z*x')
     -- The rest is straightforward
-    fromInteger n = C (fromIntegral n, 0, 0)
-    C (x,y,z) + C (x',y',z') = C (x+x', y+y', z+z')
-    abs (C (x,y,z))     = C (sqrt (x*x + y*y + z*z), 0, 0)
-    signum (C (x,y,z))  = C (signum x, signum y, signum z)
+    fromInteger n = C (fromIntegral n) 0  0
+    (C x y z) + (C x' y' z') = C (x+x')  (y+y') (z+z')
+    abs (C x y z)     = C (sqrt (x*x + y*y + z*z)) 0  0
+    signum (C x y z)  = C (signum x) (signum y) (signum z)
 ~~~~~~
 </div>
 
@@ -593,7 +591,7 @@ Note how if `z=z'=0` then the multiplication is the same to the complex one.
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 extcomplex :: GLfloat -> GLfloat -> GLfloat -> ExtComplex
-extcomplex x y z = C (x,y,z)
+extcomplex x y z = C x y z
 
 real :: ExtComplex -> GLfloat
 real (C (x,y,z))    = x
@@ -611,7 +609,7 @@ magnitude = real.abs
 
 </div>
 
-### From 2D to 3D 
+### From 2D to 3D
 
 As we will use some 3D, we add some new directive in the boilerplate.
 But mainly, we simply state that will use some depth buffer.
@@ -625,7 +623,7 @@ main = do
   (progname,_) <- getArgsAndInitialize
   -- We will use the double buffered mode (GL constraint)
   -- We also Add the DepthBuffer (for 3D)
-  initialDisplayMode $= 
+  initialDisplayMode $=
       [WithDepthBuffer,DoubleBuffered,RGBMode]
   -- We create a window with some title
   createWindow "3D HOpengGL Mandelbrot"
@@ -639,7 +637,7 @@ main = do
   -- Function to call each frame
   idleCallback $= Just idle
   -- Function to call when keyboard or mouse is used
-  keyboardMouseCallback $= 
+  keyboardMouseCallback $=
           Just (keyboardMouse angle zoom campos)
   -- Each time we will need to update the display
   -- we will call the function 'display'
@@ -676,11 +674,11 @@ mapSnd f (x,y) = (  x,f y)
 </div>
 
 And we use them to code the function handling keyboard.
-We will use the keys `hjkl` to rotate, 
+We will use the keys `hjkl` to rotate,
 `oi` to zoom and `sedf` to move.
 Also, hitting space will reset the view.
 Remember that `angle` and `campos` are pairs and `zoom` is a scalar.
-Also note `(+0.5)` is the function `\x->x+0.5` 
+Also note `(+0.5)` is the function `\x->x+0.5`
 and `(-0.5)` is the number `-0.5` (yes I share your pain).
 
 <div class="codehighlight">
@@ -688,10 +686,10 @@ and `(-0.5)` is the number `-0.5` (yes I share your pain).
 keyboardMouse angle zoom campos key state modifiers position =
   -- We won't use modifiers nor position
   kact angle zoom campos key state
-  where 
+  where
     -- reset view when hitting space
     kact a z p (Char ' ') Down = do
-          a $= (0,0) -- angle 
+          a $= (0,0) -- angle
           z $= 1     -- zoom
           p $= (0,0) -- camera position
     -- use of hjkl to rotate
@@ -725,7 +723,7 @@ display angle zoom position = do
   loadIdentity -- reset any transformation
   -- tranlate
   (x,y) <- get position
-  translate $ Vector3 x y 0 
+  translate $ Vector3 x y 0
   -- zoom
   z <- get zoom
   scale z z z
@@ -747,7 +745,7 @@ Mainly there are two parts: apply some transformations, draw the object.
 
 ### The 3D Mandelbrot
 
-We have finished with the OpenGL section, let's talk about how we 
+We have finished with the OpenGL section, let's talk about how we
 generate the 3D points and colors.
 First, we will set the number of details to 200 pixels in the three dimensions.
 
@@ -768,7 +766,7 @@ Each three successive point representing the coordinate of each vertex of a tria
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 drawMandelbrot = do
-  -- We will print Points (not triangles for example) 
+  -- We will print Points (not triangles for example)
   renderPrimitive Triangles $ do
     mapM_ drawColoredPoint allPoints
   where
@@ -778,12 +776,12 @@ drawMandelbrot = do
 ~~~~~~
 </div>
 
-In fact, we will provide six ordered points. 
+In fact, we will provide six ordered points.
 These points will be used to draw two triangles.
 
 blogimage("triangles.png","Explain triangles")
 
-The next function is a bit long. 
+The next function is a bit long.
 Here is an approximative English version:
 
 ~~~
@@ -791,7 +789,7 @@ forall x from -width to width
   forall y from -height to height
     forall the neighbors of (x,y)
       let z be the smalled depth such that (mandel x y z)>0
-      let c be the color given by mandel x y z 
+      let c be the color given by mandel x y z
       add the point corresponding to (x,y,z,c)
 ~~~
 
@@ -803,8 +801,8 @@ depthPoints :: [ColoredPoint]
 depthPoints = do
   x <- [-width..width]
   y <- [-height..height]
-  let 
-      depthOf x' y' = maxZeroIndex (mandel x' y') 0 deep logdeep 
+  let
+      depthOf x' y' = maxZeroIndex (mandel x' y') 0 deep logdeep
       logdeep = floor ((log deep) / log 2)
       z1 = depthOf    x     y
       z2 = depthOf (x+1)    y
@@ -833,7 +831,7 @@ depthPoints :: [ColoredPoint]
 depthPoints = do
   x <- [-width..width]
   y <- [-height..height]
-  let 
+  let
     neighbors = [(x,y),(x+1,y),(x+1,y+1),(x,y+1)]
     depthOf (u,v) = maxZeroIndex (mandel u v) 0 deep logdeep
     logdeep = floor ((log deep) / log 2)
@@ -842,7 +840,7 @@ depthPoints = do
     -- ts are 3D pixels + mandel value
     ts = map (\(u,v,w) -> (u,v,w,mandel u v (w+1))) zs
     -- ps are 3D opengl points + color value
-    ps = map (\(u,v,w,c') -> 
+    ps = map (\(u,v,w,c') ->
         (u/width,v/height,w/deep,colorFromValue c')) ts
   -- If the point diverged too fast, don't display it
   if (and $ map (\(_,_,_,c) -> c>=57) ts)
@@ -854,16 +852,16 @@ depthPoints = do
 
 If you prefer the first version, then just imagine how hard it will be to change the enumeration of the point from (x,y) to (x,z) for example.
 
-Also, we didn't searched for negative values. 
+Also, we didn't searched for negative values.
 This modified Mandelbrot is no more symmetric relatively to the plan `y=0`.
 But it is symmetric relatively to the plan `z=0`.
-Then I mirror these values. 
+Then I mirror these values.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 allPoints :: [ColoredPoint]
 allPoints = planPoints ++ map inverseDepth  planPoints
-  where 
+  where
       planPoints = depthPoints
       inverseDepth (x,y,z,c) = (x,y,-z+1/deep,c)
 ~~~~~~
@@ -876,18 +874,18 @@ The rest of the program is very close to the preceding one.
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 -- given f min max nbtest,
--- considering 
+-- considering
 --  - f is an increasing function
 --  - f(min)=0
 --  - f(max)≠0
 -- then maxZeroIndex f min max nbtest returns x such that
 --    f(x - ε)=0 and f(x + ε)≠0
---    where ε=(max-min)/2^(nbtest+1) 
-maxZeroIndex :: (Fractional a,Num a,Num b,Eq b) => 
+--    where ε=(max-min)/2^(nbtest+1)
+maxZeroIndex :: (Fractional a,Num a,Num b,Eq b) =>
                  (a -> b) -> a -> a -> Int -> a
 maxZeroIndex func minval maxval 0 = (minval+maxval)/2
-maxZeroIndex func minval maxval n = 
-  if (func medpoint) /= 0 
+maxZeroIndex func minval maxval n =
+  if (func medpoint) /= 0
        then maxZeroIndex func minval medpoint (n-1)
        else maxZeroIndex func medpoint maxval (n-1)
   where medpoint = (minval+maxval)/2
@@ -899,7 +897,7 @@ I made the color slightly brighter
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 colorFromValue n =
-  let 
+  let
       t :: Int -> GLfloat
       t i = 0.7 + 0.3*cos( fromIntegral i / 10 )
   in
@@ -913,7 +911,7 @@ We only changed from `Complex` to `ExtComplex` of the main `f` function.
 ~~~~~~ {.haskell}
 f :: ExtComplex -> ExtComplex -> Int -> Int
 f c z 0 = 0
-f c z n = if (magnitude z > 2 ) 
+f c z n = if (magnitude z > 2 )
           then n
           else f c ((z*z)+c) (n-1)
 ~~~~~~
@@ -926,7 +924,7 @@ and change the type signature of `f` from `Complex` to `ExtComplex`.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
-mandel x y z = 
+mandel x y z =
   let r = 2.0 * x / width
       i = 2.0 * y / height
       s = 2.0 * z / deep
@@ -945,7 +943,7 @@ blogimage("mandelbrot_3D.png","A 3D mandelbrot like")
 
 ## Naïve code cleaning
 
-The first approach to clean the code is to separate the GLUT/OpenGL 
+The first approach to clean the code is to separate the GLUT/OpenGL
 part from the computation of the shape.
 Here is the cleaned version of the preceding section.
 Most boilerplate was put in external files.
@@ -962,7 +960,7 @@ import Mandel -- The 3D Mandelbrot maths
 </div>
 
 The `yMainLoop` takes two arguments:
-the title of the window 
+the title of the window
 and a function from time to triangles
 
 <div class="codehighlight">
@@ -990,7 +988,7 @@ This is similar to the preceding section.
 ~~~~~~ {.haskell}
 allPoints :: [ColoredPoint]
 allPoints = planPoints ++ map inverseDepth  planPoints
-  where 
+  where
       planPoints = depthPoints ++ map inverseHeight depthPoints
       inverseHeight (x,y,z,c) = (x,-y,z,c)
       inverseDepth (x,y,z,c) = (x,y,-z+1/deep,c)
@@ -1003,7 +1001,7 @@ depthPoints :: [ColoredPoint]
 depthPoints = do
   x <- [-width..width]
   y <- [0..height]
-  let 
+  let
     neighbors = [(x,y),(x+1,y),(x+1,y+1),(x,y+1)]
     depthOf (u,v) = maxZeroIndex (ymandel u v) 0 deep 7
     -- zs are 3D points with found depth
@@ -1011,7 +1009,7 @@ depthPoints = do
     -- ts are 3D pixels + mandel value
     ts = map (\(u,v,w) -> (u,v,w,ymandel u v (w+1))) zs
     -- ps are 3D opengl points + color value
-    ps = map (\(u,v,w,c') -> 
+    ps = map (\(u,v,w,c') ->
         (u/width,v/height,w/deep,colorFromValue c')) ts
   -- If the point diverged too fast, don't display it
   if (and $ map (\(_,_,_,c) -> c>=57) ts)
@@ -1020,22 +1018,22 @@ depthPoints = do
   else [ps!!0,ps!!1,ps!!2,ps!!0,ps!!2,ps!!3]
 
 -- given f min max nbtest,
--- considering 
+-- considering
 --  - f is an increasing function
 --  - f(min)=0
 --  - f(max)≠0
 -- then maxZeroIndex f min max nbtest returns x such that
 --    f(x - ε)=0 and f(x + ε)≠0
---    where ε=(max-min)/2^(nbtest+1) 
+--    where ε=(max-min)/2^(nbtest+1)
 maxZeroIndex func minval maxval 0 = (minval+maxval)/2
-maxZeroIndex func minval maxval n = 
-  if (func medpoint) /= 0 
+maxZeroIndex func minval maxval n =
+  if (func medpoint) /= 0
        then maxZeroIndex func minval medpoint (n-1)
        else maxZeroIndex func medpoint maxval (n-1)
   where medpoint = (minval+maxval)/2
 
 colorFromValue n =
-  let 
+  let
       t :: Int -> GLfloat
       t i = 0.7 + 0.3*cos( fromIntegral i / 10 )
   in
@@ -1065,15 +1063,15 @@ Some points:
    In particular the `mainLoop` function is a direct link to the C library (FFI).
    This function is clearly far from the functional paradigm.
    Could we make this better?
-   We will have two choices: 
+   We will have two choices:
 
    - create our own `mainLoop` function to make it more functional.
    - deal with the imperative nature of the GLUT `mainLoop` function.
 
    As one of the goal of this article is to understand how to deal with existing libraries and particularly the one coming from imperative languages, we will continue to use the `mainLoop` function.
 2. Our main problem come from user interaction.
-   If you ask "the Internet", 
-   about how to deal with user interaction with a functional paradigm, 
+   If you ask "the Internet",
+   about how to deal with user interaction with a functional paradigm,
    the main answer is to use _functional reactive programming_ (FRP).
    I won't use FRP in this article.
    Instead, I'll use a simpler while less effective way to deal with user interaction.
@@ -1086,7 +1084,7 @@ First, what the main loop should look like if we could make our own:
 functionalMainLoop =
     Read user inputs and provide a list of actions
     Apply all actions to the World
-    Display one frame 
+    Display one frame
     repetere aeternum
 ~~~~~~
 
@@ -1137,7 +1135,7 @@ inputActionMap = inputMapFromList [
 ~~~~~~
 </div>
 
-And of course a type design the World State. 
+And of course a type design the World State.
 The important part is that it is our World State type.
 We could have used any kind of data type.
 
@@ -1151,7 +1149,7 @@ data World = World {
     , shape       :: Scalar -> Function3D
     , box         :: Box3D
     , told        :: Time -- last frame time
-    } 
+    }
 ~~~~~~
 </div>
 
@@ -1164,7 +1162,7 @@ We simply have to provide the definition of some functions.
 instance DisplayableWorld World where
   winTitle _ = "The YGL Mandelbulb"
   camera w = Camera {
-        camPos = position w, 
+        camPos = position w,
         camDir = angle w,
         camZoom = scale w }
   -- objects for world w
@@ -1184,7 +1182,7 @@ instance DisplayableWorld World where
 
 The `camera` function will retrieve an object of type `Camera` which contains
 most necessary information to set our camera.
-The `objects` function will returns a list of objects. 
+The `objects` function will returns a list of objects.
 Their type is `YObject`. Note the generation of triangles is no more in this file.
 Until here we only used declarative pattern.
 
@@ -1203,17 +1201,17 @@ zdir = makePoint3D (0,0,1)
 </div>
 
 Note `(-*<)` is the scalar product (`α -*< (x,y,z) = (αx,αy,αz)`).
-Also note we could add two Point3D. 
+Also note we could add two Point3D.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 rotate :: Point3D -> Scalar -> World -> World
-rotate dir angleValue world = 
+rotate dir angleValue world =
   world {
      angle = (angle world) + (angleValue -*< dir) }
 
 translate :: Point3D -> Scalar -> World -> World
-translate dir len world = 
+translate dir len world =
   world {
     position = (position world) + (len -*< dir) }
 
@@ -1229,7 +1227,7 @@ resize r world = world {
 </div>
 
 The resize is used to generate the 3D function.
-As I wanted the time spent to generate a more detailed view 
+As I wanted the time spent to generate a more detailed view
 to grow linearly I use this not so straightforward formula.
 
 The `yMainLoop` takes three arguments.
@@ -1257,7 +1255,7 @@ initialWorld = World {
    angle = makePoint3D (-30,-30,0)
  , position = makePoint3D (0,0,0)
  , scale = 0.8
- , shape = shapeFunc 
+ , shape = shapeFunc
  , box = Box3D { minPoint = makePoint3D (-2,-2,-2)
                , maxPoint =  makePoint3D (2,2,2)
                , resolution =  0.16 }
@@ -1277,7 +1275,7 @@ idleAction tnew world = world {
     angle = (angle world) + (delta -*< zdir)
   , told = tnew
   }
-  where 
+  where
       anglePerSec = 5.0
       delta = anglePerSec * elapsed / 1000.0
       elapsed = fromIntegral (tnew - (told world))
@@ -1296,13 +1294,13 @@ Because we consider partial functions
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 shapeFunc :: Scalar -> Function3D
-shapeFunc res x y = 
-  let 
+shapeFunc res x y =
+  let
       z = maxZeroIndex (ymandel x y) 0 1 20
   in
   if and [ maxZeroIndex (ymandel (x+xeps) (y+yeps)) 0 1 20 < 0.000001 |
               val <- [res], xeps <- [-val,val], yeps<-[-val,val]]
-      then Nothing 
+      then Nothing
       else Just (z,colorFromValue ((ymandel x y z) * 64))
 ~~~~~~
 </div>
@@ -1313,7 +1311,7 @@ With the color function.
 ~~~~~~ {.haskell}
 colorFromValue :: Point -> Color
 colorFromValue n =
-  let 
+  let
       t :: Point -> Scalar
       t i = 0.7 + 0.3*cos( i / 10 )
   in
@@ -1326,18 +1324,18 @@ The rest is similar to the preceding sections.
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 -- given f min max nbtest,
--- considering 
+-- considering
 --  - f is an increasing function
 --  - f(min)=0
 --  - f(max)≠0
 -- then maxZeroIndex f min max nbtest returns x such that
 --    f(x - ε)=0 and f(x + ε)≠0
---    where ε=(max-min)/2^(nbtest+1) 
-maxZeroIndex :: (Fractional a,Num a,Num b,Eq b) => 
+--    where ε=(max-min)/2^(nbtest+1)
+maxZeroIndex :: (Fractional a,Num a,Num b,Eq b) =>
                  (a -> b) -> a -> a -> Int -> a
 maxZeroIndex _ minval maxval 0 = (minval+maxval)/2
-maxZeroIndex func minval maxval n = 
-  if (func medpoint) /= 0 
+maxZeroIndex func minval maxval n =
+  if (func medpoint) /= 0
        then maxZeroIndex func minval medpoint (n-1)
        else maxZeroIndex func medpoint maxval (n-1)
   where medpoint = (minval+maxval)/2
@@ -1364,7 +1362,7 @@ It is commented a lot.
 Our code architecture feel very clean.
 All the meaningful code is in our main file and all display details are
 externalized.
-If you read the code of `YGL.hs`, you'll see I didn't made everything perfect. 
+If you read the code of `YGL.hs`, you'll see I didn't made everything perfect.
 For example, I didn't finished the code of the lights.
 But I believe it is a good first step and it will be easy to go further.
 Unfortunately the program of the preceding session is extremely slow.
@@ -1376,18 +1374,18 @@ Before our program structure was:
 Constant Function -> Constant List of Triangles -> Display
 ~~~~~~
 
-Now we have 
+Now we have
 
 ~~~~~~ {.no-highlight}
 Main loop -> World -> Function -> List of Objects -> Atoms -> Display
 ~~~~~~
 
-The World state could change. 
-The compiler can no more optimize the computation for us. 
+The World state could change.
+The compiler can no more optimize the computation for us.
 We have to manually explain when to redraw the shape.
 
 To optimize we must do some things in a lower level.
-Mostly the program remains the same, 
+Mostly the program remains the same,
 but it will provide the list of atoms directly.
 
 <div style="display:none">
@@ -1431,10 +1429,10 @@ data World = World {
     , scale       :: Scalar
     , position    :: Point3D
     , box         :: Box3D
-    , told        :: Time 
+    , told        :: Time
     -- We replace shape by cache
     , cache       :: [YObject]
-    } 
+    }
 ~~~~~~
 </div>
 
@@ -1443,7 +1441,7 @@ data World = World {
 instance DisplayableWorld World where
   winTitle _ = "The YGL Mandelbulb"
   camera w = Camera {
-        camPos = position w, 
+        camPos = position w,
         camDir = angle w,
         camZoom = scale w }
   -- We update our objects instanciation
@@ -1463,17 +1461,17 @@ zdir :: Point3D
 zdir = makePoint3D (0,0,1)
 
 rotate :: Point3D -> Scalar -> World -> World
-rotate dir angleValue world = 
+rotate dir angleValue world =
   world {
      angle = angle world + (angleValue -*< dir) }
 
 switchRotation :: World -> World
-switchRotation world = 
+switchRotation world =
   world {
      anglePerSec = if anglePerSec world > 0 then 0 else 5.0 }
 
 translate :: Point3D -> Scalar -> World -> World
-translate dir len world = 
+translate dir len world =
   world {
     position = position world + (len -*< dir) }
 
@@ -1525,27 +1523,27 @@ This way instead of providing `XYFunc`, we provide directly a list of Atoms.
 ~~~~~~ {.haskell}
 objectFunctionFromWorld :: World -> [YObject]
 objectFunctionFromWorld w = [Atoms atomList]
-  where atomListPositive = 
+  where atomListPositive =
           getObject3DFromShapeFunction
               (shapeFunc (resolution (box w))) (box w)
-        atomList = atomListPositive ++ 
+        atomList = atomListPositive ++
           map negativeTriangle atomListPositive
-        negativeTriangle (ColoredTriangle (p1,p2,p3,c)) = 
+        negativeTriangle (ColoredTriangle (p1,p2,p3,c)) =
               ColoredTriangle (negz p1,negz p3,negz p2,c)
               where negz (P (x,y,z)) = P (x,y,-z)
 ~~~~~~
 </div>
 
-We know that resize is the only world change that necessitate to 
-recompute the list of atoms (triangles). 
+We know that resize is the only world change that necessitate to
+recompute the list of atoms (triangles).
 Then we update our world state accordingly.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 resize :: Scalar -> World -> World
-resize r world = 
+resize r world =
   tmpWorld { cache = objectFunctionFromWorld tmpWorld }
-  where 
+  where
       tmpWorld = world { box = (box world) {
               resolution = sqrt ((resolution (box world))**2 * r) }}
 ~~~~~~
@@ -1558,46 +1556,46 @@ All the rest is exactly the same.
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 idleAction :: Time -> World -> World
-idleAction tnew world = 
+idleAction tnew world =
       world {
         angle = angle world + (delta -*< zdir)
       , told = tnew
       }
-  where 
+  where
       delta = anglePerSec world * elapsed / 1000.0
       elapsed = fromIntegral (tnew - (told world))
 
 shapeFunc :: Scalar -> Function3D
-shapeFunc res x y = 
-  let 
+shapeFunc res x y =
+  let
       z = maxZeroIndex (ymandel x y) 0 1 20
   in
   if and [ maxZeroIndex (ymandel (x+xeps) (y+yeps)) 0 1 20 < 0.000001 |
               val <- [res], xeps <- [-val,val], yeps<-[-val,val]]
-      then Nothing 
+      then Nothing
       else Just (z,colorFromValue 0)
 
 colorFromValue :: Point -> Color
 colorFromValue n =
-  let 
+  let
       t :: Point -> Scalar
       t i = 0.0 + 0.5*cos( i /10 )
   in
     makeColor (t n) (t (n+5)) (t (n+10))
 
 -- given f min max nbtest,
--- considering 
+-- considering
 --  - f is an increasing function
 --  - f(min)=0
 --  - f(max)≠0
 -- then maxZeroIndex f min max nbtest returns x such that
 --    f(x - ε)=0 and f(x + ε)≠0
---    where ε=(max-min)/2^(nbtest+1) 
-maxZeroIndex :: (Fractional a,Num a,Num b,Eq b) => 
+--    where ε=(max-min)/2^(nbtest+1)
+maxZeroIndex :: (Fractional a,Num a,Num b,Eq b) =>
                  (a -> b) -> a -> a -> Int -> a
 maxZeroIndex _ minval maxval 0 = (minval+maxval)/2
-maxZeroIndex func minval maxval n = 
-  if func medpoint /= 0 
+maxZeroIndex func minval maxval n =
+  if func medpoint /= 0
        then maxZeroIndex func minval medpoint (n-1)
        else maxZeroIndex func medpoint maxval (n-1)
   where medpoint = (minval+maxval)/2
@@ -1629,10 +1627,10 @@ it is hard not to see all advantages it offers.
 
 The code in the two last sections is completely pure and functional.
 Furthermore I don't use `GLfloat`, `Color3` or any other OpenGL type.
-If I want to use another library in the future, 
+If I want to use another library in the future,
 I would be able to keep all the pure code and simply update the YGL module.
 
-The `YGL` module can be seen as a "wrapper" around 3D display and user interaction. 
+The `YGL` module can be seen as a "wrapper" around 3D display and user interaction.
 It is a clean separator between the imperative paradigm and functional paradigm.
 
 If you want to go further, it shouldn't be hard to add parallelism.
@@ -1640,5 +1638,5 @@ This should be easy mainly because most of the visible code is pure.
 Such an optimization would have been harder by using directly the OpenGL library.
 
 You should also want to make a more precise object. Because, the Mandelbulb is
-clearly not convex. But a precise rendering might be very long from 
+clearly not convex. But a precise rendering might be very long from
 O(n².log(n)) to O(n³).
