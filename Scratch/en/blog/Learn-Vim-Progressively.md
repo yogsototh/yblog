@@ -33,7 +33,7 @@ I suggest you teach yourself Vim in 4 steps:
 3. Feel Better, Stronger, Faster
 4. Use superpowers of vim
 
-By the end of this journey, you'll become a vim superstar. 
+By the end of this journey, you'll become a vim superstar.
 
 But before we start, just a warning.
 Learning vim will be painful at first.
@@ -69,9 +69,9 @@ And now, here are the commands that you need in order to survive in _Normal_ mod
 > - `:wq` → Save and Quit (`:w` save, `:q` quit)
 > - `dd` → Delete (and copy) the current line
 > - `p` → Paste
-> 
+>
 > Recommended:
-> 
+>
 > - `hjkl` (highly recommended but not mandatory) →  basic cursor move (←↓↑→). Hint: `j` looks like a down arrow.
 > - `:help <command>` → Show help about `<command>`. You can use `:help` without a `<command>` to get general help.
 
@@ -83,14 +83,14 @@ In standard editors, to copy you have to use the `Ctrl` key (`Ctrl-c` generally)
 In fact, when you press `Ctrl`, it is as if all of your keys change meaning.
 Using vim in normal mode is a bit like having the editor automatically press the `Ctrl` key for you.
 
-A last word about notations: 
+A last word about notations:
 
 - instead of writing `Ctrl-λ`, I'll write `<C-λ>`.
 - commands starting with `:` end with `<enter>`. For example, when I write `:q`, I mean `:q<enter>`.
 
 ## 2nd Level -- Feel comfortable
 
-You know the commands required for survival. 
+You know the commands required for survival.
 It's time to learn a few more commands.
 These are my suggestions:
 
@@ -140,7 +140,7 @@ At level 3, we'll only talk about commands which are compatible with the old vi 
 
 ### Better
 
-Let's look at how vim could help you to repeat yourself: 
+Let's look at how vim could help you to repeat yourself:
 
 1. `.` → (dot) will repeat the last command,
 2. N&lt;command&gt; → will repeat the command N times.
@@ -150,12 +150,12 @@ Some examples, open a file and type:
 > - `2dd` → will delete 2 lines
 > - `3p` → will paste the text 3 times
 > - `100idesu [ESC]` → will write "desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu "
-> - `.` → Just after the last command  will write again the 100 "desu ". 
+> - `.` → Just after the last command  will write again the 100 "desu ".
 > - `3.` → Will write 3 "desu" (and not 300, how clever).
 
 ### Stronger
 
-Knowing how to move efficiently with vim is _very_ important. 
+Knowing how to move efficiently with vim is _very_ important.
 Don't skip this section.
 
 1. N`G` → Go to line N
@@ -167,7 +167,7 @@ Don't skip this section.
     > 2. `e` → go to the end of this word.
     >
     > By default, words are composed of letters and the underscore character.
-    > Let's call a WORD a group of letter separated by blank characters. 
+    > Let's call a WORD a group of letter separated by blank characters.
     > If you want to consider WORDS, then just use uppercase characters:
     >
     > 1. `W` → go to the start of the following WORD,
@@ -199,7 +199,7 @@ For example : `0y$` means
 We also can do things like `ye`, yank from here to the end of the word.
 But also `y2/foo` yank up to the second occurrence of "foo".
 
-But what was true for `y` (yank), 
+But what was true for `y` (yank),
 is also true for `d` (delete), `v` (visual select), `gU` (uppercase), `gu` (lowercase), etc...
 
 ## 4th Level -- Vim Superpowers
@@ -243,7 +243,7 @@ Suppose the cursor is on the first `o` of `(map (+) ("foo"))`.
 
 blogimage("textobjects.png","Text objects selection")
 
-### Select rectangular blocks: `<C-v>`. 
+### Select rectangular blocks: `<C-v>`.
 
 Rectangular blocks are very useful for commenting many lines of code.
 Typically: `0<C-v><C-d>I-- [ESC]`
@@ -260,11 +260,11 @@ Note: in Windows you might have to use `<C-q>` instead of `<C-v>` if your clipbo
 ### Completion: `<C-n>` and `<C-p>`.
 
 In Insert mode, just type the start of a word, then type `<C-p>`, magic...
-blogimage("completion.gif","Completion") 
+blogimage("completion.gif","Completion")
 
 ### Macros : `qa` do something `q`, `@a`, `@@`
 
-`qa` record your actions in the _register_ `a`. 
+`qa` record your actions in the _register_ `a`.
 Then `@a` will replay the macro saved into the register `a` as if you typed it.
 `@@` is a shortcut to replay the last executed macro.
 
@@ -286,7 +286,7 @@ blogimage("macros.gif","Macros")
 
 ### Visual selection: `v`,`V`,`<C-v>`
 
-We saw an example with `<C-v>`. 
+We saw an example with `<C-v>`.
 There is also `v` and `V`.
 Once the selection has been made, you can:
 
@@ -298,7 +298,7 @@ blogimage("autoindent.gif","Autoindent")
 
 Add something at the end of all visually selected lines:
 
-- `<C-v>` 
+- `<C-v>`
 - go to desired line (`jjj` or `<C-d>` or `/pattern` or `%` etc...)
 - `$` go to the end of the line
 - `A`, write text, `ESC`.
