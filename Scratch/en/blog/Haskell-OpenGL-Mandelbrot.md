@@ -578,13 +578,13 @@ Modifying this formula will change radically the shape of the result.
 Here is the formula written in a more mathematical notation.
 I called the third component of these extended complex _strange_.
 
-$$ \mathrm{real}      ((x,y,z) * (x',y',z')) = xx' - yy' - zz' $$
+$$ \mathrm{real}      ((x,y,z) \times (x',y',z')) = xx' - yy' - zz' $$
 
-$$ \mathrm{im}        ((x,y,z) * (x',y',z')) = xy' - yx' + zz' $$
+$$ \mathrm{im}        ((x,y,z) \times (x',y',z')) = xy' - yx' + zz' $$
 
-$$ \mathrm{strange}   ((x,y,z) * (x',y',z')) = xz' + zx' $$
+$$ \mathrm{strange}   ((x,y,z) \times (x',y',z')) = xz' + zx' $$
 
-Note how if `z=z'=0` then the multiplication is the same to the complex one.
+Note how if \\(z=z'=0\\) then the multiplication is the same to the complex one.
 
 <div style="display:none">
 
