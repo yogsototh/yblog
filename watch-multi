@@ -12,11 +12,16 @@ ONCE=0
     exit 0
 }
 
-packagedb="$(print -- cabal-dev/packages-*.conf(N))"
-[[ $packagedb = "" ]] && {
+packagedb=( $(print -- cabal-dev/packages-*.conf(N)) )
+((${#packagedb} == 0 )) && {
     print -- "Please, wait the end of compilation and relaunch preview again"
     exit 1
-}
+}>&2
+((${#packagedb} > 1 )) && {
+    print -- "I need to use only one directory"
+    print -l -- $packagedb
+    exit 1
+}>&2
 
 languages=( $(runghc -package-db=$packagedb showlangs.hs) )
 print "languages to watch (in Config.hs) are: $languages"
