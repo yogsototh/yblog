@@ -2,22 +2,23 @@
 
 checkfile=".last_multi_watched"
 
+ONCE=0
+[[ $1 = "once" ]] && { ONCE=1 }
+
+((ONCE == 0)) && \
 [[ -e $checkfile ]] && \
 (( $(find $checkfile -mmin -1 | wc -l ) > 0)) && {
     print -- "watching in progress"
     exit 0
 }
 
-ONCE=0
-[[ $1 = "once" ]] && { ONCE=1 }
-
-packageconf="$(print -- cabal-dev/packages-*.conf(N))"
-[[ $packageconf = "" ]] && {
+packagedb="$(print -- cabal-dev/packages-*.conf(N))"
+[[ $packagedb = "" ]] && {
     print -- "Please, wait the end of compilation and relaunch preview again"
     exit 1
 }
 
-languages=( $(runghc -package-conf=$packageconf showlangs.hs) )
+languages=( $(runghc -package-db=$packagedb showlangs.hs) )
 print "languages to watch (in Config.hs) are: $languages"
 typeset -a exclu
 
