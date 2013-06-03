@@ -181,9 +181,9 @@ For this, we first need to add some _metadatas_ to our markdown[^1].
 [^1]: We could also add the metadatas in an external file (`foo.md.metadata`).
 
 ``` markdown
-{-hi-}---
-title: Cthulhu
----{-/hi-}
+{-hi-}--- {-/hi-}
+{-hi-}title: Cthulhu{-/hi-}
+{-hi-}--- {-/hi-}
 # Cthulhu
 
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn

@@ -182,9 +182,9 @@ Pour cela, nous devrons ajouter des _metadonnées_ à notre markdown[^1].
 [^1]: Nous pouvons aussi ajouter ces métadonnées dans un fichier externe (`toto.md.metadata`).
 
 ``` markdown
-{-hi-}---
-title: Cthulhu
----{-/hi-}
+{-hi-}--- {-/hi-}
+{-hi-}title: Cthulhu{-/hi-}
+{-hi-}--- {-/hi-}
 # Cthulhu
 
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn

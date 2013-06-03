@@ -263,9 +263,9 @@ en: [^1]: We could also add the metadatas in an external file (`foo.md.metadata`
 fr: [^1]: Nous pouvons aussi ajouter ces métadonnées dans un fichier externe (`toto.md.metadata`).
 
 ``` markdown
-{-hi-}---
-title: Cthulhu
----{-/hi-}
+{-hi-}--- {-/hi-}
+{-hi-}title: Cthulhu{-/hi-}
+{-hi-}--- {-/hi-}
 # Cthulhu
 
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
