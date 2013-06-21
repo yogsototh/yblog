@@ -15,7 +15,7 @@ blogimage("flying_neo.jpg","Neo Flying at warp speed")
 
 <div class="intro">
 
-_update_: updated for yesod 1.1.9
+_update_: updated for yesod 1.2
 
 %tldr A simple yesod tutorial.
 Yesod is a Haskell web framework.
@@ -122,7 +122,7 @@ Open a terminal session and do:
 
 ~~~~~~ {.bash}
 ~ cabal update
-~ cabal install yesod cabal-dev
+~ cabal install yesod yesod-bin cabal-dev
 ~~~~~~
 
 There are few steps but it should take some time to finish.
