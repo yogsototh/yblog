@@ -52,7 +52,8 @@ important metrics.
 
 # Tribulations
 
-If you don't care a bit why I made the decision I made, just [skip](#the-choice)
+If you don't care a bit how and why I took my decision 
+and you just want to know it, then just [go to the result](#the-choice).
 
 From the idea to the creation of the apparently most basic website you need a lot of competences.
 I don't even know where to begin.
