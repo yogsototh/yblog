@@ -647,7 +647,11 @@ If there is one, we replace the content.
 Otherwise we do nothing.
 
 Do you really believe I type
-``%latex``
+
+``` {.html .wrap}
+%latex
+```
+
 each time I write %latex?
 
 ### Manage two languages
