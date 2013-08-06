@@ -24,23 +24,24 @@ You've got your idea.
 You know you will be rich.
 You just need to make a very simple web application.
 
-So, that sounds easy!
+So, it sounds easy!
 Glory is just around the corner.
 
-In fact, you realize just after the first step that you are confonted to the
-terrible [**choice paralysis**](https://en.wikipedia.org/wiki/Analysis_paralysis).
+And after the first step you are victim of the terrible
+[**choice paralysis**](https://en.wikipedia.org/wiki/Analysis_paralysis) syndrom.
 
-What framework to choose?
-They all claim to be the best, and there are so many of them.
+Which framework should you choose?
+There is so many of them.
 The more you get informed for hardest it is to decide.
-Because at first you could simply say, let's take a random one.
-But many comments tells you that another framework will make the cost of the
-project a tenth the price if you use another framework.
+Some framework pretend to enhance dramatically your experience.
 
-So this is a question to take seriously.
+So, you can't take a completely random one.
+This is a serious question.
 
-Fortunately for you, I was there too.
-I believe I found the "best" current option.
+I too had to decide what technology to use.
+Now, after a long time searching I believe I found the best answer.
+It might change in some years but not tomorrow.
+
 By best, I mean the option which appear to be the best compromise between most
 important metrics.
 
@@ -49,37 +50,46 @@ important metrics.
 3. Quality of code
 4. Adaptable to change
 5. As bug free as possible
+6. Easy to deploy
+7. As portable as possible
 
 # Tribulations
 
-If you don't care a bit how and why I took my decision 
-and you just want to know it, then just [go to the result](#the-choice).
+If you just want to know my choice without knowing why,
+[click here to jump to the last section](#the-choice).
 
-From the idea to the creation of the apparently most basic website you need a lot of competences.
-I don't even know where to begin.
+I'll try to discover what an ideal web framework might look like.
 
+## Client side
+
+First, creating a website necessitate a lot of different competences.
 To begin, you need to know many different languages.
-The bare minimum being:
+The bare minimum are:
 
   * %html
   * %css
   * javascript
 
-For many reason these languages have a _lot_ of weaknesses.
-So, if you want to go to the next step you have different choices.
-
-The first being for each language, make a better language:
+For many historical reasons these languages have a _lot_ of weaknesses.
+So a natural first step is to use better language for each case:
 
 - for %html, use [HamL][haml] for example
 - for %css, use [sass][sass] or [less][less]
-- for javascript, use [coffeescript][cfs], or any of the huge possibility to compile to javascript from another language.
+- for javascript, use [coffeescript][cfs] or any other choice in this [huge list](https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS).
 
-This is a first try to make things better.
-But this is not sufficent for many things.
-The problem is not only these languages (technologies?) are weak.
+Using these kind of language is a very good first step.
+But after a while, we discover that this is not enough.
+
+The problem is not only these languages are weak separately.
 They also tend to not work properly together.
+In fact, each language is far from independant to the other part.
+This cause major difficulties in code organisation.
 
-Obligatory proof:
+**Example**:
+    Using the standard recommandation use as much HTML and CSS as possible.
+    Don't use tables for layout and use as few javascript as possible.
+    In particular, you must remember the solution must works
+    at least on all modern browser (yes IE too).
 
 > Try to create a webpage containing a single centered red box.
 > The box containing a centered white text.
@@ -88,19 +98,38 @@ Obligatory proof:
 > Note the size of the box and of the text must be dynamic.
 > I mean, the text can be on many lines and the box is ¼ the size of the window for example.
 
-Try doing this without using tables nor javascript.
 Whatever the solution is (if there is one), it is certainly over complicated.
-In particular, you must remember the solution must works at least on all modern
-browser.
+Generally, vertical center things dynamically with html and css is a nightmare.
 
-While it will certainly possible to do that, the size of the restult will be very long
-compared to the sentence I used.
-Knowing I expressed all necessary details in the sentence.
+Why isn't there something like:
 
-So on the next step, some realized you could do everything in javascript.
+``` html
+<div id="redblock">
+    <p>The text</p>
+</div>
+```
+
+``` css
+#redblock,
+#redblock p {
+    text-align: center;
+    align: center middle; // <- Why doesn't this exist?
+}
+#redblock {
+    width: 50%;
+    height: 50%;
+    background: #880000;
+    color: #FFF;
+    overflow: hidden;
+}
+```
+
+In search of minimizing the number of different languages you need to use.
+The next natural step is to simply use javascript for everything.
 Javascript can create %html and %css dynamically.
-For example see [Cappuccino][cappuccino]. In fact, cappuccino use [Objective-J][objj].
-A language inspired from Objective-C which compile to javascript.
+For example see [Cappuccino][cappuccino].
+In fact, Cappuccino use [Objective-J][objj],
+a language inspired from Objective-C which compile to javascript.
 
 When I discovered [Cappuccino][cappuccino] I was really impressed.
 You don't have to know %html nor %css to make highly responsive web application.
@@ -112,10 +141,29 @@ But this doesn't end here. For now I only talked about client side code.
 If you want to create a real website you have to take care about the server side.
 Here, as the layer is thinner (mostly HTTP) there are many different choices.
 
-Most programming languages have libraries of framework to help you create
+# Server side
+
+Most programming languages have libraries or framework to help you create
 a web server.
 
-For the entreprise Java J2EE (ugly but mostly works).
+If you restrain yourself to the most popular for the most mainstream languages
+you still need to choose between:
+    Java J2EE,
+    rails (ruby),
+    django (python),
+    Zend (PHP),
+    node.js (javascript)
+
+A more [complete list](https://en.wikipedia.org/wiki/Comparison_of_web_application_frameworks#Others) gives you more than 100 choices for about 23 different programming languages.
+
+So, nobody could compare all of them using all the most important metrics.
+I mean, we could compare their response time given a specific project
+[benchmarks](http://www.techempower.com/blog/2013/05/17/frameworks-round-5/).
+
+But it is far more difficult to measure how easy it is to create a new web app.
+To measure how easy it is to change something before launch and after your
+application is launched.
+
 For the startups the current trends appear to be node.js while rails and django
 continue to be highly used.
 Some continue to use PHP (Zend) even if it is critized more and more.
