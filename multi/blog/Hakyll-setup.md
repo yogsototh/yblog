@@ -192,8 +192,8 @@ fr: Si le fichier ``posts/foo.md`` contient
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 ```
 
-en: the file ``posts/foo.md``, will contain
-fr: le fichier ``posts/foo.md``, contiendra
+en: the file ``_site/posts/foo.html``, will contain
+fr: le fichier ``_site/posts/foo.html``, contiendra
 
 ``` html
 <h1>Cthulhu</h1>

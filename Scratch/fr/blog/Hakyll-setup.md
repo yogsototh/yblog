@@ -124,7 +124,7 @@ Si le fichier ``posts/foo.md`` contient
 ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn
 ```
 
-le fichier ``posts/foo.md``, contiendra
+le fichier ``_site/posts/foo.html``, contiendra
 
 ``` html
 <h1>Cthulhu</h1>

@@ -5,25 +5,26 @@ checkfile=".last_multi_watched"
 ONCE=0
 [[ $1 = "once" ]] && { ONCE=1 }
 
+error(){print -- $* >&2; exit 1}
+
 ((ONCE == 0)) && \
 [[ -e $checkfile ]] && \
-(( $(find $checkfile -mmin -1 | wc -l ) > 0)) && {
-    print -- "watching in progress"
-    exit 0
+{
+currenttime=$(date +"%s")
+checkfilemodifiedtime=$(find $checkfile -printf "%Ts\n")
+(( $currenttime - $checkfilemodifiedtime  < 5)) && error "watching in progress (wait at least 5 seconds if you killed it)"
 }
 
-packagedb=( $(print -- cabal-dev/packages-*.conf(N)) )
-((${#packagedb} == 0 )) && {
-    print -- "Please, wait the end of compilation and relaunch preview again"
-    exit 1
-}>&2
-((${#packagedb} > 1 )) && {
+packageconf=( $(print -- cabal-dev/packages-*.conf(N)) )
+((${#packageconf} == 0 )) && error "Please, wait the end of compilation and relaunch preview again"
+((${#packageconf} > 1 )) && {
     print -- "I need to use only one directory"
-    print -l -- $packagedb
+    print -l -- $packageconf
     exit 1
 }>&2
 
-languages=( $(runghc -package-db=$packagedb showlangs.hs) )
+languages=( $(runghc -package-conf=$packageconf showlangs.hs) )
+((${#languages} == 0)) && error "Couldn't retrieve languages [runghc -package-db=$packageconf showlang.hs]"
 print "languages to watch (in Config.hs) are: $languages"
 typeset -a exclu
 
