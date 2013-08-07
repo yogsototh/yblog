@@ -2,10 +2,10 @@
 kind:           article
 published:      2013-08-06
 image: /Scratch/img/blog/next-web-techno/main.png
-title: next web techno
+title: Choosing the web techonology
 author: Yann Esposito
 authoruri: yannesposito.com
-tags: programming
+tags: programming, framework, web
 theme: scientific
 ---
 blogimage("main.png","Main image")
@@ -33,6 +33,51 @@ There is so many of them.
 The more you get informed for hardest it is to decide.
 Some framework pretend to enhance dramatically your experience.
 
+Most people choose by answering the two following questions:
+
+Which language am I familiar with? 
+What is the most popular web framework for this language?
+
+But behind your head you couldn't think about what if there were another
+better web framework in another language?
+
+The question I try to answer here is how to determine the most objectively
+possible the best framework from a technical point of vue.
+In fact, there will be different choices depending on your needs.
+
+For example:
+
+- if you want to develop a website for you alone.
+- if you want to create a startup with 2 or 3 technical friends and know
+you'll have to grow your number of developper soon.
+
+So how to determine the _best_ possible framework being as objective as possible?
+
+There are many different metrics.
+
+1. _Expressiveness_, which is generally correlated to:
+    - faster development
+    - easier to handle specification
+    - how the framework will react to specification change and feature requests?
+
+2. _Efficiency_, which is generally correlated to:
+   - how much processing power you'll need per user
+   - how long the user will wait to see/update datas
+
+3. _Popularity_, which correlate with:
+   - number of tested libraries
+   - facility to find learning material
+   - ability to find another developper to work with
+
+4. _Robustness_, which correlate with:
+    - security
+    - fewer bugs
+
+**Remark**: I don't care much about popularity.
+In fact, while a language is popular enough to have a sufficiently large
+library for most usage, the language is good for me.
+So popularity work more like a threshold in my model of choice.
+
 So, you can't take a completely random one.
 This is a serious question.
 
@@ -51,7 +96,124 @@ important metrics.
 6. Easy to deploy
 7. As portable as possible
 
-# Tribulations
+# Objective measures
+
+None of these property can be measured with perfect precision.
+But each time we should get an order of magnitude for each.
+For some properties it is easier than from other.
+
+For example, popularity measure can be quite correct (at least for the most popular languages).
+It is more complex to measure the efficiency, expressiveness and easiness, but
+we can have good enough indicators.
+
+As each indicator lack of precision, we will focus on giving order of magnitude.
+
+## Popularity
+
+[RedMonk Programming Language Rankings (January 2013)][redmonk] 
+provide an apparent good measure of popularity.
+While not perfect the current measure feel mostly right.
+They create an image using stack overflow and github datas.
+Vertical correspond to the number of questions on stackoverflow.
+Horizontal correspond to the number of projects on github.
+
+If you look at the image, your eye can see about four clusters.
+The 1st cluster correspond to mainstream languages:
+
+blogfigure("mainstreamlanguages.png","Mainstream Languages Cluster from [RedMonk][redmonk]")
+
+Javascript, Java, PHP, Python, Ruby, C#, C++, C, Objective-C, Perl, Shell
+
+Most developper know at least one of these language.
+
+The second cluster is quite bigger.
+It seems to correspond to languages with a solid community behind them.
+
+blogfigure("secondtierlanguages.png","Second tier languages from [RedMonk][redmonk]")
+
+[redmonk]: http://redmonk.com/sogrady/2013/02/28/language-rankings-1-13/
+
+I won't talk about third and fourth tier languages.
+
+I have the feeling that most of the third, fourth tier cluster languages haven't
+reached the critical mass to have a sufficently big community to help you in
+case of problem. This is to count in the _subjective_ part. For now, I believe
+it would be very hard to verify the number of libraries provided for each languages.
+But it doesn't feel wrong to suppose it will be closely related to the three
+measures: popularity, expressiveness and easiness.
+
+I might be very wrong for some languages thought (for example Common Lisp).
+
+## Efficiency
+
+Another objective measure is efficiency.
+More precisely, how fast is a language?
+
+While this is not perfect here are some benchmarks to give an idea of magniture order:
+
+[benchmarks](http://benchmarksgame.alioth.debian.org/u64q/benchmark.php?test=all&lang=all&data=u64q)
+
+Mainly, there are some clusters:
+
+1. very fast languages (1x→2x):  
+    * C, C++, ADA, Fortran, ATS
+2. fast languages (2x→3x):  
+    * Java 7, Scala, OCamL, Haskell GHC, Go, Common LISP
+3. Reasonably fast languages (3x→10x):  
+    * C#, Clojure,, Pascal, Racket, Dart
+4. A bit slow (10x→30x):  
+    * Erlang
+5. Slow languages (30x→):  
+    * PHP ; huge variations, can be about 1.5x C speed in best case.
+    * Python ; huge variations, can be about 1.5x C speed in best case
+    * Perl ; Can be about 3x C speed in best case
+    * Ruby, JRuby ; mostly very slow.
+
+This is a first approach. The speed of the language for basic benchmarks.
+But, here we are interrested in web programming.
+Fortunately techempower has made some tests for all web framework this time.
+
+[Web framework benchmarks](http://www.techempower.com/blog/2013/05/17/frameworks-round-6/).
+
+As always, these value quite informative are also quite imprecise relatively to 
+how all of this will respond for your own application.
+
+So we continue to create clusters.
+
+Now, how to objectively measure expressiveness?
+
+Here is a very good idea that helped to give an objective (while imprecise)
+metrics of each language expressiveness:
+[click here](http://redmonk.com/dberkholz/2013/03/25/programming-languages-ranked-by-expressiveness/).
+
+## Robustness
+
+I couldn't find any complete study to give the number of bug relatively
+to each framework/language.
+
+But on thing I saw from experience is the more powerful the type system the
+safest your application is. While not removing completely the need to
+test your application each progress toward a better type system tend to
+remove complete classes of bug.
+
+Typically, not using pointer in Java help reducing the number of error due to
+bad reference.
+
+blogfigure("typesystem.png","Static Type Properties from [James IRY Blog][typesanalysis]")
+
+[typesanalysis]: http://james-iry.blogspot.fr/2010/05/types-la-chart.html
+
+# The choice
+
+* **Front end**: Take any reactive framework. The most popular is boostrap, so why not?
+Most informations are in the %html. So could be handled on the server side.
+* **Server side**: Yesod
+
+One word about Haskell when you want to _use_ it and not to study it or play with it.
+
+# Appendice - Tribulations
+
+How I experienced web developement.
 
 If you just want to know my choice without knowing why,
 [click here to jump to the last section](#the-choice).
@@ -254,12 +416,3 @@ Yep.
 [less]: http://lesscss.org
 [cfs]: http://coffeescript.org
 [objj]: http://www.cappuccino-project.org/learn/objective-j.html
-
-# The choice
-
-* **Front end**: Take any reactive framework. The most popular is boostrap, so why not?
-Most informations are in the %html. So could be handled on the server side.
-* **Server side**: Yesod
-
-One word about Haskell when you want to _use_ it and not to study it or play with it.
-
