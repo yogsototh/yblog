@@ -2,11 +2,11 @@
 kind:           article
 published:      2013-08-06
 image: /Scratch/img/blog/next-web-techno/main.png
-en: title: next web techno
-fr: title: next web techno
+en: title: Choosing the web techonology
+fr: title: Choisir son framework
 author: Yann Esposito
 authoruri: yannesposito.com
-tags: programming
+tags: programming, framework, web
 theme: scientific
 ---
 blogimage("main.png","Main image")
@@ -68,17 +68,14 @@ There are many different metrics.
 
 3. _Popularity_, which correlate with:
    - number of tested libraries
-   - easiness to find another developper to work with
+   - facility to find learning material
+   - ability to find another developper to work with
 
-4. _Easiness_, which correlate with:
-    - how much time will it take to learn the framework before being able to
-      create a good enough product.
-
-5. _Robustness_, which correlate with:
+4. _Robustness_, which correlate with:
     - security
     - fewer bugs
 
-**Remark**: I don't car much about popularity.
+**Remark**: I don't care much about popularity.
 In fact, while a language is popular enough to have a sufficiently large
 library for most usage, the language is good for me.
 So popularity work more like a threshold in my model of choice.
