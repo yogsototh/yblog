@@ -11,7 +11,7 @@ error(){print -- $* >&2; exit 1}
 [[ -e $checkfile ]] && \
 {
 currenttime=$(date +"%s")
-checkfilemodifiedtime=$(find $checkfile -printf "%Ts\n")
+checkfilemodifiedtime=$(stat -f %m $checkfile)
 (( $currenttime - $checkfilemodifiedtime  < 5)) && error "watching in progress (wait at least 5 seconds if you killed it)"
 }
 
