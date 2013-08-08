@@ -1,8 +1,8 @@
 ---
 kind:           article
 published:      2013-08-06
-image: /Scratch/img/blog/next-web-techno/main.png
-title: Choisir son framework
+image: /Scratch/img/blog/Rational-Web-Framework-Choice/main.png
+title: Rational Web Framework Choice
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming, framework, web
@@ -12,8 +12,8 @@ blogimage("main.png","Main image")
 
 <div class="intro">
 
+%tldr
 
-%tlal
 
 </div>
 
