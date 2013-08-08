@@ -11,7 +11,11 @@ error(){print -- $* >&2; exit 1}
 [[ -e $checkfile ]] && \
 {
 currenttime=$(date +"%s")
-checkfilemodifiedtime=$(stat -f %m $checkfile)
+case uname in
+    Darwin) checkfilemodifiedtime=$(stat -f %m $checkfile)
+    Linux) checkfilemodifiedtime=$(stat --printf %Y $checkfile)
+    *) checkfilemodifiedtime=$(stat --printf %Y $checkfile)
+esac
 (( $currenttime - $checkfilemodifiedtime  < 5)) && error "watching in progress (wait at least 5 seconds if you killed it)"
 }
 
