@@ -54,6 +54,7 @@ newimgdirname="$image_blog_dir/$newblogname"
     perl -pe 's#^image: /'$oldimgdirname'#image: /'$newimgdirname'#' | \
     perl -pe 's#^(..): title:.*$#$1: title: '$title'#'
 } > $newfilename
+\rm $oldfilename
 \rm Scratch/*/blog/$oldblogname.md
 rmdir ${oldfilename:h}
 
