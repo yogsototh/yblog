@@ -35,8 +35,8 @@ Some framework pretend to enhance dramatically your experience.
 
 Most people choose by answering the two following questions:
 
-Which language am I familiar with? 
-What is the most popular web framework for this language?
+**Which language am I familiar with?  
+What is the most popular web framework for this language?**
 
 But behind your head you couldn't think about what if there were another
 better web framework in another language?

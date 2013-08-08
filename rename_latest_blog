@@ -43,8 +43,8 @@ newblogname="$newbasefilename"
 # yearmonthday=$( date "+%Y-%m-%d" )
 #
 # blogname="${yearmonthday}-$basefilename"
-oldfilename="$blog_dir/$blogname.md"
-newfilename="$blog_dir/$blogname.md"
+oldfilename="$blog_dir/$oldblogname.md"
+newfilename="$blog_dir/$newblogname.md"
 
 # create directory if doesn't exists
 [[ ! -d ${newfilename:h} ]] && mkdir -p ${newfilename:h}
