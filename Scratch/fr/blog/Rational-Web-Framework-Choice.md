@@ -17,86 +17,120 @@ blogimage("main.png","Main image")
 
 </div>
 
-This is it.
-You've got your idea.
-You know you will be rich.
+This is it.  
+You've got your idea.  
+You know you will be rich.  
 You just need to make a very simple web application.
 
-So, it sounds easy!
+It sounds easy!
 Glory is just around the corner.
+Let's choose a good modern web framework.
+Let's see which one I'll choose:
 
-And after the first step you are victim of the terrible
-[**choice paralysis**](https://en.wikipedia.org/wiki/Analysis_paralysis) syndrom.
+blogfigure("choice_paralysis.gif","[Choice Paralysis][choice_paralysis]")
 
-Which framework should you choose?
-There is so many of them.
-The more you get informed for hardest it is to decide.
-Some framework pretend to enhance dramatically your experience.
+[choice_paralysis]: https://en.wikipedia.org/wiki/Analysis_paralysis
 
-Most people choose by answering the two following questions:
+After your brain stack overflowed, you decide to use a very simple methodology.
+Answer two questions:
 
 **Which language am I familiar with?  
 What is the most popular web framework for this language?**
 
-But behind your head you couldn't think about what if there were another
-better web framework in another language?
+Great! This is it.
+
+But, the night when you are alone in your bed, your hear this little voice.
+You know the one.
+
+> **"You didn't made a bad choice, yes. But ...  
+> you hadn't made the best either."**
 
 The question I try to answer here is how to determine the most objectively
-possible the best framework from a technical point of vue.
-In fact, there will be different choices depending on your needs.
+and rationaly possible the best(s) web framework(s).
 
-For example:
+I will use the following methodology:
 
-- if you want to develop a website for you alone.
-- if you want to create a startup with 2 or 3 technical friends and know
-you'll have to grow your number of developper soon.
+> ### Methodology
+> 
+> 1. Modelize how to make choice 
+>     a. choose important parameters
+>     b. organize (hierarchize) them
+>     c. write down an objective chooser
+> 2. Grab objective quantified informations about web frameworks relatively to choosen parameters
+> 3. Sanitize your data in order to handle imprecisions, lack of informations...
+> 4. Apply the model of choice to your informations
 
-So how to determine the _best_ possible framework being as objective as possible?
+## Modelize
 
-There are many different metrics.
+Here are the important features (parameters) I decided to use for my choice:
 
-1. _Expressiveness_, which is generally correlated to:
+1. _**Expressiveness**_, which is generally correlated to:
     - faster development
-    - easier to handle specification
-    - how the framework will react to specification change and feature requests?
+    - flexibility, adaptability
 
-2. _Efficiency_, which is generally correlated to:
+2. _**Robustness**_, which correlate with:
+    - security
+    - fewer bugs
+
+3. _**Efficiency**_, which is generally correlated to:
    - how much processing power you'll need per user
    - how long the user will wait to see/update datas
 
-3. _Popularity_, which correlate with:
+4. _**Popularity**_, which correlate with:
    - number of tested libraries
    - facility to find learning material
    - ability to find another developper to work with
 
-4. _Robustness_, which correlate with:
-    - security
-    - fewer bugs
+Each feature is quite important and mostly independant.
 
-**Remark**: I don't care much about popularity.
-In fact, while a language is popular enough to have a sufficiently large
-library for most usage, the language is good for me.
-So popularity work more like a threshold in my model of choice.
+## modelization
 
-So, you can't take a completely random one.
-This is a serious question.
+Unfortunately, these kind of properties are very hard to measure with precision
+and we could only get an order of magnitude.
+So we will end up with "clusters" of values:
 
-I too had to decide what technology to use.
-Now, after a long time searching I believe I found the best answer.
-It might change in some years but not tomorrow.
+<div class="small">
 
-By best, I mean the option which appear to be the best compromise between most
-important metrics.
+------------------ ----------- ------- -------- -------- ---------
+**Efficiency**       Excellent    Good  Correct     Slow  Sluggish
+**Robustness**       Excellent    Good  Correct      Bad    Unsafe
+**Expressiveness**        High  Medium      Low
+**Popularity**      Mainstream  Medium      Low  Obscure
+------------------ ----------- ------- -------- -------- ---------
 
-1. Time to load the web page to the user
-2. Time to create the website.
-3. Quality of code
-4. Adaptable to change
-5. As bug free as possible
-6. Easy to deploy
-7. As portable as possible
+</div>
 
-# Objective measures
+So how to make a decision model from these informations?
+
+One of the most versatile method is to give a weight for each cluster value.
+And to select the the framework maximizing this score:
+
+```
+score(framework) = efficiency × robustness × expressiveness × popularity
+```
+
+For example:
+
+<div class="small">
+
+-------------- ---- --- --- --- ---
+Efficiency      100  80  50  30  10
+Robustness      100  80  50  30  10
+Expressiveness  100  50  10
+Popularity      10   10   0   0
+-------------- ---- --- --- --- ---
+
+</div>
+
+Using this matrix, that means we discard the two last popular clusters.
+And we don't care if the framework is popular or just middly popular.
+
+That also means, excellent expressive framework are 10x more likely to be chosen than wors expressive class.
+
+We will give better insight in the choice section.
+It is now time to try to get these measures.
+
+## Objective measures
 
 None of these property can be measured with perfect precision.
 But each time we should get an order of magnitude for each.
@@ -108,7 +142,7 @@ we can have good enough indicators.
 
 As each indicator lack of precision, we will focus on giving order of magnitude.
 
-## Popularity
+### Popularity
 
 [RedMonk Programming Language Rankings (January 2013)][redmonk] 
 provide an apparent good measure of popularity.
@@ -122,7 +156,7 @@ The 1st cluster correspond to mainstream languages:
 
 blogfigure("mainstreamlanguages.png","Mainstream Languages Cluster from [RedMonk][redmonk]")
 
-Javascript, Java, PHP, Python, Ruby, C#, C++, C, Objective-C, Perl, Shell
+Javascript, Java, PHP, Python, Ruby, `C#`, `C++`, `C`, Objective-C, Perl, Shell
 
 Most developper know at least one of these language.
 
@@ -144,7 +178,7 @@ measures: popularity, expressiveness and easiness.
 
 I might be very wrong for some languages thought (for example Common Lisp).
 
-## Efficiency
+### Efficiency
 
 Another objective measure is efficiency.
 More precisely, how fast is a language?
@@ -156,7 +190,7 @@ While this is not perfect here are some benchmarks to give an idea of magniture 
 Mainly, there are some clusters:
 
 1. very fast languages (1x→2x):  
-    * C, C++, ADA, Fortran, ATS
+    * `C`, `C++`, ADA, Fortran, [ATS](http://www.ats-lang.org/)
 2. fast languages (2x→3x):  
     * Java 7, Scala, OCamL, Haskell GHC, Go, Common LISP
 3. Reasonably fast languages (3x→10x):  
@@ -186,7 +220,7 @@ Here is a very good idea that helped to give an objective (while imprecise)
 metrics of each language expressiveness:
 [click here](http://redmonk.com/dberkholz/2013/03/25/programming-languages-ranked-by-expressiveness/).
 
-## Robustness
+### Robustness
 
 I couldn't find any complete study to give the number of bug relatively
 to each framework/language.
@@ -203,7 +237,7 @@ blogfigure("typesystem.png","Static Type Properties from [James IRY Blog][typesa
 
 [typesanalysis]: http://james-iry.blogspot.fr/2010/05/types-la-chart.html
 
-# The choice
+## The choice
 
 * **Front end**: Take any reactive framework. The most popular is boostrap, so why not?
 Most informations are in the %html. So could be handled on the server side.
@@ -211,7 +245,7 @@ Most informations are in the %html. So could be handled on the server side.
 
 One word about Haskell when you want to _use_ it and not to study it or play with it.
 
-# Appendice - Tribulations
+## Appendice - Tribulations
 
 How I experienced web developement.
 
@@ -220,7 +254,7 @@ If you just want to know my choice without knowing why,
 
 I'll try to discover what an ideal web framework might look like.
 
-## Client side
+### Client side
 
 First, creating a website necessitate a lot of different competences.
 To begin, you need to know many different languages.
@@ -301,7 +335,7 @@ But this doesn't end here. For now I only talked about client side code.
 If you want to create a real website you have to take care about the server side.
 Here, as the layer is thinner (mostly HTTP) there are many different choices.
 
-# Server side
+### Server side
 
 Most programming languages have libraries or framework to help you create
 a web server.
