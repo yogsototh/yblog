@@ -45,14 +45,18 @@ newblogname="$newbasefilename"
 # blogname="${yearmonthday}-$basefilename"
 oldfilename="$blog_dir/$oldblogname.md"
 newfilename="$blog_dir/$newblogname.md"
+oldimgdirname="$image_blog_dir/$oldblogname"
+newimgdirname="$image_blog_dir/$newblogname"
 
 # create directory if doesn't exists
 [[ ! -d ${newfilename:h} ]] && mkdir -p ${newfilename:h}
-mv $oldfilename $newfilename
+< $oldfilename {
+    perl -pe 's#^image: /'$oldimgdirname'#image: /'$newimgdirname'#' | \
+    perl -pe 's#^(..): title:.*$#$1: title: '$title'#'
+} > $newfilename
+\rm Scratch/*/blog/$oldblogname.md
 rmdir ${oldfilename:h}
 
-oldimgdirname="$image_blog_dir/$oldblogname"
-newimgdirname="$image_blog_dir/$newblogname"
 mv $oldimgdirname $newimgdirname
 
 ln -sf $newfilename $linkname
