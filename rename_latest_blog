@@ -1,0 +1,61 @@
+#!/usr/bin/env zsh
+
+currentgitbranch=$( git br | grep '*' | awk '{print $2}' )
+[[ $currentgitbranch = "master" ]] && {
+    print -- "For link viability reason you shouldn't rename after publishing"
+    print -- "Are you really sure you want to rename? (y/N)"
+    read answer
+    case ${answer:l} in
+        y|yes) : ;;
+        *) exit 1 ;;
+    esac
+}
+
+# print usage if no title is given
+if (($#<1)); then
+    print -- "Rename the latest blog entry."
+    print -P -- "%BUsage:%b\t$0:t new_post_title"
+    exit 1
+fi
+
+cd $0:t/..
+root="$PWD"
+
+title="$*"
+
+# CONFIG
+blog_dir="multi/blog"
+image_blog_dir="Scratch/img/blog"
+
+oldbasefilename="$(file latest.ymd | awk '{print $5}' | sed 's#.*/##;s#\.md.$##')"
+
+# basefilename is the filename where all spaces
+# were replaced by '-'
+# and all accentued letter by corresponding ASCII one
+newbasefilename="$( print $title | perl -pe 'chomp(); s#ç#c#g; s#àâ#a#g; s#éèê#e#g; s#ô#o#g; s#û#u#g; s#\W#-#g')"
+
+# construct the final filename
+linkname="$root/latest.ymd"
+imglinkname="$root/img_latest_blog_dir"
+oldblogname="$oldbasefilename"
+newblogname="$newbasefilename"
+# Uncomment if you prefer use date-title name for url
+# yearmonthday=$( date "+%Y-%m-%d" )
+#
+# blogname="${yearmonthday}-$basefilename"
+oldfilename="$blog_dir/$blogname.md"
+newfilename="$blog_dir/$blogname.md"
+
+# create directory if doesn't exists
+[[ ! -d ${newfilename:h} ]] && mkdir -p ${newfilename:h}
+mv $oldfilename $newfilename
+rmdir ${oldfilename:h}
+
+oldimgdirname="$image_blog_dir/$oldblogname"
+newimgdirname="$image_blog_dir/$newblogname"
+mv $oldimgdirname $newimgdirname
+
+ln -sf $newfilename $linkname
+[[ -e $newimglinkname ]] && \rm $imglinkname
+ln -sf $newimgdirname $imglinkname
+vim $linkname
