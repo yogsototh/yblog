@@ -51,7 +51,7 @@ I will use the following methodology:
 
 > ### Methodology
 > 
-> 1. Modelize how to make choice 
+> 1. Model how to make choice 
 >     a. choose important parameters
 >     b. organize (hierarchize) them
 >     c. write down an objective chooser
@@ -59,7 +59,7 @@ I will use the following methodology:
 > 3. Sanitize your data in order to handle imprecisions, lack of informations...
 > 4. Apply the model of choice to your informations
 
-## Modelize
+## Model
 
 Here are the important features (parameters) I decided to use for my choice:
 
@@ -73,22 +73,18 @@ Here are the important features (parameters) I decided to use for my choice:
 
 3. _**Efficiency**_, which is generally correlated to:
     - how much processing power you'll need per user
-    - how long the user will wait to see/update datas
+    - how long the user will wait to see/update data
 
 4. _**Popularity**_, which correlate with:
     - number of tested libraries
     - facility to find learning material
-    - ability to find another developper to work with
+    - ability to find another developer to work with
 
-Each feature is quite important and mostly independant.
-
-## modelization
+Each feature is quite important and mostly independent.
 
 Unfortunately, these kind of properties are very hard to measure with precision.
-In fact we could only get order of magniture for each.
+In fact we could only get order of magnitude for each.
 In the end, we will have _clusters_ (please, don't take offense about the strong adjectives, I could have used school notations from A to F):
-
-<div class="small">
 
 ------------------ ----------- ------- -------- -------- ---------
 **Efficiency**       Excellent    Good  Correct     Slow  Sluggish
@@ -97,21 +93,16 @@ In the end, we will have _clusters_ (please, don't take offense about the strong
 **Popularity**      Mainstream  Medium      Low  Obscure
 ------------------ ----------- ------- -------- -------- ---------
 
-</div>
-
-
 So how to make a decision model from these informations?
 
 One of the most versatile method is to give a weight for each cluster value.
-And to select the the framework maximizing this score:
+And to select the framework maximizing this score:
 
 ```
 score(framework) = efficiency × robustness × expressiveness × popularity
 ```
 
 For example:
-
-<div class="small">
 
 -------------- ---- --- --- --- ---
 Efficiency      100  80  50  30  10
@@ -120,10 +111,8 @@ Expressiveness  100  50  10
 Popularity      10   10   0   0
 -------------- ---- --- --- --- ---
 
-</div>
-
 Using this weighted table, that means we discard the two last popular clusters.
-And we don't make any difference between popular and middly popular frameworks.
+And we don't make any difference between popular and mildly popular frameworks.
 
 Also, excellent expressive framework are 10x more likely to be chosen than worst expressive class.
 
@@ -153,18 +142,16 @@ As each indicator lack of precision, we will focus on giving order of magnitude.
 [RedMonk Programming Language Rankings (January 2013)][redmonk]
 provide an apparent good measure of popularity.
 While not perfect the current measure feel mostly right.
-They create an image using stack overflow and github datas.
+They create an image using stack overflow and github data.
 Vertical correspond to the number of questions on stackoverflow.
 Horizontal correspond to the number of projects on github.
 
 If you look at the image, your eye can see about four clusters.
-The 1st cluster correspond to mainstream languages:
+The 1ﬆ cluster correspond to mainstream languages:
 
 blogfigure("mainstreamlanguages.png","Mainstream Languages Cluster from [RedMonk][redmonk]")
 
-Javascript, Java, PHP, Python, Ruby, `C#`, `C++`, `C`, Objective-C, Perl, Shell
-
-Most developper know at least one of these language.
+Most developer know at least one of these language.
 
 The second cluster is quite bigger.
 It seems to correspond to languages with a solid community behind them.
@@ -174,6 +161,22 @@ blogfigure("secondtierlanguages.png","Second tier languages from [RedMonk][redmo
 [redmonk]: http://redmonk.com/sogrady/2013/02/28/language-rankings-1-13/
 
 I don't get into detail, but you could also see third and fourth tier popular languages.
+
+So:
+
+**Mainstream**:
+JavaScript, Java, PHP, Python, Ruby, `C#`, `C++`, `C`, Objective-C, Perl, Shell
+
+**Good**: Scala, Haskell, Visual Basic, Assembly, R, Matlab, ASP, ActionScript, Coffeescript,
+Groovy, Clojure, Lua, Prolog
+
+**Medium**: Erlang, Go, Delphi, D, Racket, Scheme, ColdFusion,
+F#, FORTRAN, Arduino, Tcl, Ocaml
+
+**Bad**: third tier
+**Very Bad**: fourth tier
+
+I don't thing I could find easily web frameworks for third or fourth tier languages.
 
 ### Efficiency
 
@@ -210,9 +213,105 @@ Fortunately techempower has made some tests focused on most web frameworks:
 
 As always, these value quite informative are also quite imprecise relatively to 
 how all of this will respond for your own application.
-So we continue to create clusters:
+So I simply made some classes of efficiency.
+This measure can be quite important, because it will mean your
+application will need more money to run.
+Typically, 2x, means you'll need twice the computer power to achieve the same result.
+If the framework works as expected, that will mean paying for two computer instead of only one.
 
-**TODO**
+-------------------- --- -------
+         cpoll-cppsp C++ 114,711
+              gemini Jav 105,204
+           openresty Lua  93,882
+             servlet Jav  90,580
+          cpoll-pool C++  89,167
+                  go  Go  76,024
+             finagle Sca  68,413
+               revel  Go  66,990
+        rest-express Jav  63,209
+-------------------- --- -------
+
+Table: 1x to 2x
+
+-------------------- --- ------- ----
+              wicket Jav  48,772   2x
+            scalatra Sca  48,594
+            http-kit Clj  42,703
+              spring Jav  36,643   3x
+                 php PHP  36,605
+            tapestry Jav  35,032
+           compojure Clj  32,088
+               ringo  JS  31,962
+          dropwizard Jav  31,514
+             luminus Clj  30,672
+          play-slick Sca  29,950   4x
+          unfiltered Sca  29,782
+                elli Erl  28,862
+               vertx Jav  28,075
+              nodejs  JS  27,598
+              cowboy Erl  24,669
+               onion   C  23,649
+               yesod Hkl  23,304
+-------------------- --- ------- ----
+
+Table: 2x to 5x
+
+-------------------- --- ------- ----
+             express  JS  22,856   5x
+          play-scala Sca  22,372
+      grizzly-jersey Jav  20,550
+             tornado  Py  20,372   6x
+             phalcon PHP  18,481
+              grails Grv  18,467
+               plack Prl  16,647   7x
+                 yaf PHP  14,388
+-------------------- --- ------- ----
+
+Table: 5x to 10x
+
+-------------------- --- ------- ----
+                hapi  JS  11,235  10x
+               play1 Jav   9,979
+                snap Hkl   9,196
+                kelp Prl   8,250
+               flask  Py   8,167
+           play-java Jav   7,905
+       play-java-jpa Jav   7,846
+            micromvc PHP   7,387
+              dancer Prl   5,040  20x
+         mojolicious Prl   4,371
+          ringo-conv  JS   4,249
+              django  Py   4,026
+         codeigniter PHP   3,809  30x
+               rails Rby   3,445
+                lift Sca   3,311
+                slim PHP   3,112
+              kohana PHP   2,378  40x
+               silex PHP   2,364
+-------------------- --- ------- ----
+
+Table: 10x to 50x
+
+-------------------- --- ------- ----
+             laravel PHP   1,639  60x
+             phreeze PHP   1,410
+             lithium PHP   1,410
+                fuel PHP   1,410
+                cake PHP   1,287  80x
+            symfony2 PHP     879 100x
+          aspnet-mvc  C#     871
+             sinatra Rby     561 200x
+        servicestack  C#      51
+                dart Dar       0
+               nancy  C#       0
+          web-simple Prl       0
+-------------------- --- ------- ----
+
+Table: More than 50x
+
+These are manually made clusters. But you get the idea.
+Certainly, some framework could jump between two different clusters.
+So this is something to remember.
 
 # Expressiveness
 
