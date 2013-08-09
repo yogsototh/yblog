@@ -11,7 +11,7 @@ error(){print -- $* >&2; exit 1}
 [[ -e $checkfile ]] && \
 {
 currenttime=$(date +"%s")
-case uname in
+case $(uname) in
     Darwin) checkfilemodifiedtime=$(stat -f %m $checkfile);;
     Linux) checkfilemodifiedtime=$(stat --printf %Y $checkfile);;
     *) checkfilemodifiedtime=$(stat --printf %Y $checkfile);;
