@@ -206,7 +206,7 @@ The speed of the language for basic benchmarks.
 But, here we are interrested in web programming.
 Fortunately techempower has made some tests focused on most web frameworks:
 
-[Web framework benchmarks](http://www.techempower.com/blog/2013/05/17/frameworks-round-6/).
+[Web framework benchmarks](http://www.techempower.com/blog/2013/07/02/frameworks-round-6/).
 
 As always, these value quite informative are also quite imprecise relatively to 
 how all of this will respond for your own application.
