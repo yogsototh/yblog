@@ -26,8 +26,7 @@ You just need to make a very simple web application.
 
 It sounds easy!
 Glory is just around the corner.
-Let's choose a good modern web framework.
-Let's see which one I'll choose:
+You just need to choose a good modern web framework, when suddenly:
 
 blogfigure("choice_paralysis.gif","[Choice Paralysis][choice_paralysis]")
 
@@ -75,21 +74,21 @@ Here are the important features (parameters) I decided to use for my choice:
     - fewer bugs
 
 3. _**Efficiency**_, which is generally correlated to:
-   - how much processing power you'll need per user
-   - how long the user will wait to see/update datas
+    - how much processing power you'll need per user
+    - how long the user will wait to see/update datas
 
 4. _**Popularity**_, which correlate with:
-   - number of tested libraries
-   - facility to find learning material
-   - ability to find another developper to work with
+    - number of tested libraries
+    - facility to find learning material
+    - ability to find another developper to work with
 
 Each feature is quite important and mostly independant.
 
 ## modelization
 
-Unfortunately, these kind of properties are very hard to measure with precision
-and we could only get an order of magnitude.
-So we will end up with "clusters" of values:
+Unfortunately, these kind of properties are very hard to measure with precision.
+In fact we could only get order of magniture for each.
+In the end, we will have _clusters_ (please, don't take offense about the strong adjectives, I could have used school notations from A to F):
 
 <div class="small">
 
@@ -101,6 +100,7 @@ So we will end up with "clusters" of values:
 ------------------ ----------- ------- -------- -------- ---------
 
 </div>
+
 
 So how to make a decision model from these informations?
 
@@ -124,19 +124,25 @@ Popularity      10   10   0   0
 
 </div>
 
-Using this matrix, that means we discard the two last popular clusters.
-And we don't care if the framework is popular or just middly popular.
+Using this weighted table, that means we discard the two last popular clusters.
+And we don't make any difference between popular and middly popular frameworks.
 
-That also means, excellent expressive framework are 10x more likely to be chosen than wors expressive class.
+Also, excellent expressive framework are 10x more likely to be chosen than worst expressive class.
 
-We will give better insight in the choice section.
+So for each framework we compute its score relatively to a weighted table.
+And we select the best(s).
+
+The weighted table parameter depending on your needs.
+You might not need a fast framework, nor a popular one for example.
+In the choice section, we will discuss this further.
+
 It is now time to try to get these measures.
 
 ## Objective measures
 
 None of these property can be measured with perfect precision.
 But each time we should get an order of magnitude for each.
-For some properties it is easier than from other.
+Some properties feels easier to measure than other.
 
 For example, popularity measure can be quite correct (at least for the most popular languages).
 It is more complex to measure the efficiency, expressiveness and easiness, but
@@ -146,7 +152,7 @@ As each indicator lack of precision, we will focus on giving order of magnitude.
 
 ### Popularity
 
-[RedMonk Programming Language Rankings (January 2013)][redmonk] 
+[RedMonk Programming Language Rankings (January 2013)][redmonk]
 provide an apparent good measure of popularity.
 While not perfect the current measure feel mostly right.
 They create an image using stack overflow and github datas.
@@ -169,27 +175,19 @@ blogfigure("secondtierlanguages.png","Second tier languages from [RedMonk][redmo
 
 [redmonk]: http://redmonk.com/sogrady/2013/02/28/language-rankings-1-13/
 
-I won't talk about third and fourth tier languages.
-
-I have the feeling that most of the third, fourth tier cluster languages haven't
-reached the critical mass to have a sufficently big community to help you in
-case of problem. This is to count in the _subjective_ part. For now, I believe
-it would be very hard to verify the number of libraries provided for each languages.
-But it doesn't feel wrong to suppose it will be closely related to the three
-measures: popularity, expressiveness and easiness.
-
-I might be very wrong for some languages thought (for example Common Lisp).
+I don't get into detail, but you could also see third and fourth tier popular languages.
 
 ### Efficiency
 
 Another objective measure is efficiency.
 More precisely, how fast is a language?
 
-While this is not perfect here are some benchmarks to give an idea of magniture order:
+We all know benchmarks are all flawed.
+But they give an idea of magniture order:
 
 [benchmarks](http://benchmarksgame.alioth.debian.org/u64q/benchmark.php?test=all&lang=all&data=u64q)
 
-Mainly, there are some clusters:
+Mainly, there are five clusters:
 
 1. very fast languages (1x→2x):  
     * `C`, `C++`, ADA, Fortran, [ATS](http://www.ats-lang.org/)
@@ -205,16 +203,20 @@ Mainly, there are some clusters:
     * Perl ; Can be about 3x C speed in best case
     * Ruby, JRuby ; mostly very slow.
 
-This is a first approach. The speed of the language for basic benchmarks.
+This is a first approach.
+The speed of the language for basic benchmarks.
 But, here we are interrested in web programming.
-Fortunately techempower has made some tests for all web framework this time.
+Fortunately techempower has made some tests focused on most web frameworks:
 
 [Web framework benchmarks](http://www.techempower.com/blog/2013/05/17/frameworks-round-6/).
 
 As always, these value quite informative are also quite imprecise relatively to 
 how all of this will respond for your own application.
+So we continue to create clusters:
 
-So we continue to create clusters.
+**TODO**
+
+# Expressiveness
 
 Now, how to objectively measure expressiveness?
 
@@ -222,24 +224,37 @@ Here is a very good idea that helped to give an objective (while imprecise)
 metrics of each language expressiveness:
 [click here](http://redmonk.com/dberkholz/2013/03/25/programming-languages-ranked-by-expressiveness/).
 
+Also we end up with some clusters:
+
+- Best: Haskell, Clojure
+- Good: Ruby, Python
+- Worst: Fortran
+
 ### Robustness
 
 I couldn't find any complete study to give the number of bug relatively
 to each framework/language.
 
 But on thing I saw from experience is the more powerful the type system the
-safest your application is. While not removing completely the need to
-test your application each progress toward a better type system tend to
-remove complete classes of bug.
+safest your application is.
+While the type system doesn't remove completely the need to test your application
+a very good type system tend to remove complete classes of bug.
 
-Typically, not using pointer in Java help reducing the number of error due to
-bad reference.
+Typically, not using pointer in help to reduce the number of bugs due to bad references.
+Also, using a garbage collector, reduce greatly the probability to access unallocated space.
 
 blogfigure("typesystem.png","Static Type Properties from [James IRY Blog][typesanalysis]")
 
 [typesanalysis]: http://james-iry.blogspot.fr/2010/05/types-la-chart.html
 
+Also we end up with clusters:
+
 ## The choice
+
+Here is a very simple application helping you to decide.
+I made some pre choice for you:
+
+## Personal choice
 
 * **Front end**: Take any reactive framework. The most popular is boostrap, so why not?
 Most informations are in the %html. So could be handled on the server side.
