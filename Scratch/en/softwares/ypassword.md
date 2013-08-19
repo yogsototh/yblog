@@ -7,6 +7,8 @@ hidden: false
 -----
 _Easy_, _Secure_ and _Portable_ way to manage your web passwords.
 
+<iframe width="476" scrolling="no" height="160" frameborder="0" src="http://ypassword.espozito.com/ypassword_widget/index.html" style="border: solid 1px rgba(0,0,0,0.3); box-shadow: 0 0 3px rgba(0,0,0,0.3); padding: 0"/>
+
 Remember only _one_ strong password. And the rest follow.
 
 Here you can find:
