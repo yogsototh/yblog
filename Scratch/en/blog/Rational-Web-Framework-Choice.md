@@ -321,11 +321,30 @@ Here is a very good idea that helped to give an objective (while imprecise)
 metrics of each language expressiveness:
 [click here](http://redmonk.com/dberkholz/2013/03/25/programming-languages-ranked-by-expressiveness/).
 
-Also we end up with some clusters:
+After filtering languages suitable for web development,
+we end up with some clusters:
 
-- Best: Haskell, Clojure
-- Good: Ruby, Python
-- Worst: Fortran
+
+---------  -----------
+Cluster    Languages
+---------  -----------
+Excellent   Coffeescript,
+            Clojure,
+            Haskell
+
+Very Good   Racket,
+            Groovy, R, Scala,
+            OCamL, F♯, Erlang, Lisp, Go
+
+Medium      Perl, Python, Objective-C,
+            Scheme, Tcl, Ruby
+
+Bad         Lua, Fortran (free-format)
+            PHP, Java, C++, C♯
+
+Worst       Assembly, C,
+            Javascript,
+---------  -----------
 
 ### Robustness
 
@@ -340,7 +359,7 @@ a very good type system tend to remove complete classes of bug.
 Typically, not using pointer in help to reduce the number of bugs due to bad references.
 Also, using a garbage collector, reduce greatly the probability to access unallocated space.
 
-blogfigure("typesystem.png","Static Type Properties from [James IRY Blog][typesanalysis]")
+blogfigure("languagesafety.png","Static Type Properties from [James IRY Blog][typesanalysis]")
 
 [typesanalysis]: http://james-iry.blogspot.fr/2010/05/types-la-chart.html
 
