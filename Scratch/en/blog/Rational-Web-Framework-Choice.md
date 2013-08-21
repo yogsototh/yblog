@@ -73,6 +73,7 @@ Here are the important features (parameters) I decided to use for my choice:
 
 3. _**Efficiency**_, which is generally correlated to:
     - how much processing power you'll need per user
+    - maintenance price per user
     - how long the user will wait to see/update data
 
 4. _**Popularity**_, which correlate with:
@@ -80,11 +81,11 @@ Here are the important features (parameters) I decided to use for my choice:
     - facility to find learning material
     - ability to find another developer to work with
 
-Each feature is quite important and mostly independent.
+Each feature is quite important and mostly independant from each other.
 
 Unfortunately, these kind of properties are very hard to measure with precision.
 In fact we could only get order of magnitude for each.
-In the end, we will have _clusters_ (please, don't take offense about the strong adjectives, I could have used school notations from A to F):
+In the end, we will have _clusters_.
 
 ------------------ ----------- ------- -------- -------- ---------
 **Efficiency**       Excellent    Good  Correct     Slow  Sluggish
@@ -181,28 +182,25 @@ I don't thing I could find easily web frameworks for third or fourth tier langua
 ### Efficiency
 
 Another objective measure is efficiency.
-More precisely, how fast is a language?
-
 We all know benchmarks are all flawed.
 But they give an idea of magniture order:
 
-[benchmarks](http://benchmarksgame.alioth.debian.org/u64q/benchmark.php?test=all&lang=all&data=u64q)
+I used the benchmark from [benchmarksgame](http://benchmarksgame.alioth.debian.org/u64q/benchmark.php?test=all&lang=all&data=u64q). Mainly, there are five clusters:
 
-Mainly, there are five clusters:
+----------- ----------------------------------------------------------
+1x→2x       `C`, `C++`, ADA, Fortran, [ATS](http://www.ats-lang.org/)
+2x→3x       Java 7, Scala, OCamL, Haskell, Go, Common LISP
+3x→10x      C♯, Clojure,, Pascal, Racket, Dart
+10x→30x     Erlang
+30x→        PHP, Python, Perl, Ruby, JRuby
+----------- ----------------------------------------------------------
 
-1. very fast languages (1x→2x):  
-    * `C`, `C++`, ADA, Fortran, [ATS](http://www.ats-lang.org/)
-2. fast languages (2x→3x):  
-    * Java 7, Scala, OCamL, Haskell GHC, Go, Common LISP
-3. Reasonably fast languages (3x→10x):  
-    * C#, Clojure,, Pascal, Racket, Dart
-4. A bit slow (10x→30x):  
-    * Erlang
-5. Slow languages (30x→):  
-    * PHP ; huge variations, can be about 1.5x C speed in best case.
-    * Python ; huge variations, can be about 1.5x C speed in best case
-    * Perl ; Can be about 3x C speed in best case
-    * Ruby, JRuby ; mostly very slow.
+Remarks concerning some very slow languages:
+
+* PHP ; huge variations, can be about 1.5x C speed in best case.
+* Python ; huge variations, can be about 1.5x C speed in best case
+* Perl ; Can be about 3x C speed in best case
+* Ruby, JRuby ; mostly very slow.
 
 This is a first approach.
 The speed of the language for basic benchmarks.
@@ -210,6 +208,11 @@ But, here we are interrested in web programming.
 Fortunately techempower has made some tests focused on most web frameworks:
 
 [Web framework benchmarks](http://www.techempower.com/blog/2013/07/02/frameworks-round-6/).
+
+These benchmark doesn't fit well with our needs.
+The values are certainly quite imprecise to your real usage.
+The goal is just to get a magnitude order idea for each framework.
+Another problem is the high number of informations.
 
 As always, these value quite informative are also quite imprecise relatively to 
 how all of this will respond for your own application.
@@ -231,7 +234,7 @@ If the framework works as expected, that will mean paying for two computer inste
         rest-express Jav  63,209
 -------------------- --- -------
 
-Table: 1x to 2x
+Table: 1x to 3x
 
 -------------------- --- ------- ----
               wicket Jav  48,772   2x
@@ -244,6 +247,11 @@ Table: 1x to 2x
                ringo  JS  31,962
           dropwizard Jav  31,514
              luminus Clj  30,672
+-------------------- --- ------- ----
+
+Table: 2x to 4x
+
+-------------------- --- ------- ----
           play-slick Sca  29,950   4x
           unfiltered Sca  29,782
                 elli Erl  28,862
@@ -252,11 +260,6 @@ Table: 1x to 2x
               cowboy Erl  24,669
                onion   C  23,649
                yesod Hkl  23,304
--------------------- --- ------- ----
-
-Table: 2x to 5x
-
--------------------- --- ------- ----
              express  JS  22,856   5x
           play-scala Sca  22,372
       grizzly-jersey Jav  20,550
