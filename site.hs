@@ -114,8 +114,8 @@ htmlPostBehavior = do
   compile $ getResourceBody
         >>= applyFilter (abbreviationFilter . frenchPunctuation . highlight)
         >>= saveSnapshot "content"
-        >>= loadAndApplyTemplate "templates/post.html" yContext
-        >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
+        >>= loadAndApplyTemplate "templates/post.html" yPostContext
+        >>= loadAndApplyTemplate "templates/boilerplate.html" yPostContext
         >>= relativizeUrls
         >>= removeIndexHtml
 
@@ -179,8 +179,8 @@ markdownPostBehavior = do
     return $ renderPandoc prefilteredText
     >>= applyFilter postFilters
     >>= saveSnapshot "content"
-    >>= loadAndApplyTemplate "templates/post.html"    yContext
-    >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
+    >>= loadAndApplyTemplate "templates/post.html"    yPostContext
+    >>= loadAndApplyTemplate "templates/boilerplate.html" yPostContext
     >>= relativizeUrls
     >>= removeIndexHtml
 
@@ -205,12 +205,23 @@ archiveBehavior language = do
 
 --------------------------------------------------------------------------------
 yContext :: Context String
-yContext = metaKeywordContext <>
-                  shortLinkContext <>
-                  multiContext <>
-                  imageContext <>
-                  prefixContext <>
-                  defaultContext
+yContext =  constField "type" "default" <>
+            metaKeywordContext <>
+            shortLinkContext <>
+            multiContext <>
+            imageContext <>
+            prefixContext <>
+            defaultContext
+
+--------------------------------------------------------------------------------
+yPostContext :: Context String
+yPostContext =  constField "type" "article" <>
+                metaKeywordContext <>
+                shortLinkContext <>
+                multiContext <>
+                imageContext <>
+                prefixContext <>
+               defaultContext
 
 --------------------------------------------------------------------------------
 shortLinkContext :: Context String

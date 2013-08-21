@@ -246,14 +246,32 @@ body
   font-family: Georgia, Palatino, "Century Schoolbook L", "Times New Roman", Times, serif
 
 #navigation
-  letter-spacing: .25em
-  margin: 1em auto 2em
+  letter-spacing: -.025em
+  margin: 1em auto
   font-size: 1.25em
   text-align: center
-  font-weight: bold
+  font-weight: thin
+  font-style: italic
   .sep
     opacity: .3
     font-style: italic
+    display: inline-block
+    margin: 0 .5em
+
+#choix
+  height: 0
+.article #choix
+  height: auto
+@media only screen and (max-width: 600px)
+  #choix
+    height: auto
+@media only screen and (max-width: 480px)
+  #navigation 
+    & > a
+      width: 100%
+      display: inline-block
+    .sep
+      display: none
 
 /* Header Numbering */
 .article #afterheader
@@ -320,9 +338,9 @@ acronym
 #titre
   letter-spacing: -0.06em
   margin: 2em 0
-  border:
-    bottom: 4px double $lighterText
-    top: 4px double $lighterText
+  // border:
+  //   bottom: 4px double $lighterText
+  //   top: 4px double $lighterText
 
 #liens .active, #sousliens
   +secondColor
@@ -493,9 +511,11 @@ body > #entete
 
 // le pied de page
 #bottom
+  opacity: .25
   clear: right
   margin-right: 0
   padding: 1.5em
+  border-top: dashed 1px $base1
   line-height: 1.5em
   color: $mainTextColor + #222
   margin-top: 2em
@@ -504,6 +524,8 @@ body > #entete
     color: $mainTextColor + #111
   a:hover
     +revealColor
+#bottom:hover
+  opacity: 1
 
 // Les menus
 
@@ -622,7 +644,7 @@ $fontcorps: 1.25
   font-size: #{$fontcorps}em
   line-height: 1.5em
   text-align: justify
-  padding: $VPadCorps 3em
+  padding: 0 3em 0 3em
   margin: 0
   clear: both
   p, ol, ul, blockquote, & > pre, & > code
@@ -1215,6 +1237,7 @@ a.rss
 
 #header
   opacity: .25
+  border-bottom: dashed 1px $base1
   &:hover
     opacity: 1
 .strike
