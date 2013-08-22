@@ -1,14 +1,14 @@
 ---
 kind:           article
 published:      2013-08-06
-image: /Scratch/img/blog/Rational-Web-Framework-Choice/main.png
+image: /Scratch/img/blog/Rational-Web-Framework-Choice/battle-of-lepanto-vicentino-andrea.jpg
 title: Rational Web Framework Choice
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming, framework, web
 theme: scientific
 ---
-blogimage("main.png","Main image")
+blogimage("battle-of-lepanto-vicentino-andrea.jpg","Main image")
 
 <div class="intro">
 
@@ -178,6 +178,70 @@ F#, FORTRAN, Arduino, Tcl, Ocaml
 **Very Bad**: fourth tier
 
 I don't thing I could find easily web frameworks for third or fourth tier languages.
+
+For now, I only talked about language popularity.
+But what about framework popularity?
+I made a test using number of question on stackoverflow only.
+
+Language    Framework          #nb
+----------- --------------- ------
+C           onion           18
+C♯          aspnet          1000
+C♯          nancy           705
+C♯          ServiceStack    3838
+C++         cpoll-cppsp     5
+Clojure     Compojure       391
+Clojure     http-kit        17
+Clojure     Luminus         3
+Dart        Dart            3753
+Erlang      Cowboy          568
+Erlang      Elli            230
+Go          Go              2689
+Go          Revel           459
+Groovy      Grails          20222
+Haskell     Snap            263
+Haskell     Yesod           889
+Java        Dropwizard      188
+Java        Gemini          276
+Java        Grizzly         622
+Java        Play1           133
+Java        Servlet         54139
+Java        Spring          31641
+Java        Tapestry        1197
+Java        Vertx           60
+Java        Wicket          3819
+js          Ringo           299
+Lua         Openresty       8
+Node.js     Express         5009
+Node.js     Hapi            131
+Node.js     node.js         27243
+Perl        Dancer          496
+Perl        Kelp            16
+Perl        Mojolicious     376
+Perl        Plack           257
+PHP         Cake            4554
+PHP         Codeigniter     21503
+PHP         Kohana          5959
+PHP         Laravel         6982
+PHP         Lithium         732
+PHP         Micromvc        13
+PHP         Phalcon         299
+PHP         Phreeze         1
+PHP         Silex           750
+PHP         Slim            3361
+PHP         Symphony2       491
+PHP         Yaf             146
+Python      Django          57385
+Python      Flask           7062
+Python      Tornado         3321
+Ruby        Rails           176208
+Ruby        Sinatra         8631
+Scala       Finagle         336
+Scala       Lift            2844
+Scala       Play            3823
+Scala       Scalatra        349
+Scala       Unfiltered      42
+
 
 ### Efficiency
 
