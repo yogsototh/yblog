@@ -12,7 +12,7 @@ blogimage("battle-of-lepanto-vicentino-andrea.jpg","Main image")
 
 <div class="intro">
 
-%tldr
+%tldr Determine the most objectively the best web framework depending on your needs.
 
 
 </div>
@@ -38,14 +38,14 @@ What is the most popular web framework for this language?**
 
 Great! This is it.
 
-But, the night when you are alone in your bed, your hear this little voice.
+But, the night when you are alone in your bed, you hear this little voice.
 You know the one.
 
 > **"You didn't made a bad choice, yes. But ...  
 > you hadn't made the best either."**
 
 The question I try to answer here is how to determine the most objectively
-and rationaly possible the best(s) web framework(s).
+and rationaly possible the best(s) web framework(s) depending on your need.
 
 I will use the following methodology:
 
@@ -313,7 +313,7 @@ Table: 1x to 3x
              luminus Clj  30,672
 -------------------- --- ------- ----
 
-Table: 2x to 4x
+Table: 2x to 3x
 
 -------------------- --- ------- ----
           play-slick Sca  29,950   4x
@@ -334,7 +334,7 @@ Table: 2x to 4x
                  yaf PHP  14,388
 -------------------- --- ------- ----
 
-Table: 5x to 10x
+Table: 4x to 10x
 
 -------------------- --- ------- ----
                 hapi  JS  11,235  10x
@@ -423,16 +423,60 @@ safest your application is.
 While the type system doesn't remove completely the need to test your application
 a very good type system tend to remove complete classes of bug.
 
-Typically, not using pointer in help to reduce the number of bugs due to bad references.
+Typically, not using pointer help to reduce the number of bugs due to bad references.
 Also, using a garbage collector, reduce greatly the probability to access unallocated space.
 
 blogfigure("languagesafety.png","Static Type Properties from [James IRY Blog][typesanalysis]")
 
 [typesanalysis]: http://james-iry.blogspot.fr/2010/05/types-la-chart.html
 
+From my point of view, robustness is mostly identical to safety.
 Also we end up with clusters:
 
+----------- ----------------------
+Excellent   Haskell, Scheme, Erlang
+Very Good   Scala, Java, Clojure
+Good        Ruby, Python, Groovy, javascript, PHP
+Bad         C++, C#, Perl, Objective-C, C
+----------- ----------------------
+
 ## The choice
+
+<table id="#choice-matrix">
+<tr>
+    <th></th>
+    <th>Excellent</th>
+    <th>Very good</th>
+    <th>Good</th>
+    <th>Bad</th>
+    <th>Very bad</th>
+</tr>
+<tr id="expressiveness"><th>Expressiveness</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+<tr id="popularity"><th>Popularity</th>     <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+<tr id="efficiency"><th>Efficiency</th>     <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+<tr id="robustness"><th>Robustness</th>     <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+</table>
+
+<script>
+    var normalVector=[100,80,60,40,20 10];
+    var whateverVector=[1,1,1,1,1,1];
+    var notMuchImportantVector=[100,95,90,85,80,75];
+    var importantVector=[100,66,44,30,20,13];
+    var veryImportantVector=[100,50,10,0,0,0];
+
+    alert("here");
+    function run(){
+        if (window.$){
+             alert("coucou");
+            $('#expressiveness td').each(function(i){
+                alert("inloop");
+                this.value(normalVector[i]);
+            });
+        } else {
+            setTimeout(run,50);
+        }
+    }
+</script>
 
 Here is a very simple application helping you to decide.
 I made some pre choice for you:
