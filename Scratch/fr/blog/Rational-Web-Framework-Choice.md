@@ -291,8 +291,8 @@ If the framework works as expected, that will mean paying for two computer inste
 
 Remark: I separated the clusters by using power of 2 relatively to the fastest.
 
-Cluster     Language    Framework   #nb         slow
-----------  ----------- ----------- ------- --------
+Cluster     Language    Framework       #nb   slowness
+----------  ----------- ----------- ------- ----------
 Excellent   C++         cpoll-cppsp 114,711       1×
             Jav              gemini 105,204
             Lua           openresty  93,882
@@ -594,20 +594,25 @@ Medium        C                 onion
 <tr id="t-robustness"><th>Robustness</th></tr>
 </table>
 
-<input type="button" value="Compute Best(s)"/>
+<div id="compute" class="button">Compute</div>
 <div id="result"></div>
 
 <script>// <![CDATA[
+    function lt(x,y){return (x < y);}
+// ]]></script>
+<script>// <![CDATA[
     String.prototype.repeat = function(num){return new Array(num+1).join(this);};
     (function(){
+        function run(){
+            if (window.$){
 
-popularityClusters=[[
-"Rails"
-],[ "django" , "servlet" , "spring" , "node.js" , "codeigniter" , "grails"
+popularityClusters=[[ "rails"
+],[ "django" , "servlet" , "spring" , "nodejs" , "codeigniter" , "grails"
 ],[ "sinatra" , "flask" , "laravel" , "kohana" , "express"
-],[ "cake" , "servicestack" , "play" , "wicket" , "dart" , "slim" , "tornado" , "lift" , "go"
-],[ "tapestry" , "aspnet" , "yesod" , "silex" , "lithium" , "nancy"
-],[ "grizzly" , "cowboy" , "dancer" , "symphony2" , "revel"
+],[ "cake" , "servicestack" , "play-java", "play-slick"
+, "wicket" , "dart" , "slim" , "tornado" , "lift" , "go"
+],[ "tapestry" , "aspnet-mvc" , "yesod" , "silex" , "lithium" , "nancy"
+],[ "grizzly" , "cowboy" , "dancer" , "symfony2" , "revel"
 , "compojure" , "mojolicious" , "scalatra" , "finagle" , "phalcon"
 , "ringo" , "gemini" , "snap" , "plack" , "elli" , "dropwizard"
 , "yaf" , "play1" , "hapi" , "vertx" , "unfiltered" , "onion"
@@ -616,13 +621,12 @@ popularityClusters=[[
 ]];
 
 
-efficiencyClusters=[[
-"cpoll-cppsp" , "gemini" , "openresty" , "servlet" , "cpoll-pool" , "go"
-, "finagle" , "revel" , "rest-express"
+efficiencyClusters=[[ "cpoll-cppsp" , "gemini" , "openresty" , "servlet"
+, "cpoll-pool" , "go" , "finagle" , "revel" , "rest-express"
 ],[ "wicket" , "scalatra" , "http-kit" , "spring" , "php" , "tapestry"
 , "compojure" , "ringo" , "dropwizard" , "luminus"
 ],[ "play-slick" , "unfiltered" , "elli" , "vertx" , "nodejs" , "cowboy"
-, "onion" , "yesod" , "express" , "play-scala" , "grizzly-jersey"
+, "onion" , "yesod" , "express" , "play-scala" , "grizzly"
 , "tornado" , "phalcon" , "grails" , "plack" , "yaf"
 ],[ "hapi" , "play1" , "snap" , "kelp" , "flask" , "play-java"
 , "play-java-jpa" , "micromvc" , "dancer" , "mojolicious" , "ringo-conv"
@@ -642,28 +646,64 @@ expressivenessClusters=[[
 ],[ "nancy" , "aspnet-mvc" , "servicestack" , "cpoll-pool" , "cpoll-cppsp"
 , "dart" , "play1" , "vertx" , "gemini" , "spring" , "wicket" , "servlet"
 , "tapestry" , "play-java" , "dropwizard" , "rest-express" , "play-java-jpa"
-, "grizzly-jersey" , "openresty" , "php" , "yaf" , "cake" , "fuel" , "slim"
+, "grizzly" , "openresty" , "php" , "yaf" , "cake" , "fuel" , "slim"
 , "silex" , "kohana" , "laravel" , "lithium" , "phalcon" , "phreeze"
 , "micromvc" , "symfony2" , "codeigniter"
 ],[ "onion" , "hapi" , "ringo" , "nodejs" , "express" , "ringo-conv"
+]]
+
+robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
+],[ "luminus" , "http-kit" , "compojure" , "play1" , "vertx" , "gemini"
+, "spring" , "wicket" , "servlet" , "tapestry" , "play-java" , "dropwizard"
+, "rest-express" , "play-java-jpa" , "grizzly" , "lift" , "finagle"
+, "scalatra" , "play-scala" , "play-slick" , "unfiltered"
+],[ "grails" , "hapi" , "ringo" , "nodejs" , "express" , "ringo-conv"
+, "openresty" , "php" , "yaf" , "cake" , "fuel" , "slim" , "silex"
+, "kohana" , "laravel" , "lithium" , "phalcon" , "phreeze" , "micromvc"
+, "symfony2" , "codeigniter" , "flask" , "django" , "tornado" , "rails"
+, "sinatra"
+],[ "onion" , "nancy" , "aspnet-mvc" , "servicestack" , "cpoll-pool"
+, "cpoll-cppsp" , "dart" , "go" , "revel" , "kelp" , "plack"
+, "dancer" , "web-simple" , "mojolicious"
+],[
+],[
 ]]
 
         var essentialVector=[100,50,10,0,0,0];
         var importantVector=[100,66,44,30,20,13];
         var normalVector=[100,80,60,40,20,10];
         var somehowVector=[100,95,90,85,80,75];
-        var whateverVector=[1,1,1,1,1,1];
+        var whateverVector=[100,100,100,100,100,100];
+
+        var framework=[];
+
+        for (var i=0;lt(i,efficiencyClusters.length);i++) {
+            for (var j=0;lt(j,efficiencyClusters[i].length);j++) {
+                framework[efficiencyClusters[i][j]]={};
+            }
+        }
+        $(["efficiency"
+          ,"popularity"
+          ,"expressiveness"
+          ,"robustness"]).each(function(){
+            var tab;
+            eval("tab = "+this+"Clusters;");
+            for (var i=0;lt(i,tab.length);i++) {
+                for (var j=0;lt(j,tab[i].length);j++) {
+                    eval("framework[tab[i][j]]."+this+"= i;");
+                }
+            }
+          });
+
         function setLine(name,vector) {
             $('#' + name+' td input').each(function(i){
                 var len = vector.length;
-                if (i < len) {
+                if (lt(i,len)) {
                     $(this).val(vector[i]); }});}
-        function run(){
-            if (window.$){
-                $(['t-expressiveness'
-                  ,'t-popularity'
-                  ,'t-efficiency'
-                  ,'t-robustness']).each(function(){
+        $(['t-expressiveness'
+          ,'t-popularity'
+          ,'t-efficiency'
+          ,'t-robustness']).each(function(){
                     var name='#'+this;
                     var tdinput=$('<td align="right"><input style="display: inline-block;width:2em;text-align:right" type="text"></input></td>'.repeat(6));
                     $(name).append(tdinput);
@@ -685,10 +725,36 @@ expressivenessClusters=[[
                             setLine(strthis,tab);
                         });
                 });
+        $('#compute').click(function(){
+            console.log("COMPUTATION");
+            var scoreMatrix=[[0,0,0,0,0,0]
+                            ,[0,0,0,0,0,0]
+                            ,[0,0,0,0,0,0]
+                            ,[0,0,0,0,0,0]
+                            ];
+            $(['t-expressiveness'
+              ,'t-popularity'
+              ,'t-efficiency'
+              ,'t-robustness']).each(function(i){
+                $("#"+this+" td input").each(function(j){
+                    scoreMatrix[i][j]=$(this).val(); }) });
+            console.log(scoreMatrix);
+            for (key in framework) {
+                framework[key].score =
+                    scoreMatrix[0][framework[key].expressiveness] *
+                    scoreMatrix[1][framework[key].popularity] *
+                    scoreMatrix[2][framework[key].efficiency] *
+                    scoreMatrix[3][framework[key].robustness];
+
+                if (lt(16,Math.log(framework[key].score))){
+                console.log(key+": " + Math.log(framework[key].score));
+                }
+            }
+        });
             } else {
                 setTimeout(run,50); } }
-        run();}
-    )();
+        run();
+    })();
 // ]]></script>
 
 Here is a very simple application helping you to decide.
