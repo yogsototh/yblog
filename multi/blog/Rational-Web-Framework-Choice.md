@@ -184,66 +184,69 @@ I don't thing I could find easily web frameworks for third or fourth tier langua
 For now, I only talked about language popularity.
 But what about framework popularity?
 I made a test using number of question on stackoverflow only.
+Then by dividing by two for each 6 cluster:
 
-Language    Framework          #nb
------------ --------------- ------
-C           onion           18
-C♯          aspnet          1000
-C♯          nancy           705
-C♯          ServiceStack    3838
-C++         cpoll-cppsp     5
-Clojure     Compojure       391
-Clojure     http-kit        17
-Clojure     Luminus         3
-Dart        Dart            3753
-Erlang      Cowboy          568
-Erlang      Elli            230
-Go          Go              2689
-Go          Revel           459
-Groovy      Grails          20222
-Haskell     Snap            263
-Haskell     Yesod           889
-Java        Dropwizard      188
-Java        Gemini          276
-Java        Grizzly         622
-Java        Play1           133
-Java        Servlet         54139
-Java        Spring          31641
-Java        Tapestry        1197
-Java        Vertx           60
-Java        Wicket          3819
-js          Ringo           299
-Lua         Openresty       8
-Node.js     Express         5009
-Node.js     Hapi            131
-Node.js     node.js         27243
-Perl        Dancer          496
-Perl        Kelp            16
-Perl        Mojolicious     376
-Perl        Plack           257
-PHP         Cake            4554
-PHP         Codeigniter     21503
-PHP         Kohana          5959
-PHP         Laravel         6982
-PHP         Lithium         732
-PHP         Micromvc        13
-PHP         Phalcon         299
-PHP         Phreeze         1
-PHP         Silex           750
-PHP         Slim            3361
-PHP         Symphony2       491
-PHP         Yaf             146
-Python      Django          57385
-Python      Flask           7062
-Python      Tornado         3321
-Ruby        Rails           176208
-Ruby        Sinatra         8631
-Scala       Finagle         336
-Scala       Lift            2844
-Scala       Play            3823
-Scala       Scalatra        349
-Scala       Unfiltered      42
 
+Cluster      Language    Framework          #nb        %
+------------ ----------- --------------- ------ --------
+Excellent    Ruby        Rails           176208     100%
+Very Good    Python      Django          57385   &lt;50%
+             Java        Servlet         54139
+             Java        Spring          31641
+             Node.js     node.js         27243
+             PHP         Codeigniter     21503
+             Groovy      Grails          20222
+Good         Ruby        Sinatra         8631    &lt;25%
+             Python      Flask           7062
+             PHP         Laravel         6982
+             PHP         Kohana          5959
+             Node.js     Express         5009
+Medium       PHP         Cake            4554    &lt;13%
+             C♯          ServiceStack    3838
+             Scala       Play            3823
+             Java        Wicket          3819
+             Dart        Dart            3753
+             PHP         Slim            3361
+             Python      Tornado         3321
+             Scala       Lift            2844
+             Go          Go              2689
+Bad          Java        Tapestry        1197     &lt;6%
+             C♯          aspnet          1000
+             Haskell     Yesod           889
+             PHP         Silex           750
+             PHP         Lithium         732
+             C♯          nancy           705
+Very bad     Java        Grizzly         622      &lt;3%
+             Erlang      Cowboy          568
+             Perl        Dancer          496
+             PHP         Symphony2       491
+             Go          Revel           459
+             Clojure     Compojure       391
+             Perl        Mojolicious     376
+             Scala       Scalatra        349
+             Scala       Finagle         336
+             PHP         Phalcon         299
+             js          Ringo           299
+             Java        Gemini          276
+             Haskell     Snap            263
+             Perl        Plack           257
+             Erlang      Elli            230
+             Java        Dropwizard      188
+             PHP         Yaf             146
+             Java        Play1           133
+             Node.js     Hapi            131
+             Java        Vertx           60
+             Scala       Unfiltered      42
+             C           onion           18
+             Clojure     http-kit        17
+             Perl        Kelp            16
+             PHP         Micromvc        13
+             Lua         Openresty       8
+             C++         cpoll-cppsp     5
+             Clojure     Luminus         3
+             PHP         Phreeze         1
+
+As we can see, our framework popularity indicator can be quite different from its language popularity.
 
 ### Efficiency
 
@@ -288,95 +291,75 @@ application will need more money to run.
 Typically, 2x, means you'll need twice the computer power to achieve the same result.
 If the framework works as expected, that will mean paying for two computer instead of only one.
 
--------------------- --- -------
-         cpoll-cppsp C++ 114,711
-              gemini Jav 105,204
-           openresty Lua  93,882
-             servlet Jav  90,580
-          cpoll-pool C++  89,167
-                  go  Go  76,024
-             finagle Sca  68,413
-               revel  Go  66,990
-        rest-express Jav  63,209
--------------------- --- -------
+Remark: I separated the clusters by using power of 2 relatively to the fastest.
 
-Table: 1x to 3x
-
--------------------- --- ------- ----
-              wicket Jav  48,772   2x
-            scalatra Sca  48,594
-            http-kit Clj  42,703
-              spring Jav  36,643   3x
-                 php PHP  36,605
-            tapestry Jav  35,032
-           compojure Clj  32,088
-               ringo  JS  31,962
-          dropwizard Jav  31,514
-             luminus Clj  30,672
--------------------- --- ------- ----
-
-Table: 2x to 3x
-
--------------------- --- ------- ----
-          play-slick Sca  29,950   4x
-          unfiltered Sca  29,782
-                elli Erl  28,862
-               vertx Jav  28,075
-              nodejs  JS  27,598
-              cowboy Erl  24,669
-               onion   C  23,649
-               yesod Hkl  23,304
-             express  JS  22,856   5x
-          play-scala Sca  22,372
-      grizzly-jersey Jav  20,550
-             tornado  Py  20,372   6x
-             phalcon PHP  18,481
-              grails Grv  18,467
-               plack Prl  16,647   7x
-                 yaf PHP  14,388
--------------------- --- ------- ----
-
-Table: 4x to 10x
-
--------------------- --- ------- ----
-                hapi  JS  11,235  10x
-               play1 Jav   9,979
-                snap Hkl   9,196
-                kelp Prl   8,250
-               flask  Py   8,167
-           play-java Jav   7,905
-       play-java-jpa Jav   7,846
-            micromvc PHP   7,387
-              dancer Prl   5,040  20x
-         mojolicious Prl   4,371
-          ringo-conv  JS   4,249
-              django  Py   4,026
-         codeigniter PHP   3,809  30x
-               rails Rby   3,445
-                lift Sca   3,311
-                slim PHP   3,112
-              kohana PHP   2,378  40x
-               silex PHP   2,364
--------------------- --- ------- ----
-
-Table: 10x to 50x
-
--------------------- --- ------- ----
-             laravel PHP   1,639  60x
-             phreeze PHP   1,410
-             lithium PHP   1,410
-                fuel PHP   1,410
-                cake PHP   1,287  80x
-            symfony2 PHP     879 100x
-          aspnet-mvc  C#     871
-             sinatra Rby     561 200x
-        servicestack  C#      51
-                dart Dar       0
-               nancy  C#       0
-          web-simple Prl       0
--------------------- --- ------- ----
-
-Table: More than 50x
+Cluster     Language    Framework   #nb         slow
+----------  ----------- ----------- ------- --------
+Excellent   C++         cpoll-cppsp 114,711       1×
+            Jav              gemini 105,204
+            Lua           openresty  93,882
+            Jav             servlet  90,580
+            C++          cpoll-pool  89,167
+             Go                  go  76,024
+            Sca             finagle  68,413
+             Go               revel  66,990
+            Jav        rest-express  63,209
+Very Good   Jav               wicket 48,772   &gt;2×
+            Sca             scalatra 48,594
+            Clj             http-kit 42,703
+            Jav               spring 36,643   &gt;3×
+            PHP                  php 36,605
+            Jav             tapestry 35,032
+            Clj            compojure 32,088
+             JS                ringo 31,962
+            Jav           dropwizard 31,514
+            Clj              luminus 30,672
+Good        Sca            play-slick 29,950   &gt;4×
+            Sca            unfiltered 29,782
+            Erl                  elli 28,862
+            Jav                 vertx 28,075
+             JS                nodejs 27,598
+            Erl                cowboy 24,669
+              C                 onion 23,649
+            Hkl                 yesod 23,304
+             JS               express 22,856   &gt;5×
+            Sca            play-scala 22,372
+            Jav        grizzly-jersey 20,550
+             Py               tornado 20,372   &gt;6×
+            PHP               phalcon 18,481
+            Grv                grails 18,467
+            Prl                 plack 16,647   &gt;7×
+            PHP                   yaf 14,388
+Medium       JS                 hapi  11,235  &gt;10×
+            Jav                play1   9,979
+            Hkl                 snap   9,196
+            Prl                 kelp   8,250
+             Py                flask   8,167
+            Jav            play-java   7,905
+            Jav        play-java-jpa   7,846
+            PHP             micromvc   7,387
+            Prl               dancer   5,040  &gt;20×
+            Prl          mojolicious   4,371
+             JS           ringo-conv   4,249
+             Py               django   4,026
+            PHP          codeigniter   3,809  &gt;30×
+Bad         Rby                rails   3,445
+            Sca                 lift   3,311
+            PHP                 slim   3,112
+            PHP               kohana   2,378  &gt;40×
+            PHP                silex   2,364
+Very Bad    PHP              laravel   1,639  &gt;60×
+            PHP              phreeze   1,410
+            PHP              lithium   1,410
+            PHP                 fuel   1,410
+            PHP                 cake   1,287  &gt;80×
+            PHP             symfony2     879  &gt;100×
+             C#           aspnet-mvc     871
+            Rby              sinatra     561  &gt;200×
+             C#         servicestack      51
+            Dar                 dart       0
+             C#                nancy       0
+            Prl           web-simple       0
 
 These are manually made clusters. But you get the idea.
 Certainly, some framework could jump between two different clusters.
@@ -411,16 +394,94 @@ Medium      Perl, Python, Objective-C,
 Bad         Lua, Fortran (free-format)
             PHP, Java, C++, C♯
 
-Worst       Assembly, C,
+Very Bad    Assembly, C,
             Javascript,
 ---------  -----------
+
+Unfortunately there is no information about dart.
+So I simply give a very fast look at the syntax.
+As it looked a lot like javascript and js is quite
+low. I decided to put it close to java.
+
+
+<div class="showhide">
+
+Cluster   Language  Framework
+--------- --------- --------------------
+Excellent   Clj               luminus
+            Clj              http-kit
+            Clj             compojure
+            Hkl                  snap
+            Hkl                 yesod
+Very Good   Erl                  elli
+            Erl                cowboy
+             Go                    go
+             Go                 revel
+            Grv                grails
+            Sca                  lift
+            Sca               finagle
+            Sca              scalatra
+            Sca            play-scala
+            Sca            play-slick
+            Sca            unfiltered
+Medium      Prl                  kelp
+            Prl                 plack
+            Prl                dancer
+            Prl            web-simple
+            Prl           mojolicious
+             Py                 flask
+             Py                django
+             Py               tornado
+            Rby                 rails
+            Rby               sinatra
+Bad          C#                 nancy
+             C#            aspnet-mvc
+             C#          servicestack
+            C++            cpoll-pool
+            C++           cpoll-cppsp
+            Dar                  dart
+            Jav                 play1
+            Jav                 vertx
+            Jav                gemini
+            Jav                spring
+            Jav                wicket
+            Jav               servlet
+            Jav              tapestry
+            Jav             play-java
+            Jav            dropwizard
+            Jav          rest-express
+            Jav         play-java-jpa
+            Jav        grizzly-jersey
+            Lua             openresty
+            PHP                   php
+            PHP                   yaf
+            PHP                  cake
+            PHP                  fuel
+            PHP                  slim
+            PHP                 silex
+            PHP                kohana
+            PHP               laravel
+            PHP               lithium
+            PHP               phalcon
+            PHP               phreeze
+            PHP              micromvc
+            PHP              symfony2
+            PHP           codeigniter
+Very Bad      C                 onion
+             JS                  hapi
+             JS                 ringo
+             JS                nodejs
+             JS               express
+             JS            ringo-conv
+
+</div>
 
 ### Robustness
 
 I couldn't find any complete study to give the number of bug relatively
 to each framework/language.
 
-But on thing I saw from experience is the more powerful the type system the
+But one thing I saw from experience is the more powerful the type system the
 safest your application is.
 While the type system doesn't remove completely the need to test your application
 a very good type system tend to remove complete classes of bug.
@@ -439,8 +500,82 @@ Also we end up with clusters:
 Excellent   Haskell, Scheme, Erlang
 Very Good   Scala, Java, Clojure
 Good        Ruby, Python, Groovy, javascript, PHP
-Bad         C++, C#, Perl, Objective-C, C
+Medium      C++, C#, Perl, Objective-C, Go, C
 ----------- ----------------------
+
+So applying this to frameworks gives the following clusters:
+
+<div class="showhide">
+
+Cluster   Language  Framework
+--------- --------- --------------------
+Excellent   Erl                  elli
+            Erl                cowboy
+            Hkl                  snap
+            Hkl                 yesod
+Very Good   Clj               luminus
+            Clj              http-kit
+            Clj             compojure
+            Jav                 play1
+            Jav                 vertx
+            Jav                gemini
+            Jav                spring
+            Jav                wicket
+            Jav               servlet
+            Jav              tapestry
+            Jav             play-java
+            Jav            dropwizard
+            Jav          rest-express
+            Jav         play-java-jpa
+            Jav        grizzly-jersey
+            Sca                  lift
+            Sca               finagle
+            Sca              scalatra
+            Sca            play-scala
+            Sca            play-slick
+            Sca            unfiltered
+Good        Grv                grails
+             JS                  hapi
+             JS                 ringo
+             JS                nodejs
+             JS               express
+             JS            ringo-conv
+            Lua             openresty
+            PHP                   php
+            PHP                   yaf
+            PHP                  cake
+            PHP                  fuel
+            PHP                  slim
+            PHP                 silex
+            PHP                kohana
+            PHP               laravel
+            PHP               lithium
+            PHP               phalcon
+            PHP               phreeze
+            PHP              micromvc
+            PHP              symfony2
+            PHP           codeigniter
+             Py                 flask
+             Py                django
+             Py               tornado
+            Rby                 rails
+            Rby               sinatra
+Medium        C                 onion
+             C#                 nancy
+             C#            aspnet-mvc
+             C#          servicestack
+            C++            cpoll-pool
+            C++           cpoll-cppsp
+            Dar                  dart
+             Go                    go
+             Go                 revel
+            Prl                  kelp
+            Prl                 plack
+            Prl                dancer
+            Prl            web-simple
+            Prl           mojolicious
+
+</div>
 
 ## The choice
 
@@ -450,35 +585,205 @@ Bad         C++, C#, Perl, Objective-C, C
     <th>Excellent</th>
     <th>Very good</th>
     <th>Good</th>
+    <th>Medium</th>
     <th>Bad</th>
     <th>Very bad</th>
+    <th>Importance</th>
 </tr>
-<tr id="expressiveness"><th>Expressiveness</th> <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
-<tr id="popularity"><th>Popularity</th>     <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
-<tr id="efficiency"><th>Efficiency</th>     <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
-<tr id="robustness"><th>Robustness</th>     <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> </tr>
+<tr id="t-expressiveness"><th>Expressiveness</th></tr>
+<tr id="t-popularity"><th>Popularity</th></tr>
+<tr id="t-efficiency"><th>Efficiency</th></tr>
+<tr id="t-robustness"><th>Robustness</th></tr>
 </table>
 
-<script>
-    var normalVector=[100,80,60,40,20 10];
-    var whateverVector=[1,1,1,1,1,1];
-    var notMuchImportantVector=[100,95,90,85,80,75];
-    var importantVector=[100,66,44,30,20,13];
-    var veryImportantVector=[100,50,10,0,0,0];
+<input type="button" value="Compute Best(s)"/>
+<div id="result"></div>
 
-    alert("here");
-    function run(){
-        if (window.$){
-             alert("coucou");
-            $('#expressiveness td').each(function(i){
-                alert("inloop");
-                this.value(normalVector[i]);
-            });
-        } else {
-            setTimeout(run,50);
-        }
-    }
-</script>
+<script>// <![CDATA[
+    String.prototype.repeat = function(num){return new Array(num+1).join(this);};
+    (function(){
+
+popularityClusters=[[
+"Rails"
+],[
+"django"
+, "servlet"
+, "spring"
+, "node.js"
+, "codeigniter"
+, "grails"
+],[
+"sinatra"
+, "flask"
+, "laravel"
+, "kohana"
+, "express"
+],[
+"cake"
+, "servicestack"
+, "play"
+, "wicket"
+, "dart"
+, "slim"
+, "tornado"
+, "lift"
+, "go"
+],[
+"tapestry"
+, "aspnet"
+, "yesod"
+, "silex"
+, "lithium"
+, "nancy"
+],[
+"grizzly"
+, "cowboy"
+, "dancer"
+, "symphony2"
+, "revel"
+, "compojure"
+, "mojolicious"
+, "scalatra"
+, "finagle"
+, "phalcon"
+, "ringo"
+, "gemini"
+, "snap"
+, "plack"
+, "elli"
+, "dropwizard"
+, "yaf"
+, "play1"
+, "hapi"
+, "vertx"
+, "unfiltered"
+, "onion"
+, "http-kit"
+, "kelp"
+, "micromvc"
+, "openresty"
+, "cpoll-cppsp"
+, "luminus"
+, "phreeze"
+]];
+
+
+efficiencyClusters=[[
+"cpoll-cppsp"
+, "gemini"
+, "openresty"
+, "servlet"
+, "cpoll-pool"
+, "go"
+, "finagle"
+, "revel"
+, "rest-express"
+],[
+"wicket"
+, "scalatra"
+, "http-kit"
+, "spring"
+, "php"
+, "tapestry"
+, "compojure"
+, "ringo"
+, "dropwizard"
+, "luminus"
+],[
+"play-slick"
+, "unfiltered"
+, "elli"
+, "vertx"
+, "nodejs"
+, "cowboy"
+, "onion"
+, "yesod"
+, "express"
+, "play-scala"
+, "grizzly-jersey"
+, "tornado"
+, "phalcon"
+, "grails"
+, "plack"
+, "yaf"
+],[
+"hapi"
+, "play1"
+, "snap"
+, "kelp"
+, "flask"
+, "play-java"
+, "play-java-jpa"
+, "micromvc"
+, "dancer"
+, "mojolicious"
+, "ringo-conv"
+, "django"
+, "codeigniter"
+],[
+"rails"
+, "lift"
+, "slim"
+, "kohana"
+, "silex"
+],[
+"laravel"
+, "phreeze"
+, "lithium"
+, "fuel"
+, "cake"
+, "symfony2"
+, "aspnet-mvc"
+, "sinatra"
+, "servicestack"
+, "dart"
+, "nancy"
+, "web-simple"
+]];
+
+
+        var essentialVector=[100,50,10,0,0,0];
+        var importantVector=[100,66,44,30,20,13];
+        var normalVector=[100,80,60,40,20,10];
+        var somehowVector=[100,95,90,85,80,75];
+        var whateverVector=[1,1,1,1,1,1];
+        function setLine(name,vector) {
+            $('#' + name+' td input').each(function(i){
+                var len = vector.length;
+                if (i < len) {
+                    $(this).val(vector[i]); }});}
+        function run(){
+            if (window.$){
+                $(['t-expressiveness'
+                  ,'t-popularity'
+                  ,'t-efficiency'
+                  ,'t-robustness']).each(function(){
+                    var name='#'+this;
+                    var tdinput=$('<td align="right"><input style="display: inline-block;width:2em;text-align:right" type="text"></input></td>'.repeat(6));
+                    $(name).append(tdinput);
+                    $(name).append($('<td>'+
+                        '<select style="width:6em" id="s-'+this+'">' +
+                        '<option value="essential">Essential</option>' +
+                        '<option value="important">Important</option>' +
+                        '<option value="normal" selected="t">Normal</option>' +
+                        '<option value="somehow">Somehow</option>' +
+                        '<option value="whatever">Unsignificant</option>' +
+                        '</select>' +
+                        '</td>' ));
+                    setLine(this,normalVector);
+                    var strthis=''+this;
+                    $("#s-"+this).change(function(){
+                            var val=$("#s-"+strthis+" option:selected").val();
+                            var tab;
+                            eval('tab='+val+'Vector');
+                            setLine(strthis,tab);
+                        });
+                });
+            } else {
+                setTimeout(run,50); } }
+        run();}
+    )();
+// ]]></script>
 
 Here is a very simple application helping you to decide.
 I made some pre choice for you:
