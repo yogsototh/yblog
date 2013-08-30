@@ -577,7 +577,7 @@ Medium        C                 onion
 
 ## The choice
 
-<table id="#choice-matrix">
+<table id="choice-matrix">
 <tr>
     <th></th>
     <th>Excellent</th>
@@ -594,7 +594,7 @@ Medium        C                 onion
 <tr id="t-robustness"><th>Robustness</th></tr>
 </table>
 
-<div id="compute" class="button">Compute</div>
+<div id="compute" class="button">Click to force refresh</div>
 <div id="result"></div>
 
 <script>// <![CDATA[
@@ -602,9 +602,7 @@ Medium        C                 onion
 // ]]></script>
 <script>// <![CDATA[
     String.prototype.repeat = function(num){return new Array(num+1).join(this);};
-    (function(){
-        function run(){
-            if (window.$){
+    (function(){function run(){if (window.$){
 
 popularityClusters=[[ "rails"
 ],[ "django" , "servlet" , "spring" , "nodejs" , "codeigniter" , "grails"
@@ -669,11 +667,11 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
 ],[
 ]]
 
-        var essentialVector=[100,50,10,0,0,0];
-        var importantVector=[100,66,44,30,20,13];
-        var normalVector=[100,80,60,40,20,10];
-        var somehowVector=[100,95,90,85,80,75];
-        var whateverVector=[100,100,100,100,100,100];
+        var essentialVector=[100,10,1,0,0,0];
+        var importantVector=[1024,256,64,16,4,1];
+        var normalVector=[32,16,8,4,2,1];
+        var somehowVector=[10,8,6,4,2,1];
+        var whateverVector=[1,1,1,1,1,1];
 
         var framework=[];
 
@@ -716,17 +714,29 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
                         '<option value="whatever">Unsignificant</option>' +
                         '</select>' +
                         '</td>' ));
-                    setLine(this,normalVector);
+                    if (this == "t-expressiveness") {
+                        setLine(this,essentialVector);
+                        $(name+' select').val("essential");
+                    } else if (this == "t-popularity") {
+                        setLine(this,normalVector);
+                        $(name+' select').val("normal");
+                    } else if (this == "t-efficiency") {
+                        setLine(this,importantVector);
+                        $(name+' select').val("important");
+                    } else if (this == "t-robustness") {
+                        setLine(this,importantVector);
+                        $(name+' select').val("important");
+                    }
                     var strthis=''+this;
                     $("#s-"+this).change(function(){
                             var val=$("#s-"+strthis+" option:selected").val();
                             var tab;
                             eval('tab='+val+'Vector');
                             setLine(strthis,tab);
+                            updateResult();
                         });
                 });
-        $('#compute').click(function(){
-            console.log("COMPUTATION");
+        function updateResult(){
             var scoreMatrix=[[0,0,0,0,0,0]
                             ,[0,0,0,0,0,0]
                             ,[0,0,0,0,0,0]
@@ -738,21 +748,29 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
               ,'t-robustness']).each(function(i){
                 $("#"+this+" td input").each(function(j){
                     scoreMatrix[i][j]=$(this).val(); }) });
-            console.log(scoreMatrix);
+            var result=[];
             for (key in framework) {
                 framework[key].score =
                     scoreMatrix[0][framework[key].expressiveness] *
                     scoreMatrix[1][framework[key].popularity] *
                     scoreMatrix[2][framework[key].efficiency] *
                     scoreMatrix[3][framework[key].robustness];
-
-                if (lt(16,Math.log(framework[key].score))){
-                console.log(key+": " + Math.log(framework[key].score));
-                }
+                result.push([key,Math.log(framework[key].score)]);
             }
-        });
-            } else {
-                setTimeout(run,50); } }
+            result.sort(function(a,b){return lt(a[1],b[1]);});
+            $('#result').html('<table><tr><th>position</th><th>framework</th><th align="right">log(score)</th></tr></table>');
+            for (k=0;k<5;k++){
+                $('#result table').append('<tr><td>'+(k+1)+'</td><td>'+result[k][0]+'</td><td>'+result[k][1]+'</td></tr>');
+            }
+        }
+        $('#compute').click(updateResult);
+        $("#choice-matrix input[type='text']").change(updateResult);
+        $("#choice-matrix input[type='text']").keyup(updateResult);
+        updateResult();
+    } else {
+        setTimeout(run,50);
+    }
+        }
         run();
     })();
 // ]]></script>
