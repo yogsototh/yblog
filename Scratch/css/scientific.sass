@@ -121,6 +121,8 @@ b, strong, h1, h2, h3, h4, h5, h6
   +italic
   padding: 0.5em 1em
   color: $highlightBlockColor
+  a
+    font-style: normal
   a:hover
     color: $revealColor
   i, em
@@ -613,9 +615,10 @@ $contentMargin: 0em
 .encadre, .black, .shadow
   +secondColor
 
-.intro, .resume
-  font-size: 0.9em
-  +highlight
+.corps
+  .intro, .resume
+    font-size: 0.9em
+    +highlight
 
 #afterheader > h1
   width: 100%
@@ -998,6 +1001,7 @@ a:hover .nicer
 
 .corps
   p a, ul a
+    font-style: italic
     color: $textLinkColor
   p a:hover, ul a:hover
     color: $revealColor
