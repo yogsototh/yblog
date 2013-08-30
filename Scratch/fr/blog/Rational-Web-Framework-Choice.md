@@ -584,12 +584,20 @@ Medium        C                 onion
 
 ## The result
 
-For the result I initialized the table with my needs.
+For the result I initialized the table with my own needs.
+
+And I am quite happy it confirms that I should continue to use my
+actual preferred web framework.
+I sware I didn't given it any bonus point.
+I tried to be the most objective and factual as possible.
+
+Now, it is up to you to enter your preferences.
+
 On each line you could change how important a feature is for you.
 From essential to unsignificant.
 Of course you could change the matrix at will.
 
-I just show a top 5 frameworks.
+I just show a top 10 frameworks.
 In order to give a more understandable measure I provide the log of the score.
 
 <table id="choice-matrix">
@@ -619,6 +627,74 @@ In order to give a more understandable measure I provide the log of the score.
     String.prototype.repeat = function(num){return new Array(num+1).join(this);};
     (function(){function run(){if (window.$){
 
+     var languageOf={};
+languageOf["elli"]="Erlang";
+languageOf["cowboy"]="Erlang";
+languageOf["snap"]="Haskell";
+languageOf["yesod"]="Haskell";
+languageOf["luminus"]="Clojure";
+languageOf["http-kit"]="Clojure";
+languageOf["compojure"]="Clojure";
+languageOf["play1"]="Java";
+languageOf["vertx"]="Java";
+languageOf["gemini"]="Java";
+languageOf["spring"]="Java";
+languageOf["wicket"]="Java";
+languageOf["servlet"]="Java";
+languageOf["tapestry"]="Java";
+languageOf["play-java"]="Java";
+languageOf["dropwizard"]="Java";
+languageOf["rest-express"]="Java";
+languageOf["play-java-jpa"]="Java";
+languageOf["grizzly-jersey"]="Java";
+languageOf["lift"]="Scala";
+languageOf["finagle"]="Scala";
+languageOf["scalatra"]="Scala";
+languageOf["play-scala"]="Scala";
+languageOf["play-slick"]="Scala";
+languageOf["unfiltered"]="Scala";
+languageOf["grails"]="Groovy";
+languageOf["hapi"]="javascript";
+languageOf["ringo"]="javascript";
+languageOf["nodejs"]="javascript";
+languageOf["express"]="javascript";
+languageOf["ringo-conv"]="javascript";
+languageOf["openresty"]="Lua";
+languageOf["php"]="PHP";
+languageOf["yaf"]="PHP";
+languageOf["cake"]="PHP";
+languageOf["fuel"]="PHP";
+languageOf["slim"]="PHP";
+languageOf["silex"]="PHP";
+languageOf["kohana"]="PHP";
+languageOf["laravel"]="PHP";
+languageOf["lithium"]="PHP";
+languageOf["phalcon"]="PHP";
+languageOf["phreeze"]="PHP";
+languageOf["micromvc"]="PHP";
+languageOf["symfony2"]="PHP";
+languageOf["codeigniter"]="PHP";
+languageOf["flask"]="Python";
+languageOf["django"]="Python";
+languageOf["tornado"]="Python";
+languageOf["rails"]="Ruby";
+languageOf["sinatra"]="Ruby";
+languageOf["onion"]="C";
+languageOf["nancy"]="C#";
+languageOf["aspnet-mvc"]="C#";
+languageOf["servicestack"]="C#";
+languageOf["cpoll-pool"]="C++";
+languageOf["cpoll-cppsp"]="C++";
+languageOf["dart"]="Dart";
+languageOf["go"]=" Go";
+languageOf["revel"]=" Go";
+languageOf["kelp"]="Perl";
+languageOf["plack"]="Perl";
+languageOf["dancer"]="Perl";
+languageOf["web-simple"]="Perl";
+languageOf["mojolicious"]="Perl";
+
+
 popularityClusters=[[ "rails"
 ],[ "django" , "servlet" , "spring" , "nodejs" , "codeigniter" , "grails"
 ],[ "sinatra" , "flask" , "laravel" , "kohana" , "express"
@@ -629,8 +705,8 @@ popularityClusters=[[ "rails"
 , "compojure" , "mojolicious" , "scalatra" , "finagle" , "phalcon"
 , "ringo" , "gemini" , "snap" , "plack" , "elli" , "dropwizard"
 , "yaf" , "play1" , "hapi" , "vertx" , "unfiltered" , "onion"
-, "http-kit" , "kelp" , "micromvc" , "openresty" , "cpoll-cppsp"
-, "luminus" , "phreeze"
+, "http-kit" , "kelp" , "micromvc" , "openresty" , "cpoll-pool"
+,  "cpoll-cppsp" , "luminus" , "phreeze"
 ]];
 
 
@@ -773,9 +849,9 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
                 result.push([key,Math.log(framework[key].score)]);
             }
             result.sort(function(a,b){return lt(a[1],b[1]);});
-            $('#result').html('<table><tr><th>position</th><th>framework</th><th align="right">log(score)</th></tr></table>');
-            for (k=0;k<5;k++){
-                $('#result table').append('<tr><td>'+(k+1)+'</td><td>'+result[k][0]+'</td><td><code>'+result[k][1]+'</code></td></tr>');
+            $('#result').html('<p style="text-align: center">The winner is<br/><strong>'+result[0][0]+'</strong> ('+languageOf[result[0][0]]+')</p><table><tr><th>position</th><th>framework</th><th>language</th><th align="right">log(score)</th></tr></table>');
+            for (k=0;k<10;k++){
+                $('#result table').append('<tr><td>'+(k+1)+'</td><td>'+result[k][0]+'</td><td>'+languageOf[result[k][0]]+'</td><td><code>'+result[k][1]+'</code></td></tr>');
             }
         }
         $('#compute').click(updateResult);
