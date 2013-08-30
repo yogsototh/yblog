@@ -813,3 +813,13 @@ It is now up to you to edit the score matrix to set your needs.
 Also consider it took me a while to end up with this.
 And I know in the current state there are many flaws.
 But I am quite happy my scoring system had chosen the framework I choosen for myself before.
+
+Also some remarks on playing with different values.
+Java frameworks score quite well, if popularity matter more than expressiveness.
+Furthermore yesod score very good even if you don't consider robustness.
+
+Of course the source code for the matrix shouldn't be too hard to read.
+You could change the positionning of some frameworks if you believe I made some mistake by placing them in some bad clusters.
+
+I didn't had the courage to make this change possible using an user interface.
+So feel free to copy the js contained in this page (inline) and to make your own chooser.
