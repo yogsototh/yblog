@@ -742,7 +742,7 @@ expressivenessClusters=[[
 , "silex" , "kohana" , "laravel" , "lithium" , "phalcon" , "phreeze"
 , "micromvc" , "symfony2" , "codeigniter"
 ],[ "onion" , "hapi" , "ringo" , "nodejs" , "express" , "ringo-conv"
-]]
+]];
 
 robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
 ],[ "luminus" , "http-kit" , "compojure" , "play1" , "vertx" , "gemini"
@@ -759,7 +759,7 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
 , "dancer" , "web-simple" , "mojolicious"
 ],[
 ],[
-]]
+]];
 
         var essentialVector=[100,10,1,0,0,0];
         var importantVector=[1024,256,64,16,4,1];
