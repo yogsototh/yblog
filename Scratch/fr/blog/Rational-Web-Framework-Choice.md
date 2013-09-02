@@ -709,9 +709,9 @@ languageOf["web-simple"]="Perl";
 languageOf["mojolicious"]="Perl";
 
 
-popularityClusters=[[ "rails"
+popularityClusters=[[ "rails", "php"
 ],[ "django" , "servlet" , "spring" , "nodejs" , "codeigniter" , "grails"
-],[ "sinatra" , "flask" , "laravel" , "kohana" , "express"
+],[ "sinatra" , "flask" , "laravel" , "kohana" , "rest-express", "express"
 ],[ "cake" , "servicestack" , "play-java", "play-slick"
 , "wicket" , "dart" , "slim" , "tornado" , "lift" , "go"
 ],[ "tapestry" , "aspnet-mvc" , "yesod" , "silex" , "lithium" , "nancy"
