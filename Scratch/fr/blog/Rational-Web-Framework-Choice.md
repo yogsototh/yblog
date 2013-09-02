@@ -869,7 +869,7 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
                     parseInt(scoreMatrix[3][framework[key].robustness]);
                 result.push([key,framework[key].score]);
             }
-            result.sort(function(a,b){return lt(a[1],b[1]);});
+            result.sort(function(a,b){return b[1] - a[1];});
             var winners=[];
             var i=0;
             var maxscore=result[0][1];
