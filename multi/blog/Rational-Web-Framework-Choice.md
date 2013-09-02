@@ -14,6 +14,7 @@ blogimage("battle-of-lepanto-vicentino-andrea.jpg","Main image")
 <div class="intro">
 
 en: %tldr Determine with the most objectivity possible the best(s) web framework(s) depending on your needs.
+en: A decision helping tool is provided at the end of the article.
 en: [Click here to jump to the result](#the-result).
 
 fr: %tlal Comment déterminer de la façon la plus rationnelle possible le meilleur framework work relativement à vos besoins. [Cliquez ici pour aller au résultats](#the-result). Cet article n'est disponible qu'en anglais.
@@ -44,8 +45,9 @@ But, you continually hear this little voice.
 > **"You didn't made a bad choice, yes. But ...  
 > you hadn't made the best either."**
 
-This article try to determine the most objective and rational way
+This article try to determine in the most objective and rational way
 the best(s) web framework(s) depending on your needs.
+To reach this goal, I will provide a decision tool in the result section.
 
 I will use the following methodology:
 
@@ -61,31 +63,36 @@ I will use the following methodology:
 
 ## Model
 
-Here are the important features (parameters) I decided to use for the choice:
+Here are the important features (properties/parameters)
+I selected to make the choice:
 
-1. _**Expressiveness**_, which is generally correlated to:
-    - faster development
-    - flexibility, adaptability
-
-2. _**Robustness**_, which correlate with:
-    - security
-    - fewer bugs
-
-3. _**Efficiency**_, which is generally correlated to:
-    - how much processing power you'll need per user
-    - maintenance price per user
-    - how long the user will wait to see/update data
-
-4. _**Popularity**_, which correlate with:
+1. _**Popularity**_, which correlate with:
     - number of tested libraries
     - facility to find learning material
     - ability to find another developer to work with
 
-Each feature is quite important and mostly independant from each other.
+2. _**Efficiency**_, which is generally correlated to:
+    - how much processing power you'll need per user
+    - maintenance price per user
+    - how long the user will wait to see/update data
 
-Unfortunately, these kind of properties are very hard to measure with precision.
-In fact we could only get orders of magnitude for each.
-In the end, we will have _clusters_.
+3. _**Expressiveness**_, which is generally correlated to:
+    - faster development
+    - flexibility, adaptability
+
+4. _**Robustness**_, which correlate with:
+    - security
+    - fewer bugs
+
+Each feature is quite important and mostly independant from each other.
+I tried to embrace most important topics concerning web frameworks
+with these four properties.
+I am fully concious some people might lack another important feature.
+Nonetheless the methodology used here can be easily replicated.
+If you lack an important property add it at will and use this choice method.
+
+Also each feature is very hard to measure with precision.
+This is why we will only focus on order of magnitude.
 
 For each property a framework could have one of the six possible values:
 Excellent, Very Good, Good, Medium, Bad or Very Bad
@@ -96,27 +103,27 @@ One of the most versatile method is to give a weight for each cluster value.
 And to select the framework maximizing this score:
 
 ```
-score(framework) = efficiency × robustness × expressiveness × popularity
+score(framework) = efficiency + robustness + expressiveness + popularity
 ```
 
-For example:
-
--------------- ---- --- --- --- --- ---
-Expressiveness  100  10   1   0   0   0
-Popularity       32  32   8   4   2   1
-Efficiency     1024 256  64  16   4   1
-Robustness     1024 256  64  16   4   1
--------------- ---- --- --- --- --- ---
-
-Using this weighted table, that means:
-
-- we discard the three least expressive clusters.
-- We don't make any difference between excellent and very good in popularity.
-- Concerning efficient framework in excellent cluster will have 4x more points than very cluster.
-
-So for each framework we compute its score relatively to a weighted table.
-And we select the best(s).
-
+> For example:
+> 
+> -------------- ---- --- --- --- --- ---
+> Expressiveness   10   7   1  -∞  -∞  -∞
+> Popularity        5   5   4   3   2   1
+> Efficiency       10   8   6   4   2   1
+> Robustness       10   8   6   4   2   1
+> -------------- ---- --- --- --- --- ---
+> 
+> Using this weighted table, that means:
+> 
+> - we discard the three least expressive clusters.
+> - We don't make any difference between excellent and very good in popularity.
+> - Concerning efficient framework in excellent cluster will have 2 more points than the "very good" cluster.
+> 
+> So for each framework we compute its score relatively to a weighted table.
+> And we select the best(s).
+> 
 > **Example**: Using this hypothetic framework and the preceeding table.
 > 
 >        Expressiveness Popularity Efficiency Robustness
@@ -124,9 +131,8 @@ And we select the best(s).
 > yog     Excellent      Very Bad     Medium   Very Good
 > 
 > ```
-> score(yog) = 100 × 1 × 16 × 256 = 409600
+> score(yog) = 10 + 0 + 4 + 8 = 22
 > ```
-
 
 Most needs should be expressed by such a weighted table.
 In the result section, we will discuss this further.
@@ -135,15 +141,17 @@ It is now time to try to get these measures.
 
 ## Objective measures
 
-None of these property can be measured with perfect precision.
-But each time we should get an order of magnitude for each.
-Some properties feels easier to measure than other.
 
-For example, popularity measure can be quite correct (at least for the most popular languages).
-It is more complex to measure the efficiency, expressiveness and easiness, but
-we can have good enough indicators.
+None of the four properties I choosen can be measured with perfect precision.
+But we could get the order of magnitude for each.
 
-As each indicator lack of precision, we will focus on giving order of magnitude.
+I tried to focus on the framework only.
+But it is often easier to start by studying the language first.
+
+For example, I have datas about popularity by language and I also have different datas concerning popularity by framework.
+Even if I use only the framework focused datas in my final decision model,
+it seemed important to me to discuss about the datas for the languages.
+The goal is to provide a tool to help decision not to give a decision for you.
 
 ### Popularity
 
@@ -155,7 +163,7 @@ Vertical correspond to the number of questions on stackoverflow.
 Horizontal correspond to the number of projects on github.
 
 If you look at the image, your eye can see about four clusters.
-The 1ﬆ cluster correspond to mainstream languages:
+The 1<sup>ﬆ</sup> cluster correspond to mainstream languages:
 
 blogfigure("mainstreamlanguages.png","Mainstream Languages Cluster from [RedMonk][redmonk]")
 
@@ -252,9 +260,9 @@ Very bad     Java        Grizzly         622      &lt;3%
              PHP         Phreeze         1
 
 As we can see, our framework popularity indicator can be quite different from its language popularity.
-There might be a better system to merge language popularity with framework popularity. For this study I will just use the number of stackoverflow question for each framework. In this sense, the popularity score can clearly be improved.
-But as I said earlier. The important information here is the order of magnitude.
-So we don't need much precision and certainly with a better measure there won't be much jumps from one cluster to another.
+For now I didn't found a nice way to merge the results from RedMonk with these one.
+So I'll use these unperfect one.
+Hopefully the order of magninute is mostly correct for most framework.
 
 ### Efficiency
 
@@ -367,6 +375,7 @@ Very Bad    PHP              laravel    1,639  &gt;60×
 These are manually made clusters. But you get the idea.
 Certainly, some framework could jump between two different clusters.
 So this is something to remember.
+But as always, the order of magnitude is certainly mostly right.
 
 # Expressiveness
 
@@ -405,6 +414,13 @@ Unfortunately there is no information about dart.
 So I simply give a very fast look at the syntax.
 As it looked a lot like javascript and js is quite
 low. I decided to put it close to java.
+
+Also an important remark, javascript score very badly here while
+coffeescript (compiling to js) score "excellent".
+So if you intend to use a javascript framework but only with coffescript
+that should change substantially the score.
+As I don't believe it is the standard.
+Javascript oriented framework score very badly regarding expressiveness.
 
 
 <div id="toggle-expressiveness-table" class="button">Click here to show/hide the table for frameworks</div>
@@ -498,8 +514,6 @@ blogfigure("languagesafety.png","Static Type Properties from [James IRY Blog][ty
 [typesanalysis]: http://james-iry.blogspot.fr/2010/05/types-la-chart.html
 
 From my point of view, robustness is mostly identical to safety.
-I don't think the following table is much a subject of discussion.
-But if you don't trust in this table, you should just ignore it.
 
 Here are the clusters:
 
@@ -589,9 +603,8 @@ Medium        C                 onion
 
 For the result I initialized the table with my own needs.
 
-And I am quite happy it confirms that I should continue to use my
-actual preferred web framework.
-I sware I didn't given it any bonus point.
+And I am quite happy it confirms my current choice.
+I sware I didn't given yesod any bonus point.
 I tried to be the most objective and factual as possible.
 
 Now, it is up to you to enter your preferences.
@@ -623,9 +636,11 @@ In order to give a more understandable measure I provide the log of the score.
 <div id="compute" class="button">Click to force refresh</div>
 <div id="result"></div>
 
-<script>// <![CDATA[
+<script>// <![CDATA[ // <![CDATA[
     function lt(x,y){return (x < y);}
-// ]]></script>
+    function bal(balname,str){return '<'+balname+'>'+str+'</'+balname+'>';}
+    function ret(){return '<br/>';}
+// ]]> // ]]></script>
 <script>// <![CDATA[
     String.prototype.repeat = function(num){return new Array(num+1).join(this);};
     (function(){function run(){if (window.$){
@@ -761,11 +776,18 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
 ],[
 ]];
 
-        var essentialVector=[100,10,1,0,0,0];
-        var importantVector=[1024,256,64,16,4,1];
-        var normalVector=[32,16,8,4,2,1];
-        var somehowVector=[10,8,6,4,2,1];
-        var whateverVector=[1,1,1,1,1,1];
+        // var essentialVector=[10000,100,1,0,0,0];
+        // var importantVector=[1024,256,64,16,4,1];
+        // var normalVector=[32,16,8,4,2,1];
+        // var somehowVector=[10,8,6,4,2,1];
+        // var whateverVector=[1,1,1,1,1,1];
+
+        var ninfty=Number.NEGATIVE_INFINITY;
+        var essentialVector=[11,7,0,-1000,-1000,-1000];
+        var importantVector=[10,8,6,4,2,0];
+        var normalVector=[5,4,3,2,1,0];
+        var somehowVector=[2,2,1,1,0,0];
+        var whateverVector=[0,0,0,0,0,0];
 
         var framework=[];
 
@@ -797,7 +819,7 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
           ,'t-efficiency'
           ,'t-robustness']).each(function(){
                     var name='#'+this;
-                    var tdinput=$('<td align="right"><input style="display: inline-block;width:2em;text-align:right" type="text"></input></td>'.repeat(6));
+                    var tdinput=$('<td align="right"><input style="display: inline-block;width:3.2em;text-align:right" type="text"></input></td>'.repeat(6));
                     $(name).append(tdinput);
                     $(name).append($('<td>'+
                         '<select style="width:6em" id="s-'+this+'">' +
@@ -845,16 +867,30 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
             var result=[];
             for (key in framework) {
                 framework[key].score =
-                    scoreMatrix[0][framework[key].expressiveness] *
-                    scoreMatrix[1][framework[key].popularity] *
-                    scoreMatrix[2][framework[key].efficiency] *
-                    scoreMatrix[3][framework[key].robustness];
-                result.push([key,Math.log(framework[key].score)]);
+                    parseInt(scoreMatrix[0][framework[key].expressiveness]) +
+                    parseInt(scoreMatrix[1][framework[key].popularity]) +
+                    parseInt(scoreMatrix[2][framework[key].efficiency]) +
+                    parseInt(scoreMatrix[3][framework[key].robustness]);
+                result.push([key,framework[key].score]);
             }
             result.sort(function(a,b){return lt(a[1],b[1]);});
-            $('#result').html('<p style="text-align: center">The winner is<br/><strong>'+result[0][0]+'</strong> ('+languageOf[result[0][0]]+')</p><table><tr><th>position</th><th>framework</th><th>language</th><th align="right">log(score)</th></tr></table>');
-            for (k=0;k<10;k++){
-                $('#result table').append('<tr><td>'+(k+1)+'</td><td>'+result[k][0]+'</td><td>'+languageOf[result[k][0]]+'</td><td><code>'+result[k][1]+'</code></td></tr>');
+            var winners=[];
+            var i=0;
+            var maxscore=result[0][1];
+            while ((lt(i,result.length)) && (result[i][1]==maxscore)){
+                winners.push(result[i]);
+                i+=1;
+            }
+            if (winners.length == 1) {
+                $('#result').html('<'+'p style="text-align: center">And the winner is<'+'br/><'+'strong>'+result[0][0]+'<'+'/strong> ('+languageOf[result[0][0]]+')<'+'/p><'+'table><'+'tr><'+'th>position<'+'/th><'+'th>framework<'+'/th><'+'th>language<'+'/th><'+'th align="right">score<'+'/th><'+'/tr><'+'/table>');
+            } else {
+                var listwinners=new String;
+                for (i=0;lt(i,winners.length);i++){
+                    listwinners=listwinners+bal('strong', winners[i][0] ) + " ("+languageOf[winners[i][0]]+")"+ret();}
+                $('#result').html('<'+'p style="text-align: center">And the winners are<'+'br/>' + listwinners + '<'+'table><'+'tr><'+'th>position<'+'/th><'+'th>framework<'+'/th><'+'th>language<'+'/th><'+'th align="right">score<'+'/th><'+'/tr><'+'/table>');
+            }
+            for (k=0;lt(k,10);k++){
+                $('#result table').append('<'+'tr><'+'td>'+(k+1)+'<'+'/td><'+'td>'+result[k][0]+'<'+'/td><'+'td>'+languageOf[result[k][0]]+'<'+'/td><'+'td><'+'code>'+result[k][1]+'<'+'/code><'+'/td><'+'/tr>');
             }
         }
         $('#compute').click(updateResult);
@@ -880,22 +916,28 @@ robustnessClusters=[[ "elli" , "cowboy" , "snap" , "yesod"
     })();
 // ]]></script>
 
+I didn't had the courage in explaining in what the scoring system
+is good. Mostly, if you use product instead of sum for the score
+you could use power of $e$ for the values in the matrix.
+And you could see the matrix as a probability matrix (each line sum to 1).
+Which provide a slighly better intuition on whats going on.
+
+Remember only that values are exponential.
+Do not double an already big value for example the effect would be extreme.
+
 ## Conclusion
 
-Please, remember all of this is based as most as I could on objective data.
-Also the choice method seems rather rational.
+All of this is based as most as I could on objective data.
+The choice method seems both rather rational and classical.
 It is now up to you to edit the score matrix to set your needs.
 
-Also consider it took me a while to end up with this.
-And I know in the current state there are many flaws.
-But I am quite happy my scoring system had chosen the framework I choosen for myself before.
+I know that in the current state there are many flaws.
+But it is a first system to help make a choice rationally.
 
-Also some remarks on playing with different values.
-Java frameworks score quite well, if popularity matter more than expressiveness.
-Furthermore yesod score very good even if you don't consider robustness.
+I encourage you to go further if you are not satisfied by my method.
 
-Of course the source code for the matrix shouldn't be too hard to read.
+The source code for the matrix shouldn't be too hard to read.
+Just read the source of this webpage.
 You could change the positionning of some frameworks if you believe I made some mistake by placing them in some bad clusters.
 
-I didn't had the courage to make this change possible using an user interface.
-So feel free to copy the js contained in this page (inline) and to make your own chooser.
+So I hope this tool will help you in making your life easier.
