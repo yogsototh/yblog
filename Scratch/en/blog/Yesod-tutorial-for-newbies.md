@@ -249,7 +249,7 @@ module Handler.Echo where
 
 import Import
 
-getEchoR :: String -> Handler RepHtml
+getEchoR :: String -> Handler Html
 getEchoR = error "Not yet implemented: getEchoR"
 ~~~
 
@@ -261,13 +261,13 @@ module Handler.Echo where
 
 import Import
 
-getEchoR :: String -> Handler RepHtml
+getEchoR :: String -> Handler Html
 getEchoR theText = defaultLayout [whamlet|<h1>#{theText}|]
 ~~~
 
 Don't worry if you find all of this a bit cryptic.
 In short it just declares a function named `getEchoR` with one argument (`theText`) of type `String`.
-When this function is called, it returns a `Handler RepHtml` whatever it is.
+When this function is called, it returns a `Handler Html` whatever it is.
 But mainly this will encapsulate our expected result inside an %html text.
 
 After saving the file, you should see Yesod recompile the application.
@@ -352,7 +352,7 @@ module Handler.Echo where
 
 import Import
 
-getEchoR :: {-hi-}Text{-/hi-} -> Handler RepHtml
+getEchoR :: {-hi-}Text{-/hi-} -> Handler Html
 getEchoR theText = defaultLayout [whamlet|<h1>#{theText}|]
 ~~~~~~
 
@@ -373,7 +373,7 @@ module Handler.Echo where
 
 import Import
 
-getEchoR :: Text -> Handler RepHtml
+getEchoR :: Text -> Handler Html
 getEchoR theText = defaultLayout {-hi-}$(widgetFile "echo"){-/hi-}
 ~~~~~~
 
@@ -409,10 +409,10 @@ module Handler.Mirror where
 import Import
 import qualified Data.Text as T
 
-getMirrorR :: Handler RepHtml
+getMirrorR :: Handler Html
 getMirrorR = defaultLayout $(widgetFile "mirror")
 
-postMirrorR :: Handler RepHtml
+postMirrorR :: Handler Html
 postMirrorR =  do
         postedText <- runInputPost $ ireq textField "content"
         defaultLayout $(widgetFile "posted")
@@ -500,7 +500,6 @@ handle Html in forms.
 module Handler.Blog
     ( getBlogR
     , postBlogR
-    , getArticleR
     )
 where
 
@@ -532,7 +531,7 @@ Its arguments being: `areq type label default_value`.
 
 ~~~~~~ {.haskell}
 -- The view showing the list of articles
-getBlogR :: Handler RepHtml
+getBlogR :: Handler Html
 getBlogR = do
     -- Get the list of articles inside the database.
     articles <- runDB $ selectList [] [Desc ArticleTitle]
@@ -579,7 +578,7 @@ Of course, you can't post something yet.
 Get back to `Handler/Blog.hs`.
 
 ~~~~~~ {.haskell}
-postBlogR :: Handler RepHtml
+postBlogR :: Handler Html
 postBlogR = do
     ((res,articleWidget),enctype) <- runFormPost entryForm
     case res of
@@ -614,7 +613,7 @@ Finally we need to display an article.
 For this we will modify `Handler/Article.hs`
 
 ~~~~~~ {.haskell}
-getArticleR :: ArticleId -> Handler RepHtml
+getArticleR :: ArticleId -> Handler Html
 getArticleR articleId = do
     article <- runDB $ get404 articleId
     defaultLayout $ do
@@ -630,9 +629,14 @@ Here is the content of `templates/article.hamlet`:
 ~~~~~~ {.html}
 <h1> #{articleTitle article}
 <article> #{articleContent article}
+<hr>
+<a href=@{BlogR}>
+    Go to article list.
 ~~~~~~
 
 The blog system is finished.
+You can jump to it by clicking [here](http://localhost:3000/blog).
+
 Just for fun, you can try to create an article with the following content:
 
 ~~~~~~ {.html}
