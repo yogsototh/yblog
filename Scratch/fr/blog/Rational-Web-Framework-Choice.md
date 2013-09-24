@@ -47,15 +47,27 @@ To reach this goal, I will provide a decision tool in the result section.
 
 I will use the following methodology:
 
-> ### Methodology
+**Methodology**
+
+1. Model how to make choice 
+    a. choose important parameters
+    b. organize (hierarchize) them
+    c. write down an objective chooser
+2. Grab objective quantified informations about web frameworks relatively to choosen parameters
+3. Sanitize your data in order to handle imprecisions, lack of informations...
+4. Apply the model of choice to your informations
+
+> **☞ Important Note**  
+> I am far from happy to the actual result.
+> There are a lot of bias, for example in the choice of the parameters.
+> The same can be said about the data I gathered.
+> I am using very imprecise informations.
+> But, as far as I know, this is the only article I know which use many
+> different parameters to help you choose a web framework.
 > 
-> 1. Model how to make choice 
->     a. choose important parameters
->     b. organize (hierarchize) them
->     c. write down an objective chooser
-> 2. Grab objective quantified informations about web frameworks relatively to choosen parameters
-> 3. Sanitize your data in order to handle imprecisions, lack of informations...
-> 4. Apply the model of choice to your informations
+> This is why I made a very flexible decision tool:
+> 
+> [Decision tool](#the-result).
 
 ## Model
 
