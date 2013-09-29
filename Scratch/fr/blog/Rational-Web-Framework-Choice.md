@@ -59,10 +59,10 @@ I will use the following methodology:
 
 > **☞ Important Note**  
 > I am far from happy to the actual result.
-> There are a lot of bias, for example in the choice of the parameters.
+> There are a lot of biases, for example in the choice of the parameters.
 > The same can be said about the data I gathered.
 > I am using very imprecise informations.
-> But, as far as I know, this is the only article I know which use many
+> But, as far as I know, this is the only article which use many
 > different parameters to help you choose a web framework.
 > 
 > This is why I made a very flexible decision tool:

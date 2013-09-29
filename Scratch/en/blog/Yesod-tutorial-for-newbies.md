@@ -51,9 +51,12 @@ Weaknesses of Haskell certainly won't be technical:
 - Hard to grasp Haskell
 - Hard to find a Haskell programmer
 - The Haskell community is smaller than the community for `/.*/`
-- There is not yet a [heroku](http://heroku.com) for Haskell.
-  In fact, I use heroku to host my websites but this isn't straightforward
-  (see the [how to](https://github.com/yesodweb/yesod/wiki/Deploying-Yesod-Apps-to-Heroku)).
+- <strike>There is not yet a [heroku](http://heroku.com) for Haskell.
+  Even In fact, I use heroku to host my websites but this isn't straightforward
+  (see the [how to](https://github.com/yesodweb/yesod/wiki/Deploying-Yesod-Apps-to-Heroku)).</strike>
+  [FPComplete](http://fpcomplete.com) has now filled this hole.
+  And they provide not only cloud hosting but also a
+  complete IDE and Haskell environment to work with.
 
 I won't say these are not important drawbacks. But with Haskell your web
 application will be able to both absorb an impressive number of parallel
