@@ -371,6 +371,22 @@ match "posts/*.md" do
             (defaultContext {-hi-}<> metaKeywordContext{-/hi-})
 ```
 
+> ☞ Here are the imports I use for this tutorial.
+>
+> ``` haskell
+> {-# LANGUAGE OverloadedStrings #-}
+> import           Control.Monad          (forM,forM_)
+> import           Data.List              (sortBy,isInfixOf)
+> import           Data.Monoid            ((<>),mconcat)
+> import           Data.Ord               (comparing)
+> import           Hakyll
+> import           System.Locale          (defaultTimeLocale)
+> import           System.FilePath.Posix  (takeBaseName,takeDirectory
+>                                          ,(</>),splitFileName)
+> ```
+
+
+
 ### Simplify %url
 
 What I mean is to use url of the form:
@@ -415,7 +431,7 @@ And we apply this filter at the end of our compilation
 
 ``` haskell
 match "posts/*.md" do
-  route $ setExtension "html"
+  {-hi-}route $ niceRoute{-/hi-}
   compile $ pandocCompiler
     -- use the template with the current content
     >>= loadAndApplyTemplate "templates/post.html" defaultContext
@@ -537,6 +553,7 @@ match "posts/*.md" do
 ```
 
 Now for each post there is a snapshot named "content" associated.
+The snapshots are created before applying a template and after applying pandoc.
 Furthermore feed don't need a source markdown file.
 Then we create a new file from no one.
 Instead of using `match`, we use `create`:
