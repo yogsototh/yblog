@@ -413,7 +413,7 @@ niceRoute = customRoute createIndexRoute
 Not too difficult. But! There might be a problem.
 What if there is a `foo/index.html` link instead of a clean `foo/` in some content?
 
-Very simple, we simply remove all '/index.html' to all our links.
+Very simple, we simply remove all `/index.html` to all our links.
 
 ``` haskell
 -- replace url of the form foo/bar/index.html by foo/bar
