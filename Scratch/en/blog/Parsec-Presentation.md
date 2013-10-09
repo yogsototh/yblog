@@ -14,13 +14,12 @@ theme: scientific
 
 <div class="intro">
 
-%tldr Short introduction to Parsec.
+%tldr Short introduction to Parsec for beginner.
 
 
 </div>
 
 - The %html presentation is [here](https://yogsototh.github.io/parsec-presentation/parsec.html).
-
 
 <div style="display:none">
 \(\newcommand{\F}{\mathbf{F}}\)

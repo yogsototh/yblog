@@ -15,14 +15,13 @@ theme: scientific
 
 <div class="intro">
 
-en: %tldr Short introduction to Parsec.
+en: %tldr Short introduction to Parsec for beginner.
 
 fr: %tlal Une introduction rapide à Parsec. Un parser en Haskell.
 
 </div>
 
 - The %html presentation is [here](https://yogsototh.github.io/parsec-presentation/parsec.html).
-
 
 <div style="display:none">
 \(\newcommand{\F}{\mathbf{F}}\)

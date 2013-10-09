@@ -21,7 +21,6 @@ theme: scientific
 
 - The %html presentation is [here](https://yogsototh.github.io/parsec-presentation/parsec.html).
 
-
 <div style="display:none">
 \(\newcommand{\F}{\mathbf{F}}\)
 \(\newcommand{\E}{\mathbf{E}}\)
