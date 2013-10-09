@@ -19,7 +19,7 @@ esac
 (( $currenttime - $checkfilemodifiedtime  < 5)) && error "watching in progress (wait at least 5 seconds if you killed it)"
 }
 
-packageconf=( $(print -- cabal-dev/packages-*.conf(N)) )
+packageconf=( $(print -- .cabal-sandbox/*.conf.d(N)) )
 ((${#packageconf} == 0 )) && error "Please, wait the end of compilation and relaunch preview again"
 ((${#packageconf} > 1 )) && {
     print -- "I need to use only one directory"
