@@ -1,8 +1,10 @@
 #!/usr/bin/env zsh
 
+[[ ! -e .cabal-sandbox ]] && cabal sandbox init
+
 compileAndPreview(){
     print -- "Compiling and building"
-    cabal-dev install && \
+    cabal install && \
     ./site clean && \
     while true; do ./site preview; done
 }
