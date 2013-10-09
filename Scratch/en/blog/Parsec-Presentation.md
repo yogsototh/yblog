@@ -154,7 +154,7 @@ f x y <span class="co">-- ⇔ f(x,y)</span></code></pre>
 </section>
 <section class="slide">
 <h2 id="haskell-remarks-2">Haskell Remarks (2)</h2>
-<p>Don't mind strange operators (<code>&lt;*&gt;</code>, <code>&lt;$&gt;</code>).<br />Consider them like separators, typically commas.<br />They are just here to deal with types.</p>
+<p>Don't mind strange operators (<code>&lt;*&gt;</code>, <code>&lt;\$&gt;</code>).<br />Consider them like separators, typically commas.<br />They are just here to deal with types.</p>
 <p>Informally:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">toto <span class="fu">&lt;$&gt;</span> x <span class="fu">&lt;*&gt;</span> y <span class="fu">&lt;*&gt;</span> z
     <span class="co">-- ⇔ toto x y z</span>
