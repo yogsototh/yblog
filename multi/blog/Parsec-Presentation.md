@@ -1,7 +1,7 @@
 ---
 kind:           article
 published:      2013-10-09
-image: https://yogsototh.github.io/parsec-presentation/parsec/img/mp/AST.png
+image: http://yogsototh.github.io/parsec-presentation/parsec/img/mp/AST.png
 en: title: Parsec Presentation
 fr: title: Parsec Presentation
 author: Yann Esposito
@@ -11,7 +11,7 @@ tags: programming, haskell, parsec, parser
 theme: scientific
 ---
 
-![AST](https://yogsototh.github.io/parsec-presentation/parsec/img/mp/AST.png)\
+![AST](http://yogsototh.github.io/parsec-presentation/parsec/img/mp/AST.png)\
 
 <div class="intro">
 
@@ -21,7 +21,7 @@ fr: %tlal Une introduction rapide à Parsec. Un parser en Haskell.
 
 </div>
 
-- The %html presentation is [here](https://yogsototh.github.io/parsec-presentation/parsec.html).
+- The %html presentation is [here](http://yogsototh.github.io/parsec-presentation/parsec.html).
 
 <div style="display:none">
 \(\newcommand{\F}{\mathbf{F}}\)
@@ -117,7 +117,7 @@ Riviera Scala Clojure Meetup (Haskell)
 <p>From String:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="dv">1</span><span class="fu">+</span><span class="dv">3</span>)<span class="fu">*</span>(<span class="dv">1</span><span class="fu">+</span><span class="dv">5</span><span class="fu">+</span><span class="dv">9</span>)</code></pre>
 <p>To data structure:</p>
-<p><img src="https://yogsototh.github.io/parsec-presentation/parsec/img/mp/AST.png" alt="AST" /><br /></p>
+<p><img src="http://yogsototh.github.io/parsec-presentation/parsec/img/mp/AST.png" alt="AST" /><br /></p>
 </section>
 <section class="slide">
 <h2 id="parsec">Parsec</h2>
@@ -446,8 +446,8 @@ test parser description string <span class="fu">=</span> <span class="kw">do</sp
 <h2 id="appendice-2">Appendice (2)</h2>
 <p>Links to example code:</p>
 <ul>
-<li><a href="https://yogsototh.github.io/parsec-presentation/parsec/examples/01.hs">examples1.hs</a></li>
-<li><a href="https://yogsototh.github.io/parsec-presentation/parsec/examples/scheme.hs">scheme.hs</a></li>
+<li><a href="http://yogsototh.github.io/parsec-presentation/parsec/examples/01.hs">examples1.hs</a></li>
+<li><a href="http://yogsototh.github.io/parsec-presentation/parsec/examples/scheme.hs">scheme.hs</a></li>
 </ul>
 </section>
 <!-- End slides. -->
