@@ -1289,8 +1289,8 @@ Modifying version 1 is left as an exercise to the reader ☺.
 
 If you believe we have reached the end of generalization, then know you are very wrong.
 For example, there is a way to not only use this function on lists but on any recursive type.
-If you want to know how, I suggest you to read this quite fun article:
-[Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf).
+If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/0
+1/db-utwente-40501F46.pdf).
 
 This example should show you how great pure functional programming is.
 Unfortunately, using pure functional programming isn't well suited to all usages.
@@ -1391,7 +1391,7 @@ For each type, you need to write a new function.
 The only way to work around this problem is to use some meta-programming trick, for example using the pre-processor.
 In C++ there is a better way, C++ templates:
 
-~~~~~~ {.c++}
+`````
 #include <iostream>
 #include <complex>
 using namespace std;
@@ -1413,7 +1413,7 @@ int main() {
          << endl;
     return 0;
 }
-~~~~~~
+`````
 
 C++ does a far better job than C in this regard.
 But for more complex functions the syntax can be hard to follow:

@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 
-[[ ! -e .cabal-sandbox ]] && cabal sandbox init || { print -- "Couldn't initialize cabal sandbox" >&2; exit 1 }
+[[ ! -e .cabal-sandbox ]] && { cabal sandbox init || { print -- "Couldn't initialize cabal sandbox" >&2; exit 1 } }
 
 compileAndPreview(){
     print -- "Compiling and building"
     cabal install && \
-    ./site clean && \
-    while true; do ./site preview; done
+    .cabal-sandbox/bin/yblog clean && \
+    while true; do .cabal-sandbox/bin/yblog watch; done
 }
 
 ./watch-multi & compileAndPreview

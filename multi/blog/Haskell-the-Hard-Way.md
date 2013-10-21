@@ -1451,7 +1451,7 @@ For each type, you need to write a new function.
 The only way to work around this problem is to use some meta-programming trick, for example using the pre-processor.
 In C++ there is a better way, C++ templates:
 
-~~~~~~ {.c++}
+`````
 #include <iostream>
 #include <complex>
 using namespace std;
@@ -1473,7 +1473,7 @@ int main() {
          << endl;
     return 0;
 }
-~~~~~~
+`````
 
 C++ does a far better job than C in this regard.
 But for more complex functions the syntax can be hard to follow:

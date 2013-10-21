@@ -6,7 +6,7 @@ theme: scientific
 <img src="/Scratch/img/about/avatar.png" alt="Avatar" class="clean left"/>
 
 **@** %mailperso  
-[<span class="social">&#116;</span> @yogsototh](http://twitter.com/yogsototh)  
+<a href="http://twitter.com/yogsototh"><span class="social">&#116;</span> @yogsototh</a>  
 [<span class="social">&#0103;</span> +yogsotoh](https://plus.google.com/117858550730178181663)  
 [<img src="/Scratch/img/pinboard.png"  class="simple" style="height: 16px"/> yogsototh](http://pinboard.in/u:yogsototh)  
 [<img src="/Scratch/img/GitHub-Mark-32px.png"  class="simple" style="height: 16px"/> yogsototh](http://github.com/yogsototh)  
