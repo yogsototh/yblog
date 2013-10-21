@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-[[ ! -e .cabal-sandbox ]] && cabal sandbox init
+[[ ! -e .cabal-sandbox ]] && cabal sandbox init || { print -- "Couldn't initialize cabal sandbox" >&2; exit 1 }
 
 compileAndPreview(){
     print -- "Compiling and building"
