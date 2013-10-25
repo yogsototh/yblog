@@ -27,7 +27,7 @@ packageconf=( $(print -- .cabal-sandbox/*.conf.d(N)) )
     exit 1
 }>&2
 
-languages=( $(runghc -package-conf=$packageconf showlangs.hs) )
+languages=( $(runghc -package-db=$packageconf showlangs.hs) )
 ((${#languages} == 0)) && error "Couldn't retrieve languages [runghc -package-db=$packageconf showlang.hs]"
 print "languages to watch (in Config.hs) are: $languages"
 typeset -a exclu
