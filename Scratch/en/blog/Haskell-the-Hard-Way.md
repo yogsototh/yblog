@@ -1368,7 +1368,7 @@ Prelude Data.Complex> square (2 :+ 1)
 3.0 :+ 4.0
 ~~~
 
-`x :+ y` is the notation for the complex (<i>x + ib</i>).
+`x :+ y` is the notation for the complex (<i>x + iy</i>).
 
 Now compare with the amount of code necessary in C:
 
