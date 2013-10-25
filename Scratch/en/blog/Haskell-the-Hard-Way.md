@@ -716,7 +716,7 @@ square''' = (^2)
 Note we can declare functions with `'` in their name.
 Here:
 
- > `square` ⇔  `square'` ⇔ `square''` ⇔ `square '''`
+ > `square` ⇔  `square'` ⇔ `square''` ⇔ `square'''`
 
 _Tests_
 
