@@ -1,5 +1,5 @@
-$unit: 16px
-$small: 14px
+$unit: 18px
+$small: 15px
 $lineheight: $unit * 1.5
 $smalllineheight: $small * 1.5
 $hmargin: 4*$unit
@@ -21,6 +21,7 @@ $hmargin: 4*$unit
   &:hover
     opacity: 1
 
+
 html
   padding: 0
 body
@@ -39,7 +40,6 @@ a:visited
   color: $blue
 a:hover
   color: $orange
-  text-shadow: 0 0 1px $red
 
 =sc
   font-variant: small-caps
@@ -70,9 +70,11 @@ acronym
       color: $front
 
 #navigation
+  display: block
   text-align: center
   padding: 1em
   letter-spacing: .25em
+  margin: 2em auto
   .sep
     opacity: .3
     font-style: italic
@@ -106,28 +108,36 @@ acronym
     padding: 0 $hmargin
     margin: 4*$unit auto
     text-align: center
-    font-weight: 200
-  h1,h2,h3,h4,h5,h6
-    +goodsize
-    padding: 0 $hmargin
+    font-weight: 100
+  h1,h3,h4,h5,h6
     margin-top: 4*$unit
     margin-bottom: 4*$unit
+    padding: 2*$unit $unit
+    text-align: center
+  h1
     color: $lighter
+  h2
+    background: $blue
+    color: $base3
+    margin-top: 4*$unit
+    margin-bottom: 4*$unit
+    padding: 4*$unit $unit
+    text-align: center
+  h3,h4
+    background: $base02
+    color: $base3
+  h5,h6
+    background: $base01
+    color: $base3
   table
-    +goodsize
-    margin-top: 2*$unit
-    margin-bottom: 2*$unit
+    text-align: center
+    margin: 2em auto
+    padding: 1em
+    border: solid 1em $base00
     tr
-      &:nth-child(odd)
-        background-color: $background
-      th
-        border: solid medium $border
-        padding: 0.25*$unit
-        margin: 0
-      td
-        border: solid 1px $border
-        padding: 0.25*$unit
-        margin: 0
+      border: solid 1px
+    td,th
+      padding: .5em
   figure, .figure
     margin: 2*$unit
     padding: 0
@@ -214,14 +224,22 @@ acronym
   float: right
 #choix
   text-align: center
+  +goodsize
 #choix > div
   display: inline-block
+#header
+  padding: 1em 0
+  margin-top: 0
+  top: 0
 
 
 #header
-  opacity: .5
-  &:hover
-    opacity: 1
+  border: solid 2px #000
+  background-color: $base03
+  a
+    color: $base3
+    &:hover, &:active
+      color: $yellow
 
 #choix
   text-align: center
@@ -248,10 +266,13 @@ p code, li code
   border: solid 1px $border
 #content
   blockquote
-    +goodsize
+    padding: 4*$unit $unit
+    margin: 4*$unit auto
+    background: $base2
+    color: $base03
+    & > p, & > ul, & > ol
+      +goodsize
     border: solid 2px $border
-    &>ul,&>ol
-      margin-left: 1em
     p
       padding: 0 $unit
     code
@@ -261,9 +282,21 @@ p code, li code
       background: none
       border: none
 
+#afterarticle
+  padding-top: 2em
+  background: $base03
+  color: $base1
+  a
+    color: $base1
+  a:active, a:hover
+    color: $yellow
+  &>*
+    +goodsize
+#comment
+  background: $base2
+  padding: 2em
+
 // Specific elements
-#social,#comment
-  margin: $unit $hmargin
 #social
   text-align: center
   opacity: 0.3
@@ -273,16 +306,22 @@ p code, li code
   img
     width: auto
     max-width: 100%
-.intro
-  width: 100%
-  max-width: 37*$small + 2*$hmargin
-  margin: 4*$unit auto
-  font-size: $small
-  font-style: italic
-  line-height: $smalllineheight
-  color: $lighter
-  blockquote hr
-    display: none
+
+#content
+  .intro
+    background: $base02
+    color: $base3
+    padding: 4*$unit $unit
+    margin: 4*$unit auto
+    font-size: $small
+    font-style: italic
+    line-height: $smalllineheight
+    blockquote hr
+      display: none
+    & *
+      background: none
+    a, a:visited, a:hover
+      color: $blue
 .left
   float: left
 .right
@@ -447,6 +486,7 @@ pre .list
       width: 80%
     h1,h2,h3,h4,h5,h6
       color: $lighter
+      background: none
     ul
       margin: $unit 1em $unit 0
       padding: 0
@@ -481,9 +521,42 @@ pre .list
   padding: 0 $hmargin
   margin: $unit 0
 
-#totop, #tomenu
+=roundbutton
   text-align: center
-  margin: 0 auto
+  font-size: .8em
+  height: 5em
+  width: 5em
+  display: block
+  border-radius: 2.5em
+  line-height: 5em
+  margin: 2.5em auto
+  color: rgba(255,255,255,0.5)
+  a
+    display: block
+    height: 5em
+    width: 5em
+    display: block
+    border-radius: 2.5em
+  &:hover
+    color: $yellow
+#afterarticle
+  #totop, .tomenu
+    +roundbutton
+    background: $base02
+
+.button
+  display: block
+  text-align: center
+  margin: 2em auto
+  float: none
+  font-weight: bold
+  span
+    display: inline-block
+    padding: 1em
+    border: solid 1px
+  &:hover
+    color: $blue
+    cursor: pointer
 
 #content
   .inlineblockimg
@@ -504,9 +577,12 @@ pre .list
     font-family: Helvetica, sans-serif
     overflow: hidden
 
-.highlight
-  background-color: $base02
-#header,#social,#navigation,#totop,#comment,#tomenu,#bottom,#popular
+#popular
   +goodsize
 .strike
   text-decoration: line-through
+
+@media only screen and (max-width: 600px)
+  #content
+    ul,ol
+      padding-left: auto

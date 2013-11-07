@@ -397,26 +397,13 @@ After filtering languages suitable for web development,
 we end up with some clusters:
 
 
----------  -----------
 Cluster    Languages
----------  -----------
-Excellent   Coffeescript,
-            Clojure,
-            Haskell
-
-Very Good   Racket,
-            Groovy, R, Scala,
-            OCamL, F♯, Erlang, Lisp, Go
-
-Medium      Perl, Python, Objective-C,
-            Scheme, Tcl, Ruby
-
-Bad         Lua, Fortran (free-format)
-            PHP, Java, C++, C♯
-
-Very Bad    Assembly, C,
-            Javascript,
----------  -----------
+---------  ------------------------------------------------------------
+Excellent  Coffeescript, Clojure, Haskell
+Very Good  Racket, Groovy, R, Scala, OCamL, F♯, Erlang, Lisp, Go
+Medium     Perl, Python, Objective-C, Scheme, Tcl, Ruby
+Bad        Lua, Fortran (free-format), PHP, Java, C++, C♯
+Very Bad   Assembly, C, Javascript,
 
 Unfortunately there is no information about dart.
 So I simply give a very fast look at the syntax.
@@ -431,7 +418,7 @@ As I don't believe it is the standard.
 Javascript oriented framework score very badly regarding expressiveness.
 
 
-<div id="toggle-expressiveness-table" class="button">Click here to show/hide the table for frameworks</div>
+<div id="toggle-expressiveness-table" class="button"><span>Click here to show/hide the table for frameworks</span></div>
 <div id="expressiveness-table">
 
 Cluster   Language  Framework
@@ -534,7 +521,7 @@ Medium      C++, C#, Perl, Objective-C, Go, C
 
 So applying this to frameworks gives the following clusters:
 
-<div id="toggle-robustness-table" class="button">Click here to show/hide the table for frameworks</div>
+<div id="toggle-robustness-table" class="button"><span>Click here to show/hide the table for frameworks</span></div>
 <div id="robustness-table">
 
 Cluster   Language  Framework
@@ -641,7 +628,7 @@ In order to give a more understandable measure I provide the log of the score.
 <tr id="t-robustness"><th>Robustness</th></tr>
 </table>
 
-<div id="compute" class="button">Click to force refresh</div>
+<div id="compute" class="button"><span>Click to force refresh</span></div>
 <div id="result"></div>
 
 <script>// <![CDATA[ // <![CDATA[

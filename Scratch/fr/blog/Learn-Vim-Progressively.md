@@ -266,6 +266,7 @@ Remarquez que sous windows, vous devez utiliser `<C-q>` plutôt que `<C-v>` si v
 ### Complétion : `<C-n>` et `<C-p>`.
 
 En mode Insert, commencez à écrire le début d'un mot déjà présent dans l'un des buffers (fichers) ouvert et tapes `<C-p>`. Magique.
+
 blogimage("completion.gif","Completion") 
 
 ### Macros : `qa` faire quelque chose `q`, `@a`, `@@`

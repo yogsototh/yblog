@@ -260,6 +260,7 @@ Note: in Windows you might have to use `<C-q>` instead of `<C-v>` if your clipbo
 ### Completion: `<C-n>` and `<C-p>`.
 
 In Insert mode, just type the start of a word, then type `<C-p>`, magic...
+
 blogimage("completion.gif","Completion")
 
 ### Macros : `qa` do something `q`, `@a`, `@@`
