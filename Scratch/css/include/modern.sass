@@ -1,5 +1,5 @@
-$unit: 18px
-$small: 15px
+$unit: 16px
+$small: 14px
 $lineheight: $unit * 1.5
 $smalllineheight: $small * 1.5
 $hmargin: 4*$unit
@@ -24,6 +24,7 @@ $hmargin: 4*$unit
 
 html
   padding: 0
+  overflow-x: hidden
 body
   padding: 0
   margin: 0
@@ -98,6 +99,18 @@ acronym
   width: 100%
   max-width: 37*$unit + 2*$hmargin
 
+=altblock
+  background: $altbackground
+  color: $altcolor
+  a
+    color: $altlinkcolor
+    &:hover, &:active
+      color: $althoverlinkcolor
+  pre, code, pre code
+    background: $altcodebackground
+    color: $altcolor
+    border: none
+
 #content
   background: $textbackground
   color: $front
@@ -113,6 +126,7 @@ acronym
     margin-top: 4*$unit
     margin-bottom: 4*$unit
     padding: 2*$unit $unit
+    line-height: 1.5*$unit
     text-align: center
   h1
     color: $lighter
@@ -268,19 +282,12 @@ p code, li code
   blockquote
     padding: 4*$unit $unit
     margin: 4*$unit auto
-    background: $base2
-    color: $base03
+    +altblock
     & > p, & > ul, & > ol
       +goodsize
     border: solid 2px $border
     p
       padding: 0 $unit
-    code
-      background: $background
-      border: solid 1px rgba(0,0,0,0.1)
-    pre code
-      background: none
-      border: none
 
 #afterarticle
   padding-top: 2em
@@ -308,20 +315,22 @@ p code, li code
     max-width: 100%
 
 #content
+  .intro2
+    +goodsize
+    padding: 4*$unit $unit
+    margin: 4*$unit auto
+    font-size: $small
   .intro
-    background: $base02
-    color: $base3
+    +altblock
     padding: 4*$unit $unit
     margin: 4*$unit auto
     font-size: $small
     font-style: italic
     line-height: $smalllineheight
-    blockquote hr
+    & > blockquote hr
       display: none
-    & *
+    & > code
       background: none
-    a, a:visited, a:hover
-      color: $blue
 .left
   float: left
 .right

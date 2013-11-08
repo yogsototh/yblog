@@ -60,7 +60,7 @@ Merci à [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) vous 
 > </div>
 
 </div>
-<div class="intro">
+<div class="intro2">
 
 Je pense vraiment que
 tous les développeurs devraient apprendre Haskell.
