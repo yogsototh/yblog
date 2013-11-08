@@ -3,7 +3,7 @@ title: About
 theme: scientific
 -----
 
-<img src="/Scratch/img/about/avatar.png" alt="Avatar" class="clean left"/>
+<img src="/Scratch/img/about/FlatAvatar.png" alt="Avatar" class="clean left"/>
 
 **@** %mailperso  
 <a href="http://twitter.com/yogsototh"><span class="social">&#116;</span> @yogsototh</a>  
