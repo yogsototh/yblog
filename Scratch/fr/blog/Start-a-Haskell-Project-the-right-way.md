@@ -8,86 +8,47 @@ authoruri: yannesposito.com
 tags: programming
 theme: modern
 ---
-blogimage("main.png","Main image")
 
 <div class="intro">
 
 
-%tlal Commencer un projet Haskell avec les bon outils.
+%tlal Un outils pour commencer un nouveau projet Haskell; `cabal`, `git`, testing...
 
 </div>
 
-When you want to program Haskell, you can use the compiler manually.
-But shortly you find yourself doing a lot of stuff repeatedly.
-Fortunately Haskell use `cabal` to make your life easier.
-
-Recently I read this excellent article
+I recently read this excellent article:
 [How to Start a New Haskell Project](http://jabberwocky.eu/2013/10/24/how-to-start-a-new-haskell-project/).
 
-After having tried its tutorial, I wanted to make some minor changes.
-In the end I give a tool to automatize most of this work.
+While the article is very good, I lacked some minor informations.
+Also, I believe we could improve this a bit.
+And this is also the kind of process you might repeat often.
+This is why I created a simple shell script to initialize a new Haskell project.
 
 So, mainly, if you do it manually the steps are:
 
 1. [Install Haskell](http://wwW.haskell.org/platform)
-2. Make sure you have the latest `cabal-install`
+2. Make sure you have the latest `cabal-install` (at least 1.18)
 
 ``` bash
 > cabal install cabal-install
 ```
 
-This could take a while.
-
-3. Init your project with `cabal`
+3. Download and run the script
 
 ``` bash
-> mkdir myproject
-> cd myproject
-> cabal init
+# Download the script
+git clone https://github.com/yogsototh/init-haskell-project.git
+# Copy the script in a directory of you PATH variable
+cp init-haskell-project/init-haskell-project.sh ~/bin
+# Go to the directory containing all your projects
+cd my/projects/dir
+# Launch the script
+init-haskell-project.sh
 ```
 
-You should answer some questions.
-If you don't know which answer, just choose randomly.
-Any answer can be cancelled after by editing the cabal file.
-Now you have the following file tree:
+What does this script do that doesn't do cabal.
 
-``` bash
-LICENSE
-Setup.hs
-myproject.cabal
-```
-
-In my case `cabal` failed to find a license and I had to create the LICENSE file.
-
-So the first thing to do is:
-
-``` bash
-> perl -pi -e 's/\s*$/\n/' myproject.cabal
-```
-
-Yes I dislike lost spaces at the end of lines.
-These spaces are highlighted in red in my editor.
-
-The next step is to put your project into a sandbox.
-While not completely necessary, I believe it is a good practice to do that.
-
-```
-cabal sandbox init
-```
-
-Then of course use `git`:
-
-```
-> git init
-> echo '.cabal-sandbox' >> .gitignore
-> echo 'cabal.sandbox.config' >> .gitignore
-> echo 'dist' >> .gitignore
-> echo '.*.swp' >> .gitignore
-> echo '*~' >> .gitignore
-> cat .gitignore
-.cabal-sandbox
-cabal.sandbox.config
-dist
-*.swp
-*~
-```
+- Use cabal sandbox
+- It initialize `git` with the right `.gitignore` file.
+- Use `tasty` to organize your tests (HUnit, QuickCheck and SmallCheck).
+- Will make references to Holy Grail

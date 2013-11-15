@@ -62,6 +62,7 @@ acronym
 .corps
   a
     color: $front
+    border-bottom: 1px dotted rgba($front,0.2)
     &:after
       content: '*'
       line-height: 0
@@ -180,7 +181,7 @@ acronym
   img.clean, img.left.clean, img.right.clean
     border: none
   pre
-    margin: 4*$unit auto
+    margin: 2*$unit auto
     max-width: 37*$unit + 2*$hmargin
     background: $background
     font-family: monaco, monospace
@@ -551,6 +552,7 @@ pre .list
 #afterarticle
   #totop, .tomenu
     +roundbutton
+    cursor: pointer
     background: $base02
 
 .button
