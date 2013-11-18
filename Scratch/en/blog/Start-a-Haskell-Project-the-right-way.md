@@ -161,7 +161,6 @@ First lets us write a function which show the introduction text:
 in `zsh`:
 
 ``` bash
-
 # init colors
 autoload colors
 colors
@@ -281,10 +280,80 @@ end = do
     you "Well, you have to know these things when you're a king, you know."
 ```
 
-For now we could put it inside `src/Main.hs`.
+For now we could put this code inside `src/Main.hs`.
+Declare a main function:
+
+``` haskell
+main :: IO ()
+main = do
+    intro
+    end
+```
+
 Make `cabal install` and run `./.cabal-sandbox/bin/holy-project`.
 It works!
 
+
+
+## Questions
+
+In order to ask questions, here is how we do it in shell script:
+
+``` bash
+print -- "What is your name?"
+read name
+```
+
+If we want to abstract things a bit, the easiest way in shell is to use
+a global variable[^1] which will get the value of the user input like this:
+
+``` bash
+answer=""
+ask(){
+    local info="$1"
+    bk "What is your $info?"
+    print -n "> "
+    read answer
+}
+...
+ask name
+name="$answer"
+```
+
+[^1]: There is now easy way to do something like `name=$(ask name)`.
+      Simply because `$(ask name)` run in another process which
+      doesn't get access to the standard input
+
+In Haskell we won't need any global variable:
+
+``` haskell
+import System.IO (hFlush, stdout)
+...
+ask :: String -> IO String
+ask info = do
+    bk $ "What is your " ++ info ++ "?"
+    putStr "> "
+    hFlush stdout -- Because we want to ask on the same line.
+    getLine
+```
+
+Now our main function might look like:
+
+``` haskell
+main = do
+    intro
+    _ <- ask "project name"
+    _ <- ask "name"
+    _ <- ask "email"
+    _ <- ask "github account"
+    _ <- ask "project in less than a dozen word"
+    end
+```
+
+You could test it with `cabal install` and
+then `./.cabal-sandbox/bin/holy-project`.
+
+-----
 
 ``` bash
 #!/usr/bin/env zsh
