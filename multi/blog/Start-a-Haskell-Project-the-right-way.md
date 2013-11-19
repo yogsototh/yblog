@@ -246,21 +246,21 @@ Now look at the modified Haskell code:
 ``` haskell
 import System.Console.ANSI
 
-output :: ConsoleIntensity -> ColorIntensity -> Color -> String -> IO ()
-output bold intensity color str = do
-    setSGR  [ SetColor Foreground intensity color
-            , SetConsoleIntensity bold
+colorPutStr :: Color -> String -> IO ()
+colorPutStr color str = do
+    setSGR  [ SetColor Foreground Dull color
+            , SetConsoleIntensity NormalIntensity
             ]
     putStr str
     setSGR []
 
 
 bk :: String -> IO ()
-bk str = output NormalIntensity Dull Green ("Bridgekeeper: " ++ str ++ "\n")
+bk str = colorPutStr Green ("Bridgekeeper: " ++ str ++ "\n")
 bkn :: String -> IO ()
-bkn str = output NormalIntensity Dull Green ("Bridgekeeper: " ++ str)
+bkn str = colorPutStr Green ("Bridgekeeper: " ++ str)
 you :: String -> IO ()
-you str = output NormalIntensity Dull Yellow ("Bridgekeeper: " ++ str ++ "\n")
+you str = colorPutStr Yellow ("Bridgekeeper: " ++ str ++ "\n")
 
 intro :: IO ()
 intro = do
@@ -355,8 +355,129 @@ main = do
 You could test it with `cabal install` and
 then `./.cabal-sandbox/bin/holy-project`.
 
------
+We will see later how to guess the answer using the `.gitconfig` file and
+the github API.
 
+## Using answers
+
+### Create the project name
+
+I don't really like the ability to use capital letter in a package name.
+So in shell I transform the project name like this:
+
+``` bash
+# replace all spaces by dashes then lowercase the string
+project=${${project:gs/ /-/}:l}
+```
+
+In order to achieve the same result in Haskell:
+
+``` haskell
+import Data.List (instersperse)
+...
+projectNameFromString :: String -> String
+projectNameFromString str = concat $ intersperse "-"
+    (splitOneOf " -" (map toLower str))
+```
+
+One important thing to note is that in zsh the transformation occurs
+on strings but in haskell we use list as intermediate representation:
+
+```
+zsh:
+"Holy grail" ==( ${project:gs/ /-/} )=> "Holy-grail"
+             ==( ${project:l}       )=> "holy-grail"
+
+haskell
+"Holy grail" ==( map toLower     )=> "holy grail"
+             ==( splitOneOf " -" )=> ["holy","grail"]
+             ==( intersperse "-" )=> ["holy","-","grail"]
+             ==( concat          )=> "holy-grail"
+
+```
+
+
+### Create the module name
+
+``` bash
+# Capitalize a string
+capitalize(){
+    local str="$(print -- "$*" | sed 's/-/ /g')"
+    print -- ${(C)str} | sed 's/ //g'
+}
+```
+
+``` haskell
+-- | transform a chain like "Holy project" in "HolyProject"
+capitalize :: String -> String
+capitalize str = concat (map capitalizeWord (splitOneOf " -" str))
+    where
+        capitalizeWord :: String -> String
+        capitalizeWord (x:xs)   = (toUpper x):map toLower xs
+        capitalizeWord  _       = []
+```
+
+The haskell version is made by hand where zsh already had a capitalize
+operation on string with many words.
+Here is the difference between the shell and haskell way:
+
+```
+shell:
+"Holy-grail" ==( sed 's/-/ /g' )=> "Holy grail"
+             ==( ${(C)str}     )=> "Holy Grail"
+             ==( sed 's/ //g'  )=> "HolyGrail"
+
+haskell:
+"Holy-grail" ==( splitOneOf " -"    )=> ["Holy","grail"]
+             ==( map capitalizeWord )=> ["Holy","Grail"]
+             ==( concat             )=> "HolyGrail"
+```
+
+Note how the representation is always strings in shell and use lists with
+haskell.
+
+## Create the project
+
+Now we should have had all the informations we need to create a new project.
+Mainly, making a project will consists in creating files and directories whose
+name and content depends on the answer we had until now.
+
+In shell we used something like:
+
+``` bash
+> file-to-create cat <<END
+file content here.
+We can use $variables here
+END
+```
+
+What we need in haskell is something that will takes some
+string with some "identifier" and will replace the identifier by its value
+at runtime. This is a templating system.
+And I choose to use [`hastache`](http://hackage.haskell.org/package/hastache),
+an haskell implementation of Mustache templates.
+
+``` haskell
+import Text.Hastache
+import Text.Hastache.Context
+import qualified Data.ByteString.Lazy.Char8 as LZ
+
+genFile :: Context -> String -> ByteString
+genFile context template =
+    hastacheStr defaultConfig (encodeStr template) context
+...
+createMITLicense = do
+    content = genFile projectContext mitTemplate
+    LZ.writeFile "LICENSE" content
+    where
+        mitTemplate = concat [
+              "MIT ."
+            , "Author {{author}}"
+            ]
+```
+
+
+<div style="display:none">
 ``` bash
 #!/usr/bin/env zsh
 
@@ -701,4 +822,4 @@ bk "Auuuuuuuuuuuugh"
 log "Sir Bedevere: How do you know so much about swallows?"
 you "Well, you have to know these things when you're a king, you know."
 ```
-
+</div>
