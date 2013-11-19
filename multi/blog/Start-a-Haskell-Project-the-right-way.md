@@ -385,13 +385,13 @@ on strings but in haskell we use list as intermediate representation:
 
 ```
 zsh:
-"Holy grail" ==( ${project:gs/ /-/} )=> "Holy-grail"
-             ==( ${project:l}       )=> "holy-grail"
+"Holy grail" ==( ${project:gs/ /-/} )=> "Holy{-hi-}-{-/hi-}grail"
+             ==( ${project:l}       )=> "{-hi-}h{-/hi-}oly-grail"
 
 haskell
-"Holy grail" ==( map toLower     )=> "holy grail"
+"Holy grail" ==( map toLower     )=> "{-hi-}h{-/hi-}oly grail"
              ==( splitOneOf " -" )=> ["holy","grail"]
-             ==( intersperse "-" )=> ["holy","-","grail"]
+             ==( intersperse "-" )=> ["holy",{-hi-}"-"{-/hi-},"grail"]
              ==( concat          )=> "holy-grail"
 
 ```
@@ -423,13 +423,13 @@ Here is the difference between the shell and haskell way:
 
 ```
 shell:
-"Holy-grail" ==( sed 's/-/ /g' )=> "Holy grail"
-             ==( ${(C)str}     )=> "Holy Grail"
+"Holy-grail" ==( sed 's/-/ /g' )=> "Holy{-hi-} {-/hi-}grail"
+             ==( ${(C)str}     )=> "Holy {-hi-}G{-/hi-}rail"
              ==( sed 's/ //g'  )=> "HolyGrail"
 
 haskell:
 "Holy-grail" ==( splitOneOf " -"    )=> ["Holy","grail"]
-             ==( map capitalizeWord )=> ["Holy","Grail"]
+             ==( map capitalizeWord )=> ["Holy","{-hi-}G{-/hi-}rail"]
              ==( concat             )=> "HolyGrail"
 ```
 
@@ -451,29 +451,45 @@ We can use $variables here
 END
 ```
 
-What we need in haskell is something that will takes some
-string with some "identifier" and will replace the identifier by its value
-at runtime. This is a templating system.
-And I choose to use [`hastache`](http://hackage.haskell.org/package/hastache),
+In Haskell, we shouldn't put the file content of the file inside our code.
+While possible, it feels bad.
+We have a relatively easy way to include external file in a cabal package.
+This is what we will be using.
+
+Furthermore, we need a templating system to replace small part of the
+static file by computed values.
+For this task, I choose to use
+[`hastache`](http://hackage.haskell.org/package/hastache),
 an haskell implementation of Mustache templates.
 
 ``` haskell
+-- Hastache
+import Control.Applicative
+import Data.Data
 import Text.Hastache
 import Text.Hastache.Context
+import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as LZ
+import System.Directory
 
-genFile :: Context -> String -> ByteString
-genFile context template =
-    hastacheStr defaultConfig (encodeStr template) context
 ...
-createMITLicense = do
-    content = genFile projectContext mitTemplate
-    LZ.writeFile "LICENSE" content
-    where
-        mitTemplate = concat [
-              "MIT ."
-            , "Author {{author}}"
-            ]
+
+genFile context filename outputFileName = do
+    putStrLn $ '\t':outputFileName
+    pkgfileName <- getDataFileName filename
+    template <- BS.readFile pkgfileName
+    transformedFile <- hastacheStr defaultConfig template context
+    LZ.writeFile outputFileName transformedFile
+
+createProject :: Project -> IO ()
+createProject p = do
+    let context = mkGenericContext p
+    createDirectory (projectName p)
+    setCurrentDirectory (projectName p)
+    putStrLn "I'm not a witch, I'm not a witch!"
+    genFile context "scaffold/gitignore" ".gitignore"
+    genFile context "scaffold/LICENSE" "LICENSE"
+    ...
 ```
 
 
