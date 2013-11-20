@@ -643,7 +643,63 @@ genFile context filename outputFileName = do
     {-hi-}LZ.{-/hi-}writeFile outputFileName transformedFile
 ```
 
-So, the Haskell version might seem 
+So now, we use external files in mustache format.
+We ask question to our user to fill a data structure.
+Hastache use this filled data structure with the external files to initialize
+the project.
+
+## Git and Cabal
+
+We need to initialize git and cabal.
+
+``` haskell
+import System.Cmd
+
+...
+main = do
+    ...
+    system "git init ."
+    system "cabal sandbox init"
+    system "cabal install"
+    system "cabal test"
+    system $ "./.cabal-sandbox/bin/test-" ++ projectName
+```
+
+## The details
+
+So we are almost finished, but it is time to add some details.
+The first one would be to add a better error message.
+
+``` haskell
+import System.Random
+
+holyError :: String -> IO ()
+holyError str = do
+    r <- randomIO
+    if r
+        then
+            do
+                bk "What... is your favourite colour?"
+                you "Blue. No, yel..."
+                putStrLn "[You are thrown over the edge into the volcano]"
+                you "You: Auuuuuuuuuuuugh"
+                bk " Hee hee heh."
+        else
+            do
+                bk "What is the capital of Assyria?"
+                you "I don't know that!"
+                putStrLn "[You are thrown over the edge into the volcano]"
+                you "Auuuuuuuuuuuugh"
+    hPutStrLn stderr ('\n':str)
+```
+
+And also update where this can be called
+
+``` haskell
+ioassert :: Bool -> String -> IO ()
+ioassert True _ = return ()
+ioassert False str = holyError str
+```
 
 <div style="display:none">
 ``` bash
