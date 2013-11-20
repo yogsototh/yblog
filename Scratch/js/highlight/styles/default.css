@@ -10,9 +10,11 @@ pre code {
 }
 
 pre code,
-pre .ruby .subst,
+pre .subst,
 pre .tag .title,
-pre .lisp .title {
+pre .lisp .title,
+pre .clojure .built_in,
+pre .nginx .title {
   color: black;
 }
 
@@ -24,11 +26,10 @@ pre .tag .value,
 pre .rules .value,
 pre .rules .value .number,
 pre .preprocessor,
+pre .pragma,
+pre .haml .symbol,
 pre .ruby .symbol,
 pre .ruby .symbol .string,
-pre .ruby .symbol .keyword,
-pre .ruby .symbol .keymethods,
-pre .instancevar,
 pre .aggregate,
 pre .template_tag,
 pre .django .variable,
@@ -42,15 +43,19 @@ pre .apache .cbracket,
 pre .tex .command,
 pre .tex .special,
 pre .erlang_repl .function_or_atom,
-pre .markdown .header {
+pre .asciidoc .header,
+pre .markdown .header,
+pre .coffeescript .attribute {
   color: #800;
 }
 
+pre .smartquote,
 pre .comment,
 pre .annotation,
 pre .template_comment,
 pre .diff .header,
 pre .chunk,
+pre .asciidoc .blockquote,
 pre .markdown .blockquote {
   color: #888;
 }
@@ -59,11 +64,16 @@ pre .number,
 pre .date,
 pre .regexp,
 pre .literal,
+pre .hexcolor,
 pre .smalltalk .symbol,
 pre .smalltalk .char,
 pre .go .constant,
 pre .change,
+pre .lasso .variable,
+pre .makefile .variable,
+pre .asciidoc .bullet,
 pre .markdown .bullet,
+pre .asciidoc .link_url,
 pre .markdown .link_url {
   color: #080;
 }
@@ -79,6 +89,7 @@ pre .attr_selector,
 pre .important,
 pre .pseudo,
 pre .pi,
+pre .haml .bullet,
 pre .doctype,
 pre .deletion,
 pre .envvar,
@@ -87,14 +98,20 @@ pre .apache .sqbracket,
 pre .nginx .built_in,
 pre .tex .formula,
 pre .erlang_repl .reserved,
-pre .input_number,
-pre .markdown .link_label {
+pre .prompt,
+pre .asciidoc .link_label,
+pre .markdown .link_label,
+pre .vhdl .attribute,
+pre .clojure .attribute,
+pre .asciidoc .attribute,
+pre .lasso .attribute,
+pre .coffeescript .property,
+pre .makefile .phony {
   color: #88F
 }
 
 pre .keyword,
 pre .id,
-pre .phpdoc,
 pre .title,
 pre .built_in,
 pre .aggregate,
@@ -108,10 +125,14 @@ pre .bash .variable,
 pre .apache .tag,
 pre .go .typename,
 pre .tex .command,
-pre .markdown .strong {
+pre .asciidoc .strong,
+pre .markdown .strong,
+pre .request,
+pre .status {
   font-weight: bold;
 }
 
+pre .asciidoc .emphasis,
 pre .markdown .emphasis {
   font-style: italic;
 }
@@ -121,9 +142,12 @@ pre .nginx .built_in {
 }
 
 pre .coffeescript .javascript,
-pre .xml .css,
+pre .javascript .xml,
+pre .lasso .markup,
+pre .tex .formula,
 pre .xml .javascript,
 pre .xml .vbscript,
-pre .tex .formula {
+pre .xml .css,
+pre .xml .cdata {
   opacity: 0.5;
 }

@@ -12,8 +12,16 @@ $front: $base02
 $altfront: $base1
 $lighter: $base00
 $border: $base2
+$prebackground: rgba(255,255,255,0.3)
 
 @import "Scratch/css/include/modern"
 
-.highlight
-  background-color: $yellow
+pre
+  .highlight
+    background-color: $yellow
+    font-weight: bold
+    color: $base03 !important
+    span
+      background-color: $yellow
+      font-weight: bold
+      color: $base03 !important

@@ -10,24 +10,20 @@ pre code {
 }
 
 pre code,
-.ruby .subst {
+pre .subst {
   color: #0FF;
 }
 
 pre .string,
 pre .ruby .string,
-pre .function .title,
-pre .class .title,
-pre .haskell .label,
-pre .ini .title,
+pre .haskell .type,
 pre .tag .value,
 pre .css .rules .value,
 pre .css .rules .value .number,
 pre .preprocessor,
+pre .pragma,
 pre .ruby .symbol,
 pre .ruby .symbol .string,
-pre .ruby .symbol .keyword,
-pre .ruby .symbol .keymethods,
 pre .built_in,
 pre .sql .aggregate,
 pre .django .template_tag,
@@ -36,16 +32,16 @@ pre .smalltalk .class,
 pre .addition,
 pre .apache .tag,
 pre .apache .cbracket,
-pre .tex .command {
+pre .tex .command,
+pre .clojure .title,
+pre .coffeescript .attribute {
   color: #FF0;
 }
 
 pre .keyword,
 pre .css .id,
-pre .function .title,
-pre .class .title,
-pre .haskell .label,
-pre .ini .title,
+pre .title,
+pre .haskell .type,
 pre .vbscript .built_in,
 pre .sql .aggregate,
 pre .rsl .built_in,
@@ -53,11 +49,11 @@ pre .smalltalk .class,
 pre .xml .tag .title,
 pre .winutils,
 pre .flow,
-pre .lisp .title,
 pre .change,
 pre .envvar,
 pre .bash .variable,
-pre .tex .special {
+pre .tex .special,
+pre .clojure .built_in {
   color: #FFF;
 }
 
@@ -77,7 +73,8 @@ pre .date,
 pre .regexp,
 pre .literal,
 pre .smalltalk .symbol,
-pre .smalltalk .char {
+pre .smalltalk .char,
+pre .clojure .attribute {
   color: #0F0;
 }
 
@@ -92,27 +89,25 @@ pre .diff .header,
 pre .chunk,
 pre .shebang,
 pre .nginx .built_in,
-pre .input_number {
+pre .prompt {
   color: #008080;
 }
 
 pre .keyword,
 pre .css .id,
-pre .function .title,
-pre .class .title,
-pre .haskell .label,
-pre .ini .title,
+pre .title,
+pre .haskell .type,
 pre .vbscript .built_in,
 pre .sql .aggregate,
 pre .rsl .built_in,
 pre .smalltalk .class,
-pre .xml .tag .title,
 pre .winutils,
 pre .flow,
-pre .lisp .title,
 pre .apache .tag,
 pre .nginx .built_in,
 pre .tex .command,
-pre .tex .special {
+pre .tex .special,
+pre .request,
+pre .status {
   font-weight: bold;
 }

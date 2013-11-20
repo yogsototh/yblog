@@ -1,13 +1,15 @@
 ---
 kind:           article
 published:      2013-11-14
-image: /Scratch/img/blog/Start-a-Haskell-Project-the-right-way/main.png
+image: /Scratch/img/blog/Start-a-Haskell-Project-the-right-way/holy-grail.jpg
 title: Start a Haskell Project the right way
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
 theme: modern
 ---
+
+blogimage("holy-grail.jpg","Holy Grail")
 
 <div class="intro">
 
@@ -19,12 +21,21 @@ theme: modern
 I recently read this excellent article:
 [How to Start a New Haskell Project](http://jabberwocky.eu/2013/10/24/how-to-start-a-new-haskell-project/).
 
-While the article is very good, I lacked some minor informations.
-Also, I believe we could improve this a bit.
-And this is also the kind of process you might repeat often.
-This is why I created a simple shell script to initialize a new Haskell project.
+While the article is very good, I lacked some minor informations[^1].
+As this is a process you might repeat often,
+I created a simple script to initialize a new Haskell project.
+During the process I improved some things a bit:
 
-So, mainly, if you do it manually the steps are:
+- use `Tasty` instead of `test-framework`
+- compile with `-Wall` option
+- use cabal sandbox
+- initialize a `.gitignore`
+
+And certainly other minor things. You should get the idea.
+
+[^1]: For example, you have to install the test libraries manually to use `cabal test`.
+
+If you do it manually the steps are:
 
 1. [Install Haskell](http://wwW.haskell.org/platform)
 2. Make sure you have the latest `cabal-install` (at least 1.18)
@@ -41,28 +52,30 @@ git clone https://github.com/yogsototh/init-haskell-project.git
 # Copy the script in a directory of you PATH variable
 cp init-haskell-project/holy-project.sh ~/bin
 # Go to the directory containing all your projects
-cd my/projects/e idi:
+cd my/projects/directory
 # Launch thcript
 holy-haskell.sh
 ```
 
-What does this script do that doesn't do cabal.
+What does this script do that doesn't do `cabal init`.
 
 - Use cabal sandbox
 - It initialize `git` with the right `.gitignore` file.
 - Use `tasty` to organize your tests (HUnit, QuickCheck and SmallCheck).
-- Use `-Wall` for GHC compilation.
+- Use `-Wall` for `ghc` compilation.
 - Will make references to Holy Grail
 - Search your default github username via [github api](http://developer.github.com/v3/search/#search-users).
 
 ## `zsh` really?
+
+
+blogimage("french-insult.jpg","French insult")
 
 Developing the script in `zsh` was easy.
 And while `zsh` is my favorite shell script, the size of this script
 make it worth to write it in a more secure language.
 Furthermore it will be a good exercise to translate
 this script from `zsh` to Haskell.
-
 
 ### Patricide
 
@@ -156,6 +169,8 @@ So, apparently nothing too difficult to achieve.
 
 ### The dialogs
 
+blogimage("bridge-of-death.jpg","Bridge of Death")
+
 First lets us write a function which show the introduction text:
 
 in `zsh`:
@@ -242,7 +257,7 @@ build-depends:  base >=4.6 && <4.7
 Now look at the modified Haskell code:
 
 ``` haskell
-import System.Console.ANSI
+{-hi-}import System.Console.ANSI{-/hi-}
 
 colorPutStr :: Color -> String -> IO ()
 colorPutStr color str = do
@@ -254,11 +269,11 @@ colorPutStr color str = do
 
 
 bk :: String -> IO ()
-bk str = colorPutStr Green ("Bridgekeeper: " ++ str ++ "\n")
+bk str = {-hi-}colorPutStr Green{-/hi-} ("Bridgekeeper: " ++ str ++ "\n")
 bkn :: String -> IO ()
-bkn str = colorPutStr Green ("Bridgekeeper: " ++ str)
+bkn str = {-hi-}colorPutStr Green{-/hi-} ("Bridgekeeper: " ++ str)
 you :: String -> IO ()
-you str = colorPutStr Yellow ("Bridgekeeper: " ++ str ++ "\n")
+you str = {-hi-}colorPutStr Yellow{-/hi-} ("Bridgekeeper: " ++ str ++ "\n")
 
 intro :: IO ()
 intro = do
@@ -295,7 +310,7 @@ It works!
 
 
 
-## Questions
+## Five Questions -- Three questions Sir!
 
 In order to ask questions, here is how we do it in shell script:
 
@@ -305,7 +320,7 @@ read name
 ```
 
 If we want to abstract things a bit, the easiest way in shell is to use
-a global variable[^1] which will get the value of the user input like this:
+a global variable[^2] which will get the value of the user input like this:
 
 ``` bash
 answer=""
@@ -320,7 +335,7 @@ ask name
 name="$answer"
 ```
 
-[^1]: There is now easy way to do something like `name=$(ask name)`.
+[^2]: There is no easy way to do something like `name=$(ask name)`.
       Simply because `$(ask name)` run in another process which
       doesn't get access to the standard input
 
@@ -388,7 +403,7 @@ zsh:
 
 haskell
 "Holy grail" ==( map toLower     )=> "{-hi-}h{-/hi-}oly grail"
-             ==( splitOneOf " -" )=> ["holy","grail"]
+             ==( splitOneOf " -" )=> {-hi-}[{-/hi-}"holy"{-hi-},{-/hi-}"grail"{-hi-}]{-/hi-}
              ==( intersperse "-" )=> ["holy",{-hi-}"-"{-/hi-},"grail"]
              ==( concat          )=> "holy-grail"
 
@@ -396,6 +411,9 @@ haskell
 
 
 ### Create the module name
+
+The module name is a capitalized version of the project name where we remove
+dashes.
 
 ``` bash
 # Capitalize a string
@@ -426,21 +444,41 @@ shell:
              ==( sed 's/ //g'  )=> "HolyGrail"
 
 haskell:
-"Holy-grail" ==( splitOneOf " -"    )=> ["Holy","grail"]
+"Holy-grail" ==( splitOneOf " -"    )=> {-hi-}[{-/hi-}"Holy"{-hi-},{-/hi-}"grail"{-hi-}]{-/hi-}
              ==( map capitalizeWord )=> ["Holy","{-hi-}G{-/hi-}rail"]
              ==( concat             )=> "HolyGrail"
 ```
 
-Note how the representation is always strings in shell and use lists with
-haskell.
+As the preceding example, in shell we work on strings while Haskell use temporary lists representations.
+
+### Check the project name
+
+Also I want to be quite restrictive on the kind of project name we can give.
+This is why I added a check function.
+
+``` haskell
+ioassert :: Bool -> String -> IO ()
+ioassert True _ = return ()
+ioassert False str = error str
+
+main :: IO ()
+main = do
+  intro
+  project <- ask "project name"
+  ioassert (checkProjectName project)
+       "Use only letters, numbers, spaces ans dashes please"
+  let projectname = projectNameFromString project
+      modulename = capitalize project
+```
 
 ## Create the project
 
-Now we should have had all the informations we need to create a new project.
-Mainly, making a project will consists in creating files and directories whose
+blogimage("giant-three-head.jpg","Giant with three heads and mustaches")
+
+Making a project will consists in creating files and directories whose
 name and content depends on the answer we had until now.
 
-In shell we used something like:
+In shell, for each file to create, we used something like:
 
 ``` bash
 > file-to-create cat <<END
@@ -449,8 +487,7 @@ We can use $variables here
 END
 ```
 
-In Haskell, we shouldn't put the file content of the file inside our code.
-While possible, it feels bad.
+In Haskell, while possible, we shouldn't put the file content in the source code.
 We have a relatively easy way to include external file in a cabal package.
 This is what we will be using.
 
@@ -460,36 +497,153 @@ For this task, I choose to use
 [`hastache`](http://hackage.haskell.org/package/hastache),
 an haskell implementation of Mustache templates.
 
-``` haskell
--- Hastache
-import Control.Applicative
-import Data.Data
-import Text.Hastache
-import Text.Hastache.Context
-import qualified Data.ByteString as BS
-import qualified Data.ByteString.Lazy.Char8 as LZ
-import System.Directory
+### Add external files in a cabal project
 
+Cabal provides a way to add files which are not source files to a package.
+You simply have to add a `Data-Files:` entry in the header.
+
+```
+data-files: scaffold/LICENSE
+            , scaffold/gitignore
+            , scaffold/project.cabal
+            , scaffold/Setup.hs
+            , scaffold/src/Main.hs
+            , scaffold/src/ModuleName/Coconut.hs
+            , scaffold/src/ModuleName.hs
+            , scaffold/src/ModuleName/Swallow.hs
+            , scaffold/test/ModuleName/Coconut/Test.hs
+            , scaffold/test/ModuleName/Swallow/Test.hs
+            , scaffold/test/Test.hs
+```
+
+Now we simply have to create our files at the specified path.
+Here is for example the first lines of the LICENSE file.
+
+``` mustache
+The MIT License (MIT)
+
+Copyright (c) {-hi-}{{year}}{-/hi-} {-hi-}{{author}}{-/hi-}
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
 ...
+```
 
-genFile context filename outputFileName = do
-    putStrLn $ '\t':outputFileName
-    pkgfileName <- getDataFileName filename
-    template <- BS.readFile pkgfileName
-    transformedFile <- hastacheStr defaultConfig template context
-    LZ.writeFile outputFileName transformedFile
+It will be up to our program to replace the `{{year}}` and `{{author}}` at runtime.
+Now we have to find them, and in fact, cabal will create a module named
+`Paths_holy_project`.
+If we import this module we have the function `genDataFileName` at our disposal.
+We then are able to read the files at runtime like this:
 
-createProject :: Project -> IO ()
-createProject p = do
-    let context = mkGenericContext p
-    createDirectory (projectName p)
-    setCurrentDirectory (projectName p)
-    putStrLn "I'm not a witch, I'm not a witch!"
-    genFile context "scaffold/gitignore" ".gitignore"
-    genFile context "scaffold/LICENSE" "LICENSE"
+``` haskell
+  ...
+  do
+    pkgFilePath     <- {-hi-}getDataFileName "scaffold/LICENSE"{-/hi-}
+    templateContent <- readFile pkgFilePath
     ...
 ```
 
+
+### Create files and directories
+
+A first remark is for portability purpose we shouldn't use String for file path.
+For example on Windows `/` isn't considered as a subdirectory character.
+To resolve this problem we will use
+
+``` haskell
+import System.Directory
+import System.FilePath.Posix        (takeDirectory,(</>))
+...
+createProject ... = do
+      ...
+      {-hi-}createDirectory{-/hi-} projectName
+      {-hi-}setCurrentDirectory{-/hi-} projectName
+      genFile "LICENSE" "LICENSE"
+      genFile "gitignore" ".gitignore"
+      genFile "src/Main.hs" ("src" </> "Main.hs")
+
+genFile dataFilename outputFilename = do
+    pkgfileName <- getDataFileName ("scaffold/" ++ filename)
+    template <- readFile pkgfileName
+    transformedFile <- ??? -- hastache magic here
+    {-hi-}createDirectoryIfMissing{-/hi-} True (takeDirectory outputFileName)
+    {-hi-}writeFile{-/hi-} outputFileName transformedFile
+```
+
+### Use Hastache
+
+In order to use hastache we can either create a context manually or use
+generics to create a context from a record. This is the last option
+we will show here.
+So in a first time, we need to import some modules and declare a
+record containing all necessary informations to create our project.
+
+``` haskell
+{-# LANGUAGE DeriveDataTypeable #-}
+...
+import Data.Data
+import Text.Hastache
+import Text.Hastache.Context
+import qualified Data.ByteString            as BS
+import qualified Data.ByteString.Lazy.Char8 as LZ
+```
+
+``` haskell
+data Project = Project {
+    projectName   :: String
+    , moduleName    :: String
+    , author        :: String
+    , mail          :: String
+    , ghaccount     :: String
+    , synopsis      :: String
+    , year          :: String
+    } deriving (Data, Typeable)
+```
+
+Once we have declared this, we should populate our Project record with
+the data provided by the user. So our main should now look like:
+
+``` haskell
+main :: IO ()
+main = do
+    intro
+    project <- ask "project name"
+    ioassert (checkProjectName project)
+             "Use only letters, numbers, spaces ans dashes please"
+    let projectname = projectNameFromString project
+        modulename  = capitalize project
+    in_author       <- ask "name"
+    in_email        <- ask "email"
+    in_ghaccount    <- ask "github account"
+    in_synopsis     <- ask "project in less than a dozen word?"
+    current_year    <- getCurrentYear
+    createProject $ Project projectname modulename in_author in_email
+                            in_ghaccount in_synopsis current_year
+    end
+```
+
+Finally we could use hastache this way:
+
+``` haskell
+createProject :: {-hi-}Project{-/hi-} -> IO ()
+createProject {-hi-}p{-/hi-} = do
+    let {-hi-}context{-/hi-} = {-hi-}mkGenericContext p{-/hi-}
+    createDirectory ({-hi-}projectName p{-/hi-})
+    setCurrentDirectory ({-hi-}projectName p{-/hi-})
+    genFile {-hi-}context{-/hi-} "gitignore"      $ ".gitignore"
+    genFile {-hi-}context{-/hi-} "project.cabal"  $ (projectName p) ++ ".cabal"
+    genFile {-hi-}context{-/hi-} "src/Main.hs")   $ "src" </> "Main.hs"
+    ...
+
+genFile :: MuContext IO -> FilePath -> FilePath -> IO ()
+genFile context filename outputFileName = do
+    pkgfileName <- getDataFileName ("scaffold/"++filename)
+    template <- {-hi-}BS.{-/hi-}readFile pkgfileName
+    transformedFile <- {-hi-}hastacheStr defaultConfig template context{-/hi-}
+    createDirectoryIfMissing True (takeDirectory outputFileName)
+    {-hi-}LZ.{-/hi-}writeFile outputFileName transformedFile
+```
+
+So, the Haskell version might seem 
 
 <div style="display:none">
 ``` bash
