@@ -13,10 +13,24 @@ blogimage("holy-grail.jpg","Holy Grail")
 
 <div class="intro">
 
-%tldr Starting a Haskell Project tool with `cabal`, `git`, testing. Use `cabal install holy-project`, then launch `holy-project`.
+%tldr Starting a Haskell Project tool with `cabal`, `git`, testing.
+Use `cabal install holy-project`, then launch `holy-project`.
 
+
+In order to work properly with Haskell you need to initialize your environment.
+Typically, you need to use a cabal file, create some test for your code.
+Both, unit test and propositional testing
+(random and exhaustive up to a certain depth).
+You need to use `git` and generally hosting it on github.
+Also, it is recommended to use cabal sandboxes.
+And as bonus, an auto-update tool that recompile and retest on each file save.
+
+In this article, we will create such an environment using a zsh script.
+Then we will write a Haskell project which does the same work as the zsh script.
+You will then see how to work in such an environment.
 
 </div>
+
 
 I recently read this excellent article:
 [How to Start a New Haskell Project](http://jabberwocky.eu/2013/10/24/how-to-start-a-new-haskell-project/).
