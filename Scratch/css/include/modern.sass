@@ -132,21 +132,18 @@ acronym
   h1
     color: $lighter
   h2
-    background: $blue
-    color: $base3
+    background: $ambientblue
     margin-top: 4*$unit
     margin-bottom: 4*$unit
     padding: 4*$unit $unit
     text-align: center
   h2,h3,h4,h5,h6
-    border-top:    solid 4px rgba(255,255,255,0.3)
-    border-bottom: solid 4px rgba(0,0,0,0.3)
+    border-top:    solid 4px $clearer
+    border-bottom: solid 4px $darker
   h3,h4
-    background: $base02
-    color: $base3
+    background: $altbackground
   h5,h6
-    background: $base01
-    color: $base3
+    background: $altbackground/2 + $background/2
   table
     text-align: center
     margin: 2em auto
@@ -326,6 +323,7 @@ p code, li code
     font-size: $small
   .intro
     +altblock
+    background: $ambientblue
     padding: 4*$unit $unit
     margin: 4*$unit auto
     font-size: $small
