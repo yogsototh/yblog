@@ -682,9 +682,14 @@ main = do
     system $ "./.cabal-sandbox/bin/test-" ++ projectName
 ```
 
-## The details
+## Ameliorations
 
-So we are almost finished, but it is time to add some details.
+Our job is almost finished.
+Now, we only need to add some nice feature to make the application more
+enjoyable.
+
+### Better error message
+
 The first one would be to add a better error message.
 
 ``` haskell
@@ -707,7 +712,7 @@ holyError str = do
                 you "I don't know that!"
                 putStrLn "[You are thrown over the edge into the volcano]"
                 you "Auuuuuuuuuuuugh"
-    hPutStrLn stderr ('\n':str)
+    error ('\n':str)
 ```
 
 And also update where this can be called
@@ -717,6 +722,54 @@ ioassert :: Bool -> String -> IO ()
 ioassert True _ = return ()
 ioassert False str = holyError str
 ```
+
+### Use `.gitconfig` and `github` API
+
+We want to retrieve the `~/.gitconfig` file content and see if it
+contains a name and email information.
+We will need to access to the `HOME` environment variable.
+Also, as we use bytestring package for hastache, let's take advantage of
+this library.
+
+``` haskell
+import Data.Maybe           (fromJust)
+import System.Environment   (getEnv)
+import Control.Exception
+import System.IO.Error
+import Control.Monad        (guard)
+
+safeReadGitConfig :: IO LZ.ByteString
+safeReadGitConfig = do
+    e <- tryJust (guard . isDoesNotExistError)
+                 (do
+                    home <- getEnv "HOME"
+                    LZ.readFile $ home ++ "/.gitconfig" )
+    return $ either (const (LZ.empty)) id e
+...
+main = do
+    gitconfig <- safeReadGitConfig
+    let (name,email) = {-hi-}getNameAndMail{-/hi-} gitconfig
+    project <- ask "project name" Nothing
+    ...
+    in_author       <- ask "name" name
+    ...
+```
+
+We could note I changed the ask function slightly to take a maybe parameter.
+
+``` haskell
+ask :: String {-hi-}-> Maybe String{-/hi-} -> IO String
+ask info hint = do
+    bk $ "What is your " ++ info ++ "?" ++ {-hi-}(maybe "" (\h -> " ("++h++")") hint){-/hi-}
+    ...
+```
+
+Concerning the parsing of `.gitconfig`, it is quite minimalist.
+
+``` haskell
+TODO
+```
+
 
 <div style="display:none">
 ``` bash
