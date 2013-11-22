@@ -1,7 +1,7 @@
 ---
 kind:           article
 published:      2013-11-14
-image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail.jpg
+image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail-monty-python.jpg
 en: title: Holy Haskell Project Starter
 fr: title: Sacré Haskell Projet
 author: Yann Esposito
@@ -10,7 +10,7 @@ tags: programming
 theme: modern
 ---
 
-blogimage("holy-grail.jpg","Holy Grail")
+blogimage("holy-grail-monty-python.jpg","Monty Python Holy Grail")
 
 <div class="intro">
 
@@ -30,6 +30,26 @@ And as bonus, an auto-update tool that recompile and retest on each file save.
 In this article, we will create such an environment using a zsh script.
 Then we will write a Haskell project which does the same work as the zsh script.
 You will then see how to work in such an environment.
+
+If you are starting to understand Haskell but consider yourself a beginner,
+this tutorial will show you how to make a real application using
+quite surprisingly a lot of features:
+
+- use colorized output
+- interact with a user in command line
+- read/write files
+- kind of parse a file (in fact, simply split it)
+- use a templating system (mustache: fill a data structure, write files)
+- make a wget then parse the JSON answer and use it
+- use random
+- create a cabal package
+- add and use non source files to a cabal package
+- compare Haskell to zsh
+- Test your code (both unit testing and property testing)
+
+**☞** zsh is by its nature more suitable to file manipulation.
+But the Haskell code is clearly more organized while quite terse
+for a multi-purpose language.
 
 </div>
 
@@ -96,7 +116,7 @@ this script from `zsh` to Haskell.
 ### Patricide
 
 So to make our development, let us initialize a new Haskell project with
-`holy-haskell`.
+`holy-haskell.sh`.
 Here is what its execution look like:
 
 <pre>
@@ -258,15 +278,15 @@ end = do
 ```
 
 Now let's just add the colors using the
-[`ansi-term`](http://hackage.haskell.org/package/ansi-terminal) package.
-So we have to add `ansi-term` as a build dependency in our cabal file.
+[`ansi-terminal`](http://hackage.haskell.org/package/ansi-terminal) package.
+So we have to add `ansi-terminal` as a build dependency in our cabal file.
 
 Edit `holy-project.cabal` to add it.
 
 ```
 ...
 build-depends:  base >=4.6 && <4.7
-                , ansi-terminal
+                {-hi-}, ansi-terminal{-/hi-}
 ...
 ```
 
@@ -399,10 +419,12 @@ So in shell I transform the project name like this:
 project=${${project:gs/ /-/}:l}
 ```
 
-In order to achieve the same result in Haskell:
+In order to achieve the same result in Haskell
+(don't forget to add the `split` package):
 
 ``` haskell
-import Data.List (instersperse)
+import Data.List        (instersperse)
+import Data.List.Split  (splitOneOf)
 ...
 projectNameFromString :: String -> String
 projectNameFromString str = concat $ intersperse "-"
@@ -487,6 +509,15 @@ main = do
       modulename = capitalize project
 ```
 
+Which verify the project name is not empty and use only letter, numbers and dashes:
+
+``` haskell
+-- | verify if project name is conform
+checkProjectName :: String -> Bool
+checkProjectName [] = False
+checkProjectName str = all (\c -> (isLetter c)||(isNumber c)||(c=='-')||(c==' ')) str
+```
+
 ## Create the project
 
 blogimage("giant-three-head.jpg","Giant with three heads and mustaches")
@@ -563,7 +594,7 @@ We then are able to read the files at runtime like this:
 
 A first remark is for portability purpose we shouldn't use String for file path.
 For example on Windows `/` isn't considered as a subdirectory character.
-To resolve this problem we will use
+To resolve this problem we will use `FilePath`:
 
 ``` haskell
 import System.Directory
@@ -627,13 +658,13 @@ main = do
              "Use only letters, numbers, spaces ans dashes please"
     let projectname = projectNameFromString project
         modulename  = capitalize project
-    in_author       <- ask "name"
-    in_email        <- ask "email"
-    in_ghaccount    <- ask "github account"
-    in_synopsis     <- ask "project in less than a dozen word?"
-    current_year    <- getCurrentYear
-    createProject $ Project projectname modulename in_author in_email
-                            in_ghaccount in_synopsis current_year
+    {-hi-}in_author{-/hi-}       <- ask "name"
+    {-hi-}in_email{-/hi-}        <- ask "email"
+    {-hi-}in_ghaccount{-/hi-}    <- ask "github account"
+    {-hi-}in_synopsis{-/hi-}     <- ask "project in less than a dozen word?"
+    {-hi-}current_year{-/hi-}    <- getCurrentYear
+    createProject $ {-hi-}Project projectname modulename in_author in_email{-/hi-}
+                            {-hi-}in_ghaccount in_synopsis current_year{-/hi-}
     end
 ```
 
@@ -667,6 +698,7 @@ the project.
 ## Git and Cabal
 
 We need to initialize git and cabal.
+For this we simply call external command with the `system` function.
 
 ``` haskell
 import System.Cmd
@@ -674,11 +706,11 @@ import System.Cmd
 ...
 main = do
     ...
-    system "git init ."
-    system "cabal sandbox init"
-    system "cabal install"
-    system "cabal test"
-    system $ "./.cabal-sandbox/bin/test-" ++ projectName
+    _ <- system "git init ."
+    _ <- system "cabal sandbox init"
+    _ <- system "cabal install"
+    _ <- system "cabal test"
+    _ <- system $ "./.cabal-sandbox/bin/test-" ++ projectName
 ```
 
 ## Ameliorations
@@ -800,350 +832,7 @@ getValueForKey _ _ = Nothing
 We could notice, `getNameAndMail` doesn't read the full file and stop at the
 first occurrence of name and mail.
 
+### Use the github API
 
-<div style="display:none">
-``` bash
-#!/usr/bin/env zsh
+We will need to add the `http-wget` package.
 
-# --- Function declaration and global variables
-answer=""
-# Capitalize a string
-capitalize(){
-    local str="$(print -- "$*" | sed 's/-/ /g')"
-    print -- ${(C)str} | sed 's/ //g'
-}
-err(){
-    {
-    case $(( $RANDOM % 1 )); in
-    0)  bk "What... is your favourite colour?"
-        you "Blue. No, yel..."
-        log "[You are thrown over the edge into the volcano]"
-        you "You: Auuuuuuuuuuuugh"
-        bk " Hee hee heh."
-        ;;
-    1)  bk "What is the capital of Assyria?"
-        you "I don't know that!"
-        log "[You are thrown over the edge into the volcano]"
-        you "Auuuuuuuuuuuugh"
-        ;;
-    esac
-
-    print -- "\n$*"
-    }>&2
-    exit 1
-}
-# Ask the user for some information
-# Search in .gitconfig some hints to provide default value
-ask(){
-    local elem=$1
-    local gitconfigelem
-    bkn "What is your $elem?"
-    [[ -e ~/.gitconfig ]] && {
-        gitconfigelem="$(< ~/.gitconfig| awk '$1 == "'$elem'" {$1="";$2="";gsub("^ *","");print}')"
-        [[ $gitconfigelem = "" ]] || {
-            print -n -- " ($gitconfigelem)"
-        }
-    }
-    print -n "\n> ";read answer
-    [[ $answer = "" ]] && answer=$gitconfigelem
-}
-
-# Delete the project directory and show an error message
-reinit(){
-    cd ..
-    [[ -e $project ]] && \rm -rf $project
-    err "Something went wrong, I removed the project directory"
-}
-
-
-# --- Start asking questions
-bk "Stop!"
-bk "Who would cross the Bridge of Death"
-bk "must answer me these questions three,"
-bk "ere the other side he see."
-you "Ask me the questions, bridgekeeper, I am not afraid.\n"
-
-# project name
-bk "What is the name of your project?"
-print -n "> ";read project
-project=${${project:gs/ /-/}:l} # use lowercase and replace spaces by dashes
-
-# Verify project has the right format
-if perl -e 'exit("'$project'" =~ /^[a-z][a-z0-9-]*$/)'; then
-    err "The project must start with a letter and contains only letter, number, spaces or dashes"
-fi
-[[ $project = "" ]] && err "Can't use empty project name"
-[[ -e $project ]] && err "$project directory already exists"
-
-# Find the main module name from the project name
-module=$(capitalize $project)
-
-# author name
-ask name
-name="$answer"
-# email
-ask email
-email="$answer"
-# github
-bkn "What is your github user name?"
-githubname=( $( curl -sH 'Accept: application/vnd.github.v3.text-match+json' 'https://api.github.com/search/users?q='$email|grep '"login":'|perl -pe 's/.*"([^"]*)",/$1/' ) )
-(( ${#githubname} == 1 )) && print -- " ($githubname)"
-print -n "> ";read github
-[[ $github = "" ]] && github=$githubname
-# synopsis
-bk "What is your project in less than ten words?"
-print -n "> ";read description
-
-# --- We start the creation of the project files here
-mkdir $project
-cd $project
-
-print -- "Initialize git"
-git init .
-
-print -- "Create files"
-
-print -- "\t.gitignore"
->.gitignore cat <<END
-.cabal-sandbox
-cabal.sandbox.config
-dist
-*.swp
-*~
-.ghci
-END
-
-print -- "\t$project.cabal"
-> $project.cabal cat <<END
--- Initial $project.cabal generated by cabal init.  For further documentation,
--- see http://haskell.org/cabal/users-guide/
-
-name:                   $project
-version:                0.1.0.0
-synopsis:               $description
--- description:
-homepage:               http://github.com/$github/$project
-license:                MIT
-license-file:           LICENSE
-author:                 $name
-maintainer:             $email
--- copyright:
-category:               Unknown
-build-type:             Simple
--- extra-source-files:
-cabal-version:          >=1.10
-
-executable $project
-  main-is:              Main.hs
-  -- other-modules:
-  -- other-extensions:
-  build-depends:        base >=4.6 && <4.7
-  hs-source-dirs:       src
-  ghc-options:          -Wall
-  default-language:     Haskell2010
-
-library
-  exposed-modules:      $module
-                        , $module.Swallow
-                        , $module.Coconut
-  -- other-modules:
-  -- other-extensions:
-  build-depends:        base >=4.6 && <4.7
-  ghc-options:          -Wall
-  hs-source-dirs:       src
-  default-language:     Haskell2010
-
-executable test-$project
-  hs-source-dirs:       test
-  ghc-options:          -Wall
-  main-is:              Test.hs
-  default-language:     Haskell2010
-  build-depends:        base ==4.6.*, Cabal >= 1.16.0
-                        , $project
-                        , HUnit
-                        , QuickCheck
-                        , smallcheck
-                        , tasty
-                        , tasty-hunit
-                        , tasty-quickcheck
-                        , tasty-smallcheck
-test-suite Tests
-  hs-source-dirs:       test
-  ghc-options:          -Wall
-  main-is:              Test.hs
-  Type:                 exitcode-stdio-1.0
-  default-language:     Haskell2010
-  build-depends:        base ==4.6.*, Cabal >= 1.16.0
-                        , $project
-                        , HUnit
-                        , QuickCheck
-                        , smallcheck
-                        , tasty
-                        , tasty-hunit
-                        , tasty-quickcheck
-                        , tasty-smallcheck
-END
-
-print -- "\tSetup.hs"
-> Setup.hs cat <<END
-import Distribution.Simple
-main = defaultMain
-END
-
-print -- "\tLICENSE (MIT)"
-> LICENSE cat<<END
-The MIT License (MIT)
-
-Copyright (c) $(date +%Y) $name
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-END
-
-mkdir src test
-
-print -- "\ttest/Test.hs"
-> test/Test.hs cat <<END
-module Main where
-
-import Test.Tasty (defaultMain,testGroup,TestTree)
-
-import $module.Swallow.Test
-import $module.Coconut.Test
-
-main :: IO ()
-main = defaultMain tests
-
-tests :: TestTree
-tests = testGroup "All Tests"
-            [ swallowSuite
-            , coconutSuite
-            ]
-END
-
-mkdir -p src/$module
-mkdir -p test/$module/{Swallow,Coconut}
-
-print -- "\ttest/$module/Swallow/Test.hs"
-> test/$module/Swallow/Test.hs cat <<END
-module $module.Swallow.Test
-    (swallowSuite)
-where
-import Test.Tasty (testGroup, TestTree)
-import Test.Tasty.HUnit
-import $module.Swallow
-
-swallowSuite :: TestTree
-swallowSuite = testGroup "Swallow"
-    [testCase "swallow test" testSwallow]
-
-testSwallow :: Assertion
-testSwallow = "something" @=? swallow "some" "thing"
-END
-
-print -- "\tsrc/$module/Swallow.hs"
-> src/$module/Swallow.hs cat <<END
-module $module.Swallow (swallow) where
-
-swallow :: String -> String -> String
-swallow prefix suffix = prefix ++ suffix
-END
-
-print -- "\ttest/$module/Coconut/Test.hs"
-> test/$module/Coconut/Test.hs cat <<END
-{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses #-}
-{-# OPTIONS_GHC -fno-warn-orphans #-}
-module $module.Coconut.Test
-    (coconutSuite)
-where
-
-import Test.Tasty (testGroup, TestTree)
-import Test.Tasty.HUnit
-import Test.Tasty.SmallCheck as SC
-
-import $module.Coconut
-
--- Make instance of CoconutDataStruct
--- we simply use consN Constr where N is the arity of Constr (SmallCheck)
--- we also needed the
--- {-# LANGUAGE FlexibleInstances, MultiParamTypeClasses #-}
-import Test.SmallCheck.Series
-instance Monad m => Serial m CoconutDataStruct  where series = cons1 CoconutConstr
--- Now we could test properties with smallcheck on CoconutDataStruct type.
-
-coconutSuite :: TestTree
-coconutSuite = testGroup "coconut"
-    [ testCase "coconut" testCoconut
-    , SC.testProperty "coconut property" prop_coconut
-    ]
-
-testCoconut :: Assertion
-testCoconut = coconut @=? 10
-
-prop_coconut :: Property IO
-prop_coconut = forAll $ \coconutStruct -> coconutfunc coconutStruct >= 0
-END
-
-print -- "\tsrc/$module/Coconut.hs"
-> src/$module/Coconut.hs cat <<END
-module $module.Coconut (coconut,coconutfunc,CoconutDataStruct(..)) where
-data CoconutDataStruct = CoconutConstr [Integer] deriving (Show)
-
-coconut :: Integer
-coconut = 10
-
-coconutfunc :: CoconutDataStruct -> Int
-coconutfunc (CoconutConstr l) = length l
-END
-
-print -- "\tsrc/$module.hs"
-> "src/$module.hs" cat <<END
-module $module where
-import $module.Swallow ()
-import $module.Coconut ()
-END
-
-print -- "\tsrc/Main.hs"
-> "src/Main.hs" cat <<END
-module Main where
-main :: IO ()
-main = do
-    putStrLn "You fight with the strength of many men sir Knight..."
-    putStrLn "You have proved yourself worthy; will you join me?"
-    putStrLn "You make me sad. So be it. Come, Patsy."
-END
-
-print -- "Cabal sandboxing, install and test"
-
-cabal sandbox init || reinit
-cabal install
-cabal test
-testfile="./.cabal-sandbox/bin/test-$project"
-[[ -x $testfile ]] && $testfile
-
-# -- Final touch
-print "\n\n"
-bk "What... is the air-speed velocity of an unladen swallow?"
-you "What do you mean? An African or European swallow?"
-bk "Huh? I... I don't know that."
-log "[the bridgekeeper is thrown over]"
-bk "Auuuuuuuuuuuugh"
-log "Sir Bedevere: How do you know so much about swallows?"
-you "Well, you have to know these things when you're a king, you know."
-```
-</div>

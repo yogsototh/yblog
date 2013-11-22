@@ -63,11 +63,6 @@ acronym
   a
     color: $front
     border-bottom: 1px dotted rgba($front,0.2)
-    &:after
-      content: '*'
-      line-height: 0
-      font-size: .66em
-      vertical-align: super
     &:visited
       color: $front
 
@@ -280,8 +275,7 @@ hr
   border-color: $border
 p code, li code
   padding: 1px 2px
-  background: $background
-  border: solid 1px $border
+  background: $codeintextbackground
 #content
   blockquote
     padding: 4*$unit $unit
