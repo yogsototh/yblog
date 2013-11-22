@@ -1,8 +1,8 @@
 ---
 kind:           article
 published:      2013-11-14
-image: /Scratch/img/blog/Start-a-Haskell-Project-the-right-way/holy-grail.jpg
-title: Start a Haskell Project the right way
+image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail.jpg
+title: Sacré Haskell Projet
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
@@ -13,8 +13,8 @@ blogimage("holy-grail.jpg","Holy Grail")
 
 <div class="intro">
 
-%tldr Starting a Haskell Project tool with `cabal`, `git`, testing.
-Use `cabal install holy-project`, then launch `holy-project`.
+
+%tlal Un outils pour initialiser son environnement Haskell
 
 
 In order to work properly with Haskell you need to initialize your environment.

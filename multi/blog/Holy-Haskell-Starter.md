@@ -1,8 +1,9 @@
 ---
 kind:           article
 published:      2013-11-14
-image: /Scratch/img/blog/Start-a-Haskell-Project-the-right-way/holy-grail.jpg
-title: Start a Haskell Project the right way
+image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail.jpg
+en: title: Holy Haskell Project Starter
+fr: title: Sacré Haskell Projet
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
@@ -13,9 +14,10 @@ blogimage("holy-grail.jpg","Holy Grail")
 
 <div class="intro">
 
+en: %tldr A Haskell project starter rewritten from zsh to Haskell.
 
-%tlal Un outils pour commencer un nouveau projet Haskell;
-`cabal`, `git`, testing...
+fr: %tlal Un outils pour initialiser son environnement Haskell
+
 
 In order to work properly with Haskell you need to initialize your environment.
 Typically, you need to use a cabal file, create some test for your code.

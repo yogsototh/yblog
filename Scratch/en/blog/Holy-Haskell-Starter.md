@@ -1,9 +1,8 @@
 ---
 kind:           article
 published:      2013-11-14
-image: /Scratch/img/blog/Start-a-Haskell-Project-the-right-way/holy-grail.jpg
-en: title: Holy Haskell Project Starter
-fr: title: Sacré Haskell Projet
+image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail.jpg
+title: Holy Haskell Project Starter
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
@@ -14,9 +13,8 @@ blogimage("holy-grail.jpg","Holy Grail")
 
 <div class="intro">
 
-en: %tldr A Haskell project starter rewritten from zsh to Haskell.
+%tldr A Haskell project starter rewritten from zsh to Haskell.
 
-fr: %tlal Un outils pour initialiser son environnement Haskell
 
 
 In order to work properly with Haskell you need to initialize your environment.
