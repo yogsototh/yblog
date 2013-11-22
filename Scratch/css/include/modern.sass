@@ -138,7 +138,6 @@ acronym
     padding: 4*$unit $unit
     text-align: center
   h2,h3,h4,h5,h6
-    border-top:    solid 4px $clearer
     border-bottom: solid 4px $darker
   h3,h4
     background: $altbackground
@@ -175,8 +174,7 @@ acronym
   img
     max-width: 100%
     display: block
-    border-top: solid 4px rgba(0,0,0,0.2)
-    border-bottom: solid 4px rgba(0,0,0,0.2)
+    border-bottom: solid 4px $darker
     margin: 4*$unit auto
   img.clean, img.left.clean, img.right.clean
     border: none
@@ -189,7 +187,7 @@ acronym
     overflow: auto
     padding: $unit + $unit - $small
     line-height: 1.4 * 0.8 * $unit
-    border: solid 1px $border
+    border-bottom: solid 4px $darker
   pre code
     background: none
     border: none
@@ -249,12 +247,17 @@ acronym
 
 
 #header
-  border: solid 2px #000
-  background-color: $base03
+  background-color: $altbackground
+  color: $altcolor
+  border-bottom: solid 4px $darker
   a
-    color: $base3
+    color: $altcolor
+    border-bottom: solid 3px $darker
+    display: inline-block
+    padding: .25em
     &:hover, &:active
-      color: $yellow
+      background: $clearer
+      border-bottom: solid 3px $yellow
 
 #choix
   text-align: center
@@ -329,6 +332,7 @@ p code, li code
     font-size: $small
     font-style: italic
     line-height: $smalllineheight
+    border-bottom: solid 4px $darker
     & > blockquote hr
       display: none
     & > code
@@ -340,7 +344,7 @@ p code, li code
 #content
   img.right, img.left
     max-width: 30%
-    border: medium solid
+    border-bottom: 4px solid $darker
   img.left
     margin: 0 (0.5*$hmargin) 0 $hmargin
   img.right

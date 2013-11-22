@@ -766,8 +766,39 @@ ask info hint = do
 Concerning the parsing of `.gitconfig`, it is quite minimalist.
 
 ``` haskell
-TODO
+getNameAndMail :: LZ.ByteString -> (Maybe String,Maybe String)
+getNameAndMail gitConfigContent = (getFirstValueFor splitted "name",
+                                   getFirstValueFor splitted "email")
+    where
+        -- make lines of words
+        splitted :: [[LZ.ByteString]]
+        splitted = map LZ.words (LZ.lines gitConfigContent)
+
+-- Get the first line which start with
+-- 'elem =' and return the third field (value)
+getFirstValueFor :: [[LZ.ByteString]] -> String -> Maybe String
+getFirstValueFor splitted key = firstJust (map (getValueForKey key) splitted)
+
+-- return the first Just value of a list of Maybe
+firstJust :: (Eq a) => [Maybe a] -> Maybe a
+firstJust l = case dropWhile (==Nothing) l of
+    [] -> Nothing
+    (j:_) -> j
+
+-- Given a line of words ("word1":"word2":rest)
+-- getValue will return rest if word1 == key
+-- 'elem =' or Nothing otherwise
+getValueForKey :: String            -- key
+                  -> [LZ.ByteString] -- line of words
+                  -> Maybe String    -- the value if found
+getValueForKey el (n:e:xs) = if (n == (LZ.pack el)) && (e == (LZ.pack "="))
+                        then Just (LZ.unpack (LZ.unwords xs))
+                        else Nothing
+getValueForKey _ _ = Nothing
 ```
+
+We could notice, `getNameAndMail` doesn't read the full file and stop at the
+first occurrence of name and mail.
 
 
 <div style="display:none">
