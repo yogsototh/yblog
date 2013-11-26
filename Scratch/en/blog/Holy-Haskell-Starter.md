@@ -832,5 +832,70 @@ first occurrence of name and mail.
 
 ### Use the github API
 
-We will need to add the `http-wget` package.
+The task seem relatively easy, but we'll see there will be some complexity hidden.
+Make a request on `https://api.github.com/search/users?q=<email>`.
+Parse the JSON and get the `login` field of the first item.
+
+So the first problem to handle is to connect an URL.
+For this we will use the `http-conduit` package.
+
+In the general case, for something simple as this we should have used:
+
+``` haskell
+do
+    body <- simpleHTTP "https://api.github.com/search/users?q="++email
+    ...
+```
+
+But, after some research, I discovered we must declare a User-Agent in the HTTP header
+to be accepted by the github API. So we have to change the HTTP Header, and
+our code became slightly more complex:
+
+``` haskell
+{-# LANGUAGE OverloadedStrings #-}
+...
+simpleHTTPWithUserAgent url = do
+    r  <- parseUrl url
+    let request = r { requestHeaders =  [ ("User-Agent","HTTP-Conduit") ] }
+    body <- withManager $ \manager -> do
+                response <- httpLbs request manager
+                return $ responseBody response
+    let str = LZ.unpack body
+    return $ Just str
+
+getGHUser :: String -> IO (Maybe String)
+getGHUser email = do
+            let url = "https://api.github.com/search/users?q=" ++ email
+            body <- simpleHTTPWithUserAgent url
+            ...
+```
+
+So now, we have a String containing a JSON representation.
+In javascript we would have used `login=JSON.parse(body).items[0].login`.
+How does Haskell will handle it (knowing the J in JSON is for Javascript)?
+
+First we will need to add the `lens-aeson` package and use it that way:
+
+``` haskell
+getGHUser :: String -> IO (Maybe String)
+getGHUser email = do
+            body <- simpleHTTPWithUserAgent $ "https://api.github.com/search/users?q=" ++ email
+            login <- return $ {-hi-}body ^? key "items" . nth 0 . key "login"{-/hi-}
+            return $ fmap jsonValueToString login
+            where
+                jsonValueToString = TLZ.unpack . TLB.toLazyText . fromValue
+```
+
+Ugly, but terse enough.
+Also I didn't found anything better than `jsonValueToString`, I hope it exists.
+
+Read [this article on `lens-aeson` and prisms](https://www.fpcomplete.com/user/tel/lens-aeson-traversals-prisms) if you want to understand how this works.
+
+Now, we have something as good as the zsh script shell. But wouldn't it be
+better to launch the API request sooner. Because, actually you have to wait during
+answering the questions.
+
+Wouldn't it be better to launch the request in parallel?
+Let's do it:
+
 
