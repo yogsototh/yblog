@@ -995,15 +995,132 @@ main = holyStarter
 ```
 
 Of course you have to remember to rename the module of `src/HolyProject.hs`.
+I separated all functions in different submodules:
 
-In a first time, I added the following sub modules:
-
-- `HolyProject.GitConfig` : retrieve name an email from `.gitconfig` file
-- `HolyProject.GitHubAPI` : retrieve github user name using github API.
-- `HolyProject.MontyPython` : functions to show dialogs
-- `HolyProject.StringUtils` : String helper functions
+- `HolyProject.GitConfig`
+    - `getNameAndMailFromGitConfig`: retrieve name an email from `.gitconfig` file
+- `HolyProject.GitHubAPI`
+    - `searchGHUserFromEmail`: retrieve github user name using github API.
+- `HolyProject.MontyPython`
+    - `bk`: bridge keeper speaks
+    - `you`: you speak
+    - `ask`: Ask a question and wait for an answer
+- `HolyProject.StringUtils`: String helper functions
+    - `projectNameFromString`
+    - `capitalize`
+    - `checkProjectName`
 
 The `HolyProject.hs` file contains mostly the code that ask questions,
 show errors and copy files using hastache.
 
-### Test
+One of the benefits in modularizing the code is that the main code is clearer.
+Some functions are declared only in a module and are not exported.
+This help us hide technical details.
+For example, the modification of the HTTP header to use the github API.
+
+### Documenting
+
+We didn't take much advantage of the project structure yet.
+A first thing is to generate some documentation.
+Before most function I added comment starting with `-- |`.
+These comment will be used by haddock to create a documentation.
+First, you need to install `haddock` manually.
+
+
+``` bash
+cabal install haddock
+```
+
+Be sure to have cabal in your PATH, you could for example add it this way:
+
+``` bash
+# You might want to add this line in your .profile
+export PATH=$PATH:./.cabal-sandbox/bin
+```
+
+And if you are at the root of your project you'll get it.
+And now just launch:
+
+``` bash
+cabal haddock
+```
+
+And magically, you'll have a documentation in
+`dist/doc/html/holy-project/index.html`.
+
+
+### Tests
+
+While the Haskell static typing is quite efficient to prevent entire classes
+of bug, Haskell doesn't discard the need to test to minimize the number of bug.
+
+#### Unit Testing with HUnit
+
+An example code can be found in `test/HolyProject/Swallow/Test.hs`:
+
+``` haskell
+module HolyProject.Swallow.Test
+    (swallowSuite)
+where
+import Test.Tasty (testGroup, TestTree)
+import Test.Tasty.HUnit
+import HolyProject.Swallow ({-hi-}swallow{-/hi-})
+
+swallowSuite :: TestTree
+swallowSuite = testGroup "Swallow"
+    [testCase "swallow test" testSwallow]
+
+testSwallow :: Assertion
+testSwallow = "something" @=? {-hi-}swallow{-/hi-} "some" "thing"
+```
+
+And the swallow is defined as being equal to `(++)`.
+So with `Tasty` we group tests by group. Each group can contain some test suite.
+Here we have a test suite with only one test.
+The `(@=?)` verify the equality between its two parameters.
+
+So now, we could safely delete the directory `test/HolyProject/Swallow` and
+the file `src/HolyProject/Swallow.hs`.
+And we are ready to make our own real world unit test.
+We will first test the module `HolyProject.StringUtils`.
+Let's create a file `test/HolyProject/StringUtils/Test.hs`
+with the following content:
+
+``` haskell
+module HolyProject.StringUtils.Test
+( stringUtilsSuite
+) where
+import Test.Tasty (testGroup, TestTree)
+import Test.Tasty.HUnit
+import HolyProject.StringUtils
+
+stringUtilsSuite :: TestTree
+stringUtilsSuite = testGroup "StringUtils"
+    [ testCase "projectNameFromString space"
+        (testProjectNameFromString "Holy Project" "holy-project")
+
+    , testCase "projectNameFromString dash"
+        (testProjectNameFromString "Holy-Project" "holy-project")
+
+    , testCase "projectNameFromString caps"
+        (testProjectNameFromString "Holy PROJECT" "holy-project")
+
+    , testCase "projectNameFromString underscore"
+        (testProjectNameFromString "Holy_PROJECT" "holy_project")
+    ]
+
+testProjectNameFromString :: String -> String -> Assertion
+testProjectNameFromString input expectedoutput =
+    expectedoutput @=? projectNameFromString input
+```
+
+You have to modify your cabal file.
+More precisely, you have to add `HolyProject.StringUtils`
+in the exposed modules of the library secion).
+You also have to update the  ̀test/Test.hs`
+file to use `StringUtils` instead of `Swallow`.
+
+
+#### Property Testing with QuickCheck
+
+#### Property Testing with SmallCheck
