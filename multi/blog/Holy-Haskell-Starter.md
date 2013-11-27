@@ -754,7 +754,7 @@ ioassert True _ = return ()
 ioassert False str = holyError str
 ```
 
-### Use `.gitconfig` and `github` API
+### Use `.gitconfig`
 
 We want to retrieve the `~/.gitconfig` file content and see if it
 contains a name and email information.
@@ -866,6 +866,7 @@ simpleHTTPWithUserAgent url = do
     return $ Just str
 
 getGHUser :: String -> IO (Maybe String)
+getGHUser ""    = return Nothing
 getGHUser email = do
             let url = "https://api.github.com/search/users?q=" ++ email
             body <- simpleHTTPWithUserAgent url
@@ -879,25 +880,132 @@ How does Haskell will handle it (knowing the J in JSON is for Javascript)?
 First we will need to add the `lens-aeson` package and use it that way:
 
 ``` haskell
+import Control.Lens.Operators           ((^?))
+import Control.Lens.Aeson
+import Data.Aeson.Encode                (fromValue)
+import qualified Data.Text.Lazy         as TLZ
+import qualified Data.Text.Lazy.Builder as TLB
+
 getGHUser :: String -> IO (Maybe String)
 getGHUser email = do
-            body <- simpleHTTPWithUserAgent $ "https://api.github.com/search/users?q=" ++ email
-            login <- return $ {-hi-}body ^? key "items" . nth 0 . key "login"{-/hi-}
-            return $ fmap jsonValueToString login
-            where
-                jsonValueToString = TLZ.unpack . TLB.toLazyText . fromValue
+    url = "https://api.github.com/search/users?q=" ++ email
+    body <- simpleHTTPWithUserAgent url
+    login <- return $ {-hi-}body ^? key "items" . nth 0 . key "login"{-/hi-}
+    return $ fmap jsonValueToString login
+    where
+        jsonValueToString = TLZ.unpack . TLB.toLazyText . fromValue
 ```
 
-Ugly, but terse enough.
-Also I didn't found anything better than `jsonValueToString`, I hope it exists.
+It looks ugly, but it's terse.
+In fact each function `(^?)`, `key` and `nth` has some great mathematical 
+properties and everything is type safe.
+Unfortunately I had to make my own `jsonValueToString`.
+I hope I simply missed a simpler existing function.
 
-Read [this article on `lens-aeson` and prisms](https://www.fpcomplete.com/user/tel/lens-aeson-traversals-prisms) if you want to understand how this works.
+You can read [this article on `lens-aeson` and prisms](https://www.fpcomplete.com/user/tel/lens-aeson-traversals-prisms)
+to know more.
 
-Now, we have something as good as the zsh script shell. But wouldn't it be
-better to launch the API request sooner. Because, actually you have to wait during
+Now, we have all the feature provided by the zsh script shell.
+But wouldn't it be to use Haskell to do things a bit better to launch the API request sooner. Because, actually you have to wait during
 answering the questions.
 
 Wouldn't it be better to launch the request in parallel?
 Let's do it:
 
+```
+import Control.Concurrent
+...
+main :: IO ()
+main = do
+    intro
+    gitconfig <- safeReadGitConfig
+    let (name,email) = getNameAndMail gitconfig
+    {-hi-}earlyhint <- newEmptyMVar{-/hi-}
+    {-hi-}maybe   (putMVar earlyhint Nothing){-/hi-} -- if no email found put Nothing
+            {-hi-}(\hintmail -> do{-/hi-}  -- in the other case request the github API
+                {-hi-}forkIO (putMVar earlyhint =<< getGHUser hintmail){-/hi-}
+                {-hi-}return ()){-/hi-}
+            {-hi-}email{-/hi-}
+    project <- ask "project name" Nothing
+    ioassert (checkProjectName project)
+             "Use only letters, numbers, spaces ans dashes please"
+    let projectname = projectNameFromString project
+        modulename  = capitalize project
+    in_author       <- ask "name" name
+    in_email        <- ask "email" email
+    {-hi-}ghUserHint      <- if (maybe "" id email) /= in_email{-/hi-}
+                            {-hi-}then getGHUser in_email{-/hi-}
+                            {-hi-}else takeMVar earlyhint{-/hi-}
+    in_ghaccount    <- ask "github account" ghUserHint
+    in_synopsis     <- ask "project in less than a dozen word?" Nothing
+    current_year    <- getCurrentYear
+    createProject $ Project projectname modulename in_author in_email
+                            in_ghaccount in_synopsis current_year
+    end
+```
 
+While it might feel a bit confusing in fact, this is quite simple.
+
+1. declare an [`MVar`](http://www.haskell.org/ghc/docs/latest/html/libraries/base/Control-Concurrent-MVar.html). Mainly a variable which is empty or contain something.
+2. If we didn't found any email hint, put Nothing in the `MVar`.
+3. If we have an email hint, ask on the github API in a new process and once finished put the result in the `MVar`.
+4. If the user enter an email different from the hint email, then just request
+the github api now.
+5. If the user enter the same email, then wait for the MVar to be filled and
+ask the next question with the result.
+
+If you have a github account and had set correctly your `.gitconfig`,
+you might not even wait.
+
+## Project Structure
+
+We now have a quite good product.
+But, there might be some bugs we don't even noticed.
+Further more the code is about 335 lines.
+
+Considering that we:
+
+- has 29 lines of import and 52 lines of comments (rest 255 lines)
+- ask questions
+- use a templating system to generate files
+- call an asynchronous HTTP request
+- parse JSON
+- parse `.gitconfig`
+- use colored output
+- Has a lot of documentation
+
+This is quite few.
+
+### Cleaning
+
+We might now separate our code in different modules.
+I generally like to do that.
+For short programs like this one some people might prefer not to separate it.
+I tried to use meaningful names for the functions, this is why I believe
+it is better to split our program in many different parts.
+
+The first thing to do, is to put all content of `src/Main.hs` in `src/HolyProject.hs`,
+and rename the `main` function by `holyStarter`. And now our `src/Main.hs` should
+
+contains:
+
+``` haskell
+module Main where
+import HolyProject
+main :: IO ()
+main = holyStarter
+```
+
+Of course you have to remember to rename the module of `src/HolyProject.hs`.
+
+In a first time, I added the following sub modules:
+
+- `HolyProject.GitConfig` : retrieve name an email from `.gitconfig` file
+- `HolyProject.GitHubAPI` : retrieve github user name using github API.
+- `HolyProject.MontyPython` : functions to show dialogs
+- `HolyProject.StringUtils` : String helper functions
+
+The `HolyProject.hs` file contains mostly the code that ask questions,
+show errors and copy files using hastache.
+
+### Test
