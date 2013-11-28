@@ -1123,6 +1123,21 @@ You also have to update the  ̀test/Test.hs`
 file to use `StringUtils` instead of `Swallow`.
 
 
+Of course, if you don't like to repeat yourself, you could always write:
+
+``` haskell
+stringUtilsSuite :: TestTree
+stringUtilsSuite = testGroup "StringUtils"
+    map (\(name,input,expected)
+            -> testCase ("projectNameFromString " ++ name)
+                        (expected @=? projectNameFromString input))
+    [ ("space"      ,"Holy Project", "holy-project")
+    , ("dash"       ,"Holy-Project", "holy-project")
+    , ("caps"       ,"Holy PROJECT", "holy-project")
+    , ("underscore" ,"Holy_PROJECT", "holy_project")
+    ]
+```
+
 #### Property Testing with QuickCheck
 
 #### Property Testing with SmallCheck
