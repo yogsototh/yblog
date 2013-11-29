@@ -3,6 +3,7 @@ kind:           article
 published:      2013-11-14
 image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail-monty-python.jpg
 title: Sacré Haskell Projet
+subtitle: Un exemple de programmation en Haskell de bout en bout
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
@@ -1120,6 +1121,21 @@ in the exposed modules of the library secion).
 You also have to update the  ̀test/Test.hs`
 file to use `StringUtils` instead of `Swallow`.
 
+
+Of course, if you don't like to repeat yourself, you could always write:
+
+``` haskell
+stringUtilsSuite :: TestTree
+stringUtilsSuite = testGroup "StringUtils"
+    map (\(name,input,expected)
+            -> testCase ("projectNameFromString " ++ name)
+                        (expected @=? projectNameFromString input))
+    [ ("space"      ,"Holy Project", "holy-project")
+    , ("dash"       ,"Holy-Project", "holy-project")
+    , ("caps"       ,"Holy PROJECT", "holy-project")
+    , ("underscore" ,"Holy_PROJECT", "holy_project")
+    ]
+```
 
 #### Property Testing with QuickCheck
 
