@@ -20,18 +20,16 @@ This is why my design is not minimalist, but I decided to remove most of the nav
 
 For those who want the technical details behind the show/hide menu, here is the simple jQuery code.
 
-The HTML: 
+The HTML:
 
-<div>
-~~~~~~ {.html}
+`````` html
 <div id="menuButton"></div>
 <div id="entete">#content of the menu</div>
-~~~~~~
-</div>
+``````
 
-The CSS: 
+The CSS:
 
-<div><code class="css">
+`````` css
 #menuButton {
   font-size: 2em;
   height: 2em;
@@ -39,7 +37,7 @@ The CSS:
   width: 2em;
   position: fixed;
   left: 0;
-  top: 0; 
+  top: 0;
   z-index: 9001 }
 
 #menuButton:hover {
@@ -51,13 +49,11 @@ The CSS:
   position: fixed;
   width: 10em;
   z-index: 9000; }
-~~~~~~
-</div>
+``````
 
 The javascript code (using jQuery)
 
-<div>
-~~~~~~ {.javascript}
+`````` javascript
 function hideMenu() {
     $('#entete').animate({left:"-10em"}, 500 );
     $('#menuButton').html('&rarr;');
@@ -73,8 +69,7 @@ function toggleMenu() {
         hideMenu();
     }
 }
-~~~~~~
-</div>
+``````
 
-And the result is shown in the top left corner of this website. 
+And the result is shown in the top left corner of this website.
 

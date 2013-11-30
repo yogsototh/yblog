@@ -21,18 +21,16 @@ Pour l'instant je le cache partout.
 
 Pour ceux qui souhaitent connaître les détails techniques derrière le menu apparaissant/disparaissant, voici le code utilisant jQuery.
 
-L'HTML : 
+L'HTML :
 
-<div>
-~~~~~~ {.html}
+`````` html
 <div id="menuButton"></div>
 <div id="entete">#content of the menu</div>
-~~~~~~
-</div>
+``````
 
-La CSS : 
+La CSS :
 
-<div><code class="css">
+`````` css
 #menuButton {
   font-size: 2em;
   height: 2em;
@@ -40,7 +38,7 @@ La CSS :
   width: 2em;
   position: fixed;
   left: 0;
-  top: 0; 
+  top: 0;
   z-index: 9001 }
 
 #menuButton:hover {
@@ -52,13 +50,11 @@ La CSS :
   position: fixed;
   width: 10em;
   z-index: 9000; }
-~~~~~~
-</div>
+``````
 
 Le code javascript (utilisant jQuery)
 
-<div>
-~~~~~~ {.javascript}
+`````` javascript
 function hideMenu() {
     $('#entete').animate({left:"-10em"}, 500 );
     $('#menuButton').html('&rarr;');
@@ -74,7 +70,6 @@ function toggleMenu() {
         hideMenu();
     }
 }
-~~~~~~
-</div>
+``````
 
-Le résultat est visible dans le coin en haut à droite de cet article. 
+Le résultat est visible dans le coin en haut à droite de cet article.
