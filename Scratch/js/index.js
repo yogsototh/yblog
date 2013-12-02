@@ -1,4 +1,4 @@
-function initCode() {
+function useCssAnimations() {
     if ( ! /ip(od|hone)/.test(userAgent) ) {
         if (! /chrome/.test(userAgent) ) {
             // Disable animation in chrome
@@ -141,7 +141,7 @@ function animatedToMenu() {
 // Ce que l'on va lancer à l'init.
 $(document).ready(function() {
     var client=detectClient();
-    if ( ! /msie/.test(client) ) { initCode(); }
+    if ( ! /msie/.test(client) ) { useCssAnimations(); }
     $('#blackpage').fadeOut('slow',function(){ $('#blackpage').remove(); });
     animatedToTop();
     animatedToMenu();
@@ -154,8 +154,6 @@ $(window).bind("load", function() {
 	// lorsque toutes les ressources ont ete chargees
     if (/windows/.test(navigator.userAgent.toLowerCase())) {
         $('head').append('<link rel="stylesheet" type="text/css" href="/Scratch/css/windows.css"/>');
-	} else {
-		$('head').append('<link rel="stylesheet" type="text/css" href="/Scratch/css/cmu.css"/>');
 	}
 });
 

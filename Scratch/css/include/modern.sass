@@ -1,5 +1,6 @@
 $unit: 1em
 $small: 0.8em
+$munit: 16px
 $bordersize: $unit/4
 $lineheight: $unit * 1.75
 $smalllineheight: $small * 1.75
@@ -119,28 +120,32 @@ acronym
   #titre
     h1,h2
       padding: 0 $hmargin
-      margin: 4*$unit auto
+      margin: $munit auto
       text-align: center
       font-weight: 100
+      font-size: 3*$unit
     h2
       color: $front
       background: none
       border: none
-      font-style: italic
       font-size: 1.2em
+      font-weight: 300
   h1,h3,h4,h5,h6
-    margin-top: 4*$unit
-    margin-bottom: 4*$unit
-    padding: 2*$unit $unit
-    line-height: 1.5*$unit
+    margin-top: 2*$munit
+    margin-bottom: 2*$munit
+    padding: 2*$munit $munit
     text-align: center
+  h1,h2,h3,h4,h5,h6
+    font-variant: small-caps
+    font-weight: 300
+    line-height: 1.5*$unit
   h1
     color: $front
   h2
     background: $ambientblue
-    margin-top: 4*$unit
-    margin-bottom: 4*$unit
-    padding: 4*$unit $unit
+    margin-top: 2*$munit
+    margin-bottom: 2*$munit
+    padding: 2*$munit $munit
     text-align: center
   h2,h3,h4,h5,h6
     border-bottom: solid $bordersize $darker
@@ -158,10 +163,10 @@ acronym
     td,th
       padding: .5em
   figure, .figure
-    margin: 2*$unit
+    margin: 2*$munit
     padding: 0
     img
-      margin: $unit auto
+      margin: $munit auto
       padding: 0
     figcaption, .caption
       +goodsize
@@ -170,7 +175,7 @@ acronym
   p
     +goodsize
     padding: 0
-    margin: $unit auto
+    margin: $munit auto
   p,li,blockquote
     code
       font-size: .8em
@@ -183,17 +188,17 @@ acronym
     max-width: 100%
     display: block
     border-bottom: solid $bordersize $darker
-    margin: 4*$unit auto
+    margin: 4*$munit auto
   img.clean, img.left.clean, img.right.clean
     border: none
   pre
-    margin: 2*$unit auto
+    margin: 2*$munit auto
     max-width: (37*$unit + 2*$hmargin) * $unit / $small
     background: $prebackground
     font-family: Menlo, monospace
     font-size: $small
     overflow: auto
-    padding: $unit + $unit - $small
+    padding: $munit
     line-height: 1.5em
     border-bottom: solid $bordersize $darker
   pre code
@@ -204,23 +209,23 @@ acronym
   ul li:before
     content: "- "
     display: inline-block
-    margin-left: $unit/2
+    margin-left: $munit/2
     width: 0
   ul
     padding-left: 0
-    margin: $unit $hmargin
+    margin: $munit $hmargin
     // width of '-'
     text-indent: -($unit/2)
   ol
     padding-left: 0
-    margin: $unit $hmargin
+    margin: $munit $hmargin
   .toc, #markdown-toc
     a
       color: $front
     ol li, ul li
-      margin: ($unit/2) $unit
+      margin: ($munit/2) $munit
   ol li ul, ol li ol, ul li ol, ul li ul
-    margin: ($unit/2) (3*$unit/2)
+    margin: ($munit/2) (3*$munit/2)
     list-style: none
   ul,ol
     +goodsize
@@ -269,7 +274,7 @@ acronym
 
 #choix
   text-align: center
-  padding: 0 $unit
+  padding: 0 $munit
   #switchcss
     float: right
 .cut
@@ -291,14 +296,14 @@ p code, li code
   background: $codeintextbackground
 #content
   blockquote
-    padding: 4*$unit $unit
-    margin: 4*$unit auto
+    padding: 4*$munit $munit
+    margin: 4*$munit auto
     +altblock
     & > p, & > ul, & > ol
       +goodsize
     border: solid 2px $border
     p
-      padding: 0 $unit
+      padding: 0 $munit
 
 #afterarticle
   padding-top: 2em
@@ -328,14 +333,14 @@ p code, li code
 #content
   .intro2
     +goodsize
-    padding: 2*$unit $unit
-    margin: 2*$unit auto
+    padding: 2*$munit $munit
+    margin: 2*$munit auto
     font-size: $small
   .intro
     +altblock
     background: $ambientblue
-    padding: 2*$unit $unit
-    margin: 2*$unit auto
+    padding: 2*$munit $munit
+    margin: 2*$munit auto
     font-size: $small
     border-bottom: solid $bordersize $darker
     & > blockquote hr
@@ -358,12 +363,12 @@ p code, li code
   clear: both
 
 #bottom
-  padding: $unit 0
+  padding: $munit 0
   text-align: center
   font-size: $small
   line-height: $smalllineheight
 #entete
-  padding: $unit 0
+  padding: $munit 0
   text-align: center
   ul
     text-indent: 0
@@ -374,7 +379,7 @@ p code, li code
     span.active
       color: $orange
   ul li > *
-    padding: 2px $unit
+    padding: 2px $munit
     border: solid
 #previous_articles
   float: left
@@ -383,10 +388,10 @@ p code, li code
   float: right
   text-align: right
 .corps
-  padding-bottom: 2*$unit
+  padding-bottom: 2*$munit
 
 #tagcloud
-  margin: $unit $hmargin
+  margin: $munit $hmargin
   font-size: $small
   line-height: $smalllineheight
 #sousliens.archive > ul
@@ -396,7 +401,7 @@ p code, li code
 #hiddenDivs > div
   display: none
 .list
-  margin: $unit $hmargin
+  margin: $munit $hmargin
 pre .list
   margin: 0 0
 #content img#mainlogo
@@ -479,21 +484,21 @@ pre .list
     border-top: ($unit/10) solid $base02
     border-bottom: ($unit/10) solid $base02
     +goodsize
-    margin-top: 4*$unit
-    margin-bottom: 4*$unit
+    margin-top: 4*$munit
+    margin-bottom: 4*$munit
     background-color: $background
     color: $front
-    padding: $unit 0
+    padding: $munit 0
     & > *
-      padding: 0 $unit
+      padding: 0 $munit
     a
       text-decoration: none
       color: $lighter
     a:visited
       color: $altfront
     pre
-      padding: $unit
-      margin: $unit
+      padding: $munit
+      margin: $munit
     pre,code
       background-color: $background
       border: 1px solid $border
@@ -508,20 +513,20 @@ pre .list
       color: $lighter
       background: none
     ul
-      margin: $unit 1em $unit 0
+      margin: $munit 1em $munit 0
       padding: 0
       li
-        margin: 0.5*$unit 1.5*$unit
+        margin: 0.5*$munit 1.5*$munit
     img
       display: block
       max-width: 80%
-      margin: $unit auto
-      padding: .5*$unit
+      margin: $munit auto
+      padding: .5*$munit
       background-color: $background
       border: solid 1px $border
     img.right, img.left, figure.right, figure.left, .figure.right, .figure.left
       max-width: 26%
-      margin: .5*$unit
+      margin: .5*$munit
       figcaption
         padding: 0
         text-align: center
@@ -533,13 +538,13 @@ pre .list
 .codefile
   font-size: 0.7*$unit
   text-align: right
-  margin-bottom: -2*$unit
+  margin-bottom: -2*$munit
 .footnotes
   font-size: 0.8*$unit
 #next_before_articles
   font-size: (14 * $unit / 20)
   padding: 0 $hmargin
-  margin: $unit 0
+  margin: $munit 0
 
 =roundbutton
   text-align: center
@@ -582,7 +587,7 @@ pre .list
 #content
   .inlineblockimg
     width: 60px
-    margin: $unit
+    margin: $munit
     text-align: center
     vertical-align: middle
     display: inline-block
