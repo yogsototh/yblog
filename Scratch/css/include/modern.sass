@@ -2,7 +2,7 @@ $unit: 1em
 $small: 0.8em
 $munit: 16px
 $bordersize: $unit/4
-$lineheight: $unit * 1.75
+$lineheight: $unit * 1.5
 $smalllineheight: $small * 1.75
 $hmargin: 4*$unit
 
@@ -613,6 +613,9 @@ pre .list
     ul,ol
       padding-left: auto
 
+@media only screen and (max-width: 1024px)
+  body
+    font-size: 16px
 @media only screen and (min-width: 1024px) and (max-width: 1600px)
   body
     font-size: 18px
