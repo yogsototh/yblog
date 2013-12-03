@@ -1003,8 +1003,8 @@ I separated all functions in different submodules:
 
 - `HolyProject.GitConfig`
     - `getNameAndMailFromGitConfig`: retrieve name an email from `.gitconfig` file
-- `HolyProject.GitHubAPI`
-    - `searchGHUserFromEmail`: retrieve github user name using github API.
+- `HolyProject.GithubAPI`
+    - `searchGHUser`: retrieve github user name using github API.
 - `HolyProject.MontyPython`
     - `bk`: bridge keeper speaks
     - `you`: you speak
@@ -1060,7 +1060,10 @@ of bug, Haskell doesn't discard the need to test to minimize the number of bug.
 
 #### Unit Testing with HUnit
 
-An example code can be found in `test/HolyProject/Swallow/Test.hs`:
+It is generally said to test we should use unit testing for code in IO
+and QuickCheck or SmallCheck for pure code.
+
+A unit test example on pure code is in the file `test/HolyProject/Swallow/Test.hs`:
 
 ``` haskell
 module HolyProject.Swallow.Test
@@ -1074,72 +1077,135 @@ swallowSuite :: TestTree
 swallowSuite = testGroup "Swallow"
     [testCase "swallow test" testSwallow]
 
+-- in Swallow: swallow = (++)
 testSwallow :: Assertion
 testSwallow = "something" @=? {-hi-}swallow{-/hi-} "some" "thing"
 ```
 
-And the swallow is defined as being equal to `(++)`.
-So with `Tasty` we group tests by group. Each group can contain some test suite.
+Note `swallow` is `(++)`.
+We group tests by group.
+Each group can contain some test suite.
 Here we have a test suite with only one test.
 The `(@=?)` verify the equality between its two parameters.
 
 So now, we could safely delete the directory `test/HolyProject/Swallow` and
 the file `src/HolyProject/Swallow.hs`.
 And we are ready to make our own real world unit test.
-We will first test the module `HolyProject.StringUtils`.
-Let's create a file `test/HolyProject/StringUtils/Test.hs`
+We will first test the module `HolyProject.GithubAPI`.
+Let's create a file `test/HolyProject/GithubAPI/Test.hs`
 with the following content:
+
+``` haskell
+module HolyProject.GithubAPI.Test
+( githubAPISuite
+) where
+import Test.Tasty (testGroup, TestTree)
+import Test.Tasty.HUnit
+import HolyProject.GithubAPI
+
+githubAPISuite :: TestTree
+githubAPISuite = testGroup "GithubAPI"
+    [ testCase "Yann" $ ioTestEq
+            (searchGHUser "Yann.Esposito@gmail.com")
+            (Just "\"yogsototh\"")
+    , testCase "Jasper" $ ioTestEq
+            (searchGHUser "Jasper Van der Jeugt")
+            (Just "\"jaspervdj\"")
+    ]
+
+-- | Test if some IO action returns some expected value
+ioTestEq :: (Eq a, Show a) => IO a -> a -> Assertion
+ioTestEq action expected = action >>= assertEqual "" expected
+```
+
+You have to modify your cabal file.
+More precisely, you have to add `HolyProject.GithubAPI`
+in the exposed modules of the library secion).
+You also have to update the  ̀test/Test.hs`
+file to use `GithubAPI` instead of `Swallow`.
+
+So we have our example of unit testing using IO.
+We search the github nickname for some people I know and we verify
+github continue to give the same answer as expected.
+
+#### Property Testing with SmallCheck and QuickCheck
+
+When it comes to pure code, a very good method is to use QuickCheck and SmallCheck.
+SmallCheck will verify all cases up to some depth about some property.
+While QuickCheck will verify some random cases.
+
+As this kind of verification of property is mostly doable on pure code,
+we will test the `StringUtils` module.
+
+So don't forget to declare `HolyProject.StringUtils` in the exposed modules
+in the library section of your cabal file.
+Remove all references to the `Coconut` module.
+
+Modify the `test/Test.hs` to remove all references about `Coconut`.
+Create a `test/HolyProject/StringUtils/Test.hs` file containing:
 
 ``` haskell
 module HolyProject.StringUtils.Test
 ( stringUtilsSuite
 ) where
-import Test.Tasty (testGroup, TestTree)
-import Test.Tasty.HUnit
-import HolyProject.StringUtils
+import              Test.Tasty                      (testGroup, TestTree)
+import              Test.Tasty.SmallCheck           (forAll)
+import qualified    Test.Tasty.SmallCheck       as  SC
+import qualified    Test.Tasty.QuickCheck       as  QC
+import              Test.SmallCheck.Series          (Serial)
+import              HolyProject.StringUtils
 
 stringUtilsSuite :: TestTree
 stringUtilsSuite = testGroup "StringUtils"
-    [ testCase "projectNameFromString space"
-        (testProjectNameFromString "Holy Project" "holy-project")
-
-    , testCase "projectNameFromString dash"
-        (testProjectNameFromString "Holy-Project" "holy-project")
-
-    , testCase "projectNameFromString caps"
-        (testProjectNameFromString "Holy PROJECT" "holy-project")
-
-    , testCase "projectNameFromString underscore"
-        (testProjectNameFromString "Holy_PROJECT" "holy_project")
+    [ SC.testProperty "SC projectNameFromString idempotent" $
+            idempotent projectNameFromString
+    , SC.testProperty "SC capitalize idempotent" $
+            deeperIdempotent capitalize
+    , QC.testProperty "QC projectNameFromString idempotent" $
+            idempotent capitalize
     ]
 
-testProjectNameFromString :: String -> String -> Assertion
-testProjectNameFromString input expectedoutput =
-    expectedoutput @=? projectNameFromString input
+idempotent f = \s -> f s == f (f s)
+
+deeperIdempotent :: (Eq a, Show a, Serial m a) => (a -> a) -> SC.Property m
+deeperIdempotent f = forAll $ SC.changeDepth1 (+1) $ \s -> f s == f (f s)
 ```
 
-You have to modify your cabal file.
-More precisely, you have to add `HolyProject.StringUtils`
-in the exposed modules of the library secion).
-You also have to update the  ̀test/Test.hs`
-file to use `StringUtils` instead of `Swallow`.
+The result is here:
 
+```
+All Tests
+  StringUtils
+    SC projectNameFromString idempotent: OK
+      206 tests completed
+    SC capitalize idempotent:            OK
+      1237 tests completed
+    QC projectNameFromString idempotent: FAIL
+      *** Failed! Falsifiable (after 19 tests and 5 shrinks):
+      "a a"
+      Use --quickcheck-replay '18 913813783 2147483380' to reproduce.
+  GithubAPI
+    Yann:                                OK
+    Jasper:                              OK
 
-Of course, if you don't like to repeat yourself, you could always write:
-
-``` haskell
-stringUtilsSuite :: TestTree
-stringUtilsSuite = testGroup "StringUtils"
-    map (\(name,input,expected)
-            -> testCase ("projectNameFromString " ++ name)
-                        (expected @=? projectNameFromString input))
-    [ ("space"      ,"Holy Project", "holy-project")
-    , ("dash"       ,"Holy-Project", "holy-project")
-    , ("caps"       ,"Holy PROJECT", "holy-project")
-    , ("underscore" ,"Holy_PROJECT", "holy_project")
-    ]
+1 out of 5 tests failed
 ```
 
-#### Property Testing with QuickCheck
+Argh.... QuickCheck found an error!
 
-#### Property Testing with SmallCheck
+``` bash
+$ ./interact
+GHCi, version 7.6.2: http://www.haskell.org/ghc/   :? for help
+Loading package ghc-prim ... linking ... done.
+Loading package integer-gmp ... linking ... done.
+Loading package base ... linking ... done.
+Prelude> :l src/HolyProject/StringUtils
+[1 of 1] Compiling HolyProject.StringUtils ( src/HolyProject/StringUtils.hs, interpreted )
+Ok, modules loaded: HolyProject.StringUtils.
+*HolyProject.StringUtils> capitalize "a a"
+"AA"
+*HolyProject.StringUtils> capitalize (capitalize "a a")
+"Aa"
+*HolyProject.StringUtils>
+```
+```
