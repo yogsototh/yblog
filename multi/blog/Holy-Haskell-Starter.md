@@ -1173,25 +1173,27 @@ deeperIdempotent f = forAll $ SC.changeDepth1 (+1) $ \s -> f s == f (f s)
 
 The result is here:
 
-```
+<pre>
 All Tests
   StringUtils
-    SC projectNameFromString idempotent: OK
+    SC projectNameFromString idempotent: <span class="green">OK</span>
       206 tests completed
-    SC capitalize idempotent:            OK
+    SC capitalize idempotent:            <span class="green">OK</span>
       1237 tests completed
-    QC projectNameFromString idempotent: FAIL
+    QC projectNameFromString idempotent: <span class="red">FAIL</span>
       *** Failed! Falsifiable (after 19 tests and 5 shrinks):
       "a a"
       Use --quickcheck-replay '18 913813783 2147483380' to reproduce.
   GithubAPI
-    Yann:                                OK
-    Jasper:                              OK
+    Yann:                                <span class="green">OK</span>
+    Jasper:                              <span class="green">OK</span>
 
-1 out of 5 tests failed
-```
+<span class="red">1 out of 5 tests failed</span>
+</pre>
 
-Argh.... QuickCheck found an error!
+In fact, the test fail, but this is not an error.
+Our `capitalize` function shouldn't be idempotent.
+But here is how you see what happens:
 
 ``` bash
 $ ./interact
@@ -1203,9 +1205,20 @@ Prelude> :l src/HolyProject/StringUtils
 [1 of 1] Compiling HolyProject.StringUtils ( src/HolyProject/StringUtils.hs, interpreted )
 Ok, modules loaded: HolyProject.StringUtils.
 *HolyProject.StringUtils> capitalize "a a"
-"AA"
+{-hi-}"AA"{-/hi-}
 *HolyProject.StringUtils> capitalize (capitalize "a a")
-"Aa"
+{-hi-}"Aa"{-/hi-}
 *HolyProject.StringUtils>
 ```
-```
+
+It is important to use `./interact` instead of `ghci`.
+Because we need to tell `ghci` how to found the package installed.
+
+Apparently, SmallCheck didn't found any counter example.
+I don't know how it generates Strings and using deeper search is really long.
+
+## Conclusion
+
+Congratulation!
+
+Now you could start programming in Haskell.
