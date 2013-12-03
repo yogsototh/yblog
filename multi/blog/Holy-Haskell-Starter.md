@@ -967,14 +967,14 @@ Further more the code is about 335 lines.
 
 Considering that we:
 
-- has 29 lines of import and 52 lines of comments (rest 255 lines)
+- have 29 lines of import and 52 lines of comments (rest 255 lines)
 - ask questions
 - use a templating system to generate files
 - call an asynchronous HTTP request
 - parse JSON
 - parse `.gitconfig`
 - use colored output
-- Has a lot of documentation
+- Have a lot of documentation
 
 This is quite few.
 

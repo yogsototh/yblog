@@ -147,12 +147,10 @@ acronym
     margin-bottom: 2*$munit
     padding: 2*$munit $munit
     text-align: center
-  h2,h3,h4,h5,h6
+  h2,h3
     border-bottom: solid $bordersize $darker
-  h3,h4
+  h3
     background: $altbackground
-  h5,h6
-    background: $altbackground/2 + $background/2
   table
     text-align: center
     margin: 2em auto
@@ -612,13 +610,22 @@ pre .list
   #content
     ul,ol
       padding-left: auto
+  #choixlang,#switchcss,#tomenu
+    float: none
+    width: 100%
+    margin-bottom: .2em
+
 
 @media only screen and (max-width: 1024px)
   body
     font-size: 16px
-@media only screen and (min-width: 1024px) and (max-width: 1600px)
+$max: 40
+@for $i from 0 through $max
+  @media only screen and (min-width: (1024px+$i*100)) and (max-width: (1024px+($i + 1)*100))
+    body
+      font-size: 16px+$i
+
+@media only screen and (min-width: (1024px+($max+1)*100))
   body
-    font-size: 18px
-@media only screen and (min-width: 1600px)
-  body
-    font-size: 20px
+    font-size: 16px+$max+1
+
