@@ -294,15 +294,23 @@ p code, li code
   background: $codeintextbackground
 #content
   blockquote
-    padding: 4*$munit $munit
-    margin: 4*$munit auto
+    padding: 2*$munit $munit
+    margin: 2*$munit auto
     +altblock
     & > p, & > ul, & > ol
       +goodsize
     border: solid 2px $border
     p
       padding: 0 $munit
-
+  .intro
+    blockquote
+      background: $darker
+      border-bottom: solid $bordersize $darker
+      border-top: none
+      border-left: none
+      border-right: none
+      font-weight: 700
+      +goodsize
 #afterarticle
   padding-top: 2em
   background: $base03

@@ -31,7 +31,7 @@ main = hakyll $ do
       staticBehavior
 
     -- Compressed SASS (add potentially included files)
-    sassDependencies <- makePatternDependency "Scratch/css/**.sass"
+    sassDependencies <- makePatternDependency "Scratch/css/include/*.sass"
     rulesExtraDependencies [sassDependencies] $ do
         match "Scratch/css/*" $ do
             route   $ setExtension "css"

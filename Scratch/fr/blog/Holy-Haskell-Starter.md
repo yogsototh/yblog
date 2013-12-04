@@ -15,8 +15,11 @@ blogimage("holy-grail-monty-python.jpg","Monty Python Holy Grail")
 <div class="intro">
 
 
-%tlal Un outils pour initialiser son environnement Haskell
+%tlal Apprenez comment commencer un nouveau projet Haskell.
+Avec en exemple le créateur de projet Haskell lui-même.
 
+> "Good Sir Knight, will you come with me to Camelot,
+> and join us at the Round Table?"
 
 In order to work properly with Haskell you need to initialize your environment.
 Typically, you need to use a cabal file, create some test for your code.
@@ -39,11 +42,10 @@ quite surprisingly a lot of features:
 - read/write files
 - kind of parse a file (in fact, simply split it)
 - use a templating system (mustache: fill a data structure, write files)
-- make a wget then parse the JSON answer and use it
+- make a HTTP GET request then parse the JSON answer and use it
 - use random
 - create a cabal package
 - add and use non source files to a cabal package
-- compare Haskell to zsh
 - Test your code (both unit testing and property testing)
 
 **☞** zsh is by its nature more suitable to file manipulation.
@@ -57,20 +59,12 @@ I recently read this excellent article:
 [How to Start a New Haskell Project](http://jabberwocky.eu/2013/10/24/how-to-start-a-new-haskell-project/).
 
 While the article is very good, I lacked some minor informations[^1].
-As this is a process you might repeat often,
-I created a simple script to initialize a new Haskell project.
-During the process I improved some things a bit:
-
-- use `Tasty` instead of `test-framework`
-- compile with `-Wall` option
-- use cabal sandbox
-- initialize a `.gitignore`
-
-And certainly other minor things. You should get the idea.
+Inspired by it, I created a simple script to initialize a new Haskell project.
+During the process I improved some things a bit.
 
 [^1]: For example, you have to install the test libraries manually to use `cabal test`.
 
-If you do it manually the steps are:
+If want to use this script, the steps are:
 
 1. [Install Haskell](http://wwW.haskell.org/platform)
 2. Make sure you have the latest `cabal-install` (at least 1.18)
@@ -92,7 +86,7 @@ cd my/projects/directory
 holy-haskell.sh
 ```
 
-What does this script do that doesn't do `cabal init`.
+What does this script do that `cabal init` doesn't do?
 
 - Use cabal sandbox
 - It initialize `git` with the right `.gitignore` file.
@@ -103,20 +97,15 @@ What does this script do that doesn't do `cabal init`.
 
 ## `zsh` really?
 
-
 blogimage("french-insult.jpg","French insult")
 
 Developing the script in `zsh` was easy.
-And while `zsh` is my favorite shell script, the size of this script
-make it worth to write it in a more secure language.
-Furthermore it will be a good exercise to translate
-this script from `zsh` to Haskell.
+But considering its size, it is worth to rewrite it in Haskell.
+Furthermore, it will be a good exercise.
 
 ### Patricide
 
-So to make our development, let us initialize a new Haskell project with
-`holy-haskell.sh`.
-Here is what its execution look like:
+In a first time, we initialize a new Haskell project with `holy-haskell.sh`:
 
 <pre>
 > ./holy-haskell.sh
@@ -192,7 +181,7 @@ The different steps are:
 - run the test directly in the terminal
 - small goodbye quotes
 
-Things to note:
+Features to note:
 
 - color in the terminal
 - check some rules on the project name
@@ -202,13 +191,17 @@ Things to note:
 
 So, apparently nothing too difficult to achieve.
 
+We should now have an initialized Haskell environment for us to work.
+The first thing you should do, is to go into this new directory
+and launch './auto-update' in some terminal. I personally use `tmux` on Linux
+or the splits in `iTerm 2 ̀ on Mac OS X.
+Now, any modification of a source file will relaunch a compilation and a test.
+
 ### The dialogs
 
 blogimage("bridge-of-death.jpg","Bridge of Death")
 
-First lets us write a function which show the introduction text:
-
-in `zsh`:
+To print the introduction text in `zsh`:
 
 ``` bash
 # init colors
@@ -242,7 +235,7 @@ log "Sir Bedevere: How do you know so much about swallows?"
 you "Well, you have to know these things when you're a king, you know."
 ```
 
-In the first Haskell version I dont use colors.
+In the first Haskell version I don't use colors.
 We see we can almost copy/paste.
 I just added the types.
 
@@ -330,7 +323,7 @@ end = do
     you "Well, you have to know these things when you're a king, you know."
 ```
 
-For now we could put this code inside `src/Main.hs`.
+We could put this code in `src/Main.hs`.
 Declare a main function:
 
 ``` haskell
@@ -343,9 +336,9 @@ main = do
 Make `cabal install` and run `./.cabal-sandbox/bin/holy-project`.
 It works!
 
-
-
 ## Five Questions -- Three questions Sir!
+
+blogimage("bring-out-your-dead.jpg","Bring out your dead!")
 
 In order to ask questions, here is how we do it in shell script:
 
@@ -408,6 +401,8 @@ the github API.
 
 ## Using answers
 
+blogimage("castle-of-hhhhaaaarr.jpg","Castle of Aaaaarrrr????")
+
 ### Create the project name
 
 I don't really like the ability to use capital letter in a package name.
@@ -422,12 +417,11 @@ In order to achieve the same result in Haskell
 (don't forget to add the `split` package):
 
 ``` haskell
-import Data.List        (instersperse)
+import Data.List        (instercalate)
 import Data.List.Split  (splitOneOf)
 ...
 projectNameFromString :: String -> String
-projectNameFromString str = concat $ intersperse "-"
-    (splitOneOf " -" (map toLower str))
+projectNameFromString str = intercalate "-" (splitOneOf " -" (map toLower str))
 ```
 
 One important thing to note is that in zsh the transformation occurs
@@ -441,11 +435,8 @@ zsh:
 haskell
 "Holy grail" ==( map toLower     )=> "{-hi-}h{-/hi-}oly grail"
              ==( splitOneOf " -" )=> {-hi-}[{-/hi-}"holy"{-hi-},{-/hi-}"grail"{-hi-}]{-/hi-}
-             ==( intersperse "-" )=> ["holy",{-hi-}"-"{-/hi-},"grail"]
-             ==( concat          )=> "holy-grail"
-
+             ==( intercalate "-" )=> {-hi-}"{-/hi-}holy{-hi-}-{-/hi-}grail{-hi-}"{-/hi-}
 ```
-
 
 ### Create the module name
 
@@ -463,16 +454,17 @@ capitalize(){
 ``` haskell
 -- | transform a chain like "Holy project" in "HolyProject"
 capitalize :: String -> String
-capitalize str = concat (map capitalizeWord (splitOneOf " -" str))
+capitalize str = concatMap capitalizeWord (splitOneOf " -" str)
     where
         capitalizeWord :: String -> String
-        capitalizeWord (x:xs)   = (toUpper x):map toLower xs
+        capitalizeWord (x:xs)   = toUpper x:map toLower xs
         capitalizeWord  _       = []
 ```
 
 The haskell version is made by hand where zsh already had a capitalize
 operation on string with many words.
-Here is the difference between the shell and haskell way:
+Here is the difference between the shell and haskell way
+(note I splitted the effect of `concatMap` as `map` and `concat`):
 
 ```
 shell:
@@ -514,7 +506,8 @@ Which verify the project name is not empty and use only letter, numbers and dash
 -- | verify if project name is conform
 checkProjectName :: String -> Bool
 checkProjectName [] = False
-checkProjectName str = all (\c -> (isLetter c)||(isNumber c)||(c=='-')||(c==' ')) str
+checkProjectName str =
+    all (\c -> isLetter c || isNumber c || c=='-' || c==' ') str
 ```
 
 ## Create the project
@@ -541,16 +534,20 @@ Furthermore, we need a templating system to replace small part of the
 static file by computed values.
 For this task, I choose to use
 [`hastache`](http://hackage.haskell.org/package/hastache),
-an haskell implementation of Mustache templates.
+an haskell implementation of Mustache templates[^3].
+
+[^3]: Having a good level of power in templates is very difficult.
+      %imho Mustache has made the best compromise.
 
 ### Add external files in a cabal project
 
 Cabal provides a way to add files which are not source files to a package.
-You simply have to add a `Data-Files:` entry in the header.
+You simply have to add a `Data-Files:` entry in the header of the cabal file:
 
 ```
 data-files: scaffold/LICENSE
             , scaffold/gitignore
+            , scaffold/interact
             , scaffold/project.cabal
             , scaffold/Setup.hs
             , scaffold/src/Main.hs
@@ -575,10 +572,10 @@ Permission is hereby granted, free of charge, to any person obtaining a copy
 ```
 
 It will be up to our program to replace the `{{year}}` and `{{author}}` at runtime.
-Now we have to find them, and in fact, cabal will create a module named
-`Paths_holy_project`.
+We have to find the files.
+Cabal will create a module named `Paths_holy_project`.
 If we import this module we have the function `genDataFileName` at our disposal.
-We then are able to read the files at runtime like this:
+Now we can read the files at runtime like this:
 
 ``` haskell
   ...
@@ -601,8 +598,8 @@ import System.FilePath.Posix        (takeDirectory,(</>))
 ...
 createProject ... = do
       ...
-      {-hi-}createDirectory{-/hi-} projectName
-      {-hi-}setCurrentDirectory{-/hi-} projectName
+      {-hi-}createDirectory{-/hi-} projectName     -- mkdir
+      {-hi-}setCurrentDirectory{-/hi-} projectName -- cd
       genFile "LICENSE" "LICENSE"
       genFile "gitignore" ".gitignore"
       genFile "src/Main.hs" ("src" </> "Main.hs")
@@ -646,7 +643,7 @@ data Project = Project {
 ```
 
 Once we have declared this, we should populate our Project record with
-the data provided by the user. So our main should now look like:
+the data provided by the user. So our main function should look like:
 
 ``` haskell
 main :: IO ()
@@ -689,12 +686,14 @@ genFile context filename outputFileName = do
     {-hi-}LZ.{-/hi-}writeFile outputFileName transformedFile
 ```
 
-So now, we use external files in mustache format.
+We use external files in mustache format.
 We ask question to our user to fill a data structure.
-Hastache use this filled data structure with the external files to initialize
-the project.
+We use this data structure to create a context.
+Hastache use this context with the external files to create the project files.
 
 ## Git and Cabal
+
+blogimage("tim.jpg","Tim")
 
 We need to initialize git and cabal.
 For this we simply call external command with the `system` function.
@@ -719,6 +718,8 @@ Now, we only need to add some nice feature to make the application more
 enjoyable.
 
 ### Better error message
+
+blogimage("rabbit.jpg","Rabbit")
 
 The first one would be to add a better error message.
 
@@ -833,6 +834,8 @@ first occurrence of name and mail.
 
 ### Use the github API
 
+blogimage("coconut.jpg","Coconut and Swallow")
+
 The task seem relatively easy, but we'll see there will be some complexity hidden.
 Make a request on `https://api.github.com/search/users?q=<email>`.
 Parse the JSON and get the `login` field of the first item.
@@ -840,7 +843,7 @@ Parse the JSON and get the `login` field of the first item.
 So the first problem to handle is to connect an URL.
 For this we will use the `http-conduit` package.
 
-In the general case, for something simple as this we should have used:
+Generally, for simple request, we should use:
 
 ``` haskell
 do
@@ -855,14 +858,11 @@ our code became slightly more complex:
 ``` haskell
 {-# LANGUAGE OverloadedStrings #-}
 ...
+simpleHTTPWithUserAgent :: String -> IO LZ.ByteString
 simpleHTTPWithUserAgent url = do
     r  <- parseUrl url
     let request = r { requestHeaders =  [ ("User-Agent","HTTP-Conduit") ] }
-    body <- withManager $ \manager -> do
-                response <- httpLbs request manager
-                return $ responseBody response
-    let str = LZ.unpack body
-    return $ Just str
+    withManager $ (return.responseBody) <=< httpLbs request
 
 getGHUser :: String -> IO (Maybe String)
 getGHUser ""    = return Nothing
@@ -887,9 +887,9 @@ import qualified Data.Text.Lazy.Builder as TLB
 
 getGHUser :: String -> IO (Maybe String)
 getGHUser email = do
-    url = "https://api.github.com/search/users?q=" ++ email
+    let url = "https://api.github.com/search/users?q=" ++ email
     body <- simpleHTTPWithUserAgent url
-    login <- return $ {-hi-}body ^? key "items" . nth 0 . key "login"{-/hi-}
+    let login = {-hi-}body ^? key "items" . nth 0 . key "login"{-/hi-}
     return $ fmap jsonValueToString login
     where
         jsonValueToString = TLZ.unpack . TLB.toLazyText . fromValue
@@ -904,12 +904,14 @@ I hope I simply missed a simpler existing function.
 You can read [this article on `lens-aeson` and prisms](https://www.fpcomplete.com/user/tel/lens-aeson-traversals-prisms)
 to know more.
 
-Now, we have all the feature provided by the zsh script shell.
-But wouldn't it be to use Haskell to do things a bit better to launch the API request sooner. Because, actually you have to wait during
-answering the questions.
+#### Concurrency
 
-Wouldn't it be better to launch the request in parallel?
-Let's do it:
+blogimage("priest.jpg","Priests")
+
+We now have all the feature provided by the original `zsh` script shell.
+But here is a good occasion to use some Haskell great feature.
+
+We will launch the API request sooner and in parallel to minimize our wait time:
 
 ```
 import Control.Concurrent
@@ -943,7 +945,7 @@ main = do
     end
 ```
 
-While it might feel a bit confusing in fact, this is quite simple.
+While it might feel a bit confusing, it is in fact quite simple.
 
 1. declare an [`MVar`](http://www.haskell.org/ghc/docs/latest/html/libraries/base/Control-Concurrent-MVar.html). Mainly a variable which is empty or contain something.
 2. If we didn't found any email hint, put Nothing in the `MVar`.
@@ -958,9 +960,9 @@ you might not even wait.
 
 ## Project Structure
 
-We now have a quite good product.
-But, there might be some bugs we don't even noticed.
-Further more the code is about 335 lines.
+We have a working product.
+But, I don't consider our job finished.
+The code is about 335 lines.
 
 Considering that we:
 
@@ -971,22 +973,19 @@ Considering that we:
 - parse JSON
 - parse `.gitconfig`
 - use colored output
-- Have a lot of documentation
 
 This is quite few.
 
-### Cleaning
+### Modularizing
 
-We might now separate our code in different modules.
-I generally like to do that.
-For short programs like this one some people might prefer not to separate it.
-I tried to use meaningful names for the functions, this is why I believe
-it is better to split our program in many different parts.
+blogimage("black-knight.jpg","The Black Knight")
 
-The first thing to do, is to put all content of `src/Main.hs` in `src/HolyProject.hs`,
-and rename the `main` function by `holyStarter`. And now our `src/Main.hs` should
+For short programs it is not obvious to split them into different modules.
+But my personal preference is to split it anyway.
 
-contains:
+First we put all content of `src/Main.hs` in `src/HolyProject.hs`.
+We rename the `main` function by `holyStarter`.
+And our `src/Main.hs` should contains:
 
 ``` haskell
 module Main where
@@ -1014,12 +1013,14 @@ I separated all functions in different submodules:
 The `HolyProject.hs` file contains mostly the code that ask questions,
 show errors and copy files using hastache.
 
-One of the benefits in modularizing the code is that the main code is clearer.
+One of the benefits in modularizing the code is that our main code is clearer.
 Some functions are declared only in a module and are not exported.
 This help us hide technical details.
 For example, the modification of the HTTP header to use the github API.
 
 ### Documenting
+
+blogimage("holy-grenade.jpg","The Holy Grenade")
 
 We didn't take much advantage of the project structure yet.
 A first thing is to generate some documentation.
@@ -1032,7 +1033,8 @@ First, you need to install `haddock` manually.
 cabal install haddock
 ```
 
-Be sure to have cabal in your PATH, you could for example add it this way:
+Be sure to have `haddock` in your `PATH`.
+You could for example add it like this:
 
 ``` bash
 # You might want to add this line in your .profile
@@ -1056,6 +1058,8 @@ While the Haskell static typing is quite efficient to prevent entire classes
 of bug, Haskell doesn't discard the need to test to minimize the number of bug.
 
 #### Unit Testing with HUnit
+
+blogimage("witch.jpg","A Witch! A Witch!")
 
 It is generally said to test we should use unit testing for code in IO
 and QuickCheck or SmallCheck for pure code.
@@ -1127,6 +1131,8 @@ github continue to give the same answer as expected.
 
 #### Property Testing with SmallCheck and QuickCheck
 
+blogimage("zoot.jpg","My name is Zoot. Just Zoot")
+
 When it comes to pure code, a very good method is to use QuickCheck and SmallCheck.
 SmallCheck will verify all cases up to some depth about some property.
 While QuickCheck will verify some random cases.
@@ -1188,9 +1194,10 @@ All Tests
 <span class="red">1 out of 5 tests failed</span>
 </pre>
 
-In fact, the test fail, but this is not an error.
+The test fail, but this is not an error.
 Our `capitalize` function shouldn't be idempotent.
-But here is how you see what happens:
+I simply added this test to show how to goes when a test fail.
+If you want to look more closely to the error you could do this:
 
 ``` bash
 $ ./interact
@@ -1216,6 +1223,8 @@ I don't know how it generates Strings and using deeper search is really long.
 
 ## Conclusion
 
+blogimage("a-blessing.jpg","Rabbit")
+
 Congratulation!
 
-Now you could start programming in Haskell.
+Now you could start programming in Haskell and publish your own cabal package.
