@@ -1,5 +1,6 @@
 $unit: 1em
 $small: 0.9em
+$smaller: 0.8em
 $munit: 16px
 $bordersize: $unit/4
 $lineheight: $unit * 1.5
@@ -96,6 +97,16 @@ acronym
   display: block
   margin-left: auto
   margin-right: auto
+  padding: 0 $unit
+  width: 100%
+  max-width: 37*$unit - 2*$unit + 2*$hmargin
+  @media only screen and (max-width: (37*$unit - 2*$unit + 2*$hmargin))
+    width: auto
+=goodsizenopad
+  display: block
+  margin-left: auto
+  margin-right: auto
+  padding: 0
   width: 100%
   max-width: 37*$unit + 2*$hmargin
 
@@ -167,12 +178,10 @@ acronym
       margin: $munit auto
       padding: 0
     figcaption, .caption
-      +goodsize
+      +goodsizenopad
       text-align: center
-      padding: 0
   p
     +goodsize
-    padding: 0
     margin: $munit auto
   p,li,blockquote
     code
@@ -191,12 +200,12 @@ acronym
     border: none
   pre
     margin: 2*$munit auto
-    max-width: (37*$unit + 2*$hmargin) * $unit / $small
+    max-width: (37*$unit + 2*$hmargin) * $unit / $smaller
     background: $prebackground
     font-family: Menlo, monospace
-    font-size: $small
+    font-size: $smaller
     overflow: auto
-    padding: $munit
+    padding: $munit 2*$munit
     line-height: 1.5em
     border-bottom: solid $bordersize $darker
   pre code
@@ -236,8 +245,6 @@ acronym
   #content
     padding: 0
     width: 100%
-    .corps
-      padding: 0 1em
 
 #entete > #choix > #choixlang
   float: left
@@ -310,7 +317,7 @@ p code, li code
       border-left: none
       border-right: none
       font-weight: 700
-      +goodsize
+      +goodsizenopad
 #afterarticle
   padding-top: 2em
   background: $base03
@@ -320,7 +327,7 @@ p code, li code
   a:active, a:hover
     color: $yellow
   &>*
-    +goodsize
+    +goodsizenopad
 #comment
   background: $base2
   padding: 2em
