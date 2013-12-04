@@ -38,6 +38,7 @@ body
   line-height: $lineheight
   background: $altbackground
   color: $front
+  overflow-x: hidden
 
 a
   text-decoration: none
@@ -130,8 +131,7 @@ acronym
   padding: 0
   #titre
     h1,h2
-      padding: 0 $hmargin
-      margin: $munit auto
+      +goodsizenopad
       text-align: center
       font-weight: 100
       font-size: 3*$unit
@@ -200,12 +200,12 @@ acronym
     border: none
   pre
     margin: 2*$munit auto
-    max-width: (37*$unit + 2*$hmargin) * $unit / $smaller
+    max-width: (37*$unit - 2*$unit + 2*$hmargin) * $unit / $smaller
     background: $prebackground
     font-family: Menlo, monospace
     font-size: $smaller
     overflow: auto
-    padding: $munit 2*$munit
+    padding: $munit 2*$unit
     line-height: 1.5em
     border-bottom: solid $bordersize $darker
   pre code
@@ -318,6 +318,7 @@ p code, li code
       border-right: none
       font-weight: 700
       +goodsizenopad
+      padding-top: $bordersize
 #afterarticle
   padding-top: 2em
   background: $base03
