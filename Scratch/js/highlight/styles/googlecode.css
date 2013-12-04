@@ -17,15 +17,17 @@ pre .comment * {
 }
 
 pre .keyword,
-pre .ruby .function .keyword,
-pre .function .keyword,
-pre .sub .keyword,
 pre .method,
 pre .list .title,
+pre .clojure .built_in,
+pre .nginx .title,
 pre .tag .title,
 pre .setting .value,
 pre .winutils,
-pre .tex .command {
+pre .tex .command,
+pre .http .title,
+pre .request,
+pre .status {
   color: #008;
 }
 
@@ -41,7 +43,8 @@ pre .filter .argument,
 pre .attr_selector,
 pre .apache .cbracket,
 pre .date,
-pre .regexp {
+pre .regexp,
+pre .coffeescript .attribute {
   color: #080;
 }
 
@@ -52,22 +55,21 @@ pre .tag .keyword,
 pre .decorator,
 pre .ini .title,
 pre .shebang,
-pre .input_number,
+pre .prompt,
 pre .hexcolor,
 pre .rules .value,
 pre .css .value .number,
 pre .literal,
 pre .symbol,
 pre .ruby .symbol .string,
-pre .ruby .symbol .keyword,
-pre .ruby .symbol .keymethods,
 pre .number,
-pre .css .function {
+pre .css .function,
+pre .clojure .attribute {
   color: #066;
 }
 
 pre .class .title,
-pre .haskell .label,
+pre .haskell .type,
 pre .smalltalk .class,
 pre .javadoctag,
 pre .yardoctag,
@@ -79,7 +81,8 @@ pre .class .id,
 pre .built_in,
 pre .setting,
 pre .params,
-pre .variable {
+pre .variable,
+pre .clojure .title {
   color: #606;
 }
 
@@ -110,7 +113,8 @@ pre .nginx .built_in {
 }
 
 pre .preprocessor,
-pre .preprocessor * {
+pre .preprocessor *,
+pre .pragma {
   color: #444;
 }
 

@@ -9,9 +9,9 @@ pre code
   background: #222;
 }
 
-pre .header,
 pre .profile .header *,
-pre .ini .title
+pre .ini .title,
+pre .nginx .title
 {
   color: #fff;
 }
@@ -19,12 +19,14 @@ pre .ini .title
 pre .comment,
 pre .javadoc,
 pre .preprocessor,
+pre .preprocessor .title,
+pre .pragma,
 pre .shebang,
 pre .profile .summary,
 pre .diff,
 pre .pi,
 pre .doctype,
-pre .xml .tag,
+pre .tag,
 pre .template_comment,
 pre .css .rules,
 pre .tex .special
@@ -37,9 +39,11 @@ pre .symbol,
 pre .diff .change,
 pre .regexp,
 pre .xml .attribute,
-pre .xml .value,
 pre .smalltalk .char,
-pre .ini .value
+pre .xml .value,
+pre .ini .value,
+pre .clojure .attribute,
+pre .coffeescript .attribute
 {
   color: #ffcc33;
 }
@@ -52,7 +56,7 @@ pre .addition
 
 pre .built_in,
 pre .literal,
-pre .vhdl .type,
+pre .vhdl .typename,
 pre .go .constant,
 pre .go .typename,
 pre .ini .keyword,
@@ -73,27 +77,29 @@ pre .parser3 .variable
 }
 
 pre .keyword,
-pre .xml .tag .title,
+pre .tag .title,
 pre .css .tag,
 pre .css .class,
 pre .css .id,
 pre .css .pseudo,
 pre .css .attr_selector,
 pre .lisp .title,
+pre .clojure .built_in,
 pre .winutils,
-pre .tex .command
+pre .tex .command,
+pre .request,
+pre .status
 {
   color: #6644aa;
 }
 
-pre .class .title,
+pre .title,
 pre .ruby .constant,
 pre .vala .constant,
 pre .parent,
 pre .deletion,
 pre .template_tag,
 pre .css .keyword,
-pre .javascript .title,
 pre .objectivec .class .id,
 pre .smalltalk .class,
 pre .lisp .keyword,
@@ -107,7 +113,6 @@ pre .lua .built_in,
 pre .rsl .built_in,
 pre .tail,
 pre .avrasm .label,
-pre .parser3 .title,
 pre .tex .formula,
 pre .tex .formula *
 {
@@ -125,7 +130,10 @@ pre .parser3 .title
 }
 
 pre .coffeescript .javascript,
+pre .javascript .xml,
+pre .tex .formula,
 pre .xml .javascript,
+pre .xml .vbscript,
 pre .xml .css,
 pre .xml .cdata
 {

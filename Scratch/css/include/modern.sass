@@ -1,14 +1,17 @@
-$unit: 16px
-$small: 14px
+$unit: 1em
+$small: 0.9em
+$smaller: 0.8em
+$munit: 16px
+$bordersize: $unit/4
 $lineheight: $unit * 1.5
-$smalllineheight: $small * 1.5
+$smalllineheight: $small * 1.75
 $hmargin: 4*$unit
 
 @font-face
   font-family: 'social'
   src: url('fonts/social_font-webfont.eot')
   src: url('fonts/social_font-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/social_font-webfont.woff') format('woff'), url('fonts/social_font-webfont.ttf') format('truetype'), url('fonts/social_font-webfont.svg#social_font_faceregular') format('svg')
-  font-weight: normal
+  font-weight: 300
   font-style: normal
 .social
   font-family: social
@@ -28,11 +31,14 @@ html
 body
   padding: 0
   margin: 0
-  font-family: 'Droid Sans', Helvetica, sans-serif !important
+  font-size: 16px
+  font-family: Seravek, Lato, sans-serif !important
+  font-weight: 300
   font-size: $unit
   line-height: $lineheight
   background: $altbackground
   color: $front
+  overflow-x: hidden
 
 a
   text-decoration: none
@@ -62,11 +68,7 @@ acronym
 .corps
   a
     color: $front
-    &:after
-      content: '*'
-      line-height: 0
-      font-size: .66em
-      vertical-align: super
+    border-bottom: 1px dotted rgba($front,0.2)
     &:visited
       color: $front
 
@@ -96,6 +98,16 @@ acronym
   display: block
   margin-left: auto
   margin-right: auto
+  padding: 0 $unit
+  width: 100%
+  max-width: 37*$unit - 2*$unit + 2*$hmargin
+  @media only screen and (max-width: (37*$unit - 2*$unit + 2*$hmargin))
+    width: auto
+=goodsizenopad
+  display: block
+  margin-left: auto
+  margin-right: auto
+  padding: 0
   width: 100%
   max-width: 37*$unit + 2*$hmargin
 
@@ -117,32 +129,39 @@ acronym
   width: 100%
   margin: 0 auto
   padding: 0
-  #titre h1
-    padding: 0 $hmargin
-    margin: 4*$unit auto
-    text-align: center
-    font-weight: 100
+  #titre
+    h1,h2
+      +goodsizenopad
+      text-align: center
+      font-weight: 100
+      font-size: 3*$unit
+    h2
+      color: $front
+      background: none
+      border: none
+      font-size: 1.2em
+      font-weight: 300
   h1,h3,h4,h5,h6
-    margin-top: 4*$unit
-    margin-bottom: 4*$unit
-    padding: 2*$unit $unit
+    margin-top: 2*$munit
+    margin-bottom: 2*$munit
+    padding: 2*$munit $munit
+    text-align: center
+  h1,h2,h3,h4,h5,h6
+    font-variant: small-caps
+    font-weight: 300
     line-height: 1.5*$unit
-    text-align: center
   h1
-    color: $lighter
+    color: $front
   h2
-    background: $blue
-    color: $base3
-    margin-top: 4*$unit
-    margin-bottom: 4*$unit
-    padding: 4*$unit $unit
+    background: $ambientblue
+    margin-top: 2*$munit
+    margin-bottom: 2*$munit
+    padding: 2*$munit $munit
     text-align: center
-  h3,h4
-    background: $base02
-    color: $base3
-  h5,h6
-    background: $base01
-    color: $base3
+  h2,h3
+    border-bottom: solid $bordersize $darker
+  h3
+    background: $altbackground
   table
     text-align: center
     margin: 2em auto
@@ -153,19 +172,20 @@ acronym
     td,th
       padding: .5em
   figure, .figure
-    margin: 2*$unit
+    margin: 2*$munit
     padding: 0
     img
-      margin: $unit auto
+      margin: $munit auto
       padding: 0
     figcaption, .caption
-      +goodsize
+      +goodsizenopad
       text-align: center
-      padding: 0
   p
     +goodsize
-    padding: 0
-    margin: $unit auto
+    margin: $munit auto
+  p,li,blockquote
+    code
+      font-size: .8em
   a img, li img
     display: inline
     border: none
@@ -174,21 +194,20 @@ acronym
   img
     max-width: 100%
     display: block
-    border-top: medium solid
-    border-bottom: medium solid
-    margin: 4*$unit auto
+    border-bottom: solid $bordersize $darker
+    margin: 4*$munit auto
   img.clean, img.left.clean, img.right.clean
     border: none
   pre
-    margin: 4*$unit auto
-    max-width: 37*$unit + 2*$hmargin
-    background: $background
-    font-family: monaco, monospace
-    font-size: $small
+    margin: 2*$munit auto
+    max-width: (37*$unit - 2*$unit + 2*$hmargin) * $unit / $smaller
+    background: $prebackground
+    font-family: Menlo, monospace
+    font-size: $smaller
     overflow: auto
-    padding: $unit + $unit - $small
-    line-height: 1.4 * 0.8 * $unit
-    border: solid 1px $border
+    padding: $munit 2*$unit
+    line-height: 1.5em
+    border-bottom: solid $bordersize $darker
   pre code
     background: none
     border: none
@@ -197,23 +216,23 @@ acronym
   ul li:before
     content: "- "
     display: inline-block
-    margin-left: $unit/2
+    margin-left: $munit/2
     width: 0
   ul
     padding-left: 0
-    margin: $unit $hmargin
+    margin: $munit $hmargin
     // width of '-'
     text-indent: -($unit/2)
   ol
     padding-left: 0
-    margin: $unit $hmargin
+    margin: $munit $hmargin
   .toc, #markdown-toc
     a
       color: $front
     ol li, ul li
-      margin: ($unit/2) $unit
+      margin: ($munit/2) $munit
   ol li ul, ol li ol, ul li ol, ul li ul
-    margin: ($unit/2) (3*$unit/2)
+    margin: ($munit/2) (3*$munit/2)
     list-style: none
   ul,ol
     +goodsize
@@ -226,8 +245,6 @@ acronym
   #content
     padding: 0
     width: 100%
-    .corps
-      padding: 0 1em
 
 #entete > #choix > #choixlang
   float: left
@@ -248,16 +265,21 @@ acronym
 
 
 #header
-  border: solid 2px #000
-  background-color: $base03
+  background-color: $altbackground
+  color: $altcolor
+  border-bottom: solid $bordersize $darker
   a
-    color: $base3
+    color: $altcolor
+    border-bottom: solid 3px $darker
+    display: inline-block
+    padding: .25em
     &:hover, &:active
-      color: $yellow
+      background: $clearer
+      border-bottom: solid 3px $yellow
 
 #choix
   text-align: center
-  padding: 0 $unit
+  padding: 0 $munit
   #switchcss
     float: right
 .cut
@@ -276,19 +298,27 @@ hr
   border-color: $border
 p code, li code
   padding: 1px 2px
-  background: $background
-  border: solid 1px $border
+  background: $codeintextbackground
 #content
   blockquote
-    padding: 4*$unit $unit
-    margin: 4*$unit auto
+    padding: 2*$munit $munit
+    margin: 2*$munit auto
     +altblock
     & > p, & > ul, & > ol
       +goodsize
     border: solid 2px $border
     p
-      padding: 0 $unit
-
+      padding: 0 $munit
+  .intro
+    blockquote
+      background: $darker
+      border-bottom: solid $bordersize $darker
+      border-top: none
+      border-left: none
+      border-right: none
+      font-weight: 700
+      +goodsizenopad
+      padding-top: $bordersize
 #afterarticle
   padding-top: 2em
   background: $base03
@@ -298,7 +328,7 @@ p code, li code
   a:active, a:hover
     color: $yellow
   &>*
-    +goodsize
+    +goodsizenopad
 #comment
   background: $base2
   padding: 2em
@@ -317,16 +347,16 @@ p code, li code
 #content
   .intro2
     +goodsize
-    padding: 4*$unit $unit
-    margin: 4*$unit auto
+    padding: 2*$munit $munit
+    margin: 2*$munit auto
     font-size: $small
   .intro
     +altblock
-    padding: 4*$unit $unit
-    margin: 4*$unit auto
+    background: $ambientblue
+    padding: 2*$munit $munit
+    margin: 2*$munit auto
     font-size: $small
-    font-style: italic
-    line-height: $smalllineheight
+    border-bottom: solid $bordersize $darker
     & > blockquote hr
       display: none
     & > code
@@ -338,7 +368,7 @@ p code, li code
 #content
   img.right, img.left
     max-width: 30%
-    border: medium solid
+    border-bottom: $bordersize solid $darker
   img.left
     margin: 0 (0.5*$hmargin) 0 $hmargin
   img.right
@@ -347,12 +377,12 @@ p code, li code
   clear: both
 
 #bottom
-  padding: $unit 0
+  padding: $munit 0
   text-align: center
   font-size: $small
   line-height: $smalllineheight
 #entete
-  padding: $unit 0
+  padding: $munit 0
   text-align: center
   ul
     text-indent: 0
@@ -363,7 +393,7 @@ p code, li code
     span.active
       color: $orange
   ul li > *
-    padding: 2px $unit
+    padding: 2px $munit
     border: solid
 #previous_articles
   float: left
@@ -372,10 +402,10 @@ p code, li code
   float: right
   text-align: right
 .corps
-  padding-bottom: 2*$unit
+  padding-bottom: 2*$munit
 
 #tagcloud
-  margin: $unit $hmargin
+  margin: $munit $hmargin
   font-size: $small
   line-height: $smalllineheight
 #sousliens.archive > ul
@@ -385,7 +415,7 @@ p code, li code
 #hiddenDivs > div
   display: none
 .list
-  margin: $unit $hmargin
+  margin: $munit $hmargin
 pre .list
   margin: 0 0
 #content img#mainlogo
@@ -468,21 +498,21 @@ pre .list
     border-top: ($unit/10) solid $base02
     border-bottom: ($unit/10) solid $base02
     +goodsize
-    margin-top: 4*$unit
-    margin-bottom: 4*$unit
+    margin-top: 4*$munit
+    margin-bottom: 4*$munit
     background-color: $background
     color: $front
-    padding: $unit 0
+    padding: $munit 0
     & > *
-      padding: 0 $unit
+      padding: 0 $munit
     a
       text-decoration: none
       color: $lighter
     a:visited
       color: $altfront
     pre
-      padding: $unit
-      margin: $unit
+      padding: $munit
+      margin: $munit
     pre,code
       background-color: $background
       border: 1px solid $border
@@ -497,20 +527,20 @@ pre .list
       color: $lighter
       background: none
     ul
-      margin: $unit 1em $unit 0
+      margin: $munit 1em $munit 0
       padding: 0
       li
-        margin: 0.5*$unit 1.5*$unit
+        margin: 0.5*$munit 1.5*$munit
     img
       display: block
       max-width: 80%
-      margin: $unit auto
-      padding: .5*$unit
+      margin: $munit auto
+      padding: .5*$munit
       background-color: $background
       border: solid 1px $border
     img.right, img.left, figure.right, figure.left, .figure.right, .figure.left
       max-width: 26%
-      margin: .5*$unit
+      margin: .5*$munit
       figcaption
         padding: 0
         text-align: center
@@ -522,13 +552,13 @@ pre .list
 .codefile
   font-size: 0.7*$unit
   text-align: right
-  margin-bottom: -2*$unit
+  margin-bottom: -2*$munit
 .footnotes
   font-size: 0.8*$unit
 #next_before_articles
   font-size: (14 * $unit / 20)
   padding: 0 $hmargin
-  margin: $unit 0
+  margin: $munit 0
 
 =roundbutton
   text-align: center
@@ -551,6 +581,7 @@ pre .list
 #afterarticle
   #totop, .tomenu
     +roundbutton
+    cursor: pointer
     background: $base02
 
 .button
@@ -570,7 +601,7 @@ pre .list
 #content
   .inlineblockimg
     width: 60px
-    margin: $unit
+    margin: $munit
     text-align: center
     vertical-align: middle
     display: inline-block
@@ -595,3 +626,22 @@ pre .list
   #content
     ul,ol
       padding-left: auto
+  #choixlang,#switchcss,#tomenu
+    float: none
+    width: 100%
+    margin-bottom: .2em
+
+
+@media only screen and (max-width: 1024px)
+  body
+    font-size: 16px
+$max: 40
+@for $i from 0 through $max
+  @media only screen and (min-width: (1024px+$i*100)) and (max-width: (1024px+($i + 1)*100))
+    body
+      font-size: 16px+$i
+
+@media only screen and (min-width: (1024px+($max+1)*100))
+  body
+    font-size: 16px+$max+1
+

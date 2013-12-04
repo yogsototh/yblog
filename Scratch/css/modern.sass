@@ -6,14 +6,26 @@ $background: $base3
 $altbackground: $base2
 $altcolor: $base02
 $altlinkcolor: $base03
-$altcodebackground: $base3
+$altcodebackground: rgba(255,255,255,0.3)
 $althoverlinkcolor: $violet
 $front: $base02
 $altfront: $base1
 $lighter: $base00
 $border: $base2
+$prebackground: rgba(255,255,255,0.8)
+$ambientblue: ($blue /3 )+2*(#FFF / 3)
+$clearer: rgba(255,255,255,0.3)
+$darker: rgba(0,0,0,0.1)
+$codeintextbackground: rgba(0,0,0,0.05)
 
 @import "Scratch/css/include/modern"
 
-.highlight
-  background-color: $yellow
+pre
+  .highlight
+    background-color: $yellow
+    font-weight: bold
+    color: $base03 !important
+    span
+      background-color: $yellow
+      font-weight: bold
+      color: $base03 !important

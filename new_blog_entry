@@ -70,7 +70,7 @@ fr: %tlal
 ENDFORMAT
 
 print "imagedir = $imgdirname"
-mkdir $imgdirname
+mkdir $imgdirname && touch $imgdirname/.gitignore
 ln -sf $filename $linkname
 [[ -e $imglinkname ]] && \rm $imglinkname
 ln -sf $imgdirname $imglinkname

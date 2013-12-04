@@ -30,12 +30,14 @@ main = hakyll $ do
           .||.  "CNAME")
       staticBehavior
 
-    -- Compressed SASS
-    match "Scratch/css/*" $ do
-        route   $ setExtension "css"
-        compile $ getResourceString >>=
-                  withItemBody (unixFilter "sass" ["--trace"]) >>=
-                  return . fmap compressCss
+    -- Compressed SASS (add potentially included files)
+    sassDependencies <- makePatternDependency "Scratch/css/include/*.sass"
+    rulesExtraDependencies [sassDependencies] $ do
+        match "Scratch/css/*" $ do
+            route   $ setExtension "css"
+            compile $ getResourceString >>=
+                      withItemBody (unixFilter "sass" ["--trace"]) >>=
+                      return . fmap compressCss
 
     -- Blog posts
     match "Scratch/*/blog/*.md" markdownPostBehavior
@@ -217,6 +219,7 @@ yContext =  constField "type" "default" <>
 yPostContext :: Context String
 yPostContext =  constField "type" "article" <>
                 metaKeywordContext <>
+                subtitleContext <>
                 shortLinkContext <>
                 multiContext <>
                 imageContext <>
@@ -246,6 +249,14 @@ metaKeywordContext = field "metaKeywords" $ \item -> do
   return $ maybe "" showMetaTags tags
     where
       showMetaTags t = "<meta name=\"keywords\" content=\"" ++ t ++ "\"/>\n"
+
+--------------------------------------------------------------------------------
+subtitleContext :: Context String
+subtitleContext = field "subtitleTitle" $ \item -> do
+  subt <- getMetadataField (itemIdentifier item) "subtitle"
+  return $ maybe "" showSubtitle subt
+    where
+      showSubtitle t = "<h2>" ++ t ++ "</h2>\n"
 
 --------------------------------------------------------------------------------
 createdFirst :: [Item String] -> Compiler [Item String]

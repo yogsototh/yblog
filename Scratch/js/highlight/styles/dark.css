@@ -15,28 +15,27 @@ pre .change,
 pre .winutils,
 pre .flow,
 pre .lisp .title,
+pre .clojure .built_in,
+pre .nginx .title,
 pre .tex .special {
   color: white;
 }
 
 pre code,
-pre .ruby .subst {
+pre .subst {
   color: #DDD;
 }
 
 pre .string,
-pre .function .title,
-pre .class .title,
-pre .haskell .label,
+pre .title,
+pre .haskell .type,
 pre .ini .title,
 pre .tag .value,
 pre .css .rules .value,
 pre .preprocessor,
+pre .pragma,
 pre .ruby .symbol,
 pre .ruby .symbol .string,
-pre .ruby .symbol .keyword,
-pre .ruby .symbol .keymethods,
-pre .ruby .instancevar,
 pre .ruby .class .parent,
 pre .built_in,
 pre .sql .aggregate,
@@ -56,7 +55,8 @@ pre .envvar,
 pre .apache .tag,
 pre .apache .cbracket,
 pre .tex .command,
-pre .input_number {
+pre .prompt,
+pre .coffeescript .attribute {
   color: #D88;
 }
 
@@ -75,30 +75,31 @@ pre .tex .formula {
 
 pre .keyword,
 pre .literal,
+pre .title,
 pre .css .id,
 pre .phpdoc,
-pre .function .title,
-pre .class .title,
-pre .haskell .label,
+pre .haskell .type,
 pre .vbscript .built_in,
 pre .sql .aggregate,
 pre .rsl .built_in,
 pre .smalltalk .class,
-pre .xml .tag .title,
 pre .diff .header,
 pre .chunk,
 pre .winutils,
 pre .bash .variable,
-pre .lisp .title,
 pre .apache .tag,
-pre .tex .special {
+pre .tex .special,
+pre .request,
+pre .status {
   font-weight: bold;
 }
 
 pre .coffeescript .javascript,
-pre .xml .css,
+pre .javascript .xml,
+pre .tex .formula,
 pre .xml .javascript,
 pre .xml .vbscript,
-pre .tex .formula {
+pre .xml .css,
+pre .xml .cdata {
   opacity: 0.5;
 }
