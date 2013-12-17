@@ -52,6 +52,9 @@ quite surprisingly a lot of features:
 But the Haskell code is clearly more organized while quite terse
 for a multi-purpose language.
 
+**☞** holy-project is on hackage.
+It can be installed with `cabal update && cabal install holy-project`.
+
 </div>
 
 
