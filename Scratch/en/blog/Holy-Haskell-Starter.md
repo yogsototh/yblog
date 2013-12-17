@@ -79,7 +79,7 @@ If want to use this script, the steps are:
 # Download the script
 git clone https://github.com/yogsototh/init-haskell-project.git
 # Copy the script in a directory of you PATH variable
-cp init-haskell-project/holy-project.sh ~/bin
+cp init-haskell-project/holy-haskell.sh ~/bin
 # Go to the directory containing all your projects
 cd my/projects/directory
 # Launch thcript
