@@ -67,7 +67,7 @@ During the process I improved some things a bit.
 
 [^1]: For example, you have to install the test libraries manually to use `cabal test`.
 
-If want to use this script, the steps are:
+If you want to use this script, the steps are:
 
 1. [Install Haskell](http://wwW.haskell.org/platform)
 2. Make sure you have the latest `cabal-install` (at least 1.18)
@@ -197,7 +197,7 @@ So, apparently nothing too difficult to achieve.
 We should now have an initialized Haskell environment for us to work.
 The first thing you should do, is to go into this new directory
 and launch './auto-update' in some terminal. I personally use `tmux` on Linux
-or the splits in `iTerm 2 ̀ on Mac OS X.
+or the splits in `iTerm 2` on Mac OS X.
 Now, any modification of a source file will relaunch a compilation and a test.
 
 ### The dialogs
@@ -537,7 +537,7 @@ Furthermore, we need a templating system to replace small part of the
 static file by computed values.
 For this task, I choose to use
 [`hastache`](http://hackage.haskell.org/package/hastache),
-an haskell implementation of Mustache templates[^3].
+a Haskell implementation of Mustache templates[^3].
 
 [^3]: Having a good level of power in templates is very difficult.
       %imho Mustache has made the best compromise.
@@ -549,13 +549,14 @@ You simply have to add a `Data-Files:` entry in the header of the cabal file:
 
 ```
 data-files: scaffold/LICENSE
+            , scaffold/Setup.hs
+            , scaffold/auto-update
             , scaffold/gitignore
             , scaffold/interact
             , scaffold/project.cabal
-            , scaffold/Setup.hs
             , scaffold/src/Main.hs
-            , scaffold/src/ModuleName/Coconut.hs
             , scaffold/src/ModuleName.hs
+            , scaffold/src/ModuleName/Coconut.hs
             , scaffold/src/ModuleName/Swallow.hs
             , scaffold/test/ModuleName/Coconut/Test.hs
             , scaffold/test/ModuleName/Swallow/Test.hs
@@ -839,7 +840,7 @@ first occurrence of name and mail.
 
 blogimage("coconut.jpg","Coconut and Swallow")
 
-The task seem relatively easy, but we'll see there will be some complexity hidden.
+The task seems relatively easy, but we'll see there will be some complexity hidden.
 Make a request on `https://api.github.com/search/users?q=<email>`.
 Parse the JSON and get the `login` field of the first item.
 
@@ -854,7 +855,7 @@ do
     ...
 ```
 
-But, after some research, I discovered we must declare a User-Agent in the HTTP header
+But, after some research, I discovered we must declare an User-Agent in the HTTP header
 to be accepted by the github API. So we have to change the HTTP Header, and
 our code became slightly more complex:
 
@@ -950,7 +951,7 @@ main = do
 
 While it might feel a bit confusing, it is in fact quite simple.
 
-1. declare an [`MVar`](http://www.haskell.org/ghc/docs/latest/html/libraries/base/Control-Concurrent-MVar.html). Mainly a variable which is empty or contain something.
+1. declare an [`MVar`](http://www.haskell.org/ghc/docs/latest/html/libraries/base/Control-Concurrent-MVar.html). Mainly a variable which either is empty or contains something.
 2. If we didn't found any email hint, put Nothing in the `MVar`.
 3. If we have an email hint, ask on the github API in a new process and once finished put the result in the `MVar`.
 4. If the user enter an email different from the hint email, then just request
@@ -1125,7 +1126,7 @@ ioTestEq action expected = action >>= assertEqual "" expected
 You have to modify your cabal file.
 More precisely, you have to add `HolyProject.GithubAPI`
 in the exposed modules of the library secion).
-You also have to update the  ̀test/Test.hs`
+You also have to update the `test/Test.hs`
 file to use `GithubAPI` instead of `Swallow`.
 
 So we have our example of unit testing using IO.
@@ -1199,7 +1200,7 @@ All Tests
 
 The test fail, but this is not an error.
 Our `capitalize` function shouldn't be idempotent.
-I simply added this test to show how to goes when a test fail.
+I simply added this test to show what occurs when a test fail.
 If you want to look more closely to the error you could do this:
 
 ``` bash
