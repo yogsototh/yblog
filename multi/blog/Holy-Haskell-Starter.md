@@ -308,7 +308,7 @@ bk str = {-hi-}colorPutStr Green{-/hi-} ("Bridgekeeper: " ++ str ++ "\n")
 bkn :: String -> IO ()
 bkn str = {-hi-}colorPutStr Green{-/hi-} ("Bridgekeeper: " ++ str)
 you :: String -> IO ()
-you str = {-hi-}colorPutStr Yellow{-/hi-} ("Bridgekeeper: " ++ str ++ "\n")
+you str = {-hi-}colorPutStr Yellow{-/hi-} ("You: " ++ str ++ "\n")
 
 intro :: IO ()
 intro = do
@@ -424,7 +424,8 @@ In order to achieve the same result in Haskell
 (don't forget to add the `split` package):
 
 ``` haskell
-import Data.List        (instercalate)
+import Data.Char        (toLower)
+import Data.List        (intercalate)
 import Data.List.Split  (splitOneOf)
 ...
 projectNameFromString :: String -> String
