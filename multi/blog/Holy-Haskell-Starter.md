@@ -1064,7 +1064,7 @@ And magically, you'll have a documentation in
 ### Tests
 
 While the Haskell static typing is quite efficient to prevent entire classes
-of bug, Haskell doesn't discard the need to test to minimize the number of bug.
+of bugs, Haskell doesn't discard the need to test to minimize the number of bugs.
 
 #### Unit Testing with HUnit
 

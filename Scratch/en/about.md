@@ -18,7 +18,12 @@ theme: scientific
 
 ## Shortly
 
-I’m a passionate guy. Passionate about
+I am Machine Learning expert for [vigiglobe](http://vigiglobe.com).
+
+I tend to use functional programming a lot.
+Mostly [Haskell](http://haskell.org) and [Clo<i>j</i>ure](http://clojure.org).
+
+I am generally passionate about:
 
   - Computer Science: [I’ve got a post Ph. D. degree in Computer Science](http://yann.esposito.free.fr/recherche.php).
   - Programming: [I developed two scientific apps](http://yann.esposito.free.fr/logiciels.php), [two Mac screen savers](/Scratch/en/softwares), an [iOS app](http://ypassword.espozito.com) and many other things; [see my github](http://github.com/yogsototh)
