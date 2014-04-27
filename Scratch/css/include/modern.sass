@@ -1,11 +1,14 @@
-$unit: 1em
+$unit: 18px
 $small: 0.9em
 $smaller: 0.8em
-$munit: 16px
+$munit: 18px
+$nbcharwidth: 35
 $bordersize: $unit/4
 $lineheight: $unit * 1.5
 $smalllineheight: $small * 1.75
 $hmargin: 4*$unit
+
+$premaxwidth: ($nbcharwidth*$unit - 2*$unit + 2*$hmargin) * ($unit / 16px)
 
 @font-face
   font-family: 'social'
@@ -20,7 +23,7 @@ $hmargin: 4*$unit
   text-align: center
   opacity: .3
   .message
-    font-size: 10px
+    font-size: $unit/2
   &:hover
     opacity: 1
 
@@ -31,7 +34,6 @@ html
 body
   padding: 0
   margin: 0
-  font-size: 16px
   font-family: Seravek, Lato, sans-serif !important
   font-weight: 300
   font-size: $unit
@@ -100,8 +102,8 @@ acronym
   margin-right: auto
   padding: 0 $unit
   width: 100%
-  max-width: 37*$unit - 2*$unit + 2*$hmargin
-  @media only screen and (max-width: (37*$unit - 2*$unit + 2*$hmargin))
+  max-width: $nbcharwidth*$unit - 2*$unit + 2*$hmargin
+  @media only screen and (max-width: ($nbcharwidth*$unit - 2*$unit + 2*$hmargin))
     width: auto
 =goodsizenopad
   display: block
@@ -109,7 +111,7 @@ acronym
   margin-right: auto
   padding: 0
   width: 100%
-  max-width: 37*$unit + 2*$hmargin
+  max-width: $nbcharwidth*$unit + 2*$hmargin
 
 =altblock
   background: $altbackground
@@ -134,7 +136,8 @@ acronym
       +goodsizenopad
       text-align: center
       font-weight: 100
-      font-size: 3*$unit
+      font-size: 3em
+      line-height: 1.1em
     h2
       color: $front
       background: none
@@ -201,7 +204,7 @@ acronym
     border: none
   pre
     margin: 2*$munit auto
-    max-width: (37*$unit - 2*$unit + 2*$hmargin) * $unit / $smaller
+    max-width: $premaxwidth
     background: $prebackground
     font-family: Menlo, monospace
     font-size: $smaller
@@ -242,7 +245,7 @@ acronym
     margin: 0
     padding: 0
 
-@media only screen and (max-width: 37*$unit)
+@media only screen and (max-width: $nbcharwidth*$unit)
   #content
     padding: 0
     width: 100%
@@ -445,7 +448,7 @@ pre .list
     display: block
     float: left
     margin: 0 auto
-    width: (37*$unit + 2*$hmargin)/3
+    width: ($nbcharwidth*$unit + 2*$hmargin)/3
     a:after
       content: ""
     figure, .figure
@@ -635,14 +638,23 @@ pre .list
 
 @media only screen and (max-width: 1024px)
   body
-    font-size: 16px
-$max: 40
+    font-size: $unit
+    line-height: $unit * 1.5
+$max: 3
+$mediawidthstep: 500
+$fontsizestep: 3
 @for $i from 0 through $max
-  @media only screen and (min-width: (1024px+$i*100)) and (max-width: (1024px+($i + 1)*100))
+  @media only screen and (min-width: (1024px+$i*$mediawidthstep)) and (max-width: (1024px+($i + 1)*$mediawidthstep))
     body
-      font-size: 16px+$i
+      font-size: $unit+($i*$fontsizestep)
+      line-height: ($unit+($i*$fontsizestep)) * 1.5
+  pre
+    max-width: ($nbcharwidth*$unit+($i*$fontsizestep) - 2*$unit+($i*$fontsizestep) + 2*$hmargin) * 1.25
 
-@media only screen and (min-width: (1024px+($max+1)*100))
+@media only screen and (min-width: (1024px+($max+1)*$mediawidthstep))
   body
-    font-size: 16px+$max+1
+    font-size: $unit+(($max+1)*$fontsizestep)
+      line-height: ($unit+(($max+1)*$fontsizestep)) * 1.5
+  pre
+    max-width: ($nbcharwidth*$unit+(($max+1)*$fontsizestep) - 2*$unit+(($max+1)*$fontsizestep) + 2*$hmargin) * 1.25
 
