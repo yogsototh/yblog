@@ -340,7 +340,8 @@ main = do
     end
 ```
 
-Make `cabal install` and run `./.cabal-sandbox/bin/holy-project`.
+Make `cabal install` and run `cabal run`
+(or  `./.cabal-sandbox/bin/holy-project`).
 It works!
 
 ## Five Questions -- Three questions Sir!
