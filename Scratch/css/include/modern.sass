@@ -132,20 +132,28 @@ acronym
   margin: 0 auto
   padding: 0
   #titre
+    background: $orange
+    border-bottom: solid 4px rgba(0,0,0,0.3)
+    padding-bottom: 3*$unit
     h1,h2
       +goodsizenopad
+      color: rgba(255,255,255,0.9)
+      padding-top: 1em
+      padding-bottom: 1em
+      margin-top: 0
+      margin-bottom: 0
       text-align: center
       font-size: 3em
       line-height: 1.1em
     h2
-      color: $front
+      color: rgba(255,255,255,0.6)
       background: none
       border: none
       font-size: 1.2em
   h1,h3,h4,h5,h6
-    margin-top: 2*$munit
-    margin-bottom: 2*$munit
-    padding: 2*$munit $munit
+    margin-top: 4*$munit
+    margin-bottom: 0
+    padding: 4*$munit $munit
     text-align: center
   h1,h2,h3,h4,h5,h6
     clear: both
@@ -155,9 +163,9 @@ acronym
     color: $front
   h2
     background: $ambientblue
-    margin-top: 2*$munit
-    margin-bottom: 2*$munit
-    padding: 2*$munit $munit
+    margin-top: 4*$munit
+    margin-bottom: 0
+    padding: 4*$munit $munit
     text-align: center
   h2,h3
     border-bottom: solid $bordersize $darker
@@ -190,10 +198,10 @@ acronym
     padding: 0
     margin: 0
   img
-    max-width: 100%
+    width: 100%
     display: block
     border-bottom: solid $bordersize $darker
-    margin: 4*$munit auto
+    margin: 0 auto
   img.clean, img.left.clean, img.right.clean
     border: none
   pre
@@ -346,13 +354,13 @@ p code, li code
   .intro2
     +goodsize
     padding: 2*$munit $munit
-    margin: 2*$munit auto
+    margin: 0 auto
     font-size: $small
   .intro
     +altblock
     background: $ambientblue
     padding: 2*$munit $munit
-    margin: 2*$munit auto
+    margin: 0 auto
     font-size: $small
     border-bottom: solid $bordersize $darker
     & > blockquote hr
