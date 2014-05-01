@@ -623,7 +623,7 @@ pre .list
 @media only screen and (max-width: 600px)
   #content
     ul,ol
-      padding-left: auto
+      padding: 0 $unit*2.5
   #choixlang,#switchcss,#tomenu
     float: none
     width: 100%
@@ -634,6 +634,10 @@ pre .list
   body
     font-size: $unit
     line-height: $unit * 1.5
+  #content
+    ul,ol
+      padding: 0 $unit*2.5
+
 $max: 3
 $mediawidthstep: 500
 $fontsizestep: 3
