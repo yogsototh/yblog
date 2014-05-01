@@ -132,7 +132,7 @@ acronym
   margin: 0 auto
   padding: 0
   #titre
-    background: $orange
+    background: $headerbackgroundcolor
     border-bottom: solid 4px rgba(0,0,0,0.3)
     padding-bottom: 3*$unit
     h1,h2
@@ -147,10 +147,13 @@ acronym
       line-height: 1.1em
     h2
       color: rgba(255,255,255,0.6)
+      font-weight: 300
+      font-style: italic
       background: none
       border: none
       font-size: 1.2em
   h1,h3,h4,h5,h6
+    color: $darktext
     margin-top: 4*$munit
     margin-bottom: 0
     padding: 4*$munit $munit
@@ -162,6 +165,7 @@ acronym
   h1
     color: $front
   h2
+    color: $darktext
     background: $ambientblue
     margin-top: 4*$munit
     margin-bottom: 0
@@ -271,11 +275,10 @@ acronym
 
 
 #header
-  background-color: $altbackground
-  color: $altcolor
-  border-bottom: solid $bordersize $darker
+  background: $headerbackgroundcolor
+  color: rgba(0,0,0,0.5)
   a
-    color: $altcolor
+    color: rgba(0,0,0,0.5)
     border-bottom: solid 3px $darker
     display: inline-block
     padding: .25em
