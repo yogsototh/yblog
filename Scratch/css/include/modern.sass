@@ -174,7 +174,7 @@ acronym
   h2,h3
     border-bottom: solid $bordersize $darker
   h3
-    background: $altbackground
+    background: $base2
   table
     text-align: center
     margin: 2em auto
@@ -202,7 +202,7 @@ acronym
     padding: 0
     margin: 0
   img
-    width: 100%
+    max-width: 100%
     display: block
     border-bottom: solid $bordersize $darker
     margin: 0 auto
@@ -376,7 +376,7 @@ p code, li code
   float: right
 #content
   img.right, img.left
-    max-width: 30%
+    max-width: ($nbcharwidth*$unit - 2*$unit + 2*$hmargin)/3
     border-bottom: $bordersize solid $darker
   img.left
     margin: 0 (0.5*$hmargin) 0 $hmargin
