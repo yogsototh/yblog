@@ -232,7 +232,7 @@ Please note I didn't say Java programmer are bad programmer.
 
 leftblogimage("xcode_logo.png","Xcode Logo")
 
-The language I learned and used only to make application on Apple(c) platform.
+The language I learned and used only to make application on Apple© platform.
 I learned Objective-C just after Python.
 It was hard to do it.
 At first I didn't liked the syntax and many other details.
@@ -336,7 +336,7 @@ I am under the impression designer tends to use Ruby instead of Python.
 It is the good surprise.
 During years, javascript was considered as an annoying web experience language.
 In reality, javascript has many really good qualities.
-Particularly, it is easy to pass a function in parameter and to create anonymous functions (closures).
+Particularly, it is easy to pass a function in parameter and to create anonymous functions.
 Recently, javascript became far faster than before and many frameworks and libraries appears:
 
 - Cappuccino, Objective-J (as in objective-C but with javascript)
