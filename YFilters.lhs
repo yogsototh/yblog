@@ -36,7 +36,7 @@ It will be replaced by the corresponding `img` tag.
 >         alt =     dropWhile notquote >>> tail
 >               >>> dropWhile notquote >>> drop 3
 >               >>> takeWhile notquote
->         imgstr matched = "<div>\n<img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/>\n</div>"
+>         imgstr matched = "<div><img src=\"/Scratch/img/blog/" ++ itemName ++ "/" ++ src matched ++ "\" alt=\""++ alt matched ++ "\"" ++ leftclass matched ++ "/></div>"
 
 helper to draw figures
 
