@@ -2205,7 +2205,7 @@ or
 
 ~~~
 value <- action2    -- where
-                    -- bar z t :: IO b
+                    -- action2 :: IO b
                     -- value   :: b
 ~~~
 
