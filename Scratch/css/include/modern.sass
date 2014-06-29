@@ -179,7 +179,8 @@ acronym
     text-align: center
     margin: 2em auto
     padding: 1em
-    border: solid 1em $base00
+    background: $altbackground
+    border-bottom: solid 4px $border
     tr
       border: solid 1px
     td,th
@@ -310,12 +311,16 @@ p code, li code
   background: $codeintextbackground
 #content
   blockquote
+    font-family: "Hoefler Text", Georgia, serif
+    font-size: 2em
+    font-style: italic
+    line-height: 2em
     padding: 2*$munit $munit
     margin: 2*$munit auto
     +altblock
     & > p, & > ul, & > ol
       +goodsize
-    border: solid 2px $border
+    border-bottom: solid 4px $border
     p
       padding: 0 $munit
   .intro
