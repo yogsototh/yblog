@@ -14,7 +14,7 @@ If you want to use this blog for you.
 2. Configure your languages in `Config.hs`
 3. compile and launch preview
 
-        ./preview
+        ./auto-update
 
 ## Content Initialization
 
@@ -51,6 +51,6 @@ To publish to github pages, modify the github conf inside `publish.sh` and `fast
 
 # Workflow
 
-1. Open a terminal and type `./preview`
+1. Open a terminal and type `./auto-update`
 2. edit content inside Scratch or multi
 3. Once happy, `./publish.sh`.
