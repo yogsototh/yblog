@@ -115,16 +115,39 @@ Finally there will be a more standard real world example: a minimal blog system.
 The recommended way to install [Haskell][haskell]
 is to download the [Haskell Platform][haskellplatform].
 
+If you want optimal performances I suggest you to download and compile
+the latest [GHC Release][ghc] (at least 7.8).
+It is generally very easy to install from source.
+If you go this way, you'll need to install [cabal][cabal].
+You should use at least cabal 1.18.
+Don't forget to add cabal binaries to your PATH.
+Generally:
+
+~~~
+echo 'export PATH=$HOME/.cabal/bin:$PATH' >> ~/.profile
+~~~
+
+And to be sure you have the latest cabal release:
+
+~~~~~~ {.bash}
+cabal update
+cabal install cabal-install
+~~~~~~
+
 [haskell]: http://www.haskell.org
 
 [haskellplatform]: http://www.haskell.org/platform
 
+[ghc]: http://ghc.haskell.org
+
+[cabal]: http://www.haskell.org/cabal/download.html
+
 Once done, you need to install Yesod.
-Open a terminal session and do:
+
+Then open a terminal session and do:
 
 ~~~~~~ {.bash}
-~ cabal update
-~ cabal install yesod yesod-bin cabal-dev
+cabal install yesod-bin
 ~~~~~~
 
 There are few steps but it should take some time to finish.
@@ -135,7 +158,7 @@ You are now ready to initialize your first Yesod project.
 Open a terminal and type:
 
 ~~~~~~ {.bash}
-~ yesod init
+yesod init
 ~~~~~~
 
 Enter your name, choose `yosog` for the project name and enter `Yosog` for the name of the Foundation.
@@ -143,8 +166,7 @@ Finally choose `sqlite`.
 Now, start the development cycle:
 
 ~~~~~~ {.bash}
-~ cd yosog
-~ cabal-dev install && yesod --dev devel
+cd yosog && cabal sandbox init && cabal install --enable-tests . yesod-platform yesod-bin --max-backjumps=-1 --reorder-goals && yesod devel
 ~~~~~~
 
 This will compile the entire project. Be patient, since it will take a while the first time.
@@ -159,7 +181,9 @@ Congratulation! Yesod works!
 Note: if something is messed up use the following command at the command line inside the project directory.
 
 ~~~~~~ {.bash}
-\rm -rf dist/* ; cabal-dev install && yesod --dev devel
+\rm -rf .cabal-sandbox cabal.sandbox.config
+cabal sandbox init && cabal install --enable-tests . yesod-platform yesod-bin --max-backjumps=-1 --reorder-goals && yesod devel
+
 ~~~~~~
 
 </blockquote>
