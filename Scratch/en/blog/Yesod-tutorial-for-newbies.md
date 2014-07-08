@@ -166,7 +166,10 @@ Finally choose `sqlite`.
 Now, start the development cycle:
 
 ~~~~~~ {.bash}
-cd yosog && cabal sandbox init && cabal install --enable-tests . yesod-platform yesod-bin --max-backjumps=-1 --reorder-goals && yesod devel
+cd yosog
+cabal sandbox init
+cabal install --enable-tests . yesod-platform yesod-bin --max-backjumps=-1 --reorder-goals
+yesod devel
 ~~~~~~
 
 This will compile the entire project. Be patient, since it will take a while the first time.
@@ -200,9 +203,9 @@ Fortunately, there is already a `.gitignore` file into the `yosog` folder.
 You just have to initialize your git repository:
 
 ~~~~~~ {.bash}
-~ git init .
-~ git add .
-~ git commit -a -m "Initial yesod commit"
+git init .
+git add .
+git commit -a -m "Initial yesod commit"
 ~~~~~~
 
 We are almost ready to start.
