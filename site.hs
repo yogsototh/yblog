@@ -30,10 +30,10 @@ main = hakyll $ do
           .||.  "CNAME")
       staticBehavior
 
-    -- Compressed SASS (add potentially included files)
-    sassDependencies <- makePatternDependency "Scratch/css/include/*.sass"
-    rulesExtraDependencies [sassDependencies] $ do
-        match "Scratch/css/*" $ do
+    -- -- Compressed SASS (add potentially included files)
+    -- sassDependencies <- makePatternDependency "Scratch/css/include/*.sass"
+    -- rulesExtraDependencies [sassDependencies] $ do
+    match "Scratch/css/*" $ do
             route   $ setExtension "css"
             compile $ getResourceString >>=
                       withItemBody (unixFilter "sass" ["--trace"]) >>=
