@@ -27,7 +27,7 @@ If you want to know the why and the how; you should read the entire article.
 
 </div>
 
-## A Haskell Weakness
+## Why?
 
 The main weakness of Haskell as nothing to do with the language itself but
 with its ecosystem[^1].
@@ -57,14 +57,14 @@ curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/insta
 sudo ./install-haskell.sh
 ~~~
 
-## What the script is doing
+## How?
 
 You can read the script and you will see that this is quite straightforward.
 
-It download the latest GHC binary for you system and install it.
-It does the same with the `cabal` program.
-It change your repository to use stackage (exclusive by default).
-It installs some useful binaries that might cause compilation error.
+1. It download the latest GHC binary for you system and install it.
+2. It does the same with the `cabal` program.
+3. It change your repository to use stackage (exclusive by default).
+4. It installs some useful binaries that might cause compilation error.
 
 As the version of libraries is fixed up until you update the stackage repo.
 You should never use cabal sandbox.
