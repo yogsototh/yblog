@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# sass
+sass --watch Scratch/css:_site/Scratch/css &
+
 checkfile=".last_multi_watched"
 
 ONCE=0
@@ -48,6 +51,7 @@ while true; do
       [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
       awkprg='! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }'
       awk "$awkprg" < $fic > $dest
+      ./.cabal-sandbox/bin/yblog build
     done
   done
   ((ONCE == 1)) && break

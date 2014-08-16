@@ -32,7 +32,7 @@ html
 body
   padding: 0
   margin: 0
-  font-family: "Open Sans", arial, sans-serif !important
+  font-family: "PT Sans", Helvetica, sans-serif !important
   font-size: $unit
   line-height: $lineheight
   background: $altbackground
@@ -153,11 +153,12 @@ acronym
       border: none
       font-size: 1.2em
   h1,h3,h4,h5,h6
-    color: $darktext
     margin-top: 4*$munit
     margin-bottom: 0
     padding: 4*$munit $munit
     text-align: center
+  h3,h4,h5,h6
+    color: $sndbackground
   h1,h2,h3,h4,h5,h6
     clear: both
     text-transform: uppercase
@@ -165,16 +166,13 @@ acronym
   h1
     color: $front
   h2
-    color: $darktext
-    background: $ambientblue
+    color: $lighttext
+    background: $sndbackground
     margin-top: 4*$munit
     margin-bottom: 0
     padding: 4*$munit $munit
     text-align: center
-  h2,h3
     border-bottom: solid $bordersize $darker
-  h3
-    background: $baseheadercolor
   table
     text-align: center
     margin: 2em auto
@@ -368,7 +366,6 @@ p code, li code
     font-size: $small
   .intro
     +altblock
-    background: $ambientblue
     padding: 2*$munit $munit
     margin: 0 auto
     font-size: $small
