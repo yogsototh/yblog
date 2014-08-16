@@ -15,71 +15,86 @@ blogimage("main.png","Main image")
 
 %tlal
 
+If you don't want to read all and just install Haskell (OS X and Linux only),
+run the following in your terminal:
+
+~~~
+curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
+sudo ./install-haskell.sh
+~~~
+
+If you are on windows, just download the Haskell Platform and follow
+the instruction to use stackage.
+
+If you want to know the why and the how; you should read the entire article.
+
 </div>
 
-We could discernate two Haskell faces.
-Haskell the programming language which brighten far higher than most programming languages.
+## A Haskell Weakness
 
-Haskell the ecosystem. And this is where are the Haskell weaknesses.
+The main weakness of Haskell as nothing to do with the language itself but
+with its ecosystem[^1].
 
-Haskell as a language is a very very good language.
+[^1]: By ecosystem of a language I mean, the community, the tools, the documentations, the deployment environments, the businesses using the language, etc... Mainly everything that has nothing to do with the detail of a programming language but has to do on how and why we use it.
 
-But to make great things with a language, we don't only need a great language but a great ecosystem in which we could achieve tremendous things.
+The main problem I'll try to address is the one known as _cabal hell_.
+The community is really active in fixing the issue.
+I am very confident that in less than a year this problem will be one of the past.
+But to do stuff today, I provide an install method that should reduce greatly
+two effects of cabal hell:
 
-Sadly, the history has proved many times that, the ecosystem make a far better job than a great tool for accomplishing things.
+- dependency error
+- lost time in compilation (poor polar bears)
 
-I mean, the pyramids, Roma, etc... All these things could have been accomplished better if there were better tools, better ideas, etc...
+With my actual installation method, you should minimize your headache and almost
+never hit a dependency error.
 
-The reality, is that these great things were done with very basic means.
-Mostly broken tools.
-But the result is here.
-
-If we focus on our tighter domain (programming languages).
-We must acknowledge that even with its horrible aspects, PHP made a great
-job at producing things.
-Yes, bad, things, bad tools, a lot of suffering for the doers.
-But in the end, it worked good enough.
-
-Haskell's community has a tendency to forget this.
-Because Haskell is a language that does its best to make things perfect the first time.
-It results a mind set that let use believe that everything should be the same.
-Here are the greatest weakness of Haskell
-for most Haskeller forgot that "Done is better than perfect".
-
-And so, discuss with Haskellers and a lot will make jokes about node.js,
-clojure, etc...
-
-The reality is when it comes at doing things, a lots of things are
-better in the node.js/clojure world.
-
-One of this thing is starting.
-
-Starting in clojure or node is extremely simple.
-Let's take the time before a guy read a random tutorial on clojure or node and
-start to hack on its machine.
-
-It is generally in less than 5 minutes.
-You launch (a generally insecure) command that download and install all necessary stuff and here you go.
-
-In haskell...
-
-Ah... In Haskell, things are not so easy.
-Recently there were a new Haskell platform but this is not enough.
-Because, at the second you'll want to use a library, you will certainly stumble on the cabal hell problem.
-
-Some don't see them, but for me, it is a constant struggle.
-
-Very few times the system worked flawlessly.
-
-This is why I am so happy to see that stackage is coming to life!
-
-After this rant, here we go.
-
-Instead of just making me a bad, guy here is my small contribution to
-the clean install problem on OS X.
+And more importantly, you should provide your code to any of your co-worker and
+be sure that if he used the same install method, your code will work on his machine.
 
 ~~~
-curl http://github.com/yogsototh/install-haskell/raw/install-haskell.
+curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
+sudo ./install-haskell.sh
 ~~~
 
-Something.
+If you are a bit adventurous, you might use more libraries, but some might not
+compile on your system. In this case add a parameter to the install script:
+
+~~~
+curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
+sudo ./install-haskell.sh yolo
+~~~
+
+## What the script is doing
+
+You can read the script and you will see that this is quite straightforward.
+
+It download the latest GHC binary for you system and install it.
+It does the same with the `cabal` program.
+It change your repository to use stackage (exclusive by default).
+It installs some useful binaries that might cause compilation error.
+
+As the version of libraries is fixed up until you update the stackage repo.
+You should never use cabal sandbox.
+That way, you will only compile each needed library once.
+The compiled objects/binaries will be in your `~/.cabal` directory.
+
+## Some Last Words
+
+I'll try to update the script every 6 month or so.
+That way I'll minimize the number of time bug could occurs.
+And in the same time, library will continue to improve.
+A bit like the Haskell platform.
+What this script brings to the table Haskell platform don't is just
+the use of stackage.
+
+It is very easy to use, if you prefer you could also go that way.
+Use Haskell Platform and then edit manually your `.cabal/config`.
+
+While it comes to cabal hell, some solutions are sandboxes and `nix`.
+Unfortunately, sandboxes didn't worked good enough for me after some time.
+Furthermore, sandboxes forces you to re-compile everything by project.
+If you have three yesod projects for example it means a lot of time and CPU.
+Also, `nix` didn't worked as expected on OS X.
+So fixing the list of package to a stable list of them seems to me the best
+pragmatic way to handle the problem today.
