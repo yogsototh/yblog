@@ -13,12 +13,7 @@ blogimage("main.png","Main image")
 
 <div class="intro">
 
-en: %tldr How to develop with Haskell
-
-fr: %tlal
-
-If you don't want to read all and just install Haskell (OS X and Linux only),
-run the following in your terminal:
+%tldr Install Haskell (OS X and Linux only) by pasting the following in your terminal:
 
 ~~~
 curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
@@ -50,6 +45,9 @@ two effects of cabal hell:
 
 With my actual installation method, you should minimize your headache and almost
 never hit a dependency error.
+But there could exists some.
+If you encounter a dependency error, ask gently to the package manager
+to port its package to stackage.
 
 And more importantly, you should provide your code to any of your co-worker and
 be sure that if he used the same install method, your code will work on his machine.
@@ -57,14 +55,6 @@ be sure that if he used the same install method, your code will work on his mach
 ~~~
 curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
 sudo ./install-haskell.sh
-~~~
-
-If you are a bit adventurous, you might use more libraries, but some might not
-compile on your system. In this case add a parameter to the install script:
-
-~~~
-curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
-sudo ./install-haskell.sh yolo
 ~~~
 
 ## What the script is doing
@@ -83,6 +73,7 @@ The compiled objects/binaries will be in your `~/.cabal` directory.
 
 ## Some Last Words
 
+I'll certainly update the script once stackage goes from beta to production.
 I'll try to update the script every 6 month or so.
 That way I'll minimize the number of time bug could occurs.
 And in the same time, library will continue to improve.
@@ -100,3 +91,11 @@ If you have three yesod projects for example it means a lot of time and CPU.
 Also, `nix` didn't worked as expected on OS X.
 So fixing the list of package to a stable list of them seems to me the best
 pragmatic way to handle the problem today.
+
+From my point of view, stackage is the best and certainly only best step
+in the right direction. The actual problem of cabal hell has nothing to do
+with hackage or cabal. The problem is just a human organisation problem.
+People tend not to respect the rules in package numbers.
+They break their API all the time.
+And this is not so much a problem.
+The only missing part is a set of stable packages working together.
