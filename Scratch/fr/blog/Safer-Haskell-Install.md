@@ -1,8 +1,8 @@
 ---
 kind:           article
 published:      2014-08-16
-image: /Scratch/img/blog/Haskell-Development-Environment/main.png
-title: Haskell Development Environment
+image: /Scratch/img/blog/Safer-Haskell-Install/main.png
+title: Safer Haskell Install
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
