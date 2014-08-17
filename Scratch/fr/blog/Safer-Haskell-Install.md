@@ -1,14 +1,14 @@
 ---
 kind:           article
 published:      2014-08-16
-image: /Scratch/img/blog/Safer-Haskell-Install/main.png
+image: /Scratch/img/blog/Safer-Haskell-Install/main.jpg
 title: Installer Haskell
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
 theme: modern
 ---
-blogimage("main.png","to Haskell and Beyond!!!")
+blogimage("main.jpg","to Haskell and Beyond!!!")
 
 <div class="intro">
 
