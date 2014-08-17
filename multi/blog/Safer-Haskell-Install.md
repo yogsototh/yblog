@@ -1,7 +1,7 @@
 ---
 kind:           article
 published:      2014-08-16
-image: /Scratch/img/blog/Safer-Haskell-Install/main.jpg
+image: /Scratch/img/blog/Safer-Haskell-Install/main.png
 en: title: Safer Haskell Install
 fr: title: Installer Haskell
 author: Yann Esposito
@@ -9,7 +9,7 @@ authoruri: yannesposito.com
 tags: programming
 theme: modern
 ---
-blogimage("main.jpg","About to jump")
+blogimage("main.png","to Haskell and Beyond!!!")
 
 <div class="intro">
 
@@ -18,6 +18,7 @@ fr: %tlal Pour installer Haskell (OS X et Linux) copiez/collez les lignes suivan
 
 ~~~
 curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
+chmod ugo+x install-haskell.sh
 sudo ./install-haskell.sh
 ~~~
 
