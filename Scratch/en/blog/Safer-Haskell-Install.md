@@ -17,7 +17,7 @@ blogimage("main.jpg","to Haskell and Beyond!!!")
 ~~~
 curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
 chmod ugo+x install-haskell.sh
-sudo ./install-haskell.sh
+sudo ./install-haskell.sh $USER
 ~~~
 
 If you are on windows, just download the Haskell Platform and follow

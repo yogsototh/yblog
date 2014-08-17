@@ -19,7 +19,7 @@ fr: %tlal Pour installer Haskell (OS X et Linux) copiez/collez les lignes suivan
 ~~~
 curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
 chmod ugo+x install-haskell.sh
-sudo ./install-haskell.sh
+sudo ./install-haskell.sh $USER
 ~~~
 
 en: If you are on windows, just download the Haskell Platform and follow
