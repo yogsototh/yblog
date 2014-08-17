@@ -1,14 +1,14 @@
 ---
 kind:           article
 published:      2014-08-16
-image: /Scratch/img/blog/Safer-Haskell-Install/main.png
+image: /Scratch/img/blog/Safer-Haskell-Install/main.jpg
 title: Safer Haskell Install
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
 theme: modern
 ---
-blogimage("main.png","Main image")
+blogimage("main.jpg","About to jump")
 
 <div class="intro">
 
@@ -98,3 +98,11 @@ People tend not to respect the rules in package numbers.
 They break their API all the time.
 And this is not so much a problem.
 The only missing part is a set of stable packages working together.
+
+---
+
+<p class="small">
+[The image of the cat about to jump that I slightly edited can found here](https://www.flickr.com/photos/nesster/4198442186/)
+</p>
+
+

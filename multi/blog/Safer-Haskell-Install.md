@@ -1,38 +1,46 @@
 ---
 kind:           article
 published:      2014-08-16
-image: /Scratch/img/blog/Safer-Haskell-Install/main.png
+image: /Scratch/img/blog/Safer-Haskell-Install/main.jpg
 en: title: Safer Haskell Install
-fr: title: Safer Haskell Install
+fr: title: Installer Haskell
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
 theme: modern
 ---
-blogimage("main.png","Main image")
+blogimage("main.jpg","About to jump")
 
 <div class="intro">
 
-%tldr Install Haskell (OS X and Linux only) by pasting the following in your terminal:
+en: %tldr Install Haskell (OS X and Linux only) by pasting the following in your terminal:
+fr: %tlal Pour installer Haskell (OS X et Linux) copiez/collez les lignes suivante dans un terminal :
 
 ~~~
 curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
 sudo ./install-haskell.sh
 ~~~
 
-If you are on windows, just download the Haskell Platform and follow
-the instruction to use stackage.
+en: If you are on windows, just download the Haskell Platform and follow
+en: the instruction to use stackage.
+fr: Si vous êtes sous windows, téléchargez Haskell Platform
+fr: et suivez les instructions pour utiliser stackage.
 
-If you want to know the why and the how; you should read the entire article.
+en: If you want to know the why and the how; you should read the entire article.
+fr: Si vous voulez savoir le pourquoi et le comment ; lisez le reste de l'article.
 
 </div>
 
-## Why?
+en: ## Why?
+fr: ## Pourquoi ?
 
-The main weakness of Haskell as nothing to do with the language itself but
-with its ecosystem[^1].
+en: The main weakness of Haskell as nothing to do with the language itself but
+en: with its ecosystem[^1].
+fr: La plus grande faiblesse d'Haskell n'a rien à voir avec le langage en lui-même
+fr: mais avec son écosystème.
 
-[^1]: By ecosystem of a language I mean, the community, the tools, the documentations, the deployment environments, the businesses using the language, etc... Mainly everything that has nothing to do with the detail of a programming language but has to do on how and why we use it.
+en: [^1]: By ecosystem of a language I mean, the community, the tools, the documentations, the deployment environments, the businesses using the language, etc... Mainly everything that has nothing to do with the detail of a programming language but has to do on how and why we use it.
+fr: [^1]: Par l'écosystème d'un langage j'entends, la communauté, les outils, la documentation, les environnements de déploiements, les entreprises qui utilisent le langage, etc... En gros tout ce qui n'a rien à voir avec les détails du langage mais ce qui a à voir avec les comment et pourquoi on l'utilise.
 
 The main problem I'll try to address is the one known as _cabal hell_.
 The community is really active in fixing the issue.
@@ -99,3 +107,11 @@ People tend not to respect the rules in package numbers.
 They break their API all the time.
 And this is not so much a problem.
 The only missing part is a set of stable packages working together.
+
+---
+
+<p class="small">
+[The image of the cat about to jump that I slightly edited can found here](https://www.flickr.com/photos/nesster/4198442186/)
+</p>
+
+
