@@ -33,6 +33,7 @@ body
   padding: 0
   margin: 0
   font-family: Geneva, "PT Sans", Helvetica, sans-serif !important
+  -webkit-font-smoothing: antialiased
   font-size: $unit
   line-height: $lineheight
   background: $altbackground
@@ -40,7 +41,13 @@ body
   overflow-x: hidden
 
 h1,h2,h3,h4,h5,h6
-  font-weight: 700
+  font-family: "Hoefler Text", Georgia, serif
+  // text-transform: uppercase
+  // font-variant: small-caps
+  font-style: italic
+  font-weight: thin
+  font-size: 4em
+  line-height: 2em
 
 a
   text-decoration: none
@@ -151,7 +158,7 @@ acronym
       font-style: italic
       background: none
       border: none
-      font-size: 1.2em
+      font-size: 1.5em
   h1,h3,h4,h5,h6
     margin-top: 4*$munit
     margin-bottom: 0
@@ -161,8 +168,6 @@ acronym
     color: $sndbackground
   h1,h2,h3,h4,h5,h6
     clear: both
-    text-transform: uppercase
-    line-height: 1.5*$unit
   h1
     color: $front
   h2
