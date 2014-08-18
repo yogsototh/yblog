@@ -1326,7 +1326,6 @@ Updating version 10 is extremely easy:
 ~~~~~~ {.haskell}
 squareEvenSum = sum' . (filter even) . (map (^2))
 squareEvenSum' = evenSum . (map (^2))
-squareEvenSum'' = sum' . (map (^2)) . (filter even)
 ~~~~~~
 </div>
 We just had to add another "transformation function"[^0216].
