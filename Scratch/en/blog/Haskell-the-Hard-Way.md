@@ -60,7 +60,7 @@ Thanks to [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) you 
 > </div>
 
 </div>
-<div class="intro2">
+<div class="intro">
 
 I really believe all developers should learn Haskell.
 I don't think everyone needs to be super Haskell ninjas,
@@ -271,7 +271,7 @@ A last warning about how you should read Haskell code.
 For me, it is like reading scientific papers.
 Some parts are very clear, but when you see a formula, just focus and read slower.
 Also, while learning Haskell, it _really_ doesn't matter much if you don't understand syntax details.
-If you meet a `>>=`, `<$>`, `<-` or any other weird symbol, just ignore them and follow the flow of the code.
+If you meet a `>>=`, `<$>`, `<-` or any other weird symbol, just ignore them and follows the flow of the code.
 
 <h4 id="function-declaration">Function declaration</h4>
 
@@ -716,7 +716,7 @@ square''' = (^2)
 Note we can declare functions with `'` in their name.
 Here:
 
- > `square` ⇔  `square'` ⇔ `square''` ⇔ `square'''`
+ > `square` ⇔  `square'` ⇔ `square''` ⇔ `square '''`
 
 _Tests_
 
@@ -1266,12 +1266,9 @@ Updating version 10 is extremely easy:
 ~~~~~~ {.haskell}
 squareEvenSum = sum' . (filter even) . (map (^2))
 squareEvenSum' = evenSum . (map (^2))
-squareEvenSum'' = sum' . (map (^2)) . (filter even)
 ~~~~~~
 </div>
-We just had to add another "transformation function"[^0216].
-
-[^0216]: Notice that `squareEvenSum''` is more efficient that the two other versions. The order of `(.)` is important.
+We just had to add another "transformation function".
 
 ~~~
 map (^2) [1,2,3,4] ⇔ [1,4,9,16]
@@ -1289,7 +1286,8 @@ Modifying version 1 is left as an exercise to the reader ☺.
 
 If you believe we have reached the end of generalization, then know you are very wrong.
 For example, there is a way to not only use this function on lists but on any recursive type.
-If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf).
+If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/0
+1/db-utwente-40501F46.pdf).
 
 This example should show you how great pure functional programming is.
 Unfortunately, using pure functional programming isn't well suited to all usages.
@@ -1367,7 +1365,7 @@ Prelude Data.Complex> square (2 :+ 1)
 3.0 :+ 4.0
 ~~~
 
-`x :+ y` is the notation for the complex (<i>x + iy</i>).
+`x :+ y` is the notation for the complex (<i>x + ib</i>).
 
 Now compare with the amount of code necessary in C:
 
@@ -2205,7 +2203,7 @@ or
 
 ~~~
 value <- action2    -- where
-                    -- action2 :: IO b
+                    -- bar z t :: IO b
                     -- value   :: b
 ~~~
 
@@ -2368,7 +2366,7 @@ main = do
 We have finished with our introduction to `IO`.
 This was quite fast. Here are the main things to remember:
 
-- in the `do` block, each expression must have the type `IO a`.
+- in the `do` bloc, each expression must have the type `IO a`.
   You are then limited in the number of expressions available.
   For example, `getLine`, `print`, `putStrLn`, etc...
 - Try to externalize the pure functions as much as possible.

@@ -1328,9 +1328,7 @@ squareEvenSum = sum' . (filter even) . (map (^2))
 squareEvenSum' = evenSum . (map (^2))
 ~~~~~~
 </div>
-We just had to add another "transformation function"[^0216].
-
-[^0216]: Notice that `squareEvenSum''` is more efficient that the two other versions. The order of `(.)` is important.
+We just had to add another "transformation function".
 
 ~~~
 map (^2) [1,2,3,4] ⇔ [1,4,9,16]
