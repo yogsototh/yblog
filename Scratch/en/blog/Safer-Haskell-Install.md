@@ -99,10 +99,10 @@ There is nothing wrong with hackage and cabal.
 But for a package manager to work in a static typing language as Haskell,
 packages much work all together.
 This is a great strength of static typed languages that they ensure that a big
-part of the API between package is compatible.
+part of the API between packages are compatible.
 But this make the job of package managing far more difficult than in dynamic languages.
 
-People tend not to respect the rules in package numbering.
+People tend not to respect the rules in package numbering[^2].
 They break their API all the time.
 So we need a way to organize all of that.
 And this is precisely what [stackage][stackage] provide.
@@ -110,6 +110,8 @@ A set of stable packages working all together.
 So if a developer break its API, it won't work anymore in stackage.
 And whether the developer fix its package or all other packages upgrade their usage.
 During this time, [stackage][stackage] end-users will be able to develop without dependency issues.
+
+[^2]: I myself am guilty of such behavior. It was a beginner error.
 
 [stackage]: http://www.stackage.org
 
