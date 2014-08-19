@@ -32,7 +32,7 @@ title="$*"
 blog_dir="multi/blog"
 image_blog_dir="Scratch/img/blog"
 
-oldbasefilename="$(file latest.ymd | awk '{print $5}' | sed 's#.*/##;s#\.md.$##')"
+oldbasefilename="$(readlink latest.ymd | sed 's#.*/##;s#\.md$##')"
 
 # basefilename is the filename where all spaces
 # were replaced by '-'
@@ -57,7 +57,7 @@ newimgdirname="$image_blog_dir/$newblogname"
 [[ ! -d ${newfilename:h} ]] && mkdir -p ${newfilename:h}
 debug mv $oldfilename $newfilename
 debug "perl -pi -e 's#^image: /'$oldimgdirname'#image: /'$newimgdirname'#' $newfilename"
-debug perl -pi -e "'"'s#^(..): title:.*$#$1: title: '$title'#''"' $newfilename
+debug perl -pi -e "'"'s#^(..): title:.*$#$1: title: '$title'#'"'" $newfilename
 debug \rm $oldfilename
 debug \rm Scratch/*/blog/$oldblogname.md
 debug rmdir ${oldfilename:r}
