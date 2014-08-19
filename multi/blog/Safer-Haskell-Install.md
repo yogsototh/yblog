@@ -103,7 +103,7 @@ pragmatic way to handle the problem today.
 
 From my point of view, [stackage][stackage] is the best step in the right direction.
 The actual cabal hell problem is more a human problem than a tool problem.
-This is a bias in most programmer to prefer resolve human issue using tools.
+This is a bias in most programmer to prefer resolve social issues using tools.
 There is nothing wrong with hackage and cabal.
 But for a package manager to work in a static typing language as Haskell,
 packages much work all together.
