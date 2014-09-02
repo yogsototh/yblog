@@ -175,7 +175,6 @@ Download this file as `00_hello_world.lhs` and:
 ~ runhaskell 00_hello_world.lhs
 Hello World!
 ~~~~~~
-
 <a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong></a>
@@ -224,7 +223,7 @@ The main part of this tutorial will be dedicated to explaining why.
 
 In Haskell there is a `main` function and every object has a type.
 The type of `main` is `IO ()`.
-This means `main` will cause side effects.
+This means `main` will cause side effects. expliquer cela.
 
 Just remember that Haskell can look a lot like mainstream imperative languages.
 
@@ -259,7 +258,7 @@ Most bugs will be prevented in the pure parts of your program.
 
 Furthermore, pure functions follow a fundamental law in Haskell:
 
- > Applying a function with the same parameters always returns the same value.
+> Applying a function with the same parameters always returns the same value.
 
 _Laziness_
 
@@ -334,14 +333,14 @@ explicit. It's not mandatory because the compiler is smart enough to discover
 it for you. It's a good idea because it indicates intent and understanding.
 
 Let's play a little.
+We declare the type using `::`
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
--- We declare the type using ::
-f :: Int -> Int -> Int
-f x y = x*x + y*y
+ f :: Int -> Int -> Int
+ f x y = x*x + y*y
 
-main = print (f 2 3)
+ main = print (f 2 3)
 ~~~~~~
 </div>
 ~~~
@@ -527,7 +526,11 @@ x :: Int
 x = 3
 y :: Float
 y = 2.4
-main = print (f x y) -- won't work because type x ≠ type y
+~~~~~~
+</div>en: > -- won't work because type x ≠ type y
+<div class="codehighlight">
+~~~~~~ {.haskell}
+main = print (f x y)
 ~~~~~~
 </div>
 The compiler complains. 
@@ -575,6 +578,8 @@ True /= False ⇒ True  (/=) is the operator for different
 ~~~
 x^n     for n an integral (understand Int or Integer)
 x**y    for y any kind of number (Float for example)
+x^n     pour n un entier (comprenez Int ou Integer)
+x**y    pour y tout type de nombre (Float par exemple)
 ~~~
 
 `Integer` has no limit except the capacity of your machine:
@@ -716,7 +721,7 @@ square''' = (^2)
 Note we can declare functions with `'` in their name.
 Here:
 
- > `square` ⇔  `square'` ⇔ `square''` ⇔ `square '''`
+ > `square` ⇔  `square'` ⇔ `square''` ⇔ `square'''`
 
 _Tests_
 
@@ -1286,8 +1291,7 @@ Modifying version 1 is left as an exercise to the reader ☺.
 
 If you believe we have reached the end of generalization, then know you are very wrong.
 For example, there is a way to not only use this function on lists but on any recursive type.
-If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/0
-1/db-utwente-40501F46.pdf).
+If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf).
 
 This example should show you how great pure functional programming is.
 Unfortunately, using pure functional programming isn't well suited to all usages.
@@ -1388,7 +1392,7 @@ For each type, you need to write a new function.
 The only way to work around this problem is to use some meta-programming trick, for example using the pre-processor.
 In C++ there is a better way, C++ templates:
 
-`````
+~~~~~~ {.c++}
 #include <iostream>
 #include <complex>
 using namespace std;
@@ -1410,7 +1414,7 @@ int main() {
          << endl;
     return 0;
 }
-`````
+~~~~~~
 
 C++ does a far better job than C in this regard.
 But for more complex functions the syntax can be hard to follow:
@@ -2203,7 +2207,7 @@ or
 
 ~~~
 value <- action2    -- where
-                    -- bar z t :: IO b
+                    -- action2 :: IO b
                     -- value   :: b
 ~~~
 
@@ -2366,7 +2370,7 @@ main = do
 We have finished with our introduction to `IO`.
 This was quite fast. Here are the main things to remember:
 
-- in the `do` bloc, each expression must have the type `IO a`.
+- in the `do` block, each expression must have the type `IO a`.
   You are then limited in the number of expressions available.
   For example, `getLine`, `print`, `putStrLn`, etc...
 - Try to externalize the pure functions as much as possible.

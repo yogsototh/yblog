@@ -18,29 +18,30 @@ blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 %tlal Un tutoriel très court mais très dense pour apprendre Haskell.
 
 Merci à [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) vous pouvez trouver une traduction Russe ici: [Partie 1](http://habrahabr.ru/post/152889/) _&_ [Partie 2](http://habrahabr.ru/post/153383/) ; 
+Un grand merci à [leperceval](https://github.com/lepereceval) pour sa traduction Française que je n'ai pas eu le courage de faire moi-même !
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
 >
 > <div class="toc">
 >
 > * <a href="#introduction">Introduction</a>
->   * <a href="#install">Install</a>
->   * <a href="#don-t-be-afraid">Don't be afraid</a>
->   * <a href="#very-basic-haskell">Very basic Haskell</a>
->     * <a href="#function-declaration">Function declaration</a>
->     * <a href="#a-type-example">A Type Example</a>
-> * <a href="#essential-haskell">Essential Haskell</a>
+>   * <a href="#install">Installation</a>
+>   * <a href="#don-t-be-afraid">Ne soyez pas effrayés!</a>
+>   * <a href="#very-basic-haskell">Les bases de Haskell</a>
+>     * <a href="#function-declaration">Déclaration de fonctions</a>
+>     * <a href="#a-type-example">Un exemple de type</a>
+> * <a href="#essential-haskell">Notions essentielles</a>
 >   * <a href="#notations">Notations</a>
->       * <a href="#arithmetic">Arithmetic</a>
->       * <a href="#logic">Logic</a>
->       * <a href="#powers">Powers</a>
->       * <a href="#lists">Lists</a>
->       * <a href="#strings">Strings</a>
+>       * <a href="#arithmetic">Arithmétique</a>
+>       * <a href="#logic">Logique</a>
+>       * <a href="#powers">Puissances</a>
+>       * <a href="#lists">Listes</a>
+>       * <a href="#strings">Chaînes de caractères</a>
 >       * <a href="#tuples">Tuples</a>
->       * <a href="#deal-with-parentheses">Deal with parentheses</a>
->   * <a href="#useful-notations-for-functions">Useful notations for functions</a>
-> * <a href="#hard-part">Hard Part</a>
->   * <a href="#functional-style">Functional style</a>
+>       * <a href="#deal-with-parentheses">Traiter avec les parenthèses</a>
+>   * <a href="#useful-notations-for-functions">Notations utiles pour les fonctions</a>
+> * <a href="#hard-part">La Partie Difficile</a>
+>   * <a href="#functional-style">Le style fonctionnel</a>
 >     * <a href="#higher-order-functions">Higher Order Functions</a>
 >   * <a href="#types">Types</a>
 >     * <a href="#type-inference">Type inference</a>
@@ -139,54 +140,53 @@ Cet article contient cinq parties :
 
 <h2 id="introduction">Introduction</h2>
 
-<h3 id="install">Install</h3>
+<h3 id="install">Installation</h3>
 
 blogimage("Haskell-logo.png", "Haskell logo")
 
-- [Haskell Platform](http://www.haskell.org/platform) is the standard way to install Haskell.
+- La principale façon d'installer Haskell est [Haskell Platform](http://www.haskell.org/platform).
 
-Tools:
+Outils:
 
-- `ghc`: Compiler similar to gcc for `C`.
-- `ghci`: Interactive Haskell (REPL)
-- `runhaskell`: Execute a program without compiling it. Convenient but very slow compared to compiled programs.
+- `ghc`: Compilateur similaire à gcc pour le langage `C`.
+- `ghci`: Console Haskell interactive (Read-Eval-Print Loop)
+- `runhaskell`: Exécuter un programme sans le compiler. Pratique mais très lent comparé aux programmes compilés.
 
-<h3 id="don-t-be-afraid">Don't be afraid</h3>
+<h3 id="don-t-be-afraid">Ne soyez pas effrayés!</h3>
 
 blogimage("munch_TheScream.jpg","The Scream")
 
-Many books/articles about Haskell start by introducing some esoteric formula (quick sort, Fibonacci, etc...).
-I will do the exact opposite.
-At first I won't show you any Haskell super power.
-I will start with similarities between Haskell and other programming languages.
-Let's jump to the mandatory "Hello World".
+Beaucoup de livres/articles sur Haskell commencent par présenter des formules ésotériques (Algorithmes de tri rapide, suite de Fibonacci, etc...).
+Je ferai l'exact opposé
+En premier lieu je ne vous montrerai pas les super-pouvoirs d'Haskell.
+Je vais commencer par les similarités avec les autres langages de programmation.
+Commençons par l'indispensable "Hello World!".
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 main = putStrLn "Hello World!"
 ~~~~~~
 </div>
-To run it, you can save this code in a `hello.hs` and:
+Pour l'exécuter, vous pouvez enregistrer ce code dans un fichier `hell.hs` et:
 
 ~~~~~~ {.zsh}
 ~ runhaskell ./hello.hs
 Hello World!
 ~~~~~~
 
-You could also download the literate Haskell source.
-You should see a link just above the introduction title.
-Download this file as `00_hello_world.lhs` and:
+Vous pouvez également télécharger la source Haskell littérale.
+Vous devriez voir un lien juste au dessus du titre de l'introduction.
+Téléchargez ce fichier en tant que `00_hello_world.lhs` et:
 
 ~~~~~~ {.zsh}
 ~ runhaskell 00_hello_world.lhs
 Hello World!
 ~~~~~~
-
 <a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong></a>
 
-Now, a program asking your name and replying "Hello" using the name you entered:
+Maintenant, un programme qui demande votre nom et répond "Hello" suivit du nom que vous avez entré:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -196,7 +196,7 @@ main = do
     print ("Hello " ++ name ++ "!")
 ~~~~~~
 </div>
-First, let us compare this with similar programs in a few imperative languages:
+Premièrement, comparons ce code avec ceux de quelques langages de programmation impératif:
 
 ~~~~~~ {.python}
 # Python
@@ -225,65 +225,67 @@ int main (int argc, char **argv) {
 }
 ~~~~~~
 
-The structure is the same, but there are some syntax differences.
-The main part of this tutorial will be dedicated to explaining why.
+La structure est la même, mais il y a quelques différences de syntaxe.
+La partie principale de ce tutoriel sera consacrée à expliquer cela.
 
-In Haskell there is a `main` function and every object has a type.
-The type of `main` is `IO ()`.
-This means `main` will cause side effects.
+En Haskell il y a une fonction `main` tous les objets ont un type.
+Le type de `main` est `IO ()`.
+Cela veut dire que `main` causera des effets secondaires.
 
-Just remember that Haskell can look a lot like mainstream imperative languages.
+Rappelez-vous just que Haskell peut ressembler énormément aux principaux langages impératifs.
 
 <a href="code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/20_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>20_very_basic.lhs</strong></a>
 
-<h3 id="very-basic-haskell">Very basic Haskell</h3>
+<h3 id="very-basic-haskell">Les bases de Haskell</h3>
 
 blogimage("picasso_owl.jpg","Picasso minimal owl")
 
-Before continuing you need to be warned about some essential properties of Haskell.
+Avant de continuer, vous devez êtres avertis à propos de propriétés essentielles de Haskell.
 
-_Functional_
+_Fonctionnel_
 
-Haskell is a functional language.
-If you have an imperative language background, you'll have to learn a lot of new things.
-Hopefully many of these new concepts will help you to program even in imperative languages.
+Haskell est un langage fonctionnel
+Si vous avez déjà travaillé avec un langage impératif, vous devrez apprendre beaucoup de nouvelles choses.
+Heureusement beaucoup de ces nouveaux concepts vous aidera à programmer même dans un langage impératif.
 
-_Smart Static Typing_
+_Typage Statique Intelligent_
 
-Instead of being in your way like in `C`, `C++` or `Java`, the type system is here to help you.
+Au lieu de bloquer votre chemin comme en `C`, `C++` ou `Java`, le système de typage est ici pour vous aider.
 
-_Purity_
+_Pureté_
 
-Generally your functions won't modify anything in the outside world.
-This means they can't modify the value of a variable, can't get user input, can't write on the screen, can't launch a missile.
-On the other hand, parallelism will be very easy to achieve.
-Haskell makes it clear where effects occur and where your code is pure.
-Also, it will be far easier to reason about your program.
-Most bugs will be prevented in the pure parts of your program.
+Généralement vos fonctions ne modifieront rien du le monde extérieur.
+Cela veut dire qu'elles ne peuvent pas modifier la valeur d'une variable,
+lire du texte entré par un utilisateur,
+écrire sur l'écran, lancer un missile.
+D'un autre coté, avoir un code parallèle devient très facile.
+Haskell rend très clair où les effets apparaissent et où le code est pur.
+De plus, il devient beaucoup plus aisé de raisonner sur son programme.
+La majorité des bugs seront évités dans les parties pures de votre programme.
 
-Furthermore, pure functions follow a fundamental law in Haskell:
+En outre, les fonctions pures suivent une loi fondamentale en Haskell:
 
- > Applying a function with the same parameters always returns the same value.
+> Appliquer une fonction avec les mêmes paramètres retourne toujours la même valeur.
 
-_Laziness_
+_Paresse_
 
-Laziness by default is a very uncommon language design.
-By default, Haskell evaluates something only when it is needed.
-In consequence, it provides a very elegant way to manipulate infinite structures, for example.
+La paresse par défaut est un choix de conception de langage très rare.
+Par défaut, Haskell évalue quelque chose seulement lorsque cela est nécessaire.
+En conséquence, cela fournit un moyen très élégant de manipuler des structures infinies, par exemple.
 
-A last warning about how you should read Haskell code.
-For me, it is like reading scientific papers.
-Some parts are very clear, but when you see a formula, just focus and read slower.
-Also, while learning Haskell, it _really_ doesn't matter much if you don't understand syntax details.
-If you meet a `>>=`, `<$>`, `<-` or any other weird symbol, just ignore them and follows the flow of the code.
+Un dernier avertissement sur comment vous devriez lire le code Haskell.
+Pour moi, c'est comme lire des papiers scientifiques.
+Quelques parties sont très claires, mais quand vous voyez une formule, concentrez-vous dessus et lisez plus lentement.
+De plus, lorsque vous apprenez Haskell, cela n'importe _vraiment_ pas si vous ne comprenez pas les détails syntaxiques.
+Si vous voyez un `>>=`, `<$>`, `<-` ou n'importe quel symbole bizarre, ignorez-les et suivez le déroulement du code.
 
-<h4 id="function-declaration">Function declaration</h4>
+<h4 id="function-declaration">Déclaration de fonctions</h4>
 
-You might be used to declaring functions like this:
+Vous avez déjà dû déclarer des fonctions comme cela:
 
-In `C`:
+En `C`:
 
 ~~~~~~ {.c}
 int f(int x, int y) {
@@ -291,7 +293,7 @@ int f(int x, int y) {
 }
 ~~~~~~
 
-In JavaScript:
+En JavaScript:
 
 ~~~~~~ {.javascript}
 function f(x,y) {
@@ -299,14 +301,14 @@ function f(x,y) {
 }
 ~~~~~~
 
-in Python:
+En Python:
 
 ~~~~~~ {.python}
 def f(x,y):
     return x*x + y*y
 ~~~~~~
 
-in Ruby:
+En Ruby:
 
 ~~~~~~ {.ruby}
 def f(x,y)
@@ -314,40 +316,40 @@ def f(x,y)
 end
 ~~~~~~
 
-In Scheme:
+En Scheme:
 
 ~~~~~~ {.scheme}
 (define (f x y)
     (+ (* x x) (* y y)))
 ~~~~~~
 
-Finally, the Haskell way is:
+Finalement, la manière de faire de Haskell est:
 
 ~~~~~~ {.haskell}
 f x y = x*x + y*y
 ~~~~~~
 
-Very clean. No parenthesis, no `def`.
+Très propre. Aucune parenthèse, aucun `def`.
 
-Don't forget, Haskell uses functions and types a lot.
-It is thus very easy to define them.
-The syntax was particularly well thought out for these objects.
+N'oubliez pas, Haskell utilise beaucoup les fonctions et les types.
+C'est très facile de les définir.
+La syntaxe a été particulièrement réfléchie pour ces objets.
 
-<h4 id="a-type-example">A Type Example</h4>
+<h4 id="a-type-example">Un exemple de type</h4>
 
-Although it is not mandatory, type information for functions is usually made
-explicit. It's not mandatory because the compiler is smart enough to discover
-it for you. It's a good idea because it indicates intent and understanding.
+Même si ce n'est pas obligatoire, les informations de type pour les fonctions sont habituellement déclarées
+explicitement. Ce n'est pas indispensable car le compilateur est suffisamment intelligent pour le déduire
+à votre place. Cependant, c'est une bonne idée car cela montre bien l'intention du développeur et facilite la compréhension.
 
-Let's play a little.
+Jouons un peu.
+On déclare le type en utilisant `::`
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
--- We declare the type using ::
-f :: Int -> Int -> Int
-f x y = x*x + y*y
+ f :: Int -> Int -> Int
+ f x y = x*x + y*y
 
-main = print (f 2 3)
+ main = print (f 2 3)
 ~~~~~~
 </div>
 ~~~
@@ -359,7 +361,7 @@ main = print (f 2 3)
 
 <hr/><a href="code/01_basic/10_Introduction/21_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>21_very_basic.lhs</strong></a>
 
-Now try
+Maintenant essayez
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -369,7 +371,7 @@ f x y = x*x + y*y
 main = print (f 2.3 4.2)
 ~~~~~~
 </div>
-You should get this error:
+Vous devriz avoir cette erreur:
 
 ~~~
 21_very_basic.lhs:6:23:
@@ -381,13 +383,13 @@ You should get this error:
     In the expression: print (f 2.3 4.2)
 ~~~
 
-The problem: `4.2` isn't an Int.
+Le problème est que `4.2` n'est pas de type `Int` (_NDT: Il n'est pas un entier_)
 
 <a href="code/01_basic/10_Introduction/21_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>21_very_basic.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong></a>
 
-The solution: don't declare a type for `f` for the moment and let Haskell infer the most general type for us:
+La soulution: ne déclarez pas de type pour `f` pour le moment et laissez Haskell inférer le type le plus général pour nous:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -396,12 +398,12 @@ f x y = x*x + y*y
 main = print (f 2.3 4.2)
 ~~~~~~
 </div>
-It works! 
-Luckily, we don't have to declare a new function for every single type.
-For example, in `C`, you'll have to declare a function for `int`, for `float`, for `long`, for `double`, etc...
+Maintenant, ça marche!
+Heureursement, nous n'avons pas à déclarer un nouvelle fonction pour chaque type différent.
+Par exemple, en `C`, vous auriez dû déclarer un fonction pour `int`, pour `float`, pour `long`, pour `double`, etc...
 
-But, what type should we declare?
-To discover the type Haskell has found for us, just launch ghci:
+Mais quel type devons nous déclarer?
+Pour découvrir le type que Haskell a trouvé pour nous, lançons ghci:
 
 <pre><span class="low">
 %</span> ghci<span class="low"><code>
@@ -415,68 +417,69 @@ Prelude></code></span> let f x y = x*x + y*y
 <code>f :: Num a => a -> a -> a</code>
 </pre>
 
-Uh? What is this strange type?
+Hein? Quel ce type étrange?
 
 ~~~
 Num a => a -> a -> a
 ~~~
 
-First, let's focus on the right part `a -> a -> a`.
-To understand it, just look at a list of progressive examples: 
+Preumièrement, concentrons-nous sur la partie de droite: `a -> a -> a`.
+Pour le comprendre, regardez cette liste d'exemples progressifs:
 
---------------------------------------------------------------------------------------------------
-The&nbsp;written&nbsp;type Its meaning
--------------------------- -----------------------------------------------------------------------
-`Int`                      the type `Int`
+-------------------------------------------------------------------------------------------------------------------------------------- 
+Le&nbsp;type&nbsp;écrit    Son sens
+-------------------------- -----------------------------------------------------------------------------------------------------------
+`Int`                      Le type `Int`
 
-`Int -> Int`               the type function from `Int` to `Int`
+`Int -> Int`               Le type de la fonction qui prend un `Int` et retourne un `Int`
 
-`Float -> Int`             the type function from `Float` to `Int`
+`Float -> Int`             Le type de la fonction qui prend un `Float` et retourne un `Int`
 
-`a -> Int`                 the type function from any type to `Int`
+`a -> Int`                 Le type de la fonction qui prend n'importe quel type de variable et retourne un `Int`
 
-`a -> a`                   the type function from any type `a` to the same type `a`
+`a -> a`                   Le type de la fonction qui prend n'importe quel type `a` et retourne une variable du même type `a`
 
-`a -> a -> a`              the type function of two arguments of any type `a` to the same type `a`
---------------------------------------------------------------------------------------------------
+`a -> a -> a`              Le type de la fonction qui prend de arguments de n'importe quel type`a` et retourne une variable de type `a`
+--------------------------------------------------------------------------------------------------------------------------------------
 
-In the type `a -> a -> a`, the letter `a` is a _type variable_. 
-It means `f` is a function with two arguments and both arguments and the result have the same type.
-The type variable `a` could take many different type values.
-For example `Int`, `Integer`, `Float`...
+Dans le type `a -> a -> a`, la lettre `a` est une _variable de type_.
+Cela signifie que `f` est une fonction avec deux arguments et que les deux arguments et le résultat ont le même type.
+La variable de type `a` peut prendre de nombreuses valeurs différentes
+Par exemple `Int`, `Integer`, `Float`...
 
-So instead of having a forced type like in `C` and having to declare a function
-for `int`, `long`, `float`, `double`, etc., we declare only one function like
-in a dynamically typed language.
+Donc à la place d'avoir un type forcé comme en `C` et de devoir déclarer une fonction
+pour `int`, `long`, `float`, `double`, etc., nous déclarons une seule fonction comme 
+dans un langage typé de façon dynamique.
 
-This is sometimes called parametric polymorphism. It's also called having your
-cake and eating it too.
+C'est parfois appelé le polymorphisme paramétrique. C'est aussi appelé avoir un
+gâteau et le manger.
 
-Generally `a` can be any type, for example a `String` or an `Int`, but also
-more complex types, like `Trees`, other functions, etc. But here our type is
-prefixed with `Num a => `.
+Généralement `a` peut être de n'importe quel type, par exemple un `String` ou un `Int`, mais aussi
+des types plus complexes comme `Trees`, d'autres fonctions, etc. Mais ici notre type est
+préfixé par `Num a => `.
 
-`Num` is a _type class_.
-A type class can be understood as a set of types.
-`Num` contains only types which behave like numbers.
-More precisely, `Num` is class containing types which implement a specific list of functions, and in particular `(+)` and `(*)`.
+`Num` est une _classe de type_.
+Une classe de type peut être comprise comme un ensemble de types
+`Num` contient seulement les types qui se comportent comme des nombres.
+Plus précisement, `Num` est une classe qui contient des types qui implémentent une liste spécifique de fonctions,
+en particulier `(+)` et `(*)`.
 
-Type classes are a very powerful language construct.
-We can do some incredibly powerful stuff with this.
-More on this later.
+Les classes de types sont une structure de langage très puissante.
+Nous pouvons faire des trucs incroyablement puissants avec.
+Nous verrons cela plus tard.
 
-Finally, `Num a => a -> a -> a` means:
+Finalement, `Num a => a -> a -> a` signifie:
 
-Let `a` be a type belonging to the `Num` type class.
-This is a function from type `a` to (`a -> a`).
+soit `a` un type qui appartient à la classe `Num`.
+C'est une fonction qui prend une variable de type `a` et retourne une fonction de type `(a -> a)`
 
-Yes, strange. 
-In fact, in Haskell no function really has two arguments.
-Instead all functions have only one argument.
-But we will note that taking two arguments is equivalent to taking one argument and returning a function taking the second argument as a parameter.
+Oui, c'est étrange.
+En fait, en Haskell aucune fonction ne prend réellement deux arguments.
+Au lieu de cela toutes les fonctions n'ont qu'un argument unique.
+Mais nous retiendrons que prendre deux arguments est équivalent à n'en prendre qu'un et à retourner une fonction qui prend le second argument en paramètre.
 
-More precisely `f 3 4` is equivalent to `(f 3) 4`. 
-Note `f 3` is a function:
+Plus précisement `f 3 4` est équivalent à `(f 3) 4 `.
+Remarque: `f 3` est une fonction:
 
 ~~~
 f :: Num a => a -> a -> a
@@ -487,25 +490,25 @@ g = f 3
 g y ⇔ 3*3 + y*y
 ~~~
 
-Another notation exists for functions. 
-The lambda notation allows us to create functions without assigning them a name.
-We call them anonymous functions.
-We could also have written:
+Une autre notation existe pour les fonctions.
+La notation lambda nous autorise à créer des fonctions sans leur assigner un nom.
+On les appelle des fonctions anonymes.
+nous aurions donc pu écrire:
 
 ~~~
 g = \y -> 3*3 + y*y
 ~~~
 
-The `\` is used because it looks like `λ` and is ASCII.
+Le `\` esst utilisé car il ressemble à un `λ` et est un caractère ASCII.
 
-If you are not used to functional programming your brain should be starting to heat up.
-It is time to make a real application.
+Si vous n'êtes pas habitué à la programmation fonctionnelle, votre cerveau devrait commencer à chauffer
+Il est temps de faire une vraie application.
 
 <a href="code/01_basic/10_Introduction/22_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>22_very_basic.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/23_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>23_very_basic.lhs</strong></a>
 
-But just before that, we should verify the type system works as expected:
+Mais juste avant cela, nous devrions vérifier que le système de type marche comme nous le supposons:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -515,14 +518,14 @@ f x y = x*x + y*y
 main = print (f 3 2.4)
 ~~~~~~
 </div>
-It works, because, `3` is a valid representation both for Fractional numbers like Float and for Integer.
-As `2.4` is a Fractional number, `3` is then interpreted as being also a Fractional number.
+Cela fonctionne, car `3` est une représentation valide autant pour les nombres fractionnaires comme Float que pour les entiers.
+Comme `2.4` est un nombre fractionnaire, `3` est interprété comme une autre nombre fractionnaire
 
 <a href="code/01_basic/10_Introduction/23_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>23_very_basic.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/24_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>24_very_basic.lhs</strong></a>
 
-If we force our function to work with different types, it will fail:
+Si nous forçons notre fonction à travailler avec des types différents, le test échouera:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -533,57 +536,60 @@ x :: Int
 x = 3
 y :: Float
 y = 2.4
-main = print (f x y) -- won't work because type x ≠ type y
+~~~~~~
+</div>en: > -- won't work because type x ≠ type y
+> -- ne marchera pas car type de x ≠ type de y
+<div class="codehighlight">
+~~~~~~ {.haskell}
+main = print (f x y)
 ~~~~~~
 </div>
-The compiler complains. 
-The two parameters must have the same type.
+Le compilateur se plaint.
+Les deux paramètres doivent avoir le même type.
 
-If you believe that this is a bad idea, and that the compiler should make the transformation 
-from one type to another for you, you should really watch this great (and funny) video:
-[WAT](https://www.destroyallsoftware.com/talks/wat)
+Si vous pensez que c'est une mauvaise idée et que le compilateur devrait faire la transformation
+depuis un type à un autr pour vous, vous devriez vraiment regarder cette vidéo géniale (et amusante):
+[WAT](https://www.destroyallsoftware.com/talks/wat) (_NDT: En Anglais_)
 
 <a href="code/01_basic/10_Introduction/24_very_basic.lhs" class="cut">01_basic/10_Introduction/<strong>24_very_basic.lhs</strong> </a>
 
-<h2 id="essential-haskell">Essential Haskell</h2>
+<h2 id="essential-haskell">Notions essentielles</h2>
 
 blogimage("kandinsky_gugg.jpg","Kandinsky Gugg")
 
-I suggest that you skim this part.
-Think of it as a reference.
-Haskell has a lot of features.
-A lot of information is missing here.
-Come back here if the notation feels strange.
+Je vous suggère de seulement survoler cette partie
+Pensez-y seulement comme à une référence.
+Haskell a beaucoup de caractèristiques
+Il manque beaucoup d'informations ici.
+Revenz ici si la notation vous semble étrange.
 
-I use the `⇔` symbol to state that two expression are equivalent.
-It is a meta notation, `⇔` does not exists in Haskell.
-I will also use `⇒` to show what the return value of an expression is.
+J'utilise le symbole `⇔` pour signifier que deux expressions sont équivalentes.
+C'est une notation extérieure, `⇔` n'existe pas en Haskell.
+Je vais aussi utiliser le symoble `⇒` quelle est la valeur que retourne une fonction.
 
 <h3 id="notations">Notations</h3>
 
-<h5 id="arithmetic">Arithmetic</h5>
+<h5 id="arithmetic">Arithmétique</h5>
 
 ~~~
 3 + 2 * 6 / 3 ⇔ 3 + ((2*6)/3)
 ~~~
 
-<h5 id="logic">Logic</h5>
+<h5 id="logic">Logique</h5>
 
 ~~~
 True || False ⇒ True
 True && False ⇒ False
 True == False ⇒ False
-True /= False ⇒ True  (/=) is the operator for different
+True /= False ⇒ True  (/=) est l'opérateur pour "différent de"
 ~~~
 
-<h5 id="powers">Powers</h5>
+<h5 id="powers">Puissances</h5>
 
 ~~~
-x^n     for n an integral (understand Int or Integer)
-x**y    for y any kind of number (Float for example)
 ~~~
 
-`Integer` has no limit except the capacity of your machine:
+`Integer` n'a aucune limite à part la capacité de votre machine:
 
 ~~~
 4^103
@@ -591,8 +597,8 @@ x**y    for y any kind of number (Float for example)
 ~~~
 
 Yeah!
-And also rational numbers FTW!
-But you need to import the module `Data.Ratio`:
+Et aussi les nombres rationnels!
+Mais vous avez besoin d'importer le module `Data.Ratio`
 
 ~~~
 $ ghci
@@ -602,25 +608,25 @@ Data.Ratio> (11 % 15) * (5 % 3)
 11 % 9
 ~~~
 
-<h5 id="lists">Lists</h5>
+<h5 id="lists">Listes</h5>
 
 ~~~
-[]                      ⇔ empty list
-[1,2,3]                 ⇔ List of integral
-["foo","bar","baz"]     ⇔ List of String
-1:[2,3]                 ⇔ [1,2,3], (:) prepend one element
+[]                      ⇔ liste vide
+[1,2,3]                 ⇔ Liste d'entiers
+["foo","bar","baz"]     ⇔ Liste de chaînes de caractères
+1:[2,3]                 ⇔ [1,2,3], (:) ajoute un élément au début
 1:2:[]                  ⇔ [1,2]
-[1,2] ++ [3,4]          ⇔ [1,2,3,4], (++) concatenate
-[1,2,3] ++ ["foo"]      ⇔ ERROR String ≠ Integral
+[1,2] ++ [3,4]          ⇔ [1,2,3,4], (++) concaténation de deux listes
+[1,2,3] ++ ["foo"]      ⇔ ERREUR String ≠ Integral
 [1..4]                  ⇔ [1,2,3,4]
 [1,3..10]               ⇔ [1,3,5,7,9]
-[2,3,5,7,11..100]       ⇔ ERROR! I am not so smart!
+[2,3,5,7,11..100]       ⇔ ERREUR! Je ne suis pas si intelligent!
 [10,9..1]               ⇔ [10,9,8,7,6,5,4,3,2,1]
 ~~~
 
-<h5 id="strings">Strings</h5>
+<h5 id="strings">Chaînes de caractères</h5>
 
-In Haskell strings are list of `Char`.
+En Haskell les chaînes de caractères sont des listes de `Char`.
 
 ~~~
 'a' :: Char
@@ -630,18 +636,18 @@ In Haskell strings are list of `Char`.
 "abc" ⇔ "ab"++"c"
 ~~~
 
- > _Remark_:
- > In real code you shouldn't use list of char to represent text.
- > You should mostly use `Data.Text` instead.
- > If you want to represent a stream of ASCII char, you should use `Data.ByteString`.
+ > _Remarque_:
+ > Dans un vrai code vous n'utiliserez pas des listes de char pour représenter du texte.
+ > Vous utiliserez plus souvent `Data.Text` à la place.
+ > Si vous voulez représenter un chapelet de caractères ASCII, vous utiliserez `Data.ByteString`.
 
 <h5 id="tuples">Tuples</h5>
 
-The type of couple is `(a,b)`.
-Elements in a tuple can have different types.
+Le type d'un couple est `(a,b)`.
+Les éléments d'un tuple peuvent avoir des types différents.
 
 ~~~
--- All these tuples are valid
+-- tous ces tuples sont valides
 (2,"foo")
 (3,'a',[2,3])
 ((2,"a"),"c",3)
@@ -653,46 +659,46 @@ fst (x,y,z)     ⇒  ERROR: fst :: (a,b) -> a
 snd (x,y,z)     ⇒  ERROR: snd :: (a,b) -> b
 ~~~
 
-<h5 id="deal-with-parentheses">Deal with parentheses</h5>
+<h5 id="deal-with-parentheses">Traiter avec les parenthèses</h5>
 
 To remove some parentheses you can use two functions: `($)` and `(.)`.
 
 ~~~
--- By default:
+-- Par défaut:
 f g h x         ⇔  (((f g) h) x)
 
--- the $ replace parenthesis from the $
--- to the end of the expression
+-- le $ remplace les parenthèses depuis le $
+-- jusqu'à la fin de l'expression.
 f g $ h x       ⇔  f g (h x) ⇔ (f g) (h x)
 f $ g h x       ⇔  f (g h x) ⇔ f ((g h) x)
 f $ g $ h x     ⇔  f (g (h x))
 
--- (.) the composition function
+-- (.) premet de faire des compositions de fonctions
 (f . g) x       ⇔  f (g x)
 (f . g . h) x   ⇔  f (g (h x))
 ~~~
 
 <hr/><a href="code/01_basic/20_Essential_Haskell/10a_Functions.lhs" class="cut">01_basic/20_Essential_Haskell/<strong>10a_Functions.lhs</strong></a>
 
-<h3 id="useful-notations-for-functions">Useful notations for functions</h3>
+<h3 id="useful-notations-for-functions">Notations utiles pour les fonctions</h3>
 
-Just a reminder:
+Juste un mémo:
 
 ~~~
-x :: Int            ⇔ x is of type Int
-x :: a              ⇔ x can be of any type
-x :: Num a => a     ⇔ x can be any type a
-                      such that a belongs to Num type class 
-f :: a -> b         ⇔ f is a function from a to b
-f :: a -> b -> c    ⇔ f is a function from a to (b→c)
-f :: (a -> b) -> c  ⇔ f is a function from (a→b) to c
+x :: Int            ⇔ x est de type Int
+x :: a              ⇔ x peut être de n'importe quel type
+x :: Num a => a     ⇔ x peut être de n'importe quel type a
+                      tant qu a appartient à la classe de type Num 
+f :: a -> b         ⇔ f est une fonction qui prend un a et retourne un b
+f :: a -> b -> c    ⇔ f est une fonction qui prend un a et retourne un (b→c)
+f :: (a -> b) -> c  ⇔ f est une fonction qui prend un (a→b) et retourne un c
 ~~~
 
-Remember that defining the type of a function before its declaration isn't mandatory.
-Haskell infers the most general type for you.
-But it is considered a good practice to do so.
+Rappelez-vous que définir le type d'une fonction avant sa déclaration n'est pas obligatoire.
+Haskell infère le type le plus général pour vous.
+Mais c'est considéré comme une bonne pratique.
 
-_Infix notation_
+_Notation Infixée_
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -700,9 +706,9 @@ square :: Num a => a -> a
 square x = x^2
 ~~~~~~
 </div>
-Note `^` uses infix notation.
-For each infix operator there its associated prefix notation.
-You just have to put it inside parenthesis.
+Remarquez que `^` utilise une notation infixée.
+Pour chaque opérateur infixe il y a une notation préfixée associée.
+Vous devz juste l'écrire entre parenthèses.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -711,22 +717,22 @@ square' x = (^) x 2
 square'' x = (^2) x
 ~~~~~~
 </div>
-We can remove `x` in the left and right side!
-It's called η-reduction.
+Nous pouvons enlever le `x` dans les parties de gauche et de droite!
+On appelle cela la η-réduction
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 square''' = (^2)
 ~~~~~~
 </div>
-Note we can declare functions with `'` in their name.
-Here:
+Rmarquez qu nous pouvons déclarer des fonctions avec `'` dans leur nom.
+Exemples:
 
- > `square` ⇔  `square'` ⇔ `square''` ⇔ `square '''`
+ > `square` ⇔  `square'` ⇔ `square''` ⇔ `square'''`
 
 _Tests_
 
-An implementation of the absolute function.
+Une implémentation de la fonction absolue.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -734,10 +740,10 @@ absolute :: (Ord a, Num a) => a -> a
 absolute x = if x >= 0 then x else -x
 ~~~~~~
 </div>
-Note: the `if .. then .. else` Haskell notation is more like the
-`¤?¤:¤` C operator. You cannot forget the `else`.
+Remarque: la notation de Haskell pour le `if .. then .. else` ressemble plus
+à l'opérateur `¤?¤:¤` en C. Le `else` est obligatoire.
 
-Another equivalent version:
+Une version équivalente:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -746,8 +752,8 @@ absolute' x
     | otherwise = -x
 ~~~~~~
 </div>
- > Notation warning: indentation is _important_ in Haskell.
- > Like in Python, bad indentation can break your code!
+ > Avertissement: l'indentation est _importante_ en Haskell.
+ > Comme en Python, une mauvaise indentation peut détruire votre code!
 
 <div style="display:none">
 
@@ -768,28 +774,28 @@ main = do
 
 <a href="code/01_basic/20_Essential_Haskell/10a_Functions.lhs" class="cut">01_basic/20_Essential_Haskell/<strong>10a_Functions.lhs</strong> </a>
 
-<h2 id="hard-part">Hard Part</h2>
+<h2 id="hard-part">La Partie Difficile</h2>
 
-The hard part can now begin.
+La partie difficile peut maintenant commencer.
 
-<h3 id="functional-style">Functional style</h3>
+<h3 id="functional-style">Le style fonctionnel</h3>
 
 blogimage("hr_giger_biomechanicallandscape_500.jpg","Biomechanical Landscape by H.R. Giger")
 
-In this section, I will give a short example of the impressive refactoring ability provided by Haskell.
-We will select a problem and solve it in a standard imperative way.
-Then I will make the code evolve.
-The end result will be both more elegant and easier to adapt.
+Dans cette section, je vais vous donner un court exemple de l'impressionante capacité de remaniement de Haskell. 
+Nous allons sélectionner un problème et le résoudre à la manière d'un langage impératif standard.
+Ensuite, je ferais évoluer le code.
+Le résultat final sera plus élégant et plus facile à adapter.
 
-Let's solve the following problem:
+résolvons les problèmes suivants: 
 
- > Given a list of integers, return the sum of the even numbers in the list.
+ > Soit une liste d'entiers, retourner la somme des nombres pairs de cette liste.
  >
- > example:
+ > exemple:
  > `[1,2,3,4,5] ⇒  2 + 4 ⇒  6`
 
-To show differences between functional and imperative approaches,
-I'll start by providing an imperative solution (in JavaScript):
+Pour montrer les différences entre les approches fonctionnelle et impérative,
+je vais commencer par donner la solution impérative (en JavaScript):
 
 ~~~~~~ {.javascript}
 function evenSum(list) {
@@ -803,16 +809,16 @@ function evenSum(list) {
 }
 ~~~~~~
 
-In Haskell, by contrast, we don't have variables or a for loop.
-One solution to achieve the same result without loops is to use recursion.
+En Haskell, en revanche, nous n'avons pas de variables ou un boucle `for`.
+Une des solutions pour parvenir au même résultat sans boucles est d'utiliser la récursion. 
 
- > _Remark_:
- > Recursion is generally perceived as slow in imperative languages.
- > But this is generally not the case in functional programming.
- > Most of the time Haskell will handle recursive functions efficiently.
+ > _Remarque_:
+ > La récursion est souvent perçue comme lente dans les langages impératifs.
+ > Mais ce n'est généralement pas le cas en programmation fonctionnelle.
+ > La plupart du temps Haskell gérera les fonctions récursives efficacement.
 
-Here is a `C` version of the recursive function.
-Note that for simplicity I assume the int list ends with the first `0` value.
+Voici la version `C` de la fonction récursive.
+Remarquez que je suppose que la liste d'int fini avec la première valeur `0`.
 
 ~~~~~~ {.c}
 int evenSum(int *list) {
@@ -836,8 +842,8 @@ int accumSum(int n, int *list) {
 }
 ~~~~~~
 
-Keep this code in mind. We will translate it into Haskell.
-First, however, I need to introduce three simple but useful functions we will use:
+Gardez ce code à l'esprit. Nous allons le traduire en Haskell.
+Premièrement,
 
 ~~~~~~ {.haskell}
 even :: Integral a => a -> Bool
@@ -1292,8 +1298,7 @@ Modifying version 1 is left as an exercise to the reader ☺.
 
 If you believe we have reached the end of generalization, then know you are very wrong.
 For example, there is a way to not only use this function on lists but on any recursive type.
-If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/0
-1/db-utwente-40501F46.pdf).
+If you want to know how, I suggest you to read this quite fun article: [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire by Meijer, Fokkinga and Paterson](http://eprints.eemcs.utwente.nl/7281/01/db-utwente-40501F46.pdf).
 
 This example should show you how great pure functional programming is.
 Unfortunately, using pure functional programming isn't well suited to all usages.
@@ -1394,7 +1399,7 @@ For each type, you need to write a new function.
 The only way to work around this problem is to use some meta-programming trick, for example using the pre-processor.
 In C++ there is a better way, C++ templates:
 
-`````
+~~~~~~ {.c++}
 #include <iostream>
 #include <complex>
 using namespace std;
@@ -1416,7 +1421,7 @@ int main() {
          << endl;
     return 0;
 }
-`````
+~~~~~~
 
 C++ does a far better job than C in this regard.
 But for more complex functions the syntax can be hard to follow:
@@ -2209,7 +2214,7 @@ or
 
 ~~~
 value <- action2    -- where
-                    -- bar z t :: IO b
+                    -- action2 :: IO b
                     -- value   :: b
 ~~~
 
@@ -2372,7 +2377,7 @@ main = do
 We have finished with our introduction to `IO`.
 This was quite fast. Here are the main things to remember:
 
-- in the `do` bloc, each expression must have the type `IO a`.
+- in the `do` block, each expression must have the type `IO a`.
   You are then limited in the number of expressions available.
   For example, `getLine`, `print`, `putStrLn`, etc...
 - Try to externalize the pure functions as much as possible.
