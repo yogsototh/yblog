@@ -54,7 +54,7 @@ So to install copy/paste the following three lines in your terminal:
 ~~~
 curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
 chmod ugo+x install-haskell.sh
-sudo ./install-haskell.sh
+sudo ./install-haskell.sh $USER
 ~~~
 
 ## How?

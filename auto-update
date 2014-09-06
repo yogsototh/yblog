@@ -1,5 +1,19 @@
 #!/usr/bin/env zsh
 
+curdir=$PWD
+if which mighty >/dev/null; then
+    cd _site && \
+    mighty +RTS -N >/dev/null 2>&1 &
+elif which http-server; then
+    cd _site && \
+    http-server >/dev/null 2>&1 &
+else
+    print -P -- "%BWARNING%b: Please serve _site/ directory with an HTTP Server"
+    print -P -- "%BWARNING%b: You might install http-server or mighty for example"
+    print
+fi
+cd $curdir
+
 # sass
 sass --watch Scratch/css:_site/Scratch/css &
 
