@@ -46,7 +46,7 @@ bash,
 [camL](http://caml.inria.fr),
 [Scheme](http://mitpress.mit.edu/sicp/full-text/book/book.html)...
 
-[My full resume](http://resume.espozito.com)
+[My full resume](/Scratch/files/resume)
 
 ## Old stuff
 
