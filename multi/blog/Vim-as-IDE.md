@@ -33,11 +33,20 @@ To manage them I use [`vim-plug`][vim-plug].
 
 To install it:
 
-``` {.bash}
+``` {.zsh}
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim \
              https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+
+<div class="small">
+
+☞ Note I have two parts in my `.vimrc`.
+The first part contains the list of all my plugins.
+The second part contains the personal preferences I setted for each plugin.
+I'll separate each part by `...` in the code.
+
+</div>
 
 [vim-plug]: https://github.com/junegunn/vim-plug
 
@@ -52,7 +61,7 @@ contrast colorscheme.
 For this I use [solarized dark][solarized].
 To add it, you only have to write this in your `~/.vimrc` file:
 
-``` {.vimscript}
+``` {.vim}
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
@@ -73,13 +82,13 @@ endtry
 
 You should also see and be able to clean trailing whitespace.
 
-```
+``` {.vim}
 Plug 'bronson/vim-trailing-whitespace'
 ```
 
 And also you should see your 80th column.
 
-```
+``` {.vim}
 if (exists('+colorcolumn'))
     set colorcolumn=80
     highlight ColorColumn ctermbg=9
@@ -88,22 +97,32 @@ endif
 
 ## File Management
 
-Whatever your task, you really want to be able to search and find files easily.
+One of the most important hidden skills in programming is the ability
+to search and find files in your projects.
 
-Generally people tend to use `NERDTree`.
-This plugin show you the standard left column with file tree.
+The majority of people use something like `NERDTree`.
+This is the classical left column with a tree of files of your project.
+_I stopped to use this_.
+And you should probably too.
 
-I prefer to use unite.
-It doesn't lost the left column.
+I switched to _unite_.
+No left column lost.
+Faster to find files.
+Mainly it works like Spotlight on OS X.
 
-First install [`ag` (the silver search)][ag]
+First install [`ag` (the silver search)][ag].
+If you don't know `ack` or `ag` your life is going to be upgraded.
+This is a simple but essential tool.
+It is mostly a `grep` on steroids.
 
 [ag]: https://github.com/ggreer/the_silver_searcher
 
-```
+``` {.vim}
 " Unite
 "   depend on vimproc
+"   ------------- VERY IMPORTANT ------------
 "   you have to go to .vim/plugin/vimproc.vim and do a ./make
+"   -----------------------------------------
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/unite.vim'
 
@@ -121,8 +140,7 @@ nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 :nnoremap <space>r <Plug>(unite_restart)
 ```
 
-So how does it works?
-Type space twice.
+Now type space twice.
 A list of files appears.
 Start to type some letters of the file you are searching for.
 Select it, type return and bingo the file opens in a new horizontal split.
@@ -134,7 +152,7 @@ Now you are able to search file by name easily and efficiently.
 Now search text in many files.
 For this you use [`ag`][ag]:
 
-```
+``` {.vim}
 Plug 'rking/ag.vim'
 ...
 " --- type ° to search the word in all files in the current dir
@@ -142,14 +160,196 @@ nmap ° :Ag <c-r>=expand("<cword>")<cr><cr>
 nnoremap <space>/ :Ag 
 ```
 
+Don't forget to add a space after the `:Ag`.
+
 These are two of the most powerful shortcut for working in a project.
-using `°` which is nicely positionned on my `azerty` keyboard.
+using `°` which is nicely positioned on my `azerty` keyboard.
 You should use a key close to `*`.
 
 So what `°` is doing? It read the string under the cursor and search for it
 in all files. Really useful to search where a function is used.
 
 If you type `<space>/` followed by a string, it will search for all
-occurences of this string in the project files.
+occurrences of this string in the project files.
 
 So with this you should already be able to navigate between files very easily.
+
+## Agnostic Language useful plugins
+
+### Git
+
+Show which line changed since your last commit.
+
+``` {.vim}
+Plug 'airblade/vim-gitgutter'
+```
+
+### Align things
+
+``` {.vim}
+Plug 'junegunn/vim-easy-align'
+
+...
+
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
+```
+
+From:
+
+``` {.haskell}
+x = 10
+foo = 20
+ultimateVeryLongName = "something very long"
+```
+
+To:
+
+``` {.haskell}
+x                    = 10
+foo                  = 20
+ultimateVeryLongName = "something very long"
+```
+
+Or
+
+``` {.haskell}
+                   x = 10
+                 foo = 20
+ultimateVeryLongName = "something very long"
+```
+
+Or also
+
+``` {.haskell}
+                   x          = 10
+                  foo         = 20
+         ultimateVeryLongName = "something very long"
+```
+
+Just select and type `Return` then `space`.
+Type `Return` many type to change the alignments.
+
+## Haskell
+
+My current Haskell programming environment is the best I could ever dreamed of for any language.
+
+Seriously, each time I save a file,
+I get a comment pointing to my errors or proposing me how to improve my code.
+
+So here we go:
+
+
+``` {.vim}
+" ---------- VERY IMPORTANT -----------
+" Don't forget to install ghc-mod with:
+" cabal install ghc-mod
+" -------------------------------------
+
+" --- Haskell
+Plug 'yogsototh/haskell-vim'            " syntax indentation / highlight
+Plug 'enomsg/vim-haskellConcealPlus'    " unicode for haskell operators
+Plug 'eagletmt/ghcmod-vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'Twinside/vim-hoogle'
+Plug 'pbrisbin/html-template-syntax'    " Yesod templates
+
+...
+
+" -------------------
+"       Haskell
+" -------------------
+let mapleader="-"
+let g:mapleader="-"
+set tm=2000
+nmap <silent> <leader>ht :GhcModType<CR>
+nmap <silent> <leader>hh :GhcModTypeClear<CR>
+nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>:lopen<CR>
+let g:syntastic_mode_map={'mode': 'active', 'passive_filetypes': ['haskell']}
+let g:syntastic_always_populate_loc_list = 1
+nmap <silent> <leader>hl :SyntasticCheck hlint<CR>:lopen<CR>
+
+" Auto-checking on writing
+autocmd BufWritePost *.hs,*.lhs GhcModCheckAndLintAsync
+
+"  neocomplcache (advanced completion)
+autocmd BufEnter *.hs,*.lhs let g:neocomplcache_enable_at_startup = 1
+function! SetToCabalBuild()
+    if glob("*.cabal") != ''
+        set makeprg=cabal\ build
+    endif
+endfunction
+autocmd BufEnter *.hs,*.lhs :call SetToCabalBuild()
+
+" -- neco-ghc
+let $PATH=$PATH.':'.expand("~/.cabal/bin")
+```
+
+Just enjoy!
+
+blogimage("vim-lint.gif","hlint on save")
+
+
+I use `-` for my leader because I use `,` a lot for its native usage.
+
+- `-ht` will highlight and show the type of the block under the cursor.
+- `-hT` will insert the type of the current block.
+- `-hh` will unhighlight the selection.
+
+blogimage("auto-typing.gif","Auto typing on save")
+
+## Clojure
+
+My main language at work is Clojure.
+And my current vim environment is quite good.
+I lack the automatic integration to `lein-kibit` thought.
+If I have the courage I might do it myself one day.
+But due to the very long startup time of clojure,
+I doubt I'll be able to make a useful vim plugin.
+
+So mainly you'll have real rainbow-parenthesis
+(the default values are broken for solarized).
+
+I used the vim `paredit` plugin before.
+But it is too restrictive.
+Now I use `sexp` which feel more coherent with the spirit of vim.
+
+``` {.vim}
+" " -- Clojure
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fireplace'
+
+...
+
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+" -- Rainbow parenthesis options
+let g:rbpt_colorpairs = [
+	\ ['darkyellow',  'RoyalBlue3'],
+	\ ['darkgreen',   'SeaGreen3'],
+	\ ['darkcyan',    'DarkOrchid3'],
+	\ ['Darkblue',    'firebrick3'],
+	\ ['DarkMagenta', 'RoyalBlue3'],
+	\ ['darkred',     'SeaGreen3'],
+	\ ['darkyellow',  'DarkOrchid3'],
+	\ ['darkgreen',   'firebrick3'],
+	\ ['darkcyan',    'RoyalBlue3'],
+	\ ['Darkblue',    'SeaGreen3'],
+	\ ['DarkMagenta', 'DarkOrchid3'],
+	\ ['Darkblue',    'firebrick3'],
+	\ ['darkcyan',    'SeaGreen3'],
+	\ ['darkgreen',   'RoyalBlue3'],
+	\ ['darkyellow',  'DarkOrchid3'],
+	\ ['darkred',     'firebrick3'],
+	\ ]
+```
+
+So now Clojure should look really nice.
+You can eval any part of your code, you must launch a Clojure REPL manually in another terminal thought.
