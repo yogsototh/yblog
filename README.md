@@ -6,6 +6,8 @@ If you want to use this blog for you.
 
 # INSTALL
 
+0. Install: `rvm` and use `1.9.1`, `gem install sass`.
+
 1. Clone the branch 'clean' from my repository.
    The `--depth=1` is highly recommended to make the download far shorter.
 
