@@ -1,11 +1,15 @@
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Base16 Atelier Lakeside Light - Theme */
+/* by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/lakeside/) */
+/* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
+/* https://github.com/jmblog/color-themes-for-highlightjs */
 
-/* Tomorrow Comment */
-.hljs-comment {
-  color: #8e908c;
+/* Atelier Lakeside Light Comment */
+.hljs-comment,
+.hljs-title {
+  color: #5a7b8c;
 }
 
-/* Tomorrow Red */
+/* Atelier Lakeside Light Red */
 .hljs-variable,
 .hljs-attribute,
 .hljs-tag,
@@ -18,10 +22,10 @@
 .css .hljs-id,
 .css .hljs-class,
 .css .hljs-pseudo {
-  color: #c82829;
+  color: #d22d72;
 }
 
-/* Tomorrow Orange */
+/* Atelier Lakeside Light Orange */
 .hljs-number,
 .hljs-preprocessor,
 .hljs-pragma,
@@ -29,32 +33,31 @@
 .hljs-literal,
 .hljs-params,
 .hljs-constant {
-  color: #f5871f;
+  color: #935c25;
 }
 
-/* Tomorrow Yellow */
-.ruby .hljs-class .hljs-title,
+/* Atelier Lakeside Light Yellow */
+.hljs-ruby .hljs-class .hljs-title,
 .css .hljs-rules .hljs-attribute {
-  color: #eab700;
+  color: #8a8a0f;
 }
 
-/* Tomorrow Green */
+/* Atelier Lakeside Light Green */
 .hljs-string,
 .hljs-value,
 .hljs-inheritance,
 .hljs-header,
 .ruby .hljs-symbol,
 .xml .hljs-cdata {
-  color: #718c00;
+  color: #568c3b;
 }
 
-/* Tomorrow Aqua */
-.hljs-title,
+/* Atelier Lakeside Light Aqua */
 .css .hljs-hexcolor {
-  color: #3e999f;
+  color: #2d8f6f;
 }
 
-/* Tomorrow Blue */
+/* Atelier Lakeside Light Blue */
 .hljs-function,
 .python .hljs-decorator,
 .python .hljs-title,
@@ -63,20 +66,20 @@
 .perl .hljs-sub,
 .javascript .hljs-title,
 .coffeescript .hljs-title {
-  color: #4271ae;
+  color: #257fad;
 }
 
-/* Tomorrow Purple */
+/* Atelier Lakeside Light Purple */
 .hljs-keyword,
 .javascript .hljs-function {
-  color: #8959a8;
+  color: #5d5db1;
 }
 
 .hljs {
   display: block;
   overflow-x: auto;
-  background: white;
-  color: #4d4d4c;
+  background: #ebf8ff;
+  color: #516d7b;
   padding: 0.5em;
   -webkit-text-size-adjust: none;
 }

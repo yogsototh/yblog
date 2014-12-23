@@ -1,11 +1,15 @@
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Base16 Atelier Heath Light - Theme */
+/* by Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/heath) */
+/* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
+/* https://github.com/jmblog/color-themes-for-highlightjs */
 
-/* Tomorrow Comment */
-.hljs-comment {
-  color: #8e908c;
+/* Atelier Heath Light Comment */
+.hljs-comment,
+.hljs-title {
+  color: #776977;
 }
 
-/* Tomorrow Red */
+/* Atelier Heath Light Red */
 .hljs-variable,
 .hljs-attribute,
 .hljs-tag,
@@ -18,10 +22,10 @@
 .css .hljs-id,
 .css .hljs-class,
 .css .hljs-pseudo {
-  color: #c82829;
+  color: #ca402b;
 }
 
-/* Tomorrow Orange */
+/* Atelier Heath Light Orange */
 .hljs-number,
 .hljs-preprocessor,
 .hljs-pragma,
@@ -29,32 +33,31 @@
 .hljs-literal,
 .hljs-params,
 .hljs-constant {
-  color: #f5871f;
+  color: #a65926;
 }
 
-/* Tomorrow Yellow */
-.ruby .hljs-class .hljs-title,
+/* Atelier Heath Light Yellow */
+.hljs-ruby .hljs-class .hljs-title,
 .css .hljs-rules .hljs-attribute {
-  color: #eab700;
+  color: #bb8a35;
 }
 
-/* Tomorrow Green */
+/* Atelier Heath Light Green */
 .hljs-string,
 .hljs-value,
 .hljs-inheritance,
 .hljs-header,
 .ruby .hljs-symbol,
 .xml .hljs-cdata {
-  color: #718c00;
+  color: #379a37;
 }
 
-/* Tomorrow Aqua */
-.hljs-title,
+/* Atelier Heath Light Aqua */
 .css .hljs-hexcolor {
-  color: #3e999f;
+  color: #159393;
 }
 
-/* Tomorrow Blue */
+/* Atelier Heath Light Blue */
 .hljs-function,
 .python .hljs-decorator,
 .python .hljs-title,
@@ -63,20 +66,20 @@
 .perl .hljs-sub,
 .javascript .hljs-title,
 .coffeescript .hljs-title {
-  color: #4271ae;
+  color: #516aec;
 }
 
-/* Tomorrow Purple */
+/* Atelier Heath Light Purple */
 .hljs-keyword,
 .javascript .hljs-function {
-  color: #8959a8;
+  color: #7b59c0;
 }
 
 .hljs {
   display: block;
   overflow-x: auto;
-  background: white;
-  color: #4d4d4c;
+  background: #f7f3f7;
+  color: #695d69;
   padding: 0.5em;
   -webkit-text-size-adjust: none;
 }

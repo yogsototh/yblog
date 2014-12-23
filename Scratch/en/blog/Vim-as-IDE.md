@@ -24,7 +24,7 @@ In this article I provide my configuration for dealing with all of this.
 
 </div>
 
-## Plugins
+## Vim Plugin Manager
 
 There are a _lot_ of Vim plugins.
 To manage them I use [`vim-plug`][vim-plug].
@@ -47,10 +47,10 @@ curl -fLo ~/.vim/autoload/plug.vim \
 Before anything, you should protect your eyes using a readable and low
 contrast colorscheme.
 
-For this I use [solarized][solarized] dark.
-For this, you only have to write this in your `~/.vimrc` file:
+For this I use [solarized dark][solarized].
+To add it, you only have to write this in your `~/.vimrc` file:
 
-```
+``` {.vimscript}
 call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
