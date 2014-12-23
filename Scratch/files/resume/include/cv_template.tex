@@ -1,0 +1,74 @@
+\include{include/main}
+% -- Personal style --
+%%# LATEX HEADER FROM config.rb #%%
+
+\pagestyle{plain}
+
+
+% -- Personal style --
+% -- Comment the following line if you haven't 
+% -- Hoefler Text font installed on your system
+% \setmainfont[Ligatures=TeX]{Hoefler Text}
+
+% colors
+\usepackage{color}
+\definecolor{italiccolor}{rgb}{0.4,0.4,0.4}
+\definecolor{boxcolor}{rgb}{0.96,0.96,0.96}
+
+% Make italic and emphasis text gray
+\renewcommand{\textit}[1]{\textcolor{italiccolor}{\it #1}}
+\renewcommand{\emph}[1]{\textcolor{italiccolor}{\em #1}}
+
+\setsecheadstyle{\medskip\Large\bfseries\memRTLraggedright $\rhd$ }
+
+% -- Redefinition of memoir chapters --
+%
+% standard is:
+% \chapterheadstart
+% \printchaptername \chapternamenum \printchapternum
+% \afterchapternum
+% \printchaptertitle{Title goes here}
+% \afterchaptertitle
+\definecolor{hrulecolor}{rgb}{0.8,0.8,0.8}
+\makechapterstyle{combined}{
+    \renewcommand*{\chapterheadstart}{%
+        {\normalsize\textcolor{hrulecolor}{\vspace{2ex}\hrule\vspace{.2ex}\hrule}}}
+    \renewcommand*{\afterchaptertitle}{%
+        {\vspace{-2.5ex}\normalsize\textcolor{hrulecolor}{\hrule\vspace{.2ex}\hrule\bigskip\bigskip}}}
+    \renewcommand*{\afterchapternum}{}
+    \renewcommand*{\printchaptername}{}
+    \renewcommand*{\printchapternum}{}
+    \newcommand{\styleprintchapternum}{\textcolor{hrulecolor}{\Huge\thechapter\hspace{.5em}}}
+    \renewcommand*{\printchaptertitle}[1]{\medskip\begin{center}\Huge##1\end{center}\medskip}
+}
+
+% remove most bold
+
+\chapterstyle{combined}
+% -- END CHAPTER STYLE --
+
+% -- Hyperref setup --
+\definecolor{linkcolor}{rgb}{0.4,0.0,0.0}
+\hypersetup{
+    colorlinks=true, %
+    linkcolor=linkcolor, %
+    urlcolor=linkcolor, %
+    citecolor=linkcolor, %
+    filecolor=linkcolor, %
+    pdfcreator=author, %
+}
+% --
+
+\author{}
+
+\title{}
+
+\begin{document}
+% obvious title making
+% \maketitle
+
+% Do not modify the following line 
+%   unless you really know what you are doing!
+%%#INCLUDES#%%
+
+\end{document}
