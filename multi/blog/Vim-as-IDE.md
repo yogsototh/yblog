@@ -145,6 +145,8 @@ A list of files appears.
 Start to type some letters of the file you are searching for.
 Select it, type return and bingo the file opens in a new horizontal split.
 
+blogimage("unite.gif","Unite example")
+
 If something goes wrong just type `<space>r` to reset the unite cache.
 
 Now you are able to search file by name easily and efficiently.
@@ -174,15 +176,28 @@ occurrences of this string in the project files.
 
 So with this you should already be able to navigate between files very easily.
 
-## Agnostic Language useful plugins
+## Language Agnostic Plugins
 
 ### Git
+
+blogimage("git-gutter.png","Show modified lines")
 
 Show which line changed since your last commit.
 
 ``` {.vim}
 Plug 'airblade/vim-gitgutter'
 ```
+
+And the "defacto" git plugin:
+
+``` {.vim}
+Plug 'tpope/vim-fugitive'
+```
+
+You can reset your changes from the latest git commit with `:Gread`.
+You can stage your changes with `:Gwrite`.
+
+blogimage("Gread.gif","Reset changes")
 
 ### Align things
 
@@ -195,40 +210,12 @@ Plug 'junegunn/vim-easy-align'
 vnoremap <silent> <Enter> :EasyAlign<cr>
 ```
 
-From:
-
-``` {.haskell}
-x = 10
-foo = 20
-ultimateVeryLongName = "something very long"
-```
-
-To:
-
-``` {.haskell}
-x                    = 10
-foo                  = 20
-ultimateVeryLongName = "something very long"
-```
-
-Or
-
-``` {.haskell}
-                   x = 10
-                 foo = 20
-ultimateVeryLongName = "something very long"
-```
-
-Or also
-
-``` {.haskell}
-                   x          = 10
-                  foo         = 20
-         ultimateVeryLongName = "something very long"
-```
-
 Just select and type `Return` then `space`.
 Type `Return` many type to change the alignments.
+
+If you want to align the second column, `Return` then `2` then `space`.
+
+blogimage("easy-align.gif","Easy align example")
 
 ## Haskell
 
@@ -300,6 +287,8 @@ I use `-` for my leader because I use `,` a lot for its native usage.
 blogimage("auto-typing.gif","Auto typing on save")
 
 ## Clojure
+
+blogimage("clojure.gif","Rainbow parenthesis")
 
 My main language at work is Clojure.
 And my current vim environment is quite good.
