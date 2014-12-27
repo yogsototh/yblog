@@ -331,6 +331,8 @@ Also, you should read this page carefully: `:help usr_02.txt`.
 Then, you will learn about `!`, folds, registers, plugins and many other features.
 Learn vim like you'd learn piano and all should be fine.
 
+> If you liked this article, there is a follow up: [Vim as IDE](/Scratch/en/blog/Vim-as-IDE/)
+
 <script>
 // Style the keywords
 $(document).ready(function() {

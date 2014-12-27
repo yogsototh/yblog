@@ -1,22 +1,22 @@
 ---
 kind:           article
 published:      2014-12-07
-image: /Scratch/img/blog/Vim-as-IDE/main.png
+image: /Scratch/img/blog/Vim-as-IDE/vim_spock.jpg
 title: Vim as IDE
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
 theme: scientific
 ---
-blogimage("main.png","Main image")
+blogimage("vim_spock.jpg","Main image")
 
 <div class="intro">
 
 
 %tlal Comment utiliser vim comme une IDE très efficace
 
-
-Vim is great for editing text and navigating in the same file (buffer).
+My latest [Vim tutorial](/Scratch/en/blog/Learn-Vim-Progressively/)
+demonstrate how it is great for editing text and navigating in the same file (buffer).
 But, how to deal with multiple organized files.
 To play with REPL, to lint or compile?
 
@@ -80,9 +80,13 @@ endtry
 
 You should also see and be able to clean trailing whitespace.
 
+blogimage("trim.gif","Trim whitespaces")
+
 ``` {.vim}
 Plug 'bronson/vim-trailing-whitespace'
 ```
+
+You can clean trailing whitespace with `:FixWhitespace`.
 
 And also you should see your 80th column.
 
@@ -92,6 +96,8 @@ if (exists('+colorcolumn'))
     highlight ColorColumn ctermbg=9
 endif
 ```
+
+blogimage("80thcolumn.png","80th column")
 
 ## File Management
 
@@ -157,7 +163,7 @@ Plug 'rking/ag.vim'
 ...
 " --- type ° to search the word in all files in the current dir
 nmap ° :Ag <c-r>=expand("<cword>")<cr><cr>
-nnoremap <space>/ :Ag 
+nnoremap <space>/ :Ag
 ```
 
 Don't forget to add a space after the `:Ag`.
@@ -231,6 +237,7 @@ So here we go:
 " cabal install ghc-mod
 " -------------------------------------
 
+Plug 'scrooloose/syntastic'             " syntax checker
 " --- Haskell
 Plug 'yogsototh/haskell-vim'            " syntax indentation / highlight
 Plug 'enomsg/vim-haskellConcealPlus'    " unicode for haskell operators
