@@ -71,9 +71,9 @@ Their look and feel is mostly imposed by the provider.
 
 The most problematic aspect in my opinion is to use a third party js on your website.
 What if tomorrow twitter update their tweet button?
-If the upgrade broke something for only a minority of people, they won't fix it.
+If the upgrade break something for only a minority of people, they won't fix it.
 This could occur anytime without any notification.
-They just have to add a `document.write` in their `js` you call asynchronously and BAM!
+They just have to add a `document.write` in their `js` you call asynchronously and **BAM!**
 Your website is just an empty blank page.
 And as you call many external ressources, it can be very difficult to find the origin of the problem.
 

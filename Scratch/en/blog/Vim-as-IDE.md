@@ -15,12 +15,11 @@ blogimage("vim_spock.jpg","Main image")
 %tldr How to use vim as a _very_ efficient IDE
 
 
-My latest [Vim tutorial](/Scratch/en/blog/Learn-Vim-Progressively/)
-demonstrate how it is great for editing text and navigating in the same file (buffer).
-But, how to deal with multiple organized files.
-To play with REPL, to lint or compile?
-
-In this article I provide my configuration for dealing with all of this.
+In [Learn Vim Progressively](/Scratch/en/blog/Learn-Vim-Progressively/)
+I've show how Vim is great for editing text,
+and navigating in the same file (buffer).
+In this short article you'll see how I use Vim as an IDE.
+Mainly by using some great plugins.
 
 </div>
 
@@ -53,6 +52,8 @@ I'll separate each part by `...` in the code.
 
 ### Colorscheme
 
+blogimage("solarized.png","Solarized theme")
+
 Before anything, you should protect your eyes using a readable and low
 contrast colorscheme.
 
@@ -78,7 +79,7 @@ endtry
 
 ### Minimal hygiene
 
-You should also see and be able to clean trailing whitespace.
+You should be able to see and destroy trailing whitespaces.
 
 blogimage("trim.gif","Trim whitespaces")
 
