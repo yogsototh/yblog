@@ -5,7 +5,7 @@ image: /Scratch/img/blog/Vim-as-IDE/vim_spock.jpg
 title: Vim as IDE
 author: Yann Esposito
 authoruri: yannesposito.com
-tags: programming
+tags: programming, vi, vim, ide, haskell, clojure
 theme: scientific
 ---
 blogimage("vim_spock.jpg","Main image")
@@ -222,6 +222,14 @@ If you want to align the second column, `Return` then `2` then `space`.
 
 blogimage("easy-align.gif","Easy align example")
 
+### Basic Completion `C-n` &amp; `C-p`
+
+Vim has a basic completion system.
+The keywords are `C-n` and `C-p` while you are in insert mode.
+These are completion using keywords in current open buffers.
+But it is already useful in a lot of cases.
+For example when I open a file not in my configured languages.
+
 ## Haskell
 
 My current Haskell programming environment is the best I could ever dreamed of for any language.
@@ -348,3 +356,11 @@ let g:rbpt_colorpairs = [
 
 So now Clojure should look really nice.
 You can eval any part of your code, you must launch a Clojure REPL manually in another terminal thought.
+
+## Last words
+
+I hope it will be useful.
+
+Last but not least, if you want to use my vim configuration you can get it here:
+
+[`github.com/yogsototh/vimrc`](http://github.com/yogsototh/vimrc)
