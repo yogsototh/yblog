@@ -175,7 +175,7 @@ These are two of the most powerful shortcut for working in a project.
 using `°` which is nicely positioned on my `azerty` keyboard.
 You should use a key close to `*`.
 
-So what `°` is doing? It read the string under the cursor and search for it
+So what `°` is doing? It reads the string under the cursor and search for it
 in all files. Really useful to search where a function is used.
 
 If you type `<space>/` followed by a string, it will search for all
@@ -234,9 +234,9 @@ For example when I open a file not in my configured languages.
 
 ## Haskell
 
-My current Haskell programming environment is the best I could ever dreamed of for any language.
+My current Haskell programming environment is great!
 
-Seriously, each time I save a file,
+Each time I save a file,
 I get a comment pointing to my errors or proposing me how to improve my code.
 
 So here we go:
