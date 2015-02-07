@@ -224,12 +224,11 @@ If you want to align the second column, `Return` then `2` then `space`.
 
 blogimage("easy-align.gif","Easy align example")
 
-### Basic Completion `C-n` &amp; `C-p`
+### Basic auto completion: `C-n` &amp; `C-p`
 
-Vim has a basic completion system.
-The keywords are `C-n` and `C-p` while you are in insert mode.
-These are completion using keywords in current open buffers.
-But it is already useful in a lot of cases.
+Vim has a basic auto completion system.
+The shortcuts are `C-n` and `C-p` while you are in insert mode.
+This is generally good enough in most cases.
 For example when I open a file not in my configured languages.
 
 ## Haskell
@@ -240,6 +239,9 @@ Each time I save a file,
 I get a comment pointing to my errors or proposing me how to improve my code.
 
 So here we go:
+
+> ☞ Don't forget to install `ghc-mod` with:
+> `cabal install ghc-mod`
 
 
 ``` {.vim}
@@ -356,7 +358,7 @@ let g:rbpt_colorpairs = [
 	\ ]
 ```
 
-So now Clojure should look really nice.
+Working with Clojure will becomre quite smoother.
 You can eval any part of your code, you must launch a Clojure REPL manually in another terminal thought.
 
 ## Last words
