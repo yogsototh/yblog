@@ -87,11 +87,11 @@ In this article I try to provide what I lacked during my learning.
 This article will certainly be hard to follow.
 This is on purpose.
 There is no shortcut to learning Haskell.
-It is hard and challenging. 
+It is hard and challenging.
 But I believe this is a good thing.
 It is because it is hard that Haskell is interesting.
 
-The conventional method to learning Haskell is to read two books. 
+The conventional method to learning Haskell is to read two books.
 First ["Learn You a Haskell"](http://learnyouahaskell.com) and just after ["Real World Haskell"](http://www.realworldhaskell.org).
 I also believe this is the right way to go.
 But to learn what Haskell is all about, you'll have to read them in detail.
@@ -118,7 +118,7 @@ The article contains five parts:
 
  > Note: Each time you see a separator with a filename ending in `.lhs`
  > you can click the filename to get this file.
- > If you save the file as `filename.lhs`, you can run it with 
+ > If you save the file as `filename.lhs`, you can run it with
  > <pre>
  > runhaskell filename.lhs
  > </pre>
@@ -211,7 +211,7 @@ puts "Hello #{name}!"
 int main (int argc, char **argv) {
     char name[666]; // <- An Evil Number!
     // What if my name is more than 665 character long?
-    printf("What is your name?\n"); 
+    printf("What is your name?\n");
     scanf("%s", name);
     printf("Hello %s!\n", name);
     return 0;
@@ -389,7 +389,7 @@ f x y = x*x + y*y
 main = print (f 2.3 4.2)
 ~~~~~~
 </div>
-It works! 
+It works!
 Luckily, we don't have to declare a new function for every single type.
 For example, in `C`, you'll have to declare a function for `int`, for `float`, for `long`, for `double`, etc...
 
@@ -415,7 +415,7 @@ Num a => a -> a -> a
 ~~~
 
 First, let's focus on the right part `a -> a -> a`.
-To understand it, just look at a list of progressive examples: 
+To understand it, just look at a list of progressive examples:
 
 --------------------------------------------------------------------------------------------------
 The&nbsp;written&nbsp;type Its meaning
@@ -433,7 +433,7 @@ The&nbsp;written&nbsp;type Its meaning
 `a -> a -> a`              the type function of two arguments of any type `a` to the same type `a`
 --------------------------------------------------------------------------------------------------
 
-In the type `a -> a -> a`, the letter `a` is a _type variable_. 
+In the type `a -> a -> a`, the letter `a` is a _type variable_.
 It means `f` is a function with two arguments and both arguments and the result have the same type.
 The type variable `a` could take many different type values.
 For example `Int`, `Integer`, `Float`...
@@ -463,12 +463,12 @@ Finally, `Num a => a -> a -> a` means:
 Let `a` be a type belonging to the `Num` type class.
 This is a function from type `a` to (`a -> a`).
 
-Yes, strange. 
+Yes, strange.
 In fact, in Haskell no function really has two arguments.
 Instead all functions have only one argument.
 But we will note that taking two arguments is equivalent to taking one argument and returning a function taking the second argument as a parameter.
 
-More precisely `f 3 4` is equivalent to `(f 3) 4`. 
+More precisely `f 3 4` is equivalent to `(f 3) 4`.
 Note `f 3` is a function:
 
 ~~~
@@ -480,7 +480,7 @@ g = f 3
 g y ⇔ 3*3 + y*y
 ~~~
 
-Another notation exists for functions. 
+Another notation exists for functions.
 The lambda notation allows us to create functions without assigning them a name.
 We call them anonymous functions.
 We could also have written:
@@ -526,17 +526,14 @@ x :: Int
 x = 3
 y :: Float
 y = 2.4
-~~~~~~
-</div>en: > -- won't work because type x ≠ type y
-<div class="codehighlight">
-~~~~~~ {.haskell}
+-- won't work because type x ≠ type y
 main = print (f x y)
 ~~~~~~
 </div>
-The compiler complains. 
+The compiler complains.
 The two parameters must have the same type.
 
-If you believe that this is a bad idea, and that the compiler should make the transformation 
+If you believe that this is a bad idea, and that the compiler should make the transformation
 from one type to another for you, you should really watch this great (and funny) video:
 [WAT](https://www.destroyallsoftware.com/talks/wat)
 
@@ -578,8 +575,6 @@ True /= False ⇒ True  (/=) is the operator for different
 ~~~
 x^n     for n an integral (understand Int or Integer)
 x**y    for y any kind of number (Float for example)
-x^n     pour n un entier (comprenez Int ou Integer)
-x**y    pour y tout type de nombre (Float par exemple)
 ~~~
 
 `Integer` has no limit except the capacity of your machine:
@@ -695,7 +690,7 @@ _Infix notation_
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
-square :: Num a => a -> a  
+square :: Num a => a -> a
 square x = x^2
 ~~~~~~
 </div>
@@ -870,7 +865,7 @@ tail []      ⇒ ERROR
 ~~~~~~
 
 Note that for any non empty list `l`,
-`l ⇔ (head l):(tail l)`
+ `l ⇔ (head l):(tail l)`
 
 <hr/><a href="code/02_Hard_Part/11_Functions.lhs" class="cut">02_Hard_Part/<strong>11_Functions.lhs</strong></a>
 
@@ -886,8 +881,8 @@ evenSum l = accumSum 0 l
 
 accumSum n l = if l == []
                   then n
-                  else let x = head l 
-                           xs = tail l 
+                  else let x = head l
+                           xs = tail l
                        in if even x
                               then accumSum (n+x) xs
                               else accumSum n xs
@@ -901,14 +896,14 @@ To test a function you can use `ghci`:
 Loading package ghc-prim ... linking ... done.
 Loading package integer-gmp ... linking ... done.
 Loading package base ... linking ... done.
-Prelude&gt;</span> :load 11_Functions.lhs 
+Prelude&gt;</span> :load 11_Functions.lhs
 <span class="low">[1 of 1] Compiling Main             ( 11_Functions.lhs, interpreted )
 Ok, modules loaded: Main.
 *Main&gt;</span> evenSum [1..5]
 6
 </pre>
 
-Here is an example of execution[^2]: 
+Here is an example of execution[^2]:
 
 [^2]: I know I'm cheating. But I will talk about non-strictness later.
 
@@ -921,7 +916,7 @@ accumSum 0 [2,3,4,5]
 accumSum (0+2) [3,4,5]
 <span class="yellow">3 is odd</span>
 accumSum (0+2) [4,5]
-<span class="yellow">4 is even</span>
+<span class="yellow">2 is even</span>
 accumSum (0+2+4) [5]
 <span class="yellow">5 is odd</span>
 accumSum (0+2+4) []
@@ -961,11 +956,11 @@ This way our `accumSum` function won't pollute the namespace of our module.
 evenSum :: Integral a => [a] -> a
 
 evenSum l = accumSum 0 l
-    where accumSum n l = 
+    where accumSum n l =
             if l == []
                 then n
-                else let x = head l 
-                         xs = tail l 
+                else let x = head l
+                         xs = tail l
                      in if even x
                             then accumSum (n+x) xs
                             else accumSum n xs
@@ -990,21 +985,21 @@ Next, we can use pattern matching.
 ~~~~~~ {.haskell}
 -- Version 3
 evenSum l = accumSum 0 l
-    where 
+    where
         accumSum n [] = n
-        accumSum n (x:xs) = 
+        accumSum n (x:xs) =
              if even x
                 then accumSum (n+x) xs
                 else accumSum n xs
 ~~~~~~
 </div>
-What is pattern matching? 
+What is pattern matching?
 Use values instead of general parameter names[^021301].
 
 [^021301]: For the brave, a more complete explanation of pattern matching can be found [here](http://www.cs.auckland.ac.nz/references/haskell/haskell-intro-html/patterns.html).
 
 Instead of saying: `foo l = if l == [] then <x> else <y>`
-You simply state:  
+You simply state:
 
 ~~~~~~ {.haskell}
 foo [] =  <x>
@@ -1016,9 +1011,9 @@ It is also able to inspect the inner data of a complex value.
 We can replace
 
 ~~~~~~ {.haskell}
-foo l =  let x  = head l 
+foo l =  let x  = head l
              xs = tail l
-         in if even x 
+         in if even x
              then foo (n+x) xs
              else foo n xs
 ~~~~~~
@@ -1026,7 +1021,7 @@ foo l =  let x  = head l
 with
 
 ~~~~~~ {.haskell}
-foo (x:xs) = if even x 
+foo (x:xs) = if even x
                  then foo (n+x) xs
                  else foo n xs
 ~~~~~~
@@ -1068,9 +1063,9 @@ We use this method to remove the `l`:
 evenSum :: Integral a => [a] -> a
 
 evenSum = accumSum 0
-    where 
+    where
         accumSum n [] = n
-        accumSum n (x:xs) = 
+        accumSum n (x:xs) =
              if even x
                 then accumSum (n+x) xs
                 else accumSum n xs
@@ -1121,14 +1116,15 @@ where
 filter even [1..10] ⇔  [2,4,6,8,10]
 ~~~~~~
 
-The function `filter` takes a function of type (`a -> Bool`) and a list of type `[a]`. It returns a list containing only elements for which the function returned `true`.
+The function `filter` takes a function of type (`a -> Bool`) and a list of type `[a]`.
+It returns a list containing only elements for which the function returned `true`.
 
 Our next step is to use another technique to accomplish the same thing as a loop.
 We will use the `foldl` function to accumulate a value as we pass through the list.
 The function `foldl` captures a general coding pattern:
 
 <pre>
-myfunc list = foo <span class="blue">initialValue</span> <span class="green">list</span>
+    myfunc list = foo <span class="blue">initialValue</span> <span class="green">list</span>
     foo accumulated []     = accumulated
     foo tmpValue    (x:xs) = foo (<span class="yellow">bar</span> tmpValue x) xs
 </pre>
@@ -1217,7 +1213,7 @@ To help you understand what's going on here, let's look at a step by step evalua
   <span class="yellow">evenSum [1,2,3,4]</span>
 ⇒ foldl' (+) 0 (<span class="yellow">filter even [1,2,3,4]</span>)
 ⇒ <span class="yellow">foldl' (+) 0 <span class="blue">[2,4]</span></span>
-⇒ <span class="blue">foldl' (+) (<span class="yellow">0+2</span>) [4]</span> 
+⇒ <span class="blue">foldl' (+) (<span class="yellow">0+2</span>) [4]</span>
 ⇒ <span class="yellow">foldl' (+) <span class="blue">2</span> [4]</span>
 ⇒ <span class="blue">foldl' (+) (<span class="yellow">2+4</span>) []</span>
 ⇒ <span class="yellow">foldl' (+) <span class="blue">6</span> []</span>
@@ -1244,13 +1240,13 @@ Also, we could rename some parts to make it clearer:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
--- Version 10 
+-- Version 10
 import Data.List (foldl')
 sum' :: (Num a) => [a] -> a
 sum' = foldl' (+) 0
 evenSum :: Integral a => [a] -> a
 evenSum = sum' . (filter even)
- 
+
 ~~~~~~
 </div>
 It is time to discuss the direction our code has moved as we introduced more functional idioms.
@@ -1258,8 +1254,7 @@ What did we gain by using higher order functions?
 
 At first, you might think the main difference is terseness. But in fact, it has
 more to do with better thinking. Suppose we want to modify our function
-slightly, for example, to get the sum of all even squares of elements of the
-list.
+slightly, for example, to get the sum of all even squares of elements of the list.
 
 ~~~
 [1,2,3,4] ▷ [1,4,9,16] ▷ [4,16] ▷ 20
@@ -1273,7 +1268,7 @@ squareEvenSum = sum' . (filter even) . (map (^2))
 squareEvenSum' = evenSum . (map (^2))
 ~~~~~~
 </div>
-We just had to add another "transformation function".
+We just had to add another "transformation function"[^0216].
 
 ~~~
 map (^2) [1,2,3,4] ⇔ [1,4,9,16]
@@ -1369,7 +1364,7 @@ Prelude Data.Complex> square (2 :+ 1)
 3.0 :+ 4.0
 ~~~
 
-`x :+ y` is the notation for the complex (<i>x + ib</i>).
+`x :+ y` is the notation for the complex (<i>x + iy</i>).
 
 Now compare with the amount of code necessary in C:
 
@@ -1418,16 +1413,13 @@ int main() {
 
 C++ does a far better job than C in this regard.
 But for more complex functions the syntax can be hard to follow:
-see
-[this article](http://bartoszmilewski.com/2009/10/21/what-does-haskell-have-to-do-with-c/)
-for example.
+see [this article](http://bartoszmilewski.com/2009/10/21/what-does-haskell-have-to-do-with-c/) for example.
 
 In C++ you must declare that a function can work with different types.
 In Haskell, the opposite is the case.
 The function will be as general as possible by default.
 
-Type inference gives Haskell the feeling of freedom that dynamically
-typed languages provide.
+Type inference gives Haskell the feeling of freedom that dynamically typed languages provide.
 But unlike dynamically typed languages, most errors are caught before run time.
 Generally, in Haskell:
 
@@ -1487,7 +1479,7 @@ main = putStrLn $ showInfos name color
 ~~~~~~
 </div>
 Now if you switch parameters of `showInfos`, the compiler complains!
-So this is a potential mistake you will never make again and the only price is to be more verbose. 
+So this is a potential mistake you will never make again and the only price is to be more verbose.
 
 Also notice that constructors are functions:
 
@@ -1563,7 +1555,7 @@ If you want to be able to print (`Show`), read (`Read`), test equality (`Eq`) an
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 infixr 5 :::
-data List a = Nil | a ::: (List a) 
+data List a = Nil | a ::: (List a)
               deriving (Show,Read,Eq,Ord)
 ~~~~~~
 </div>
@@ -1860,6 +1852,7 @@ We have this for (almost) free, because we have declared Tree to be an instance 
 See how awesome this structure is:
 We can make trees containing not only integers, strings and chars, but also other trees.
 And we can even make a tree containing a tree of trees!
+fr:Voyez à quel point cette structure est formidable:
 
 <a href="code/02_Hard_Part/31_Trees.lhs" class="cut">02_Hard_Part/<strong>31_Trees.lhs</strong> </a>
 
@@ -1924,8 +1917,8 @@ This code is mostly the same as the previous one.
 ~~~~~~ {.haskell}
 import Debug.Trace (trace)
 import Data.List
-data BinTree a = Empty 
-                 | Node a (BinTree a) (BinTree a) 
+data BinTree a = Empty
+                 | Node a (BinTree a) (BinTree a)
                   deriving (Eq,Ord)
 ~~~~~~
 </div>
@@ -1938,24 +1931,24 @@ instance (Show a) => Show (BinTree a) where
   show t = "< " ++ replace '\n' "\n: " (treeshow "" t)
     where
     treeshow pref Empty = ""
-    treeshow pref (Node x Empty Empty) = 
+    treeshow pref (Node x Empty Empty) =
                   (pshow pref x)
 
-    treeshow pref (Node x left Empty) = 
+    treeshow pref (Node x left Empty) =
                   (pshow pref x) ++ "\n" ++
                   (showSon pref "`--" "   " left)
 
-    treeshow pref (Node x Empty right) = 
+    treeshow pref (Node x Empty right) =
                   (pshow pref x) ++ "\n" ++
                   (showSon pref "`--" "   " right)
 
-    treeshow pref (Node x left right) = 
+    treeshow pref (Node x left right) =
                   (pshow pref x) ++ "\n" ++
                   (showSon pref "|--" "|  " left) ++ "\n" ++
                   (showSon pref "`--" "   " right)
 
     -- show a tree using some prefixes to make it nice
-    showSon pref before next t = 
+    showSon pref before next t =
                   pref ++ before ++ treeshow (pref ++ next) t
 
     -- pshow replace "\n" by "\n"++pref
@@ -1965,7 +1958,7 @@ instance (Show a) => Show (BinTree a) where
     replace c new string =
       concatMap (change c new) string
       where
-          change c new x 
+          change c new x
               | x == c = new
               | otherwise = x:[] -- "x"
 
@@ -1986,7 +1979,7 @@ Now I will prove you can manipulate this object using the following function:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
--- take all element of a BinTree 
+-- take all element of a BinTree
 -- up to some depth
 treeTakeDepth _ Empty = Empty
 treeTakeDepth 0 _     = Empty
@@ -2030,8 +2023,8 @@ let's make a slightly more interesting tree:
 ~~~~~~ {.haskell}
 iTree = Node 0 (dec iTree) (inc iTree)
         where
-           dec (Node x l r) = Node (x-1) (dec l) (dec r) 
-           inc (Node x l r) = Node (x+1) (inc l) (inc r) 
+           dec (Node x l r) = Node (x-1) (dec l) (dec r)
+           inc (Node x l r) = Node (x+1) (inc l) (inc r)
 ~~~~~~
 </div>
 Another way to create this tree is to use a higher order function.
@@ -2043,12 +2036,12 @@ Here is such a function:
 -- apply a function to each node of Tree
 treeMap :: (a -> b) -> BinTree a -> BinTree b
 treeMap f Empty = Empty
-treeMap f (Node x left right) = Node (f x) 
-                                     (treeMap f left) 
+treeMap f (Node x left right) = Node (f x)
+                                     (treeMap f left)
                                      (treeMap f right)
 ~~~~~~
 </div>
-_Hint_: I won't talk more about this here. 
+_Hint_: I won't talk more about this here.
 If you are interested in the generalization of `map` to other data structures,
 search for functor and `fmap`.
 
@@ -2057,11 +2050,11 @@ Our definition is now:
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 infTreeTwo :: BinTree Int
-infTreeTwo = Node 0 (treeMap (\x -> x-1) infTreeTwo) 
-                    (treeMap (\x -> x+1) infTreeTwo) 
+infTreeTwo = Node 0 (treeMap (\x -> x-1) infTreeTwo)
+                    (treeMap (\x -> x+1) infTreeTwo)
 ~~~~~~
 </div>
-Look at the result for 
+Look at the result for
 
 ~~~~~~ {.haskell}
 main = print $ treeTakeDepth 4 infTreeTwo
@@ -2203,7 +2196,7 @@ action1             :: IO a
                     -- in this case, generally a = ()
 ~~~
 
-or
+ou
 
 ~~~
 value <- action2    -- where
@@ -2229,7 +2222,7 @@ Let's try:
     Prelude.read: no parse
 ~~~
 
-Argh! An evil error message and a crash! 
+Argh! An evil error message and a crash!
 Our first improvement will simply be to answer with a more friendly message.
 
 In order to do this, we must detect that something went wrong.
@@ -2250,11 +2243,11 @@ data Maybe a = Nothing | Just a
 
 This is a nice way to tell there was an error while trying to create/compute
 a value.
-The `maybeRead` function is a great example of this. 
+The `maybeRead` function is a great example of this.
 This is a function similar to the function `read`[^1],
 but if something goes wrong the returned value is `Nothing`.
 If the value is right, it returns `Just <the value>`.
-Don't try to understand too much of this function. 
+Don't try to understand too much of this function.
 I use a lower level function than `read`; `reads`.
 
 [^1]: Which itself is very similar to the javascript `eval` on a string containing JSON).
@@ -2293,12 +2286,12 @@ main = do
 </div>
 In case of error, we display a nice error message.
 
-Note that the type of each expression in the main's do block remains of the form `IO a`.
-The only strange construction is `error`. 
+Note that the type of each expression in the main's `do` block remains of the form `IO a`.
+The only strange construction is `error`.
 I'll just say here that `error msg` takes the needed type (here `IO ()`).
 
 One very important thing to note is the type of all the functions defined so far.
-There is only one function which contains `IO` in its type: `main`. 
+There is only one function which contains `IO` in its type: `main`.
 This means main is impure.
 But main uses `getListFromString` which is pure.
 So it's clear just by looking at declared types which functions are pure and
@@ -2348,9 +2341,9 @@ askUser = do
           Nothing -> askUser
 ~~~~~~
 </div>
-This function is of type `IO [Integer]`. 
+This function is of type `IO [Integer]`.
 Such a type means that we retrieved a value of type `[Integer]` through some IO actions.
-Some people might explain while waving their hands: 
+Some people might explain while waving their hands:
 
  > «This is an `[Integer]` inside an `IO`»
 
@@ -2371,17 +2364,17 @@ We have finished with our introduction to `IO`.
 This was quite fast. Here are the main things to remember:
 
 - in the `do` block, each expression must have the type `IO a`.
-  You are then limited in the number of expressions available.
-  For example, `getLine`, `print`, `putStrLn`, etc...
+You are then limited in the number of expressions available.
+For example, `getLine`, `print`, `putStrLn`, etc...
 - Try to externalize the pure functions as much as possible.
 - the `IO a` type means: an IO _action_ which returns an element of type `a`.
-  `IO` represents actions; under the hood, `IO a` is the type of a function.
-  Read the next section if you are curious.
+`IO` represents actions; under the hood, `IO a` is the type of a function.
+Read the next section if you are curious.
 
 If you practice a bit, you should be able to _use_ `IO`.
 
  > _Exercises_:
- > 
+ >
  > - Make a program that sums all of its arguments. Hint: use the function `getArgs`.
 
 <a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong> </a>
@@ -2404,6 +2397,7 @@ blogimage("magritte_pipe.jpg","Magritte, ceci n'est pas une pipe")
  > But look at a typical main function:
  >
  > ~~~
+ > 
  > main w0 =
  >     let (v1,w1) = action1 w0 in
  >     let (v2,w2) = action2 v1 w1 in
@@ -2744,6 +2738,7 @@ Let's use `(>>=)` instead of `bind`.
            (\line2 -> print (line1 ++ line2)))) w0
 ~~~~~~
 
+fr; HAskell a un sucre syntaxique pour nous:
 Ho Ho Ho! Merry Christmas Everyone!
 Haskell has made syntactical sugar for us:
 
@@ -3198,7 +3193,8 @@ treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
                              (treeFromList (filter (>x) xs))
 ~~~~~~
 </div>
-and `treeTakeDepth`:
+and 
+`treeTakeDepth`:
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -3431,7 +3427,7 @@ Left as an exercise to the reader:
   Using the following code 
   (suppose we could use `safefilter'` directly as if was not in the where of safefilter)
   find a definition of `f` such that with probability `1`, 
-  treeFromList' shuffle is infinite. And prove it.
+  `treeFromList' shuffle` is infinite. And prove it.
   Disclaimer, this is only a conjecture.
 
 ~~~~~~ {.haskell}

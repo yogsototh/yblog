@@ -20,8 +20,10 @@ chmod ugo+x install-haskell.sh
 sudo ./install-haskell.sh $USER
 ~~~
 
+_update (28 march 2015): I now use [Haskell LTS][lts] instead of a random stackage version._
+
 If you are on windows, just download the Haskell Platform and follow
-the instruction to use [stackage][stackage].
+the instruction to use [Haskell LTS][lts].
 
 If you want to know the why and the how; you should read the entire article.
 
@@ -61,28 +63,21 @@ sudo ./install-haskell.sh $USER
 
 You can read the script and you will see that this is quite straightforward.
 
-1. It download the latest GHC binary for you system and install it.
+1. It downloads the latest `GHC` binary for you system and install it.
 2. It does the same with the `cabal` program.
-3. It change your repository to use [stackage][stackage] (exclusive by default).
-4. It installs some useful binaries that might cause compilation error.
+3. It updates your cabal config file to use [Haskell LTS][lts].
+4. It enable profiling to libraries and executables.
+5. It installs some useful binaries that might cause compilation error if not present.
 
-As the version of libraries is fixed up until you update the [stackage][stackage] repo.
-You should never use cabal sandbox.
+As the version of libraries is fixed up until you update the [Haskell LTS][lts] version,
+you should never use cabal sandbox.
 That way, you will only compile each needed library once.
 The compiled objects/binaries will be in your `~/.cabal` directory.
 
 ## Some Last Words
 
-I'll certainly update the script once [stackage][stackage] goes from beta to production.
-I'll try to update the script every 6 month or so.
-That way I'll minimize the number of time bug could occurs.
-And in the same time, library will continue to improve.
-A bit like the Haskell platform.
-What this script brings to the table Haskell platform don't is just
-the use of [stackage][stackage].
-
-It is very easy to use, if you prefer you could also go that way.
-Use Haskell Platform and then edit manually your `.cabal/config`.
+This script use the latest [Haskell LTS][lts].
+So if you use this script at different dates, the Haskell LTS might have changed.
 
 While it comes to cabal hell, some solutions are sandboxes and `nix`.
 Unfortunately, sandboxes didn't worked good enough for me after some time.
@@ -92,7 +87,7 @@ Also, `nix` didn't worked as expected on OS X.
 So fixing the list of package to a stable list of them seems to me the best
 pragmatic way to handle the problem today.
 
-From my point of view, [stackage][stackage] is the best step in the right direction.
+From my point of view, [Haskell LTS][lts] is the best step in the right direction.
 The actual cabal hell problem is more a human problem than a tool problem.
 This is a bias in most programmer to prefer resolve social issues using tools.
 There is nothing wrong with hackage and cabal.
@@ -105,14 +100,15 @@ But this make the job of package managing far more difficult than in dynamic lan
 People tend not to respect the rules in package numbering[^2].
 They break their API all the time.
 So we need a way to organize all of that.
-And this is precisely what [stackage][stackage] provide.
+And this is precisely what [Haskell LTS][lts] provide.
 A set of stable packages working all together.
 So if a developer break its API, it won't work anymore in stackage.
 And whether the developer fix its package or all other packages upgrade their usage.
-During this time, [stackage][stackage] end-users will be able to develop without dependency issues.
+During this time, [Haskell LTS][lts] end-users will be able to develop without dependency issues.
 
 [^2]: I myself am guilty of such behavior. It was a beginner error.
 
+[lts]: http://www.stackage.org/lts
 [stackage]: http://www.stackage.org
 
 ---
