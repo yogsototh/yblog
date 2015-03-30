@@ -216,4 +216,45 @@ It will be far from real time high volume events.
 Fortunately, the limit can be greatly improved by being connected.
 So you can provide a username and password.
 
+~~~
+...
+{-hi-}import System.Environment (getArgs){-/hi-}
+{-hi-}import System.Exit (exitFailure){-/hi-}
+...
 
+
+simpleHTTPWithUserAgent :: String {-hi-}-> String -> String{-/hi-} -> IO (Response LZ.ByteString)
+simpleHTTPWithUserAgent url {-hi-}user pass{-/hi-} = do
+    r <- parseUrl url
+    let request = r {requestHeaders = [("User-Agent","HTTP-Conduit")]}
+        {-hi-}requestWithAuth = applyBasicAuth (B.pack user) (B.pack pass) request{-/hi-}
+    withManager $ \manager -> httpLbs {-hi-}requestWithAuth{-/hi-} manager
+
+
+showHelpAndExit :: IO ()
+showHelpAndExit = do
+    putStrLn "provide your github username and password please"
+    exitFailure
+
+main :: IO ()
+main = do
+    args <- getArgs
+    case args of
+         [user,pass] -> continueWithUserAndPass user pass
+         _ -> showHelpAndExit
+
+continueWithUserAndPass :: String -> String -> IO ()
+continueWithUserAndPass user pass = do
+    response <- simpleHTTPWithUserAgent "https://api.github.com/events" user pass
+    LZ.putStrLn (responseBody response)
+    mapM_ showHeader (responseHeaders response)
+~~~
+
+Now if you run:
+
+~~~
+cabal run [nickname] [password]
+~~~
+
+Your `X-RateLimit-Limit` should have raised to `5000`!
+Note it is not over `9000` thought.
