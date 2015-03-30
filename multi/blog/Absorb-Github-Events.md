@@ -52,8 +52,168 @@ Forever:
 Apparently it seems easy.
 Let's try it.
 
-But another very interesting detail.
-While github provide quite 
+One of the goal of this series being not only to handle events in real time
+but to be able to handle a tremendous number of events in real time.
+The actual amount of data provided by github is quite reasonable.
+But in general you'll want to optimize things to be able to absorb a full firehose of informations.
+
+For example, twitter can provide more than 20000 events per seconds.
+The twitter firehose forces you to use a single entry point.
+More than that, you have to deal with a single core to download the data and parse them.
+To be able to absorb such amount of data you generally don't parse completely the data.
+
+Another provider is facebook.
+Their approach is much nicer.
+You declare an %https entry point and they send you the data by making `POST` calls.
+It is then much easier to dispatch the packet between multiple host using `haproxy` for example.
+
+Concerning github, I am not fond of their method to retrieve their data.
+It is kind of the worse of facebook and twitter.
+You have to ask yourself for data.
+But if you want to receive more data you'll have to find a way to synchronize the ETAG.
+
+TODO: explain why Haskell, why conduit and apparently difficult path.
 
 ## Initialize your environment.
+
+...
+
+
+### Now start working
+
+The first thing to do is to add all the needed dependencies.
+In a first time, we'll only need to make HTTP requests and work with the responses.
+
+Update your `muraine.cabal` file as follow:
+
+~~~
+  ...
+  build-depends:       base >=4.7 && <4.8{-hi-},{-/hi-}
+                       {-hi-}http-conduit,{-/hi-}
+                       {-hi-}bytestring{-/hi-}
+  ...
+~~~
+
+Then edit the `Main.hs` file such that it contains this:
+
+~~~ {.haskell}
+module Main where
+
+import           Network.HTTP.Conduit (simpleHttp)
+import qualified Data.ByteString.Lazy.Char8 as L
+
+main :: IO ()
+main = do
+    response <- simpleHttp "http://www.google.com"
+    L.putStrLn response
+~~~
+
+And now to run this code simply launch this command:
+
+~~~
+cabal run
+~~~
+
+Now you should receive some `HTML`.
+It is now time to receive some github events.
+Simply udpate the %url:
+
+~~~ {.haskell}
+module Main where
+
+import           Network.HTTP.Conduit (simpleHttp)
+import qualified Data.ByteString.Lazy.Char8 as L
+
+main :: IO ()
+main = do
+    response <- simpleHttp "https://api.github.com/events"
+    L.putStrLn response
+~~~
+
+Unfortunately you should receive an error
+(line wrapping added for readability):
+
+~~~
+StatusCodeException (Status {statusCode = 403, statusMessage = "Forbidden"}) [
+("Cache-Control","no-cache"),("Connection","close"),("Content-Type","text/html
+"),("X-Response-Body-Start","Request forbidden by administrative rules. Please
+make sure your request has a User-Agent header (http://developer.github.com/v3
+/#user-agent-required). Check https://developer.github.com for other possible 
+causes."),("X-Request-URL","GET https://api.github.com:443/events")] (CJ {expo
+se = []})
+~~~
+
+It is a bit hard to read, but in the mess you can read:
+
+> Request forbidden by administrative rules. Please make sure your request has a User-Agent header (http://developer.github.com/v3/#user-agent-required). Check https://developer.github.com for other possible causes.
+
+
+Damn, github want us to add a `User-Agent` header.
+But the library we use doesn't add one by default.
+We should add it manually.
+
+~~~
+{-# LANGUAGE OverloadedStrings #-}
+module Main where
+
+import           Network.HTTP.Conduit
+import qualified Data.ByteString.Lazy.Char8 as LZ
+
+simpleHTTPWithUserAgent :: String -> IO (Response LZ.ByteString)
+simpleHTTPWithUserAgent url = do
+    r <- parseUrl url
+    let request = r {requestHeaders = [("User-Agent","HTTP-Conduit")]}
+    withManager $ \manager -> httpLbs request manager
+
+main :: IO ()
+main = do
+    response <- simpleHTTPWithUserAgent "https://api.github.com/events"
+    LZ.putStrLn (responseBody response)
+~~~
+
+Now, that is better.
+But, to start really working with the github API,
+we need to manage the headers.
+
+Here is how we display them:
+
+~~~
+import qualified Data.ByteString.Char8 as B -- strict bytestrings
+import Data.Monoid ((<>)) -- for concatenating bytestrings
+
+...
+
+{-hi-}showHeader :: Header -> IO (){-/hi-}
+{-hi-}showHeader (name, value) =
+  B.putStrLn (original name <> ": " <> value){-/hi-}
+
+main :: IO ()
+main = do
+    response <- simpleHTTPWithUserAgent "https://api.github.com/events"
+    LZ.putStrLn (responseBody response)
+    {-hi-}mapM_ showHeader (responseHeaders response){-/hi-}
+~~~
+
+The `responseHeaders response` will return a list of `Header` and
+a `Header` is a couple `(header_name,value)`.
+
+So `mapM_` will execute a function over a list, here the list of `Headers`.
+For each header we execute `showHeader`.
+
+`showHeader` take a `Header` and print it on screen.
+
+There should be three headers beginning by `X-RateLimit`.
+The number of authorized access should be quite low:
+
+~~~
+X-RateLimit-Limit: 60
+X-RateLimit-Remaining: 57
+X-RateLimit-Reset: 1427738616
+~~~
+
+So you have the right to connect to the github API only 60 times by hour.
+It will be far from real time high volume events.
+Fortunately, the limit can be greatly improved by being connected.
+So you can provide a username and password.
+
 
