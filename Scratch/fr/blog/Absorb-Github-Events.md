@@ -2,8 +2,7 @@
 kind: article
 published: 2015-03-27
 image: /Scratch/img/blog/Absorb-Github-Events/main.png
-en: title: Absorb Github Events
-fr: title: Absorb Github Events
+title: Absorb Github Events
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
@@ -14,9 +13,8 @@ blogimage("main.png","Main image")
 
 <div class="intro">
 
-en: %tldr How to absorb octopussies events in real time.
 
-fr: %tlal
+%tlal
 
 This article should be the first of a series of articles.
 The goal of this series of articles is to display event in real time.

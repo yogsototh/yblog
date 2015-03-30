@@ -75,7 +75,7 @@ while true; do
       [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
       awkprg='! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }'
       awk "$awkprg" < $fic > $dest
-      ./.cabal-sandbox/bin/yblog build
+      ./dist/build/yblog/yblog build
     done
   done
   ((ONCE == 1)) && break
