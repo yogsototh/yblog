@@ -86,7 +86,7 @@ TODO: explain why Haskell, why conduit and apparently difficult path.
 ...
 
 
-### First step: %http request
+## First step: %http requests
 
 The first thing to do is to add all the needed dependencies.
 In a first time, we'll only need to make %http requests and work with the responses.
@@ -102,6 +102,25 @@ Update your `muraine.cabal` file as follow:
 ~~~
 
 Then edit the `Main.hs` file such that it contains this:
+
+> ☞ Haskell can be quite a strange programming language.
+> It is _very_ explicit about a _lot_ of things.
+> So yes.
+> One of the cost to pay to have better confidence
+> in the correctness of your program is to be slightly more verbose
+> than some other very terse language
+> (Haskell is quite very good at terseness thought)
+> and be used to some strange magic notations and sometimes
+> strange %api.
+>
+> If you are not familiar with Haskell.
+> Try not be focused on details and just try to read the flow.
+> Once you have to do things yourself, the Haskell compiler
+> will be here to help you in your journey.
+>
+> The worst case scenario with Haskell is discovering
+> a new library lacking some documentation and
+> playing the _type tetris_ game.
 
 ~~~ {.haskell}
 module Main where
@@ -141,13 +160,14 @@ Unfortunately you should receive an error
 (line wrapping added for readability):
 
 ~~~
-StatusCodeException (Status {statusCode = 403, statusMessage = "Forbidden"}) [
-("Cache-Control","no-cache"),("Connection","close"),("Content-Type","text/html
-"),("X-Response-Body-Start","Request forbidden by administrative rules. Please
-make sure your request has a User-Agent header (http://developer.github.com/v3
-/#user-agent-required). Check https://developer.github.com for other possible 
-causes."),("X-Request-URL","GET https://api.github.com:443/events")] (CJ {expo
-se = []})
+StatusCodeException (Status {statusCode = 403, statusMessage
+ = "Forbidden"}) [("Cache-Control","no-cache"),("Connection"
+,"close"),("Content-Type","text/html"),("X-Response-Body-Sta
+rt","Request forbidden by administrative rules. Please make 
+sure your request has a User-Agent header (http://developer.
+github.com/v3/#user-agent-required). Check https://developer
+.github.com for other possible causes."),("X-Request-URL","G
+ET https://api.github.com:443/events")] (CJ {expose = []})
 ~~~
 
 It is a bit hard to read, but in the mess you can read:
@@ -176,7 +196,7 @@ simpleHTTPWithUserAgent :: String -> IO (Response LZ.ByteString)
 simpleHTTPWithUserAgent url = do
     r <- parseUrl url
     let request = r {requestHeaders = [("User-Agent","HTTP-Conduit")]}
-    withManager $ \manager -> httpLbs request manager
+    withManager (httpLbs request)
 
 main :: IO ()
 main = do
@@ -197,8 +217,8 @@ import Data.Monoid ((<>)) -- for concatenating bytestrings
 ...
 
 {-hi-}showHeader :: Header -> IO (){-/hi-}
-{-hi-}showHeader (name, value) =
-  B.putStrLn (original name <> ": " <> value){-/hi-}
+{-hi-}showHeader (name, value) ={-/hi-}
+  {-hi-}B.putStrLn (original name <> ": " <> value){-/hi-}
 
 main :: IO ()
 main = do
@@ -244,7 +264,7 @@ simpleHTTPWithUserAgent url {-hi-}user pass{-/hi-} = do
         {-hi-}requestWithAuth = applyBasicAuth (B.pack user){-/hi-}
                                          {-hi-}(B.pack pass){-/hi-}
                                          {-hi-}request{-/hi-}
-    withManager $ \manager -> httpLbs {-hi-}requestWithAuth{-/hi-} manager
+    withManager (httpLbs {-hi-}requestWithAuth{-/hi-})
 
 
 showHelpAndExit :: IO ()
@@ -274,3 +294,8 @@ cabal run [nickname] [password]
 
 Your `X-RateLimit-Limit` should have raised to `5000`!
 Note it is not over `9000` thought.
+
+## Loops
+
+Now that we can send request, how can we send them as often as possible to be sure
+not to lose any event?
