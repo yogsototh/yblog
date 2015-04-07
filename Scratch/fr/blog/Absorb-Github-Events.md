@@ -295,7 +295,131 @@ cabal run [nickname] [password]
 Your `X-RateLimit-Limit` should have raised to `5000`!
 Note it is not over `9000` thought.
 
-## Loops
+## Waiting the right amount of time
 
-Now that we can send request, how can we send them as often as possible to be sure
-not to lose any event?
+To optimize the number of call we can make to the githup %api,
+we'll have to manage %http headers.
+What are the useful headers:
+
+~~~
+X-RateLimit-Remaining: 4999
+X-RateLimit-Reset: 1428149482
+Date: Sat, 04 Apr 2015 11:14:38 GMT
+ETag: 05502a61685deb37109b648ea2107135
+~~~
+
+So, to optimize the number of call we can make we should use
+the following number:
+
+~~~
+time to wait before next call in seconds:
+    t = (X-RateLimit-Reset - Date in epoch) / X-RateLimit-Remaining
+    max (t - time taken by last request, 0)
+~~~
+
+If we could make request instantaneously we should wait only for `t`.
+But as our request has taken time, it means we already waited this time.
+So if the request was longer than the time to wait,
+we should make the request as soon as possible.
+
+So most of informations we need are provided by the %http headers.
+We also need to measure how much time our request took.
+
+### Date & Time are Programmers Hell
+
+To make things harder to use github maliciously used
+different format for the header `Date` and `X-RateLimit-Reset`.
+
+But this shouldn't be a problem.
+We should use the [time](https://hackage.haskell.org/package/time) package.
+And here we enter in the great world of date type translations.
+From string or int to Time, etc...
+
+    ...
+    import Data.Time.Format (readTime)
+    import Data.Time.Clock.POSIX (getPOSIXTime,utcTimeToPOSIXSeconds)
+    ...
+    rfc822DateFormat :: String
+    rfc822DateFormat = "%a, %_d %b %Y %H:%M:%S %Z"
+    
+    epochFromString :: String -> Int
+    epochFromString = floor . utcTimeToPOSIXSeconds . readTime defaultTimeLocale rfc822DateFormat
+
+Now we can pass from a String representation to an epoch one.
+We also need to measure how much time our requests took.
+
+~~~ {.haskell}
+import System.CPUTime (getCPUTime)
+...
+time :: IO a -> IO (Double, a)
+time action = do
+    startTime <- getCPUTime
+    res <- action
+    endTime <- getCPUTime
+    return (fromIntegral (endTime - startTime)/1000000000,res)
+...
+getEvents user pass = do
+    (req_time, response) <- time (simpleHTTPWithUserAgent "https://api.github.com/events" user pass)
+    ...
+~~~
+
+Another important aspect is to pass the ETag each of each preceding request.
+For this it is time to refactor our code a bit to make it more readable.
+
+~~~ {.haskell}
+authHttpCall :: String -- ^ URL
+                -> String -- ^ User
+                -> String -- ^ Password
+                -> RequestHeaders -- ^ Headers
+                -> IO (Response LZ.ByteString)
+authHttpCall url user pass headers = do
+    r <- parseUrl url
+    let request = r {requestHeaders = headers }
+        requestWithAuth = applyBasicAuth (B.pack user) (B.pack pass) request
+    withManager (httpLbs requestWithAuth)
+
+httpGHEvents :: String -- ^ User
+                -> String -- ^ Password
+                -> Maybe B.ByteString -- ^ ETag if one
+                -> IO (Response LZ.ByteString)
+httpGHEvents user pass etag =
+    authHttpCall  "https://api.github.com/events" user pass headers
+    where
+        headers = ("User-Agent","HTTP-Conduit"):
+            maybe [] (\e -> [("If-None-Match",B.tail (B.tail e))]) etag
+~~~
+
+And then
+
+~~~ {.haskell}
+getEvents :: String             -- ^ Github username
+          -> String             -- ^ Github password
+          -> Maybe B.ByteString -- ^ ETag
+          -> IO ()
+getEvents user pass etag = do
+    -- Call /events on github
+    (req_time, response) <- time (httpGHEvents user pass etag)
+    if statusIsSuccessful (responseStatus response)
+        then do
+            let headers = responseHeaders response
+            -- If the server returned a date we use it
+            -- otherwise we use the local current time
+            serverDateEpoch <- case lookup "Date" headers of
+                                Nothing -> fmap round getPOSIXTime
+                                Just d -> return (epochFromString (B.unpack d))
+            let etagResponded = lookup "ETag" headers
+                remainingHeader = lookup "X-RateLimit-Remaining" headers
+                remaining = maybe 1 (read . B.unpack) remainingHeader
+                resetHeader = lookup "X-RateLimit-Reset" headers
+                reset = maybe 1 (read . B.unpack) resetHeader
+                timeBeforeReset = reset - serverDateEpoch
+                t = 1000000 * timeBeforeReset `div` remaining
+                timeToWaitIn_us = max 0 (t - floor (1000000 * req_time))
+            publish (responseBody response)
+            threadDelay timeToWaitIn_us
+            getEvents user pass etagResponded
+        else do
+            putStrLn "Something went wrong"
+            threadDelay 100000 -- 100ms
+            getEvents user pass etag
+~~~

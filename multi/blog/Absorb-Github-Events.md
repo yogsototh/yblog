@@ -361,11 +361,67 @@ time action = do
     return (fromIntegral (endTime - startTime)/1000000000,res)
 ...
 getEvents user pass = do
-    (req_time, response) <- time $ simpleHTTPWithUserAgent "https://api.github.com/events" user pass
+    (req_time, response) <- time (simpleHTTPWithUserAgent "https://api.github.com/events" user pass)
     ...
 ~~~
 
 Another important aspect is to pass the ETag each of each preceding request.
+For this it is time to refactor our code a bit to make it more readable.
 
+~~~ {.haskell}
+authHttpCall :: String -- ^ URL
+                -> String -- ^ User
+                -> String -- ^ Password
+                -> RequestHeaders -- ^ Headers
+                -> IO (Response LZ.ByteString)
+authHttpCall url user pass headers = do
+    r <- parseUrl url
+    let request = r {requestHeaders = headers }
+        requestWithAuth = applyBasicAuth (B.pack user) (B.pack pass) request
+    withManager (httpLbs requestWithAuth)
+
+httpGHEvents :: String -- ^ User
+                -> String -- ^ Password
+                -> Maybe B.ByteString -- ^ ETag if one
+                -> IO (Response LZ.ByteString)
+httpGHEvents user pass etag =
+    authHttpCall  "https://api.github.com/events" user pass headers
+    where
+        headers = ("User-Agent","HTTP-Conduit"):
+            maybe [] (\e -> [("If-None-Match",B.tail (B.tail e))]) etag
 ~~~
+
+And then
+
+~~~ {.haskell}
+getEvents :: String             -- ^ Github username
+          -> String             -- ^ Github password
+          -> Maybe B.ByteString -- ^ ETag
+          -> IO ()
+getEvents user pass etag = do
+    -- Call /events on github
+    (req_time, response) <- time (httpGHEvents user pass etag)
+    if statusIsSuccessful (responseStatus response)
+        then do
+            let headers = responseHeaders response
+            -- If the server returned a date we use it
+            -- otherwise we use the local current time
+            serverDateEpoch <- case lookup "Date" headers of
+                                Nothing -> fmap round getPOSIXTime
+                                Just d -> return (epochFromString (B.unpack d))
+            let etagResponded = lookup "ETag" headers
+                remainingHeader = lookup "X-RateLimit-Remaining" headers
+                remaining = maybe 1 (read . B.unpack) remainingHeader
+                resetHeader = lookup "X-RateLimit-Reset" headers
+                reset = maybe 1 (read . B.unpack) resetHeader
+                timeBeforeReset = reset - serverDateEpoch
+                t = 1000000 * timeBeforeReset `div` remaining
+                timeToWaitIn_us = max 0 (t - floor (1000000 * req_time))
+            publish (responseBody response)
+            threadDelay timeToWaitIn_us
+            getEvents user pass etagResponded
+        else do
+            putStrLn "Something went wrong"
+            threadDelay 100000 -- 100ms
+            getEvents user pass etag
 ~~~
