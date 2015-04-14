@@ -425,3 +425,17 @@ getEvents user pass etag = do
             threadDelay 100000 -- 100ms
             getEvents user pass etag
 ~~~
+
+### Pagination
+
+parse the `Link` header:
+
+~~~
+<https://api.github.com/events?page=9>; rel="next",
+<https://api.github.com/events?page=10>; rel="last",
+<https://api.github.com/events?page=1>; rel="first",
+<https://api.github.com/events?page=7>; rel="prev"
+~~~
+
+So we should split with `,` then with `;`
+and take what is in between `<` and `>`.
