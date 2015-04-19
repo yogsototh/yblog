@@ -428,14 +428,30 @@ getEvents user pass etag = do
 
 ### Pagination
 
-parse the `Link` header:
+From the github specification we should follow the %http header `Link`.
+But in reality concerning all events, we should only rely on the `page` param.
 
-~~~
-<https://api.github.com/events?page=9>; rel="next",
-<https://api.github.com/events?page=10>; rel="last",
-<https://api.github.com/events?page=1>; rel="first",
-<https://api.github.com/events?page=7>; rel="prev"
-~~~
+So for now I won't parse the header.
 
-So we should split with `,` then with `;`
-and take what is in between `<` and `>`.
+Notice, parsing in Haskell is really great, so I may add a section in the end.
+
+
+## Refactoring (one step back)
+
+Now our code start to have function with more than 30 lines.
+Which is really a _lot_ in Haskell.
+
+Furthermore the way github provide its events is really awful when you
+want to get them all.
+Compare this to the twitter and Facebook method.
+
+> 1. Read the first page. Remember the first id and the last id of the page.
+> 2. Read page 2:
+>   - check page 2 contains the last id of page 1
+>     if not, it means whether no event was triggered between reading page 1 and page 2 or there was more than 30 events triggered.
+>     So check if page 2 contains the first id of page 1.
+>     If not it means whether no event was triggered or there was more than 60 events triggered (**AND THERE IS NO FUCKING WAY TO KNOW FOR SURE!!!!!**)
+>     So we choose we consider no event was triggered as it is by far the most probable.
+> 3. Continue until page 10.
+> 
+> 4. Start at page 1 to page 10 until reaching the first id of the first page of the latest RUN (operation from 1 to 3).
