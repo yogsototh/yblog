@@ -1972,7 +1972,7 @@ en: Example:
 fr: Exemple:
 
 ~~~~~~ {.haskell}
-data Complex = Num a => Complex a a
+data Complex a = Num a => Complex a a
 ~~~~~~
 
 en: Also you can use the record syntax:
@@ -1995,7 +1995,7 @@ en: Example:
 fr: Exemple:
 
 ~~~~~~ {.haskell}
-data Complex = Num a => Complex { real :: a, img :: a}
+data Complex a = Num a => Complex { real :: a, img :: a}
 c = Complex 1.0 2.0
 z = Complex { real = 3, img = 4 }
 real c ⇒ 1.0

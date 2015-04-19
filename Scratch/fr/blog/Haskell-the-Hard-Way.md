@@ -1509,7 +1509,7 @@ Généralement on utilise le même nom pour le DatatTypeName et le DataTypeConst
 Exemple:
 
 ~~~~~~ {.haskell}
-data Complex = Num a => Complex a a
+data Complex a = Num a => Complex a a
 ~~~~~~
 
 Vous pouvez également utiliser cette syntaxe:
@@ -1528,7 +1528,7 @@ En outre, vous pouvez utiliser une autre ordre lorsque vous définissez des vale
 Exemple:
 
 ~~~~~~ {.haskell}
-data Complex = Num a => Complex { real :: a, img :: a}
+data Complex a = Num a => Complex { real :: a, img :: a}
 c = Complex 1.0 2.0
 z = Complex { real = 3, img = 4 }
 real c ⇒ 1.0
