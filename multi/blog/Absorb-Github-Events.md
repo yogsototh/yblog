@@ -64,7 +64,7 @@ Let's try it.
 One of the goal of this series being not only to handle events in real time
 but to be able to handle a tremendous number of events in real time.
 The actual amount of data provided by github is quite reasonable.
-But in general you'll want to optimize things to be able to absorb a full firehose of informations.
+But in general you'll want to optimize things to be able to absorb a full firehose of events.
 
 For example, twitter can provide more than 20000 events per seconds.
 The twitter firehose forces you to use a single entry point.
@@ -81,12 +81,53 @@ It is kind of the worse of facebook and twitter.
 You have to ask yourself for data.
 But if you want to receive more data you'll have to find a way to synchronize the ETAG.
 
-TODO: explain why Haskell, why conduit and apparently difficult path.
+So, now the choice of the weapon we'll use to handle that.
+It is 2015 and it is out of question to use low-level and/or error prone technology.
+But speed will still be an important factor.
+
+If like me you don't consider Java as a high-level programming language.
+And if you look at benchmarks, you'll see that Python is slow.
+Then the choice belong mostly in functional programming languages:
+
+- javascript
+- Clojure
+- Haskell
+- Common Lisp
+- OCaml
+
+While javascript is by far the most popular choice, it is also
+the worst of the list in term of language quality.
+
+As the choice is mine, I'll then choose Haskell.
+Haskell provide a really great control,
+a lot of error will be discarded naturally by the language properties.
+Concurrent and parallel programming will be _very_ easy to achieve.
+
+The next article will certainly use clojure.
 
 ## Initialize your environment.
 
-...
+If you are on Mac or on Ubuntu you should install Haskell with
+this script:
 
+~~~
+TODO
+~~~
+
+Then create a simple new project:
+
+~~~
+cabal new muraine
+~~~
+
+Or if you don't want to type things, just clone my repository.
+There will be a branch for each step.
+
+~~~
+TODO: git clone ...
+TODO: git checkout step1
+...
+~~~
 
 ## First step: %http requests
 
@@ -186,6 +227,8 @@ Check https://developer.github.com for other possible causes.
 Damn, github want us to add a `User-Agent` header.
 But the library we use doesn't add one by default.
 We should add it manually.
+Don't be afraid by the syntax.
+It might be ugly, but it does a great job at keeping concerns separated.
 
 ~~~ {.haskell}
 {-# LANGUAGE OverloadedStrings #-}
@@ -445,13 +488,153 @@ Furthermore the way github provide its events is really awful when you
 want to get them all.
 Compare this to the twitter and Facebook method.
 
-> 1. Read the first page. Remember the first id and the last id of the page.
-> 2. Read page 2:
->   - check page 2 contains the last id of page 1
->     if not, it means whether no event was triggered between reading page 1 and page 2 or there was more than 30 events triggered.
->     So check if page 2 contains the first id of page 1.
->     If not it means whether no event was triggered or there was more than 60 events triggered (**AND THERE IS NO FUCKING WAY TO KNOW FOR SURE!!!!!**)
->     So we choose we consider no event was triggered as it is by far the most probable.
-> 3. Continue until page 10.
-> 
-> 4. Start at page 1 to page 10 until reaching the first id of the first page of the latest RUN (operation from 1 to 3).
+Each time we will read one page, we should take care not to add an already present event.
+
+So we should remember the first and last id of the preceding page.
+More than that we should also remember the very first id of the page 1.
+
+~~~ {.haskell}
+Data CallInfo = CallInfo { firstIdPageOne :: Maybe Text
+                         , searchFirstId :: Maybe Text
+                         , precedingPageFirstId :: Maybe Text
+                         , precedingPageLastId :: Maybe Text
+                         , currentPage :: Int
+                         }
+~~~
+
+So the algorithm to read become error prone very fast.
+I am not confident enough to use the date on the events as I am not sure
+the are aggregated in the same time.
+
+So we are contrived to believe there is less than 30 events between two call.
+
+Hypothesis: between two call less than one page of events (30) occurs
+
+Even with such an hypothesis the code is complex and bug prone.
+
+~~~ {.haskell}
+data CallInfo = CallInfo { _user            :: String             -- ^ Github username
+                         , _pass            :: String             -- ^ Github password
+                         , _etag            :: Maybe B.ByteString -- ^ ETag
+                         , _timeToWait      :: Int                -- ^ Time to wait in micro seconds
+                         , _firstId         :: Maybe Text         -- ^ First Event Id
+                         , _lastId          :: Maybe Text         -- ^ Last  Event Id
+                         , _searchedFirstId :: Maybe Text         -- ^ First Event Id searched
+                         , _page            :: Int                -- ^ Page
+                         } deriving (Show)
+
+-- | given an HTTP response compute the next CallInfo and also publish events
+-- Beware, this is an heuristic with the hypothesis that there is no more than
+-- one page to download, by one page.
+getCallInfoFromResponse :: CallInfo -> Response LZ.ByteString -> Double -> IO CallInfo
+getCallInfoFromResponse callInfo response req_time = do
+    print callInfo
+    if statusIsSuccessful (responseStatus response)
+        then do
+            let headers = responseHeaders response
+            t <- getTimeToWaitFromHeaders headers
+            let
+              -- Time to wait is time between two HTTP call minus the time
+              -- the last HTTP call took to answer
+              timeToWaitIn_us = max 0 (t - floor (1000000 * req_time))
+              events = decode (responseBody response)
+              nextFirstId = if _page callInfo == 1 || isNothing (_firstId callInfo)
+                              then getFirstId events
+                              else _firstId callInfo
+              nextLastId = getLastId events
+              containsSearchedFirstId = containsId (_searchedFirstId callInfo) events
+              etagResponded = lookup "ETag" headers
+              -- Read next pages until we reach the old first ID of the first page
+              -- of the preceeding loop
+              -- return a new page if the first ID wasn't found
+              nextPage = if containsSearchedFirstId || (_page callInfo >= 10)
+                          then 1
+                          else _page callInfo + 1
+              nextSearchedFirstId = if containsSearchedFirstId || (_page callInfo >= 10)
+                                      then nextFirstId
+                                      else _searchedFirstId callInfo
+            publish events (_searchedFirstId callInfo) (_lastId callInfo)
+            return (callInfo { _firstId = nextFirstId
+                             , _lastId = nextLastId
+                             , _page = nextPage
+                             , _etag = etagResponded
+                             , _timeToWait = timeToWaitIn_us
+                             , _searchedFirstId = nextSearchedFirstId
+                             })
+        else
+            putStrLn (if notModified304 == responseStatus response
+                        then "Nothing changed"
+                        else "Something went wrong")
+            return callInfo
+~~~
+
+## Rant
+
+So this code is working most of the time.
+And if we get more than 30 events between two call, the only issue is that
+we lose some events.
+From experience, having more than 30 events between two call is quite a rare event.
+
+But seriously. The github API is a pain to get all events.
+
+> It is nearly impossible using only github event _ids_ to get all events for sure.
+
+Even if they don't want to provide a streaming or a push API,
+they could make a system using the ETAG or another system
+to be sure we don't miss any events nor we don't publish an event twice in the system.
+
+This system is completely impossible to scale.
+Seriously, how could you do something serious with it?
+What if the number of event double for example?
+
+So please, github. Could you provide a better way to handle your _firehose_?
+
+
+Another problem.
+
+When twitter send a retweet, we get all necessary information to display and analyze this retweet.
+It contains not only the information for the retweet but also the complete original tweet.
+
+Here, we can't get very useful information for example.
+If we want to analyze the languages on github in real time.
+Our only witness is contained in the extensions in the files commited.
+But for our great despair, github events don't contain them.
+
+To get them you have to make another call to the API on the commit id itself.
+Which is a shame, as we only have 5000 event per hour at our disposal.
+And if we make less than 1 call by second we enter in the case
+where more than 30 events will occurs between two calls.
+
+
+## Exporting data to something useful
+
+Part of the problem is to think as if everything was stream.
+
+Functional programming fits this spirit.
+So for all the system to work, everything should fit the "streaming" convention.
+
+In particular, we should create a stream of events that will be used later.
+
+So there are a lot of pub/sub system.
+At work I use kafka.
+It is great, but for this article I'll use [NATS](http://nats.io).
+The first reason is that I am curious.
+Another reason is to make my code more portable.
+The Haskell's kafka libraries are binded to a `C` one.
+On the other hand, the `nats-queue` package doesn't have such an external dependency.
+Furthermore, NATS code wasn't modified for about one year.
+Which can mean two things.
+
+1. Nobody care about it anymore,
+2. The code is really stable.
+
+In the hope for the second option, I'm eager to give it a try.
+
+
+So a queue system is quite simple.
+Many producers write in a queue.
+Many consumer read the queue.
+Each message should be consumed only once between all consumer.
+
+Don't worry, if you love Kafka, a future article will talk about it.
+
