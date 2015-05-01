@@ -19,7 +19,7 @@ menupriority: 4
 
 ## En quelques mots
 
-Je suis un passioné. Passioné par :
+Je suis un passioné. Passionné par :
 
   - L'informatique scientifique : [j'ai un doctorat en Informatique](http://yann.esposito.free.fr/recherche.php?lang=fr) ;
   - Programmation: j'ai développé [deux applications scientifiques](http://yann.esposito.free.fr/logiciels.php) ainsi que des [éconimiseurs d'écran pour Mac](/Scratch/fr/softwares), [une application iOS](http://ypassword.espozito.com) and pas mal d'autres choses; [voir mon github](http://github.com/yogsototh)
