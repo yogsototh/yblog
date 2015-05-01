@@ -1,3 +1,5 @@
 #!/usr/bin/env zsh
 
-cabal run publish && ./fastpublish.sh
+./.cabal-sandbox/bin/yblog clean && \
+./.cabal-sandbox/bin/yblog build && \
+./fastpublish.sh
