@@ -14,23 +14,23 @@ blogimage("main.png","Main image")
 <div class="intro">
 
 
-%tlal
+%tlal Comment absorber des pieuvres en temps réel.
 
 This article should be the first of a series of articles.
-The goal of this series of articles is to display event in real time.
+The goal of this series of articles is to show how to display
+a dashboard about a bunch of events in real time.
 For this you'll need many different parts:
 
 - You should first absorbs the events
 - then you might need to enrich them,
-- afterward, you'll need to aggregate,
+- afterward, you'll need to aggregate them,
 - you also need to give a way to question the aggregates via an %api,
 - and finally you'll need to provide a nice dashboard using the %api
 
 So let's start by a way to get all github events in realtime.
 
 For this series we'll use the events provided by [github][github].
-The Eel ("Muraine" in French) is one of the few octopussy predator.
-Which is the github mascot.
+The Eel ("Muraine" in French) is one of the few octopus predator.
 
 </div>
 
@@ -38,11 +38,13 @@ Which is the github mascot.
 
 ## The concepts
 
-Actually all events are accessible via the [`https://api.github.com/events`](https://api.github.com/events) %url.
-During standard time and if you are logged you can call this %url about 5000 times per hour.
-Which is more than one times by second.
+Actually all events are accessible via the
+[`https://api.github.com/events`](https://api.github.com/events) %url.
+When logged you are generally allowed to call this %url about 5000 times per hour.
+A bit more than one time per second.
+During my tests I had less than 20 events per second.
 
-During some events, github might lower this max number of calls.
+github can change the max number of call per hour dynamically.
 So this information is provided in the header of the %http response.
 
 Mainly the algorithm will be:
@@ -56,12 +58,12 @@ Mainly the algorithm will be:
 >    Compute how much time to wait before our next call.
 > 3. Analyze the data and put them somewhere safe where they'll could be processed next.
 
-Apparently it seems easy.
+Apparently it seems easy (it won't).
 Let's try it.
 
 One of the goal of this series being not only to handle events in real time
 but to be able to handle a tremendous number of events in real time.
-The actual amount of data provided by github is quite reasonable.
+The actual amount of data provided by github is quite low.
 But in general you'll want to optimize things to be able to absorb a full firehose of events.
 
 For example, twitter can provide more than 20000 events per seconds.
@@ -70,14 +72,15 @@ More than that, you have to deal with a single core to download the data and par
 To be able to absorb such amount of data you generally don't parse completely the data.
 
 Another provider is facebook.
-Their approach is much nicer.
+Their approach is much nicer for the developer.
 You declare an %https entry point and they send you the data by making `POST` calls.
-It is then much easier to dispatch the packet between multiple host using `haproxy` for example.
+It is then much easier to dispatch the packet between multiple hosts
+using a load balancer such as `haproxy` for example.
 
 Concerning github, I am not fond of their method to retrieve their data.
 It is kind of the worse of facebook and twitter.
-You have to ask yourself for data.
-But if you want to receive more data you'll have to find a way to synchronize the ETAG.
+Worse than that, if the number of events per second is superior to some threshold
+you start losing events!
 
 So, now the choice of the weapon we'll use to handle that.
 It is 2015 and it is out of question to use low-level and/or error prone technology.
@@ -97,9 +100,12 @@ While javascript is by far the most popular choice, it is also
 the worst of the list in term of language quality.
 
 As the choice is mine, I'll then choose Haskell.
-Haskell provide a really great control,
-a lot of error will be discarded naturally by the language properties.
+Haskell provide a really great control, a lot of error will be discarded
+naturally by the language properties.
 Concurrent and parallel programming will be _very_ easy to achieve.
+
+Don't forget one of the goal is also to provide an example tool.
+But in the real world, you also want to be able to handle thousands of events per second.
 
 The next article will certainly use clojure.
 
@@ -109,7 +115,9 @@ If you are on Mac or on Ubuntu you should install Haskell with
 this script:
 
 ~~~
-TODO
+curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
+chmod ugo+x install-haskell.sh
+sudo ./install-haskell $USER
 ~~~
 
 Then create a simple new project:
@@ -182,6 +190,51 @@ cabal run
 ~~~
 
 Now you should receive some %html.
+
+Let's explain each part very slowly:
+
+The first line declare the current file as a module named `Main`.
+Then we import some functions from other modules.
+From the module `Network.HTTP.Conduit` we import the function `simpleHttp`.
+We import the module `Data.ByteString.Lazy.Char8` but as its name is too long
+we'll reference it as `L`. And now we'll could use `L.funcname`.
+
+then the line:
+
+~~~ {.haskell}
+main :: IO ()
+~~~
+
+Is a type declaration for the `main` variable name.
+Here `main` is of type `IO ()` which means, that we'll do some impure stuff
+and will return nothing (the `()` part).
+
+Finally we define the main function:
+
+~~~ {.haskell}
+main = do
+    response <- simpleHttp "http://www.google.com"
+    L.putStrLn response
+~~~
+
+The `do` is a syntactical sugar in Haskell.
+It means that for each of the following "line" at the end
+an action will be performed.
+It is a bit like modifying the end of line behaviour.
+It is the way of Haskell to make explicit the part where we will use
+effects and where we will be completely pure[^1].
+
+In the first line we call the function `simpleHttp` with the url of google
+as argument. The function return an `IO Response`.
+So instead of writing `response = simpleHttp ...` we use the `<-` which
+will take only the `Response` of the `IO Response`.
+and now `response` is a variable of type `Response`.
+
+In the next line we simply print the `response`.
+
+[^1]: The reality is quite more complicated than that.
+    But hey, try to explain IO monad in less than 100 words...
+
 It is now time to receive some github events.
 Simply udpate the %url:
 
@@ -368,16 +421,17 @@ we should make the request as soon as possible.
 So most of informations we need are provided by the %http headers.
 We also need to measure how much time our request took.
 
-### Date & Time are Programmers Hell
+### Date & Time Hell
 
 To make things harder to use github maliciously used
 different format for the header `Date` and `X-RateLimit-Reset`.
 
-But this shouldn't be a problem.
+This shouldn't be a big problem to resolve.
 We should use the [time](https://hackage.haskell.org/package/time) package.
 And here we enter in the great world of date type translations.
 From string or int to Time, etc...
 
+~~~ {.haskell}
     ...
     import Data.Time.Format (readTime)
     import Data.Time.Clock.POSIX (getPOSIXTime,utcTimeToPOSIXSeconds)
@@ -387,6 +441,7 @@ From string or int to Time, etc...
     
     epochFromString :: String -> Int
     epochFromString = floor . utcTimeToPOSIXSeconds . readTime defaultTimeLocale rfc822DateFormat
+~~~
 
 Now we can pass from a String representation to an epoch one.
 We also need to measure how much time our requests took.
