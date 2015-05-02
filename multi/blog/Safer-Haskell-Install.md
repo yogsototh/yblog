@@ -17,9 +17,7 @@ en: %tldr Install Haskell (OS X and Linux only) by pasting the following in your
 fr: %tlal Pour installer Haskell (OS X et Linux) copiez/collez les lignes suivante dans un terminal :
 
 ~~~
-curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
-chmod ugo+x install-haskell.sh
-sudo ./install-haskell.sh $USER
+curl https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh | sudo zsh
 ~~~
 
 en: _update (28 march 2015): I now use [Haskell LTS][lts] instead of a random stackage version._
@@ -63,9 +61,7 @@ ask gently to the package manager to port its package to [stackage][stackage].
 So to install copy/paste the following three lines in your terminal:
 
 ~~~
-curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
-chmod ugo+x install-haskell.sh
-sudo ./install-haskell.sh $USER
+curl https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh | sudo zsh
 ~~~
 
 ## How?
@@ -101,7 +97,7 @@ The actual cabal hell problem is more a human problem than a tool problem.
 This is a bias in most programmer to prefer resolve social issues using tools.
 There is nothing wrong with hackage and cabal.
 But for a package manager to work in a static typing language as Haskell,
-packages much work all together.
+packages must work all together.
 This is a great strength of static typed languages that they ensure that a big
 part of the API between packages are compatible.
 But this make the job of package managing far more difficult than in dynamic languages.
