@@ -176,7 +176,7 @@ Then edit the `Main.hs` file such that it contains this:
 ~~~ {.haskell}
 module Main where
 
-import           Network.HTTP.Conduit (simpleHttp)
+import Network.HTTP.Conduit (simpleHttp)
 import qualified Data.ByteString.Lazy.Char8 as L
 
 main :: IO ()
@@ -328,7 +328,8 @@ main = do
 The `responseHeaders response` will return a list of `Header` and
 a `Header` is a couple `(header_name,value)`.
 
-So `mapM_` will execute a function over a list, here the list of `Headers`.
+In an IO context, `mapM_` will execute an IO action over a list,
+here the list of `Headers`.
 For each header we execute `showHeader`.
 
 `showHeader` take a `Header` and print it on screen.
@@ -489,7 +490,15 @@ httpGHEvents user pass etag =
             maybe [] (\e -> [("If-None-Match",B.tail (B.tail e))]) etag
 ~~~
 
-And then
+We had created a simple function `httpGHEvents` that take as parameters:
+
+- a github user name
+- its associated github password
+- an Etag
+
+And make a call to the github api which will retrieve the github events.
+
+Now here is the function that make a loop at getting events:
 
 ~~~ {.haskell}
 getEvents :: String             -- ^ Github username
@@ -507,11 +516,9 @@ getEvents user pass etag = do
             serverDateEpoch <- case lookup "Date" headers of
                                 Nothing -> fmap round getPOSIXTime
                                 Just d -> return (epochFromString (B.unpack d))
-            let etagResponded = lookup "ETag" headers
-                remainingHeader = lookup "X-RateLimit-Remaining" headers
-                remaining = maybe 1 (read . B.unpack) remainingHeader
-                resetHeader = lookup "X-RateLimit-Reset" headers
-                reset = maybe 1 (read . B.unpack) resetHeader
+            let etagResponded   = lookup "ETag" headers
+                remaining       = getValue "X-RateLimit-Remaining" headers
+                reset           = getValue "X-RateLimit-Reset" headers
                 timeBeforeReset = reset - serverDateEpoch
                 t = 1000000 * timeBeforeReset `div` remaining
                 timeToWaitIn_us = max 0 (t - floor (1000000 * req_time))
@@ -522,7 +529,29 @@ getEvents user pass etag = do
             putStrLn "Something went wrong"
             threadDelay 100000 -- 100ms
             getEvents user pass etag
+  where
+    getValue name headers = maybe 1 (maybe 1 $ read . B.unpack) headerStr
+        where headerStr = lookup name headers
+              readMaybe = case reads of
+                            [(x,"")] -> Just x
+                            _ -> Nothing
 ~~~
+
+TODO: CHECK THE CODE
+
+While it might feel like a wall of code, in reality things are quite clear.
+
+1. We call github to receive events using our last Etag.
+2. In case of error we wait 100ms and make the call again
+3. In case of success, we read the informations from the header
+   to compute the time to wait before the next call
+4. we wait
+5. We make the next call
+
+The technical part is only the one which try to compute the time to wait.
+And the code do many type translation (from text to int or to date).
+
+The `getValue` function declared only locally, try to get the value of the header. If the header is not set, then it returns 1.
 
 ### Pagination
 
