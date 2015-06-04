@@ -500,7 +500,7 @@ main = do
   intro
   project <- ask "project name"
   ioassert (checkProjectName project)
-       "Use only letters, numbers, spaces ans dashes please"
+       "Use only letters, numbers, spaces and dashes please"
   let projectname = projectNameFromString project
       modulename = capitalize project
 ```
@@ -853,7 +853,7 @@ Generally, for simple request, we should use:
 
 ``` haskell
 do
-    body <- simpleHTTP "https://api.github.com/search/users?q="++email
+    body <- simpleHTTP ("https://api.github.com/search/users?q=" ++ email)
     ...
 ```
 
@@ -940,7 +940,7 @@ main = do
         modulename  = capitalize project
     in_author       <- ask "name" name
     in_email        <- ask "email" email
-    {-hi-}ghUserHint      <- if (maybe "" id email) /= in_email{-/hi-}
+    {-hi-}ghUserHint      <- if maybe "" id email /= in_email{-/hi-}
                             {-hi-}then getGHUser in_email{-/hi-}
                             {-hi-}else takeMVar earlyhint{-/hi-}
     in_ghaccount    <- ask "github account" ghUserHint
