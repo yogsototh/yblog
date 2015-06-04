@@ -661,7 +661,7 @@ main = do
     intro
     project <- ask "project name"
     ioassert (checkProjectName project)
-             "Use only letters, numbers, spaces ans dashes please"
+             "Use only letters, numbers, spaces and dashes please"
     let projectname = projectNameFromString project
         modulename  = capitalize project
     {-hi-}in_author{-/hi-}       <- ask "name"
@@ -939,7 +939,7 @@ main = do
             {-hi-}email{-/hi-}
     project <- ask "project name" Nothing
     ioassert (checkProjectName project)
-             "Use only letters, numbers, spaces ans dashes please"
+             "Use only letters, numbers, spaces and dashes please"
     let projectname = projectNameFromString project
         modulename  = capitalize project
     in_author       <- ask "name" name
