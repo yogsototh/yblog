@@ -25,7 +25,7 @@ Some mandatory imports
 > import           Hakyll
 > import           Data.Map		   (Map)
 > import qualified Data.Map		as  M
-> import           Data.Monoid	   ((<>))
+> import           Data.Monoid	   (mconcat,(<>))
 > import           Config          (langs,fstlang)
 > import           Data.List       (isPrefixOf)
 
@@ -93,22 +93,21 @@ Next the dictionary containing all traductions of standards templates.
 >           toTrad (k,tradList) =
 >               (k, Trad (M.fromList
 >                 (zipWith (\lang trad  -> (L lang,trad)) langs tradList)))
->
-> --------------------------------------------------------------------------------
-> tradsContext :: Context a
-> tradsContext = functionField "trad" $ \args item -> do
->                 k <- getArgs args
->                 Trad langmap <- getValue k trads
->                 lang <- itemLang item
->                 getValue (L lang) langmap
->                 where
->                   getArgs [k] = return k
->                   getArgs _   = fail "Wrong arg for trad"
->                   getValue key hmap = case M.lookup key hmap of
->                                         Just value -> return value
->                                         Nothing -> fail "Traduction not found"
 
 This context will contain all links to the other languages
+
+> tradsContext :: Context a
+> tradsContext = mconcat (map addTrad (M.keys trads))
+>   where
+>     addTrad :: String -> Context a
+>     addTrad name =
+>       field name $ \item -> do
+>           lang <- itemLang item
+>           case M.lookup name trads of
+>               Just (Trad lmap) -> case M.lookup (L lang) lmap of
+>                           Just tr -> return tr
+>                           Nothing -> return "NO TRANSLATION"
+>               Nothing -> return ("NO TRANSLATION FOR " ++ name)
 
 > --------------------------------------------------------------------------------
 > otherLanguageLinksContext :: Context a
