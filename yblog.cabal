@@ -17,7 +17,7 @@ cabal-version:       >=1.8
 
 executable yblog
   main-is:           site.hs
-  ghc-options:       -O2 -Wall
+  ghc-options:       -O -Wall
   -- other-modules:
   build-depends:       base         >= 4.5
                      , containers   >= 0.4
