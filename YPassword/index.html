@@ -1,28 +1,12 @@
 <html>
-    <head>
-        <title>Redirect to the right page.</title>
-        <meta http-equiv="refresh" content="0;url=http://ypassword.espozito.com">
-        <style>
-            body {
-                font: sans-serif;
-                color: #333333;
-                font-size: 24px;
-                position: absolute;
-                text-align: center;
-                font-weight: bold;
-                top: 50%;
-                left: 50%;
-                width: 460px;
-                height: 100px;
-                margin-left: -230px;
-                margin-top: -50px;
-                line-height: 2em;
-            }
-            a,a:hover,a:visited,a:active { color: #C53; }
-
-        </style>
-    </head>
-    <body>
-        <p>You should be redirected to <a href="http://ypassword.espozito.com">http://ypassword.espozito.com</a></p>
-    </body>
-</HTML>
+<head>
+<script src="elm.js"></script>
+<style>html,body{margin:0;padding:0;border:none; font-family: Futura, sans-serif}</style>
+</head>
+<body>
+<div id="elm-main"></div>
+<script type="text/javascript">
+Elm.fullscreen(Elm.YPassword, {});
+</script>
+</body>
+</html>
