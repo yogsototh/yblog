@@ -1,6 +1,7 @@
 <html>
 <head>
-<script src="elm.js"></script>
+<meta charset="UTF-8">
+<title>YPassword</title>
 <style>
 html, head, body { padding:0; margin:0; }
 body { font-family: calibri, helvetica, arial, sans-serif; }
@@ -9,12 +10,11 @@ a:visited { text-decoration: none; }
 a:active { text-decoration: none; }
 a:hover { text-decoration: underline; color: rgb(234,21,122); }
 html,body { height: 100%; margin: 0px; }
+input { height: auto !important; }
 </style>
+<script src="elm.js"></script>
 </head>
 <body>
-<div id="elm-main"></div>
-<script type="text/javascript">
-Elm.fullscreen(Elm.YPassword, {});
-</script>
+<script type="text/javascript">var runningElmModule = Elm.fullscreen(Elm.YPassword);</script>
 </body>
 </html>
