@@ -15922,13 +15922,49 @@ Elm.YPassword.make = function (_elm) {
    };
    var masterContent = $Signal.mailbox($Graphics$Input$Field.noContent);
    var domainContent = $Signal.mailbox($Graphics$Input$Field.noContent);
+   var nbMailbox = $Signal.mailbox(0);
+   var nbDropdown = A2($Graphics$Input.dropDown,
+   $Signal.message(nbMailbox.address),
+   _L.fromArray([{ctor: "_Tuple2"
+                 ,_0: "0"
+                 ,_1: 0}
+                ,{ctor: "_Tuple2",_0: "1",_1: 1}
+                ,{ctor: "_Tuple2",_0: "2",_1: 2}
+                ,{ctor: "_Tuple2",_0: "3",_1: 3}
+                ,{ctor: "_Tuple2",_0: "4",_1: 4}
+                ,{ctor: "_Tuple2"
+                 ,_0: "5"
+                 ,_1: 5}]));
    var fmtMailbox = $Signal.mailbox("base64");
+   var fmtDropdown = A2($Graphics$Input.dropDown,
+   $Signal.message(fmtMailbox.address),
+   _L.fromArray([{ctor: "_Tuple2"
+                 ,_0: "base64"
+                 ,_1: "base64"}
+                ,{ctor: "_Tuple2"
+                 ,_0: "hex"
+                 ,_1: "hex"}]));
    var lenMailbox = $Signal.mailbox(10);
+   var lenDropdown = A2($Graphics$Input.dropDown,
+   $Signal.message(lenMailbox.address),
+   _L.fromArray([{ctor: "_Tuple2"
+                 ,_0: "10"
+                 ,_1: 10}
+                ,{ctor: "_Tuple2"
+                 ,_0: "27"
+                 ,_1: 27}
+                ,{ctor: "_Tuple2"
+                 ,_0: "40"
+                 ,_1: 40}]));
    var makePass = function (m) {
       return function () {
          var sha1 = $Sha.createHash("sha1");
-         var concatenated = A2($Basics._op["++"],
+         var s_concatenated = _U.cmp(m.nb,
+         0) > 0 ? A2($Basics._op["++"],
          m.master.string,
+         $Basics.toString(m.nb)) : m.master.string;
+         var concatenated = A2($Basics._op["++"],
+         s_concatenated,
          m.domain.string);
          var hash = A3($Sha.update,
          concatenated,
@@ -15960,9 +15996,13 @@ Elm.YPassword.make = function (_elm) {
                case "MasterChanged":
                return _U.replace([["master"
                                   ,action._0]],
+                 m);
+               case "NbChanged":
+               return _U.replace([["nb"
+                                  ,action._0]],
                  m);}
             _U.badCase($moduleName,
-            "between lines 56 and 61");
+            "between lines 60 and 66");
          }();
          return _U.replace([["pass"
                             ,makePass(tmp)]],
@@ -15991,22 +16031,22 @@ Elm.YPassword.make = function (_elm) {
       return $Graphics$Element.width(basicWidth)(A4($Graphics$Input$Field.password,
       yStyle(18),
       $Signal.message(masterContent.address),
-      "Fucking Master Password",
+      "Master Password",
       fieldContent));
    };
-   var view = F2(function (m,_v5) {
+   var view = F2(function (m,_v6) {
       return function () {
-         switch (_v5.ctor)
+         switch (_v6.ctor)
          {case "WindowSizeChanged":
-            switch (_v5._0.ctor)
+            switch (_v6._0.ctor)
               {case "_Tuple2":
                  return A2($Graphics$Element.color,
                    $Color.lightGrey,
                    A4($Graphics$Element.container,
                    A2($Basics.max,
-                   _v5._0._0,
+                   _v6._0._0,
                    basicWidth),
-                   A2($Basics.max,_v5._0._1,430),
+                   A2($Basics.max,_v6._0._1,430),
                    $Graphics$Element.middle,
                    A2($Graphics$Element.flow,
                    $Graphics$Element.down,
@@ -16024,35 +16064,22 @@ Elm.YPassword.make = function (_elm) {
                                 10)
                                 ,A2($Graphics$Element.flow,
                                 $Graphics$Element.right,
-                                _L.fromArray([A2($Graphics$Input.dropDown,
-                                             $Signal.message(lenMailbox.address),
-                                             _L.fromArray([{ctor: "_Tuple2"
-                                                           ,_0: "10"
-                                                           ,_1: 10}
-                                                          ,{ctor: "_Tuple2"
-                                                           ,_0: "27"
-                                                           ,_1: 27}
-                                                          ,{ctor: "_Tuple2"
-                                                           ,_0: "40"
-                                                           ,_1: 40}]))
+                                _L.fromArray([$Graphics$Element.width(80)(lenDropdown)
                                              ,A2($Graphics$Element.spacer,
-                                             basicWidth - 2 * 100,
+                                             (basicWidth - 3 * 80) / 2 | 0,
                                              10)
-                                             ,A2($Graphics$Input.dropDown,
-                                             $Signal.message(fmtMailbox.address),
-                                             _L.fromArray([{ctor: "_Tuple2"
-                                                           ,_0: "base64"
-                                                           ,_1: "base64"}
-                                                          ,{ctor: "_Tuple2"
-                                                           ,_0: "hex"
-                                                           ,_1: "hex"}]))]))
+                                             ,$Graphics$Element.width(80)(fmtDropdown)
+                                             ,A2($Graphics$Element.spacer,
+                                             (basicWidth - 3 * 80) / 2 | 0,
+                                             10)
+                                             ,$Graphics$Element.width(80)(nbDropdown)]))
                                 ,A2($Graphics$Element.spacer,
                                 30,
                                 30)
                                 ,passwordView(m.pass)]))));}
               break;}
          _U.badCase($moduleName,
-         "between lines 91 and 108");
+         "between lines 102 and 121");
       }();
    });
    var initialState = {_: {}
@@ -16060,9 +16087,14 @@ Elm.YPassword.make = function (_elm) {
                       ,fmt: "base64"
                       ,len: 10
                       ,master: $Graphics$Input$Field.noContent
+                      ,nb: 0
                       ,pass: ""};
    var WindowSizeChanged = function (a) {
       return {ctor: "WindowSizeChanged"
+             ,_0: a};
+   };
+   var NbChanged = function (a) {
+      return {ctor: "NbChanged"
              ,_0: a};
    };
    var FormatChanged = function (a) {
@@ -16092,7 +16124,10 @@ Elm.YPassword.make = function (_elm) {
                                                 lenMailbox.signal)
                                                 ,A2($Signal.map,
                                                 FormatChanged,
-                                                fmtMailbox.signal)]));
+                                                fmtMailbox.signal)
+                                                ,A2($Signal.map,
+                                                NbChanged,
+                                                nbMailbox.signal)]));
    var main = A3($Signal.map2,
    view,
    A3($Signal.foldp,
@@ -16102,17 +16137,19 @@ Elm.YPassword.make = function (_elm) {
    A2($Signal.map,
    WindowSizeChanged,
    $Window.dimensions));
-   var Model = F5(function (a,
+   var Model = F6(function (a,
    b,
    c,
    d,
-   e) {
+   e,
+   f) {
       return {_: {}
              ,domain: b
              ,fmt: d
              ,len: c
              ,master: a
-             ,pass: e};
+             ,nb: e
+             ,pass: f};
    });
    _elm.YPassword.values = {_op: _op
                            ,Model: Model
@@ -16120,6 +16157,7 @@ Elm.YPassword.make = function (_elm) {
                            ,DomainChanged: DomainChanged
                            ,LengthChanged: LengthChanged
                            ,FormatChanged: FormatChanged
+                           ,NbChanged: NbChanged
                            ,WindowSizeChanged: WindowSizeChanged
                            ,actions: actions
                            ,initialState: initialState
@@ -16129,8 +16167,12 @@ Elm.YPassword.make = function (_elm) {
                            ,makePass: makePass
                            ,lenMailbox: lenMailbox
                            ,fmtMailbox: fmtMailbox
+                           ,nbMailbox: nbMailbox
                            ,introduction: introduction
                            ,view: view
+                           ,lenDropdown: lenDropdown
+                           ,fmtDropdown: fmtDropdown
+                           ,nbDropdown: nbDropdown
                            ,passwordView: passwordView
                            ,domainContent: domainContent
                            ,masterContent: masterContent
