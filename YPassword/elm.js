@@ -15898,95 +15898,32 @@ Elm.YPassword.make = function (_elm) {
    $Graphics$Input = Elm.Graphics.Input.make(_elm),
    $Graphics$Input$Field = Elm.Graphics.Input.Field.make(_elm),
    $Markdown = Elm.Markdown.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
    $Sha = Elm.Sha.make(_elm),
    $Signal = Elm.Signal.make(_elm),
    $String = Elm.String.make(_elm),
    $Text = Elm.Text.make(_elm),
    $Window = Elm.Window.make(_elm);
+   var yStyle = function (n) {
+      return function () {
+         var ystyle = {_: {}
+                      ,bold: false
+                      ,color: $Color.charcoal
+                      ,height: $Maybe.Just(n)
+                      ,italic: false
+                      ,line: $Maybe.Nothing
+                      ,typeface: _L.fromArray(["Futura"
+                                              ,"sans-serif"])};
+         var f = $Graphics$Input$Field.defaultStyle;
+         return _U.replace([["style"
+                            ,ystyle]],
+         f);
+      }();
+   };
    var masterContent = $Signal.mailbox($Graphics$Input$Field.noContent);
-   var passInput = function (fieldContent) {
-      return A4($Graphics$Input$Field.password,
-      $Graphics$Input$Field.defaultStyle,
-      $Signal.message(masterContent.address),
-      "Fucking Master Password",
-      fieldContent);
-   };
    var domainContent = $Signal.mailbox($Graphics$Input$Field.noContent);
-   var textInput = function (fieldContent) {
-      return A4($Graphics$Input$Field.field,
-      $Graphics$Input$Field.defaultStyle,
-      $Signal.message(domainContent.address),
-      "Domain Name",
-      fieldContent);
-   };
-   var passwordView = function (pass) {
-      return A3($Graphics$Element.container,
-      250,
-      50,
-      $Graphics$Element.middle)($Graphics$Element.width(250)($Graphics$Element.centered($Text.monospace($Text.fromString(pass)))));
-   };
-   var introduction = $Graphics$Element.width(250)($Graphics$Element.color($Color.darkGrey)(A3($Graphics$Element.container,
-   250,
-   280,
-   $Graphics$Element.middle)($Graphics$Element.width(220)($Markdown.toElement("\n# YPassword\n\nSimply enter\n- the domain name\n- your master password\n- Max len / format\n- Nb (if you want to change your password)\n\n\n")))));
    var fmtMailbox = $Signal.mailbox("base64");
    var lenMailbox = $Signal.mailbox(10);
-   var view = F2(function (m,_v0) {
-      return function () {
-         switch (_v0.ctor)
-         {case "WindowSizeChanged":
-            switch (_v0._0.ctor)
-              {case "_Tuple2":
-                 return A2($Graphics$Element.color,
-                   $Color.grey,
-                   A4($Graphics$Element.container,
-                   _v0._0._0,
-                   _v0._0._1,
-                   $Graphics$Element.middle,
-                   A2($Graphics$Element.flow,
-                   $Graphics$Element.down,
-                   _L.fromArray([introduction
-                                ,A2($Graphics$Element.spacer,
-                                10,
-                                10)
-                                ,textInput(m.domain)
-                                ,A2($Graphics$Element.spacer,
-                                10,
-                                10)
-                                ,passInput(m.master)
-                                ,A2($Graphics$Element.spacer,
-                                10,
-                                10)
-                                ,A2($Graphics$Element.flow,
-                                $Graphics$Element.right,
-                                _L.fromArray([A2($Graphics$Input.dropDown,
-                                             $Signal.message(lenMailbox.address),
-                                             _L.fromArray([{ctor: "_Tuple2"
-                                                           ,_0: "10"
-                                                           ,_1: 10}
-                                                          ,{ctor: "_Tuple2"
-                                                           ,_0: "27"
-                                                           ,_1: 27}
-                                                          ,{ctor: "_Tuple2"
-                                                           ,_0: "40"
-                                                           ,_1: 40}]))
-                                             ,A2($Graphics$Input.dropDown,
-                                             $Signal.message(fmtMailbox.address),
-                                             _L.fromArray([{ctor: "_Tuple2"
-                                                           ,_0: "base64"
-                                                           ,_1: "base64"}
-                                                          ,{ctor: "_Tuple2"
-                                                           ,_0: "hex"
-                                                           ,_1: "hex"}]))]))
-                                ,A2($Graphics$Element.spacer,
-                                10,
-                                10)
-                                ,passwordView(m.pass)]))));}
-              break;}
-         _U.badCase($moduleName,
-         "between lines 90 and 104");
-      }();
-   });
    var makePass = function (m) {
       return function () {
          var sha1 = $Sha.createHash("sha1");
@@ -16025,11 +15962,97 @@ Elm.YPassword.make = function (_elm) {
                                   ,action._0]],
                  m);}
             _U.badCase($moduleName,
-            "between lines 53 and 58");
+            "between lines 56 and 61");
          }();
          return _U.replace([["pass"
                             ,makePass(tmp)]],
          tmp);
+      }();
+   });
+   var basicWidth = 320;
+   var introduction = $Graphics$Element.width(basicWidth)(A3($Graphics$Element.container,
+   basicWidth,
+   210,
+   $Graphics$Element.middle)($Graphics$Element.width(220)($Markdown.toElement("\n# YPassword\n\nSimply enter\n- the domain name\n- your master password\n- Max len / format\n- Nb (if you want to change your password)\n"))));
+   var passwordView = function (pass) {
+      return $Graphics$Element.color($Color.grey)(A3($Graphics$Element.container,
+      basicWidth,
+      30,
+      $Graphics$Element.middle)($Graphics$Element.width(basicWidth)($Graphics$Element.centered($Text.monospace($Text.fromString(pass))))));
+   };
+   var textInput = function (fieldContent) {
+      return $Graphics$Element.width(basicWidth)(A4($Graphics$Input$Field.field,
+      yStyle(18),
+      $Signal.message(domainContent.address),
+      "Domain Name",
+      fieldContent));
+   };
+   var passInput = function (fieldContent) {
+      return $Graphics$Element.width(basicWidth)(A4($Graphics$Input$Field.password,
+      yStyle(18),
+      $Signal.message(masterContent.address),
+      "Fucking Master Password",
+      fieldContent));
+   };
+   var view = F2(function (m,_v5) {
+      return function () {
+         switch (_v5.ctor)
+         {case "WindowSizeChanged":
+            switch (_v5._0.ctor)
+              {case "_Tuple2":
+                 return A2($Graphics$Element.color,
+                   $Color.lightGrey,
+                   A4($Graphics$Element.container,
+                   A2($Basics.max,
+                   _v5._0._0,
+                   basicWidth),
+                   A2($Basics.max,_v5._0._1,430),
+                   $Graphics$Element.middle,
+                   A2($Graphics$Element.flow,
+                   $Graphics$Element.down,
+                   _L.fromArray([introduction
+                                ,A2($Graphics$Element.spacer,
+                                10,
+                                10)
+                                ,textInput(m.domain)
+                                ,A2($Graphics$Element.spacer,
+                                10,
+                                10)
+                                ,passInput(m.master)
+                                ,A2($Graphics$Element.spacer,
+                                10,
+                                10)
+                                ,A2($Graphics$Element.flow,
+                                $Graphics$Element.right,
+                                _L.fromArray([A2($Graphics$Input.dropDown,
+                                             $Signal.message(lenMailbox.address),
+                                             _L.fromArray([{ctor: "_Tuple2"
+                                                           ,_0: "10"
+                                                           ,_1: 10}
+                                                          ,{ctor: "_Tuple2"
+                                                           ,_0: "27"
+                                                           ,_1: 27}
+                                                          ,{ctor: "_Tuple2"
+                                                           ,_0: "40"
+                                                           ,_1: 40}]))
+                                             ,A2($Graphics$Element.spacer,
+                                             basicWidth - 2 * 100,
+                                             10)
+                                             ,A2($Graphics$Input.dropDown,
+                                             $Signal.message(fmtMailbox.address),
+                                             _L.fromArray([{ctor: "_Tuple2"
+                                                           ,_0: "base64"
+                                                           ,_1: "base64"}
+                                                          ,{ctor: "_Tuple2"
+                                                           ,_0: "hex"
+                                                           ,_1: "hex"}]))]))
+                                ,A2($Graphics$Element.spacer,
+                                30,
+                                30)
+                                ,passwordView(m.pass)]))));}
+              break;}
+         _U.badCase($moduleName,
+         "between lines 91 and 108");
       }();
    });
    var initialState = {_: {}
@@ -16100,6 +16123,7 @@ Elm.YPassword.make = function (_elm) {
                            ,WindowSizeChanged: WindowSizeChanged
                            ,actions: actions
                            ,initialState: initialState
+                           ,basicWidth: basicWidth
                            ,main: main
                            ,update: update
                            ,makePass: makePass
@@ -16110,6 +16134,7 @@ Elm.YPassword.make = function (_elm) {
                            ,passwordView: passwordView
                            ,domainContent: domainContent
                            ,masterContent: masterContent
+                           ,yStyle: yStyle
                            ,textInput: textInput
                            ,passInput: passInput};
    return _elm.YPassword.values;
