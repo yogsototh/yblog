@@ -15920,15 +15920,15 @@ Elm.YPassword.make = function (_elm) {
       fieldContent);
    };
    var passwordView = function (pass) {
-      return $Graphics$Element.color($Color.darkYellow)(A3($Graphics$Element.container,
-      200,
-      100,
-      $Graphics$Element.midTop)($Graphics$Element.width(200)($Graphics$Element.centered($Text.monospace($Text.fromString(pass))))));
+      return A3($Graphics$Element.container,
+      250,
+      50,
+      $Graphics$Element.middle)($Graphics$Element.width(250)($Graphics$Element.centered($Text.monospace($Text.fromString(pass)))));
    };
-   var introduction = $Graphics$Element.width(200)($Graphics$Element.color($Color.darkGrey)(A3($Graphics$Element.container,
-   200,
+   var introduction = $Graphics$Element.width(250)($Graphics$Element.color($Color.darkGrey)(A3($Graphics$Element.container,
+   250,
    280,
-   $Graphics$Element.middle)($Graphics$Element.width(180)($Markdown.toElement("\n# YPassword\n\nSimply enter\n- the domain name\n- your master password\n- Max len / format\n- Nb (if you want to change your password)\n\n\n")))));
+   $Graphics$Element.middle)($Graphics$Element.width(220)($Markdown.toElement("\n# YPassword\n\nSimply enter\n- the domain name\n- your master password\n- Max len / format\n- Nb (if you want to change your password)\n\n\n")))));
    var fmtMailbox = $Signal.mailbox("base64");
    var lenMailbox = $Signal.mailbox(10);
    var view = F2(function (m,_v0) {
