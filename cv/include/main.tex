@@ -1,0 +1,39 @@
+% Author Yann Esposito©2010
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[10pt,oldfontcommands,article]{memoir}
+\renewcommand{\tt}{\ttfamily}
+\renewcommand{\it}{\itshape}
+
+% -- XeLaTeX --
+\XeTeXdefaultencoding utf-8
+\usepackage{xltxtra,fontspec,xunicode}
+
+% -- Kramdown necessary includes --
+\usepackage{listings}
+\usepackage{hyperref}
+% \usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{fancyvrb}
+\usepackage{fontspec}
+\usepackage{mflogo}
+\usepackage{enumitem}
+\usepackage{longtable}
+
+% -- Better LaTeX macro
+\usepackage{expl3}
+
+\ExplSyntaxOn
+\newcommand \latinabbrev [1] {
+  \peek_catcode:NTF a
+    { #1 \@ ~ }
+    { #1 \@ }
+}
+\ExplSyntaxOff
+\def\ytex{\latinabbrev{\TeX}}
+\def\ylatex{\latinabbrev{\LaTeX}}
+\def\yxelatex{\latinabbrev{\XeLaTeX}}

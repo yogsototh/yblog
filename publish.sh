@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
-./.cabal-sandbox/bin/yblog clean && \
-./.cabal-sandbox/bin/yblog build && \
+stack exec yblog clean && \
+stack exec yblog build && \
 ./fastpublish.sh
