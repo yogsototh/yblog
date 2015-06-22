@@ -223,7 +223,7 @@ The main part of this tutorial will be dedicated to explaining why.
 
 In Haskell there is a `main` function and every object has a type.
 The type of `main` is `IO ()`.
-This means `main` will cause side effects. expliquer cela.
+This means `main` will cause side effects.
 
 Just remember that Haskell can look a lot like mainstream imperative languages.
 
