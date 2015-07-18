@@ -679,13 +679,10 @@ For example, I need to filter the language in order to get
 the right list of posts.
 I also use some words in the templates and I want them to be translated.
 
-A nice tip is to pass arguments to a context and use it in the template.
-Typically I write:
-
 ``` html
 <a href="$otherLanguagePath$"
 	onclick="setLanguage('$otherlanguage$')">
-	{-hi-}$trad changeLanguage${-/hi-} </a>
+	{-hi-}$changeLanguage${-/hi-} </a>
 ```
 
 First I create a Map containing all translations.
@@ -710,7 +707,7 @@ trads = M.fromList $ map toTrad [
       (key, Trad { frTrad = french , enTrad = english })
 ```
 
-Then I create a context taking an argument:
+Then I create a context for all key:
 
 ``` haskell
 tradsContext :: Context a
@@ -726,10 +723,6 @@ tradsContext = mconcat (map addTrad (M.keys trads))
                           Nothing -> return ("NO TRANSLATION FOR " ++ name)
               Nothing -> return ("NO TRANSLATION FOR " ++ name)
 ```
-
-In the real code source I also need more functions.
-But I just wanted to show how to pass parameters to a metadata tag.
-
 ## Conclusion
 
 The full code is [here](http://github.com/yogsototh/yblog.git).

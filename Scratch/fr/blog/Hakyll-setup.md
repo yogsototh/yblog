@@ -591,13 +591,10 @@ For example, I need to filter the language in order to get
 the right list of posts.
 I also use some words in the templates and I want them to be translated.
 
-A nice tip is to pass arguments to a context and use it in the template.
-Typically I write:
-
 ``` html
 <a href="$otherLanguagePath$"
 	onclick="setLanguage('$otherlanguage$')">
-	{-hi-}$trad changeLanguage${-/hi-} </a>
+	{-hi-}$changeLanguage${-/hi-} </a>
 ```
 
 First I create a Map containing all translations.
@@ -622,34 +619,22 @@ trads = M.fromList $ map toTrad [
       (key, Trad { frTrad = french , enTrad = english })
 ```
 
-Then I create a context taking an argument:
+Then I create a context for all key:
 
 ``` haskell
 tradsContext :: Context a
-tradsContext = functionField "trad" $ \args item -> do
-  -- get the key
-  k <- getArgs args
-  -- get its value (a Trad object)
-  v <- getValue k trads
-  -- get the current item language
-  lang <- itemLang item
-  case lang of
-    "en" -> return (enTrad v)
-    "fr" -> return (frTrad v)
-    _    -> fail $ lang ++ " is not a supported language"
+tradsContext = mconcat (map addTrad (M.keys trads))
   where
-    getArgs [k] = return k
-    getArgs _   = fail "Wrong arg for trad"
-    -- search the Trad associated the key
-    getValue key hmap =
-        case M.lookup key hmap of
-          Just value -> return value
-          Nothing -> fail "Traduction not found"
+    addTrad :: String -> Context a
+    addTrad name =
+      field name $ \item -> do
+          lang <- itemLang item
+          case M.lookup name trads of
+              Just (Trad lmap) -> case M.lookup (L lang) lmap of
+                          Just tr -> return tr
+                          Nothing -> return ("NO TRANSLATION FOR " ++ name)
+              Nothing -> return ("NO TRANSLATION FOR " ++ name)
 ```
-
-In the real code source I also need more functions.
-But I just wanted to show how to pass parameters to a metadata tag.
-
 ## Conclusion
 
 The full code is [here](http://github.com/yogsototh/yblog.git).
