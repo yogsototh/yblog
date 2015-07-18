@@ -335,8 +335,8 @@ removeIndexHtml item = return $ fmap (withUrls removeIndexStr) item
     removeIndexStr :: String -> String
     removeIndexStr url = case splitFileName url of
         (dir, "index.html") | isLocal dir -> dir
-        _                                 -> dir
-        where islocal uri = not (isInfixOf "://" uri)
+        _                                 -> url
+        where isLocal uri = not (isInfixOf "://" uri)
 ```
 
 And we apply this filter at the end of our compilation
@@ -347,7 +347,7 @@ match "posts/*.md" do
   compile $ pandocCompiler
     -- use the template with the current content
     >>= loadAndApplyTemplate "templates/post.html" defaultContext
-    {-hi-}>>= removeIndexStr{-/hi-}
+    {-hi-}>>= removeIndexHtml{-/hi-}
 ```
 
 ### Create an archive page
