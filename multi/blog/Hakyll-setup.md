@@ -714,25 +714,17 @@ Then I create a context taking an argument:
 
 ``` haskell
 tradsContext :: Context a
-tradsContext = functionField "trad" $ \args item -> do
-  -- get the key
-  k <- getArgs args
-  -- get its value (a Trad object)
-  v <- getValue k trads
-  -- get the current item language
-  lang <- itemLang item
-  case lang of
-    "en" -> return (enTrad v)
-    "fr" -> return (frTrad v)
-    _    -> fail $ lang ++ " is not a supported language"
+tradsContext = mconcat (map addTrad (M.keys trads))
   where
-    getArgs [k] = return k
-    getArgs _   = fail "Wrong arg for trad"
-    -- search the Trad associated the key
-    getValue key hmap =
-        case M.lookup key hmap of
-          Just value -> return value
-          Nothing -> fail "Traduction not found"
+    addTrad :: String -> Context a
+    addTrad name =
+      field name $ \item -> do
+          lang <- itemLang item
+          case M.lookup name trads of
+              Just (Trad lmap) -> case M.lookup (L lang) lmap of
+                          Just tr -> return tr
+                          Nothing -> return ("NO TRANSLATION FOR " ++ name)
+              Nothing -> return ("NO TRANSLATION FOR " ++ name)
 ```
 
 In the real code source I also need more functions.
