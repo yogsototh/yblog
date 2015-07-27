@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
 #
 languages=( $(stack runghc showlangs.hs) )
-((${#languages} == 0)) && error "Couldn't retrieve languages [runghc -package-db=$packageconf showlang.hs]"
-print "languages to watch (in Config.hs) are: $languages"
+((${#languages} == 0)) && error "Couldn't retrieve languages [stack runghc showlangs.hs]"
 typeset -a exclu
 
 for language in $languages; do
