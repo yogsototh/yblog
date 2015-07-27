@@ -8,3 +8,5 @@ dist
 .*.swp
 .DS_Store
 .last_multi_watched
+.stack*
+dist-stack

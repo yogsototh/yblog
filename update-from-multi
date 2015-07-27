@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+#
+languages=( $(stack runghc showlangs.hs) )
+((${#languages} == 0)) && error "Couldn't retrieve languages [runghc -package-db=$packageconf showlang.hs]"
+print "languages to watch (in Config.hs) are: $languages"
+typeset -a exclu
+
+for language in $languages; do
+  exclu=()
+  for l in $languages; do
+    case $l in
+      $language) continue ;;
+    esac
+    exclu=( $exclu $l )
+  done
+  for fic in multi/**/*(.); do
+    dest=Scratch/$language/${fic#multi/}
+    [[ ! -e $dest || $fic -nt $dest ]] || continue
+    print $dest
+    [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
+    awkprg='! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }'
+    awk "$awkprg" < $fic > $dest
+  done
+done

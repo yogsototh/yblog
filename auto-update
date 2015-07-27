@@ -5,20 +5,7 @@ curdir=$PWD
     "Kill old processes"
     kill $(<.last_multi_watched)
 }
-serverpid=""
-if which mighty >/dev/null; then
-    cd _site && \
-    mighty +RTS -N >/dev/null 2>&1 &
-    serverpid=$!
-elif which http-server; then
-    cd _site && \
-    http-server >/dev/null 2>&1 &
-    serverpid=$!
-else
-    print -P -- "%BWARNING%b: Please serve _site/ directory with an HTTP Server"
-    print -P -- "%BWARNING%b: You might install http-server or mighty for example"
-    print
-fi
+
 cd $curdir
 
 # sass
@@ -46,39 +33,12 @@ esac
 
 echo $serverpid $sasspid > .last_multi_watched
 
-packageconf=( $(print -- .cabal-sandbox/*.conf.d(N)) )
-((${#packageconf} == 0 )) && error "Please, wait the end of compilation and relaunch preview again"
-((${#packageconf} > 1 )) && {
-    print -- "I need to use only one directory"
-    print -l -- $packageconf
-    exit 1
-}>&2
-
-languages=( $(runghc -package-db=$packageconf showlangs.hs) )
-((${#languages} == 0)) && error "Couldn't retrieve languages [runghc -package-db=$packageconf showlang.hs]"
-print "languages to watch (in Config.hs) are: $languages"
-typeset -a exclu
+stack exec yblog watch &
 
 while true; do
-  for language in $languages; do
-    exclu=()
-    for l in $languages; do
-      case $l in
-        $language) continue ;;
-      esac
-      exclu=( $exclu $l )
-    done
-    for fic in multi/**/*(.); do
-      dest=Scratch/$language/${fic#multi/}
-      [[ ! -e $dest || $fic -nt $dest ]] || continue
-      print $dest
-      [[ ! -d ${dest:h} ]] && mkdir ${dest:h}
-      awkprg='! /^('$exclu'): / { sub(/^'$language': /,""); print $0 }'
-      awk "$awkprg" < $fic > $dest
-      ./dist/build/yblog/yblog build
-    done
-  done
+  ./update-from-multi
   ((ONCE == 1)) && break
   touch $checkfile
   sleep 2
 done
+

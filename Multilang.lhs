@@ -106,7 +106,7 @@ This context will contain all links to the other languages
 >           case M.lookup name trads of
 >               Just (Trad lmap) -> case M.lookup (L lang) lmap of
 >                           Just tr -> return tr
->                           Nothing -> return "NO TRANSLATION"
+>                           Nothing -> return ("NO TRANSLATION FOR " ++ name)
 >               Nothing -> return ("NO TRANSLATION FOR " ++ name)
 
 > --------------------------------------------------------------------------------
