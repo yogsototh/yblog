@@ -5,20 +5,7 @@ curdir=$PWD
     "Kill old processes"
     kill $(<.last_multi_watched)
 }
-serverpid=""
-if which mighty >/dev/null; then
-    cd _site && \
-    mighty +RTS -N >/dev/null 2>&1 &
-    serverpid=$!
-elif which http-server; then
-    cd _site && \
-    http-server >/dev/null 2>&1 &
-    serverpid=$!
-else
-    print -P -- "%BWARNING%b: Please serve _site/ directory with an HTTP Server"
-    print -P -- "%BWARNING%b: You might install http-server or mighty for example"
-    print
-fi
+
 cd $curdir
 
 # sass
@@ -45,6 +32,8 @@ esac
 }
 
 echo $serverpid $sasspid > .last_multi_watched
+
+stack exec yblog watch &
 
 while true; do
   ./update-from-multi
