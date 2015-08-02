@@ -30,6 +30,7 @@ All the abbreviations are declared here:
 > abbreviations = M.fromList
 >     [ ("tldr",   "<span class=\"sc\"><abbr title=\"Too long; didn't read\">tl;dr</abbr>: </span>")
 >     , ("tlal",   "<span class=\"sc\"><abbr title=\"Trop long; pas lu\">tlpl</abbr>: </span>")
+>     , ("api",   "<span class=\"sc\"><abbr title=\"Application Program Interface\">api</abbr></span>")
 >     , ("tlpl",   "<span class=\"sc\"><abbr title=\"Trop long; pas lu\">tlpl</abbr>: </span>")
 >     , ("imho",   "<span class=\"sc\"><abbr title=\"In my Humble Opinion\">imho</abbr></span>")
 >     , ("url",   "<span class=\"sc\"><abbr title=\"Uniform Ressource Locator\">url</abbr></span>")
@@ -38,7 +39,6 @@ All the abbreviations are declared here:
 >     , ("http",   "<span class=\"sc\"><abbr title=\"HyperText Transfer Protocol\">http</abbr></span>")
 >     , ("https",   "<span class=\"sc\"><abbr title=\"Secure HyperText Transfer Protocol\">https</abbr></span>")
 >     , ("html",   "<span class=\"sc\"><abbr title=\"HyperText Markup Language\">html</abbr></span>")
->     , ("api",   "<span class=\"sc\"><abbr title=\"Application Program Interface\">api</abbr></span>")
 >     , ("html5",   "<span class=\"sc\"><abbr title=\"HyperText Markup Language 5\">html5</abbr></span>")
 >     , ("css", "<span class=\"sc\">css</span>")
 >     , ("svg", "<span class=\"sc\">svg</span>")

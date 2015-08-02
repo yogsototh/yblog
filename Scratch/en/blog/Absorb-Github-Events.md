@@ -25,7 +25,7 @@ For this you'll need many different parts:
 - then you might need to enrich them,
 - afterward, you'll need to aggregate them,
 - you also need to give a way to question the aggregates via an %api,
-- and finally you'll need to provide a nice dashboard using the %api
+- and finally you'll need to provide a nice dashboard using the %api.
 
 So let's start by a way to get all github events in realtime.
 
@@ -66,7 +66,7 @@ but to be able to handle a tremendous number of events in real time.
 The actual amount of data provided by github is quite low.
 But in general you'll want to optimize things to be able to absorb a full firehose of events.
 
-For example, twitter can provide more than 20000 events per seconds.
+For example, twitter can provide more than 20.000 events per seconds.
 The twitter firehose forces you to use a single entry point.
 More than that, you have to deal with a single core to download the data and parse them.
 To be able to absorb such amount of data you generally don't parse completely the data.
@@ -74,7 +74,7 @@ To be able to absorb such amount of data you generally don't parse completely th
 Another provider is facebook.
 Their approach is much nicer for the developer.
 You declare an %https entry point and they send you the data by making `POST` calls.
-It is then much easier to dispatch the packet between multiple hosts
+It is then much easier to dispatch the datas between multiple hosts
 using a load balancer such as `haproxy` for example.
 
 Concerning github, I am not fond of their method to retrieve their data.
@@ -111,19 +111,41 @@ The next article will certainly use clojure.
 
 ## Initialize your environment.
 
-If you are on Mac or on Ubuntu you should install Haskell with
-this script:
+First install [`stack`](https://github.com/commercialhaskell/stack).
+It will take care of installing every dependencies relative to Haskell for you[^100].
 
-~~~
-curl -O https://raw.githubusercontent.com/yogsototh/install-haskell/master/install-haskell.sh
-chmod ugo+x install-haskell.sh
-sudo ./install-haskell $USER
-~~~
+[^100]: The version I used during the writing of this article is `Version 0.1.2.4, Git revision 0f84181b8bcc7a370fd6cd1f1c977b7c05fd6226`. Also a great thank you to all who had contributed to this tool. It rocks!
 
 Then create a simple new project:
 
 ~~~
-cabal new muraine
+% mkdir muraine
+% stack new
+~~~
+
+This should create some files for you:
+
+~~~
+~/t/muraine ❯❯❯ tree                                                          ⏎
+.
+├── LICENSE
+├── Setup.hs
+├── app
+│   └── Main.hs
+├── muraine.cabal
+├── src
+│   └── Lib.hs
+├── stack.yaml
+└── test
+    └── Spec.hs
+~~~
+
+You can test the init of your project by running:
+
+~~~
+% stack build
+% stack exec muraine-exe
+someFunc
 ~~~
 
 Or if you don't want to type things, just clone my repository.
@@ -140,11 +162,12 @@ TODO: git checkout step1
 The first thing to do is to add all the needed dependencies.
 In a first time, we'll only need to make %http requests and work with the responses.
 
-Update your `muraine.cabal` file as follow:
+Update your `muraine.cabal`
+by adding the following dependencies in the `executable` section:
 
 ~~~
   ...
-  build-depends:       base >=4.7 && <4.8{-hi-},{-/hi-}
+  build-depends:       base{-hi-},{-/hi-}
                        {-hi-}http-conduit,{-/hi-}
                        {-hi-}bytestring{-/hi-}
   ...
@@ -163,18 +186,22 @@ Then edit the `Main.hs` file such that it contains this:
 > strange %api.
 >
 > If you are not familiar with Haskell.
-> Try not be focused on details and just try to read the flow.
+> Try not be focused on details and just try to follow the flow.
 > Once you have to do things yourself, the Haskell compiler
 > will be here to help you in your journey.
 >
 > The worst case scenario with Haskell is discovering
 > a new library lacking some documentation and
-> playing the _type tetris_ game.
+> playing to the _type tetris_ game[^200].
+
+[^200]: Yes there could be far worst case scenario.
+        But most beginners won't hit these problem.
+        And certainly not following this article.
 
 ~~~ {.haskell}
 module Main where
 
-import           Network.HTTP.Conduit (simpleHttp)
+import Network.HTTP.Conduit (simpleHttp)
 import qualified Data.ByteString.Lazy.Char8 as L
 
 main :: IO ()
@@ -186,7 +213,7 @@ main = do
 And now to run this code simply launch this command:
 
 ~~~
-cabal run
+stack runghc app/Main.hs
 ~~~
 
 Now you should receive some %html.
@@ -222,7 +249,7 @@ It means that for each of the following "line" at the end
 an action will be performed.
 It is a bit like modifying the end of line behaviour.
 It is the way of Haskell to make explicit the part where we will use
-effects and where we will be completely pure[^1].
+effects and where we will be completely pure[^300].
 
 In the first line we call the function `simpleHttp` with the url of google
 as argument. The function return an `IO Response`.
@@ -232,8 +259,8 @@ and now `response` is a variable of type `Response`.
 
 In the next line we simply print the `response`.
 
-[^1]: The reality is quite more complicated than that.
-    But hey, try to explain IO monad in less than 100 words...
+[^300]: The reality is quite more complicated than that.
+    But hey! Try to explain IO monad in less than 100 words...
 
 It is now time to receive some github events.
 Simply udpate the %url:
@@ -326,7 +353,8 @@ main = do
 The `responseHeaders response` will return a list of `Header` and
 a `Header` is a couple `(header_name,value)`.
 
-So `mapM_` will execute a function over a list, here the list of `Headers`.
+In an IO context, `mapM_` will execute an IO action over a list,
+here the list of `Headers`.
 For each header we execute `showHeader`.
 
 `showHeader` take a `Header` and print it on screen.
@@ -385,10 +413,10 @@ continueWithUserAndPass user pass = do
 Now if you run:
 
 ~~~
-cabal run [nickname] [password]
+stack runghc app/Main.hs [nickname] [password]
 ~~~
 
-Your `X-RateLimit-Limit` should have raised to `5000`!
+Your `X-RateLimit-Limit` should have raised up to `5000`!
 Note it is not over `9000` thought.
 
 ## Waiting the right amount of time
@@ -429,7 +457,7 @@ different format for the header `Date` and `X-RateLimit-Reset`.
 This shouldn't be a big problem to resolve.
 We should use the [time](https://hackage.haskell.org/package/time) package.
 And here we enter in the great world of date type translations.
-From string or int to Time, etc...
+From string or integer to Time, etc...
 
 ~~~ {.haskell}
     ...
@@ -461,10 +489,11 @@ getEvents user pass = do
     ...
 ~~~
 
-Another important aspect is to pass the ETag each of each preceding request.
+Another important aspect is to pass the ETag of the preceding request.
 For this it is time to refactor our code a bit to make it more readable.
 
 ~~~ {.haskell}
+-- | Make an HTTP Call with Basic Auth Credentials
 authHttpCall :: String -- ^ URL
                 -> String -- ^ User
                 -> String -- ^ Password
@@ -476,6 +505,8 @@ authHttpCall url user pass headers = do
         requestWithAuth = applyBasicAuth (B.pack user) (B.pack pass) request
     withManager (httpLbs requestWithAuth)
 
+-- | Retrieve github events
+-- and add the preceeding ETag in the request headers
 httpGHEvents :: String -- ^ User
                 -> String -- ^ Password
                 -> Maybe B.ByteString -- ^ ETag if one
@@ -487,7 +518,15 @@ httpGHEvents user pass etag =
             maybe [] (\e -> [("If-None-Match",B.tail (B.tail e))]) etag
 ~~~
 
-And then
+We had created a simple function `httpGHEvents` that take as parameters:
+
+- a github user name
+- its associated github password
+- an Etag
+
+And make a call to the github api which will retrieve the github events.
+
+Now here is the function that make a loop at getting events (don't fear the code):
 
 ~~~ {.haskell}
 getEvents :: String             -- ^ Github username
@@ -505,11 +544,9 @@ getEvents user pass etag = do
             serverDateEpoch <- case lookup "Date" headers of
                                 Nothing -> fmap round getPOSIXTime
                                 Just d -> return (epochFromString (B.unpack d))
-            let etagResponded = lookup "ETag" headers
-                remainingHeader = lookup "X-RateLimit-Remaining" headers
-                remaining = maybe 1 (read . B.unpack) remainingHeader
-                resetHeader = lookup "X-RateLimit-Reset" headers
-                reset = maybe 1 (read . B.unpack) resetHeader
+            let etagResponded   = lookup "ETag" headers
+                remaining       = getValue "X-RateLimit-Remaining" headers
+                reset           = getValue "X-RateLimit-Reset" headers
                 timeBeforeReset = reset - serverDateEpoch
                 t = 1000000 * timeBeforeReset `div` remaining
                 timeToWaitIn_us = max 0 (t - floor (1000000 * req_time))
@@ -520,7 +557,29 @@ getEvents user pass etag = do
             putStrLn "Something went wrong"
             threadDelay 100000 -- 100ms
             getEvents user pass etag
+  where
+    getValue name headers = maybe 1 (maybe 1 $ read . B.unpack) headerStr
+        where headerStr = lookup name headers
+              readMaybe = case reads of
+                            [(x,"")] -> Just x
+                            _ -> Nothing
 ~~~
+
+TODO: CHECK THE CODE
+
+While it might feel like a wall of code, in reality things are quite clear.
+
+1. We call github to receive events using our last Etag.
+2. In case of error we wait 100ms and make the call again
+3. In case of success, we read the informations from the header
+   to compute the time to wait before the next call
+4. we wait
+5. We make the next call
+
+The technical part is only the one which try to compute the time to wait.
+And the code do many type translation (from text to int or to date).
+
+The `getValue` function declared only locally, try to get the value of the header. If the header is not set, then it returns 1.
 
 ### Pagination
 
