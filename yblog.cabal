@@ -18,7 +18,10 @@ cabal-version:       >=1.8
 executable yblog
   main-is:           site.hs
   ghc-options:       -O -Wall
-  -- other-modules:
+  other-modules:     Abbreviations
+                     , Config
+                     , Multilang
+                     , YFilters
   build-depends:       base
                      , containers
                      , hakyll
