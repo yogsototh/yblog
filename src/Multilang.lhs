@@ -23,11 +23,11 @@ content pages. Therefore, the easies way was to only provide `Context`s.
 Some mandatory imports
 
 > import           Hakyll
-> import           Data.Map		   (Map)
-> import qualified Data.Map		as  M
-> import           Data.Monoid	   (mconcat,(<>))
-> import           Config          (langs,fstlang)
-> import           Data.List       (isPrefixOf)
+> import           Data.Map	(Map)
+> import qualified Data.Map     as  M
+> import           Data.Monoid	((<>))
+> import           Config       (langs,fstlang)
+> import           Data.List    (isPrefixOf)
 
 The data structure data contains the necessary informations for English and
 French translation of words.

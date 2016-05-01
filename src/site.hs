@@ -1,63 +1,63 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Control.Monad          (forM)
-import           Data.Monoid            ((<>),mconcat)
 import           Hakyll
 
-import           Data.List              (sortBy,isInfixOf)
-import           Data.Ord               (comparing)
-import           System.Locale          (defaultTimeLocale)
+import           Control.Monad         (forM, forM_)
+import           Data.List             (isInfixOf, sortBy)
+import           Data.Maybe            (fromMaybe)
+import           Data.Monoid           ((<>))
+import           Data.Ord              (comparing)
+import           Data.Time.Format      (defaultTimeLocale)
+import           System.FilePath.Posix (splitFileName, takeBaseName,
+                                        takeDirectory, (</>))
 
-import           Abbreviations          (abbreviationFilter)
-import           YFilters               (blogImage,blogFigure
-                                        ,frenchPunctuation,highlight)
-import           Multilang              (multiContext)
-import           System.FilePath.Posix  (takeBaseName,takeDirectory,(</>),splitFileName)
-import           Control.Monad          (forM_)
-
-import           Config                 (langs,feedConfiguration)
+import           Abbreviations         (abbreviationFilter)
+import           Config                (feedConfiguration, langs)
+import           Multilang             (multiContext)
+import           YFilters              (blogFigure, blogImage,
+                                        frenchPunctuation, highlight)
 
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match (     "Scratch/img/**"
-          .||.  "Scratch/js/**"
-          .||.  "Scratch/css/fonts/*"
-          .||.  "Scratch/*/blog/*/**"
-          .||.  "Scratch/files/**"
-          .||.  "YBlog/**"
-          .||.  "YPassword/**"
-          .||.  "cv/**"
-          .||.  "CNAME")
+    match (     "content/Scratch/img/**"
+          .||.  "content/Scratch/js/**"
+          .||.  "content/Scratch/css/fonts/*"
+          .||.  "content/Scratch/*/blog/*/**"
+          .||.  "content/Scratch/files/**"
+          .||.  "content/YBlog/**"
+          .||.  "content/YPassword/**"
+          .||.  "content/cv/**"
+          .||.  "content/CNAME")
       staticBehavior
 
     -- -- Compressed SASS (add potentially included files)
-    -- sassDependencies <- makePatternDependency "Scratch/css/include/*.sass"
+    -- sassDependencies <- makePatternDependency "content/Scratch/css/include/*.sass"
     -- rulesExtraDependencies [sassDependencies] $ do
-    match "Scratch/css/*" $ do
+    match "content/Scratch/css/*" $ do
             route   $ setExtension "css"
-            compile $ getResourceString >>=
-                      withItemBody (unixFilter "sass" ["--trace"]) >>=
-                      return . fmap compressCss
+            compile $ -- fmap (fmap compressCss)
+                           (getResourceString >>=
+                            withItemBody (unixFilter "sass" ["--trace"]))
 
     -- Blog posts
-    match "Scratch/*/blog/*.md" markdownPostBehavior
+    match "content/Scratch/*/blog/*.md" markdownPostBehavior
 
     -- Blog posts with html extension
-    match "Scratch/*/blog/*.html" htmlPostBehavior
+    match "content/Scratch/*/blog/*.html" htmlPostBehavior
 
     -- for each language
     forM_ langs $ \lang -> do
       -- Archives
-      match (fromGlob $ "Scratch/"++lang++"/blog.md") (archiveBehavior lang)
+      match (fromGlob $ "content/Scratch/"++lang++"/blog.md") (archiveBehavior lang)
       -- RSS
-      create [fromFilePath ("Scratch/"++lang++"/blog/feed/feed.xml")] (feedBehavior lang)
+      create [fromFilePath ("content/Scratch/"++lang++"/blog/feed/feed.xml")] (feedBehavior lang)
 
     -- Basic files
-    match ("Scratch/*/*.md"
-          .||. "Scratch/*/about/*.md"
-          .||. "Scratch/*/softwares/*.md"
-          .||. "Scratch/*/softwares/ypassword/*.md" ) markdownBehavior
+    match ("content/Scratch/*/*.md"
+          .||. "content/Scratch/*/about/*.md"
+          .||. "content/Scratch/*/softwares/*.md"
+          .||. "content/Scratch/*/softwares/ypassword/*.md" ) markdownBehavior
     match "404.md" markdownBehaviorWithSimpleRoute
 
     -- Homepage
@@ -66,7 +66,7 @@ main = hakyll $ do
         compile $ do
             let indexCtx =
                  yContext <>
-                  (mconcat $ map (\lang -> field (lang ++ "posts") $ \_->homePostList lang createdFirst) langs)
+                  mconcat (map (\lang -> field (lang ++ "posts") $ \_->homePostList lang createdFirst) langs)
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
@@ -86,7 +86,9 @@ removeIndexStr url = case splitFileName url of
     (dir, "index.html") | isLocal dir -> dir
                         | otherwise   -> url
     _                                 -> url
-    where isLocal uri = not (isInfixOf "://" uri)
+    where
+      isLocal :: String -> Bool
+      isLocal uri = not ("://" `isInfixOf` uri)
 
 --------------------------------------------------------------------------------
 --
@@ -108,12 +110,12 @@ staticBehavior = do
 
 --------------------------------------------------------------------------------
 applyFilter :: (Monad m, Functor f) => (String -> String) -> f String -> m (f String)
-applyFilter transformator str = return $ (fmap $ transformator) str
+applyFilter transformator str = return $ fmap transformator str
 
 --------------------------------------------------------------------------------
 htmlPostBehavior :: Rules ()
 htmlPostBehavior = do
-  route $ niceRoute
+  route niceRoute
   compile $ getResourceBody
         >>= applyFilter (abbreviationFilter . frenchPunctuation . highlight)
         >>= saveSnapshot "content"
@@ -143,16 +145,16 @@ postFilters = frenchPunctuation . highlight
 -- apply templates posts then default then relitivize url
 markdownBehavior :: Rules ()
 markdownBehavior = do
-  route $ niceRoute
+  route niceRoute
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
-    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
-    >>= applyFilter postFilters
-    >>= loadAndApplyTemplate "templates/default.html" yContext
-    >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
-    >>= relativizeUrls
-    >>= removeIndexHtml
+    renderPandoc (fmap (preFilters (toFilePath identifier)) body)
+      >>= applyFilter postFilters
+      >>= loadAndApplyTemplate "templates/default.html" yContext
+      >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
+      >>= relativizeUrls
+      >>= removeIndexHtml
 
 markdownBehaviorWithSimpleRoute :: Rules ()
 markdownBehaviorWithSimpleRoute = do
@@ -160,7 +162,7 @@ markdownBehaviorWithSimpleRoute = do
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
-    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
+    renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/default.html"    yContext
     >>= loadAndApplyTemplate "templates/boilerplate.html" yContext
@@ -174,12 +176,12 @@ markdownBehaviorWithSimpleRoute = do
 -- apply templates posts then default then relitivize url
 markdownPostBehavior :: Rules ()
 markdownPostBehavior = do
-  route $ niceRoute
+  route niceRoute
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
-    prefilteredText <- return $ (fmap (preFilters (toFilePath identifier)) body)
-    return $ renderPandoc prefilteredText
+    let prefilteredText = fmap (preFilters (toFilePath identifier)) body
+    renderPandoc prefilteredText
     >>= applyFilter postFilters
     >>= saveSnapshot "content"
     >>= loadAndApplyTemplate "templates/post.html"    yPostContext
@@ -190,11 +192,11 @@ markdownPostBehavior = do
 --------------------------------------------------------------------------------
 archiveBehavior :: String -> Rules ()
 archiveBehavior language = do
-  route $ niceRoute
+  route niceRoute
   compile $ do
     body <- getResourceBody
     identifier <- getUnderlying
-    return $ renderPandoc (fmap (preFilters (toFilePath identifier)) body)
+    renderPandoc (fmap (preFilters (toFilePath identifier)) body)
     >>= applyFilter postFilters
     >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
     >>= loadAndApplyTemplate "templates/default.html" archiveCtx
@@ -234,13 +236,13 @@ shortLinkContext = field "shorturl" $
 
 --------------------------------------------------------------------------------
 prefixContext :: Context String
-prefixContext = field "webprefix" $ \_ -> return $ "/Scratch"
+prefixContext = field "webprefix" $ \_ -> return "/Scratch"
 
 --------------------------------------------------------------------------------
 imageContext :: Context a
 imageContext = field "image" $ \item -> do
   image <- getMetadataField (itemIdentifier item) "image"
-  return $ maybe "/Scratch/img/presentation.png" id image
+  return $ fromMaybe "/Scratch/img/presentation.png" image
 
 
 --------------------------------------------------------------------------------
@@ -249,6 +251,7 @@ metaKeywordContext = field "metaKeywords" $ \item -> do
   tags <- getMetadataField (itemIdentifier item) "tags"
   return $ maybe "" showMetaTags tags
     where
+      showMetaTags :: String -> String
       showMetaTags t = "<meta name=\"keywords\" content=\"" ++ t ++ "\"/>\n"
 
 --------------------------------------------------------------------------------
@@ -257,6 +260,7 @@ subtitleContext = field "subtitleTitle" $ \item -> do
   subt <- getMetadataField (itemIdentifier item) "subtitle"
   return $ maybe "" showSubtitle subt
     where
+      showSubtitle :: String -> String
       showSubtitle t = "<h2>" ++ t ++ "</h2>\n"
 
 --------------------------------------------------------------------------------
@@ -265,15 +269,15 @@ createdFirst items = do
   itemsWithTime <- forM items $ \item -> do
     utc <- getItemUTC defaultTimeLocale $ itemIdentifier item
     return (utc,item)
-  return $ map snd $ reverse $ sortBy (comparing fst) itemsWithTime
+  return $ map snd $ sortBy (flip (comparing fst)) itemsWithTime
 
 --------------------------------------------------------------------------------
 feedBehavior :: String -> Rules ()
 feedBehavior language = do
       route idRoute
-      compile $ do
-        loadAllSnapshots (fromGlob $ "Scratch/" ++ language ++ "/blog/*") "content"
-        >>= (fmap (take 10)) . createdFirst
+      compile $
+        loadAllSnapshots (fromGlob $ "content/Scratch/" ++ language ++ "/blog/*") "content"
+        >>= fmap (take 10) . createdFirst
         >>= renderAtom feedConfiguration feedCtx
       where
         feedCtx :: Context String
@@ -281,23 +285,22 @@ feedBehavior language = do
 
 --------------------------------------------------------------------------------
 --
--- load a list of Item but remove their body
+-- | load a list of Item but remove their body
 lightLoadAll :: Pattern -> Compiler [Item String]
-lightLoadAll pattern = do
-  identifers <- getMatches pattern
+lightLoadAll p = do
+  identifers <- getMatches p
   return [Item identifier "" | identifier <- identifers]
+
 --------------------------------------------------------------------------------
 postList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
 postList language sortFilter = do
-    posts   <- lightLoadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
+    posts   <- lightLoadAll (fromGlob $ "content/Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
-    list    <- applyTemplateList itemTpl yContext posts
-    return list
+    applyTemplateList itemTpl yContext posts
 
 --------------------------------------------------------------------------------
 homePostList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
 homePostList language sortFilter = do
-    posts   <- lightLoadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
+    posts   <- lightLoadAll (fromGlob $ "content/Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/home-post-item.html"
-    list    <- applyTemplateList itemTpl yContext (take 3 posts)
-    return list
+    applyTemplateList itemTpl yContext (take 3 posts)
