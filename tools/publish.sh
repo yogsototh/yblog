@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-./update-from-multi && \
+./tools/update-from-multi && \
+cd content/ && \
 stack exec yblog clean && \
 stack exec yblog build && \
-./fastpublish.sh
+cd .. && \
+./tools/fastpublish.sh

@@ -14,7 +14,7 @@ title="$*"
 
 # CONFIG
 blog_dir="multi/blog"
-image_blog_dir="Scratch/img/blog"
+image_blog_dir="content/Scratch/img/blog"
 
 # basefilename is the filename where all spaces
 # were replaced by '-'

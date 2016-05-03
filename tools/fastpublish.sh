@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
 
-hakylldir=$HOME/Sites/yblog
-pubdir=$hakylldir/_publish
-
+hakylldir=$0/..
+pubdir=$hakylldir/content/_publish
 
 [[ ! -e $pubdir ]] && \
     cd ${pubdir:h} && \

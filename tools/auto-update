@@ -33,8 +33,10 @@ esac
 
 echo $serverpid $sasspid > .last_multi_watched
 
+cd content
 stack exec yblog watch &
 
+cd ..
 while true; do
   ./update-from-multi
   ((ONCE == 1)) && break
