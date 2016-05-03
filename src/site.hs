@@ -20,11 +20,11 @@ import           YFilters              (blogFigure, blogImage,
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match (     "content/Scratch/img/**"
-          .||.  "content/Scratch/js/**"
-          .||.  "content/Scratch/css/fonts/*"
-          .||.  "content/Scratch/*/blog/*/**"
-          .||.  "content/Scratch/files/**"
+    match (     "Scratch/img/**"
+          .||.  "Scratch/js/**"
+          .||.  "Scratch/css/fonts/*"
+          .||.  "Scratch/*/blog/*/**"
+          .||.  "Scratch/files/**"
           .||.  "content/YBlog/**"
           .||.  "content/YPassword/**"
           .||.  "content/cv/**"
@@ -32,32 +32,32 @@ main = hakyll $ do
       staticBehavior
 
     -- -- Compressed SASS (add potentially included files)
-    -- sassDependencies <- makePatternDependency "content/Scratch/css/include/*.sass"
+    -- sassDependencies <- makePatternDependency "Scratch/css/include/*.sass"
     -- rulesExtraDependencies [sassDependencies] $ do
-    match "content/Scratch/css/*" $ do
+    match "Scratch/css/*" $ do
             route   $ setExtension "css"
             compile $ -- fmap (fmap compressCss)
                            (getResourceString >>=
                             withItemBody (unixFilter "sass" ["--trace"]))
 
     -- Blog posts
-    match "content/Scratch/*/blog/*.md" markdownPostBehavior
+    match "Scratch/*/blog/*.md" markdownPostBehavior
 
     -- Blog posts with html extension
-    match "content/Scratch/*/blog/*.html" htmlPostBehavior
+    match "Scratch/*/blog/*.html" htmlPostBehavior
 
     -- for each language
     forM_ langs $ \lang -> do
       -- Archives
-      match (fromGlob $ "content/Scratch/"++lang++"/blog.md") (archiveBehavior lang)
+      match (fromGlob $ "Scratch/"++lang++"/blog.md") (archiveBehavior lang)
       -- RSS
-      create [fromFilePath ("content/Scratch/"++lang++"/blog/feed/feed.xml")] (feedBehavior lang)
+      create [fromFilePath ("Scratch/"++lang++"/blog/feed/feed.xml")] (feedBehavior lang)
 
     -- Basic files
-    match ("content/Scratch/*/*.md"
-          .||. "content/Scratch/*/about/*.md"
-          .||. "content/Scratch/*/softwares/*.md"
-          .||. "content/Scratch/*/softwares/ypassword/*.md" ) markdownBehavior
+    match ("Scratch/*/*.md"
+          .||. "Scratch/*/about/*.md"
+          .||. "Scratch/*/softwares/*.md"
+          .||. "Scratch/*/softwares/ypassword/*.md" ) markdownBehavior
     match "404.md" markdownBehaviorWithSimpleRoute
 
     -- Homepage
@@ -276,7 +276,7 @@ feedBehavior :: String -> Rules ()
 feedBehavior language = do
       route idRoute
       compile $
-        loadAllSnapshots (fromGlob $ "content/Scratch/" ++ language ++ "/blog/*") "content"
+        loadAllSnapshots (fromGlob $ "Scratch/" ++ language ++ "/blog/*") "content"
         >>= fmap (take 10) . createdFirst
         >>= renderAtom feedConfiguration feedCtx
       where
@@ -294,13 +294,13 @@ lightLoadAll p = do
 --------------------------------------------------------------------------------
 postList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
 postList language sortFilter = do
-    posts   <- lightLoadAll (fromGlob $ "content/Scratch/" ++ language ++ "/blog/*") >>= sortFilter
+    posts   <- lightLoadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/post-item.html"
     applyTemplateList itemTpl yContext posts
 
 --------------------------------------------------------------------------------
 homePostList :: String -> ([Item String] -> Compiler [Item String]) -> Compiler String
 homePostList language sortFilter = do
-    posts   <- lightLoadAll (fromGlob $ "content/Scratch/" ++ language ++ "/blog/*") >>= sortFilter
+    posts   <- lightLoadAll (fromGlob $ "Scratch/" ++ language ++ "/blog/*") >>= sortFilter
     itemTpl <- loadBody "templates/home-post-item.html"
     applyTemplateList itemTpl yContext (take 3 posts)
