@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh
 
-hakylldir=$0/..
+hakylldir=${0:h}/..
 pubdir=$hakylldir/content/_publish
 
 [[ ! -e $pubdir ]] && \
     cd ${pubdir:h} && \
     {
         git clone -b gh-pages git@github.com:yogsototh/yannesposito.com.git _publish || exit 1
-    }
+    } && cd $OLDPWD
 
 cd $hakylldir       && \
 git pull            && \

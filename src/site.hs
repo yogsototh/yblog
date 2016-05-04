@@ -25,10 +25,10 @@ main = hakyll $ do
           .||.  "Scratch/css/fonts/*"
           .||.  "Scratch/*/blog/*/**"
           .||.  "Scratch/files/**"
-          .||.  "content/YBlog/**"
-          .||.  "content/YPassword/**"
-          .||.  "content/cv/**"
-          .||.  "content/CNAME")
+          .||.  "YBlog/**"
+          .||.  "YPassword/**"
+          .||.  "cv/**"
+          .||.  "CNAME")
       staticBehavior
 
     -- -- Compressed SASS (add potentially included files)
