@@ -13,10 +13,10 @@ Une petite astuce dont je ne me souvient jamais (je ne sais pas pourquoi).
 
 Lorsque que vous souhaitez lancer une commande qui ne soit pas tuée après la fermeture du terminal voici comment s'y prendre : 
 
-<div><code class="zsh">
+~~~ zsh
 nohup cmd &
-~~~~~~
+~~~
+
 <small>où <code>cmd</code> est la commande que vous souhaitez lancer.</small>
-</div>
 
 Je laisse cette astuce ici pour moi et dans l'espoir que ça pourra aussi être utile à quelqu'un d'autre.

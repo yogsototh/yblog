@@ -15,25 +15,26 @@ tags:  web, jQuery, webdesign
 
 Here is a live example of what appear while loading my pages.
 
+<script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
 <div id="demo" style="width:45%; position: relative; height: 8em; background: #333; background-position: 50% 50%; color: #fff; text-align: center; padding-top: 1em; margin-left: auto; margin-right: auto; border: solid 10px rgba(255,255,255,0.7); -webkit-border-radius: 1em; -moz-border-radius: 1em; border-radius: 1em; cursor: pointer; ">
-    <p>Hello! I've finished loading!</p>
-    <p>Click me to see me disapear again.</p>
-    <div id="todisapear" style="color: #000; position:absolute;top:0;left:0;text-align: center; padding-top: 1em; width: 100%; background-color: #eee; height: 8em;">
-    Loading...
-    <img style="border: none; background-color: none; background: none" src="/Scratch/img/loading.gif" alt="loading logo"/>
-    </div>
-    <script>
-    function Rabbit(){
-        $('#todisapear')
-            .show()
-            .animate({opacity: 1.0},3000)
-            .fadeOut();
-    }
-    $(document).ready(function(){
-        $('#todisapear').animate({opacity: 1.0},3000).fadeOut();
-        $('#demo').click(Rabbit);
-    });
-    </script>
+<p>Hello! I've finished loading!</p>
+<p>Click me to see me disapear again.</p>
+<div id="todisapear" style="color: #000; position:absolute;top:0;left:0;text-align: center; padding-top: 1em; width: 100%; background-color: #eee; height: 8em;">
+Loading...
+<img style="border: none; background-color: none; background: none" src="/Scratch/img/loading.gif" alt="loading logo"/>
+</div>
+<script>
+function Rabbit(){
+$('#todisapear')
+    .show()
+    .animate({opacity: 1.0},3000)
+    .fadeOut();
+}
+$(document).ready(function(){
+    $('#todisapear').animate({opacity: 1.0},3000).fadeOut();
+    $('#demo').click(Rabbit);
+});
+</script>
 </div>
 
 I first tried to integrate [queryLoader](http://www.gayadesign.com/diy/queryloader-preload-your-website-in-style/), but it didn't fill my needs.
