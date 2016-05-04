@@ -23,10 +23,9 @@ Better than grep
 
 One of the my main usage of `grep` is
 
-<div>
-    <code class="zsh">
-grep 'pattern' **/*(.)</code>
-</div>
+~~~ {.zsh}
+grep 'pattern' **/*(.)
+~~~
 
 Most of time it is enough. 
 But it is far better with colored output. 
@@ -34,8 +33,7 @@ But it is far better with colored output.
 As I couldn't install it on my 'Evil Company Server',
 I had done one myself in very few lines:
 
-<div>
-    <code class="zsh" file="ack">
+~~~
 #!/usr/bin/env zsh
 (($#<1)) && { print 'usage: ack "regexp"' >&2; exit 1 }
 
@@ -48,8 +46,7 @@ if (m/([^:]*)(:.*)('$1')(.*)/) {
     print color("black","on_yellow").$3;
     print color("reset").$4."\n";
 } '
-    </code>
-</div>
+~~~
 
 For my team  and I it is usable enough.
 I hope it could help.

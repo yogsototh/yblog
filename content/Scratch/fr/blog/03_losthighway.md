@@ -60,9 +60,7 @@ J'écris cet article, parce que j'ai l'impression d'en avoir trouver une qui mar
 # Les clefs du films
 
 <div class="encadre" style="text-align: center">
-        <strong>
-            Tout se passe dans la mémoire de Fred
-        </strong>
+<strong>Tout se passe dans la mémoire de Fred</strong>
 </div>
 
 Tout d'abord, il est clair que comprendre le film comme simplement un film fantastique ne fonctionne pas. En suivant ce point d'entrée on en fini pas de se heurter à des détails incompréhensibles.

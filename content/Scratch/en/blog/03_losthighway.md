@@ -58,9 +58,7 @@ I write this post because I believe I had found an interpretation which seems co
 # Movie's keys
 
 <div class="encadre" style="text-align: center">
-        <strong>
-            All is in Fred's memory
-        </strong>
+<strong>All is in Fred's memory</strong>
 </div>
 
 In a first, it is clear for me, it is not a fantastic movie. If you follow this line, you'll face many problem explaining some scenes.

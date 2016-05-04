@@ -23,10 +23,9 @@ Mieux que grep
 
 Un des mes usages principaux de `grep` est
 
-<div>
-    <code class="zsh">
-grep 'pattern' **/*(.)</code>
-</div>
+~~~ {.zsh}
+grep 'pattern' **/*(.)
+~~~
 
 La plupart du temps c'est suffisant, mais ajouter de la coloration
 améliore beaucoup l'utilité de cette commande. Il existe déjà un outil
@@ -34,8 +33,7 @@ pour ça : il s'appelle `ack-grep` sous Ubuntu.
 Comme je ne peux pas l'installer sur le serveur de mon entreprise,
 j'en ai créé un moi-même en quelques lignes :
 
-<div>
-    <code class="zsh" file="ack">
+~~~{.zsh}
 #!/usr/bin/env zsh
 (($#<1)) && { print 'usage: ack "regexp"' >&2; exit 1 }
 
@@ -48,8 +46,7 @@ if (m/([^:]*)(:.*)('$1')(.*)/) {
     print color("black","on_yellow").$3;
     print color("reset").$4."\n";
 } '
-    </code>
-</div>
+~~~
 
 Pour mon utilisation personnelle et celle de mon équipe
 c'est suffisant. J'espère que ça pourra vous aider.
