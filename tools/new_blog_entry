@@ -22,7 +22,7 @@ image_blog_dir="content/Scratch/img/blog"
 basefilename="$( print $title | perl -pe 'chomp(); s#ç#c#g; s#àâ#a#g; s#éèê#e#g; s#ô#o#g; s#û#u#g; s#\W#-#g')"
 
 # construct the final filename
-linkname="$root/latest.ymd"
+linkname="$root/latest.md"
 imglinkname="$root/img_latest_blog_dir"
 blogname="$basefilename"
 # Uncomment if you prefer use date-title name for url
