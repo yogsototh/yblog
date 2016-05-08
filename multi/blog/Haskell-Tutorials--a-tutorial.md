@@ -96,3 +96,77 @@ To make them even better.
    if your API break or change. You'll be able to check it using travis CI for
    example.
 2. One advantage of providing a `MyPackage.Tutorial` file is the ability to use `doctest`.
+
+## Good Ideas
+
+- [`clojuredocs.org`](http://clojuredocs.org)
+
+For each symbol necessiting a documentation.
+You don't only have the details and standard documentation.
+You'll also get:
+
+- Responsive Design (sometime you want to look at documentation on a mobile)
+- Contributed Examples
+- Contributed See Also section
+- Contributed notes/comments
+
+Clojuredocs is an independant website from the official Clojure website.
+
+Most of the time, if you google the function you search
+you end up on clojredocs for wich there are many contributions.
+
+Imagine if we had the same functionalities in hackage/stackage.
+
+Today a lot of information is lost on IRC or mailing list.
+I know you could always find the information in the archives
+but, as an end-user, it is always better to have a centralized
+source of information.
+
+Differences with existing:
+
+- hackage has haddock
+- stackage has haddock + per package comment
+
+I believe he would be more efficient to have at least a page
+by module and why not a page by *symbol*.
+I mean:
+
+- for data type definition with all their class instances
+- for functions
+- for typeclasses
+
+Why?
+
+- far less informations per page.
+- Let's keep the pages we have.
+- But let's just also focus more.
+  So we could provide details about `foldl` for example.
+  And make the design cleaner.
+  As a matter of design, think about the 4 of 5 most
+  important information someone want to have
+  as fast as possible and provide them.
+  The rest should be at the bottom, or very small in
+  the navigation bar.
+
+- function:
+  1. type
+  2. Documentation string
+  3. Examples
+  4. the version / who really care?
+
+## How to help
+
+There are 20k Haskell readers.
+If only 1% of them pass 10 minutes adding a bit of
+documentation it will certainly change a lot of
+things in the percieved documenation quality.
+
+Not too much work:
+
+1. login
+2. add/edit some example, comments, see-also section
+
+If you pass only the next 10 minutes in adding a bit of
+documentation it will certainly change a lot of things.
+
+
