@@ -16,6 +16,10 @@ blogimage("main.png","Main image")
 As a community we can do a better at documenting our libraries.
 This document provide some hints to make it happens.
 
+1. Create a `Tutorial` module containing nothing except documentation.
+2. Use `doctest` to check your documentation is up to date
+3. For more complex real world examples, link to the test source.
+
 </div>
 
 
