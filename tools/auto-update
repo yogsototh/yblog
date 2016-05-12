@@ -38,7 +38,7 @@ stack exec yblog watch &
 
 cd ..
 while true; do
-  ./update-from-multi
+  ./tools/update-from-multi
   ((ONCE == 1)) && break
   touch $checkfile
   sleep 2

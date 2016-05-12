@@ -1,6 +1,6 @@
 ---
-kind:           article
-published:      2016-05-06
+kind: article
+published: 2016-05-06
 image: /content/Scratch/img/blog/Haskell-Tutorials--a-tutorial/main.png
 title: Haskell Tutorials, a tutorial
 author: Yann Esposito
@@ -13,31 +13,121 @@ blogimage("main.png","Main image")
 <div class="intro">
 
 %tldr Haskell is awesome! But it is not perfect yet.
-As a community we can do a better at documenting our libraries.
+We can do a better at documenting our libraries.
 This document provide some hints to make it happens.
+
+**Tutorial**:
 
 1. Create a `Tutorial` module containing nothing except documentation.
 2. Use `doctest` to check your documentation is up to date
 3. For more complex real world examples, link to the test source.
 
+**Examples**:
+
+1. Use `doctest`
+2. Use some `CI`
+
+**Generated API Documentation**:
+
+1. Use haddock comments
+
 </div>
 
+Great documentation could make the difference between people using your lib with happiness
+and people not using your lib at all.
 
-This is a guide on best practices on writing Haskell documentation
-for your library.
+Documentation can take many different form.
+Here is the preferred order (see [What to write](https://jacobian.org/writing/what-to-write/)):
 
+1. **Tutorials** -- write some prose which friendly take a user by hand and help him
+2. **Examples** -- how to use each function
+3. **Generated API Documentation** -- haddock
+
+## Tutorials
+
+1. Create a new module named Tutorial
+2. Create a link to the tutorial in the cabal description
+3. Create a link to the tutorial in your README
+4. Here is an example of `Tutorial`
+
+~~~.haskell
+TODO
+~~~
+
+To prevent obsolescence of your tutorial, use `doctest`.
+
+That way when you'll do a `stack test` or `cabal test`
+you'll get errors if the Tutorial examples doesn't work anymore.
+
+## Examples (doctest)
+
+`doctest` is a great way to provide examples in your code documenation.
+These example will then be used as tests.
+Apparently it comes from Python community.
+
+To use `doctest`, this is very simple:
+
+~~~.haskell
+-- | My function description
+-- 
+-- >>> myFunction 3 4
+-- 7
+myFunction :: Int -> Int -> Int
+myFunction = (+)
+~~~
+
+And to make it works simply verify you have a `test` bloc in your
+`.cabal` file and in the main simply use
+
+~~~.haskell
+module Main where
+
+import DocTest
+
+main = docTest [ "src/MyModule/MyFile.hs"
+               , "src/MyModule/AnotherFile.hs"
+               ]
+~~~
+
+## Generated
+
+So even if you do nothing, haddock should generate some API documentation for you for free.
+But it will be far better if you help haddock.
+
+~~~
+-- | My function description
+myFunction :: Type of function
+myFunction arg1 -- ^ arg1 description
+           arg2 -- ^ arg2 description
+           = ...
+~~~
+
+and for data
+
+~~~
+data MyData = X Int
+
+instance Function MyData where
+  ...
+~~~
+
+
+-----------
+
+
+## Prelude
 
 > Who are you who are so wise in the way of science?
 
 So I am myself largely subject to criticism.
 This article isn't intented to be a bible.
-More like a tour of what I feel is the most liked
-way of documenting. So please, not arsh feeling.
+More like a tour of what I feel is the most appreciated way to consume documentation.
+So please, no arsh feeling.
 
-The things I would really dislike people would talk about this article.
+I wouldn't want this article to be used as a pretext to
+start an Holy War about the different Haskell coding style.
 
-- Starting an Holy War about the different Haskell coding style.
-  For example, I don't see anything wrong relative to the documentation of using
+For example, I don't see anything wrong relative to the documentation of using
 
 ~~~ haskell
 import Prelude hiding ((.))
@@ -51,8 +141,8 @@ Is it documentation? No.
 
 For absolute Haskell beginner using `(f (g (h x)))`
 might seems more readable than `f $ g $ h x` or `f . g . h $ x`.
-
 But this is not about documentation.
+This is a question of code clarity and readability.
 
 ## Other communities
 
@@ -65,9 +155,22 @@ is great!
 I don't want to dive in the details of the other communities
 but I was slightly inspired by:
 
-- Elm
-- Clojure
-- Node.js
+- [Elm](http://elm-lang.org) → [`guide.elm-lang.org`](http://guide.elm-lang.org) & [`docs`](http://package.elm-lang.org/packages/elm-lang/core/4.0.0)
+- [Clojure](http://clojure.org) → [`clojuredocs.org`](http://clojuredocs.org)
+
+There are a lot of thing to say about how the documentation is handled in these communities.
+I don't believe I could tell everything I would want to.
+But there are some big princples:
+
+A lot of functions are accompagnied with some code example:
+
+- [JSON decode](http://package.elm-lang.org/packages/elm-lang/core/4.0.0/Json-Decode)
+- [Random list](http://package.elm-lang.org/packages/elm-lang/core/4.0.0/Random#list)
+
+
+[^1]: **RANT**: Compare this documentation of core to the documentation of the `Prelude` module in `hackage`; [`Prelude`](https://hackage.haskell.org/package/base-4.8.2.0/docs/Prelude.html)
+
+### Clojure
 
 In clojure when you create a new project using `lein new my-project`
 a directory `doc` is created for you. It contains a file with a link
@@ -77,9 +180,8 @@ to this blog post:
 
 A great deal is made about *tutorials*.
 
-Because this is generally what most first users of you library will start.
-They just want to pass from zero to something in the minimal amount of time
-possible.
+Because this is generally what most first users of your library will search for.
+They just want to pass from zero to something in the minimal amount of time.
 
 In Haskell we already have API generated documentation for free.
 Hackage and Stackage both do a great job at generating your documentation.

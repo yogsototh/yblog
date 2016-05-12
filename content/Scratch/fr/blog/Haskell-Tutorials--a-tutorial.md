@@ -1,6 +1,6 @@
 ---
-kind:           article
-published:      2016-05-06
+kind: article
+published: 2016-05-06
 image: /content/Scratch/img/blog/Haskell-Tutorials--a-tutorial/main.png
 title: Haskell Tutorials, a tutorial
 author: Yann Esposito
@@ -13,27 +13,98 @@ blogimage("main.png","Main image")
 <div class="intro">
 
 %tldr Haskell is awesome! But it is not perfect yet.
-As a community we can do a better at documenting our libraries.
+We can do a better at documenting our libraries.
 This document provide some hints to make it happens.
+
+**Tutorial**:
+
+1. Create a `Tutorial` module containing nothing except documentation.
+2. Use `doctest` to check your documentation is up to date
+3. For more complex real world examples, link to the test source.
+
+**Examples**:
+
+1. Use `doctest`
+2. Use some `CI`
+
+**Generated API Documentation**:
+
+1. Use haddock comments
 
 </div>
 
+Great documentation could make the difference between people using your lib with happiness
+and people not using your lib at all.
 
-This is a guide on best practices on writing Haskell documentation
-for your library.
+Documentation can take many different form.
+Here is the preferred order (see [What to write](https://jacobian.org/writing/what-to-write/)):
 
+1. **Tutorials** -- write some prose which friendly take a user by hand and help him
+2. **Examples** -- how to use each function
+3. **Generated API Documentation** -- haddock
+
+## Tutorials
+
+
+
+## Examples (doctest)
+
+## Generated
+
+## General discussion on how to make things even better
+
+The least you can do is to use `haddock` notation:
+
+~~~
+-- | My function description
+myFunction :: Type of function
+myFunction arg1 -- ^ arg1 description
+           arg2 -- ^ arg2 description
+           = ...
+~~~
+
+and for data
+
+### Examples
+
+Before writing a complete tutorial, you should at least provide
+some examples and have a way to check your examples are correct.
+
+
+1. In your `.cabal` use `doctest` in the `test` part.
+2. In your haddock documentation don't forget to use it:
+
+~~~.haskell
+-- | This is some description of my function
+-- 
+-- >>> mySum 3 5
+-- 8
+-- >>> mySum 10 1
+-- 11
+mySum = (+)
+~~~
+
+3. In your `test/Main.hs` file simply write
+
+~~~.haskell
+module MainTest where
+
+import DocTest
+~~~
+
+## Prelude
 
 > Who are you who are so wise in the way of science?
 
 So I am myself largely subject to criticism.
 This article isn't intented to be a bible.
-More like a tour of what I feel is the most liked
-way of documenting. So please, not arsh feeling.
+More like a tour of what I feel is the most appreciated way to consume documentation.
+So please, no arsh feeling.
 
-The things I would really dislike people would talk about this article.
+I wouldn't want this article to be used as a pretext to
+start an Holy War about the different Haskell coding style.
 
-- Starting an Holy War about the different Haskell coding style.
-  For example, I don't see anything wrong relative to the documentation of using
+For example, I don't see anything wrong relative to the documentation of using
 
 ~~~ haskell
 import Prelude hiding ((.))
@@ -47,8 +118,8 @@ Is it documentation? No.
 
 For absolute Haskell beginner using `(f (g (h x)))`
 might seems more readable than `f $ g $ h x` or `f . g . h $ x`.
-
 But this is not about documentation.
+This is a question of code clarity and readability.
 
 ## Other communities
 
@@ -61,9 +132,22 @@ is great!
 I don't want to dive in the details of the other communities
 but I was slightly inspired by:
 
-- Elm
-- Clojure
-- Node.js
+- [Elm](http://elm-lang.org) → [`guide.elm-lang.org`](http://guide.elm-lang.org) & [`docs`](http://package.elm-lang.org/packages/elm-lang/core/4.0.0)
+- [Clojure](http://clojure.org) → [`clojuredocs.org`](http://clojuredocs.org)
+
+There are a lot of thing to say about how the documentation is handled in these communities.
+I don't believe I could tell everything I would want to.
+But there are some big princples:
+
+A lot of functions are accompagnied with some code example:
+
+- [JSON decode](http://package.elm-lang.org/packages/elm-lang/core/4.0.0/Json-Decode)
+- [Random list](http://package.elm-lang.org/packages/elm-lang/core/4.0.0/Random#list)
+
+
+[^1]: **RANT**: Compare this documentation of core to the documentation of the `Prelude` module in `hackage`; [`Prelude`](https://hackage.haskell.org/package/base-4.8.2.0/docs/Prelude.html)
+
+### Clojure
 
 In clojure when you create a new project using `lein new my-project`
 a directory `doc` is created for you. It contains a file with a link
@@ -73,9 +157,8 @@ to this blog post:
 
 A great deal is made about *tutorials*.
 
-Because this is generally what most first users of you library will start.
-They just want to pass from zero to something in the minimal amount of time
-possible.
+Because this is generally what most first users of your library will search for.
+They just want to pass from zero to something in the minimal amount of time.
 
 In Haskell we already have API generated documentation for free.
 Hackage and Stackage both do a great job at generating your documentation.
@@ -96,3 +179,77 @@ To make them even better.
    if your API break or change. You'll be able to check it using travis CI for
    example.
 2. One advantage of providing a `MyPackage.Tutorial` file is the ability to use `doctest`.
+
+## Good Ideas
+
+- [`clojuredocs.org`](http://clojuredocs.org)
+
+For each symbol necessiting a documentation.
+You don't only have the details and standard documentation.
+You'll also get:
+
+- Responsive Design (sometime you want to look at documentation on a mobile)
+- Contributed Examples
+- Contributed See Also section
+- Contributed notes/comments
+
+Clojuredocs is an independant website from the official Clojure website.
+
+Most of the time, if you google the function you search
+you end up on clojredocs for wich there are many contributions.
+
+Imagine if we had the same functionalities in hackage/stackage.
+
+Today a lot of information is lost on IRC or mailing list.
+I know you could always find the information in the archives
+but, as an end-user, it is always better to have a centralized
+source of information.
+
+Differences with existing:
+
+- hackage has haddock
+- stackage has haddock + per package comment
+
+I believe he would be more efficient to have at least a page
+by module and why not a page by *symbol*.
+I mean:
+
+- for data type definition with all their class instances
+- for functions
+- for typeclasses
+
+Why?
+
+- far less informations per page.
+- Let's keep the pages we have.
+- But let's just also focus more.
+  So we could provide details about `foldl` for example.
+  And make the design cleaner.
+  As a matter of design, think about the 4 of 5 most
+  important information someone want to have
+  as fast as possible and provide them.
+  The rest should be at the bottom, or very small in
+  the navigation bar.
+
+- function:
+  1. type
+  2. Documentation string
+  3. Examples
+  4. the version / who really care?
+
+## How to help
+
+There are 20k Haskell readers.
+If only 1% of them pass 10 minutes adding a bit of
+documentation it will certainly change a lot of
+things in the percieved documenation quality.
+
+Not too much work:
+
+1. login
+2. add/edit some example, comments, see-also section
+
+If you pass only the next 10 minutes in adding a bit of
+documentation it will certainly change a lot of things.
+
+
