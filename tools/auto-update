@@ -8,14 +8,18 @@ curdir=$PWD
 
 cd $curdir
 
-# sass
-sass -I . --watch Scratch/css:_site/Scratch/css &
-sasspid=$!
+ONCE=0
+for functionality in $@; do
+    case $functionality in
+        css) # sass
+            sass -I . --watch Scratch/css:_site/Scratch/css &
+            sasspid=$!
+            ;;
+        once) ONCE=1 ;;
+    esac
+done
 
 checkfile=".last_multi_watched"
-
-ONCE=0
-[[ $1 = "once" ]] && { ONCE=1 }
 
 error(){print -- $* >&2; exit 1}
 

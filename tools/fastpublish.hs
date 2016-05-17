@@ -1,5 +1,12 @@
 #!/usr/bin/env stack
--- stack --install-ghc runghc --package turtle --package ansi-terminal --resolver lts-5.15 --verbosity s
+{- stack
+   --resolver lts-5.15
+   --install-ghc
+   runghc
+   --package turtle
+   --package ansi-terminal
+   --verbosity s
+-}
 
  {-# LANGUAGE OverloadedStrings #-}
 import Turtle
