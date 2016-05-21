@@ -1,16 +1,21 @@
 #!/usr/bin/env zsh
 
+error(){print -- $* >&2; exit 1}
 curdir=$PWD
-[[ -e .last_multi_watched ]] && {
-    "Kill old processes"
-    kill $(<.last_multi_watched)
-}
+checkfile=".last_multi_watched"
 
 cd $curdir
 
 ONCE=0
 for functionality in $@; do
     case $functionality in
+        -h|--help|help)
+            print -- "Usage: ${0:t} [command ...]"
+            print -- "where command can be:"
+            print -- "css\tWatch and update sass files"
+            print -- "once\tOnly build once"
+            exit 0
+            ;;
         css) # sass
             sass -I . --watch Scratch/css:_site/Scratch/css &
             sasspid=$!
@@ -18,10 +23,6 @@ for functionality in $@; do
         once) ONCE=1 ;;
     esac
 done
-
-checkfile=".last_multi_watched"
-
-error(){print -- $* >&2; exit 1}
 
 ((ONCE == 0)) && \
 [[ -e $checkfile ]] && \
@@ -32,10 +33,9 @@ case $(uname) in
     Linux) checkfilemodifiedtime=$(stat --printf %Y $checkfile);;
     *) checkfilemodifiedtime=$(stat --printf %Y $checkfile);;
 esac
-(( $currenttime - $checkfilemodifiedtime  < 5)) && error "watching in progress (wait at least 5 seconds if you killed it)"
+(( $currenttime - $checkfilemodifiedtime  < 5)) && \
+    error "watching in progress (wait at least 5 seconds if you killed it)"
 }
-
-echo $serverpid $sasspid > .last_multi_watched
 
 cd content
 stack exec yblog watch &
