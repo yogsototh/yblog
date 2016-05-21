@@ -50,8 +50,25 @@ Here is the preferred order (see [What to write](https://jacobian.org/writing/wh
 3. Create a link to the tutorial in your README
 4. Here is an example of `Tutorial`
 
-~~~.haskell
-TODO
+~~~haskell
+{-# OPTIONS_GHC -fno-warn-unused-imports #-}
+{-|
+ Use @my-package@ if you want to ...
+-}
+module Data.Duration.Tutorial (
+  -- * Introduction
+  -- $introduction
+  ) where
+
+import Data.Duration
+
+{- $introduction
+
+So here how you use it:
+
+ >>> humanReadableDuration 1002012.002
+ "11 days 14 hours 20 min 12s 2ms"
+-}
 ~~~
 
 To prevent obsolescence of your tutorial, use `doctest`.
@@ -67,7 +84,7 @@ Apparently it comes from Python community.
 
 To use `doctest`, this is very simple:
 
-~~~.haskell
+~~~haskell
 -- | My function description
 -- 
 -- >>> myFunction 3 4
@@ -79,7 +96,7 @@ myFunction = (+)
 And to make it works simply verify you have a `test` bloc in your
 `.cabal` file and in the main simply use
 
-~~~.haskell
+~~~haskell
 module Main where
 
 import DocTest
@@ -174,9 +191,7 @@ instance Function MyData where
   ...
 ~~~
 
-
------------
-
+Also, please launch haddock manually to see which symbols lack documentation.
 
 ## Prelude
 

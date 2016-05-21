@@ -45,15 +45,71 @@ Here is the preferred order (see [What to write](https://jacobian.org/writing/wh
 
 ## Tutorials
 
+1. Create a new module named Tutorial
+2. Create a link to the tutorial in the cabal description
+3. Create a link to the tutorial in your README
+4. Here is an example of `Tutorial`
 
+~~~haskell
+{-# OPTIONS_GHC -fno-warn-unused-imports #-}
+{-|
+ Use @my-package@ if you want to ...
+-}
+module Data.Duration.Tutorial (
+  -- * Introduction
+  -- $introduction
+  ) where
+
+import Data.Duration
+
+{- $introduction
+
+So here how you use it:
+
+ >>> humanReadableDuration 1002012.002
+ "11 days 14 hours 20 min 12s 2ms"
+-}
+~~~
+
+To prevent obsolescence of your tutorial, use `doctest`.
+
+That way when you'll do a `stack test` or `cabal test`
+you'll get errors if the Tutorial examples doesn't work anymore.
 
 ## Examples (doctest)
 
+`doctest` is a great way to provide examples in your code documenation.
+These example will then be used as tests.
+Apparently it comes from Python community.
+
+To use `doctest`, this is very simple:
+
+~~~haskell
+-- | My function description
+-- 
+-- >>> myFunction 3 4
+-- 7
+myFunction :: Int -> Int -> Int
+myFunction = (+)
+~~~
+
+And to make it works simply verify you have a `test` bloc in your
+`.cabal` file and in the main simply use
+
+~~~haskell
+module Main where
+
+import DocTest
+
+main = docTest [ "src/MyModule/MyFile.hs"
+               , "src/MyModule/AnotherFile.hs"
+               ]
+~~~
+
 ## Generated
 
-## General discussion on how to make things even better
-
-The least you can do is to use `haddock` notation:
+So even if you do nothing, haddock should generate some API documentation for you for free.
+But it will be far better if you help haddock.
 
 ~~~
 -- | My function description
@@ -65,32 +121,14 @@ myFunction arg1 -- ^ arg1 description
 
 and for data
 
-### Examples
+~~~
+data MyData = X Int
 
-Before writing a complete tutorial, you should at least provide
-some examples and have a way to check your examples are correct.
-
-
-1. In your `.cabal` use `doctest` in the `test` part.
-2. In your haddock documentation don't forget to use it:
-
-~~~.haskell
--- | This is some description of my function
--- 
--- >>> mySum 3 5
--- 8
--- >>> mySum 10 1
--- 11
-mySum = (+)
+instance Function MyData where
+  ...
 ~~~
 
-3. In your `test/Main.hs` file simply write
-
-~~~.haskell
-module MainTest where
-
-import DocTest
-~~~
+Also, please launch haddock manually to see which symbols lack documentation.
 
 ## Prelude
 

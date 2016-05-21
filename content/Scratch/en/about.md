@@ -18,7 +18,9 @@ theme: scientific
 
 ## Shortly
 
-I am Machine Learning expert for [vigiglobe](http://vigiglobe.com).
+I am a Software Engineer (Clojurist) for [Cisco](http://cisco.com), Threatgrid team.
+
+I was a Machine Learning expert for [vigiglobe](http://vigiglobe.com).
 
 I tend to use functional programming a lot.
 Mostly [Haskell](http://haskell.org) and [Clo<i>j</i>ure](http://clojure.org).
