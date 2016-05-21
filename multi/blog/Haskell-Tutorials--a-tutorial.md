@@ -89,6 +89,69 @@ main = docTest [ "src/MyModule/MyFile.hs"
                ]
 ~~~
 
+And now to check the validity of your documentation
+you simply need to run `stack test` or `cabal test`.
+
+### CI
+
+There are plenty of alternative solution.
+I provide the one I believe would be used by most people.
+So if you use `github` simply create an account on [`travis`](http://travis-ci.org).
+
+Add a `.travis.yml` file in your repo containing:
+
+~~~.yaml
+language: haskell
+~~~
+
+If you want to use `stack` instead of just `cabal`:
+
+~~~.yaml
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - libgmp-dev
+
+# Caching so the next build will be fast too.
+cache:
+  directories:
+  - $HOME/.stack
+
+before_install:
+# Download and unpack the stack executable
+- mkdir -p ~/.local/bin
+- export PATH=$HOME/.local/bin:$PATH
+- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+
+script:
+  - stack setup && stack --no-terminal --skip-ghc-check test
+~~~
+
+Don't forget to activate your repo in travis.
+
+For some bonus points add the build status badge in your `README.md` file:
+
+~~~.markdown
+[![Build Status](https://travis-ci.org/user-name/project-name.svg?branch=master)](https://travis-ci.org/user-name/project-name)
+~~~
+
+Congratulation!
+Now if you break your documentation examples, you'll get prompted.
+
+### Badges
+
+If you didn't declared your package to `stackage`, please do it.
+It isn't much work.
+Just edit a file to add your package.
+And you'll could be able to add another badge:
+
+~~~.markdown
+[![packagename on Stackage LTS](http://stackage.org/package/packagename/badge/lts-3)](http://stackage.org/lts/package/packagename)
+~~~
+
+
 ## Generated
 
 So even if you do nothing, haddock should generate some API documentation for you for free.
