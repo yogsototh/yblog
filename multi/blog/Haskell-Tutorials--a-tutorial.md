@@ -331,7 +331,7 @@ Most of the time, if you google the function you search
 you end up on [clojuredocs](http://clojuredocs.org) for wich there are many contributions.
 
 Currently stackage is closer to these feature than hackage.
-Because on stack you have access to the README and also some comments by package.
+Because on stackage you have access to the README and also some comments by package.
 
 I believe it would be more efficient to have at least a page
 by module and why not a page by *symbol* (data, functions, typeclasses...).
