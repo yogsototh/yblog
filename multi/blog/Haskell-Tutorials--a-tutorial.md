@@ -115,16 +115,28 @@ myFunction = (+)
 ~~~
 
 And to make it works simply verify you have a `test` bloc in your
-`.cabal` file and in `test/Main.hs` simply use
+`.cabal` file looking like this:
+
+~~~
+test-suite doctest
+  type: exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is: DocTest.hs
+  build-depend: base >= 4.7 && < 5
+              , <YOUR_LIBRARY> 
+              , Glob >= 0.7
+              , doctest >= 0.9.12
+~~~
+
+and in `test/DocTest.hs` simply use
 
 ~~~haskell
 module Main where
 
 import DocTest
+import System.FilePath.Glob (glob)
 
-main = docTest [ "src/MyModule/MyFile.hs"
-               , "src/MyModule/AnotherFile.hs"
-               ]
+main = glob "src/**/*.hs" >>= docTest
 ~~~
 
 Now `stack test` or `cabal test` will check the validity of your documentation.
