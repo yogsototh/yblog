@@ -41,7 +41,9 @@ Documentation can take many different form.
 2. **Examples** -- how to use each function
 3. **Generated API Documentation** -- haddock
 
-## Tutorials/Guides
+## Hints
+
+### Tutorials/Guides
 
 1. Create a new module named `Tutorial` (or `Guide.GuideTopic`)
 2. Create a link to the tutorial in the cabal description
@@ -97,7 +99,7 @@ To prevent obsolescence of your tutorial, use `doctest`.
 That way when you'll do a `stack test` or `cabal test`
 you'll get errors if some example doesn't work anymore.
 
-## Examples (doctest)
+### Examples (doctest)
 
 `doctest` is a great way to provide examples in your code documentation.
 These example will then be used as tests.
@@ -363,7 +365,4 @@ If only 1% of them would take 10 minutes adding a bit of
 documentation it will certainly change a lot of
 things in the percieved documentation quality.
 
-----
-
-So have you any pointer, better idea on how to improve
-the situation of Haskell documentation?
+So do have you any idea to improve the Haskell documentation?

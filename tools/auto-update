@@ -17,8 +17,9 @@ for functionality in $@; do
             exit 0
             ;;
         css) # sass
+            cd content
             sass -I . --watch Scratch/css:_site/Scratch/css &
-            sasspid=$!
+            cd $curdir
             ;;
         once) ONCE=1 ;;
     esac

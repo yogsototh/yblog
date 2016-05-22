@@ -1,7 +1,8 @@
 @charset "UTF-8"
 $unit: 18px
 $small: 0.9em
-$prefontwidthinpx: 11.5px
+$prefontsize: 0.8em
+$prefontwidthinpx: 10px
 $munit: 18px
 $nbcharwidth: 35
 $bordersize: $unit/4
@@ -9,7 +10,7 @@ $lineheight: $unit * 1.5
 $smalllineheight: $small * 1.75
 $hmargin: 4*$unit
 
-$premaxwidth: 80*$prefontwidthinpx
+$premaxwidth: 80 * $prefontwidthinpx
 @font-face
   font-family: 'social'
   src: url('fonts/social_font-webfont.eot')
@@ -43,12 +44,15 @@ body
 
 h1,h2,h3,h4,h5,h6
   font-family: "Hoefler Text", Georgia, serif
-  // text-transform: uppercase
-  // font-variant: small-caps
   font-style: italic
   font-weight: thin
-  font-size: 4em
   line-height: 2em
+
+h1,h2
+  font-size: 4em
+
+h3,h4,h5,h6
+  font-size: 2em
 
 a
   text-decoration: none
@@ -164,13 +168,20 @@ acronym
       background: none
       border: none
       font-size: 1.5em
-  h1,h3,h4,h5,h6
-    margin-top: 4*$munit
+  h1,h3
+    margin-top: 2*$munit
     margin-bottom: 0
-    padding: 4*$munit $munit
+    padding: 2*$munit $munit
     text-align: center
-  h3,h4,h5,h6
+  h3
     color: $sndbackground
+  h4,h5,h6
+    color: $front
+    margin-top: 1.5*$munit
+    margin-bottom: 0
+    padding: 1.5*$munit $munit
+    text-align: center
+    font-size: 1.5em
   h1,h2,h3,h4,h5,h6
     clear: both
   h1
@@ -222,10 +233,10 @@ acronym
     max-width: $premaxwidth
     background: $prebackground
     font-family: monospace
-    font-size: $small
+    font-size: $prefontsize
     overflow: auto
     padding: $munit 2*$unit
-    line-height: 1.5em
+    line-height: 1.2em
     border-bottom: solid $bordersize $darker
   pre code
     background: none
