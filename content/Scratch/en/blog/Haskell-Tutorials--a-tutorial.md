@@ -231,6 +231,34 @@ And you'll could be able to add another badge:
 See [Stackage Badges](https://www.fpcomplete.com/blog/2015/10/stackage-badges)
 for more informations.
 
+### Creating a new project with `stack`
+
+If you use `stack` I suggest you to use the `tasty-travis` templates which will include:
+
+- test
+- doctest
+- benchmark
+- travis
+- a README file to help you start
+
+So edit your `~/.stack/config.yaml` like this:
+
+~~~
+templates:
+  params:
+      author-name: Your Name
+      author-email: your@mail.com
+      copyright: 'Copyright: (c) 2016 Your Name'
+      github-username: yourusername
+      category: Development
+~~~
+
+And then you can create a new projec with:
+
+~~~
+stack new my-project tasty-travis
+~~~
+
 
 ## Generated Documentation
 
@@ -364,5 +392,37 @@ There are >23k people on `/r/haskell`.
 If only 1% of them would take 10 minutes adding a bit of
 documentation it will certainly change a lot of
 things in the percieved documentation quality.
+
+And last but not least, 
+
+## **Design is important**
+
+Design is not a word precise enough. Let just say a good designer should
+care not only about how something look, but how end users will interact
+with it and how to remove every unnecessary stuff to focus on the essential.
+
+And design traverse everything, from the writer of an article to the
+details of the color of a button on a documentation web page.
+
+When I stumble upon some random blog post or random specification
+in the Haskell community, I had too much a feeling of old fashioned design.
+
+If you look at node.js community lot of their web page look cleaner,
+easier to read and in the end, more user friendly.
+
+Haskell is very different from node, I wouldn't like to replace all
+long and precise documentation with short human unprecise concepts.
+I don't want to transform the scientific papers by tweets.
+
+But like the scientific community has upgraded with the use of LaTeX,
+I believe we could find something similar that would make, very clean
+environment for most of us. A kind of look and feel that will be
+
+- modern
+- device friendly (either on computer, mobile, tablet)
+- has a touch, such that, like when you are on hackage you immediately know where to look
+
+Even provided my advices, with Tutorial, reading a tutorial
+on hackage not on a desktop is still a pain.
 
 So do have you any idea to improve the Haskell documentation?
