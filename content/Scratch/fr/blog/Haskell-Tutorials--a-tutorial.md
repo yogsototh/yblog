@@ -12,28 +12,25 @@ blogimage("main.jpg","Main image")
 
 <div class="intro">
 
-%tldr My hints on how to make great documentation for Haskell libs.
-
-**Step-by-step tutorial/Guides**:
+%tldr Some hints on how to make great documentation for Haskell libraries.
 
 1. Create a `Tutorial` module containing nothing except documentation.
 2. Mention the `Tutorial` module in your `cabal` description
 2. Use `doctest` to check your documentation is up to date
-3. For more complex real world examples, link to the test source.
-
-**Examples**:
-
-1. Use `doctest`
-2. Use some `CI`
-
-**Generated API Documentation**:
-
-1. Use haddock comments
+3. For more complex real world examples, link to the source of some test.
 
 </div>
 
-Great documentation could make the difference between people using your lib with happiness
-and people not using your lib at all.
+Great documentation make a big difference.
+A bad documentation could simply make people not using your lib.
+
+My friend was learning Haskell.
+To start he tried a Haskell library to make a small application.
+The documentation was deprecated to the point he wasn't able to make a basic example work.
+How do you believe he felt?
+What does he thought about Haskell in general?
+
+So here are my hint on how to make a great documentation in Haskell.
 
 Documentation can take many different form.
 
@@ -203,7 +200,7 @@ For some bonus points add the build status badge in your `README.md` file:
 ~~~
 
 Congratulation!
-Now if you break your documentation examples, you'll get prompted.
+Now if you break your documentation examples, you'll get notified.
 
 ### Badges
 
@@ -233,12 +230,13 @@ for more informations.
 
 ### Creating a new project with `stack`
 
-If you use `stack` I suggest you to use the `tasty-travis` templates which will include:
+If you use `stack` I suggest you to use the `tasty-travis` template.
+It will include the boilerplate for:
 
-- test
+- tests
 - doctest
 - benchmark
-- travis
+- travis CI
 - a README file to help you start
 
 So edit your `~/.stack/config.yaml` like this:
@@ -262,8 +260,10 @@ stack new my-project tasty-travis
 
 ## Generated Documentation
 
-So even if you do nothing, haddock should generate some API documentation for you for free.
-But it will be far better if you add some manual annotation.
+Even not doing anything, if you submit your library to hackage,
+haddock should generate some API documentation for free.
+
+But to make _real_ documentation you _need_ to add some manual annotations.
 
 **Functions**:
 
@@ -343,7 +343,7 @@ This post was an attempt to help people making more of them.
 
 But there are other good ideas to help improve the situation.
 
-### create a doc with link to best practices
+### Create a doc with link to best practices
 
 In clojure when you create a new project using `lein new my-project`
 a directory `doc` is created for you. It contains a file with a link
@@ -367,7 +367,7 @@ You'll also get:
 - Contributed See Also section
 - Contributed notes/comments
 
-Clojuredocs is an independant website from the official Clojure website.
+[`clojuredocs.org`](http://clojuredocs.org) is an independant website from the official Clojure website.
 
 Most of the time, if you google the function you search
 you end up on [clojuredocs](http://clojuredocs.org) for wich there are many contributions.
@@ -381,14 +381,14 @@ by module and why not a page by *symbol* (data, functions, typeclasses...).
 For example, we could provide details about `foldl` for example.
 Also as there would be less information to display, it will make the design cleaner.
 
-To help in documenting today you need to make a PR to some library.
+Today, if you want to help documenting, you need to make a PR to the source of some library.
 While if we had an equivalent to clojuredocs for Haskell,
 adding documentation would simply be a few clicks away:
 
 1. login
 2. add/edit some example, comments, see-also section
 
-There are >23k people on `/r/haskell`.
+There are more than 23k people on `/r/haskell`.
 If only 1% of them would take 10 minutes adding a bit of
 documentation it will certainly change a lot of
 things in the percieved documentation quality.
@@ -397,12 +397,12 @@ And last but not least,
 
 ## **Design is important**
 
-Design is not a word precise enough. Let just say a good designer should
-care not only about how something look, but how end users will interact
-with it and how to remove every unnecessary stuff to focus on the essential.
+blogimage("design_is_important.jpg","Design is Important")
 
-And design traverse everything, from the writer of an article to the
-details of the color of a button on a documentation web page.
+Design is a vague word.
+A good design should care not only about how something look,
+but also how users will interact with it.
+For example by removing things to focus on the essential.
 
 When I stumble upon some random blog post or random specification
 in the Haskell community, I had too much a feeling of old fashioned design.
@@ -412,7 +412,7 @@ easier to read and in the end, more user friendly.
 
 Haskell is very different from node, I wouldn't like to replace all
 long and precise documentation with short human unprecise concepts.
-I don't want to transform the scientific papers by tweets.
+I don't want to transform scientific papers by tweets.
 
 But like the scientific community has upgraded with the use of LaTeX,
 I believe we could find something similar that would make, very clean
@@ -420,9 +420,4 @@ environment for most of us. A kind of look and feel that will be
 
 - modern
 - device friendly (either on computer, mobile, tablet)
-- has a touch, such that, like when you are on hackage you immediately know where to look
-
-Even provided my advices, with Tutorial, reading a tutorial
-on hackage not on a desktop is still a pain.
-
-So do have you any idea to improve the Haskell documentation?
+- efficient, focus on what is most important and is helpful
