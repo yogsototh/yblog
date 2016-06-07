@@ -160,13 +160,12 @@ There are plenty of alternative solution.
 I provide the one I believe would be used by most people.
 So if you use `github` simply create an account on [`travis`](http://travis-ci.org).
 
-Add a `.travis.yml` file in your repo containing:
+Add a `.travis.yml` file in your repo containing the content of the file
+[here](http://docs.haskellstack.org/en/stable/GUIDE/#travis-with-caching)
+and remove the builds you don't need.
+It will build your project using a lot of different GHC versions and environemnts.
 
-~~~.yaml
-language: haskell
-~~~
-
-If you want to use `stack` instead of just `cabal`:
+If you are afraid by such its complexity you might just want to use this one:
 
 ~~~.yaml
 sudo: false
@@ -269,10 +268,9 @@ But to make _real_ documentation you _need_ to add some manual annotations.
 
 ~~~
 {-hi-}-- | My function description{-/hi-}
-myFunction :: Type of function
-myFunction arg1 {-hi-}-- ^ arg1 description{-/hi-}
-           arg2 {-hi-}-- ^ arg2 description{-/hi-}
-           = ...
+myFunction :: T1 {-hi-}-- ^ arg1 description{-/hi-}
+           -> T2 {-hi-}-- ^ arg2 description{-/hi-}
+myFunction arg1 arg2 = ...
 ~~~
 
 
