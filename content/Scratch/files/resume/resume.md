@@ -7,11 +7,16 @@ highlight-style: solarized-dark
 date: 26 July 2016
 ---
 
-# Yann Esposito
 
 \newpage
 
-## Resume
+# Yann Esposito
+
+\iffalse
+
+[PDF Version](./resume.pdf)
+
+\fi
 
 -------- -------------------------
 name     Yann Esposito
@@ -22,22 +27,22 @@ address  Bât 9, Résidence Saint Marc
          06700, Saint Laurent du Var
 -------- -------------------------
 
-### Professional Background
+## Professional Background
 
------------------------------------ -----------------------------------------------------------------------------------------
-_2016&nbsp;&rarr;_                  Clojure Software Engineer for Cisco (Threatgrid), <span class="detail">Remote</span>
-_2013&nbsp;&rarr;2016_              Machine Learning Scientist &amp; Software Engineer at Vigiglobe,
-                                    <span class="detail">Sophia Antipolis, France</span>
-_2010&nbsp;&rarr;_                  Co-Founder of GridPocket,
-                                    <span class="detail">Sophia Antipolis, France</span>
-_2007&nbsp;&rarr;&nbsp;2013_        AirFrance, <span class="detail">Sophia Antipolis, France</span>
-_10/2006&nbsp;&rarr;&nbsp;3/2007_   Post Ph.D., Hubert Curien Laboratory, <span class="detail">St-Etienne, France</span>
-_10/2004&nbsp;&rarr;&nbsp;9/2006_   ATER (College Degree Teach _&_ Research), <span class="detail">Marseille, France</span>
-_10/2001&nbsp;&rarr;&nbsp;9/2004_   University Monitor (College Degree Teach _&_ Research), <span class="detail">Marseille, France</span>
-_1995&nbsp;&rarr;&nbsp;2000_        Miscellaneous summer jobs
------------------------------------ -----------------------------------------------------------------------------------------
+--------- ------ -------- -----------------------------------------------------------------------------------------
+   _2016_  &rarr;         Clojure Software Engineer for Cisco (Threatgrid), _Remote_
+   _2013_  &rarr; _2016_  Machine Learning Scientist &amp; Software Engineer at Vigiglobe,
+                          _Sophia Antipolis, France_
+   _2010_ &rarr;          Co-Founder of GridPocket, _Sophia Antipolis, France_
+   _2007_ &rarr; _2013_   AirFrance, _Sophia Antipolis, France_
+_10/2006_ &rarr; _3/2007_ Post Ph.D., Hubert Curien Laboratory, _St-Etienne, France_
+_10/2004_ &rarr; _9/2006_ ATER (College Degree Teach _&_ Research), _Marseille, France_
+_10/2001_ &rarr; _9/2004_ University Monitor (College Degree Teach _&_ Research),
+                          _Marseille, France_
+   _1995_ &rarr; _2000_   Miscellaneous summer jobs
+--------- ------ -------- -----------------------------------------------------------------------------------------
 
-### Education
+## Education
 
 ----- ---------------------------------------------
 _2004_  CS Ph.D. in Machine Learning at Université de Provence
@@ -48,7 +53,7 @@ _1998_  DEUG MIAS (Math)
 _1995_  BAC S (Math)
 ----- ---------------------------------------------
 
-### Research Activies: Publications
+## Research Activies: Publications
 
 -------------------------- ---------------------------------------------
 _International Journal_    [Fundamenta Informaticæ, 2008]
@@ -61,7 +66,7 @@ _National Conferences_     [CAp'06] [CAp'04] [CAp'03]
 
 \newpage
 
-## Presentation
+# Presentation
 
 I am French with a Post Ph.D in Machine Learning[^10].
 Furthermore I love web programming and design.
@@ -114,7 +119,7 @@ github account: [github.com/yogsototh](https://github.com/yogsototh)
 
 \newpage
 
-## Public things done
+# Public things done
 
 - [Cisco (threatgrid)](http://cisco.com) Security & Threat Management.
 - [Vigiglobe](http://vigiglobe.com) architecture able to analyze thousands of social media messages in realtime. In particular, real time Machine Learning &amp; Statistics.
@@ -135,32 +140,18 @@ github account: [github.com/yogsototh](https://github.com/yogsototh)
 
 # Technical Competences
 
-Languages:
-: __Haskell__, __Clojure__, __Javascript__, scheme, C, camL, C++, Ruby, Perl, Java, Python, PHP
-
-Web frontend:
-: __elm__, __Clojurescript__, __Reagent__, __Angular.js__, __sass__, etc...
-
-Web framework:
-: __compojure-api__, __Yesod__ (Haskell web framework), actionhero (node.js)
-
-Programming environments:
-: Mac OS X, Unix/Linux (Solaris, Ubuntu, Debian), Windows&nbsp;XP
-
-Data Mining Tools:
-: __weka__, SVMlight
-
-Stream Computing:
-: storm (with clojure)
-
-`Unix`:
-: Shell scripts (zsh, bash), awk, \LaTeX, ConTeXt, metapost
-
-Version Control Tools:
-: __git__, Bazaar (DCVS), subversion (svn), CVS
-
-Mac:
-: __Objective-C Cocoa (Mac &amp; iOS)__, Dahsboard widget, Quartz Composer
+------------------ -----------------------------------------------------------------
+Languages          __Haskell__, __Clojure__, __Javascript__,
+                   scheme, C, camL, C++, Ruby, Perl, Java, Python, PHP
+Web frontend       __elm__, __Clojurescript__, __Reagent__, __Angular.js__, __sass__, etc...
+Web frameworks     __compojure-api__, __Yesod__, __servant__, actionhero
+ML Tools           __weka__, SVMlight
+Stream Computing   __kafka__, __druid__, storm (with clojure)
+UNIX               Shell scripts (zsh, bash), awk, \LaTeX, ConTeXt, metapost
+VCS                __git__, Bazaar (DCVS), subversion (svn), CVS
+Mac/iOS            __Objective-C Cocoa (Mac &amp; iOS)__, Dahsboard widget,
+                   Quartz Composer
+------------------ -----------------------------------------------------------------
 
 \newpage
 
