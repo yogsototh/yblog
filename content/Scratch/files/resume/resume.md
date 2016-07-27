@@ -18,27 +18,34 @@ date: 26 July 2016
 
 \fi
 
--------- -------------------------
+-------- ---------------------------------------------------------------
 name     Yann Esposito
 mail     <yann.esposito@gmail.com>
 port     (+33)650845271
 address  Bât 9, Résidence Saint Marc
          591, avenue Jean Aicard
          06700, Saint Laurent du Var
--------- -------------------------
+-------- ---------------------------------------------------------------
 
 ## Professional Background
 
 --------- ------ -------- -----------------------------------------------------------------------------------------
    _2016_  &rarr;         Clojure Software Engineer for Cisco (Threatgrid), _Remote_
+
    _2013_  &rarr; _2016_  Machine Learning Scientist &amp; Software Engineer at Vigiglobe,
                           _Sophia Antipolis, France_
+
    _2010_ &rarr;          Co-Founder of GridPocket, _Sophia Antipolis, France_
+
    _2007_ &rarr; _2013_   AirFrance, _Sophia Antipolis, France_
+
 _10/2006_ &rarr; _3/2007_ Post Ph.D., Hubert Curien Laboratory, _St-Etienne, France_
+
 _10/2004_ &rarr; _9/2006_ ATER (College Degree Teach _&_ Research), _Marseille, France_
+
 _10/2001_ &rarr; _9/2004_ University Monitor (College Degree Teach _&_ Research),
                           _Marseille, France_
+
    _1995_ &rarr; _2000_   Miscellaneous summer jobs
 --------- ------ -------- -----------------------------------------------------------------------------------------
 
@@ -123,16 +130,17 @@ github account: [github.com/yogsototh](https://github.com/yogsototh)
 
 - [Cisco (threatgrid)](http://cisco.com) Security & Threat Management.
 - [Vigiglobe](http://vigiglobe.com) architecture able to analyze thousands of social media messages in realtime. In particular, real time Machine Learning &amp; Statistics.
-- YPassword iOS application
-- Gridpocket web services (from conception to realization, works in correlation with a mobile app)
+- [Gridpocket](http://gridpocket.com) web services (from conception to realization, works in correlation with a mobile app)
 - [DEES](https://github.com/yogsototh/DEES): a 10.000 line C++ command line program. This program implement most [HMM](http://en.wikipedia.org/wiki/Hidden_Markov_model) standard algorithms _&_ inference algorithms.
 - [SeDiL](http://labh-curien.univ-st-etienne.fr/SEDiL/): a Java application using Swing UI. The goal is to provide biologist an easy way to use an algorithm that generate Similarity Matrices for strings but also for Tree structures. Most graphics was done by me, including the drawing of trees. I didn't used a library for that purpose.
-- For YPassword ; a Dashboard Widget, a web interface, a command line tool.
-- Some websites: [yannesposito.com](http://yannesposito.com), [ypassword.espozito.com](http://ypassword.espozito.com)
+- YPassword iOS application
+- [YPassword](http://yannesposito/YPassword) web interface in elm
+- Also relative to YPassword ; a Dashboard Widget, a command line tool.
+- Some websites: [yannesposito.com](http://yannesposito.com)
 - Written a thesis in Machine Learning and published in major international conferences:
   [ICALP&nbsp;2003], [COLT&nbsp;2004] _&_ [COLT&nbsp;2006].
 - A full javascript web application which display Electric consumption in real time.
-- [krambook](http://krambook.espozito.com) (the engine I use to create this document. I exported it in HTML, PDF (using \LaTeX) and SVG.
+- [mkdocs](http://yogsototh.github.io/mkdocs) (the engine I use to create this document. I exported it in HTML, PDF (using \LaTeX) and SVG.
 - some Mac OS X screensaver, a MetaPost plugin to draw Automata, an RFC-like document to help my student to make a TOR like network, etc...
 - a bunch of other projects see [http://github.com/yogsototh](http://github.com/yogsototh)
 
@@ -285,8 +293,12 @@ _1995_ BAC S (math)
 ## International
 
 -------------- ----------------------------------------------------
-Journals       [Fundamenta&nbsp;Inforamticæ&nbsp;vol.86&nbsp;2008] [Pattern&nbsp;Recognition,&nbsp;2004]
-Conferences    [ECML&nbsp;2008] [COLT&nbsp;2006] [ICGI&nbsp;2006] [COLT&nbsp;2004] [ICALP&nbsp;2003] [ICGI&nbsp;2002]
+Journals       [Fundamenta&nbsp;Inforamticæ&nbsp;vol.86&nbsp;2008]
+               [Pattern&nbsp;Recognition,&nbsp;2004]
+
+Conferences    [ECML&nbsp;2008] [COLT&nbsp;2006] [ICGI&nbsp;2006]
+               [COLT&nbsp;2004] [ICALP&nbsp;2003] [ICGI&nbsp;2002]
+
 Workshop       [TAGI05]
 -------------- ----------------------------------------------------
 
