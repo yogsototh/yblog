@@ -166,10 +166,7 @@ In the doc, one could use `String<T>`.
 But in reality, `T` had to be only `char` or `char16`.
 Then I had to reduce my alphabet to 2<sup>16</sup> letters.
 Except for some application, the alphabet must be far larger than that.
-en:
 To conclude, I'd say, C++ is very good if you work alone or with a fixed subset of its features.
-
-fr:
 
 ### Eiffel
 
