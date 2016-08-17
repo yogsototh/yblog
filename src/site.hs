@@ -278,10 +278,13 @@ feedBehavior language = do
       compile $
         loadAllSnapshots (fromGlob $ "Scratch/" ++ language ++ "/blog/*") "content"
         >>= fmap (take 10) . createdFirst
+        >>= mapM (applyFilter protectCDATA)
         >>= renderAtom feedConfiguration feedCtx
       where
         feedCtx :: Context String
         feedCtx = mconcat [bodyField "description", yContext]
+        protectCDATA :: String -> String
+        protectCDATA = replaceAll "]]>" (const "]]&gt;")
 
 --------------------------------------------------------------------------------
 --

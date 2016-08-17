@@ -3,7 +3,7 @@ kind:           article
 published:      2013-11-14
 image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail-monty-python.jpg
 title: Holy Haskell Project Starter
-subtitle: A Haskell tutorial: from nothing to something useful
+subtitle: "A Haskell tutorial: from nothing to something useful"
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
