@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 #
 languages=( $(stack exec -- showlangs) )
+error(){ print -- $* >&2 ; exit 1}
 ((${#languages} == 0)) && error "Couldn't retrieve languages [stack exec -- showlangs]"
 print "languages to watch (in Config.hs) are: $languages"
 typeset -a exclu

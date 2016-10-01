@@ -1,1 +1,1 @@
-multi/blog/Haskell-Tutorials--a-tutorial.md
+multi/blog/Helping-avoid-Haskell-Success.md
