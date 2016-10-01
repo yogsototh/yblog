@@ -8,7 +8,7 @@ authoruri: yannesposito.com
 tags: programming
 theme: scientific
 ---
-blogimage("main.png","Main image")
+blogimage("main.jpg","Main image")
 
 <div class="intro">
 
@@ -18,7 +18,7 @@ How is that possible?
 As a **real** haskeller, I find this situation unbearable!
 
 After all, we must *avoid success at all cost*.
-And I'll help SPJ achieve this goal.
+And I'll help SPJ achieve this honorable goal.
 
 </div>
 
@@ -60,23 +60,24 @@ And if it is not enough:
 
 If they come from LISP and the statically typed language remark wasn't enough.
 Try to mention the lack of macros in Haskell. Don't mention template Haskell or
-even less Generics and all recent progress in more advanced typing system.
+even less Generics and all recent progress in GHC.
 
 ## Make it difficult to install
 
 Many hints there:
 
 - Send them on another compiler than GHC
-- Explain that they should never use binary distribution of GHC! And they must
+- Explain that they should never use a binary distribution of GHC! And they must
   compile it manually! It might not stop them but it will make the installation
-  process much more difficult.
+  process much more tedious.
 - Lie! Explain there is a severe security issue with latest tools. Explain they
   must use cabal-install 1.18 or older.
 - Also explain them that in order to be able to handle lib dependencies
   correctly they **MUST** first learn Nix! Never talk about `stack`, `cabal
   freeze`, ... While Nix is great, forcing new user completely alien to all
   these concepts to first learn it before starting to write their first line of
-  code can greatly reduce their enthusiasm.
+  code can greatly reduce their enthusiasm. Bonus point if you make them believe
+  you can only program in Haskell on NixOS.
 
 ## Make it difficult to learn
 
@@ -86,8 +87,8 @@ The very first thing to do is to explain how Haskell is so easy to learn. How
 natural it is for everybody you know. And except someone you always considered
 very dumb, everybody was very productive in haskell in few hours.
 
-Use vocabulary alien to them as much as possible. Here is a list of words you
-must use in the very first minutes of your description of Haskell:
+Use vocabulary alien to them as much as possible. Here is a list of terms you
+should use in the very first minutes of your description of Haskell:
 
 - catamorphism (bonus if you mention that the word come from the Greek κατα for
   catastrophe, that way you'll look like a snob and you also use the word
@@ -95,18 +96,22 @@ must use in the very first minutes of your description of Haskell:
 - Monad! Of course you should use it ASAP! And explain they are exactly like
   potatoes or bananas shaped chairs. Double bonus if you explain that monad are
   really simple as they are just a monoid in the category of endofunctors.
+- GADTs
+- Yoneda Lemma
+- Homotopy Type Theory
+- ...
+
+Each of this term will hopefully be intimidating.
 
 ### Tutorial authors
 
-Please first provide the most theoretical and unpraticable example at first.
-For example don't start by:
+Please don't provide an obvious first example like:
 
 ~~~~.haskell
 main = putStrLn "Hello World!"
 ~~~~
 
-But start by the Haskell servant example and compare it to the Node.js hello
-world example!
+Instead prefer a fully servant example:
 
 ~~~~.haskell
 {-# LANGUAGE DataKinds #-}
@@ -161,8 +166,6 @@ getItemById = \ case
 exampleItem :: Item
 exampleItem = Item 0 "example item"
 
--- * item
-
 data Item
   = Item {
     itemId :: Integer,
@@ -172,21 +175,57 @@ data Item
 
 instance ToJSON Item
 instance FromJSON Item
-
-data a + b = Foo a b
-
-type X = Int + Bool
 ~~~~
 
-Of course use the most of your time explaining the language extensions first.
-With great deal of details and if possible using as much as possible references
-to Category Theory. And you'll get bonus points if you mention HoTT! Double
-bonus points if you explain that understand HoTT in details is essential in
-using Haskell correctly.
+This nice example should overflow the number of new concepts a Haskell newcomer
+should deal with:
 
-Explain that what this does is incredible but for the wrong reasons.
-For example don't mention why `instance ToJSON Item` is great.
-But explain that you can with as few code as this be able to sum two numbers!
+- Language extensions. Each extension can take a lot of time to be explained.
+- Strange notations:
+    - `:<|>`
+    - `'[]` instead of `[]`
+- `Proxy`
+- Immediate usage of `$`
+- `deriving` ha ha! You'll need to explain typeclasses first!
+- the definition for `getItemById`
+
+Of course use the most of your energy explaining the language extensions first.
+Use a great deal of details and if possible use as much as possible references
+to Category Theory. You'll get bonus points if you mention HoTT! Double bonus
+points if you explain that understanding all details in HoTT is essential to use
+Haskell on a daily basis.
+
+Explain that what this does is incredible but for the wrong reasons. For example
+don't mention why `instance ToJSON Item` is great. But insist that we achieved
+to serve a JSON with extreme elegance and simplicity. Keep insisting on the
+simplicity and forgot to mention type safety which is one of the main benefit of
+Servant.
+
+If you're afraid that this example might be too close to a real world product,
+you can simply use some advanced lenses examples:
+
+~~~~.haskell
+{-# LANGUAGE DeriveGeneric   #-}
+{-# LANGUAGE TemplateHaskell #-}
+
+import Control.Lens.TH (makePrisms)
+import GHC.Generics (Generic)
+import Lens.Family.Total
+
+data Example a b c = C1 a | C2 b | C3 c deriving (Generic)
+
+makePrisms ''Example
+
+instance (Empty a, Empty b, Empty c) => Empty (Example a b c)
+
+example :: Example String Char Int -> String
+example = _case
+    & on _C1 (\s -> s              )
+    & on _C2 (\c -> replicate 3  c )
+    & on _C3 (\n -> replicate n '!')
+~~~~
+
+Certainly a great example to start a new language with.
 
 ### Library authors
 
@@ -216,7 +255,7 @@ Yes we said, *at all cost*!
 
 ## Conclusion & Mistake
 
-So with all of this, I believe we'll all be on the right track to avoid success
+So with all of this I believe we should be on the right track to avoid success
 at all cost!
 
 Sorry? What?
