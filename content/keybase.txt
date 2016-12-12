@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/yogsototh
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://yannesposito.com
+  * I am yogsototh (https://keybase.io/yogsototh) on keybase.
+  * I have a public key ASB9axNN7YTw6AKkfRe8lAepI3rGMErpBB1wiqJavQVmAAo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "010188a58f92168c1afb262fa50c2dbe129f37875df7c68e9b33602c549a6d24e25d0a",
+            "host": "keybase.io",
+            "kid": "01207d6b134ded84f0e802a47d17bc9407a9237ac6304ae9041d708aa25abd0566000a",
+            "uid": "572301bc5d643eca21d83d6aba7edc19",
+            "username": "yogsototh"
+        },
+        "service": {
+            "hostname": "yannesposito.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.18"
+    },
+    "ctime": 1481553111,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1481553091,
+        "hash": "fc3aa5ff03d823c3c8296665c308505413b8ed14ba66b5da487479c091c51ed060450d759b0371210258867f6aa55c5af8d6c6808a8c687820292eb17029dd39",
+        "seqno": 757574
+    },
+    "prev": "fc3df4b6f4d1249d9f769960347278fdf13e53ef6cbdad5a28c1024b183f8727",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgfWsTTe2E8OgCpH0XvJQHqSN6xjBK6QQdcIqiWr0FZgAKp3BheWxvYWTFAvl7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxODhhNThmOTIxNjhjMWFmYjI2MmZhNTBjMmRiZTEyOWYzNzg3NWRmN2M2OGU5YjMzNjAyYzU0OWE2ZDI0ZTI1ZDBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwN2Q2YjEzNGRlZDg0ZjBlODAyYTQ3ZDE3YmM5NDA3YTkyMzdhYzYzMDRhZTkwNDFkNzA4YWEyNWFiZDA1NjYwMDBhIiwidWlkIjoiNTcyMzAxYmM1ZDY0M2VjYTIxZDgzZDZhYmE3ZWRjMTkiLCJ1c2VybmFtZSI6InlvZ3NvdG90aCJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoieWFubmVzcG9zaXRvLmNvbSIsInByb3RvY29sIjoiaHR0cDoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTgifSwiY3RpbWUiOjE0ODE1NTMxMTEsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ4MTU1MzA5MSwiaGFzaCI6ImZjM2FhNWZmMDNkODIzYzNjODI5NjY2NWMzMDg1MDU0MTNiOGVkMTRiYTY2YjVkYTQ4NzQ3OWMwOTFjNTFlZDA2MDQ1MGQ3NTliMDM3MTIxMDI1ODg2N2Y2YWE1NWM1YWY4ZDZjNjgwOGE4YzY4NzgyMDI5MmViMTcwMjlkZDM5Iiwic2Vxbm8iOjc1NzU3NH0sInByZXYiOiJmYzNkZjRiNmY0ZDEyNDlkOWY3Njk5NjAzNDcyNzhmZGYxM2U1M2VmNmNiZGFkNWEyOGMxMDI0YjE4M2Y4NzI3Iiwic2Vxbm8iOjEwLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQGJXGOHC/F6x02z1YfmXrl15mJbwS8vc9XZAo1uwQBEYDDVyWmMwVIkKpWpLN+J6wcnkml2L+TGg86KTsOpSxAGoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCD71izOCCfrcQgbKGeIaD/VXb0Dx/8S5icfSvFd2Xv4lqN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/yogsototh
+
+==================================================================

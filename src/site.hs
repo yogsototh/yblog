@@ -28,6 +28,7 @@ main = hakyll $ do
           .||.  "YBlog/**"
           .||.  "YPassword/**"
           .||.  "cv/**"
+          .||.  "keybase.txt"
           .||.  "CNAME")
       staticBehavior
 
