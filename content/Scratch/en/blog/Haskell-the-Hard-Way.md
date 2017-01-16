@@ -19,9 +19,16 @@ blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 
 Thanks to:
 
-- [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) you can find a Russian translation here: [Part 1](http://habrahabr.ru/post/152889/) _&_ [Part 2](http://habrahabr.ru/post/153383/),
-- [Daniel Campoverde](http://silly-bytes.blogspot.fr) for the Spanish translation here: [Aprende Haskell rápido y difícil](http://silly-bytes.blogspot.fr/2016/06/aprende-haskell-rapido-y-dificil_29.html),
-- [Joomy Korkut](http://github.com/joom) for the Turkish translation here: [Zor Yoldan Haskell](https://github.com/joom/zor-yoldan-haskell).
+- [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534)
+  you can find a Russian translation here:
+  [Part 1](http://habrahabr.ru/post/152889/) _&_
+  [Part 2](http://habrahabr.ru/post/153383/),
+- [Daniel Campoverde](http://silly-bytes.blogspot.fr)
+  for the Spanish translation here:
+  [Aprende Haskell rápido y difícil](http://silly-bytes.blogspot.fr/2016/06/aprende-haskell-rapido-y-dificil_29.html),
+- [Joomy Korkut](http://github.com/joom) for the Turkish translation here:
+  [Zor Yoldan Haskell](https://github.com/joom/zor-yoldan-haskell).
+
 
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>

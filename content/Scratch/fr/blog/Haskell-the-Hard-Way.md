@@ -20,12 +20,16 @@ blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 
 Merci à :
 
-- [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534) vous pouvez trouver une traduction russe ici: [Partie 1](http://habrahabr.ru/post/152889/) _&_ [Partie 2](http://habrahabr.ru/post/153383/) ;  
-- [Daniel Campoverde](http://silly-bytes.blogspot.fr) pour la version Espagnole : [Aprende Haskell rápido y difícil](http://silly-bytes.blogspot.fr/2016/06/aprende-haskell-rapido-y-dificil_29.html) ;
-- [Joomy Korkut](http://github.com/joom) pour sa traduction en Turc: [Zor Yoldan Haskell](https://github.com/joom/zor-yoldan-haskell)
+- [Oleg Taykalo](https://plus.google.com/u/0/113751420744109290534)
+  vous pouvez trouver une traduction russe ici: [Partie 1](http://habrahabr.ru/post/152889/) _&_
+  [Partie 2](http://habrahabr.ru/post/153383/) ;
+- [Daniel Campoverde](http://silly-bytes.blogspot.fr) pour la version Espagnole :
+  [Aprende Haskell rápido y difícil](http://silly-bytes.blogspot.fr/2016/06/aprende-haskell-rapido-y-dificil_29.html) ;
+- [Joomy Korkut](http://github.com/joom) pour sa traduction en Turc:
+  [Zor Yoldan Haskell](https://github.com/joom/zor-yoldan-haskell)
 - [lepereceval](https://github.com/lepereceval)
-pour sa traduction française que je n'ai pas eu le courage de faire moi-même !
-(_NDT: Si vous trouvez une erreurs ou même plusieurs dans la traduction française, vous pouvez m'en faire part à le_point_pere_point_ceval_arobase_gmail_point_com_. N'hésitez pas!_)
+  pour sa traduction française que je n'ai pas eu le courage de faire !
+
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
 >
@@ -430,7 +434,7 @@ Hein? Quel ce type étrange?
 Num a => a -> a -> a
 ~~~
 
-Preumièrement, concentrons-nous sur la partie de droite: `a -> a -> a`.
+Premièrement, concentrons-nous sur la partie de droite: `a -> a -> a`.
 Pour le comprendre, regardez cette liste d'exemples progressifs:
 
 --------------------------------------------------------------------------------------------------------------------------------------
