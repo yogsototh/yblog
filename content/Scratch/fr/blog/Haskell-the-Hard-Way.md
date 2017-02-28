@@ -29,6 +29,8 @@ Merci à :
   [Zor Yoldan Haskell](https://github.com/joom/zor-yoldan-haskell)
 - [lepereceval](https://github.com/lepereceval)
   pour sa traduction française que je n'ai pas eu le courage de faire !
+- [Younesse Kaddar](https://github.com/youqad)
+  pour toutes ses corrections de style et d'orthographe.
 
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
@@ -80,7 +82,7 @@ Peut-être pas devenir des ninjas d'Haskell,
 mais au moins savoir ce que ce langage a de particulier.
 Son apprentissage ouvre énormément l'esprit.
 
-La plupart des langages partagent les mêmes fondamentaux :
+La plupart des langages partagent les mêmes fondements :
 
 - les variables
 - les boucles
@@ -90,11 +92,11 @@ La plupart des langages partagent les mêmes fondamentaux :
 [^0001]: Même si tous les langages récents essayent de les cacher, ils restent présents.
 
 Haskell est très différent.
-Ce langage utilise des concepts dont je n'avais jamais entendu parlé avant.
+Ce langage utilise des concepts dont je n'avais jamais entendu parler avant.
 Beaucoup de ces concepts pourront vous aider à devenir un meilleur développeur.
 
 Plier son esprit à Haskell peut être difficile.
-Ce le fût pour moi.
+Ce le fut pour moi.
 Dans cet article, j'essaye de fournir les informations qui m'ont manquées lors de mon apprentissage.
 
 Cet article sera certainement difficile à suivre.
@@ -102,22 +104,22 @@ Mais c'est voulu.
 Il n'y a pas de raccourci pour apprendre Haskell.
 C'est difficile.
 Mais je pense que c'est une bonne chose.
-C'est parce qu'Haskell est difficile qu'il est intéressant.
+C'est entre autres parce qu'Haskell est difficile qu'il est intéressant.
 
 La manière conventionnelle d'apprendre Haskell est de lire deux livres.
-En premier ["Learn You a Haskell"](http://learnyouahaskell.com)
+D'abord ["Learn You a Haskell"](http://haskell.fr/lyah/)
 et ensuite ["Real World Haskell"](http://www.realworldhaskell.org).
 Je pense aussi que c'est la bonne manière de s'y prendre.
 Mais apprendre même un tout petit peu d'Haskell est presque impossible sans se plonger réellement dans ces livres.
 
-Cet article fait un résumé très dense et rapide des aspect majeurs d'Haskell.
+Cet article fait un résumé très dense et rapide des aspects majeurs d'Haskell.
 J'y ai aussi rajouté des informations qui m'ont manqué pendant l'apprentissage de ce langage.
 
-Pour les francophones ; je suis désolé.
+Pour les francophones : je suis désolé.
 Je n'ai pas eu le courage de tout retraduire en français.
 Sachez cependant que si vous êtes plusieurs à insister, je ferai certainement l'effort de traduire l'article en entier.
 Et si vous vous sentez d'avoir une bonne âme je ne suis pas contre un peu d'aide.
-Les sources de cet article sont sur [gihub](http://github.com/yogsototh/learn_haskell.git).
+Les sources de cet article sont sur [github](http://github.com/yogsototh/learn_haskell.git).
 
 Cet article contient cinq parties :
 
@@ -1239,7 +1241,7 @@ Pour mieux comprendre ce qui se passe ici, étudions une évaluation étape par 
 ⇒ <span class="blue">6</span>
 </pre>
 
-Une autr fonction d'ordre supérieur utile est `(.)`.
+Une autre fonction d'ordre supérieur utile est `(.)`.
 Elle correspond à une composition en mathématiques.
 
 ~~~~~~ {.haskell}
@@ -1383,7 +1385,7 @@ Prelude Data.Complex> square (2 :+ 1)
 3.0 :+ 4.0
 ~~~
 
-`x :+ y` est la notation pour le complex (<i>x + iy</i>)
+`x :+ y` est la notation pour le complexe (<i>x + iy</i>)
 
 Comparons maintenant avec la quantité de code nécessaire pour le faire en C:
 
@@ -1402,8 +1404,8 @@ complex x,y;
 y = complex_square(x);
 ~~~~~~
 
-Pour chaque type, vous avfez besoin d'écrire une nouvelle fonction.
-Le seul moyen de se débarsser de se problème est d'utiliser des trucs de méta-programmation, par exemple via le pré-processeur.
+Pour chaque type, vous avez besoin d'écrire une nouvelle fonction.
+Le seul moyen de se débarrasser de ce problème est d'utiliser des astuces de méta-programmation, par exemple en utilisant le pré-processeur.
 en C++ il y a un meilleur moyen, les _templates_:
 
 ~~~~~~ {.c++}
@@ -1434,15 +1436,15 @@ C++ fait un bien meilleur travail que C ici.
 Mais pour des fonctions plus complexes, la syntaxe sera difficile à suivre.
 Voyez [cet article](http://bartoszmilewski.com/2009/10/21/what-does-haskell-have-to-do-with-c/) pour quelques exemples. (_NDT: toujours en anglais)
 
-En C++ vous devez déclarer qu'un fonction peut marcher avec différents types.
-En Haskell, c'est le cas contraire.
+En C++ vous devez déclarer qu'une fonction peut marcher avec différents types.
+En Haskell, c'est le contraire.
 La fonction sera aussi générale que possible par défaut.
 
-L'inférence de type donne à Haskell le sentiment de liberté que les langages dyumaniquement typés proposent.
+L'inférence de type donne à Haskell le sentiment de liberté que les langages dynamiquement typés proposent.
 Mais contrairement aux langages dynamiquement typés, la majorité des erreurs est détectée avant de lancer le programme.
 Généralement, en Haskell:
 
- > "Si ça compile, ça fera certainement ce à quoi vous vous attendiez."
+ > "Si ça compile, ça fait certainement ce que vous attendiez."
 
 <hr/><a href="code/02_Hard_Part/21_Types.lhs" class="cut">02_Hard_Part/<strong>21_Types.lhs</strong></a>
 
@@ -1497,10 +1499,10 @@ color = ColorConstr "Blue"
 main = putStrLn $ showInfos name color
 ~~~~~~
 </div>
-Maintenant, si vous échangez les paramètres de`showInfos`, le compilateur se plaint!
-C'est donc une erreur que vous ne refairez jamais, au suel prix d'être plus bavard.
+Maintenant, si vous échangez les paramètres de `showInfos`, le compilateur se plaint!
+Au seul prix d'être plus verbeux, vous écartez définitivement cette erreur potentielle.
 
-Remarquez aussi que les constructeurs sont des fonctions:
+Remarquez aussi que les constructeurs sont des fonctions :
 
 ~~~~~~ {.haskell}
 NameConstr  :: String -> Name
@@ -1517,13 +1519,13 @@ data TypeName =   ConstructorName  [types]
 
 Généralement on utilise le même nom pour le DatatTypeName et le DataTypeConstructor.
 
-Exemple:
+Exemple :
 
 ~~~~~~ {.haskell}
 data Complex a = Num a => Complex a a
 ~~~~~~
 
-Vous pouvez également utiliser cette syntaxe:
+Vous pouvez également utiliser cette syntaxe :
 
 ~~~~~~ {.haskell}
 data DataTypeName = DataConstructor {
@@ -1533,10 +1535,10 @@ data DataTypeName = DataConstructor {
                     , fieldn :: [type of fieldn] }
 ~~~~~~
 
-Et les accesseurs sont définis automatiquement.
+Et de nombreux accesseurs sont définis pour vous.
 En outre, vous pouvez utiliser une autre ordre lorsque vous définissez des valeurs.
 
-Exemple:
+Exemple :
 
 ~~~~~~ {.haskell}
 data Complex a = Num a => Complex { real :: a, img :: a}
@@ -1568,7 +1570,7 @@ data List a = Nil | a ::: (List a)
 
 Le nombre après `infixr` donne la priorité.
 
-Si vous voulez pouvoir écrire (`Show`), lire (`Read`), tester l'égalite (`Eq`) et comparer (`Ord`) votre nouvelle structure, vous pouvez demander à Haskell de dériver les fonctions appropriées pour vous.
+Si vous voulez pouvoir écrire (`Show`), lire (`Read`), tester l'égalité (`Eq`) et comparer (`Ord`) votre nouvelle structure, vous pouvez demander à Haskell de dériver les fonctions appropriées pour vous.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1593,7 +1595,7 @@ main = do
       print (convertList [0,1])
 ~~~~~~
 </div>
-Ceci écrit:
+Ceci donne :
 
 ~~~
 0 ::: (1 ::: Nil)
@@ -1630,10 +1632,10 @@ treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
 ~~~~~~
 </div>
 Remarquez à quel point cette fonction est élégante.
-En français:
+En français :
 
 - une liste vide est convertie en un arbre vide
-- une liste `(x:xs)` sera convertie en un arbre où:
+- une liste `(x:xs)` sera convertie en un arbre où :
   - La racine est `x`
   - Le "sous-arbre" de gauche est l'arbre créé à partir des membres de la liste `xs` strictement inférieurs à `x`
   - Le "sous-arbre" de droite est l'arbre créé à partir des membres de la liste `xs` strictement superieurs à `x`
@@ -1643,13 +1645,13 @@ En français:
 main = print $ treeFromList [7,2,4,8]
 ~~~~~~
 </div>
-Vious devriez obtenir:
+Vous devriez obtenir :
 
 ~~~
 Node 7 (Node 2 Empty (Node 4 Empty Empty)) (Node 8 Empty Empty)
 ~~~
 
-C'est représentation de notre arbre informative mais déplaisante.
+C'est une représentation de notre arbre informative mais plutôt déplaisante.
 
 <a href="code/02_Hard_Part/30_Trees.lhs" class="cut">02_Hard_Part/<strong>30_Trees.lhs</strong> </a>
 
@@ -1674,7 +1676,7 @@ Sans le `deriving (Show)`, Haskell ne crée pas de méthode `show` pour nous.
 Nous allons créer notre propre version.
 Pour accomplir cela, nous devons déclarer que notre type `BinTree a`
 est une instance de la classe de type `Show`.
-La syntaxe générale est:
+La syntaxe générale est :
 
 ~~~~~~ {.haskell}
 instance Show (BinTree a) where
@@ -1683,7 +1685,7 @@ instance Show (BinTree a) where
 
 Voici ma version pour afficher un arbre binaire.
 Ne vous inquiétez pas de sa complexité apparente.
-J'ai fais beaucoup d'améliorations pour afficher même les objets les plus étranges.
+J'ai fait beaucoup d'améliorations pour afficher même les objets les plus étranges.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1743,7 +1745,7 @@ treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
                              (treeFromList (filter (>x) xs))
 ~~~~~~
 </div>
-Et maintenant, nous pouvons jouer:
+Et maintenant, nous pouvons jouer :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1766,9 +1768,9 @@ Arbre binaire d'Int:
 :       `--23
 ~~~
 
-Maintenant c'est beaucoup mieux!
-La racine est montré en commençant la ligne avec le caractère `<`.
-Et chaqeue ligne suivante commence avec un `:`.
+Maintenant c'est beaucoup mieux !
+La racine est montrée en commençant la ligne avec le caractère `<`.
+Et chaque ligne suivante est commence par `:`.
 Mais nous pourrions aussi utiliser un autre type.
 
 <div class="codehighlight">
@@ -1778,7 +1780,7 @@ Mais nous pourrions aussi utiliser un autre type.
 ~~~~~~
 </div>
 ~~~
-Arbre binaire de chaïnes de caractères
+Arbre binaire de chaînes de caractères
 < "foo"
 : |--"bar"
 : |  `--"baz"
@@ -1797,7 +1799,7 @@ nous pouvons aussi faire des arbres d'arbres!
 ~~~~~~
 </div>
 ~~~
-Arbre binaire d'arbres binaires de Char:
+Arbre binaire d'arbres binaires de Char :
 < < 'b'
 : : |--'a'
 : : `--'z'
@@ -1834,10 +1836,10 @@ print ( treeFromList (
              , map treeFromList ["YOU","LIKE","TREES"] ]))
 ~~~~~~
 
-et donne:
+et donne :
 
 ~~~
-Arbre d'arbres d'arbres de char:
+Arbre d'arbres d'arbres de Char :
 < < < 'Y'
 : : : `--'O'
 : : `--< 'D'
@@ -1867,7 +1869,7 @@ Remarquez que les arbres en double ne sont pas insérés.
 Il n'y a qu'un seul arbre correspondant à `"I","HEARD"`.
 Nous avons ceci presque gratuitement, car nous avons déclaré Tree comme instance de `Eq`.
 
-fr:Voyez à quel point cette structure est formidable:
+Voyez à quel point cette structure est formidable :
 Nous pouvons faire des arbres contenant seulement des entiers, des chaînes de caractères, mais aussi d'autres arbres.
 Et nous pouvons même faire un arbre contenant un arbre d'arbres!
 
@@ -1884,13 +1886,13 @@ On dit souvent que Haskell est _paresseux_.
 En fait, si vous êtes un petit peu pédant, vous devriez dire que [Haskell est _non-strict_](http://www.haskell.org/haskellwiki/Lazy_vs._non-strict) (_NDT: En anglais, pour changer_).
 La paresse est juste une implémentation commune aux langages non-stricts.
 
-Alors que signifie "non-strict"? D'après le wiki de Haskell:
+Alors que signifie "non-strict"? D'après le wiki de Haskell :
 
- > Réduction (terme mathématique pour évaluation) procède depuis l'extérieur.
+ > La réduction (terme mathématique pour "évaluation") procède depuis l'extérieur.
  >
- > donc si vous avez `(a+(b*c))` alors vous réduisez `+` d'abord, puis vous réduisez `(b*c)`
+ > Donc si vous avez `(a+(b*c))`, alors vous réduisez `+` d'abord, puis vous réduisez `(b*c)`
 
-Par exemple en Haskell vous pouvez faire:
+Par exemple en Haskell vous pouvez faire :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1907,7 +1909,7 @@ main = print $ take' 10 numbers
 </div>
 Et ça s'arrête.
 
-Comment?
+Comment ?
 
 Au lieu d'essayer d'évaluer `numbers` entièrement,
 Haskell évalue les éléments seulement lorsque c'est nécessaire.
@@ -1984,7 +1986,7 @@ instance (Show a) => Show (BinTree a) where
 </div>
 
 Supposons que nous ne nous préoccupions pas d'avoir une arbre ordonné.
-Voici un arbre binaire infini:
+Voici un arbre binaire infini :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1992,7 +1994,7 @@ nullTree = Node 0 nullTree nullTree
 ~~~~~~
 </div>
 Un arbre complet où chaque noeud est égal à 0.
-Maintenant je vais vous prouver que nous pouvons manipuler cet arbre avec la fonction suivante:
+Maintenant je vais vous prouver que nous pouvons manipuler cet arbre avec la fonction suivante :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2007,13 +2009,13 @@ treeTakeDepth n (Node x left right) = let
               Node x nl nr
 ~~~~~~
 </div>
-Regardez ce qui se passe avec ce programme:
+Regardez ce qui se passe avec ce programme :
 
 ~~~~~~ {.haskell}
 main = print $ treeTakeDepth 4 nullTree
 ~~~~~~
 
-Le code compile, se lance et s'arrête en donnant ce résultat:
+Le code compile, se lance et s'arrête en donnant ce résultat :
 
 ~~~
 <  0
@@ -2034,7 +2036,7 @@ Le code compile, se lance et s'arrête en donnant ce résultat:
 ~~~
 
 Pour nous chauffer encore un peu les neurones,
-faisons un arbre plus intéressant:
+faisons un arbre plus intéressant :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2045,8 +2047,8 @@ iTree = Node 0 (dec iTree) (inc iTree)
 ~~~~~~
 </div>
 Un autre moyen de créer cet arbre est d'utiliser une fonction d'ordre supérieur.
-Cette fonction devrait être similaire à `map` n, mais devrais travailler sur un `BinTree` au lieu d'une liste.
-Voici cette fonction:
+Cette fonction devrait être similaire à `map` n, mais devrait travailler sur un `BinTree` au lieu d'une liste.
+Voici cette fonction :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2058,11 +2060,11 @@ treeMap f (Node x left right) = Node (f x)
                                      (treeMap f right)
 ~~~~~~
 </div>
-_NB_: Je ne parlerais pas plus de cette fonction ici.
-Si vous vous intéressez à la généralisation de `map`à d'autre structures de données,
+_NB_: Je ne parlerai pas plus de cette fonction ici.
+Si vous vous intéressez à la généralisation de `map` à d'autres structures de données,
 cherchez des informations sur les foncteurs et `fmap`.
 
-Notre définition est maintenant:
+Notre définition est maintenant :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2113,16 +2115,16 @@ main = do
 Félicitations pour être allé si loin!
 Maitenant, les choses vraiment extrêmes peuvent commencer.
 
-Si vous êtes comme moi, vous avez déjà acqis le style fonctionnel.
+Si vous êtes comme moi, vous êtes déjà familier avec le style fonctionnel.
 Vous devriez également comprendre les avantages de la paresse par défaut.
-Mais vous ne comprenez pas vraiment par où commencer pour faire un vrai
+Mais vous ne comprenez peut-être pas vraiment par où commencer pour faire un vrai
 programme.
-et en particulier:
+Et en particulier :
 
-- Comment s'occuper des effets?
-- Pourquoi y a t-il une étrange notation impérative lorsque l'on s'occupe de l'Entrée/Sortie? (E/S, _IO_ en anglais.)
+- Comment s'occuper des effets ?
+- Pourquoi y a t-il une étrange notation impérative lorsque l'on s'occupe de l'Entrée/Sortie? (E/S, _IO_ pour _Input/Output_ en anglais)
 
-Soyez préparés,  les réponses risquent d'être compliquées.
+Accrochez-vous, les réponses risquent d'être compliquées.
 Mais elles en valent la peine.
 
 <hr/><a href="code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong></a>
@@ -2187,7 +2189,7 @@ getLine  :: IO String
 print    :: Show a => a -> IO ()
 ~~~
 
-Ou, plus intéressant, on remarque que chaque expression dans le bloc `do` est de type `IO a`.
+Ou, de manièree plus intéressante, on remarque que chaque expression dans le bloc `do` est de type `IO a`.
 
 <pre>
 main = do
@@ -2205,8 +2207,8 @@ do
 
 Si `something :: IO a` alors `x :: a`.
 
-Une autre remarque important sur l'`IO`:
-Toutes les lignes d'un bloc `do` doivent être d'une des deux formes:
+Une autre remarque importante sur l'`IO`:
+Toutes les lignes d'un bloc `do` doivent être d'une des deux formes suivantes :
 
 ~~~
 action1             :: IO a
@@ -2221,7 +2223,7 @@ value <- action2    -- where
                     -- value   :: b
 ~~~
 
-Ces deux types de ligne correspondent à deux différents types de séquençage d'action.
+Ces deux types de ligne correspondent à deux types différents de séquençage d'action.
 La signification de cette phrase devrait être plus claire à la fin de la prochaine section.
 
 <a href="code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong> </a>
@@ -2230,7 +2232,7 @@ La signification de cette phrase devrait être plus claire à la fin de la proch
 
 Maintenant voyons comment ce programme se comporte.
 Par exemple, que ce passe-t-il si l'utilisateur entre une mauvaise valeur?
-Essayons:
+Essayons :
 
 ~~~
     % runghc 02_progressive_io_example.lhs
@@ -2239,20 +2241,20 @@ Essayons:
     Prelude.read: no parse
 ~~~
 
-Argh! Un message d'erreur et un crash!
+Argh! Un message d'erreur effrayant et un crash !
 Notre première amélioration sera de répondre avec un message plus amical.
 
 Pour faire cela, nous devons détecter que quelque chose s'est mal passé.
-Voici un moyen de le faire: utiliser le type `Maybe`.
-C'est un type très commun en Haskell.
+Voici un moyen de le faire : utiliser le type `Maybe`.
+C'est un type très utilisé en Haskell.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
 import Data.Maybe
 ~~~~~~
 </div>
-Quelle est cette chose? `Maybe` est un type qui prend un paramètre.
-Sa définition est:
+Mais qu'est-ce que c'est ? `Maybe` est un type qui prend un paramètre.
+Sa définition est :
 
 ~~~~~~ {.haskell}
 data Maybe a = Nothing | Just a
@@ -2260,12 +2262,12 @@ data Maybe a = Nothing | Just a
 
 C'est un bon moyen de dire qu'il y a eu une erreur en essayant de créer/évaluer
 une valeur.
-La fonction `maybeRead` est un bon exemple de cela.
+La fonction `maybeRead` en est un bon exemple.
 C'est une fonction similaire à `read`[^1],
-mais si quelque chose ne va pas la valeur retournée est `Nothing`.
+mais s'il y a un problème, la valeur retournée est `Nothing`.
 Si la valeur est bonne, la valeur retournée est `Just <la valeur>`.
-N'essayez pas trop de comprendre cette fonction.
-J'utilise un fonction de plus bas niveau que `read`; `reads`.
+Ne vous efforcez pas trop de comprendre cette fonction.
+J'utilise une fonction de plus bas niveau que `read` : `reads`.
 
 [^1]: Qui est elle-même très similaire à la fonction `eval` de javascript, appliquée sur une chaîne contenant du code au format JSON.
 
@@ -2277,7 +2279,7 @@ maybeRead s = case reads s of
                   _           -> Nothing
 ~~~~~~
 </div>
-Maintenant, pour être plus lisible, on définie une fonction comme ceci:
+Maintenant, pour être plus lisible, on définit une fonction comme ceci :
 Si la chaîne a un mauvais format, elle retournera `Nothing`.
 Sinon, par exemple pour "1,2,3", cela retournera `Just [1,2,3]`.
 
@@ -2303,23 +2305,23 @@ main = do
 </div>
 En cas d'erreur, on affiche un joli message.
 
-Remarquez que le type de chaque expresstion dans le bloc `do` de `main` reste de la forme `IO a`.
+Notez que le type de chaque expression dans le bloc `do` de `main` reste de la forme `IO a`.
 La seule construction étrange est `error`.
-Je dirais juste que `error msg` prend le type nécessaire (ici, `IO ()`).
+Disons juste que `error msg` prend le type nécessaire (ici, `IO ()`).
 
-Un chose très importante à noter est le type de toutes les fonctions définies jusqu'ici.
-Il n'y a qu'une seule fonction qui contient `IO` dans son type: `main`.
+Une chose très importante à noter est le type de toutes les fonctions définies jusqu'ici.
+Il n'y a qu'une seule fonction qui contient `IO` dans son type : `main`.
 Cela signifie que `main` est impure.
-Mais `main` utilise `getListFromString`, qui est pure.
+Mais `main` utilise `getListFromString`, qui, elle, est pure.
 Nous pouvons donc facilement repérer quelles fonctions sont pures
-et lesquelles sont impures, seulement en regardant leurs type.
+et lesquelles sont impures, seulement en regardant leur type.
 
 Pourquoi la pureté a-t-elle de l'importance?
-Parmis ses nombreux avantages, en voici trois:
+Parmi ses nombreux avantages, en voici trois :
 
 - Il est beaucoup plus facile de penser à du code pur qu'à du code impur.
-- La pureté vous protège de tous les bugs difficiles à reproduire qui sont dûs aux effets collatéraux.
-- Vous pouvez évaluer des fonctions pures dans n'importe quell ordre ou en parallèle, sans prendre de risques.
+- La pureté vous protège de tous les bugs difficiles à reproduire dûs aux [effets de bord](https://fr.wikipedia.org/wiki/Effet_de_bord_(informatique)).
+- Vous pouvez évaluer des fonctions pures dans n'importe quel ordre ou en parallèle, sans prendre de risques.
 
 C'est pourquoi vous devriez mettre le plus de code possible dans des fonctions pures.
 
@@ -2327,9 +2329,9 @@ C'est pourquoi vous devriez mettre le plus de code possible dans des fonctions p
 
 <hr/><a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong></a>
 
-La prochaine étape sera de demader la liste de nombre à l'utilisateur encore et encore jusqu'à ce qu'il entre une réponse valide
+La prochaine étape sera de demander la liste de nombres à l'utilisateur encore et encore jusqu'à ce qu'il entre une réponse valide.
 
-Nous gardons la première partie:
+Nous gardons la première partie :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2359,15 +2361,15 @@ askUser = do
 ~~~~~~
 </div>
 Cette fonction est de type `IO [Integer]`.
-cela signifie que la valeur trouvée est de type `[Integer`] et est le résultat d'actions d'E/S.
-Certaines personnes expliqueraient en agitant leurs mains:
+Cela signifie que la valeur récupérée est de type `[Integer`] et est le résultat d'actions d'E/S.
+D'aucuns diront avec enthousiasme :
 
- > «C'est un `[Integer]` dans un `IO`»
+ > «C'est un `[Integer]` dans un `IO` !»
 
 Si vous voulez comprendre les détails derrière tout cela, vous devrez lire la prochaine section.
-MAis si vous voulez seulement _utiliser_ l'E/S, pratiquer juste une peu et rappelez-vous de penser aux types.
+Mais si vous voulez seulement _utiliser_ l'E/S, contentez-vous pratiquer un peu et rappelez-vous de penser aux types.
 
-Finalement notre fonction `main`est plus simple:
+Finalement, notre fonction `main`est bien plus simple :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2378,21 +2380,21 @@ main = do
 ~~~~~~
 </div>
 Nous avons fini notre introduction à l'`IO`.
-C'était rapide. Voici les principales choses à se rappeler:
+C'était plutôt rapide. Voici les principales choses à retenir :
 
 - Dans le bloc `do`, chaque expression doit avoir le type `IO a`.
-Vous êtes donc limité dans le nombre d'expression disponibles.
+Vous êtes donc limité quant au panel d'expression disponibles.
 Par exemple, `getLine`, `print`, `putStrLn`, etc...
 - Essayez d'externaliser le plus possible les fonctions pures.
-- le type `IO a` signifie: un _action_ d'E/S qui retourne un élément de type a.
-L'`IO` représente des actions; `IO a` est le type d'une fonction.
+- le type `IO a` signifie : une _action_ d'E/S qui retourne un élément de type a.
+L'`IO` représente des actions; sous le capot, `IO a` est le type d'une fonction.
 Lisez la prochaine section si vous êtes curieux.
 
 Si vous pratiquez un peu, vous devriez être capable d'_utiliser_ l'`IO`.
 
  > -Exercices_:
  >
- > - Faites un programme qui additionne tous ses arguments. Utilisez la fonction `getArgs`.
+ > - Écrivez un programme qui additionne tous ses arguments. Utilisez la fonction `getArgs`.
 
 <a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong> </a>
 
@@ -2410,7 +2412,7 @@ blogimage("magritte_pipe.jpg","Magritte, ceci n'est pas une pipe")
  > main :: World -> World
  > ~~~
  >
- > Une fonction aura des effets collatéraux si elle a ce type.
+ > Une fonction aura des effets de bord si elle a ce type.
  > Mais regardez cette fonction `main` typique:
  >
  > ~~~
@@ -2423,7 +2425,7 @@ blogimage("magritte_pipe.jpg","Magritte, ceci n'est pas une pipe")
  > ~~~
  >
  > Nous avons beaucoup d'élements temporaires (ici, `w1`, `w2` et `w3`) 
- > qui doivent être passés à la prochauine action.
+ > qui doivent être passés à l'action suivante.
  >
  > Nous créons une fonction `bind` ou `(>>=)`.
  > Avec `bind` nous n'avons plus besoin de noms temporaires.
@@ -2433,7 +2435,7 @@ blogimage("magritte_pipe.jpg","Magritte, ceci n'est pas une pipe")
  >   action1 >>= action2 >>= action3 >>= action4
  > ~~~
  >
- > Bonus: Haskell a un sucre syntaxique:
+ > Bonus: Haskell a du sucre syntaxique :
  >
  > ~~~
  > main = do
@@ -2465,35 +2467,35 @@ main = do
   print $ sum list
 ~~~~~~
 
-Première remarque: on dirait de l'impératif.
+Première remarque : on dirait de l'impératif.
 Haskell est assez puissant pour faire sembler impératif du code impur.
-Par exemple, si vous le vouliez vous pourriez créer `while` en Haskell.
-En fait, pour utiliser les `IO`, le style impératif est généralement plus approprié.
+Par exemple, si vous le vouliez vous pourriez créer une boucle `while` en Haskell.
+En fait, pour utiliser les `IO`, le style impératif est en général plus approprié.
 
 Mais vous devriez avoir remarqué que la notation est inhabituelle.
 Voici pourquoi, en détail.
 
 Dans un langage impur, l'état du monde peut être vu comme une énorme variable globale cachée.
-Cette variable cachée est accessible par toutes les fonctions du langage/
-Par exemple, vous pouvez lire et écrire un fichier dans n'importe quelle fonction.
-L'existence hypothétique du fichier est une différence dans les états possibles que le monde peut prendre.
+Cette variable cachée est accessible par toutes les fonctions du langage.
+Par exemple, vous pouvez lire et écrire dans un fichier avec n'importe quelle fonction.
+Le fait que le fichier putatif existe ou non est une éventualité qui relève des états possibles que le monde courant peut prendre.
 
-En Haskell cet état n'est pas caché.
+En Haskell l'état courant du monde n'est pas caché.
 Au contraire, il est dit _explicitement_ que `main` est une fonction qui change _potentiellement_ l'état du monde.
-Son type est donc quelque chose comme:
+Son type est donc quelque chose comme :
 
 ~~~~~~ {.haskell}
 main :: World -> World
 ~~~~~~
 
-Les fonctions n'ont pas toutes accès à cette variable.
-Celle qui y ont accès sont impures.
+Les fonctions ne sont pas toutes susceptibles de modifier cette variable.
+Celle qui peuvent la modifier sont impures.
 Les fonctions qui ne peuvent pas agir sur la variable sont pures[^032001].
 
 [^032001]: Il y a quelques exceptions _peu sûres_ à cette règle. Mais vous ne devriez pas en voir en application réelle, sauf pour le _debugging_.
 
-Haskell considère l'état u monde comme une variable à passer à `main`.
-Mais son type réel est plus proche de celui ci[^032002]:
+Haskell considère l'état du monde comme une variable à passer à `main`.
+Mais son type réel est plus proche de celui ci[^032002] :
 
 [^032002]: Pour les curieux, le vrai type est `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. Tous les `#` ont rapport avec l'optimisation et j'ai échangé quelques champs dans mon exemple. Mais c'est l'idée de base.
 
@@ -2501,10 +2503,10 @@ Mais son type réel est plus proche de celui ci[^032002]:
 main :: World -> ((),World)
 ~~~~~~
 
-Le type `()` est le type unité.
+Le type `()` est le type "unit".
 Rien à voir ici.
 
-Maintenant reécrivons notre fonction `main` avec cela à l'esprit:
+Maintenant réécrivons notre fonction `main` avec cela à l'esprit :
 
 ~~~~~~ {.haskell}
 main w0 =
@@ -2513,44 +2515,44 @@ main w0 =
     x
 ~~~~~~
 
-D'abord, on remarque que toutes les fonctions avec des effets collatéraux doivent avoir le type:
+D'abord, on remarque que toutes les fonctions avec des effets de bord doivent avoir le type :
 
 ~~~~~~ {.haskell}
 World -> (a,World)
 ~~~~~~
 
-ou `a  est le type du résultat.
-Par exemple, un fonction `getChar` aura le type `World -> (Char, World).
+où `a` est le type du résultat.
+Par exemple, une fonction `getChar` aura le type `World -> (Char, World).
 
-Une autre chose à noter est le truc pour corriger l'ordre d'évaluation.
-En Haskell, pour évaluer `f a b`, vous avez beaucoup de choix:
+Une autre chose à noter est l'astuce pour corriger l'ordre d'évaluation.
+En Haskell, pour évaluer `f a b`, vous avez l'embarras du choix :
 
 - évaluer d'abord `a` puis `b` puis `f a b`
 - évaluer d'abord `b` puis `a` puis `f a b`
-- évaluer `a` et `b` en même temps puis `f a b`
+- évaluer `a` et `b` parallèlement, puis `f a b`
 
-Ceci est vrai car nous travaillons sur une partie pure du langage.
+Cela vient du fait que nous avons recours à une partie pure du langage.
 
 Maintenant, si vous regardez la fonction `main`, vous voyez tout de suite qu'il faut évaluer la première
 ligne avant la seconde, car pour évaluer la seconde ligne vous devez
-utliser un parmètre donné par l'évaluation de la première ligne.
+utliser un paramètre donné suite à l'évaluation de la première ligne.
 
-Ce truc marche très bien.
-Le compilateur donnera à chaque étape un pointeur sur l'id d'un vrai monde.
-En réalité, `print` sera évaluée comme:
+Cette astuce fonctionne très bien.
+Le compilateur donnera à chaque étape un pointeur sur l'id du nouveau monde courant.
+En réalité, `print` sera évaluée comme suit :
 
 - Écrit quelque chose sur l'écran
 - Modifie l'id du monde
 - renvoyer `((), id du nouveau monde)`.
 
-Maintenant, si vous regardez le style de la fonction `main`, c'est clairement peu maniable.
-Essayons de fair la même chose avec la fonction `askUser`:
+Maintenant, si jetez un oeil au style de la fonction `main`, vous remarquerez qu'il est clairement peu commode.
+Essayons de faire la même chose avec la fonction `askUser` :
 
 ~~~~~~ {.haskell}
 askUser :: World -> ([Integer],World)
 ~~~~~~
 
-Avant:
+Avant :
 
 ~~~~~~ {.haskell}
 askUser :: IO [Integer]
@@ -2563,7 +2565,7 @@ askUser = do
           Nothing -> askUser
 ~~~~~~
 
-Après:
+Après :
 
 ~~~~~~ {.haskell}
 askUser w0 =
@@ -2576,28 +2578,28 @@ askUser w0 =
         (l,w3)
 ~~~~~~
 
-C'est similaire, mais malaisé.
-Voyez ces noms temporaires `w?`.
+C'est similaire, mais peu commode.
+Voyez-vous toutes ces variables temporaires `w?`.
 
-Voici la leçon: l'implémentation naïve des IO dans les langages fonctionnels purs est maladroite!
+Voici la leçon : une implémentation naïve des IO dans les langages fonctionnels purs serait maladroite !
 
-Heureusement, il ya un meilleur moyen de résoudre ce problème.
+Heureusement, il y a un meilleur moyen de résoudre ce problème.
 Nous voyons un motif.
-Chaque ligne est de la forme:
+Chaque ligne est de la forme :
 
 ~~~~~~ {.haskell}
 let (y,w') = action x w in
 ~~~~~~
 
-Même si pour quelques lignes l'argument `x` n'est pas nécessaire.
+Même si pour certaines lignes l'argument `x` n'est pas nécessaire.
 La sortie est un couple, `(answer, newWorldValue)`.
-Chaque fonction `f` doit avoir un type similaire à:
+Chaque fonction `f` doit avoir un type similaire à :
 
 ~~~~~~ {.haskell}
 f :: World -> (a,World)
 ~~~~~~
 
-Il n'y apas seulement ça, nous pouvons aussi remarquer que nous suivaons toujours le même motif:
+Et ce n'est pas fini, nous pouvons aussi remarquer que nous suivons toujours le même motif :
 
 ~~~~~~ {.haskell}
 let (y,w1) = action1 w0 in
@@ -2607,20 +2609,20 @@ let (t,w3) = action3 w2 in
 ~~~~~~
 
 Chaque action peut prendre de 0 à n paramètres.
-Et en particulier, chaque action peut prendre comme paramètre le résultat de la ligne du dessus.
+Et en particulier, chaque action prend comme paramètre le résultat de la ligne précédente.
 
-Par exemple, nous pourrions aussi avoir:
+Par exemple, nous pourrions aussi avoir :
 
 ~~~~~~ {.haskell}
 let (_,w1) = action1 x w0   in
 let (z,w2) = action2 w1     in
-let (_,w3) = action3 x z w2 in
+let (_,w3) = action3 z w2 in
 ...
 ~~~~~~
 
-Et, bien entendu, `actionN w :: (World) -> (a,World)`.
+Avec, bien entendu, `actionN w :: (World) -> (a,World)`.
 
- > IMPORTANT: Il y a seulement 2 patterns importants à considérer:
+ > IMPORTANT: Il y a seulement 2 schémas importants à considérer :
  >
  > ~~~
  > let (x,w1) = action1 w0 in
@@ -2636,11 +2638,11 @@ Et, bien entendu, `actionN w :: (World) -> (a,World)`.
 
 leftblogimage("jocker_pencil_trick.jpg","Jocker pencil trick")
 
-Maintenant nous allons faire un tour de magie.
-Nous allons faire disparaître le symbole temporaire du monde.
+Maintenant, préparez-vous pour un petit tour de magie !
+Faisons disparaître les variables temporaires de monde courant.
 Nous allons `attacher` (_NDT: `bind` en anglais_) les deux lignes.
 Définissons la fonction `bind`.
-Son type est intimidant au départ:
+Son type est assez intimidant au début :
 
 ~~~~~~ {.haskell}
 bind :: (World -> (a,World))
@@ -2648,14 +2650,14 @@ bind :: (World -> (a,World))
         -> (World -> (b,World))
 ~~~~~~
 
-Mais rappelez-vous que `(World -> (a,World))` est le type d'un action des IO.
-Renommons-le pour plus de clareté:
+Mais gardez en tête que `(World -> (a,World))` est le type d'une action d'IO.
+Renommons-le pour plus de clarté :
 
 ~~~~~~ {.haskell}
 type IO a = World -> (a, World)
 ~~~~~~
 
-Quelques exemples de fonctions:
+Quelques exemples de fonctions :
 
 ~~~~~~ {.haskell}
 getLine :: IO String
@@ -2663,16 +2665,16 @@ print :: Show a => a -> IO ()
 ~~~~~~
 
 `getLine` est une action d'E/S qui prend le monde en paramètre et retourne un couple `(String, World)`.
-Cela peut être résumé par: `getLine` est de type `IO String`, que nous pouvons voir comme une action 'E/S qui retournera une chaîne de caractères "dans une E/S".
+Cela peut être résumé par : `getLine` est de type `IO String`, que nous pouvons voir comme une action d'E/S qui retournera une chaîne de caractères "dans une E/S".
 
 La fonction `print` est elle aussi intéressante.
-Elle prend un argument qui peut être montré.
-En réalité elle prend deux arguments.
-LE premier est la valeur et le deuxième est l'état du monde.
+Elle prend un argument qui peut être montré avec `show`.
+En fait, elle prend deux arguments.
+Le premier est la valeur et le deuxième est l'état du monde.
 Elle retourne un couple de type `((), World)`.
 Cela signifie qu'elle change l'état du monde, mais ne produit pas d'autre donnée.
 
-Ce type nous aide à simplifier le type de `bind`:
+Ce nouveau type `IO a` nous aide à simplifier le type de `bind` :
 
 ~~~~~~ {.haskell}
 bind :: IO a
@@ -2680,25 +2682,26 @@ bind :: IO a
         -> IO b
 ~~~~~~
 
-Cela dit que `bind` prend deux action d'E/S comme paramètres et retourne une autre action d'E/S.
+Cela dit que `bind` prend deux actions d'E/S en paramètres et retourne une autre action d'E/S.
 
-Maintenant, rappelez-vous des motifs _importants_. Le premier était:
+Maintenant, rappelez-vous des motifs _importants_. Le premier était :
 
 ~~~~~~ {.haskell}
-let (x,w1) = action1 w0 in
-let (y,w2) = action2 x w1 in
-(y,w2)
+pattern1 w0 = 
+ let (x,w1) = action1 w0 in
+ let (y,w2) = action2 x w1 in
+ (y,w2)
 ~~~~~~
 
-Voyez les types:
+Voyez les types :
 
 ~~~~~~ {.haskell}
 action1  :: IO a
 action2  :: a -> IO b
-(y,w2)   :: IO b
+pattern1 :: IO b
 ~~~~~~
 
-Cela ne vous semble pas familier?
+Cela ne vous semble-t-il pas familier ?
 
 ~~~~~~ {.haskell}
 (bind action1 action2) w0 =
@@ -2707,22 +2710,22 @@ Cela ne vous semble pas familier?
     in  (y, w2)
 ~~~~~~
 
-L'idée est de cacher l'argument `World` avec cette fonction. Allons-y:
-Par exemple si nous avions voulu simuler:
+L'idée est de cacher l'argument `World` avec cette fonction. Allons-y !
+Par exemple si nous avions voulu simuler :
 
 ~~~~~~ {.haskell}
-let (line1,w1) = getLine w0 in
-let ((),w2) = print line1 in
-((),w2)
+let (line1, w1) = getLine w0 in
+let ((), w2) = print line1 in
+((), w2)
 ~~~~~~
 
-Maintenant, en utilisant la fonction `bind`:
+Maintenant, en utilisant la fonction `bind` :
 
 ~~~~~~ {.haskell}
-(res,w2) = (bind getLine (\l -> print l)) w0
+(res, w2) = (bind getLine print) w0
 ~~~~~~
 
-Comme `print` est de type `(World -> ((),World))`, nous savons que `res = ()` (type nul)
+Comme `print` est de type `Show a => a -> (World -> ((), World))`, nous savons que `res = ()` (type `unit`)
 Si vous ne voyez pas ce qui est magique ici, essayons avec trois lignes cette fois.
 
 ~~~~~~ {.haskell}
@@ -2732,7 +2735,7 @@ let ((),w3) = print (line1 ++ line2) in
 ((),w3)
 ~~~~~~
 
-Qui est équivalent à:
+Qui est équivalent à :
 
 ~~~~~~ {.haskell}
 (res,w3) = (bind getLine (\line1 ->
@@ -2741,13 +2744,13 @@ Qui est équivalent à:
 ~~~~~~
 
 Avez-vous remarqué quelque chose ?
-Oui, aucune variable `World` temporaire n'est utilisée!
+Oui, aucune variable `World` temporaire n'est utilisée !
 C'est _MA_._GIQUE_.
 
 Nous pouvons utiliser une meilleure notation.
 Utilisons `(>>=)` au lieu de `bind`.
-`` est une fonction infixe, comme
-`(+)`; pour mémoire: `3 + 4 ⇔ (+) 3 4`
+`(>>=)` est une fonction infixe, comme
+`(+)`; pour mémoire : `3 + 4 ⇔ (+) 3 4`
 
 ~~~~~~ {.haskell}
 (res,w3) = (getLine >>=
@@ -2755,8 +2758,8 @@ Utilisons `(>>=)` au lieu de `bind`.
            (\line2 -> print (line1 ++ line2)))) w0
 ~~~~~~
 
-Ho Ho Ho! Joyeux Noël!
-fr; HAskell a un sucre syntaxique pour nous:
+Ho Ho Ho! Joyeux Noël !
+fr; Haskell a confectionné du sucre syntaxique pour vous :
 
 ~~~~~~ {.haskell}
 do
@@ -2766,7 +2769,7 @@ do
   ...
 ~~~~~~
 
-Est remplacé par:
+Est remplacé par :
 
 ~~~~~~ {.haskell}
 action1 >>= (\x ->
@@ -2776,10 +2779,10 @@ action3 >>= (\z ->
 )))
 ~~~~~~
 
-Remarquez que vous pouvez utliser `x` dans `action2` et `x` et `y` dans `action3`
+Remarquez que vous pouvez utliser `x` dans `action2` et `x` et `y` dans `action3`.
 
-Mais que se passe-t-il pour les lignes qui n'utilisent pas le `<-`?
-FAcile, une autre fonction `blindBind`:
+Mais que se passe-t-il pour les lignes qui n'utilisent pas le `<-` ?
+Facile, une autre fonction `blindBind` :
 
 ~~~~~~ {.haskell}
 blindBind :: IO a -> IO b -> IO b
@@ -2787,7 +2790,7 @@ blindBind action1 action2 w0 =
     bind action (\_ -> action2) w0
 ~~~~~~
 
-Je n'ai pas simplifié cette définition pour plus de clareté.
+Je n'ai pas simplifié cette définition pour plus de clarté.
 Bien sûr, nous pouvons utiliser une meilleure notation avec l'opérateur `(>>)`.
 
 Et
@@ -2799,7 +2802,7 @@ do
     action3
 ~~~~~~
 
-Est transformé en
+Devient
 
 ~~~~~~ {.haskell}
 action1 >>
@@ -2807,20 +2810,20 @@ action2 >>
 action3
 ~~~~~~
 
-Aussi, une autre fonction est réellement utile.
+Enfin, une autre fonction est plutôt utile.
 
 ~~~~~~ {.haskell}
 putInIO :: a -> IO a
 putInIO x = IO (\w -> (x,w))
 ~~~~~~
 
-C'est le moyen énéral de mettre des valeurs pures dans le "contexte d'E/S".
+D'une manière générale, c'est une façon de mettre des valeurs pures dans le "contexte d'E/S".
 Le nom général pour `putInIO` est `return`.
-C'est un très mauvais nom lorsque vous commencer à programmer en Haskell. `return` est très différent de ce que vous pourriez être habitué à utliser.
+C'est un plutôt un mauvais nom lorsque vous commencez à programmer en Haskell. `return` est très différent de ce à quoi vous pourriez être habitué.
 
 <hr/><a href="code/03_Hell/01_IO/21_Detailled_IO.lhs" class="cut">03_Hell/01_IO/<strong>21_Detailled_IO.lhs</strong></a>
 
-Pour finir, traduisons notre exemple:
+Pour finir, traduisons notre exemple :
 
 ~~~~~~ {.haskell}
 
@@ -2839,7 +2842,7 @@ main = do
   print $ sum list
 ~~~~~~
 
-Est traduis en:
+Se traduit en :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2865,7 +2868,7 @@ main = askUser >>=
   \list -> print $ sum list
 ~~~~~~
 </div>
-vous pouvez compiler ce code pour vérifier qu'il marche.
+Vous pouvez compiler ce code pour vérifier qu'il marche.
 
 Imaginez à quoi il ressemblerait sans le `(>>)` et `(>>=)`.
 
@@ -2877,20 +2880,20 @@ Imaginez à quoi il ressemblerait sans le `(>>)` et `(>>=)`.
 
 blogimage("dali_reve.jpg","Dali, reve. It represents a weapon out of the mouth of a tiger, itself out of the mouth of another tiger, itself out of the mouth of a fish itself out of a grenade. I could have choosen a picture of the Human centipede as it is a very good representation of what a monad really is. But just to think about it, I find this disgusting and that wasn't the purpose of this document.")
 
-Maintenant le secret peut être révélé: `IO` est une _monade_.
+Maintenant le secret peut être dévoilé : `IO` est une _monade_.
 Être une monade signifie que vous avez accès à du sucre syntaxique avec la notation `do`.
 Mais principalement, vous avez accès à un motif de codage qui tempérera le flux de votre code.
 
- > **Remarques importantes**:
+ > **Remarques importantes** :
  >
- > - Le monades n'ont pas forcément quelque chose à voir avec les effets!
+ > - Le monades n'ont pas forcément quoi que ce soit à voir avec les effets de bord !
  >   Il y a beaucoup de monades _pures_.
- > - Les monades ont plus à faire avec du séquençage.
+ > - Les monades concernent plus le séquençage.
 
 En Haskell, `Monad` est une classe de type.
 Pour être une instance d'une classe de type, vous devez fournir les fonctions `(>>=)` et `return`.
 La fonction `(>>)` est dérivée de `(>>=)`.
-Voici commment la classe de typr `Monad` est déclarée (basiquement):
+Voici commment la classe de type `Monad` est déclarée (grosso modo) :
 
 ~~~~~~ {.haskell}
 class Monad m  where
@@ -2906,18 +2909,18 @@ class Monad m  where
   fail = error
 ~~~~~~
 
- > Remarques:
+ > Remarques :
  >
  > - le mot-clé `class` n'est pas votre ami.
  >   Une classe en Haskell _n'est pas_ du même genre que celle des langages orientés-objet.
  >   Elles ont beaucoup de similarités avec les interfaces de Java.
  >   Un meilleur mot aurait été `typeClass`, ce qui signifierait un ensemble de types. 
- >   Pour qu'un type appartiennent à une classe, toutes les fonctions de cette classe doivent être fournies pour ce type.
+ >   Pour qu'un type appartienne à une classe, toutes les fonctions de cette classe doivent être fournies pour ce type.
  > - Dans cet exemple particulier de classe de type, le type `m` doit être un type qui prend un argument.
  >   par exemple `IO a`, mais aussi `Maybe a`, `[a]`, etc...
  > - Pour être une monade utile, votre fonction doit obéir à quelques règles.
- >   Si votre construction n'obéit pas à ces règles, des choses étranges pourrait se produire:
- >
+ >   Si votre construction n'obéit pas à ces règles, des choses étranges pourraient se produire :
+ 
  >   ~~~
  >   return a >>= k  ==  k a
  >   m >>= return  ==  m
@@ -3002,7 +3005,7 @@ main = do
 
 <hr/><a href="code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong></a>
 
-Pas mauvais, mais nous pouvons faire encore mieux:
+Pas mauvais, mais nous pouvons faire encore mieux :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -3033,15 +3036,15 @@ Remarquez que cette idée d'organisation de code, en particulier pour `Maybe`, p
 dans la plupart des langages impératifs.
 En fait, c'est le type de construction que nous faisons naturellement.
 
- > Un remarque importante:
+ > Une remarque importante :
  > 
  > Le premier élement de la séquence qui sera évalué comme `Nothing` stoppera
  > l'évaluation.
  > Cela signifie que vous n'exécutez pas toutes les lignes.
- > Vous avgfez cela gratuitement, grâce à la paresse.
+ > Cela découle du caractère paresseux de Haskell.
 
 Vous pourriez aussi revoir ces exemples avec la définition de `(>>=)` pour `Maybe`
-en tête:
+en tête :
 
 ~~~~~~ {.haskell}
 instance Monad Maybe where
@@ -3054,7 +3057,7 @@ instance Monad Maybe where
 
 La monade `Maybe` a prouvé par un simple exemple qu'elle est utile.
 Nous avons vu l'utilité de la monade `IO`.
-Mais maintenant, voici un exemple plus cool, les listes.
+Mais maintenant, voici un exemple encore plus cool : les listes.
 
 <a href="code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong> </a>
 
@@ -3064,8 +3067,8 @@ Mais maintenant, voici un exemple plus cool, les listes.
 
 blogimage("golconde.jpg","Golconde de Magritte")
 
-La monade List nouis aide à simuler des calculs non-détertiministe.
-C'est parti:
+La monade `List` nous aide à simuler des calculs non-déterministes.
+C'est parti :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -3091,7 +3094,7 @@ Ma. GIQUE. :
 [(1,1,7),(1,1,8),(1,1,9),(1,1,10),(1,2,9),(1,2,10)]
 ~~~
 
-Pour la monade List, il y a aussi un sucre syntaxique:
+Pour la monade `List`, il y a aussi un sucre syntaxique :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -3101,21 +3104,21 @@ Pour la monade List, il y a aussi un sucre syntaxique:
                       4*x + 2*y < z ]
 ~~~~~~
 </div>
-Je ne listerais pas toutes les monades, mais il y en a beaucoup.
+Je ne listerai pas toutes les monades, car il y en a beaucoup.
 Utiliser les monades simplifie la manipulations de plusieurs notions dans les langages purs.
-Les monades sont très utiles, en particulier pour:
+Les monades sont très utiles, en particulier pour :
 
-- L'E/S;
-- calculs non-déterministes,
+- L'E/S (IO),
+- les calculs non-déterministes,
 - générer des nombres pseudo-aléatoires,
 - garder un état de configuration,
 - écrire un état,
 - ...
 
-Si vous m'avez suivi jusqu'ici, alors vous avez terminé!
-Vous connaissez les monades[^03021301]!
+Si vous m'avez suivi jusqu'ici, alors vous avez terminé !
+Vous connaissez les monades[^03021301] !
 
-[^03021301]: Vous aurez quand même besoin de pratiquer un peu pour vous habituer à elles et pour comprendre quand les utiliser ou créer les vôtres. Mais vous avez déjà fait un grand pas dans cette direction.
+[^03021301]: Vous aurez quand même besoin de pratiquer un peu pour vous habituer à elles et pour comprendre quand les utiliser et créer les vôtres. Mais vous avez déjà fait un grand pas dans cette direction.
 
 <a href="code/03_Hell/02_Monads/13_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>13_Monads.lhs</strong> </a>
 

@@ -1864,7 +1864,6 @@ We have this for (almost) free, because we have declared Tree to be an instance 
 See how awesome this structure is:
 We can make trees containing not only integers, strings and chars, but also other trees.
 And we can even make a tree containing a tree of trees!
-fr:Voyez à quel point cette structure est formidable:
 
 <a href="code/02_Hard_Part/31_Trees.lhs" class="cut">02_Hard_Part/<strong>31_Trees.lhs</strong> </a>
 
@@ -2260,9 +2259,9 @@ This is a function similar to the function `read`[^1],
 but if something goes wrong the returned value is `Nothing`.
 If the value is right, it returns `Just <the value>`.
 Don't try to understand too much of this function.
-I use a lower level function than `read`; `reads`.
+I use a lower level function than `read`: `reads`.
 
-[^1]: Which itself is very similar to the javascript `eval` on a string containing JSON).
+[^1]: Which is itself very similar to the javascript `eval` function, that is applied to a string containing JSON.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2376,7 +2375,7 @@ We have finished with our introduction to `IO`.
 This was quite fast. Here are the main things to remember:
 
 - in the `do` block, each expression must have the type `IO a`.
-You are then limited in the number of expressions available.
+You are then limited with regard to the range of expressions available.
 For example, `getLine`, `print`, `putStrLn`, etc...
 - Try to externalize the pure functions as much as possible.
 - the `IO a` type means: an IO _action_ which returns an element of type `a`.
@@ -2399,7 +2398,7 @@ blogimage("magritte_pipe.jpg","Magritte, ceci n'est pas une pipe")
  >
  > To separate pure and impure parts,
  > `main` is defined as a function
- > which modifies the state of the world
+ > which modifies the state of the world.
  >
  > ~~~
  > main :: World -> World
@@ -2473,7 +2472,7 @@ This hidden variable is accessible by all functions of your language.
 For example, you can read and write a file in any function.
 Whether a file exists or not is a difference in the possible states that the world can take.
 
-In Haskell this state is not hidden.
+In Haskell the current state of the world is not hidden.
 Rather, it is _explicitly_ said that `main` is a function that _potentially_ changes the state of the world.
 Its type is then something like:
 
@@ -2481,7 +2480,7 @@ Its type is then something like:
 main :: World -> World
 ~~~~~~
 
-Not all functions may have access to this variable.
+Not all functions may access this variable.
 Those which have access to this variable are impure.
 Functions to which the world variable isn't provided are pure[^032001].
 
@@ -2490,7 +2489,7 @@ Functions to which the world variable isn't provided are pure[^032001].
 Haskell considers the state of the world as an input variable to `main`.
 But the real type of main is closer to this one[^032002]:
 
-[^032002]: For the curious the real type is `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. All the `#` has to do with optimisation and I swapped the fields in my example. But this is the basic idea.
+[^032002]: For the curious ones, the real type is `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. All the `#` has to do with optimisation and I swapped the fields in my example. But this is the basic idea.
 
 ~~~~~~ {.haskell}
 main :: World -> ((),World)
@@ -2515,7 +2514,7 @@ World -> (a,World)
 ~~~~~~
 
 where `a` is the type of the result.
-For example, a `getChar` function should have the type `World -> (Char,World)`.
+For example, a `getChar` function should have the type `World -> (Char, World)`.
 
 Another thing to note is the trick to fix the order of evaluation.
 In Haskell, in order to evaluate `f a b`, you have many choices:
@@ -2530,7 +2529,7 @@ Now, if you look at the main function, it is clear you must eval the first
 line before the second one since to evaluate the second line you have
 to get a parameter given by the evaluation of the first line.
 
-This trick works nicely.
+This trick works like a charm.
 The compiler will at each step provide a pointer to a new real world id.
 Under the hood, `print` will evaluate as:
 
@@ -2539,7 +2538,7 @@ Under the hood, `print` will evaluate as:
 - evaluate as `((),new world id)`.
 
 Now, if you look at the style of the main function, it is clearly awkward.
-Let's try to do the same to the askUser function:
+Let's try to do the same to the `askUser` function:
 
 ~~~~~~ {.haskell}
 askUser :: World -> ([Integer],World)
@@ -2584,7 +2583,7 @@ Each line is of the form:
 let (y,w') = action x w in
 ~~~~~~
 
-Even if for some line the first `x` argument isn't needed.
+Even if for some lines the first `x` argument isn't needed.
 The output type is a couple, `(answer, newWorldValue)`.
 Each function `f` must have a type similar to:
 
@@ -2609,11 +2608,11 @@ For example, we could also have:
 ~~~~~~ {.haskell}
 let (_,w1) = action1 x w0   in
 let (z,w2) = action2 w1     in
-let (_,w3) = action3 x z w2 in
+let (_,w3) = action3 z w2 in
 ...
 ~~~~~~
 
-And of course `actionN w :: (World) -> (a,World)`.
+With, of course: `actionN w :: (World) -> (a,World)`.
 
  > IMPORTANT: there are only two important patterns to consider:
  >
@@ -2632,7 +2631,7 @@ And of course `actionN w :: (World) -> (a,World)`.
 leftblogimage("jocker_pencil_trick.jpg","Jocker pencil trick")
 
 Now, we will do a magic trick.
-We will make the temporary world symbol "disappear".
+We will make the temporary world symbols "disappear".
 We will `bind` the two lines.
 Let's define the `bind` function.
 Its type is quite intimidating at first:
@@ -2657,17 +2656,17 @@ getLine :: IO String
 print :: Show a => a -> IO ()
 ~~~~~~
 
-`getLine` is an IO action which takes world as a parameter and returns a couple `(String,World)`.
+`getLine` is an IO action which takes world as a parameter and returns a couple `(String, World)`.
 This can be summarized as: `getLine` is of type `IO String`, which we also see as an IO action which will return a String "embeded inside an IO".
 
 The function `print` is also interesting.
 It takes one argument which can be shown.
 In fact it takes two arguments.
 The first is the value to print and the other is the state of world.
-It then returns a couple of type `((),World)`.
+It then returns a couple of type `((), World)`.
 This means that it changes the state of the world, but doesn't yield any more data.
 
-This type helps us simplify the type of `bind`:
+This new `IO a` type helps us simplify the type of `bind`:
 
 ~~~~~~ {.haskell}
 bind :: IO a
@@ -2680,9 +2679,10 @@ It says that `bind` takes two IO actions as parameters and returns another IO ac
 Now, remember the _important_ patterns. The first was:
 
 ~~~~~~ {.haskell}
-let (x,w1) = action1 w0 in
-let (y,w2) = action2 x w1 in
-(y,w2)
+pattern1 w0 = 
+ let (x,w1) = action1 w0 in
+ let (y,w2) = action2 x w1 in
+ (y,w2)
 ~~~~~~
 
 Look at the types:
@@ -2690,7 +2690,7 @@ Look at the types:
 ~~~~~~ {.haskell}
 action1  :: IO a
 action2  :: a -> IO b
-(y,w2)   :: IO b
+pattern1 :: IO b
 ~~~~~~
 
 Doesn't it seem familiar?
@@ -2706,18 +2706,18 @@ The idea is to hide the World argument with this function. Let's go:
 As an example imagine if we wanted to simulate:
 
 ~~~~~~ {.haskell}
-let (line1,w1) = getLine w0 in
-let ((),w2) = print line1 in
-((),w2)
+let (line1, w1) = getLine w0 in
+let ((), w2) = print line1 in
+((), w2)
 ~~~~~~
 
-Now, using the bind function:
+Now, using the `bind` function:
 
 ~~~~~~ {.haskell}
-(res,w2) = (bind getLine (\l -> print l)) w0
+(res, w2) = (bind getLine print) w0
 ~~~~~~
 
-As print is of type `(World -> ((),World))`, we know `res = ()` (null type).
+As print is of type `Show a => a -> (World -> ((), World))`, we know `res = ()` (`unit` type).
 If you didn't see what was magic here, let's try with three lines this time.
 
 ~~~~~~ {.haskell}
@@ -2750,7 +2750,7 @@ Let's use `(>>=)` instead of `bind`.
            (\line2 -> print (line1 ++ line2)))) w0
 ~~~~~~
 
-fr; HAskell a un sucre syntaxique pour nous:
+fr; Haskell a confectionné du sucre syntaxique pour vous :
 Ho Ho Ho! Merry Christmas Everyone!
 Haskell has made syntactical sugar for us:
 
@@ -2784,7 +2784,7 @@ blindBind action1 action2 w0 =
 ~~~~~~
 
 I didn't simplify this definition for the purposes of clarity.
-Of course we can use a better notation, we'll use the `(>>)` operator.
+Of course, we can use a better notation: we'll use the `(>>)` operator.
 
 And
 
@@ -2913,7 +2913,7 @@ class Monad m  where
  >   for example `IO a`, but also `Maybe a`, `[a]`, etc...
  > - To be a useful monad, your function must obey some rules.
  >   If your construction does not obey these rules strange things might happens:
- >
+ 
  >   ~~~
  >   return a >>= k  ==  k a
  >   m >>= return  ==  m
@@ -3097,7 +3097,7 @@ For the list monad, there is also this syntactic sugar:
                       4*x + 2*y < z ]
 ~~~~~~
 </div>
-I won't list all the monads, but there are many of them.
+I won't list all the monads, since there are many of them.
 Using monads simplifies the manipulation of several notions in pure languages.
 In particular, monads are very useful for:
 
