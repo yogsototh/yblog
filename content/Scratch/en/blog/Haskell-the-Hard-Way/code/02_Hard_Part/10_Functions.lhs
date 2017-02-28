@@ -13,13 +13,13 @@ en: In this section, I will give a short example of the impressive refactoring a
 en: We will select a problem and solve it in a standard imperative way.
 en: Then I will make the code evolve.
 en: The end result will be both more elegant and easier to adapt.
-fr: Dans cette section, je vais vous donner un court exemple de l'impressionante capacité de remaniement de Haskell. 
+fr: Dans cette section, je vais vous donner un court exemple de l'impressionante capacité de remaniement de Haskell.
 fr: Nous allons sélectionner un problème et le résoudre à la manière d'un langage impératif standard.
 fr: Ensuite, je ferais évoluer le code.
 fr: Le résultat final sera plus élégant et plus facile à adapter.
 
 en: Let's solve the following problem:
-fr: résolvons les problèmes suivants: 
+fr: résolvons les problèmes suivants:
 
 en:  > Given a list of integers, return the sum of the even numbers in the list.
 fr:  > Soit une liste d'entiers, retourner la somme des nombres pairs de cette liste.
@@ -48,7 +48,7 @@ function evenSum(list) {
 en: In Haskell, by contrast, we don't have variables or a for loop.
 en: One solution to achieve the same result without loops is to use recursion.
 fr: En Haskell, en revanche, nous n'avons pas de variables ou un boucle `for`.
-fr: Une des solutions pour parvenir au même résultat sans boucles est d'utiliser la récursion. 
+fr: Une des solutions pour parvenir au même résultat sans boucles est d'utiliser la récursion.
 
 en:  > _Remark_:
 en:  > Recursion is generally perceived as slow in imperative languages.
@@ -98,7 +98,8 @@ head :: [a] -> a
 tail :: [a] -> [a]
 </code>
 
-`even` verifies if a number is even.
+en: `even` verifies if a number is even.
+fr: `even` vérifie si un nombre est pair.
 
 <code class="haskell">
 even :: Integral a => a -> Bool
@@ -106,7 +107,8 @@ even 3  ⇒ False
 even 2  ⇒ True
 </code>
 
-`head` returns the first element of a list:
+en: `head` returns the first element of a list:
+fr: `head` retourne le premier élément d'une liste:
 
 <code class="haskell">
 head :: [a] -> a
@@ -114,14 +116,18 @@ head [1,2,3] ⇒ 1
 head []      ⇒ ERROR
 </code>
 
-`tail` returns all elements of a list, except the first:
+en: `tail` returns all elements of a list, except the first:
+fr: `tail` retourne tous les éléments d'une liste, sauf le premier:
 
 <code class="haskell">
 tail :: [a] -> [a]
 tail [1,2,3] ⇒ [2,3]
 tail [3]     ⇒ []
-tail []      ⇒ ERROR
+en: tail []      ⇒ ERROR
+fr: tail []      ⇒ ERREUR
 </code>
 
-Note that for any non empty list `l`,
-`l ⇔ (head l):(tail l)`
+en: Note that for any non empty list `l`,
+en:  `l ⇔ (head l):(tail l)`
+fr: Remarquez que pour toute liste non-vide `l`,
+fr:  `l ⇔ (head l):(tail l)`

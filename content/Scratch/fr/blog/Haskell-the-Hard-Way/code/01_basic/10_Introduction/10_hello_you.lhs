@@ -29,7 +29,7 @@ puts "Hello #{name}!"
 int main (int argc, char **argv) {
     char name[666]; // <- An Evil Number!
     // What if my name is more than 665 character long?
-    printf("What is your name?\n"); 
+    printf("What is your name?\n");
     scanf("%s", name);
     printf("Hello %s!\n", name);
     return 0;
@@ -43,7 +43,7 @@ fr: La partie principale de ce tutoriel sera consacrée à expliquer cela.
 
 en: In Haskell there is a `main` function and every object has a type.
 en: The type of `main` is `IO ()`.
-en: This means `main` will cause side effects. expliquer cela.
+en: This means `main` will cause side effects.
 fr: En Haskell il y a une fonction `main` tous les objets ont un type.
 fr: Le type de `main` est `IO ()`.
 fr: Cela veut dire que `main` causera des effets secondaires.

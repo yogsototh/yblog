@@ -252,8 +252,18 @@ fr: <h3 id="install">Installation</h3>
 
 blogimage("Haskell-logo.png", "Haskell logo")
 
-en: - [Haskell Platform](http://www.haskell.org/platform) is the standard way to install Haskell.
-fr: - La principale façon d'installer Haskell est [Haskell Platform](http://www.haskell.org/platform).
+en: There are different way to install Haskell, I would recommend to use
+fr: Aujourd'huil je considère que la manière la plus aisée d'installer Haskell est d'utiliser
+[`stack`](https://haskellstack.org).
+
+en: There are other way to install Haskell on your system you could visit,
+en: you can learn more about it by visiting
+fr: Il y a d'autres maniètres d'installer Haskell sur votre system,
+fr: vous pouvez en savoir plus en visitant
+[haskell.org](https://haskell.org)
+en: or
+fr: ou
+[haskell-lang.org](https://haskell-lang.org)
 
 en: Tools:
 fr: Outils:
@@ -287,10 +297,18 @@ main = putStrLn "Hello World!"
 ~~~~~~
 </div>
 en: To run it, you can save this code in a `hello.hs` and:
-fr: Pour l'exécuter, vous pouvez enregistrer ce code dans un fichier `hell.hs` et:
+fr: Pour l'exécuter, vous pouvez enregistrer ce code dans un fichier `hello.hs` et:
 
 ~~~~~~ {.zsh}
 ~ runhaskell ./hello.hs
+Hello World!
+~~~~~~
+
+en: or if you use `stack` first run `stack setup` and then:
+fr: ou si vous utilisez `stack` lancez d'abord `stack setup` et ensuite :
+
+~~~~~~ {.zsh}
+~ stack runhaskell ./hello.hs
 Hello World!
 ~~~~~~
 
@@ -305,6 +323,7 @@ fr: Téléchargez ce fichier en tant que `00_hello_world.lhs` et:
 ~ runhaskell 00_hello_world.lhs
 Hello World!
 ~~~~~~
+
 <a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong></a>

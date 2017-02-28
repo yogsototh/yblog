@@ -149,7 +149,14 @@ The article contains five parts:
 
 blogimage("Haskell-logo.png", "Haskell logo")
 
-- [Haskell Platform](http://www.haskell.org/platform) is the standard way to install Haskell.
+There are different way to install Haskell, I would recommend to use
+[`stack`](https://haskellstack.org).
+
+There are other way to install Haskell on your system you could visit,
+you can learn more about it by visiting
+[haskell.org](https://haskell.org)
+or
+[haskell-lang.org](https://haskell-lang.org)
 
 Tools:
 
@@ -179,6 +186,13 @@ To run it, you can save this code in a `hello.hs` and:
 Hello World!
 ~~~~~~
 
+or if you use `stack` first run `stack setup` and then:
+
+~~~~~~ {.zsh}
+~ stack runhaskell ./hello.hs
+Hello World!
+~~~~~~
+
 You could also download the literate Haskell source.
 You should see a link just above the introduction title.
 Download this file as `00_hello_world.lhs` and:
@@ -187,6 +201,7 @@ Download this file as `00_hello_world.lhs` and:
 ~ runhaskell 00_hello_world.lhs
 Hello World!
 ~~~~~~
+
 <a href="code/01_basic/10_Introduction/00_hello_world.lhs" class="cut">01_basic/10_Introduction/<strong>00_hello_world.lhs</strong> </a>
 
 <hr/><a href="code/01_basic/10_Introduction/10_hello_you.lhs" class="cut">01_basic/10_Introduction/<strong>10_hello_you.lhs</strong></a>

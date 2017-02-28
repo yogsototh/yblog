@@ -47,8 +47,8 @@ fr: <h5 id="powers">Puissances</h5>
 ~~~
 en: x^n     for n an integral (understand Int or Integer)
 en: x**y    for y any kind of number (Float for example)
-en: x^n     pour n un entier (comprenez Int ou Integer)
-en: x**y    pour y tout type de nombre (Float par exemple)
+fr: x^n     pour n un entier (comprenez Int ou Integer)
+fr: x**y    pour y tout type de nombre (Float par exemple)
 ~~~
 
 en: `Integer` has no limit except the capacity of your machine:
@@ -148,7 +148,8 @@ snd (x,y,z)     ⇒  ERROR: snd :: (a,b) -> b
 en: <h5 id="deal-with-parentheses">Deal with parentheses</h5>
 fr: <h5 id="deal-with-parentheses">Traiter avec les parenthèses</h5>
 
-To remove some parentheses you can use two functions: `($)` and `(.)`.
+en: To remove some parentheses you can use two functions: `($)` and `(.)`.
+fr: Pour enlever des parenthèses vous pouvez utiliser deux fonctions: `($)` et `(.)`.
 
 ~~~
 en: -- By default:
@@ -164,7 +165,7 @@ f $ g h x       ⇔  f (g h x) ⇔ f ((g h) x)
 f $ g $ h x     ⇔  f (g (h x))
 
 en: -- (.) the composition function
-fr: -- (.) premet de faire des compositions de fonctions
+fr: -- (.) permet de faire des compositions de fonctions
 (f . g) x       ⇔  f (g x)
 (f . g . h) x   ⇔  f (g (h x))
 ~~~
