@@ -43,6 +43,8 @@ fr: - [Joomy Korkut](http://github.com/joom) pour sa traduction en Turc:
 fr:   [Zor Yoldan Haskell](https://github.com/joom/zor-yoldan-haskell)
 fr: - [lepereceval](https://github.com/lepereceval)
 fr:   pour sa traduction française que je n'ai pas eu le courage de faire !
+fr: - [Younesse Kaddar](https://github.com/youqad)
+fr:   pour toutes ses corrections de style et d'orthographe.
 
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
@@ -129,7 +131,7 @@ fr: mais au moins savoir ce que ce langage a de particulier.
 fr: Son apprentissage ouvre énormément l'esprit.
 
 en: Mainstream languages share the same foundations:
-fr: La plupart des langages partagent les mêmes fondamentaux :
+fr: La plupart des langages partagent les mêmes fondements :
 
 en: - variables
 en: - loops
@@ -147,14 +149,14 @@ en: Haskell is very different.
 en: The language uses a lot of concepts I had never heard about before.
 en: Many of those concepts will help you become a better programmer.
 fr: Haskell est très différent.
-fr: Ce langage utilise des concepts dont je n'avais jamais entendu parlé avant.
+fr: Ce langage utilise des concepts dont je n'avais jamais entendu parler avant.
 fr: Beaucoup de ces concepts pourront vous aider à devenir un meilleur développeur.
 
 en: But learning Haskell can be hard.
 en: It was for me.
 en: In this article I try to provide what I lacked during my learning.
 fr: Plier son esprit à Haskell peut être difficile.
-fr: Ce le fût pour moi.
+fr: Ce le fut pour moi.
 fr: Dans cet article, j'essaye de fournir les informations qui m'ont manquées lors de mon apprentissage.
 
 en: This article will certainly be hard to follow.
@@ -168,28 +170,28 @@ fr: Mais c'est voulu.
 fr: Il n'y a pas de raccourci pour apprendre Haskell.
 fr: C'est difficile.
 fr: Mais je pense que c'est une bonne chose.
-fr: C'est parce qu'Haskell est difficile qu'il est intéressant.
+fr: C'est entre autres parce qu'Haskell est difficile qu'il est intéressant.
 
 en: The conventional method to learning Haskell is to read two books.
 en: First ["Learn You a Haskell"](http://learnyouahaskell.com) and just after ["Real World Haskell"](http://www.realworldhaskell.org).
 en: I also believe this is the right way to go.
 en: But to learn what Haskell is all about, you'll have to read them in detail.
 fr: La manière conventionnelle d'apprendre Haskell est de lire deux livres.
-fr: En premier ["Learn You a Haskell"](http://learnyouahaskell.com)
+fr: D'abord ["Learn You a Haskell"](http://haskell.fr/lyah/)
 fr: et ensuite ["Real World Haskell"](http://www.realworldhaskell.org).
 fr: Je pense aussi que c'est la bonne manière de s'y prendre.
 fr: Mais apprendre même un tout petit peu d'Haskell est presque impossible sans se plonger réellement dans ces livres.
 
 en: In contrast, this article is a very brief and dense overview of all major aspects of Haskell.
 en: I also added some information I lacked while I learned Haskell.
-fr: Cet article fait un résumé très dense et rapide des aspect majeurs d'Haskell.
+fr: Cet article fait un résumé très dense et rapide des aspects majeurs d'Haskell.
 fr: J'y ai aussi rajouté des informations qui m'ont manqué pendant l'apprentissage de ce langage.
 
-fr: Pour les francophones ; je suis désolé.
+fr: Pour les francophones : je suis désolé.
 fr: Je n'ai pas eu le courage de tout retraduire en français.
 fr: Sachez cependant que si vous êtes plusieurs à insister, je ferai certainement l'effort de traduire l'article en entier.
 fr: Et si vous vous sentez d'avoir une bonne âme je ne suis pas contre un peu d'aide.
-fr: Les sources de cet article sont sur [gihub](http://github.com/yogsototh/learn_haskell.git).
+fr: Les sources de cet article sont sur [github](http://github.com/yogsototh/learn_haskell.git).
 
 en: The article contains five parts:
 fr: Cet article contient cinq parties :
@@ -1635,7 +1637,7 @@ fr: Pour mieux comprendre ce qui se passe ici, étudions une évaluation étape 
 
 en: Another useful higher order function is `(.)`.
 en: The `(.)` function corresponds to mathematical composition.
-fr: Une autr fonction d'ordre supérieur utile est `(.)`.
+fr: Une autre fonction d'ordre supérieur utile est `(.)`.
 fr: Elle correspond à une composition en mathématiques.
 
 ~~~~~~ {.haskell}
@@ -1826,7 +1828,7 @@ Prelude Data.Complex> square (2 :+ 1)
 ~~~
 
 en: `x :+ y` is the notation for the complex (<i>x + iy</i>).
-fr: `x :+ y` est la notation pour le complex (<i>x + iy</i>)
+fr: `x :+ y` est la notation pour le complexe (<i>x + iy</i>)
 
 en: Now compare with the amount of code necessary in C:
 fr: Comparons maintenant avec la quantité de code nécessaire pour le faire en C:
@@ -1849,8 +1851,8 @@ y = complex_square(x);
 en: For each type, you need to write a new function.
 en: The only way to work around this problem is to use some meta-programming trick, for example using the pre-processor.
 en: In C++ there is a better way, C++ templates:
-fr: Pour chaque type, vous avfez besoin d'écrire une nouvelle fonction.
-fr: Le seul moyen de se débarsser de se problème est d'utiliser des trucs de méta-programmation, par exemple via le pré-processeur.
+fr: Pour chaque type, vous avez besoin d'écrire une nouvelle fonction.
+fr: Le seul moyen de se débarrasser de ce problème est d'utiliser des astuces de méta-programmation, par exemple en utilisant le pré-processeur.
 fr: en C++ il y a un meilleur moyen, les _templates_:
 
 ~~~~~~ {.c++}
@@ -1887,19 +1889,19 @@ fr: Voyez [cet article](http://bartoszmilewski.com/2009/10/21/what-does-haskell-
 en: In C++ you must declare that a function can work with different types.
 en: In Haskell, the opposite is the case.
 en: The function will be as general as possible by default.
-fr: En C++ vous devez déclarer qu'un fonction peut marcher avec différents types.
-fr: En Haskell, c'est le cas contraire.
+fr: En C++ vous devez déclarer qu'une fonction peut marcher avec différents types.
+fr: En Haskell, c'est le contraire.
 fr: La fonction sera aussi générale que possible par défaut.
 
 en: Type inference gives Haskell the feeling of freedom that dynamically typed languages provide.
 en: But unlike dynamically typed languages, most errors are caught before run time.
 en: Generally, in Haskell:
-fr: L'inférence de type donne à Haskell le sentiment de liberté que les langages dyumaniquement typés proposent.
+fr: L'inférence de type donne à Haskell le sentiment de liberté que les langages dynamiquement typés proposent.
 fr: Mais contrairement aux langages dynamiquement typés, la majorité des erreurs est détectée avant de lancer le programme.
 fr: Généralement, en Haskell:
 
 en:  > "if it compiles it certainly does what you intended"
-fr:  > "Si ça compile, ça fera certainement ce à quoi vous vous attendiez."
+fr:  > "Si ça compile, ça fait certainement ce que vous attendiez."
 
 <hr/><a href="code/02_Hard_Part/21_Types.lhs" class="cut">02_Hard_Part/<strong>21_Types.lhs</strong></a>
 
@@ -1965,11 +1967,11 @@ main = putStrLn $ showInfos name color
 </div>
 en: Now if you switch parameters of `showInfos`, the compiler complains!
 en: So this is a potential mistake you will never make again and the only price is to be more verbose.
-fr: Maintenant, si vous échangez les paramètres de`showInfos`, le compilateur se plaint!
-fr: C'est donc une erreur que vous ne refairez jamais, au suel prix d'être plus bavard.
+fr: Maintenant, si vous échangez les paramètres de `showInfos`, le compilateur se plaint!
+fr: Au seul prix d'être plus verbeux, vous écartez définitivement cette erreur potentielle.
 
 en: Also notice that constructors are functions:
-fr: Remarquez aussi que les constructeurs sont des fonctions:
+fr: Remarquez aussi que les constructeurs sont des fonctions :
 
 ~~~~~~ {.haskell}
 NameConstr  :: String -> Name
@@ -1990,14 +1992,14 @@ en: DataTypeName and DataTypeConstructor.
 fr: Généralement on utilise le même nom pour le DatatTypeName et le DataTypeConstructor.
 
 en: Example:
-fr: Exemple:
+fr: Exemple :
 
 ~~~~~~ {.haskell}
 data Complex a = Num a => Complex a a
 ~~~~~~
 
 en: Also you can use the record syntax:
-fr: Vous pouvez également utiliser cette syntaxe:
+fr: Vous pouvez également utiliser cette syntaxe :
 
 ~~~~~~ {.haskell}
 data DataTypeName = DataConstructor {
@@ -2009,11 +2011,11 @@ data DataTypeName = DataConstructor {
 
 en: And many accessors are made for you.
 en: Furthermore you can use another order when setting values.
-fr: Et les accesseurs sont définis automatiquement.
+fr: Et de nombreux accesseurs sont définis pour vous.
 fr: En outre, vous pouvez utiliser une autre ordre lorsque vous définissez des valeurs.
 
 en: Example:
-fr: Exemple:
+fr: Exemple :
 
 ~~~~~~ {.haskell}
 data Complex a = Num a => Complex { real :: a, img :: a}
@@ -2051,7 +2053,7 @@ en: The number after `infixr` gives the precedence.
 fr: Le nombre après `infixr` donne la priorité.
 
 en: If you want to be able to print (`Show`), read (`Read`), test equality (`Eq`) and compare (`Ord`) your new data structure you can tell Haskell to derive the appropriate functions for you.
-fr: Si vous voulez pouvoir écrire (`Show`), lire (`Read`), tester l'égalite (`Eq`) et comparer (`Ord`) votre nouvelle structure, vous pouvez demander à Haskell de dériver les fonctions appropriées pour vous.
+fr: Si vous voulez pouvoir écrire (`Show`), lire (`Read`), tester l'égalité (`Eq`) et comparer (`Ord`) votre nouvelle structure, vous pouvez demander à Haskell de dériver les fonctions appropriées pour vous.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2079,7 +2081,7 @@ main = do
 ~~~~~~
 </div>
 en: This prints:
-fr: Ceci écrit:
+fr: Ceci donne :
 
 ~~~
 0 ::: (1 ::: Nil)
@@ -2121,7 +2123,7 @@ treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
 en: Look at how elegant this function is.
 en: In plain English:
 fr: Remarquez à quel point cette fonction est élégante.
-fr: En français:
+fr: En français :
 
 en: - an empty list will be converted to an empty tree.
 en: - a list `(x:xs)` will be converted to a tree where:
@@ -2129,7 +2131,7 @@ en:   - The root is `x`
 en:   - Its left subtree is the tree created from members of the list `xs` which are strictly inferior to `x` and
 en:   - the right subtree is the tree created from members of the list `xs` which are strictly superior to `x`.
 fr: - une liste vide est convertie en un arbre vide
-fr: - une liste `(x:xs)` sera convertie en un arbre où:
+fr: - une liste `(x:xs)` sera convertie en un arbre où :
 fr:   - La racine est `x`
 fr:   - Le "sous-arbre" de gauche est l'arbre créé à partir des membres de la liste `xs` strictement inférieurs à `x`
 fr:   - Le "sous-arbre" de droite est l'arbre créé à partir des membres de la liste `xs` strictement superieurs à `x`
@@ -2140,14 +2142,14 @@ main = print $ treeFromList [7,2,4,8]
 ~~~~~~
 </div>
 en: You should obtain the following:
-fr: Vious devriez obtenir:
+fr: Vous devriez obtenir :
 
 ~~~
 Node 7 (Node 2 Empty (Node 4 Empty Empty)) (Node 8 Empty Empty)
 ~~~
 
 en: This is an informative but quite unpleasant representation of our tree.
-fr: C'est représentation de notre arbre informative mais déplaisante.
+fr: C'est une représentation de notre arbre informative mais plutôt déplaisante.
 
 <a href="code/02_Hard_Part/30_Trees.lhs" class="cut">02_Hard_Part/<strong>30_Trees.lhs</strong> </a>
 
@@ -2183,7 +2185,7 @@ fr: Sans le `deriving (Show)`, Haskell ne crée pas de méthode `show` pour nous
 fr: Nous allons créer notre propre version.
 fr: Pour accomplir cela, nous devons déclarer que notre type `BinTree a`
 fr: est une instance de la classe de type `Show`.
-fr: La syntaxe générale est:
+fr: La syntaxe générale est :
 
 ~~~~~~ {.haskell}
 instance Show (BinTree a) where
@@ -2196,7 +2198,7 @@ en: Don't worry about the apparent complexity.
 en: I made a lot of improvements in order to display even stranger objects.
 fr: Voici ma version pour afficher un arbre binaire.
 fr: Ne vous inquiétez pas de sa complexité apparente.
-fr: J'ai fais beaucoup d'améliorations pour afficher même les objets les plus étranges.
+fr: J'ai fait beaucoup d'améliorations pour afficher même les objets les plus étranges.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2258,7 +2260,7 @@ treeFromList (x:xs) = Node x (treeFromList (filter (<x) xs))
 ~~~~~~
 </div>
 en: And now, we can play:
-fr: Et maintenant, nous pouvons jouer:
+fr: Et maintenant, nous pouvons jouer :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2286,9 +2288,9 @@ en: Now it is far better!
 en: The root is shown by starting the line with the `<` character.
 en: And each following line starts with a `:`.
 en: But we could also use another type.
-fr: Maintenant c'est beaucoup mieux!
-fr: La racine est montré en commençant la ligne avec le caractère `<`.
-fr: Et chaqeue ligne suivante commence avec un `:`.
+fr: Maintenant c'est beaucoup mieux !
+fr: La racine est montrée en commençant la ligne avec le caractère `<`.
+fr: Et chaque ligne suivante est commence par `:`.
 fr: Mais nous pourrions aussi utiliser un autre type.
 
 <div class="codehighlight">
@@ -2299,7 +2301,7 @@ fr: Mais nous pourrions aussi utiliser un autre type.
 </div>
 ~~~
 en: String binary tree:
-fr: Arbre binaire de chaïnes de caractères
+fr: Arbre binaire de chaînes de caractères
 < "foo"
 : |--"bar"
 : |  `--"baz"
@@ -2321,7 +2323,7 @@ fr: nous pouvons aussi faire des arbres d'arbres!
 </div>
 ~~~
 en: Binary tree of Char binary trees:
-fr: Arbre binaire d'arbres binaires de Char:
+fr: Arbre binaire d'arbres binaires de Char :
 < < 'b'
 : : |--'a'
 : : `--'z'
@@ -2361,11 +2363,11 @@ print ( treeFromList (
 ~~~~~~
 
 en: and gives:
-fr: et donne:
+fr: et donne :
 
 ~~~
 en: Binary tree of Binary trees of Char binary trees:
-fr: Arbre d'arbres d'arbres de char:
+fr: Arbre d'arbres d'arbres de Char :
 < < < 'Y'
 : : : `--'O'
 : : `--< 'D'
@@ -2401,7 +2403,7 @@ fr: Nous avons ceci presque gratuitement, car nous avons déclaré Tree comme in
 en: See how awesome this structure is:
 en: We can make trees containing not only integers, strings and chars, but also other trees.
 en: And we can even make a tree containing a tree of trees!
-fr:Voyez à quel point cette structure est formidable:
+fr: Voyez à quel point cette structure est formidable :
 fr: Nous pouvons faire des arbres contenant seulement des entiers, des chaînes de caractères, mais aussi d'autres arbres.
 fr: Et nous pouvons même faire un arbre contenant un arbre d'arbres!
 
@@ -2423,17 +2425,17 @@ fr: En fait, si vous êtes un petit peu pédant, vous devriez dire que [Haskell 
 fr: La paresse est juste une implémentation commune aux langages non-stricts.
 
 en: Then what does "not-strict" mean? From the Haskell wiki:
-fr: Alors que signifie "non-strict"? D'après le wiki de Haskell:
+fr: Alors que signifie "non-strict"? D'après le wiki de Haskell :
 
 en:  > Reduction (the mathematical term for evaluation) proceeds from the outside in.
 en:  >
 en:  > so if you have `(a+(b*c))` then you first reduce `+` first, then you reduce the inner `(b*c)`
-fr:  > Réduction (terme mathématique pour évaluation) procède depuis l'extérieur.
+fr:  > La réduction (terme mathématique pour "évaluation") procède depuis l'extérieur.
 fr:  >
-fr:  > donc si vous avez `(a+(b*c))` alors vous réduisez `+` d'abord, puis vous réduisez `(b*c)`
+fr:  > Donc si vous avez `(a+(b*c))`, alors vous réduisez `+` d'abord, puis vous réduisez `(b*c)`
 
 en: For example in Haskell you can do:
-fr: Par exemple en Haskell vous pouvez faire:
+fr: Par exemple en Haskell vous pouvez faire :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2452,7 +2454,7 @@ en: And it stops.
 fr: Et ça s'arrête.
 
 en: How?
-fr: Comment?
+fr: Comment ?
 
 en: Instead of trying to evaluate `numbers` entirely,
 en: it evaluates elements only when needed.
@@ -2536,7 +2538,7 @@ instance (Show a) => Show (BinTree a) where
 en: Suppose we don't mind having an ordered binary tree.
 en: Here is an infinite binary tree:
 fr: Supposons que nous ne nous préoccupions pas d'avoir une arbre ordonné.
-fr: Voici un arbre binaire infini:
+fr: Voici un arbre binaire infini :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2546,7 +2548,7 @@ nullTree = Node 0 nullTree nullTree
 en: A complete binary tree where each node is equal to 0.
 en: Now I will prove you can manipulate this object using the following function:
 fr: Un arbre complet où chaque noeud est égal à 0.
-fr: Maintenant je vais vous prouver que nous pouvons manipuler cet arbre avec la fonction suivante:
+fr: Maintenant je vais vous prouver que nous pouvons manipuler cet arbre avec la fonction suivante :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2562,14 +2564,14 @@ treeTakeDepth n (Node x left right) = let
 ~~~~~~
 </div>
 en: See what occurs for this program:
-fr: Regardez ce qui se passe avec ce programme:
+fr: Regardez ce qui se passe avec ce programme :
 
 ~~~~~~ {.haskell}
 main = print $ treeTakeDepth 4 nullTree
 ~~~~~~
 
 en: This code compiles, runs and stops giving the following result:
-fr: Le code compile, se lance et s'arrête en donnant ce résultat:
+fr: Le code compile, se lance et s'arrête en donnant ce résultat :
 
 ~~~
 <  0
@@ -2592,7 +2594,7 @@ fr: Le code compile, se lance et s'arrête en donnant ce résultat:
 en: Just to heat up your neurones a bit more,
 en: let's make a slightly more interesting tree:
 fr: Pour nous chauffer encore un peu les neurones,
-fr: faisons un arbre plus intéressant:
+fr: faisons un arbre plus intéressant :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2606,8 +2608,8 @@ en: Another way to create this tree is to use a higher order function.
 en: This function should be similar to `map`, but should work on `BinTree` instead of list.
 en: Here is such a function:
 fr: Un autre moyen de créer cet arbre est d'utiliser une fonction d'ordre supérieur.
-fr: Cette fonction devrait être similaire à `map` n, mais devrais travailler sur un `BinTree` au lieu d'une liste.
-fr: Voici cette fonction:
+fr: Cette fonction devrait être similaire à `map` n, mais devrait travailler sur un `BinTree` au lieu d'une liste.
+fr: Voici cette fonction :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2622,12 +2624,12 @@ treeMap f (Node x left right) = Node (f x)
 en: _Hint_: I won't talk more about this here.
 en: If you are interested in the generalization of `map` to other data structures,
 en: search for functor and `fmap`.
-fr: _NB_: Je ne parlerais pas plus de cette fonction ici.
-fr: Si vous vous intéressez à la généralisation de `map`à d'autre structures de données,
+fr: _NB_: Je ne parlerai pas plus de cette fonction ici.
+fr: Si vous vous intéressez à la généralisation de `map` à d'autres structures de données,
 fr: cherchez des informations sur les foncteurs et `fmap`.
 
 en: Our definition is now:
-fr: Notre définition est maintenant:
+fr: Notre définition est maintenant :
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2687,20 +2689,20 @@ en: You should also understand a bit more the advantages of laziness by default.
 en: But you also don't really understand where to start in order to make a real
 en: program.
 en: And in particular:
-fr: Si vous êtes comme moi, vous avez déjà acqis le style fonctionnel.
+fr: Si vous êtes comme moi, vous êtes déjà familier avec le style fonctionnel.
 fr: Vous devriez également comprendre les avantages de la paresse par défaut.
-fr: Mais vous ne comprenez pas vraiment par où commencer pour faire un vrai
+fr: Mais vous ne comprenez peut-être pas vraiment par où commencer pour faire un vrai
 fr: programme.
-fr: et en particulier:
+fr: Et en particulier :
 
 en: - How do you deal with effects?
 en: - Why is there a strange imperative-like notation for dealing with IO?
-fr: - Comment s'occuper des effets?
-fr: - Pourquoi y a t-il une étrange notation impérative lorsque l'on s'occupe de l'Entrée/Sortie? (E/S, _IO_ en anglais.)
+fr: - Comment s'occuper des effets ?
+fr: - Pourquoi y a t-il une étrange notation impérative lorsque l'on s'occupe de l'Entrée/Sortie? (E/S, _IO_ pour _Input/Output_ en anglais)
 
 en: Be prepared, the answers might be complex.
 en: But they are all very rewarding.
-fr: Soyez préparés,  les réponses risquent d'être compliquées.
+fr: Accrochez-vous, les réponses risquent d'être compliquées.
 fr: Mais elles en valent la peine.
 
 <hr/><a href="code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong></a>
@@ -2783,7 +2785,7 @@ print    :: Show a => a -> IO ()
 ~~~
 
 en: Or more interestingly, we note that each expression in the `do` block has a type of `IO a`.
-fr: Ou, plus intéressant, on remarque que chaque expression dans le bloc `do` est de type `IO a`.
+fr: Ou, de manièree plus intéressante, on remarque que chaque expression dans le bloc `do` est de type `IO a`.
 
 <pre>
 main = do
@@ -2805,8 +2807,8 @@ fr: Si `something :: IO a` alors `x :: a`.
 
 en: Another important note about using `IO`:
 en: All lines in a do block must be of one of the two forms:
-fr: Une autre remarque important sur l'`IO`:
-fr: Toutes les lignes d'un bloc `do` doivent être d'une des deux formes:
+fr: Une autre remarque importante sur l'`IO`:
+fr: Toutes les lignes d'un bloc `do` doivent être d'une des deux formes suivantes :
 
 ~~~
 action1             :: IO a
@@ -2823,7 +2825,7 @@ value <- action2    -- where
 
 en: These two kinds of line will correspond to two different ways of sequencing actions.
 en: The meaning of this sentence should be clearer by the end of the next section.
-fr: Ces deux types de ligne correspondent à deux différents types de séquençage d'action.
+fr: Ces deux types de ligne correspondent à deux types différents de séquençage d'action.
 fr: La signification de cette phrase devrait être plus claire à la fin de la prochaine section.
 
 <a href="code/03_Hell/01_IO/01_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>01_progressive_io_example.lhs</strong> </a>
@@ -2835,7 +2837,7 @@ en: For example, what happens if the user enters something strange?
 en: Let's try:
 fr: Maintenant voyons comment ce programme se comporte.
 fr: Par exemple, que ce passe-t-il si l'utilisateur entre une mauvaise valeur?
-fr: Essayons:
+fr: Essayons :
 
 ~~~
     % runghc 02_progressive_io_example.lhs
@@ -2845,16 +2847,16 @@ fr: Essayons:
 ~~~
 
 en: Argh! An evil error message and a crash!
-fr: Argh! Un message d'erreur et un crash!
+fr: Argh! Un message d'erreur effrayant et un crash !
 en: Our first improvement will simply be to answer with a more friendly message.
 fr: Notre première amélioration sera de répondre avec un message plus amical.
 
 en: In order to do this, we must detect that something went wrong.
 fr: Pour faire cela, nous devons détecter que quelque chose s'est mal passé.
 en: Here is one way to do this: use the type `Maybe`.
-fr: Voici un moyen de le faire: utiliser le type `Maybe`.
+fr: Voici un moyen de le faire : utiliser le type `Maybe`.
 en: This is a very common type in Haskell.
-fr: C'est un type très commun en Haskell.
+fr: C'est un type très utilisé en Haskell.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2862,9 +2864,9 @@ import Data.Maybe
 ~~~~~~
 </div>
 en: What is this thing? `Maybe` is a type which takes one parameter.
-fr: Quelle est cette chose? `Maybe` est un type qui prend un paramètre.
+fr: Mais qu'est-ce que c'est ? `Maybe` est un type qui prend un paramètre.
 en: Its definition is:
-fr: Sa définition est:
+fr: Sa définition est :
 
 ~~~~~~ {.haskell}
 data Maybe a = Nothing | Just a
@@ -2874,21 +2876,21 @@ fr: C'est un bon moyen de dire qu'il y a eu une erreur en essayant de créer/év
 en: This is a nice way to tell there was an error while trying to create/compute
 fr: une valeur.
 en: a value.
-fr: La fonction `maybeRead` est un bon exemple de cela.
+fr: La fonction `maybeRead` en est un bon exemple.
 en: The `maybeRead` function is a great example of this.
 fr: C'est une fonction similaire à `read`[^1],
 en: This is a function similar to the function `read`[^1],
-fr: mais si quelque chose ne va pas la valeur retournée est `Nothing`.
+fr: mais s'il y a un problème, la valeur retournée est `Nothing`.
 en: but if something goes wrong the returned value is `Nothing`.
 fr: Si la valeur est bonne, la valeur retournée est `Just <la valeur>`.
 en: If the value is right, it returns `Just <the value>`.
-fr: N'essayez pas trop de comprendre cette fonction.
+fr: Ne vous efforcez pas trop de comprendre cette fonction.
 en: Don't try to understand too much of this function.
-fr: J'utilise un fonction de plus bas niveau que `read`; `reads`.
-en: I use a lower level function than `read`; `reads`.
+fr: J'utilise une fonction de plus bas niveau que `read` : `reads`.
+en: I use a lower level function than `read`: `reads`.
 
 fr: [^1]: Qui est elle-même très similaire à la fonction `eval` de javascript, appliquée sur une chaîne contenant du code au format JSON.
-en: [^1]: Which itself is very similar to the javascript `eval` on a string containing JSON).
+en: [^1]: Which is itself very similar to the javascript `eval` function, that is applied to a string containing JSON.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -2898,7 +2900,7 @@ maybeRead s = case reads s of
                   _           -> Nothing
 ~~~~~~
 </div>
-fr: Maintenant, pour être plus lisible, on définie une fonction comme ceci:
+fr: Maintenant, pour être plus lisible, on définit une fonction comme ceci :
 en: Now to be a bit more readable, we define a function which goes like this:
 fr: Si la chaîne a un mauvais format, elle retournera `Nothing`.
 en: If the string has the wrong format, it will return `Nothing`.
@@ -2929,36 +2931,36 @@ main = do
 fr: En cas d'erreur, on affiche un joli message.
 en: In case of error, we display a nice error message.
 
-fr: Remarquez que le type de chaque expresstion dans le bloc `do` de `main` reste de la forme `IO a`.
+fr: Notez que le type de chaque expression dans le bloc `do` de `main` reste de la forme `IO a`.
 en: Note that the type of each expression in the main's `do` block remains of the form `IO a`.
 fr: La seule construction étrange est `error`.
 en: The only strange construction is `error`.
-fr: Je dirais juste que `error msg` prend le type nécessaire (ici, `IO ()`).
+fr: Disons juste que `error msg` prend le type nécessaire (ici, `IO ()`).
 en: I'll just say here that `error msg` takes the needed type (here `IO ()`).
 
-fr: Un chose très importante à noter est le type de toutes les fonctions définies jusqu'ici.
+fr: Une chose très importante à noter est le type de toutes les fonctions définies jusqu'ici.
 en: One very important thing to note is the type of all the functions defined so far.
-fr: Il n'y a qu'une seule fonction qui contient `IO` dans son type: `main`.
+fr: Il n'y a qu'une seule fonction qui contient `IO` dans son type : `main`.
 en: There is only one function which contains `IO` in its type: `main`.
 fr: Cela signifie que `main` est impure.
 en: This means main is impure.
-fr: Mais `main` utilise `getListFromString`, qui est pure.
+fr: Mais `main` utilise `getListFromString`, qui, elle, est pure.
 en: But main uses `getListFromString` which is pure.
 fr: Nous pouvons donc facilement repérer quelles fonctions sont pures
 en: So it's clear just by looking at declared types which functions are pure and
-fr: et lesquelles sont impures, seulement en regardant leurs type.
+fr: et lesquelles sont impures, seulement en regardant leur type.
 en: which are impure.
 
 fr: Pourquoi la pureté a-t-elle de l'importance?
 en: Why does purity matter?
-fr: Parmis ses nombreux avantages, en voici trois:
+fr: Parmi ses nombreux avantages, en voici trois :
 en: Among the many advantages, here are three:
 
 fr: - Il est beaucoup plus facile de penser à du code pur qu'à du code impur.
 en: - It is far easier to think about pure code than impure code.
-fr: - La pureté vous protège de tous les bugs difficiles à reproduire qui sont dûs aux effets collatéraux.
+fr: - La pureté vous protège de tous les bugs difficiles à reproduire dûs aux [effets de bord](https://fr.wikipedia.org/wiki/Effet_de_bord_(informatique)).
 en: - Purity protects you from all the hard-to-reproduce bugs that are due to side effects.
-fr: - Vous pouvez évaluer des fonctions pures dans n'importe quell ordre ou en parallèle, sans prendre de risques.
+fr: - Vous pouvez évaluer des fonctions pures dans n'importe quel ordre ou en parallèle, sans prendre de risques.
 en: - You can evaluate pure functions in any order or in parallel without risk.
 
 fr: C'est pourquoi vous devriez mettre le plus de code possible dans des fonctions pures.
@@ -2968,10 +2970,10 @@ en: This is why you should generally put as most code as possible inside pure fu
 
 <hr/><a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong></a>
 
-fr: La prochaine étape sera de demader la liste de nombre à l'utilisateur encore et encore jusqu'à ce qu'il entre une réponse valide
+fr: La prochaine étape sera de demander la liste de nombres à l'utilisateur encore et encore jusqu'à ce qu'il entre une réponse valide.
 en: Our next iteration will be to prompt the user again and again until she enters a valid answer.
 
-fr: Nous gardons la première partie:
+fr: Nous gardons la première partie :
 en: We keep the first part:
 
 <div class="codehighlight">
@@ -3005,20 +3007,20 @@ askUser = do
 </div>
 fr: Cette fonction est de type `IO [Integer]`.
 en: This function is of type `IO [Integer]`.
-fr: cela signifie que la valeur trouvée est de type `[Integer`] et est le résultat d'actions d'E/S.
+fr: Cela signifie que la valeur récupérée est de type `[Integer`] et est le résultat d'actions d'E/S.
 en: Such a type means that we retrieved a value of type `[Integer]` through some IO actions.
-fr: Certaines personnes expliqueraient en agitant leurs mains:
+fr: D'aucuns diront avec enthousiasme :
 en: Some people might explain while waving their hands:
 
-fr:  > «C'est un `[Integer]` dans un `IO`»
+fr:  > «C'est un `[Integer]` dans un `IO` !»
 en:  > «This is an `[Integer]` inside an `IO`»
 
 fr: Si vous voulez comprendre les détails derrière tout cela, vous devrez lire la prochaine section.
 en: If you want to understand the details behind all of this, you'll have to read the next section.
-fr: MAis si vous voulez seulement _utiliser_ l'E/S, pratiquer juste une peu et rappelez-vous de penser aux types.
+fr: Mais si vous voulez seulement _utiliser_ l'E/S, contentez-vous pratiquer un peu et rappelez-vous de penser aux types.
 en: But really, if you just want to _use_ IO just practice a little and remember to think about the type.
 
-fr: Finalement notre fonction `main`est plus simple:
+fr: Finalement, notre fonction `main`est bien plus simple :
 en: Finally our main function is much simpler:
 
 <div class="codehighlight">
@@ -3031,20 +3033,20 @@ main = do
 </div>
 fr: Nous avons fini notre introduction à l'`IO`.
 en: We have finished with our introduction to `IO`.
-fr: C'était rapide. Voici les principales choses à se rappeler:
+fr: C'était plutôt rapide. Voici les principales choses à retenir :
 en: This was quite fast. Here are the main things to remember:
 
 fr: - Dans le bloc `do`, chaque expression doit avoir le type `IO a`.
 en: - in the `do` block, each expression must have the type `IO a`.
-fr: Vous êtes donc limité dans le nombre d'expression disponibles.
-en: You are then limited in the number of expressions available.
+fr: Vous êtes donc limité quant au panel d'expression disponibles.
+en: You are then limited with regard to the range of expressions available.
 fr: Par exemple, `getLine`, `print`, `putStrLn`, etc...
 en: For example, `getLine`, `print`, `putStrLn`, etc...
 fr: - Essayez d'externaliser le plus possible les fonctions pures.
 en: - Try to externalize the pure functions as much as possible.
-fr: - le type `IO a` signifie: un _action_ d'E/S qui retourne un élément de type a.
+fr: - le type `IO a` signifie : une _action_ d'E/S qui retourne un élément de type a.
 en: - the `IO a` type means: an IO _action_ which returns an element of type `a`.
-fr: L'`IO` représente des actions; `IO a` est le type d'une fonction.
+fr: L'`IO` représente des actions; sous le capot, `IO a` est le type d'une fonction.
 en: `IO` represents actions; under the hood, `IO a` is the type of a function.
 fr: Lisez la prochaine section si vous êtes curieux.
 en: Read the next section if you are curious.
@@ -3055,7 +3057,7 @@ en: If you practice a bit, you should be able to _use_ `IO`.
 fr:  > -Exercices_:
 en:  > _Exercises_:
  >
-fr:  > - Faites un programme qui additionne tous ses arguments. Utilisez la fonction `getArgs`.
+fr:  > - Écrivez un programme qui additionne tous ses arguments. Utilisez la fonction `getArgs`.
 en:  > - Make a program that sums all of its arguments. Hint: use the function `getArgs`.
 
 <a href="code/03_Hell/01_IO/03_progressive_io_example.lhs" class="cut">03_Hell/01_IO/<strong>03_progressive_io_example.lhs</strong> </a>
@@ -3073,13 +3075,13 @@ en:  > To separate pure and impure parts,
 fr:  > `main` est définie comme une fonction.
 en:  > `main` is defined as a function
 fr:  > qui modifie l'état du monde.
-en:  > which modifies the state of the world
+en:  > which modifies the state of the world.
  >
  > ~~~
  > main :: World -> World
  > ~~~
  >
-fr:  > Une fonction aura des effets collatéraux si elle a ce type.
+fr:  > Une fonction aura des effets de bord si elle a ce type.
 en:  > A function is guaranteed to have side effects only if it has this type.
 fr:  > Mais regardez cette fonction `main` typique:
 en:  > But look at a typical main function:
@@ -3095,7 +3097,7 @@ en:  > But look at a typical main function:
  >
 fr:  > Nous avons beaucoup d'élements temporaires (ici, `w1`, `w2` et `w3`) 
 en:  > We have a lot of temporary elements (here `w1`, `w2` and `w3`)
-fr:  > qui doivent être passés à la prochauine action.
+fr:  > qui doivent être passés à l'action suivante.
 en:  > which must be passed on to the next action.
  >
 fr:  > Nous créons une fonction `bind` ou `(>>=)`.
@@ -3108,7 +3110,7 @@ en:  > With `bind` we don't need temporary names anymore.
  >   action1 >>= action2 >>= action3 >>= action4
  > ~~~
  >
-fr:  > Bonus: Haskell a un sucre syntaxique:
+fr:  > Bonus: Haskell a du sucre syntaxique :
 en:  > Bonus: Haskell has syntactical sugar for us:
  >
  > ~~~
@@ -3145,13 +3147,13 @@ main = do
   print $ sum list
 ~~~~~~
 
-fr: Première remarque: on dirait de l'impératif.
+fr: Première remarque : on dirait de l'impératif.
 en: First remark: this looks imperative.
 fr: Haskell est assez puissant pour faire sembler impératif du code impur.
 en: Haskell is powerful enough to make impure code look imperative.
-fr: Par exemple, si vous le vouliez vous pourriez créer `while` en Haskell.
+fr: Par exemple, si vous le vouliez vous pourriez créer une boucle `while` en Haskell.
 en: For example, if you wish you could create a `while` in Haskell.
-fr: En fait, pour utiliser les `IO`, le style impératif est généralement plus approprié.
+fr: En fait, pour utiliser les `IO`, le style impératif est en général plus approprié.
 en: In fact, for dealing with `IO`, an imperative style is generally more appropriate.
 
 fr: Mais vous devriez avoir remarqué que la notation est inhabituelle.
@@ -3161,27 +3163,27 @@ en: Here is why, in detail.
 
 fr: Dans un langage impur, l'état du monde peut être vu comme une énorme variable globale cachée.
 en: In an impure language, the state of the world can be seen as a huge hidden global variable.
-fr: Cette variable cachée est accessible par toutes les fonctions du langage/
+fr: Cette variable cachée est accessible par toutes les fonctions du langage.
 en: This hidden variable is accessible by all functions of your language.
-fr: Par exemple, vous pouvez lire et écrire un fichier dans n'importe quelle fonction.
+fr: Par exemple, vous pouvez lire et écrire dans un fichier avec n'importe quelle fonction.
 en: For example, you can read and write a file in any function.
-fr: L'existence hypothétique du fichier est une différence dans les états possibles que le monde peut prendre.
+fr: Le fait que le fichier putatif existe ou non est une éventualité qui relève des états possibles que le monde courant peut prendre.
 en: Whether a file exists or not is a difference in the possible states that the world can take.
 
-fr: En Haskell cet état n'est pas caché.
-en: In Haskell this state is not hidden.
+fr: En Haskell l'état courant du monde n'est pas caché.
+en: In Haskell the current state of the world is not hidden.
 fr: Au contraire, il est dit _explicitement_ que `main` est une fonction qui change _potentiellement_ l'état du monde.
 en: Rather, it is _explicitly_ said that `main` is a function that _potentially_ changes the state of the world.
-fr: Son type est donc quelque chose comme:
+fr: Son type est donc quelque chose comme :
 en: Its type is then something like:
 
 ~~~~~~ {.haskell}
 main :: World -> World
 ~~~~~~
 
-fr: Les fonctions n'ont pas toutes accès à cette variable.
-en: Not all functions may have access to this variable.
-fr: Celle qui y ont accès sont impures.
+fr: Les fonctions ne sont pas toutes susceptibles de modifier cette variable.
+en: Not all functions may access this variable.
+fr: Celle qui peuvent la modifier sont impures.
 en: Those which have access to this variable are impure.
 fr: Les fonctions qui ne peuvent pas agir sur la variable sont pures[^032001].
 en: Functions to which the world variable isn't provided are pure[^032001].
@@ -3189,24 +3191,24 @@ en: Functions to which the world variable isn't provided are pure[^032001].
 fr: [^032001]: Il y a quelques exceptions _peu sûres_ à cette règle. Mais vous ne devriez pas en voir en application réelle, sauf pour le _debugging_.
 en: [^032001]: There are some _unsafe_ exceptions to this rule. But you shouldn't see such use in a real application except maybe for debugging purposes.
 
-fr: Haskell considère l'état u monde comme une variable à passer à `main`.
+fr: Haskell considère l'état du monde comme une variable à passer à `main`.
 en: Haskell considers the state of the world as an input variable to `main`.
-fr: Mais son type réel est plus proche de celui ci[^032002]:
+fr: Mais son type réel est plus proche de celui ci[^032002] :
 en: But the real type of main is closer to this one[^032002]:
 
 fr: [^032002]: Pour les curieux, le vrai type est `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. Tous les `#` ont rapport avec l'optimisation et j'ai échangé quelques champs dans mon exemple. Mais c'est l'idée de base.
-en: [^032002]: For the curious the real type is `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. All the `#` has to do with optimisation and I swapped the fields in my example. But this is the basic idea.
+en: [^032002]: For the curious ones, the real type is `data IO a = IO {unIO :: State# RealWorld -> (# State# RealWorld, a #)}`. All the `#` has to do with optimisation and I swapped the fields in my example. But this is the basic idea.
 
 ~~~~~~ {.haskell}
 main :: World -> ((),World)
 ~~~~~~
 
-fr: Le type `()` est le type unité.
+fr: Le type `()` est le type "unit".
 en: The `()` type is the unit type.
 fr: Rien à voir ici.
 en: Nothing to see here.
 
-fr: Maintenant reécrivons notre fonction `main` avec cela à l'esprit:
+fr: Maintenant réécrivons notre fonction `main` avec cela à l'esprit :
 en: Now let's rewrite our main function with this in mind:
 
 ~~~~~~ {.haskell}
@@ -3216,45 +3218,45 @@ main w0 =
     x
 ~~~~~~
 
-fr: D'abord, on remarque que toutes les fonctions avec des effets collatéraux doivent avoir le type:
+fr: D'abord, on remarque que toutes les fonctions avec des effets de bord doivent avoir le type :
 en: First, we note that all functions which have side effects must have the type:
 
 ~~~~~~ {.haskell}
 World -> (a,World)
 ~~~~~~
 
-fr: ou `a  est le type du résultat.
+fr: où `a` est le type du résultat.
 en: where `a` is the type of the result.
-fr: Par exemple, un fonction `getChar` aura le type `World -> (Char, World).
-en: For example, a `getChar` function should have the type `World -> (Char,World)`.
+fr: Par exemple, une fonction `getChar` aura le type `World -> (Char, World).
+en: For example, a `getChar` function should have the type `World -> (Char, World)`.
 
-fr: Une autre chose à noter est le truc pour corriger l'ordre d'évaluation.
+fr: Une autre chose à noter est l'astuce pour corriger l'ordre d'évaluation.
 en: Another thing to note is the trick to fix the order of evaluation.
-fr: En Haskell, pour évaluer `f a b`, vous avez beaucoup de choix:
+fr: En Haskell, pour évaluer `f a b`, vous avez l'embarras du choix :
 en: In Haskell, in order to evaluate `f a b`, you have many choices:
 
 fr: - évaluer d'abord `a` puis `b` puis `f a b`
 en: - first eval `a` then `b` then `f a b`
 fr: - évaluer d'abord `b` puis `a` puis `f a b`
 en: - first eval `b` then `a` then `f a b`.
-fr: - évaluer `a` et `b` en même temps puis `f a b`
+fr: - évaluer `a` et `b` parallèlement, puis `f a b`
 en: - eval `a` and `b` in parallel then `f a b`
 
-fr: Ceci est vrai car nous travaillons sur une partie pure du langage.
+fr: Cela vient du fait que nous avons recours à une partie pure du langage.
 en: This is true because we're working in a pure part of the language.
 
 fr: Maintenant, si vous regardez la fonction `main`, vous voyez tout de suite qu'il faut évaluer la première
 en: Now, if you look at the main function, it is clear you must eval the first
 fr: ligne avant la seconde, car pour évaluer la seconde ligne vous devez
 en: line before the second one since to evaluate the second line you have
-fr: utliser un parmètre donné par l'évaluation de la première ligne.
+fr: utliser un paramètre donné suite à l'évaluation de la première ligne.
 en: to get a parameter given by the evaluation of the first line.
 
-fr: Ce truc marche très bien.
-en: This trick works nicely.
-fr: Le compilateur donnera à chaque étape un pointeur sur l'id d'un vrai monde.
+fr: Cette astuce fonctionne très bien.
+en: This trick works like a charm.
+fr: Le compilateur donnera à chaque étape un pointeur sur l'id du nouveau monde courant.
 en: The compiler will at each step provide a pointer to a new real world id.
-fr: En réalité, `print` sera évaluée comme:
+fr: En réalité, `print` sera évaluée comme suit :
 en: Under the hood, `print` will evaluate as:
 
 fr: - Écrit quelque chose sur l'écran
@@ -3264,16 +3266,16 @@ en: - modify the id of the world
 fr: - renvoyer `((), id du nouveau monde)`.
 en: - evaluate as `((),new world id)`.
 
-fr: Maintenant, si vous regardez le style de la fonction `main`, c'est clairement peu maniable.
+fr: Maintenant, si jetez un oeil au style de la fonction `main`, vous remarquerez qu'il est clairement peu commode.
 en: Now, if you look at the style of the main function, it is clearly awkward.
-fr: Essayons de fair la même chose avec la fonction `askUser`:
-en: Let's try to do the same to the askUser function:
+fr: Essayons de faire la même chose avec la fonction `askUser` :
+en: Let's try to do the same to the `askUser` function:
 
 ~~~~~~ {.haskell}
 askUser :: World -> ([Integer],World)
 ~~~~~~
 
-fr: Avant:
+fr: Avant :
 en: Before:
 
 ~~~~~~ {.haskell}
@@ -3287,7 +3289,7 @@ askUser = do
           Nothing -> askUser
 ~~~~~~
 
-fr: Après:
+fr: Après :
 en: After:
 
 ~~~~~~ {.haskell}
@@ -3301,37 +3303,37 @@ askUser w0 =
         (l,w3)
 ~~~~~~
 
-fr: C'est similaire, mais malaisé.
+fr: C'est similaire, mais peu commode.
 en: This is similar, but awkward.
-fr: Voyez ces noms temporaires `w?`.
+fr: Voyez-vous toutes ces variables temporaires `w?`.
 en: Look at all these temporary `w?` names.
 
-fr: Voici la leçon: l'implémentation naïve des IO dans les langages fonctionnels purs est maladroite!
+fr: Voici la leçon : une implémentation naïve des IO dans les langages fonctionnels purs serait maladroite !
 en: The lesson is: naive IO implementation in Pure functional languages is awkward!
 
-fr: Heureusement, il ya un meilleur moyen de résoudre ce problème.
+fr: Heureusement, il y a un meilleur moyen de résoudre ce problème.
 en: Fortunately, there is a better way to handle this problem.
 fr: Nous voyons un motif.
 en: We see a pattern.
-fr: Chaque ligne est de la forme:
+fr: Chaque ligne est de la forme :
 en: Each line is of the form:
 
 ~~~~~~ {.haskell}
 let (y,w') = action x w in
 ~~~~~~
 
-fr: Même si pour quelques lignes l'argument `x` n'est pas nécessaire.
-en: Even if for some line the first `x` argument isn't needed.
+fr: Même si pour certaines lignes l'argument `x` n'est pas nécessaire.
+en: Even if for some lines the first `x` argument isn't needed.
 fr: La sortie est un couple, `(answer, newWorldValue)`.
 en: The output type is a couple, `(answer, newWorldValue)`.
-fr: Chaque fonction `f` doit avoir un type similaire à:
+fr: Chaque fonction `f` doit avoir un type similaire à :
 en: Each function `f` must have a type similar to:
 
 ~~~~~~ {.haskell}
 f :: World -> (a,World)
 ~~~~~~
 
-fr: Il n'y apas seulement ça, nous pouvons aussi remarquer que nous suivaons toujours le même motif:
+fr: Et ce n'est pas fini, nous pouvons aussi remarquer que nous suivons toujours le même motif :
 en: Not only this, but we can also note that we always follow the same usage pattern:
 
 ~~~~~~ {.haskell}
@@ -3343,23 +3345,23 @@ let (t,w3) = action3 w2 in
 
 fr: Chaque action peut prendre de 0 à n paramètres.
 en: Each action can take from 0 to n parameters.
-fr: Et en particulier, chaque action peut prendre comme paramètre le résultat de la ligne du dessus.
+fr: Et en particulier, chaque action prend comme paramètre le résultat de la ligne précédente.
 en: And in particular, each action can take a parameter from the result of a line above.
 
-fr: Par exemple, nous pourrions aussi avoir:
+fr: Par exemple, nous pourrions aussi avoir :
 en: For example, we could also have:
 
 ~~~~~~ {.haskell}
 let (_,w1) = action1 x w0   in
 let (z,w2) = action2 w1     in
-let (_,w3) = action3 x z w2 in
+let (_,w3) = action3 z w2 in
 ...
 ~~~~~~
 
-fr: Et, bien entendu, `actionN w :: (World) -> (a,World)`.
-en: And of course `actionN w :: (World) -> (a,World)`.
+fr: Avec, bien entendu, `actionN w :: (World) -> (a,World)`.
+en: With, of course: `actionN w :: (World) -> (a,World)`.
 
-fr:  > IMPORTANT: Il y a seulement 2 patterns importants à considérer:
+fr:  > IMPORTANT: Il y a seulement 2 schémas importants à considérer :
 en:  > IMPORTANT: there are only two important patterns to consider:
  >
  > ~~~
@@ -3377,15 +3379,15 @@ en:  > and
 
 leftblogimage("jocker_pencil_trick.jpg","Jocker pencil trick")
 
-fr: Maintenant nous allons faire un tour de magie.
+fr: Maintenant, préparez-vous pour un petit tour de magie !
 en: Now, we will do a magic trick.
-fr: Nous allons faire disparaître le symbole temporaire du monde.
-en: We will make the temporary world symbol "disappear".
+fr: Faisons disparaître les variables temporaires de monde courant.
+en: We will make the temporary world symbols "disappear".
 fr: Nous allons `attacher` (_NDT: `bind` en anglais_) les deux lignes.
 en: We will `bind` the two lines.
 fr: Définissons la fonction `bind`.
 en: Let's define the `bind` function.
-fr: Son type est intimidant au départ:
+fr: Son type est assez intimidant au début :
 en: Its type is quite intimidating at first:
 
 ~~~~~~ {.haskell}
@@ -3394,16 +3396,16 @@ bind :: (World -> (a,World))
         -> (World -> (b,World))
 ~~~~~~
 
-fr: Mais rappelez-vous que `(World -> (a,World))` est le type d'un action des IO.
+fr: Mais gardez en tête que `(World -> (a,World))` est le type d'une action d'IO.
 en: But remember that `(World -> (a,World))` is the type for an IO action.
-fr: Renommons-le pour plus de clareté:
+fr: Renommons-le pour plus de clarté :
 en: Now let's rename it for clarity:
 
 ~~~~~~ {.haskell}
 type IO a = World -> (a, World)
 ~~~~~~
 
-fr: Quelques exemples de fonctions:
+fr: Quelques exemples de fonctions :
 en: Some examples of functions:
 
 ~~~~~~ {.haskell}
@@ -3412,25 +3414,25 @@ print :: Show a => a -> IO ()
 ~~~~~~
 
 fr: `getLine` est une action d'E/S qui prend le monde en paramètre et retourne un couple `(String, World)`.
-en: `getLine` is an IO action which takes world as a parameter and returns a couple `(String,World)`.
-fr: Cela peut être résumé par: `getLine` est de type `IO String`, que nous pouvons voir comme une action 'E/S qui retournera une chaîne de caractères "dans une E/S".
+en: `getLine` is an IO action which takes world as a parameter and returns a couple `(String, World)`.
+fr: Cela peut être résumé par : `getLine` est de type `IO String`, que nous pouvons voir comme une action d'E/S qui retournera une chaîne de caractères "dans une E/S".
 en: This can be summarized as: `getLine` is of type `IO String`, which we also see as an IO action which will return a String "embeded inside an IO".
 
 fr: La fonction `print` est elle aussi intéressante.
 en: The function `print` is also interesting.
-fr: Elle prend un argument qui peut être montré.
+fr: Elle prend un argument qui peut être montré avec `show`.
 en: It takes one argument which can be shown.
-fr: En réalité elle prend deux arguments.
+fr: En fait, elle prend deux arguments.
 en: In fact it takes two arguments.
-fr: LE premier est la valeur et le deuxième est l'état du monde.
+fr: Le premier est la valeur et le deuxième est l'état du monde.
 en: The first is the value to print and the other is the state of world.
 fr: Elle retourne un couple de type `((), World)`.
-en: It then returns a couple of type `((),World)`.
+en: It then returns a couple of type `((), World)`.
 fr: Cela signifie qu'elle change l'état du monde, mais ne produit pas d'autre donnée.
 en: This means that it changes the state of the world, but doesn't yield any more data.
 
-fr: Ce type nous aide à simplifier le type de `bind`:
-en: This type helps us simplify the type of `bind`:
+fr: Ce nouveau type `IO a` nous aide à simplifier le type de `bind` :
+en: This new `IO a` type helps us simplify the type of `bind`:
 
 ~~~~~~ {.haskell}
 bind :: IO a
@@ -3438,28 +3440,29 @@ bind :: IO a
         -> IO b
 ~~~~~~
 
-fr: Cela dit que `bind` prend deux action d'E/S comme paramètres et retourne une autre action d'E/S.
+fr: Cela dit que `bind` prend deux actions d'E/S en paramètres et retourne une autre action d'E/S.
 en: It says that `bind` takes two IO actions as parameters and returns another IO action.
 
-fr: Maintenant, rappelez-vous des motifs _importants_. Le premier était:
+fr: Maintenant, rappelez-vous des motifs _importants_. Le premier était :
 en: Now, remember the _important_ patterns. The first was:
 
 ~~~~~~ {.haskell}
-let (x,w1) = action1 w0 in
-let (y,w2) = action2 x w1 in
-(y,w2)
+pattern1 w0 = 
+ let (x,w1) = action1 w0 in
+ let (y,w2) = action2 x w1 in
+ (y,w2)
 ~~~~~~
 
-fr: Voyez les types:
+fr: Voyez les types :
 en: Look at the types:
 
 ~~~~~~ {.haskell}
 action1  :: IO a
 action2  :: a -> IO b
-(y,w2)   :: IO b
+pattern1 :: IO b
 ~~~~~~
 
-fr: Cela ne vous semble pas familier?
+fr: Cela ne vous semble-t-il pas familier ?
 en: Doesn't it seem familiar?
 
 ~~~~~~ {.haskell}
@@ -3469,26 +3472,26 @@ en: Doesn't it seem familiar?
     in  (y, w2)
 ~~~~~~
 
-fr: L'idée est de cacher l'argument `World` avec cette fonction. Allons-y:
+fr: L'idée est de cacher l'argument `World` avec cette fonction. Allons-y !
 en: The idea is to hide the World argument with this function. Let's go:
-fr: Par exemple si nous avions voulu simuler:
+fr: Par exemple si nous avions voulu simuler :
 en: As an example imagine if we wanted to simulate:
 
 ~~~~~~ {.haskell}
-let (line1,w1) = getLine w0 in
-let ((),w2) = print line1 in
-((),w2)
+let (line1, w1) = getLine w0 in
+let ((), w2) = print line1 in
+((), w2)
 ~~~~~~
 
-fr: Maintenant, en utilisant la fonction `bind`:
-en: Now, using the bind function:
+fr: Maintenant, en utilisant la fonction `bind` :
+en: Now, using the `bind` function:
 
 ~~~~~~ {.haskell}
-(res,w2) = (bind getLine (\l -> print l)) w0
+(res, w2) = (bind getLine print) w0
 ~~~~~~
 
-fr: Comme `print` est de type `(World -> ((),World))`, nous savons que `res = ()` (type nul)
-en: As print is of type `(World -> ((),World))`, we know `res = ()` (null type).
+fr: Comme `print` est de type `Show a => a -> (World -> ((), World))`, nous savons que `res = ()` (type `unit`)
+en: As print is of type `Show a => a -> (World -> ((), World))`, we know `res = ()` (`unit` type).
 fr: Si vous ne voyez pas ce qui est magique ici, essayons avec trois lignes cette fois.
 en: If you didn't see what was magic here, let's try with three lines this time.
 
@@ -3499,7 +3502,7 @@ let ((),w3) = print (line1 ++ line2) in
 ((),w3)
 ~~~~~~
 
-fr: Qui est équivalent à:
+fr: Qui est équivalent à :
 en: Which is equivalent to:
 
 ~~~~~~ {.haskell}
@@ -3510,7 +3513,7 @@ en: Which is equivalent to:
 
 fr: Avez-vous remarqué quelque chose ?
 en: Didn't you notice something?
-fr: Oui, aucune variable `World` temporaire n'est utilisée!
+fr: Oui, aucune variable `World` temporaire n'est utilisée !
 en: Yes, no temporary World variables are used anywhere!
 fr: C'est _MA_._GIQUE_.
 en: This is _MA_. _GIC_.
@@ -3519,9 +3522,9 @@ fr: Nous pouvons utiliser une meilleure notation.
 en: We can use a better notation.
 fr: Utilisons `(>>=)` au lieu de `bind`.
 en: Let's use `(>>=)` instead of `bind`.
-fr: `` est une fonction infixe, comme
+fr: `(>>=)` est une fonction infixe, comme
 en: `(>>=)` is an infix function like
-fr: `(+)`; pour mémoire: `3 + 4 ⇔ (+) 3 4`
+fr: `(+)`; pour mémoire : `3 + 4 ⇔ (+) 3 4`
 en: `(+)`; reminder `3 + 4 ⇔ (+) 3 4`
 
 ~~~~~~ {.haskell}
@@ -3530,8 +3533,8 @@ en: `(+)`; reminder `3 + 4 ⇔ (+) 3 4`
            (\line2 -> print (line1 ++ line2)))) w0
 ~~~~~~
 
-fr: Ho Ho Ho! Joyeux Noël!
-fr; HAskell a un sucre syntaxique pour nous:
+fr: Ho Ho Ho! Joyeux Noël !
+fr; Haskell a confectionné du sucre syntaxique pour vous :
 en: Ho Ho Ho! Merry Christmas Everyone!
 en: Haskell has made syntactical sugar for us:
 
@@ -3543,7 +3546,7 @@ do
   ...
 ~~~~~~
 
-fr: Est remplacé par:
+fr: Est remplacé par :
 en: Is replaced by:
 
 ~~~~~~ {.haskell}
@@ -3554,12 +3557,12 @@ action3 >>= (\z ->
 )))
 ~~~~~~
 
-fr: Remarquez que vous pouvez utliser `x` dans `action2` et `x` et `y` dans `action3`
+fr: Remarquez que vous pouvez utliser `x` dans `action2` et `x` et `y` dans `action3`.
 en: Note that you can use `x` in `action2` and `x` and `y` in `action3`.
 
-fr: Mais que se passe-t-il pour les lignes qui n'utilisent pas le `<-`?
+fr: Mais que se passe-t-il pour les lignes qui n'utilisent pas le `<-` ?
 en: But what about the lines not using the `<-`?
-fr: FAcile, une autre fonction `blindBind`:
+fr: Facile, une autre fonction `blindBind` :
 en: Easy, another function `blindBind`:
 
 ~~~~~~ {.haskell}
@@ -3568,10 +3571,10 @@ blindBind action1 action2 w0 =
     bind action (\_ -> action2) w0
 ~~~~~~
 
-fr: Je n'ai pas simplifié cette définition pour plus de clareté.
+fr: Je n'ai pas simplifié cette définition pour plus de clarté.
 en: I didn't simplify this definition for the purposes of clarity.
 fr: Bien sûr, nous pouvons utiliser une meilleure notation avec l'opérateur `(>>)`.
-en: Of course we can use a better notation, we'll use the `(>>)` operator.
+en: Of course, we can use a better notation: we'll use the `(>>)` operator.
 
 fr: Et
 en: And
@@ -3583,7 +3586,7 @@ do
     action3
 ~~~~~~
 
-fr: Est transformé en
+fr: Devient
 en: Is transformed into
 
 ~~~~~~ {.haskell}
@@ -3592,7 +3595,7 @@ action2 >>
 action3
 ~~~~~~
 
-fr: Aussi, une autre fonction est réellement utile.
+fr: Enfin, une autre fonction est plutôt utile.
 en: Also, another function is quite useful.
 
 ~~~~~~ {.haskell}
@@ -3600,16 +3603,16 @@ putInIO :: a -> IO a
 putInIO x = IO (\w -> (x,w))
 ~~~~~~
 
-fr: C'est le moyen énéral de mettre des valeurs pures dans le "contexte d'E/S".
+fr: D'une manière générale, c'est une façon de mettre des valeurs pures dans le "contexte d'E/S".
 en: This is the general way to put pure values inside the "IO context".
 fr: Le nom général pour `putInIO` est `return`.
 en: The general name for `putInIO` is `return`.
-fr: C'est un très mauvais nom lorsque vous commencer à programmer en Haskell. `return` est très différent de ce que vous pourriez être habitué à utliser.
+fr: C'est un plutôt un mauvais nom lorsque vous commencez à programmer en Haskell. `return` est très différent de ce à quoi vous pourriez être habitué.
 en: This is quite a bad name when you learn Haskell. `return` is very different from what you might be used to.
 
 <hr/><a href="code/03_Hell/01_IO/21_Detailled_IO.lhs" class="cut">03_Hell/01_IO/<strong>21_Detailled_IO.lhs</strong></a>
 
-fr: Pour finir, traduisons notre exemple:
+fr: Pour finir, traduisons notre exemple :
 en: To finish, let's translate our example:
 
 ~~~~~~ {.haskell}
@@ -3629,7 +3632,7 @@ main = do
   print $ sum list
 ~~~~~~
 
-fr: Est traduis en:
+fr: Se traduit en :
 en: Is translated into:
 
 <div class="codehighlight">
@@ -3656,7 +3659,7 @@ main = askUser >>=
   \list -> print $ sum list
 ~~~~~~
 </div>
-fr: vous pouvez compiler ce code pour vérifier qu'il marche.
+fr: Vous pouvez compiler ce code pour vérifier qu'il marche.
 en: You can compile this code to verify that it works.
 
 fr: Imaginez à quoi il ressemblerait sans le `(>>)` et `(>>=)`.
@@ -3671,21 +3674,21 @@ en: <h3 id="monads">Monads</h3>
 
 blogimage("dali_reve.jpg","Dali, reve. It represents a weapon out of the mouth of a tiger, itself out of the mouth of another tiger, itself out of the mouth of a fish itself out of a grenade. I could have choosen a picture of the Human centipede as it is a very good representation of what a monad really is. But just to think about it, I find this disgusting and that wasn't the purpose of this document.")
 
-fr: Maintenant le secret peut être révélé: `IO` est une _monade_.
+fr: Maintenant le secret peut être dévoilé : `IO` est une _monade_.
 en: Now the secret can be revealed: `IO` is a _monad_.
 fr: Être une monade signifie que vous avez accès à du sucre syntaxique avec la notation `do`.
 en: Being a monad means you have access to some syntactical sugar with the `do` notation.
 fr: Mais principalement, vous avez accès à un motif de codage qui tempérera le flux de votre code.
 en: But mainly, you have access to a coding pattern which will ease the flow of your code.
 
-fr:  > **Remarques importantes**:
+fr:  > **Remarques importantes** :
 en:  > **Important remarks**:
  >
-fr:  > - Le monades n'ont pas forcément quelque chose à voir avec les effets!
+fr:  > - Le monades n'ont pas forcément quoi que ce soit à voir avec les effets de bord !
 en:  > - Monad are not necessarily about effects!
 fr:  >   Il y a beaucoup de monades _pures_.
 en:  >   There are a lot of _pure_ monads.
-fr:  > - Les monades ont plus à faire avec du séquençage.
+fr:  > - Les monades concernent plus le séquençage.
 en:  > - Monad are more about sequencing
 
 fr: En Haskell, `Monad` est une classe de type.
@@ -3694,7 +3697,7 @@ fr: Pour être une instance d'une classe de type, vous devez fournir les fonctio
 en: To be an instance of this type class, you must provide the functions `(>>=)` and `return`.
 fr: La fonction `(>>)` est dérivée de `(>>=)`.
 en: The function `(>>)` is derived from `(>>=)`.
-fr: Voici commment la classe de typr `Monad` est déclarée (basiquement):
+fr: Voici commment la classe de type `Monad` est déclarée (grosso modo) :
 en: Here is how the type class `Monad` is declared (basically):
 
 ~~~~~~ {.haskell}
@@ -3713,7 +3716,7 @@ en:   -- which I believe exists for historical reasons
   fail = error
 ~~~~~~
 
-fr:  > Remarques:
+fr:  > Remarques :
 en:  > Remarks:
  >
 fr:  > - le mot-clé `class` n'est pas votre ami.
@@ -3724,7 +3727,7 @@ fr:  >   Elles ont beaucoup de similarités avec les interfaces de Java.
 en:  >   A Haskell class has a lot of similarities with Java interfaces.
 fr:  >   Un meilleur mot aurait été `typeClass`, ce qui signifierait un ensemble de types. 
 en:  >   A better word would have been `typeclass`, since that means a set of types.
-fr:  >   Pour qu'un type appartiennent à une classe, toutes les fonctions de cette classe doivent être fournies pour ce type.
+fr:  >   Pour qu'un type appartienne à une classe, toutes les fonctions de cette classe doivent être fournies pour ce type.
 en:  >   For a type to belong to a class, all functions of the class must be provided for this type.
 fr:  > - Dans cet exemple particulier de classe de type, le type `m` doit être un type qui prend un argument.
 en:  > - In this particular example of type class, the type `m` must be a type that takes an argument.
@@ -3732,9 +3735,9 @@ fr:  >   par exemple `IO a`, mais aussi `Maybe a`, `[a]`, etc...
 en:  >   for example `IO a`, but also `Maybe a`, `[a]`, etc...
 fr:  > - Pour être une monade utile, votre fonction doit obéir à quelques règles.
 en:  > - To be a useful monad, your function must obey some rules.
-fr:  >   Si votre construction n'obéit pas à ces règles, des choses étranges pourrait se produire:
+fr:  >   Si votre construction n'obéit pas à ces règles, des choses étranges pourraient se produire :
 en:  >   If your construction does not obey these rules strange things might happens:
- >
+ 
  >   ~~~
  >   return a >>= k  ==  k a
  >   m >>= return  ==  m
@@ -3827,7 +3830,7 @@ main = do
 
 <hr/><a href="code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong></a>
 
-fr: Pas mauvais, mais nous pouvons faire encore mieux:
+fr: Pas mauvais, mais nous pouvons faire encore mieux :
 en: Not bad, but we can make it even better:
 
 <div class="codehighlight">
@@ -3863,7 +3866,7 @@ en: in most imperative languages.
 fr: En fait, c'est le type de construction que nous faisons naturellement.
 en: In fact, this is the kind of construction we make naturally.
 
-fr:  > Un remarque importante:
+fr:  > Une remarque importante :
 en:  > An important remark:
  > 
 fr:  > Le premier élement de la séquence qui sera évalué comme `Nothing` stoppera
@@ -3872,12 +3875,12 @@ fr:  > l'évaluation.
 en:  > the complete evaluation. 
 fr:  > Cela signifie que vous n'exécutez pas toutes les lignes.
 en:  > This means you don't execute all lines.
-fr:  > Vous avgfez cela gratuitement, grâce à la paresse.
+fr:  > Cela découle du caractère paresseux de Haskell.
 en:  > You get this for free, thanks to laziness.
 
 fr: Vous pourriez aussi revoir ces exemples avec la définition de `(>>=)` pour `Maybe`
 en: You could also replay these example with the definition of `(>>=)` for `Maybe`
-fr: en tête:
+fr: en tête :
 en: in mind:
 
 ~~~~~~ {.haskell}
@@ -3893,7 +3896,7 @@ fr: La monade `Maybe` a prouvé par un simple exemple qu'elle est utile.
 en: The `Maybe` monad proved to be useful while being a very simple example.
 fr: Nous avons vu l'utilité de la monade `IO`.
 en: We saw the utility of the `IO` monad.
-fr: Mais maintenant, voici un exemple plus cool, les listes.
+fr: Mais maintenant, voici un exemple encore plus cool : les listes.
 en: But now for a cooler example, lists.
 
 <a href="code/03_Hell/02_Monads/12_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>12_Monads.lhs</strong> </a>
@@ -3905,9 +3908,9 @@ en: <h4 id="the-list-monad">The list monad</h4>
 
 blogimage("golconde.jpg","Golconde de Magritte")
 
-fr: La monade List nouis aide à simuler des calculs non-détertiministe.
+fr: La monade `List` nous aide à simuler des calculs non-déterministes.
 en: The list monad helps us to simulate non-deterministic computations.
-fr: C'est parti:
+fr: C'est parti :
 en: Here we go:
 
 <div class="codehighlight">
@@ -3935,7 +3938,7 @@ en: MA. GIC. :
 [(1,1,7),(1,1,8),(1,1,9),(1,1,10),(1,2,9),(1,2,10)]
 ~~~
 
-fr: Pour la monade List, il y a aussi un sucre syntaxique:
+fr: Pour la monade `List`, il y a aussi un sucre syntaxique :
 en: For the list monad, there is also this syntactic sugar:
 
 <div class="codehighlight">
@@ -3946,16 +3949,16 @@ en: For the list monad, there is also this syntactic sugar:
                       4*x + 2*y < z ]
 ~~~~~~
 </div>
-fr: Je ne listerais pas toutes les monades, mais il y en a beaucoup.
-en: I won't list all the monads, but there are many of them.
+fr: Je ne listerai pas toutes les monades, car il y en a beaucoup.
+en: I won't list all the monads, since there are many of them.
 fr: Utiliser les monades simplifie la manipulations de plusieurs notions dans les langages purs.
 en: Using monads simplifies the manipulation of several notions in pure languages.
-fr: Les monades sont très utiles, en particulier pour:
+fr: Les monades sont très utiles, en particulier pour :
 en: In particular, monads are very useful for:
 
-fr: - L'E/S;
+fr: - L'E/S (IO),
 en: - IO,
-fr: - calculs non-déterministes,
+fr: - les calculs non-déterministes,
 en: - non-deterministic computation,
 fr: - générer des nombres pseudo-aléatoires,
 en: - generating pseudo random numbers,
@@ -3965,12 +3968,12 @@ fr: - écrire un état,
 en: - writing state,
 - ...
 
-fr: Si vous m'avez suivi jusqu'ici, alors vous avez terminé!
+fr: Si vous m'avez suivi jusqu'ici, alors vous avez terminé !
 en: If you have followed me until here, then you've done it!
-fr: Vous connaissez les monades[^03021301]!
+fr: Vous connaissez les monades[^03021301] !
 en: You know monads[^03021301]!
 
-fr: [^03021301]: Vous aurez quand même besoin de pratiquer un peu pour vous habituer à elles et pour comprendre quand les utiliser ou créer les vôtres. Mais vous avez déjà fait un grand pas dans cette direction.
+fr: [^03021301]: Vous aurez quand même besoin de pratiquer un peu pour vous habituer à elles et pour comprendre quand les utiliser et créer les vôtres. Mais vous avez déjà fait un grand pas dans cette direction.
 en: [^03021301]: Well, you'll certainly need to practice a bit to get used to them and to understand when you can use them and create your own. But you already made a big step in this direction.
 
 <a href="code/03_Hell/02_Monads/13_Monads.lhs" class="cut">03_Hell/02_Monads/<strong>13_Monads.lhs</strong> </a>
