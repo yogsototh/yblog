@@ -1,3 +1,6 @@
 packages:
 - '.'
 resolver: lts-6.12
+nix:
+  enable: true
+  shell-file: shell.nix

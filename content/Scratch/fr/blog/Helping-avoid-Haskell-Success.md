@@ -22,9 +22,9 @@ And I'll help SPJ achieve this honorable goal.
 
 </div>
 
-## Prevent Interrest from beginner
+## Prevent Interest from beginner
 
-Imagine a situation were you see people demonstrating some interrest in learning
+Imagine a situation were you see people demonstrating some interest in learning
 Haskell.
 
 Quick! Prevent them from going further.
@@ -33,7 +33,7 @@ If they come from the dynamic (uni-typed) languages like Python, Javascript...:
 
 > Haskell? A statically typed language??? Hmm... You mean like C and Java?
 
-Such a remark should immediately shut down any interrest in Haskell.
+Such a remark should immediately shut down any interest in Haskell.
 
 If they want to produce application with them:
 
@@ -85,7 +85,7 @@ Many hints there:
 
 The very first thing to do is to explain how Haskell is so easy to learn. How
 natural it is for everybody you know. And except someone you always considered
-very dumb, everybody was very productive in haskell in few hours.
+very dumb, everybody was very productive in Haskell in few hours.
 
 Use vocabulary alien to them as much as possible. Here is a list of terms you
 should use in the very first minutes of your description of Haskell:
@@ -229,12 +229,12 @@ Certainly a great example to start a new language with.
 
 ### Library authors
 
-1. Do your best not to respect versionning number policy to maximize the
+1. Do your best not to respect versioning number policy to maximize the
    probability to break things.
 2. Don't write any documentation, type are enough!
 3. Even better, add mistakes to your documentation
 4. Each time you can use a meaningful notation, make it wrong. For example, if
-   you have a symmetric relation use an asymetric symbol to represent it.
+   you have a symmetric relation use an asymmetric symbol to represent it.
 5. If possible remove all function names and only use symbols of at least 5
    letters: For example you can replace your function 
    `log :: Level -> String -> IO ()` by `(<=.=$$.)`.
@@ -245,8 +245,8 @@ the risk of breaking our own ecosystem:
 - Split your libs as much as possible. The best would be to use one lib by
   symbol
 - Use `unsafePerformIO` as much as possible
-- Push to hackage a version not accessible on your public repository
-- modify the package on hackage using the same version but with incompatible API
+- Push to Hackage a version not accessible on your public repository
+- modify the package on Hackage using the same version but with incompatible API
 - Add memory leaks
 - Add bugs
 - Add back doors and publish how to use them
@@ -260,7 +260,7 @@ at all cost!
 
 Sorry? What?
 
-Oh... Apparenlty I made a precedence mistake!
+Oh... Apparently I made a precedence mistake!
 
 SPJ didn't asked to `avoid success $ at all cost` but
 to `avoid $ success at all cost`[^1].

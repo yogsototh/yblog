@@ -1,6 +1,6 @@
 #!/usr/bin/env stack
 {- stack
-   --resolver lts-5.15
+   --resolver lts-6.12
    --install-ghc
    runghc
    --package turtle
