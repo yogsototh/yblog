@@ -1,0 +1,1232 @@
+@charset "UTF-8"
+/* Solarized palette */
+$base03 : #002b36
+$base02 : #073642
+$base01 : #586e75
+$base00 : #657b83
+$base0  : #839496
+$base1  : #93a1a1
+$base2  : #eee8d5
+$base3  : #fdf6e3
+$yellow : #b58900
+$orange : #cb4b16
+$red    : #dc322f
+$magenta: #d33682
+$violet : #6c71c4
+$blue   : #268bd2
+$cyan   : #2aa198
+$green  : #859900
+/* I won't use completely */
+
+$behindColor: $base03
+$mainTextColor: $behindColor
+$mainBackgroundColor: #FAFAFC
+$mainShadowColor: $mainBackgroundColor - #334
+$secondBackgroundColor: #F2F2F4
+$revealColor: #cb4b16
+$secondRevealColor: $revealColor
+$lighterRevealColor: $revealColor + #666
+$imageBackgroundColor: $mainBackgroundColor
+$borderColor: #ccccd0
+$imageBorderColor: $borderColor
+$mainLinkColor: $mainTextColor
+$textLinkColor: $base02
+$highlightColor: $base02
+$highlightBlockColor: $base02
+$highlightRevealColor: $revealColor + #111
+$lighterText: #ccccd0
+$lighterColor: #eeeef1
+$lighterColorBorderTop: $lighterText
+$lighterColorBorderBottom: $lighterText
+$secondTextColor: #666677
+// solarized dark background color
+$codeBlockColor: #839496
+$codeBlockBackgroundColor: #002b36
+
+$monofont: Menlo, Monaco, monospace
+
+// include Computer Modern fonts
+
+=italic
+  font-style: italic
+
+=bold
+  font-weight: bold
+
+=normal
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: 'social'
+  src: url('fonts/social_font-webfont.eot')
+  src: url('fonts/social_font-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/social_font-webfont.woff') format('woff'), url('fonts/social_font-webfont.ttf') format('truetype'), url('fonts/social_font-webfont.svg#social_font_faceregular') format('svg')
+  font-weight: normal
+  font-style: normal
+.social
+  font-family: social
+
+i, em
+  +italic
+
+b, strong, h1, h2, h3, h4, h5, h6
+  +bold
+
+=mainColor
+  color: $behindColor
+  background:
+    color: $mainBackgroundColor
+
+=lightColor
+  color: $lighterText
+  a
+    color: $lighterText
+  a:hover
+    color: $lighterRevealColor
+
+=innerblock
+  border: solid 1px $borderColor
+  border-radius: 2px
+  box-shadow: 0 0 4px $secondBackgroundColor inset
+  background-color: $mainBackgroundColor - #020202
+  ul
+    margin-left: 0
+
+=highlight
+  +italic
+  padding: 0.5em 1em
+  color: $highlightBlockColor
+  a
+    font-style: normal
+  a:hover
+    color: $revealColor
+  i, em
+    +normal
+    color: $behindColor
+  strong, b
+    +bold
+    color: $behindColor
+
+=secondColor
+  color: $behindColor
+  border: $borderColor solid 1px
+  border-radius: 5px
+  box-shadow: 0 0 2px $borderColor inset
+  background:
+    color: $lighterColor
+  a
+    color: $secondTextColor
+  a:hover
+    color: $secondRevealColor
+    strong, b, i, em, .nicer
+      color: $lighterRevealColor
+  hr
+    color: $secondTextColor
+    border:
+      top: 1px solid $secondTextColor
+  strong, b, i, em
+    color: $behindColor
+
+=revealColor
+  color: $revealColor
+
+=codeColor
+  background:
+    color: $codeBlockBackgroundColor
+  color: $codeBlockColor
+
+table.description tr td
+  border: 1px solid $lighterColor
+
+.assombris20
+  background-color: $lighterColor
+
+body
+  +mainColor
+
+=selected
+  background: $base2
+  color: $base01
+
+::selection
+  +selected
+::-moz-selection
+  +selected
+
+=darkselected
+  background: $base3
+  color: $base01
+
+pre, code, a.cut
+  font-family: $monofont
+
+pre
+  &::selection
+    +darkselected
+  *::selection
+    +darkselected
+pre
+  &::-moz-selection
+    +darkselected
+  *::-moz-selection
+    +darkselected
+
+a:hover
+  text-shadow: 0 0 2px #FAA
+
+a, a:link, a:visited, a:active, a:hover
+  text-decoration: none
+  outline: none
+
+a, a:link, a:visited, a:active
+  color: $mainLinkColor
+
+a:hover
+  +revealColor
+
+hr
+  color: $lighterColor
+  border:
+    top: 1px solid $lighterColor
+    bottom: none
+    left: none
+    right: none
+
+ul
+  list-style: none
+
+.corps ul li:before
+  content: "-"
+  display: inline-block
+  margin-left: 1.5ex
+  width: 0
+
+ul
+  padding-left: 0
+  text-indent: -1.5ex
+ol
+  padding-left: 0
+
+.toc
+  ol li, ul li
+    margin: .5em 0
+ol li ol, ul li ol, ul li ul
+  margin: 0em 2em 0.6em
+  list-style: none
+
+
+body, h1, h2, h3, h4, #entete, .tagname
+  text-rendering: optimizelegibility
+  line-height: 2em
+
+body
+  font-family: $monofont
+
+#navigation
+  letter-spacing: -.025em
+  margin: 1em auto
+  font-size: 1.25em
+  text-align: center
+  font-weight: thin
+  font-style: italic
+  .sep
+    opacity: .3
+    font-style: italic
+    display: inline-block
+    margin: 0 .5em
+
+#choix
+  height: 0
+.article #choix
+  height: auto
+@media only screen and (max-width: 600px)
+  #choix
+    height: auto
+@media only screen and (max-width: 480px)
+  #navigation
+    & > a
+      width: 100%
+      display: inline-block
+    .sep
+      display: none
+
+/* Header Numbering */
+.article #afterheader
+  counter-reset: niv02
+  h2
+    counter-increment: niv02
+    counter-reset: niv03
+    marker-offset: 3em
+    &:before
+      content: counter(niv02) ". "
+  h3
+    counter-increment: niv03
+    counter-reset: niv04
+    &:before
+      content: counter(niv02) "." counter(niv03) ". "
+  h4
+    counter-increment: niv04
+    &:before
+      content: counter(niv02) "." counter(niv03) "." counter(niv04) ". "
+
+pre
+  +codeColor
+  border: solid 1px $borderColor
+  border-radius: 3px
+  padding: 1em
+
+pre > code
+  display: block
+
+p
+  margin-bottom: 1.2em
+
+.corps
+  blockquote
+    +innerblock
+    +highlight
+    margin: 1.5em 0
+    &>ul, &>ol
+      padding-left: 1.5em
+
+=sc
+  text-transform: uppercase
+  font-size: 0.8em
+  // Safari bug: font-variant: small-caps
+
+abbr,
+acronym
+  &:after
+    content: "*"
+    vertical-align: super
+    line-height: 0
+    font-size: .66em
+    color: $highlightColor
+  text:
+    decoration: none
+  border:
+    bottom:
+      width: 0
+
+// -- STYLE --
+
+#titre
+  letter-spacing: -0.06em
+  margin: 2em 0
+  // border:
+  //   bottom: 4px double $lighterText
+  //   top: 4px double $lighterText
+
+#liens .active, #sousliens
+  +secondColor
+
+=insetbox
+  background: rgba(#000,.05)
+  box-shadow: 0 0 2px #FFF, 0 0 3px #CCC inset
+  border: 1px solid rgba(#000,.1)
+  border-radius: 3px
+  &:hover
+    background: rgba(#000,.1)
+    box-shadow: 0 0 6px #555 inset
+
+=clearbutton
+  display: block
+  width: 20%
+  cursor: pointer
+  margin: 1em 0
+  padding: 1em
+  font-size: 16px
+  line-height: 1.4em
+  border: 1px solid $mainBackgroundColor
+  color: $lighterText
+  &:hover
+    +innerblock
+    color: $highlightRevealColor
+    text-shadow: 0 0 2px #FAA
+  &:active
+    +innerblock
+    color: $highlightRevealColor
+    text-shadow: 0 0 2px #FAA
+    background: $mainBackgroundColor - #060606
+
+#liens a
+  border: 1px solid #EEE
+  +insetbox
+
+#liens .active
+  text-shadow: 0 0 2px rgba(#000,.5)
+  background-color: $mainBackgroundColor - #030303
+  border: 1px solid $mainBackgroundColor - #111111
+  box-shadow: 0 0 3px ($mainBackgroundColor - #333333) inset
+  border-radius: 3px
+  border-top: none
+
+// -- FOOTER --
+#lastmod
+  font-size: 0.9em
+
+// --- DYNAMICS --
+.nojsbutton
+  font-size: 2.5em
+
+#clickcomment, #choixrss > a, .clearbutton
+  +clearbutton
+
+.return > a, #choixrss > a
+  float: right
+
+#choix
+  .return > a, #choixrss > a
+    margin-top: 0
+  #switchcss
+    float: right
+  #choixlang
+    float: left
+  #choixlang, #switchcss
+    a
+      margin-top: 0
+      width: 100%
+
+// -- TYPOGRAPHY --
+.small
+  font-size: 0.8em
+.tiny
+  font-size: 0.6em
+.sc
+  +sc
+
+.impact, .darkimpact
+  font-size: 2em
+  margin: 0 auto 1em auto
+  line-height: 1.3em
+
+// -- DATES --
+
+h1 > .date
+  font-size: 0.6em
+  color: $behindColor
+
+.date
+  font-size: 0.8em
+  color: $mainBackgroundColor
+  border: 1px solid $mainTextColor
+  text-align: center
+  width: 4.1em
+  line-height: 1.5em
+  display: inline-block
+  vertical-align: middle
+  margin-right: 1em
+
+.date .day,
+.date .month,
+.date .year
+  display: block
+
+.date .day
+  color: $behindColor
+  background-color: $mainBackgroundColor
+  float: left
+  width: 1.7em
+
+.date .month
+  float: right
+  width: 2.3em
+  background-color: $behindColor
+  color: $mainBackgroundColor
+
+.date .year
+  line-height: 3ex
+  clear: both
+  +secondColor
+  border-radius: 0
+
+// --- LAYOUTS --
+$VPadCorps: 3em
+$VMarginCorps: 3em
+
+$content_width: 80em
+
+body
+  text-align: center
+  font-size: 12px
+  pre
+    font-size: 0.8em
+
+body > #entete
+  position: absolute
+  left: 0
+  top: 0.5em
+  width: 100%
+  min-width: $content_width - 2em
+  z-index: 8000
+  padding-bottom: 1em
+  margin-bottom: $VMarginCorps
+
+#titre h2
+  width: 80%
+  margin-left: auto
+  margin-right: auto
+  text-align: center
+  font-style: italic
+
+#titre
+  text-align: center
+  width: 100%
+
+#titre h1, #titre h2
+  padding-left: 1em
+  padding-right: 1em
+
+// le pied de page
+#bottom
+  opacity: .25
+  clear: right
+  margin-right: 0
+  padding: 1.5em
+  border-top: dashed 1px $base1
+  line-height: 1.5em
+  color: $mainTextColor + #222
+  margin-top: 2em
+  text-align: center
+  a
+    color: $mainTextColor + #111
+  a:hover
+    +revealColor
+#bottom:hover
+  opacity: 1
+
+// Les menus
+
+#sousliens
+  padding: 1em 0
+  line-height: 2em
+
+#sousliens ul
+  list-style: none
+  margin-left: 4em
+
+ul.horizontal li
+  display: inline
+  font-size: 0.9em
+
+ul.horizontal
+  margin-top: 0
+  margin-bottom: 0
+
+#entete
+  padding-top: 0.1em
+  border-top: 1px solid $lighterColorBorderTop
+  border-bottom: 1px solid $lighterColorBorderTop
+
+#liens
+  width: 100%
+  padding: 0
+  clear: both
+  margin-top: 0.5em
+
+#liens ul
+  width: 100%
+  clear: both
+  padding: 0
+  margin: 0
+
+$hauteur_menu: 4em
+
+#liens ul li
+  display: inline-block
+  height: $hauteur_menu
+  margin-left: 0.2em
+  margin-right: 0.2em
+  width: 23%
+
+#liens ul li a,
+#liens ul li span
+  width: 100%
+  display: block
+  line-height: $hauteur_menu
+
+// Un 'helper'
+.clear
+  clear: both
+
+// Le Contenu
+#content
+  line-height: 2em
+  margin-left: auto
+  margin-right: auto
+  margin-top: 0
+  position: relative
+  clear: both
+  width: 100%
+  max-width: $content_width
+
+@media only screen and (max-width: $content_width - 2em)
+  #content
+    padding: 0
+    width: 100%
+    img
+      max-width: 80%
+    .corps
+      padding: 0 1em
+
+$contentMargin: 0em
+
+.encadre, .black, .intro, .resume, .shadow
+  padding: 2em
+  margin:
+    top: 2em
+    bottom: 2em
+
+
+.encadre, .black, .shadow
+  +secondColor
+
+.corps
+  .intro, .resume
+    font-size: 0.9em
+    +highlight
+  .intro2
+    font-size: 0.9em
+
+#afterheader > h1
+  width: 100%
+  padding-top: 1.5em
+  text-align: left
+
+#afterheader
+  padding-left: $contentMargin
+  padding-right: $contentMargin
+
+#sousliens
+  margin:
+    top: $VMarginCorps
+    bottom: $VMarginCorps
+  font-size: 1.2em
+  letter-spacing: 1px
+  text-align: left
+  clear: both
+
+.twilight
+  line-height: 1.1em
+
+$fontcorps: 1.25
+
+.corps
+  font-size: #{$fontcorps}em
+  text-align: justify
+  padding: 0 3em 0 3em
+  margin: 0
+  clear: both
+  p, ol, ul, blockquote, & > pre, & > code
+    margin-top: 1.5em
+    margin-bottom: 1.5em
+  p > code, p > a > code, li > code, li > a > code
+    display: inline-block
+    height: 1em
+    margin: 0
+  li > code, li > a > code
+    text-indent: 0
+  &, ul li, ol li
+    blockquote > ul
+      margin: 0
+  ul li ul, ol li ul, ul li ol, ol li ol
+    margin: 0 2em 0.6em
+
+$corps_width: ($content_width - 2 * $contentMargin) / $fontcorps
+$hpadding: 1
+
+.corps img
+  max-width: 80%
+  border: 1px solid $imageBorderColor
+  background-color: $imageBackgroundColor
+  padding: 0.5em
+  box-shadow: 0 0 5px #CCC inset
+  border-radius: 3px
+.corps p > a > img
+  display: inline-block
+  border: none
+  padding: 0
+  margin: 0
+  box-shadow: none
+.corps a:hover img
+  background-color: $revealColor + #100 - #011
+
+figure, .figure
+  margin: 3em 0
+  text-align: center
+  img
+    box-shadow: 0 0 5px #CCC inset
+  figcaption, .caption
+    text-align: center
+    margin: .5em 0
+
+figure.left, figure.right, .figure.right, .figure.left
+  max-width: 30%
+
+img.clean
+  border: none
+  background-color: none
+  box-shadow: none
+
+//  les clear
+
+#address
+  clear: both
+
+.definitionCell
+  width: 5em
+  vertical-align: top
+  text-align: center
+  +bold
+
+.valueCell
+  text-align: right
+
+.smallblock
+  float: left
+  width: 50%
+  font-size: 1em
+  +bold
+
+.largeblock
+  float: right
+  width: 70%
+  font-size: 1em
+
+#blackpage, #nojsredirect
+  top: 0
+  left: 0
+  width: 100%
+  min-height: 100%
+  margin-left: 0
+  margin-right: 0
+  margin-top: 0
+  margin-bottom: 0
+  position: absolute
+  text-align: center
+
+#blackpage
+  +mainColor
+  font-family: $monofont
+  font-style: italic
+  padding-top: 8em
+  z-index: 9000
+  cursor: wait
+  .corps
+    code, pre
+      font-family: $monofont
+  img
+    background: none
+    border: none
+    max-width: 80%
+    margin: 0 auto
+  a
+    cursor: pointer
+  .preh1
+    font-size: 1.5em
+    font-weight: bold
+    margin-bottom: 1em
+  .preh2
+    font-size: 1.2em
+    font-style: italic
+    margin-bottom: 1em
+  .preintro
+    text-align: left
+    width: $content_width
+    margin: 0 auto
+
+#nojsredirect
+  z-index: 9001
+
+.nojsbutton
+  width: 50%
+  padding: 1em
+  border: solid 3px white
+  margin-left: auto
+  margin-right: auto
+  margin-top: 2em
+  z-index: 9002
+
+.codefile
+  font-size: 0.8em
+  text-align: right
+  padding-right: 1em
+  margin-right: 0.1
+  margin-bottom: -1em
+
+.flush
+  clear: both
+
+table.description
+  border-spacing: 5px
+  border-collapse: separate
+  margin-right: auto
+  margin-left: auto
+
+table.description tr td
+  padding-left: 0.5em
+  padding-right: 0.5em
+  padding-top: 0.5ex
+  padding-bottom: 0.5ex
+  vertical-align: middle
+  margin-right: 5px
+
+ul.long li
+  margin-bottom: 1em
+
+img
+  display: block
+  margin: 1.2em auto
+  background: none
+  border: none
+
+img.right
+  max-width: 30%
+  margin:
+    top: .6em
+    left: 2em
+img.left
+  float: left
+  max-width: 30%
+  margin:
+    top: .6em
+    right: 2em
+
+img.inside
+  display: inline
+  vertical-align: middle
+
+pre
+  overflow-x: auto
+  overflow-y: hidden
+
+.impact, .darkimpact
+  text-align: left
+  width: 66%
+  padding-left: 0.25em
+  padding-right: 0.25em
+
+table.impact
+  text-align: left
+
+table.impact tr td
+  padding-left: 0.25em
+  padding-right: 0.25em
+
+#liens
+  font-size: 1.2em
+
+.tagname
+  display: inline
+  cursor: pointer
+  margin-left: 0.5em
+  margin-right: 0.5em
+
+.list
+  margin-top: $VPadCorps
+
+#menuMessage
+  font:
+    size: 1.2em
+  line:
+    height: 1.5em
+  width: 100%
+  text-align: center
+
+#next_before_articles
+  clear: both
+  width: 100%
+  font-size: 1.2em
+  padding:
+    top: 1em
+    bottom: 1em
+
+#previous_articles, #next_articles
+  color: $highlightColor
+  font-size: .8em
+  +italic
+
+#previous_articles
+  float: left
+  margin-left: 1em
+  width: 45%
+  text-align: left
+
+.previous_article, .next_article
+  margin-top: 1em
+
+#next_articles
+  float: right
+  width: 45%
+  margin-right: 1em
+  text-align: right
+
+
+
+.corps .return a
+  color: $lighterColor
+  padding: 0.1em
+  font-size: 1.5em
+  height: 1.5em
+  float: left
+  font-size: 2em
+  margin-top: -0.5em
+  margin-left: -2em
+  width: 1.5em
+
+a.return
+  color: $lighterColor
+  padding: 0.1em
+  line-height: 1.5em
+  font-size: 1.5em
+  height: 1.5em
+  font-size: 2em
+  width: 1.5em
+  display: block
+  &:hover
+    color: $highlightColor
+
+.corps .return a:hover
+  color: $revealColor
+
+.footnotes
+  font-size: 0.8em
+  ol
+    color: $base0
+    +bold
+    p
+      color: $behindColor
+      +normal
+
+.fontnotes ol
+  margin-left: 0
+
+.typeset img
+  display: inline
+  border: none
+  margin: 0
+  padding: 0
+
+strong, b, i, em
+  color: $highlightColor
+  a
+    color: $mainTextColor
+  a:hover
+    color: $revealColor
+
+.corps p
+  strong, b, i, em
+    color: $highlightBlockColor
+
+a:hover
+  strong, b, i, em
+    color: $highlightRevealColor
+
+a:hover .nicer
+  color: $lighterRevealColor
+
+.nicer
+  color: $lighterText
+  font-family: $monofont
+
+.and
+  color: $lighterText
+  font-family: $monofont
+
+.block
+  +innerblock
+  width: 26.5%
+  padding: 1em
+  border-radius: 2px
+  text-align: left
+  line-height: 1em
+  margin-left: 1%
+  margin-right: 1%
+  font-size: 0.8em
+  height: 9em
+  a
+    color: $mainTextColor
+  a:hover
+    color: $revealColor
+
+.block h3
+  margin: 0
+  font-size: 1.3em
+
+.block p
+  line-height: 1.2em
+
+.left
+  float: left
+
+.right
+  float: right
+
+.corps
+  p a, ul a
+    font-style: italic
+    color: $textLinkColor
+  p a:hover, ul a:hover
+    color: $revealColor
+
+ul.bloglist, .archive ul
+  list-style-type: none
+  margin: 0
+  li
+    margin-bottom: 1em
+
+.button
+  cursor: pointer
+  text-align: center
+
+#tagcloud
+  font-size: .8em
+  background: $secondBackgroundColor
+  box-shadow: 0 0 6px $borderColor
+  border-radius: 3px
+  line-height: 2.5em
+  padding: 2em
+  text-align: justify
+
+.pala
+  font-family: $monofont
+  font-style: italic
+  opacity: 0.6
+
+sup
+  vertical-align: top
+  font-size: .7em
+
+.default .corps p a,
+.default .corps ul a
+  color: $base02
+
+.article .corps a:after
+  content: "†"
+  vertical-align: super
+  line-height: 0
+  font-size: .66em
+  color: $highlightColor
+.article .corps .nostar a:after
+  content: ""
+.article .corps
+  .footnotes, sup
+    a:after
+      content: ""
+.article .corps sup a
+  +bold
+  padding: 0 .3em
+  margin-left: 2px
+  border-radius:  3px
+  vertical-align: top
+  -moz-border-radius:  3px
+  -webkit-border-radius:  3px
+  &:hover
+    color: $revealColor
+
+ul#markdown-toc, .intro .toc ul
+  +sc
+  list-style: none
+  padding-left: 1.5em
+  a:after
+    content: ""
+  ul ul
+    font-variant: normal
+    line-height: 1em
+    font-size: 1em
+    margin-bottom: 1em
+
+table
+  margin: 1.5em auto
+  font-size: .8em
+  border: 1px solid $borderColor
+  border-radius: 3px
+table tr td
+  padding: 2px .5em
+table tr
+  &:nth-child(odd)
+    background-color: $secondBackgroundColor
+  &:nth-child(even)
+    background-color: $mainBackgroundColor
+
+p, ul li, ol li
+  pre code
+    background: none
+    border: none
+    padding: 0
+  code
+    background: $secondBackgroundColor - #020202
+    border: solid 1px $borderColor
+    padding: 2px
+    line-height: 1em
+
+ul.sameline
+  list-style: none
+  li
+    float: left
+    margin-left: .5em
+
+.resumearticle
+  background-color: $secondBackgroundColor
+  border-radius: 7px
+  box-shadow: 0 0 5px $mainShadowColor inset,0 0 5px #FFF
+  margin: 1em 0
+  padding: 1em
+
+a.cut
+  font-size: 12px
+  text-align: right
+  display: block
+  width: 100%
+  opacity: .5
+  border: 1px solid $mainBackgroundColor
+  border-radius: 3px
+  &:hover
+    opacity: 1
+    background-color: $secondBackgroundColor
+    border-color: $borderColor
+    box-shadow: 0 0 3px $borderColor inset
+  strong
+    +bold
+.codehighlight pre
+  border-left: 4px solid $borderColor
+
+#social
+  font-size: 2em
+  text-align: center
+  padding-top: 1em
+  margin-top: 1em
+  border-top: dashed 1px $borderColor
+  opacity: .3
+  &:hover
+    opacity: 1
+  .message
+    font-size: 10px
+
+.popularblock
+  width: 30.3333%
+  min-width: 150px
+  margin: 0 1.5%
+  float: left
+  figure
+    margin: 0
+    img
+      max-width: 80%
+      max-height: 6em
+
+.corps
+  .inlineblockimg
+    width: 48px
+    margin: 8px
+    text-align: center
+    vertical-align: middle
+    display: inline-block
+    line-height: 0.8em
+    overflow: hidden
+    border: solid 1px
+  img.inlineimage
+    display: block
+    padding: 0
+    max-height: 48px
+    max-width: 48px
+    border: none
+    box-shadow: none
+    margin: 0 auto
+    vertical-align: middle
+    font-size: 7px
+    font-family: $monofont
+    overflow: hidden
+
+section.slide
+  border-color: $borderColor
+  border: solid 1px
+  margin-bottom: 1em
+  padding: .5em
+  font-family: $monofont
+  font-size: .8em
+  min-height: 25em
+  ul,ol
+    padding-left: 1.5ex
+
+a.rss
+  background-color: #F8F8F8
+  background-image: -moz-linear-gradient(center top , white, #DEDEDE)
+  border: 1px solid #CCCCCC
+  border-radius: 3px 3px 3px 3px
+  color: $orange
+  cursor: pointer
+  display: inline-block
+  font-size: 13px
+  font-weight: bold
+  height: 20px
+  font-family: $monofont
+  line-height: 20px
+  overflow: hidden
+  padding: 0 5px
+  position: relative
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+  &:hover
+    background-image: -moz-linear-gradient(center top , white, #F3F3F3)
+
+.base03
+  color: $base03
+.base02
+  color: $base02
+.base01
+  color: $base01
+.base00
+  color: $base00
+.base0
+  color: $base0
+.base1
+  color: $base1
+.base2
+  color: $base2
+.base3
+  color: $base3
+.yellow
+  color: $yellow
+.orange
+  color: $orange
+.red
+  color: $red
+.magenta
+  color: $magenta
+.violet
+  color: $violet
+.blue
+  color: $blue
+.cyan
+  color: $cyan
+.green
+  color: $green
+
+.highlight
+  background-color: $base2
+  box-shadow: 0 0 2px $yellow inset
+  padding: 0 3px
+  height: 1.1em
+  line-height: 1em
+  display: inline-block
+
+#header
+  opacity: .25
+  border-bottom: dashed 1px $base1
+  &:hover
+    opacity: 1
+.strike
+  text-decoration: line-through
+.wrap
+  word-wrap: break-word
+
+pre, code, a.cut
+  font-family: $monofont
+  line-height: 1.5em
+body
+  font-family: $monofont
+
+.cssdebug
+  pre > code:before
+    content: "----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80***85***90"
+    display: block
+

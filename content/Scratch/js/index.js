@@ -18,14 +18,14 @@ function analytics() {
             // tell analytics to save event
             try {
                 var identifier=$(this).attr('id') ;
-                var href=$(this).attr('href')
+                var href=$(this).attr('href');
                 var label="";
                 if ( typeof( identifier ) != 'undefined' ) {
-                    label=label+'[id]:'+identifier
-                    category='JSLink'
+                    label=label+'[id]:'+identifier;
+                    category='JSLink';
                 }
                 if ( typeof( href ) != 'undefined' ) {
-                    label=label+' [href]:'+href
+                    label=label+' [href]:'+href;
                     if ( href[0] == '#' ) {
                         category='Anchor';
                     } else {
@@ -65,8 +65,9 @@ function detectClient() {
 var pref='Scratch/css';
 var styleindex=0;
 var styles=[ pref+'/scientific.css'
-		   , pref+'/modern.css'
-		   , pref+'/darkmodern.css'];
+		         , pref+'/modern.css'
+		         , pref+'/darkmodern.css'
+             , pref+'/brutalist.css'];
 
 // -- fix for ie (I HATE YOU Internet Explorer!)
 if (!('indexOf' in Array.prototype)) {
@@ -94,10 +95,11 @@ function badPref() {
 
 var maxDepth=10;
 while (badPref() && (maxDepth-->0)) {
-    pref="../" + pref
+    pref="../" + pref;
     styles=[ pref+'/scientific.css'
-		   , pref+'/modern.css'
-		   , pref+'/darkmodern.css'];
+		         , pref+'/modern.css'
+		         , pref+'/darkmodern.css'
+             , pref+'/brutalist.css'];
 }
 function reloadStylesheets() {
 	var queryString = '?reload=' + new Date().getTime();
