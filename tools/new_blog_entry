@@ -50,7 +50,7 @@ now=$( date "+%Y-%m-%d" )
 ---
 kind:           article
 published:      $now
-image: /$imgdirname/main.png
+image: ${imgdirname#content}/main.png
 en: title: $title
 fr: title: $title
 author: Yann Esposito

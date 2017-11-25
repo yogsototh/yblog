@@ -1,11 +1,11 @@
 -----
 title: About
-theme: scientific
+theme: brutalist
 -----
 
 <img src="/Scratch/img/about/FlatAvatar.png" alt="Avatar" class="clean left"/>
 
-**@** %mailperso  
+<strong>@</strong> %mailperso  
 <a href="http://twitter.com/yogsototh"><span class="social">&#116;</span> @yogsototh</a>  
 [<span class="social">&#0103;</span> +yogsotoh](https://plus.google.com/117858550730178181663)  
 [<img src="/Scratch/img/pinboard.png"  class="simple" style="height: 16px"/> yogsototh](http://pinboard.in/u:yogsototh)  
@@ -20,7 +20,7 @@ theme: scientific
 
 I am a Software Engineer (Clojurist) for [Cisco](http://cisco.com), Threatgrid team.
 
-I was a Machine Learning expert for [vigiglobe](http://vigiglobe.com).
+I was a Machine Learning expert and Software Engineer for Vigiglobe.
 
 I tend to use functional programming a lot.
 Mostly [Haskell](http://haskell.org) and [Clo<i>j</i>ure](http://clojure.org).
@@ -48,7 +48,7 @@ bash,
 [camL](http://caml.inria.fr),
 [Scheme](http://mitpress.mit.edu/sicp/full-text/book/book.html)...
 
-[My full resume](/Scratch/files/resume)
+[My full resume](/Scratch/files/resume/resume.html)
 
 ## Old stuff
 

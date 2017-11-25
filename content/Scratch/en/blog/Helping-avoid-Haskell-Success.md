@@ -1,7 +1,7 @@
 ---
 kind:           article
 published:      2016-10-01
-image: /content/Scratch/img/blog/Helping-avoid-Haskell-Success/main.png
+image: /Scratch/img/blog/Helping-avoid-Haskell-Success/main.jpg
 title: Tips in avoiding Haskell Success at all cost
 author: Yann Esposito
 authoruri: yannesposito.com

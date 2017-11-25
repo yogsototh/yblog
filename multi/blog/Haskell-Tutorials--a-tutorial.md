@@ -1,7 +1,7 @@
 ---
 kind: article
 published: 2016-05-06
-image: /content/Scratch/img/blog/Haskell-Tutorials--a-tutorial/main.jpg
+image: /Scratch/img/blog/Haskell-Tutorials--a-tutorial/main.jpg
 title: Haskell Tutorials, a tutorial
 author: Yann Esposito
 authoruri: yannesposito.com

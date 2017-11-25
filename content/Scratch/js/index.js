@@ -65,9 +65,10 @@ function detectClient() {
 var pref='Scratch/css';
 var styleindex=0;
 var styles=[ pref+'/scientific.css'
-		         , pref+'/modern.css'
-		         , pref+'/darkmodern.css'
-             , pref+'/brutalist.css'];
+           , pref+'/brutalist.css'
+		       , pref+'/modern.css'
+		       , pref+'/darkmodern.css'
+           ];
 
 // -- fix for ie (I HATE YOU Internet Explorer!)
 if (!('indexOf' in Array.prototype)) {
@@ -97,9 +98,10 @@ var maxDepth=10;
 while (badPref() && (maxDepth-->0)) {
     pref="../" + pref;
     styles=[ pref+'/scientific.css'
-		         , pref+'/modern.css'
-		         , pref+'/darkmodern.css'
-             , pref+'/brutalist.css'];
+           , pref+'/brutalist.css'
+		       , pref+'/modern.css'
+		       , pref+'/darkmodern.css'
+           ];
 }
 function reloadStylesheets() {
 	var queryString = '?reload=' + new Date().getTime();
