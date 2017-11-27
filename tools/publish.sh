@@ -5,4 +5,4 @@ cd content/ && \
 stack exec yblog clean && \
 stack exec yblog build && \
 cd .. && \
-./tools/fastpublish.sh
+./tools/fastpublish.hs
