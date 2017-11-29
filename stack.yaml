@@ -1,6 +1,8 @@
 packages:
 - '.'
 resolver: lts-6.12
-# nix:
-#   enable: true
-#   shell-file: shell.nix
+nix:
+  packages: []
+  enable: true
+  pure: true
+  shell-file: shell.nix

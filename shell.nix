@@ -1,18 +1,19 @@
-{ghc}:
-with (import <nixpkgs> {});
+{ pkgs ? import <nixpkgs> {}, ghc ? pkgs.ghc }:
 
-haskell.lib.buildStackProject {
+pkgs.haskell.lib.buildStackProject {
+  name = "yannesposito.com";
   inherit ghc;
-  name = "myEnv";
-  buildInputs = [
-      darwin.apple_sdk.frameworks.CoreServices
-      libffi
-      zlib
-      ncurses
-      gmp
-      pkgconfig
-      ] ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
-                                                Cocoa
-                                                CoreServices
-                                                ]) ;
+  buildInputs = with pkgs; [ darwin.apple_sdk.frameworks.CoreServices
+                             gcc
+                             libffi
+                             zlib
+                             ncurses
+                             gmp
+                             pkgconfig
+                             sassc] ++
+                             lib.optionals stdenv.isDarwin
+                                           (with darwin.apple_sdk.frameworks; [ Cocoa CoreServices ]) ;
+  LC_ALL = "en_US.UTF-8";
+  LANG = "en_US.UTF-8";
+  TMPDIR = "/tmp";
 }

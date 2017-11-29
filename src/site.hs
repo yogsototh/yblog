@@ -39,7 +39,7 @@ main = hakyll $ do
             route   $ setExtension "css"
             compile $ -- fmap (fmap compressCss)
                            (getResourceString >>=
-                            withItemBody (unixFilter "sass" ["--trace"]))
+                            withItemBody (unixFilter "sassc" []))
 
     -- Blog posts
     match "Scratch/*/blog/*.md" markdownPostBehavior
