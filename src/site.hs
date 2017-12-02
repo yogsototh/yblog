@@ -37,9 +37,12 @@ main = hakyll $ do
     -- rulesExtraDependencies [sassDependencies] $ do
     match "Scratch/css/*" $ do
             route   $ setExtension "css"
-            compile $ -- fmap (fmap compressCss)
-                           (getResourceString >>=
-                            withItemBody (unixFilter "sassc" []))
+            compile $ (getResourceString >>=
+                        withItemBody (unixFilter "sassc"
+                                                 ["--stdin"
+                                                 , "--sass"
+                                                 , "-t", "compressed"
+                                                 ]))
 
     -- Blog posts
     match "Scratch/*/blog/*.md" markdownPostBehavior

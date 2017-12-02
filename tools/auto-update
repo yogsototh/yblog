@@ -39,7 +39,7 @@ esac
 }
 
 cd content
-stack exec yblog watch &
+stack exec -- yblog watch &
 
 cd ..
 while true; do

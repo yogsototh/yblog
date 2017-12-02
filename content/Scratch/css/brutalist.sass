@@ -1,4 +1,24 @@
 @charset "UTF-8"
+
+/* Main layout variables */
+$content_width: 40em
+$txtlineheight: 1.5em
+
+body
+  font-family: Inconsolata, Menlo, Monaco, monospace
+  font-size: 15px
+  line-height: $txtlineheight
+
+code
+  font-family: Incosolata, Menlo, Monaco, monospace
+  font-size: 15px
+
+pre, pre code
+  font-family: Incosolata, Menlo, Monaco, monospace
+  font-size: 12px
+  line-height: 1.5em
+
+
 /* Solarized palette */
 $base03 : #002b36
 $base02 : #073642
@@ -42,8 +62,6 @@ $secondTextColor: #666677
 // solarized dark background color
 $codeBlockColor: #839496
 $codeBlockBackgroundColor: #002b36
-
-$monofont: Menlo, Monaco, monospace
 
 // include Computer Modern fonts
 
@@ -141,6 +159,7 @@ table.description tr td
 body
   +mainColor
 
+
 =selected
   background: $base2
   color: $base01
@@ -153,9 +172,6 @@ body
 =darkselected
   background: $base3
   color: $base01
-
-pre, code, a.cut
-  font-family: $monofont
 
 pre
   &::selection
@@ -216,9 +232,6 @@ body, h1, h2, h3, h4, #entete, .tagname
   text-rendering: optimizelegibility
   line-height: 2em
 
-body
-  font-family: $monofont
-
 #navigation
   letter-spacing: -.025em
   margin: 1em auto
@@ -274,9 +287,6 @@ pre
 
 pre > code
   display: block
-
-p
-  margin-bottom: 1.2em
 
 .corps
   blockquote
@@ -441,13 +451,10 @@ h1 > .date
 $VPadCorps: 3em
 $VMarginCorps: 3em
 
-$content_width: 60em
-
 body
   text-align: center
-  font-size: 12px
-  pre
-    font-size: 0.8em
+  max-width: $content_width
+  margin: 0 auto
 
 body > #entete
   position: absolute
@@ -606,17 +613,13 @@ $contentMargin: 0em
 .twilight
   line-height: 1.1em
 
-$fontcorps: 1.25
-
 .corps
-  font-size: #{$fontcorps}em
   text-align: justify
-  padding: 0 3em 0 3em
   margin: 0
   clear: both
   p, ol, ul, blockquote, & > pre, & > code
-    margin-top: 1.5em
-    margin-bottom: 1.5em
+    margin-top: $txtlineheight
+    margin-bottom: $txtlineheight
   p > code, p > a > code, li > code, li > a > code
     display: inline-block
     height: 1em
@@ -628,9 +631,6 @@ $fontcorps: 1.25
       margin: 0
   ul li ul, ol li ul, ul li ol, ol li ol
     margin: 0 2em 0.6em
-
-$corps_width: ($content_width - 2 * $contentMargin) / $fontcorps
-$hpadding: 1
 
 .corps img
   max-width: 80%
@@ -704,14 +704,10 @@ img.clean
 
 #blackpage
   +mainColor
-  font-family: $monofont
   font-style: italic
   padding-top: 8em
   z-index: 9000
   cursor: wait
-  .corps
-    code, pre
-      font-family: $monofont
   img
     background: none
     border: none
@@ -894,11 +890,9 @@ a:hover .nicer
 
 .nicer
   color: $lighterText
-  font-family: $monofont
 
 .and
   color: $lighterText
-  font-family: $monofont
 
 .block
   +innerblock
@@ -956,7 +950,6 @@ ul.bloglist, .archive ul
   text-align: justify
 
 .pala
-  font-family: $monofont
   font-style: italic
   opacity: 0.6
 
@@ -1101,7 +1094,6 @@ a.cut
     margin: 0 auto
     vertical-align: middle
     font-size: 7px
-    font-family: $monofont
     overflow: hidden
 
 section.slide
@@ -1109,7 +1101,6 @@ section.slide
   border: solid 1px
   margin-bottom: 1em
   padding: .5em
-  font-family: $monofont
   font-size: .8em
   min-height: 25em
   ul,ol
@@ -1126,7 +1117,6 @@ a.rss
   font-size: 13px
   font-weight: bold
   height: 20px
-  font-family: $monofont
   line-height: 20px
   overflow: hidden
   padding: 0 5px
@@ -1185,12 +1175,6 @@ a.rss
   text-decoration: line-through
 .wrap
   word-wrap: break-word
-
-pre, code, a.cut
-  font-family: $monofont
-  line-height: 1.5em
-body
-  font-family: $monofont
 
 .cssdebug
   pre > code:before
