@@ -6,16 +6,16 @@ $txtlineheight: 1.5em
 
 body
   font-family: Inconsolata, Menlo, Monaco, monospace
-  font-size: 15px
+  font-size: 16px
   line-height: $txtlineheight
 
 code
-  font-family: Incosolata, Menlo, Monaco, monospace
-  font-size: 15px
+  font-family: Inconsolata, Menlo, Monaco, monospace
+  font-size: 16px
 
 pre, pre code
-  font-family: Incosolata, Menlo, Monaco, monospace
-  font-size: 12px
+  font-family: Inconsolata, Menlo, Monaco, monospace
+  font-size: 14px
   line-height: 1.5em
 
 
@@ -89,6 +89,11 @@ i, em
 
 b, strong, h1, h2, h3, h4, h5, h6
   +bold
+
+h1, h2, h3, h4, h5, h6
+  border: 2px solid #000
+  box-shadow: 4px 4px #000
+  padding: 0 16px
 
 =mainColor
   color: $behindColor
@@ -232,6 +237,12 @@ body, h1, h2, h3, h4, #entete, .tagname
   text-rendering: optimizelegibility
   line-height: 2em
 
+#header, #bottom
+  a
+    border-bottom: 2px solid transparent
+  a:hover
+    border-color: $mainTextColor
+
 #navigation
   letter-spacing: -.025em
   margin: 1em auto
@@ -244,6 +255,8 @@ body, h1, h2, h3, h4, #entete, .tagname
     font-style: italic
     display: inline-block
     margin: 0 .5em
+  a:before
+    content: "/"
 
 #choix
   height: 0
@@ -281,8 +294,8 @@ body, h1, h2, h3, h4, #entete, .tagname
 
 pre
   +codeColor
-  border: solid 1px $borderColor
-  border-radius: 3px
+  border: solid 2px #000
+  box-shadow: 4px 4px $borderColor
   padding: 1em
 
 pre > code
@@ -487,7 +500,7 @@ body > #entete
   clear: right
   margin-right: 0
   padding: 1.5em
-  border-top: dashed 1px $base1
+  border-top: solid 2px $base1
   line-height: 1.5em
   color: $mainTextColor + #222
   margin-top: 2em
@@ -634,11 +647,8 @@ $contentMargin: 0em
 
 .corps img
   max-width: 80%
-  border: 1px solid $imageBorderColor
-  background-color: $imageBackgroundColor
-  padding: 0.5em
-  box-shadow: 0 0 5px #CCC inset
-  border-radius: 3px
+  border: 8px solid $imageBorderColor
+  box-shadow: 8px 8px #000
 .corps p > a > img
   display: inline-block
   border: none
@@ -960,6 +970,8 @@ sup
 .default .corps p a,
 .default .corps ul a
   color: $base02
+  &:hover
+    color: $revealColor
 
 .article .corps a:after
   content: "†"
@@ -1049,7 +1061,7 @@ a.cut
   strong
     +bold
 .codehighlight pre
-  border-left: 4px solid $borderColor
+  border-left: 8px solid
 
 #social
   font-size: 2em
@@ -1168,7 +1180,7 @@ a.rss
 
 #header
   opacity: .25
-  border-bottom: dashed 1px $base1
+  border-bottom: solid 4px black
   &:hover
     opacity: 1
 .strike
