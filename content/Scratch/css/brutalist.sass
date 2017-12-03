@@ -11,7 +11,7 @@ body
 
 code
   font-family: Inconsolata, Menlo, Monaco, monospace
-  font-size: 16px
+  font-size: 1em
 
 pre, pre code
   font-family: Inconsolata, Menlo, Monaco, monospace
@@ -47,8 +47,9 @@ $revealColor: #cb4b16
 $secondRevealColor: $revealColor
 $lighterRevealColor: $revealColor + #666
 $imageBackgroundColor: $mainBackgroundColor
-$borderColor: #ccccd0
+$borderColor: $mainTextColor
 $imageBorderColor: $borderColor
+$imageShadowColor: #ccccd0
 $mainLinkColor: $mainTextColor
 $textLinkColor: $base02
 $highlightColor: $base02
@@ -62,7 +63,7 @@ $secondTextColor: #666677
 // solarized dark background color
 $codeBlockColor: #839496
 $codeBlockBackgroundColor: #002b36
-
+$codeBorderColor: #ccccd0
 // include Computer Modern fonts
 
 =italic
@@ -108,10 +109,9 @@ h1, h2, h3, h4, h5, h6
     color: $lighterRevealColor
 
 =innerblock
-  border: solid 1px $borderColor
-  border-radius: 2px
-  box-shadow: 0 0 4px $secondBackgroundColor inset
-  background-color: $mainBackgroundColor - #020202
+  border: solid 2px $borderColor
+  box-shadow: 4px 4px $borderColor
+  background: #FFF
   ul
     margin-left: 0
 
@@ -133,7 +133,6 @@ h1, h2, h3, h4, h5, h6
 =secondColor
   color: $behindColor
   border: $borderColor solid 1px
-  border-radius: 5px
   box-shadow: 0 0 2px $borderColor inset
   background:
     color: $lighterColor
@@ -237,7 +236,7 @@ body, h1, h2, h3, h4, #entete, .tagname
   text-rendering: optimizelegibility
   line-height: 2em
 
-#header, #bottom
+#header, #bottom, #navigation
   a
     border-bottom: 2px solid transparent
   a:hover
@@ -294,8 +293,8 @@ body, h1, h2, h3, h4, #entete, .tagname
 
 pre
   +codeColor
-  border: solid 2px #000
-  box-shadow: 4px 4px $borderColor
+  border: solid 2px $codeBorderColor
+  box-shadow: 4px 4px ($codeBorderColor - #222)
   padding: 1em
 
 pre > code
@@ -344,7 +343,6 @@ acronym
   background: rgba(#000,.05)
   box-shadow: 0 0 2px #FFF, 0 0 3px #CCC inset
   border: 1px solid rgba(#000,.1)
-  border-radius: 3px
   &:hover
     background: rgba(#000,.1)
     box-shadow: 0 0 6px #555 inset
@@ -378,7 +376,6 @@ acronym
   background-color: $mainBackgroundColor - #030303
   border: 1px solid $mainBackgroundColor - #111111
   box-shadow: 0 0 3px ($mainBackgroundColor - #333333) inset
-  border-radius: 3px
   border-top: none
 
 // -- FOOTER --
@@ -458,7 +455,6 @@ h1 > .date
   line-height: 3ex
   clear: both
   +secondColor
-  border-radius: 0
 
 // --- LAYOUTS --
 $VPadCorps: 3em
@@ -647,8 +643,9 @@ $contentMargin: 0em
 
 .corps img
   max-width: 80%
-  border: 8px solid $imageBorderColor
-  box-shadow: 8px 8px #000
+  border: 2px solid $imageBorderColor
+  padding: 2px
+  box-shadow: 8px 8px $imageShadowColor
 .corps p > a > img
   display: inline-block
   border: none
@@ -656,13 +653,16 @@ $contentMargin: 0em
   margin: 0
   box-shadow: none
 .corps a:hover img
-  background-color: $revealColor + #100 - #011
+  border-color: $revealColor
 
 figure, .figure
+  +secondColor
+  border: 2px solid $borderColor
+  box-shadow: 4px 4px #000
   margin: 3em 0
   text-align: center
   img
-    box-shadow: 0 0 5px #CCC inset
+    box-shadow: none
   figcaption, .caption
     text-align: center
     margin: .5em 0
@@ -908,7 +908,6 @@ a:hover .nicer
   +innerblock
   width: 26.5%
   padding: 1em
-  border-radius: 2px
   text-align: left
   line-height: 1em
   margin-left: 1%
@@ -954,7 +953,6 @@ ul.bloglist, .archive ul
   font-size: .8em
   background: $secondBackgroundColor
   box-shadow: 0 0 6px $borderColor
-  border-radius: 3px
   line-height: 2.5em
   padding: 2em
   text-align: justify
@@ -989,10 +987,7 @@ sup
   +bold
   padding: 0 .3em
   margin-left: 2px
-  border-radius:  3px
   vertical-align: top
-  -moz-border-radius:  3px
-  -webkit-border-radius:  3px
   &:hover
     color: $revealColor
 
@@ -1012,7 +1007,6 @@ table
   margin: 1.5em auto
   font-size: .8em
   border: 1px solid $borderColor
-  border-radius: 3px
 table tr td
   padding: 2px .5em
 table tr
@@ -1028,7 +1022,7 @@ p, ul li, ol li
     padding: 0
   code
     background: $secondBackgroundColor - #020202
-    border: solid 1px $borderColor
+    border: solid 1px $codeBorderColor
     padding: 2px
     line-height: 1em
 
@@ -1040,7 +1034,6 @@ ul.sameline
 
 .resumearticle
   background-color: $secondBackgroundColor
-  border-radius: 7px
   box-shadow: 0 0 5px $mainShadowColor inset,0 0 5px #FFF
   margin: 1em 0
   padding: 1em
@@ -1052,7 +1045,6 @@ a.cut
   width: 100%
   opacity: .5
   border: 1px solid $mainBackgroundColor
-  border-radius: 3px
   &:hover
     opacity: 1
     background-color: $secondBackgroundColor
@@ -1068,7 +1060,7 @@ a.cut
   text-align: center
   padding-top: 1em
   margin-top: 1em
-  border-top: dashed 1px $borderColor
+  border-top: 2px solid $borderColor
   opacity: .3
   &:hover
     opacity: 1
@@ -1122,7 +1114,6 @@ a.rss
   background-color: #F8F8F8
   background-image: -moz-linear-gradient(center top , white, #DEDEDE)
   border: 1px solid #CCCCCC
-  border-radius: 3px 3px 3px 3px
   color: $orange
   cursor: pointer
   display: inline-block
