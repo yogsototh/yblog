@@ -10,6 +10,8 @@ pkgs.haskell.lib.buildStackProject {
                              ncurses
                              gmp
                              pkgconfig
+                             git
+                             gnupg
                              sassc] ++
                              lib.optionals stdenv.isDarwin
                                            (with darwin.apple_sdk.frameworks; [ Cocoa CoreServices ]) ;
