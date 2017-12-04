@@ -1,72 +1,111 @@
 ------
 title: Home
-theme: scientific
+theme: brutalist
 ------
 <div id="titre">
     <h1>
-        <span style="color: #93a1a1; font-family: cmunrm, Georgia, serif; font-weight: normal; text-shadow: 0 0 2px #DDD;">yann<span style="color:#002b36; text-shadow: 0 0 2px #CCC;">esposito</span>.com</span>
+        <span style="color: #93a1a1;">yann<span style="color:#002b36;">esposito</span>.com</span>
     </h1>
 </div>
 <div class="flush"></div>
 <div id="afterheader">
+    <style scoped>
+     h3, h4 { border: none; box-shadow: none; margin-left: 0; padding-left: 0 }
+     h4 {
+         text-decoration: underline;
+         border: none;
+         box-shadow: none;}
+     .english, .francais {
+         width: 63%;
+         float: right;
+         text-align: left;
+     }
+     #enblog:hover:after { content: "full archive"; }
+     #frblog:hover:after { content: "archives complètes"; }
+     .social {
+         font-size: 18px;
+         display:inline-block;
+         position:relative;
+         bottom:-3px;}
+     #logo {
+         width: 10em;
+         position: fixed;
+     }
+     .bottom {
+         text-align: center;
+         border: solid;
+         box-shadow: 4px 4px #000;
+     }
+     @media only screen and (max-width: 600px) {
+         body {padding: 0 1em; }
+         #logo { position: relative; }
+         .english, .francais {
+             width: 100%;
+             float: none;
+         }
+     }
+    </style>
+    <img class="clean"
+         id="logo"
+         style=""
+         src="/Scratch/img/about/FlatAvatar@2x.png"
+         alt="Presentation drawing" />
     <div class="corps" style="padding: 1em 0">
-        <div class="english left" style="font-size: 0.8em; text-align: left; width: 30%; min-width: 13em;">
-            <div style="color: #AAA">
+        <div class="english">
+            <h2>
                 English
-            </div>
+            </h2>
             <h3>
-                <a href="/Scratch/en/blog" onclick="setLanguage('en')">
+                <a href="/Scratch/en/blog"
+                   onclick="setLanguage('en')"
+                   id="enblog">
                     Blog <span class="nicer">»</span>
                 </a>
             </h3>
-            <div>
-                <h4 style="margin:0 0 .2em 0">Latest</h4>
-                <small><em> $enposts$ </em></small>
-            </div>
+            <h4>Latest</h4>
+            <div class="posts-list">$enposts$</div>
 
-            <div>
-                <h4 style="margin:0 0 .2em 0">Popular</h4>
-                <small><em>
-                        <a href="Scratch/en/blog/Learn-Vim-Progressively">Learn Vim Progressively&nbsp;<span class="nicer">»</span></a><br/>
-                        <a href="Scratch/en/blog/Haskell-the-Hard-Way">Learn Haskell Fast <span class="and">&amp;</span> Hard&nbsp;<span class="nicer">»</span></a><br/>
-                        <a href="Scratch/en/blog/Yesod-tutorial-for-newbies">Haskell Web Programming<span class="nicer">»</span></a>
-                </em></small>
+            <h4>Popular</h4>
+            <div class="posts-list">
+                <a href="Scratch/en/blog/Learn-Vim-Progressively">Learn Vim Progressively&nbsp;<span class="nicer">»</span></a><br/>
+                <a href="Scratch/en/blog/Haskell-the-Hard-Way">Learn Haskell Fast <span class="and">&amp;</span> Hard&nbsp;<span class="nicer">»</span></a><br/>
+                <a href="Scratch/en/blog/Yesod-tutorial-for-newbies">Haskell Web Programming<span class="nicer">»</span></a>
             </div>
 
             <h3><a href="/Scratch/en/softwares" onclick="setLanguage('en')"> Softwares <span class="nicer">»</span> </a></h3>
             <h3><a href="/Scratch/en/about" onclick="setLanguage('en')">Contact <span class="nicer">»</span> </a></h3>
             <h3> <a href="/Scratch/files/resume/resume.html">Resume <span class="nicer">»</span> </a> </h3>
         </div>
-        <div class="francais right"style="text-align: right; width: 32%; font-size: 0.8em; min-width: 13em">
-            <div style="color: #AAA">Français</div>
+        <div class="francais" >
+            <h2>Français</h2>
             <h3>
-                <a href="/Scratch/fr/blog" onclick="setLanguage('fr')">
+                <a href="/Scratch/fr/blog"
+                   onclick="setLanguage('fr')"
+                   id="frblog">
                     Blog <span class="nicer">»</span>
                 </a>
             </h3>
-            <div>
-                <h4 style="margin:0 0 .2em 0">Derniers</h4>
-                <small><em> $frposts$ </em></small>
-            </div>
-            <div>
-                <h4 style="margin:0 0 .2em 0">Populaires</h4>
-                <small><em>
-                        <a href="Scratch/fr/blog/Learn-Vim-Progressively">Apprenez Vim Progressivement&nbsp;<span class="nicer">»</span></a><br/>
-                        <a href="Scratch/fr/blog/Haskell-the-Hard-Way">Haskell comme un vrai!&nbsp;<span class="nicer">»</span></a><br/>
-                        <a href="Scratch/fr/blog/Yesod-tutorial-for-newbies">Programmation Web avec Haskell<span class="nicer">»</span></a>
-                </em></small>
+            <h4>Derniers</h4>
+            <div class="posts-list">$frposts$</div>
+            <h4>Populaires</h4>
+            <div class="posts-list">
+                    <a href="Scratch/fr/blog/Learn-Vim-Progressively">Apprenez Vim Progressivement&nbsp;<span class="nicer">»</span></a><br/>
+                    <a href="Scratch/fr/blog/Haskell-the-Hard-Way">Haskell comme un vrai!&nbsp;<span class="nicer">»</span></a><br/>
+                    <a href="Scratch/fr/blog/Yesod-tutorial-for-newbies">Programmation Web avec Haskell<span class="nicer">»</span></a>
             </div>
             <h3> <a href="/Scratch/fr/softwares" onclick="setLanguage('fr')"> Logiciels <span class="nicer">»</span> </a> </h3>
             <h3> <a href="/Scratch/fr/about" onclick="setLanguage('fr')"> Contact <span class="nicer">»</span> </a> </h3>
             <h3> <a href="http://yann.esposito.free.fr/enseignement/enseignement.php"> Enseignement <span class="nicer">»</span> </a> </h3>
         </div>
-        <img class="clean" src="/Scratch/img/presentation.png" alt="Presentation drawing" style="width:30%; min-width:10em"/>
         <div class="flush"></div>
-        <div style="text-align: center;padding-top: 1em; border-top: 4px double #CCCCD0">
-            <h2 style="font-size: 15px;">
-                <a href="http://twitter.com/yogsototh">@yogsototh</a>
-                , <a href="https://plus.google.com/117858550730178181663">+yogsototh</a>
-            </h2>
+        <div class="bottom">
+            <a href="http://twitter.com/yogsototh"><span class="social" style="font-size: 16px;vertical-align: bottom;">&#116;</span> @yogsototh</a>,
+            <a href="http://github.com/yogsototh">
+                <img src="/Scratch/img/GitHub-Mark-32px.png"
+                     alt="github logo"
+                     class="clean"
+                     style="height: 14px; vertical-align: middle; display: inline-block; margin: 0;"/> yogsototh
+            </a>
         </div>
     </div>
 </div>
