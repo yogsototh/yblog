@@ -231,7 +231,7 @@ yPostContext =  constField "type" "article" <>
                 multiContext <>
                 imageContext <>
                 prefixContext <>
-               defaultContext
+                defaultContext
 
 --------------------------------------------------------------------------------
 shortLinkContext :: Context String

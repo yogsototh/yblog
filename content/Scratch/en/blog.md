@@ -1,7 +1,9 @@
 -----
 title: Blog
-theme: scientific
+theme: brutalist
 -----
+
+<div id="blogpage">
 
 Popular Articles
 ----------------
@@ -41,6 +43,8 @@ Learn Haskell Fast and Hard <span class="nicer">»</span>
 </div>
 
 <div class="flush"></div>
+</div>
+
 </div>
 
 Archive

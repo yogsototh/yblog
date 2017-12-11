@@ -1,8 +1,12 @@
 @charset "UTF-8"
 
+/* Generic - Common to all pages */
+
 /* Main layout variables */
 $content_width: 40em
 $txtlineheight: 1.5em
+
+/* Main Font Styles */
 
 body
   font-family: Inconsolata, Menlo, Monaco, monospace
@@ -18,8 +22,7 @@ pre, pre code
   font-size: 14px
   line-height: 1.5em
 
-
-/* Solarized palette */
+/* Colors: Solarized palette */
 $base03 : #002b36
 $base02 : #073642
 $base01 : #586e75
@@ -38,6 +41,8 @@ $cyan   : #2aa198
 $green  : #859900
 /* I won't use completely */
 
+
+/* semantic nameing of colors */
 $behindColor: $base03
 $mainTextColor: $behindColor
 $mainBackgroundColor: #FAFAFC
@@ -66,34 +71,22 @@ $codeBlockBackgroundColor: #002b36
 $codeBorderColor: #ccccd0
 // include Computer Modern fonts
 
-=italic
+i, em
   font-style: italic
 
-=bold
+b, strong, h1, h2, h3, h4, h5, h6
   font-weight: bold
 
-=normal
-  font-weight: normal
-  font-style: normal
-
-@font-face
-  font-family: 'social'
-  src: url('fonts/social_font-webfont.eot')
-  src: url('fonts/social_font-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/social_font-webfont.woff') format('woff'), url('fonts/social_font-webfont.ttf') format('truetype'), url('fonts/social_font-webfont.svg#social_font_faceregular') format('svg')
-  font-weight: normal
-  font-style: normal
-.social
-  font-family: social
-
-i, em
-  +italic
-
-b, strong, h1, h2, h3, h4, h5, h6
-  +bold
-
-h1, h2, h3, h4, h5, h6
+h1
   border: 2px solid #000
   box-shadow: 4px 4px #000
+h2
+  border: 2px solid #000
+  box-shadow: 4px 4px #CCC
+
+h3, h4, h5, h6
+  text-decoration: underline
+h1, h2, h3, h4, h5, h6
   padding: 0 16px
 
 =mainColor
@@ -110,13 +103,13 @@ h1, h2, h3, h4, h5, h6
 
 =innerblock
   border: solid 2px $borderColor
-  box-shadow: 4px 4px $borderColor
+  box-shadow: 4px 4px $imageShadowColor
   background: #FFF
   ul
     margin-left: 0
 
 =highlight
-  +italic
+  font-style: italic
   padding: 0.5em 1em
   color: $highlightBlockColor
   a
@@ -124,10 +117,11 @@ h1, h2, h3, h4, h5, h6
   a:hover
     color: $revealColor
   i, em
-    +normal
+    font-weight: normal
+    font-style: normal
     color: $behindColor
   strong, b
-    +bold
+    font-weight: bold
     color: $behindColor
 
 =secondColor
@@ -136,16 +130,6 @@ h1, h2, h3, h4, h5, h6
   box-shadow: 0 0 2px $borderColor inset
   background:
     color: $lighterColor
-  a
-    color: $secondTextColor
-  a:hover
-    color: $secondRevealColor
-    strong, b, i, em, .nicer
-      color: $lighterRevealColor
-  hr
-    color: $secondTextColor
-    border:
-      top: 1px solid $secondTextColor
   strong, b, i, em
     color: $behindColor
 
@@ -225,6 +209,7 @@ ol
   padding-left: 0
 
 .toc
+  line-height: 1em
   ol li, ul li
     margin: .5em 0
 ol li ol, ul li ol, ul li ul
@@ -684,7 +669,7 @@ img.clean
   width: 5em
   vertical-align: top
   text-align: center
-  +bold
+  font-weight: bold
 
 .valueCell
   text-align: right
@@ -693,7 +678,7 @@ img.clean
   float: left
   width: 50%
   font-size: 1em
-  +bold
+  font-weight: bold
 
 .largeblock
   float: right
@@ -866,10 +851,11 @@ a.return
   font-size: 0.8em
   ol
     color: $base0
-    +bold
+    font-weight: bold
     p
       color: $behindColor
-      +normal
+      font-weight: normal
+      font-style: normal
 
 .fontnotes ol
   margin-left: 0
@@ -984,7 +970,7 @@ sup
     a:after
       content: ""
 .article .corps sup a
-  +bold
+  font-weight: bold
   padding: 0 .3em
   margin-left: 2px
   vertical-align: top
@@ -1026,6 +1012,41 @@ p, ul li, ol li
     padding: 2px
     line-height: 1em
 
+/* SPECIFICS */
+
+@font-face
+  font-family: 'social'
+  src: url('fonts/social_font-webfont.eot')
+  src: url('fonts/social_font-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/social_font-webfont.woff') format('woff'), url('fonts/social_font-webfont.ttf') format('truetype'), url('fonts/social_font-webfont.svg#social_font_faceregular') format('svg')
+  font-weight: normal
+  font-style: normal
+.social
+  font-family: social
+
+#blogpage
+  .popularblock
+    &:hover figure
+      color: $orange
+      box-shadow: 12px 12px black
+      text-shadow: none
+      margin-left: 8px
+      margin-right: 12px
+      margin-bottom: 2px
+      margin-top: -2px
+      padding: 20px
+    width: 33.3333%
+    min-width: 150px
+    float: left
+    font-weight: bold
+    figure
+      margin: 0 10px
+      padding: 20px
+      box-shadow: 10px 10px
+      img
+        max-width: 80%
+        max-height: 6em
+
+
 ul.sameline
   list-style: none
   li
@@ -1051,7 +1072,7 @@ a.cut
     border-color: $borderColor
     box-shadow: 0 0 3px $borderColor inset
   strong
-    +bold
+    font-weight: bold
 .codehighlight pre
   border-left: 8px solid
 
@@ -1066,17 +1087,6 @@ a.cut
     opacity: 1
   .message
     font-size: 10px
-
-.popularblock
-  width: 30.3333%
-  min-width: 150px
-  margin: 0 1.5%
-  float: left
-  figure
-    margin: 0
-    img
-      max-width: 80%
-      max-height: 6em
 
 .corps
   .inlineblockimg
@@ -1183,4 +1193,3 @@ a.rss
   pre > code:before
     content: "----5---10---15---20---25---30---35---40---45---50---55---60---65---70---75---80***85***90"
     display: block
-
