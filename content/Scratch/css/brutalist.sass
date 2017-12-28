@@ -3,14 +3,14 @@
 /* Generic - Common to all pages */
 
 /* Main layout variables */
-$content_width: 40em
+$content_width: 50em
 $txtlineheight: 1.5em
 
 /* Main Font Styles */
 
 body
   font-family: Inconsolata, Menlo, Monaco, monospace
-  font-size: 16px
+  font-size: 14px
   line-height: $txtlineheight
 
 code
@@ -52,7 +52,7 @@ $revealColor: #cb4b16
 $secondRevealColor: $revealColor
 $lighterRevealColor: $revealColor + #666
 $imageBackgroundColor: $mainBackgroundColor
-$borderColor: $mainTextColor
+$borderColor: $base1
 $imageBorderColor: $borderColor
 $imageShadowColor: #ccccd0
 $mainLinkColor: $mainTextColor
@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6
   border: solid 2px $borderColor
   box-shadow: 4px 4px $imageShadowColor
   background: #FFF
-  ul
+  ul,ol
     margin-left: 0
 
 =highlight
@@ -222,6 +222,7 @@ body, h1, h2, h3, h4, #entete, .tagname
   line-height: 2em
 
 #header, #bottom, #navigation
+  text-align: center
   a
     border-bottom: 2px solid transparent
   a:hover
@@ -446,7 +447,7 @@ $VPadCorps: 3em
 $VMarginCorps: 3em
 
 body
-  text-align: center
+  text-align: left
   max-width: $content_width
   margin: 0 auto
 
