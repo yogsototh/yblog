@@ -6,12 +6,10 @@ If you want to use this blog for you.
 
 # INSTALL
 
-0. Install: `rvm` and use `1.9.1`, `gem install sass`.
-
-1. Clone the branch 'clean' from my repository.
+1. Clone from my repository.
    The `--depth=1` is highly recommended to make the download far shorter.
 
-        git clone http://github.com/yogsototh/yblog -b clean --depth=1
+        git clone http://github.com/yogsototh/yblog --depth=1
 
 2. Configure your languages in `Config.hs`
 3. compile and launch preview
@@ -53,6 +51,6 @@ To publish to github pages, modify the github conf inside `publish.sh` and `fast
 
 # Workflow
 
-1. Open a terminal and type `./auto-update`
+1. Open a terminal and type `./tools/auto-update`
 2. edit content inside Scratch or multi
-3. Once happy, `./publish.sh`.
+3. Once happy, `./tools/publish.sh`.
