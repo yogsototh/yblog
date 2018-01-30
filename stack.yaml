@@ -1,6 +1,6 @@
 packages:
 - '.'
-resolver: lts-6.12
+resolver: lts-10.3
 nix:
   packages: []
   enable: true
