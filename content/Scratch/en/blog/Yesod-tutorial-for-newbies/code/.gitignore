@@ -1,5 +1,0 @@
-cabal-dev
-dist
-.static-cache
-static/tmp
-*.sqlite3

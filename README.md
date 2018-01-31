@@ -9,10 +9,13 @@ If you want to use this blog for you.
 1. Clone from my repository.
    The `--depth=1` is highly recommended to make the download far shorter.
 
-        git clone http://github.com/yogsototh/yblog --depth=1
+        git clone -b empty http://github.com/yogsototh/yblog --depth=1
 
 2. Configure your languages in `Config.hs`
-3. compile and launch preview
+3. Install [`stack`](https://haskellstack.org)
+4. Install [`nix`](https://nixos.org/nix/)
+5. Start `nix-shell` (only the first time)
+6. compile and launch preview
 
         ./auto-update
 
@@ -20,7 +23,13 @@ If you want to use this blog for you.
 
 1. Add an avatar.png image in `Scratch/img/about`
 2. You might want to change `Multilang.lhs` inside `trads` to put your own translation.
-3. You might want to add some abbreviations time to time `Abbreviations.lhs`.
+3. You might want to specify your own abbreviations in `Abbreviations.lhs`.
+4. You should remove all my content:
+
+~~~
+rm -rf multi/*
+rm -rf content/*
+~~~
 
 ## Adding articles
 

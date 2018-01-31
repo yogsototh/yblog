@@ -165,7 +165,7 @@ $(window).bind("load", function() {
 // --- Google Analytics ---
 if ( ! $.cookie('admin') ) {
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-10612400-1']);
+    _gaq.push(['_setAccount', 'UA-00000000-1']);
     _gaq.push(['_trackPageview']);
 
     (function() {
