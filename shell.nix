@@ -6,6 +6,7 @@ pkgs.haskell.lib.buildStackProject {
   buildInputs = with pkgs; [ darwin.apple_sdk.frameworks.CoreServices
                              gcc
                              libffi
+                             libiconv
                              zlib
                              ncurses
                              gmp
