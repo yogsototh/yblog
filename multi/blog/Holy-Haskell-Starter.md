@@ -4,7 +4,7 @@ published:      2013-11-14
 image: /Scratch/img/blog/Holy-Haskell-Starter/holy-grail-monty-python.jpg
 en: title: Holy Haskell Project Starter
 fr: title: Sacré Haskell Projet
-en: subtitle: A Haskell tutorial: from nothing to something useful
+en: subtitle: "A Haskell tutorial: from nothing to something useful"
 fr: subtitle: Un exemple de programmation en Haskell de bout en bout
 author: Yann Esposito
 authoruri: yannesposito.com
