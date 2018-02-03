@@ -11,7 +11,7 @@ pkgs.haskell.lib.buildStackProject {
                              ncurses
                              gmp
                              pkgconfig
-                             git
+                             # git
                              gnupg
                              sassc] ++
                              lib.optionals stdenv.isDarwin

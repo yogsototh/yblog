@@ -3,6 +3,6 @@ packages:
 resolver: lts-10.3
 nix:
   packages: []
-  enable: true
+  enable: false
   pure: true
   shell-file: shell.nix

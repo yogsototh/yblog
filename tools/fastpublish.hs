@@ -43,7 +43,7 @@ mainProc = do
   debug "Retrieving revision number"
   rev <- fold (inshell "git rev-parse --short HEAD" empty) Fold.head
   debug ("Revision number retrieved: " <> fromMaybe "unknow" rev)
-  debug $ "cd" <> (format fp pubdir)
+  debug $ "cd " <> (format fp pubdir)
   cd pubdir
   pwd >>= echo . format fp
   dshells "git init ."
