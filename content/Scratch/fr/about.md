@@ -6,12 +6,20 @@ menupriority: 4
 
 <img src="/Scratch/img/about/FlatAvatar.png" alt="Avatar" class="clean left"/>
 
-**@** %mailperso  
+<strong>@</strong> %mailperso  
 <a href="http://twitter.com/yogsototh"><span class="social">&#116;</span> @yogsototh</a>  
-[<span class="social">&#0103;</span> +yogsotoh](https://plus.google.com/117858550730178181663)  
+<a href="https://keybase.io/yogsototh"><img src="/Scratch/img/keybase.svg" style="height:16px"/> yogsototh</a>  
 [<img src="/Scratch/img/pinboard.png"  class="simple" style="height: 16px"/> yogsototh](http://pinboard.in/u:yogsototh)  
 [<img src="/Scratch/img/GitHub-Mark-32px.png"  class="simple" style="height: 16px"/> yogsototh](http://github.com/yogsototh)  
 [<img src="/Scratch/img/stackoverflow-logo.png"  class="simple" style="height: 16px"/> yogsototh](http://stackoverflow.com/users/40569/yogsototh)  
+
+
+<hr style="clear:both"/>
+
+[<img src="/Scratch/img/ada-logo.png"  class="simple" style="height: 16px; border-radius: 50%;"/> ADA:](https://cardanohub.org)
+<span style="display:inline-block; word-wrap:break-word; text-align: left; vertical-align: top; max-width: 85%;">
+DdzFFzCqrhtAvdkmATx5Fm8NPJViDy85ZBw13p4XcNzVzvQg8e3vWLXq23JQWFxPEXK6Kvhaxxe7oJt4VMYHxpA2vtCFiP8fziohN6Yp
+</span>
 
 ## Une photo
 
