@@ -17,9 +17,9 @@ menupriority: 4
 <hr style="clear:both"/>
 
 [<img src="/Scratch/img/ada-logo.png"  class="simple" style="height: 16px; border-radius: 50%;"/> ADA:](https://cardanohub.org)
-<span style="display:inline-block; word-wrap:break-word; text-align: left; vertical-align: top; max-width: 85%;">
+<code style="display:inline-block; word-wrap:break-word; text-align: left; vertical-align: top; max-width: 85%;">
 DdzFFzCqrhtAvdkmATx5Fm8NPJViDy85ZBw13p4XcNzVzvQg8e3vWLXq23JQWFxPEXK6Kvhaxxe7oJt4VMYHxpA2vtCFiP8fziohN6Yp
-</span>
+</code>
 
 ## Une photo
 
