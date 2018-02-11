@@ -98,6 +98,7 @@ var maxDepth=10;
 while (badPref() && (maxDepth-->0)) {
     pref="../" + pref;
     styles=[ pref+'/scientific.css'
+           , pref+'/antidesign.css'
            , pref+'/brutalist.css'
 		       , pref+'/modern.css'
 		       , pref+'/darkmodern.css'

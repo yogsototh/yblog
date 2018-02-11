@@ -11,6 +11,7 @@ fr: subtitle: Haskell à s'en faire griller les neurones
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: Haskell, programming, functional, tutorial
+theme: scientific
 -----
 blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 

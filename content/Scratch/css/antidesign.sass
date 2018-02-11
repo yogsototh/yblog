@@ -1,0 +1,115 @@
+body
+  padding: 20px
+  max-width: 700px
+  margin: auto
+  border-left: 10px solid #444
+  color: #444
+
+h1
+  margin: 0 0 20px
+
+h2,
+h3
+  margin: 60px 0 15px
+
+h1,h2,h3,h4,h5,h6
+  font-family: Verdana, Geneva, sans-serif
+body
+  font-family: Tahoma, Geneva, sans-serif
+
+img
+  max-width: 100%
+
+code
+  font-size: 17px /* size of o in text should be the same as code */
+  background: #EEE
+pre > code
+  font-size: 14px
+
+/* not really necessary, but too hard not to use that */
+
+blockquote
+  border: solid 1px lightgrey
+  border-left: solid 30px lightgrey
+  padding: 10px
+  margin-left: 0px
+
+/* minimal layout + buttons */
+=button($color)
+  text-decoration: none
+  color: black
+  padding: 4px
+  background: lightgrey
+  &:hover
+    background: $color
+    color: white
+  &:active
+    background: red
+    color: white
+
+
+/* About page */
+.left
+  max-width: 30%
+  float: left
+  margin-right: 10px
+
+/* blog page */
+.inlineblockimg
+  display: inline-block
+  max-height: 30px
+  max-width: 30px
+
+.popularblock
+  max-width: 30%
+  display: inline-block
+/* /blog page */
+
+@font-face
+  font-family: 'social'
+  src: url('fonts/social_font-webfont.eot')
+  src: url('fonts/social_font-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/social_font-webfont.woff') format('woff'), url('fonts/social_font-webfont.ttf') format('truetype'), url('fonts/social_font-webfont.svg#social_font_faceregular') format('svg')
+  font-weight: normal
+  font-style: normal
+#social
+  margin: 2em
+  .message
+    border: none
+    font-size: .7em
+    font-weight: normal
+.social
+  font-family: social
+  font-size: 2em
+#header
+  margin-bottom: 3em
+#navigation
+  letter-spacing: 0.2em
+  font-size: 1.5em
+  font-weight: bold
+  line-height: 2em
+  a
+    +button(mediumorchid)
+#navigation, #bottom
+  text-align: center
+  margin: 3em 0
+  border-top: solid
+  border-bottom: solid
+  padding: 1em
+
+#choix, #social, .tomenu, #totop
+  text-align: center
+  a
+    +button(mediumorchid)
+    display: inline-block
+  div
+    display: inline-block
+.tomenu, #totop
+  &:hover
+    cursor: pointer
+.flush
+  clear: both
+/* for Haskell the Hard Way */
+.cut
+  +button(goldenrod)
+  font-size: .6em
+  font-family: monospace
