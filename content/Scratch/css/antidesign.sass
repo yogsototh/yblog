@@ -26,7 +26,24 @@ code
 pre > code
   font-size: 14px
 
+
 /* not really necessary, but too hard not to use that */
+// Colors:
+//  Tomato (instead of red)
+//  Orange
+//  DodgerBlue (instead of blue)
+//  MediumSeaGreen (instead of green)
+//  Gray
+//  SlateBlue (instead of purple)
+//  Violet (instead of pink)
+//  LightGray
+
+a
+  color: DodgerBlue
+  &:visited
+    color: SlateBlue
+  &:hover
+    color: orange
 
 blockquote
   border: solid 1px lightgrey
@@ -36,16 +53,10 @@ blockquote
 
 /* minimal layout + buttons */
 =button($color)
-  text-decoration: none
-  color: black
+  font-weight: bold
   padding: 4px
-  background: lightgrey
-  &:hover
-    background: $color
-    color: white
   &:active
-    background: red
-    color: white
+    color: tomato
 
 
 /* About page */
@@ -65,6 +76,7 @@ blockquote
   display: inline-block
 /* /blog page */
 
+/* Social */
 @font-face
   font-family: 'social'
   src: url('fonts/social_font-webfont.eot')
@@ -74,12 +86,16 @@ blockquote
 #social
   margin: 2em
   .message
+    background: none
     border: none
+    color: #444
     font-size: .7em
     font-weight: normal
 .social
   font-family: social
   font-size: 2em
+/* /Social */
+
 #header
   margin-bottom: 3em
 #navigation
@@ -88,7 +104,7 @@ blockquote
   font-weight: bold
   line-height: 2em
   a
-    +button(mediumorchid)
+    +button(slateblue)
 #navigation, #bottom
   text-align: center
   margin: 3em 0
@@ -99,7 +115,7 @@ blockquote
 #choix, #social, .tomenu, #totop
   text-align: center
   a
-    +button(mediumorchid)
+    +button(slateblue)
     display: inline-block
   div
     display: inline-block
