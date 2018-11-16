@@ -48,7 +48,7 @@ $mainTextColor: $behindColor
 $mainBackgroundColor: #FAFAFC
 $mainShadowColor: $mainBackgroundColor - #334
 $secondBackgroundColor: #F2F2F4
-$revealColor: #cb4b16
+$revealColor: $orange
 $secondRevealColor: $revealColor
 $lighterRevealColor: $revealColor + #666
 $imageBackgroundColor: $mainBackgroundColor
@@ -95,17 +95,18 @@ h1, h2, h3, h4, h5, h6
   background:
     color: $mainBackgroundColor
 
-=lightColor
-  color: $lighterText
-  a
-    color: $lighterText
-  a:hover
-    color: $lighterRevealColor
-
 =innerblock
   border: solid 2px $borderColor
   box-shadow: 4px 4px $imageShadowColor
-  background: #FFF
+  background: $base3
+  pre
+    background: $base2
+    border: solid 2px($base2 - #554)
+    box-shadow: 4px 4px ($base2 - #222)
+    color: $base01
+  code
+    background: $base2
+    border-color: ($base2 - #554)
   ul,ol
     margin-left: 0
 
@@ -172,9 +173,6 @@ pre
     +darkselected
   *::-moz-selection
     +darkselected
-
-a:hover
-  text-shadow: 0 0 2px #FAA
 
 a, a:link, a:visited, a:active, a:hover
   text-decoration: none
@@ -382,11 +380,11 @@ acronym
 #choix
   .return > a, #choixrss > a
     margin-top: 0
-  #switchcss
-    float: right
   #choixlang
-    float: left
-  #choixlang, #switchcss
+    position: absolute
+    left: 0
+    top: 0
+  #choixlang
     a
       margin-top: 0
       width: 100%
@@ -946,7 +944,6 @@ ul.bloglist, .archive ul
   text-align: justify
 
 .pala
-  font-style: italic
   opacity: 0.6
 
 sup
@@ -965,6 +962,8 @@ sup
   line-height: 0
   font-size: .66em
   color: $highlightColor
+.article .corps pre a:after
+  content: ""
 .article .corps .nostar a:after
   content: ""
 .article .corps
@@ -1014,16 +1013,10 @@ p, ul li, ol li
     padding: 2px
     line-height: 1em
 
-/* SPECIFICS */
-
-@font-face
-  font-family: 'social'
-  src: url('fonts/social_font-webfont.eot')
-  src: url('fonts/social_font-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/social_font-webfont.woff') format('woff'), url('fonts/social_font-webfont.ttf') format('truetype'), url('fonts/social_font-webfont.svg#social_font_faceregular') format('svg')
-  font-weight: normal
-  font-style: normal
 .social
-  font-family: social
+  font-weight: bold
+  &:hover
+    color: $blue
 
 #blogpage
   .popularblock
@@ -1068,11 +1061,10 @@ a.cut
   width: 100%
   opacity: .5
   border: 1px solid $mainBackgroundColor
+  overflow: hidden
+  text-overflow: ellipsis
   &:hover
     opacity: 1
-    background-color: $secondBackgroundColor
-    border-color: $borderColor
-    box-shadow: 0 0 3px $borderColor inset
   strong
     font-weight: bold
 .codehighlight pre
@@ -1089,6 +1081,9 @@ a.cut
     opacity: 1
   .message
     font-size: 10px
+
+#totop
+  text-align: center
 
 .corps
   .inlineblockimg

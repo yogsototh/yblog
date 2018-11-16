@@ -1,6 +1,6 @@
 -----
 menupriority:   1
-theme: scientific
+theme: brutalist
 kind:           article
 published: 2009-10-30
 title: Une CSS pour IE seulement

@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /img/img.png
 menupriority:   1
 kind:           article

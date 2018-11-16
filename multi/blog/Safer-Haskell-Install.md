@@ -7,7 +7,7 @@ fr: title: Installer Haskell
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
-theme: modern
+theme: brutalist
 ---
 blogimage("main.jpg","to Haskell and Beyond!!!")
 

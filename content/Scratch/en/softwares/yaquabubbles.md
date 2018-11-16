@@ -1,6 +1,6 @@
 -----
 title: YAquaBubbles
-theme: scientific
+theme: brutalist
 subtitle: bubble in the ocean
 menupriority: 2
 noSubMenu: true

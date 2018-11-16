@@ -1,6 +1,6 @@
 -----
 menupriority:   1
-theme: scientific
+theme: brutalist
 kind:           article
 published: 2009-10-13
 title: Usages non dits de Git

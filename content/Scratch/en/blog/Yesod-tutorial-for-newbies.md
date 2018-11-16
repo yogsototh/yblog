@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/Yesod-tutorial-for-newbies/flying_neo.jpg
 menupriority:   1
 kind:           article

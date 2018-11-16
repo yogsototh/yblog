@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 menupriority:   1
 kind:           article
 published: 2010-07-07

@@ -1,5 +1,5 @@
 -----
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/Haskell-the-Hard-Way/magritte_pleasure_principle.jpg
 menupriority:   1
 kind: article
@@ -11,7 +11,7 @@ fr: subtitle: Haskell à s'en faire griller les neurones
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: Haskell, programming, functional, tutorial
-theme: scientific
+theme: brutalist
 -----
 blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 

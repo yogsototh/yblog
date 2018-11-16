@@ -7,7 +7,7 @@ subtitle: "A Haskell tutorial: from nothing to something useful"
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
-theme: modern
+theme: brutalist
 ---
 
 blogimage("holy-grail-monty-python.jpg","Monty Python Holy Grail")

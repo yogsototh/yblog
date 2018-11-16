@@ -6,7 +6,7 @@ title: Tips in avoiding Haskell Success at all cost
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
-theme: antidesign
+theme: brutalist
 ---
 blogimage("main.jpg","Main image")
 

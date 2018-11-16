@@ -1,5 +1,5 @@
 ---
 layout: latest
-theme: scientific
+theme: brutalist
 isHidden: true
 ---

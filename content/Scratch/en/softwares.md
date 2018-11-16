@@ -1,6 +1,6 @@
 -----
 title: Softwares
-theme: scientific
+theme: brutalist
 menupriority: 3
 noSubMenu: true
 hidden: false

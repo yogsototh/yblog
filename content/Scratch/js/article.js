@@ -1,3 +1,1 @@
-$(document).ready( function() {
-    hljs.initHighlighting();
-});
+hljs.initHighlighting();

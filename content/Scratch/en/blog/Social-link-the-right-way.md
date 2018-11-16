@@ -6,7 +6,7 @@ title: Social link the right way
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
-theme: scientific
+theme: brutalist
 ---
 blogimage("main.png","Main image")
 

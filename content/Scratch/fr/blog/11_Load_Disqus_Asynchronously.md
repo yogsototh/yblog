@@ -1,6 +1,6 @@
 -----
 menupriority:   1
-theme: scientific
+theme: brutalist
 kind:           article
 published: 2009-09-17
 title: Load Disqus Asynchronously [en]

@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/Password-Management/main.png
 menupriority:   1
 kind:           article

@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/Typography-and-the-Web/first_sc_screenshot.png
 menupriority:   1
 kind:           article

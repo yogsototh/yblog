@@ -1,6 +1,6 @@
 -----
 published: 2008-10-10
-theme: scientific
+theme: brutalist
 kind: article
 title: Nanoc
 author: Yann Esposito

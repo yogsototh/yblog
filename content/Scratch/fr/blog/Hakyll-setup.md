@@ -6,7 +6,7 @@ title: Hakyll setup
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming, hakyll, Haskell, nanoc
-theme: scientific
+theme: brutalist
 ---
 blogimage("main.png","Main image")
 

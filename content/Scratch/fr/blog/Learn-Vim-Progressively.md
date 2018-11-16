@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/Learn-Vim-Progressively/uber_leet_use_vim.jpg
 menupriority:   1
 kind:           article

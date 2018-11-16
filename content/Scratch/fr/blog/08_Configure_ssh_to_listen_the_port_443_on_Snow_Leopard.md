@@ -1,6 +1,6 @@
 -----
 menupriority:   1
-theme: scientific
+theme: brutalist
 kind:           article
 published: 2009-09-07
 title: ssh sur le port 443 avec Snow Leopard

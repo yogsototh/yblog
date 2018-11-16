@@ -1,6 +1,6 @@
 -----
 kind: article
-theme: scientific
+theme: brutalist
 menupriority: 1
 published: 2009-08-17
 title: Git remote branch creation

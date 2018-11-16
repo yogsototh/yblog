@@ -2,7 +2,7 @@
 title: Resume
 author: Yann Esposito
 abstract: Yann Esposito's Resume
-theme: solarized-dark
+theme: brutalist
 highlight-style: solarized-dark
 date: 26 July 2016
 ---

@@ -1,6 +1,6 @@
 -----
 title: YPassword
-theme: scientific
+theme: brutalist
 menupriority: 1
 noSubMenu: true
 hidden: false

@@ -9,7 +9,7 @@ fr: subtitle: Un exemple de programmation en Haskell de bout en bout
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
-theme: modern
+theme: brutalist
 ---
 
 blogimage("holy-grail-monty-python.jpg","Monty Python Holy Grail")

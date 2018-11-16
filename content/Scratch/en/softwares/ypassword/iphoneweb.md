@@ -1,6 +1,6 @@
 -----
 title: YPassword
-theme: scientific
+theme: brutalist
 subtitle: Web Interface for iPhone
 menupriority: 1
 noSubMenu: true

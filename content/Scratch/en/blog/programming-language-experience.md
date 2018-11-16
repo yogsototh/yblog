@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/programming-language-experience/dragon.jpg
 menupriority:   1
 kind:           article

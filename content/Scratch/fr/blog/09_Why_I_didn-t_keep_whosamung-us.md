@@ -1,6 +1,6 @@
 -----
 menupriority:   1
-theme: scientific
+theme: brutalist
 kind:           article
 published: 2009-09-11
 title: Pourquoi je n'ai pas conservé whos.amung.us

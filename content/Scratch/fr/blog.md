@@ -1,6 +1,6 @@
 -----
 title: Blog
-theme: scientific
+theme: brutalist
 -----
 
 Articles populaires

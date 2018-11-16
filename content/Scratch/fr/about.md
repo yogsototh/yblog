@@ -1,6 +1,6 @@
 -----
 title: Qui est derrière ce site?
-theme: scientific
+theme: brutalist
 menupriority: 4
 -----
 

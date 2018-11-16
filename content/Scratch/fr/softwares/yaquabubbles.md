@@ -1,6 +1,6 @@
 -----
 title: YAquaBubbles
-theme: scientific
+theme: brutalist
 subtitle: Des bulles flottantes
 menupriority: 2
 noSubMenu: true

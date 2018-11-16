@@ -1,6 +1,6 @@
 -----
 title: YPassword
-theme: scientific
+theme: brutalist
 subtitle: Cappuccino Web Application
 menupriority: 1
 noSubMenu: true

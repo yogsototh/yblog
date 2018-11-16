@@ -6,7 +6,7 @@ title: Safer Haskell Install
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming
-theme: modern
+theme: brutalist
 ---
 blogimage("main.jpg","to Haskell and Beyond!!!")
 

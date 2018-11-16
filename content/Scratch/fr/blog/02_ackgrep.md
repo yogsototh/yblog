@@ -1,6 +1,6 @@
 -----
 published: 2009-07-22
-theme: scientific
+theme: brutalist
 kind: article
 title: Mieux que grep
 author: Yann Esposito

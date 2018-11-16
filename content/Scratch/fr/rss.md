@@ -1,6 +1,6 @@
 -----
 title: Welcome
-theme: scientific
+theme: brutalist
 image: /Scratch/img/menu/rss-128.png
 title: Que sont les flux RSS ?
 subtitle: Comment s'informer sans se fatiguer

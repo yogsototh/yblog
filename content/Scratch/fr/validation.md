@@ -1,6 +1,6 @@
 -----
 title: validation
-theme: scientific
+theme: brutalist
 isHidden: true
 title: Validation
 menupriority: 500

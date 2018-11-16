@@ -1,6 +1,6 @@
 -----
 menupriority:   1
-theme: scientific
+theme: brutalist
 image: /Scratch/img/loading.gif
 kind:           article
 published: 2009-10-03

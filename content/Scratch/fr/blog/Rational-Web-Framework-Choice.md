@@ -6,7 +6,7 @@ title: Rational Web Framework Choice
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming, framework, web
-theme: scientific
+theme: brutalist
 ---
 blogimage("battle-of-lepanto-vicentino-andrea.jpg","Main image")
 

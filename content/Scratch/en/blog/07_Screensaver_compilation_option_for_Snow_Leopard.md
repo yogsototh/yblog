@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/07_Screensaver_compilation_option_for_Snow_Leopard/xcodeConfig.png
 menupriority:   1
 kind:           article

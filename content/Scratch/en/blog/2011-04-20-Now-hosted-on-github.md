@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/2011-04-20-Now-hosted-on-github/main.png
 menupriority:   1
 kind:           article

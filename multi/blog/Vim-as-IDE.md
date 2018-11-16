@@ -7,7 +7,7 @@ fr: title: Vim as IDE
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming, vi, vim, ide, haskell, clojure
-theme: scientific
+theme: brutalist
 ---
 blogimage("vim_spock.jpg","Main image")
 

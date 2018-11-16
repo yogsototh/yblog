@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/2010-07-09-Indecidabilities/genesis.png
 menupriority:   1
 kind:           article

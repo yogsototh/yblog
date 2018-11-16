@@ -6,7 +6,7 @@ title: Haskell Tutorials, a tutorial
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: programming, tutorial, haskell, documentation
-theme: scientific
+theme: brutalist
 ---
 blogimage("main.jpg","Main image")
 

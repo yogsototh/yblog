@@ -7,7 +7,7 @@ author: Yann Esposito
 authoruri: yannesposito.com
 layout: article2
 tags: programming, haskell, parsec, parser
-theme: scientific
+theme: brutalist
 ---
 
 ![AST](http://yogsototh.github.io/parsec-presentation/parsec/img/mp/AST.png)\

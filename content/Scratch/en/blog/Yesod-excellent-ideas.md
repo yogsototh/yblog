@@ -1,6 +1,6 @@
 -----
 isHidden:       false
-theme: scientific
+theme: brutalist
 image: /Scratch/img/blog/Yesod-excellent-ideas/main.png
 menupriority:   1
 kind:           article
