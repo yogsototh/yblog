@@ -9,6 +9,8 @@ authoruri: yannesposito.com
 tags:  git, branch, local, remote
 -----
 
+*Edit: Maintenant j'utilise `git push -u`*
+
 ## Créer une branche Git externe facilement
 
 J'utilise Git pour synchroniser des projets personnels. 
@@ -16,8 +18,7 @@ C'est pourquoi quand je crée une branche locale je souhaite quasiment toujours 
 
 Voici le script que j'utilise pour accomplir cette tâche : 
 
-<div>
-    <code class="zsh" file="git-create-new-branch.sh">
+~~~zsh
 #!/usr/bin/env zsh
 
 if (($#<1)); then
@@ -30,8 +31,7 @@ git br ${branch}
 git co ${branch}
 git config branch.${branch}.remote origin
 git config branch.${branch}.merge refs/heads/${branch}
-    </code>
-</div>
+~~~
 
 Bien sûr, je suppose qu'<code>origin</code> est déjà configurée.
 

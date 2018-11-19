@@ -15,7 +15,6 @@ Voici la solution que j'utilise avec jQuery
 
 HTML : 
 
-<div>
 ~~~~~~ {.html}
     <div id="menuButton"></div>
     <div id="entete">
@@ -26,11 +25,10 @@ HTML :
         </ul>
     </div>
 ~~~~~~
-</div>
 
 CSS : 
 
-<div><code class="css">
+~~~css
     #entete {
       top: 1em;
       left: 0;
@@ -44,11 +42,11 @@ CSS :
       left: 0;
       position: fixed;
       width: 10em; }
-</code></div>
+~~~
 
 Javascript : 
 
-<div><code class="javascript">
+~~~js
 var last=0;
 
 // will hide the menu in 5 seconds
@@ -82,13 +80,12 @@ function hideMenu() {
 }
 
 // move to right and will try to hide in 5 sec.
-function showMenu() { 
+function showMenu() {
     $('#entete').animate({left:"0em"}, 500 );
     last+=1;
     autoHideMenu(last);
 }
-
-</code></div>
+~~~
 
 Simple et peu gourmand en ressources. Pas de timer (ou presque), pas de fuite de mémoire, pas d'utilisation de date... 
 

@@ -17,8 +17,7 @@ branch to be created remotely.
 
 Here is the script I use to achieve that: 
 
-<div>
-    <code class="zsh" file="git-create-new-branch.sh">
+~~~zsh
 #!/usr/bin/env zsh
 
 if (($#<1)); then
@@ -31,7 +30,8 @@ git br ${branch}
 git co ${branch}
 git config branch.${branch}.remote origin
 git config branch.${branch}.merge refs/heads/${branch}
-    </code>
-</div>
+~~~
 
-Of course, I suppose <code>origin</code> is already configured.
+Of course, I suppose `origin` is already configured.
+
+*Edit: Now I use `git push -u`*
