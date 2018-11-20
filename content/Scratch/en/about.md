@@ -5,7 +5,7 @@ theme: brutalist
 
 <img src="/Scratch/img/about/FlatAvatar.png" alt="Avatar" class="clean left"/>
 
-<strong>@</strong> %mailperso  
+<strong>@</strong>&nbsp;%mailperso  
 <a href="http://twitter.com/yogsototh"><span class="social">&#116;</span> @yogsototh</a>  
 <a href="https://keybase.io/yogsototh"><img src="/Scratch/img/keybase.svg" style="height:16px"/> yogsototh</a>  
 [<img src="/Scratch/img/pinboard.png"  class="simple" style="height: 16px"/> yogsototh](http://pinboard.in/u:yogsototh)  
@@ -26,7 +26,7 @@ DdzFFzCqrhtAvdkmATx5Fm8NPJViDy85ZBw13p4XcNzVzvQg8e3vWLXq23JQWFxPEXK6Kvhaxxe7oJt4
 
 ## Shortly
 
-I am a Software Engineer (Clojurist) for [Cisco](http://cisco.com), Threatgrid team.
+I am a Senior Software Engineer (Clojurist) for [Cisco](http://cisco.com), Threatgrid team.
 
 I was a Machine Learning expert and Software Engineer for Vigiglobe.
 
@@ -41,22 +41,30 @@ I am generally passionate about:
 
 But before all, I love to learn.
 For example, I learned many programming languages:
-[Haskell](http://haskell.org),
-[Clo<i>j</i>ure](http://clojure.org),
-javascript, C, C++, Objective-C,
-[Python](http://python.org),
-[Ruby](http://ruby-lang.org),
-Java,
-[Perl](http://perl.org),
-awk,
-bash,
-[zsh](http://www.zsh.org),
-[%latex](http://www.latex-project.org),
-[metapost](http://www.tug.org/metapost.html),
-[camL](http://caml.inria.fr),
-[Scheme](http://mitpress.mit.edu/sicp/full-text/book/book.html)...
 
-[My full resume](/Scratch/files/resume/resume.html)
+Functional:
+
+- [Haskell](http://haskell.org), [Purescript](http://purescript.org), [Elm](http://elm-lang.org),
+- [Clo<i>j</i>ure](http://clojure.org), [Scheme](https://mitpress.mit.edu/sites/default/files/sicp/index.html),
+- [camL](http://caml.inria.fr)
+
+Object Oriented:
+
+- javascript, C, C++, Objective-C,
+- Java,
+- [Python](http://python.org),
+- [Ruby](http://ruby-lang.org),
+
+Also:
+
+- [Perl](http://perl.org),
+- awk,
+- bash,
+- [zsh](http://www.zsh.org),
+- [%latex](http://www.latex-project.org),
+- [metapost](http://www.tug.org/metapost.html),
+
+[My full resume»](/Scratch/files/resume/resume.html)
 
 ## Old stuff
 
