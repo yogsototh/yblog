@@ -26,11 +26,14 @@ Si vous n'avez pas envie de lire, copiez et collez simplement le code suivant da
 ``` html
 <div id="sociallinks">
   <a href="https://twitter.com/home?status=$url$"
-     target="_blank">Tweet this</a> -
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Tweet this</a> -
   <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
-     target="_blank">Like this</a> -
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Like this</a> -
   <a href="https://plus.google.com/share?url=$url$"
-     target="_blank">Share on G+</a>
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Share on G+</a>
 </div>
 <script>
 (function(){window.addEventListener("DOMContentLoaded",function(){
@@ -106,13 +109,16 @@ I will provide you two solutions with the following properties:
 
 ``` html
 <a href="https://twitter.com/home?status=$url$"
-    target="_blank">Tweet this</a>
+   target="_blank" rel="noopener noreferrer nofollow"
+   >Tweet this</a>
 
 <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
-    target="_blank">Like this</a>
+   target="_blank" rel="noopener noreferrer nofollow"
+   >Like this</a>
 
 <a href="https://plus.google.com/share?url=$url$"
-    target="_blank">Share on G+</a>
+   target="_blank" rel="noopener noreferrer nofollow"
+   >Share on G+</a>
 ```
 But you have to replace `$url$` by the current %url.
 
@@ -123,11 +129,14 @@ If you don't want to write the %url yourself, you could use some minimal js:
 ``` html
 <div id="sociallinks">
   <a href="https://twitter.com/home?status=$url$"
-     target="_blank">Tweet this</a> -
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Tweet this</a> -
   <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
-     target="_blank">Like this</a> -
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Like this</a> -
   <a href="https://plus.google.com/share?url=$url$"
-     target="_blank">Share on G+</a>
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Share on G+</a>
 </div>
 <script>
 (function(){window.addEventListener("DOMContentLoaded",function(){
@@ -146,11 +155,14 @@ Here is the result:
 
 <div id="sociallinks">
   <a href="https://twitter.com/home?status=$url$"
-     target="_blank">Tweet this</a> -
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Tweet this</a> -
   <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
-     target="_blank">Like this</a> -
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Like this</a> -
   <a href="https://plus.google.com/share?url=$url$"
-     target="_blank">Share on G+</a>
+     target="_blank" rel="noopener noreferrer nofollow"
+     >Share on G+</a>
 </div>
 <script>
 (function(){window.addEventListener("DOMContentLoaded",function(){
@@ -194,16 +206,16 @@ Now add this to your %html:
 
 ``` html
 <a href="https://twitter.com/home?status=$url$"
-    target="_blank"
-    class="social">&#116;</a>
+   target="_blank" rel="noopener noreferrer nofollow"
+   class="social">&#116;</a>
 ·
 <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
-   target="_blank"
+   target="_blank" rel="noopener noreferrer nofollow"
    class="social">&#0096;</a>
 ·
 <a href="https://plus.google.com/share?url=$url$"
-    target="_blank"
-    class="social">&#0103;</a>
+   target="_blank" rel="noopener noreferrer nofollow"
+   class="social">&#0103;</a>
 ```
 
 **Solution 2 (same with a bit more js):**
@@ -211,16 +223,16 @@ Now add this to your %html:
 ``` html
 <div id="sociallinksunicode">
 <a href="https://twitter.com/home?status=$url$"
-    target="_blank"
-    class="social">&#116;</a>
+   target="_blank" rel="noopener noreferrer nofollow"
+   class="social">&#116;</a>
 ·
 <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
-   target="_blank"
+   target="_blank" rel="noopener noreferrer nofollow"
    class="social">&#0096;</a>
 ·
 <a href="https://plus.google.com/share?url=$url$"
-    target="_blank"
-    class="social">&#0103;</a>
+   target="_blank" rel="noopener noreferrer nofollow"
+   class="social">&#0103;</a>
 </div>
 <script>
 (function(){window.addEventListener("DOMContentLoaded",function(){
@@ -238,15 +250,15 @@ Here is the result:
 <div style="font-size: 2em; text-align: center;" class="nostar">
 <div id="sociallinksunicode">
 <a href="https://twitter.com/home?status=$url$"
-    target="_blank"
+     target="_blank" rel="noopener noreferrer nofollow"
     class="social">&#116;</a>
 ·
 <a href="http://www.facebook.com/sharer/sharer.php?u=$url$"
-   target="_blank"
+     target="_blank" rel="noopener noreferrer nofollow"
    class="social">&#0096;</a>
 ·
 <a href="https://plus.google.com/share?url=$url$"
-    target="_blank"
+     target="_blank" rel="noopener noreferrer nofollow"
     class="social">&#0103;</a>
 </div>
 <script>
