@@ -39,6 +39,7 @@ esac
 }
 
 cd content
+stack --nix exec -- yblog clean
 stack --nix exec -- yblog watch &
 
 cd ..
