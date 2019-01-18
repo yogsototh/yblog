@@ -70,8 +70,9 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let indexCtx =
-                 yContext <>
-                  mconcat (map (\lang -> field (lang ++ "posts") $ \_->homePostList lang createdFirst) langs)
+                 constField "language" "en"
+                 <> yContext
+                 <> mconcat (map (\lang -> field (lang ++ "posts") $ \_->homePostList lang createdFirst) langs)
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/boilerplate.html" indexCtx
