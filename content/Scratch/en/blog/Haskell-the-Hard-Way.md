@@ -9,7 +9,6 @@ subtitle: Blow your mind with Haskell
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: Haskell, programming, functional, tutorial
-theme: brutalist
 -----
 blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 
@@ -1350,10 +1349,10 @@ blogimage("salvador-dali-the-madonna-of-port-lligat.jpg","Dali, the madonna of p
 
  > %tldr
  >
- > - `type Name = AnotherType` is just an alias and the compiler doesn't mark any difference between `Name` and `AnotherType`.
- > - `data Name = NameConstructor AnotherType` does mark a difference.
- > - `data` can construct structures which can be recursives.
- > - `deriving` is magic and creates functions for you.
+> - `type Name = AnotherType` is just an alias and the compiler doesn't mark any difference between `Name` and `AnotherType`.
+> - `data Name = NameConstructor AnotherType` does mark a difference.
+> - `data` can construct structures which can be recursives.
+> - `deriving` is magic and creates functions for you.
 
 In Haskell, types are strong and static.
 

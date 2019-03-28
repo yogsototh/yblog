@@ -11,7 +11,6 @@ fr: subtitle: Haskell à s'en faire griller les neurones
 author: Yann Esposito
 authoruri: yannesposito.com
 tags: Haskell, programming, functional, tutorial
-theme: brutalist
 -----
 blogimage("magritte_pleasure_principle.jpg","Magritte pleasure principle")
 
@@ -45,7 +44,8 @@ fr:   [Zor Yoldan Haskell](https://github.com/joom/zor-yoldan-haskell)
 fr: - [lepereceval](https://github.com/lepereceval)
 fr:   pour sa traduction française que je n'ai pas eu le courage de faire !
 fr: - [Younesse Kaddar](https://github.com/youqad)
-fr:   pour toutes ses corrections de style et d'orthographe.
+fr:   et [Menestret Martin](https://github.com/mmenestret)
+fr:   pour les corrections de styles et d'orthographes.
 
 
 > <center><hr style="width:30%;float:left;border-color:#CCCCD0;margin-top:1em"/><span class="sc"><b>Table of Content</b></span><hr style="width:30%;float:right;border-color:#CCCCD0;margin-top:1em"/></center>
@@ -259,7 +259,7 @@ fr: Aujourd'huil je considère que la manière la plus aisée d'installer Haskel
 
 en: There are other way to install Haskell on your system you could visit,
 en: you can learn more about it by visiting
-fr: Il y a d'autres maniètres d'installer Haskell sur votre system,
+fr: Il y a d'autres manières d'installer Haskell sur votre système,
 fr: vous pouvez en savoir plus en visitant
 [haskell.org](https://haskell.org)
 en: or
@@ -661,7 +661,7 @@ fr: `a -> Int`                 Le type de la fonction qui prend n'importe quel t
 fr: 
 fr: `a -> a`                   Le type de la fonction qui prend n'importe quel type `a` et retourne une variable du même type `a`
 fr: 
-fr: `a -> a -> a`              Le type de la fonction qui prend de arguments de n'importe quel type`a` et retourne une variable de type `a`
+fr: `a -> a -> a`              Le type de la fonction qui prend deux arguments de n'importe quel type`a` et retourne une variable de type `a`
 fr: --------------------------------------------------------------------------------------------------------------------------------------
 
 en: In the type `a -> a -> a`, the letter `a` is a _type variable_.
@@ -1033,7 +1033,7 @@ en: For each infix operator there its associated prefix notation.
 en: You just have to put it inside parenthesis.
 fr: Remarquez que `^` utilise une notation infixée.
 fr: Pour chaque opérateur infixe il y a une notation préfixée associée.
-fr: Vous devz juste l'écrire entre parenthèses.
+fr: Vous devez juste l'écrire entre parenthèses.
 
 <div class="codehighlight">
 ~~~~~~ {.haskell}
@@ -1406,7 +1406,7 @@ en: But pattern matching goes even further.
 en: It is also able to inspect the inner data of a complex value.
 en: We can replace
 fr: Mais le _pattern matching_ peut aller encore plus loin.
-fr: Il est également capable d'inspect les données internes d'un valeur complexe.
+fr: Il est également capable d'inspecter les données internes d'un valeur complexe.
 fr: Nous pouvons ainsi remplacer
 
 ~~~~~~ {.haskell}
@@ -1714,7 +1714,7 @@ squareEvenSum' = evenSum . (map (^2))
 ~~~~~~
 </div>
 en: We just had to add another "transformation function"[^0216].
-fr: Nous avons juste eu à ajouter une autre "fonction de trabsformation"[^0216].
+fr: Nous avons juste eu à ajouter une autre "fonction de transformation".
 
 ~~~
 map (^2) [1,2,3,4] ⇔ [1,4,9,16]
@@ -1792,10 +1792,14 @@ blogimage("salvador-dali-the-madonna-of-port-lligat.jpg","Dali, the madonna of p
 
  > %tldr
  >
- > - `type Name = AnotherType` is just an alias and the compiler doesn't mark any difference between `Name` and `AnotherType`.
- > - `data Name = NameConstructor AnotherType` does mark a difference.
- > - `data` can construct structures which can be recursives.
- > - `deriving` is magic and creates functions for you.
+en: > - `type Name = AnotherType` is just an alias and the compiler doesn't mark any difference between `Name` and `AnotherType`.
+en: > - `data Name = NameConstructor AnotherType` does mark a difference.
+en: > - `data` can construct structures which can be recursives.
+en: > - `deriving` is magic and creates functions for you.
+fr: > - `type Name = AnotherType` n'est qu'un alias de type, le compilateur ne fera pas la différence entre les deux.
+fr: > - `data Name = NameConstructor AnotherType` le compilateur fera la différence.
+fr: > - `data` permet de construire de nouvelles structures qui peuvent être récursives.
+fr: > - `deriving` est magique et créé automatiquement des fonctions pour vous.
 
 en: In Haskell, types are strong and static.
 fr: En Haskell, les types sont forts et statiques.
@@ -1807,7 +1811,7 @@ en: Type inference makes it easy to detect where you used the wrong parameter at
 fr: Pourquoi est-ce important? Cela vous aidera a éviter _beaucoup_ d'erreurs.
 fr: En Haskell, la majorité des bugs est repérée durant la compilation de votre programme.
 fr: Et la raison principale de cela est l'inférence de type durant la compilation.
-fr: L'inférence de type permet de détecter plus facilement lorsque vous utilisez le mauvais paramètre au mauvais endroit, par exemple
+fr: L'inférence de type permet de détecter plus facilement lorsque vous utilisez le mauvais paramètre au mauvais endroit, par exemple.
 
 en: <h4 id="type-inference">Type inference</h4>
 fr: <h4 id="type-inference">Inférence de type</h4>
