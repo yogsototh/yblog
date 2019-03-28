@@ -9,18 +9,18 @@ $txtlineheight: 1.5em
 /* Main Font Styles */
 
 body
-  font-family: Inconsolata, Menlo, Monaco, monospace
+  font-family: monospace
   font-size: 14px
   line-height: $txtlineheight
 
 code
-  font-family: Inconsolata, Menlo, Monaco, monospace
+  font-family: monospace
   font-size: 1em
 
 pre, pre code
-  font-family: Inconsolata, Menlo, Monaco, monospace
-  font-size: 14px
-  line-height: 1.5em
+  font-family: monospace
+  font-size: 13px
+  line-height: 1.25em
 
 /* Colors: Solarized palette */
 $base03 : #002b36
@@ -77,15 +77,6 @@ i, em
 b, strong, h1, h2, h3, h4, h5, h6
   font-weight: bold
 
-h1
-  border: 2px solid #000
-  box-shadow: 4px 4px #000
-h2
-  border: 2px solid #000
-  box-shadow: 4px 4px #CCC
-
-h3, h4, h5, h6
-  text-decoration: underline
 h1, h2, h3, h4, h5, h6
   padding: 0 16px
   clear: both
@@ -96,13 +87,11 @@ h1, h2, h3, h4, h5, h6
     color: $mainBackgroundColor
 
 =innerblock
-  border: solid 2px $borderColor
-  box-shadow: 4px 4px $imageShadowColor
-  background: $base3
+  background: $base2
   pre
     background: $base2
-    border: solid 2px($base2 - #554)
-    box-shadow: 4px 4px ($base2 - #222)
+    border: solid 2px
+    box-shadow: 4px 4px
     color: $base01
   code
     background: $base2
@@ -112,7 +101,7 @@ h1, h2, h3, h4, h5, h6
 
 =highlight
   font-style: italic
-  padding: 0.5em 1em
+  padding: 1em
   color: $highlightBlockColor
   a
     font-style: normal
@@ -138,10 +127,6 @@ h1, h2, h3, h4, h5, h6
 =revealColor
   color: $revealColor
 
-=codeColor
-  background:
-    color: $codeBlockBackgroundColor
-  color: $codeBlockColor
 
 table.description tr td
   border: 1px solid $lighterColor
@@ -218,7 +203,7 @@ ol li ol, ul li ol, ul li ul
 
 body, h1, h2, h3, h4, #entete, .tagname
   text-rendering: optimizelegibility
-  line-height: 2em
+  line-height: 1.5em
 
 #header, #bottom, #navigation
   text-align: center
@@ -228,7 +213,6 @@ body, h1, h2, h3, h4, #entete, .tagname
     border-color: $mainTextColor
 
 #navigation
-  letter-spacing: -.025em
   margin: 1em auto
   font-size: 1.25em
   text-align: center
@@ -277,10 +261,9 @@ body, h1, h2, h3, h4, #entete, .tagname
       content: counter(niv02) "." counter(niv03) "." counter(niv04) ". "
 
 pre
-  +codeColor
-  border: solid 2px $codeBorderColor
-  box-shadow: 4px 4px ($codeBorderColor - #222)
+  border: solid 2px
   padding: 1em
+  margin: 1em 0
 
 pre > code
   display: block
@@ -290,6 +273,8 @@ pre > code
     +innerblock
     +highlight
     margin: 1.5em 0
+    line-height: 1.5em
+    padding: 0 2em
     &>ul, &>ol
       padding-left: 1.5em
 
@@ -315,7 +300,6 @@ acronym
 // -- STYLE --
 
 #titre
-  letter-spacing: -0.06em
   margin: 2em 0
   // border:
   //   bottom: 4px double $lighterText
@@ -549,7 +533,6 @@ $hauteur_menu: 4em
 
 // Le Contenu
 #content
-  line-height: 2em
   margin-left: auto
   margin-right: auto
   margin-top: 0
@@ -581,10 +564,8 @@ $contentMargin: 0em
 
 .corps
   .intro, .resume
-    font-size: 0.9em
-    +highlight
-  .intro2
-    font-size: 0.9em
+    max-width: 80%
+    margin: 0 auto
 
 #afterheader > h1
   width: 100%
@@ -612,8 +593,8 @@ $contentMargin: 0em
   margin: 0
   clear: both
   p, ol, ul, blockquote, & > pre, & > code
-    margin-top: $txtlineheight
-    margin-bottom: $txtlineheight
+    margin-top: 1em
+    margin-bottom: 1em
   p > code, p > a > code, li > code, li > a > code
     display: inline-block
     line-height: 1em
@@ -628,9 +609,7 @@ $contentMargin: 0em
 
 .corps img
   max-width: 80%
-  border: 2px solid $imageBorderColor
-  padding: 2px
-  box-shadow: 8px 8px $imageShadowColor
+  border: 1px solid $imageBorderColor
 .corps p > a > img
   display: inline-block
   border: none
@@ -848,7 +827,6 @@ a.return
   color: $revealColor
 
 .footnotes
-  font-size: 0.8em
   ol
     color: $base0
     font-weight: bold
@@ -1014,7 +992,6 @@ p, ul li, ol li
     line-height: 1em
 
 .social
-  font-weight: bold
   &:hover
     color: $blue
 
@@ -1071,7 +1048,7 @@ a.cut
   border-left: 8px solid
 
 #social
-  font-size: 2em
+  font-size: 1.5em
   text-align: center
   padding-top: 1em
   margin-top: 1em

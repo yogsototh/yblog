@@ -39,8 +39,8 @@ esac
 }
 
 cd content
-stack --nix exec -- yblog clean
-stack --nix exec -- yblog watch &
+stack exec -- yblog clean
+stack exec -- yblog watch &
 
 cd ..
 while true; do

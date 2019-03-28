@@ -1,8 +1,11 @@
 packages:
 - '.'
-resolver: lts-10.3
-nix:
-  packages: []
-  enable: false
-  pure: true
-  shell-file: shell.nix
+resolver: lts-13.13
+# nix:
+#   packages: []
+#   enable: false
+#   pure: true
+#   shell-file: shell.nix
+extra-deps:
+- hakyll-4.12.5.1
+- lrucache-1.2.0.1
