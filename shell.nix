@@ -1,9 +1,11 @@
-with import <nixpkgs> {};
+with import nix/nixpkgs.nix {};
 
 mkShell {
   name = "yannesposito.com";
-  inherit ghc;
-  buildInputs = [ gnupg sassc];
+  buildInputs = [ gnupg
+                  sassc
+                  hello
+                ];
   LC_ALL = "en_US.UTF-8";
   LANG = "en_US.UTF-8";
   TMPDIR = "/tmp";
