@@ -45,9 +45,10 @@ $green  : #859900
 /* semantic nameing of colors */
 $behindColor: $base03
 $mainTextColor: $behindColor
-$mainBackgroundColor: #FAFAFC
+/* $mainBackgroundColor: #FAFAFC */
+$mainBackgroundColor: $base3
 $mainShadowColor: $mainBackgroundColor - #334
-$secondBackgroundColor: #F2F2F4
+$secondBackgroundColor: $base2
 $revealColor: $orange
 $secondRevealColor: $revealColor
 $lighterRevealColor: $revealColor + #666
@@ -93,11 +94,7 @@ h1, h2, h3, h4, h5, h6
   pre
     background: $base2
     border: solid 2px
-    box-shadow: 4px 4px
     color: $base01
-  code
-    background: $base2
-    border-color: ($base2 - #554)
   ul,ol
     margin-left: 0
 
@@ -122,9 +119,7 @@ h1, h2, h3, h4, h5, h6
 =secondColor
   color: $behindColor
   border: $borderColor solid 1px
-  box-shadow: 0 0 2px $borderColor inset
-  background:
-    color: $lighterColor
+  background-color: $base2
   strong, b, i, em
     color: $behindColor
 
@@ -140,28 +135,13 @@ body
 
 
 =selected
-  background: $base2
-  color: $base01
+  background: $violet
+  color: white
 
 ::selection
   +selected
 ::-moz-selection
   +selected
-
-=darkselected
-  background: $base3
-  color: $base01
-
-pre
-  &::selection
-    +darkselected
-  *::selection
-    +darkselected
-pre
-  &::-moz-selection
-    +darkselected
-  *::-moz-selection
-    +darkselected
 
 a, a:link, a:visited, a:active, a:hover
   text-decoration: none
@@ -312,11 +292,9 @@ acronym
 
 =insetbox
   background: rgba(#000,.05)
-  box-shadow: 0 0 2px #FFF, 0 0 3px #CCC inset
   border: 1px solid rgba(#000,.1)
   &:hover
     background: rgba(#000,.1)
-    box-shadow: 0 0 6px #555 inset
 
 =clearbutton
   display: block
@@ -346,7 +324,6 @@ acronym
   text-shadow: 0 0 2px rgba(#000,.5)
   background-color: $mainBackgroundColor - #030303
   border: 1px solid $mainBackgroundColor - #111111
-  box-shadow: 0 0 3px ($mainBackgroundColor - #333333) inset
   border-top: none
 
 // -- FOOTER --
@@ -617,18 +594,15 @@ $contentMargin: 0em
   border: none
   padding: 0
   margin: 0
-  box-shadow: none
 .corps a:hover img
   border-color: $revealColor
 
 figure, .figure
   +secondColor
   border: 2px solid $borderColor
-  box-shadow: 4px 4px #000
   margin: 3em 0
   text-align: center
   img
-    box-shadow: none
   figcaption, .caption
     text-align: center
     margin: .5em 0
@@ -639,7 +613,6 @@ figure.left, figure.right, .figure.right, .figure.left
 img.clean
   border: none
   background-color: none
-  box-shadow: none
 
 //  les clear
 
@@ -918,7 +891,6 @@ ul.bloglist, .archive ul
 #tagcloud
   font-size: .8em
   background: $secondBackgroundColor
-  box-shadow: 0 0 6px $borderColor
   line-height: 2.5em
   padding: 2em
   text-align: justify
@@ -988,8 +960,7 @@ p, ul li, ol li
     border: none
     padding: 0
   code
-    background: $secondBackgroundColor - #020202
-    border: solid 1px $codeBorderColor
+    border: dotted 1px rgba(0,0,0,0.3)
     padding: 2px
     line-height: 1em
 
@@ -1001,12 +972,6 @@ p, ul li, ol li
   .popularblock
     &:hover figure
       color: $orange
-      box-shadow: 12px 12px black
-      text-shadow: none
-      margin-left: 8px
-      margin-right: 12px
-      margin-bottom: 2px
-      margin-top: -2px
       padding: 20px
     width: 33.3333%
     min-width: 150px
@@ -1015,7 +980,6 @@ p, ul li, ol li
     figure
       margin: 0 10px
       padding: 20px
-      box-shadow: 10px 10px
       img
         max-width: 80%
         max-height: 6em
@@ -1029,7 +993,6 @@ ul.sameline
 
 .resumearticle
   background-color: $secondBackgroundColor
-  box-shadow: 0 0 5px $mainShadowColor inset,0 0 5px #FFF
   margin: 1em 0
   padding: 1em
 
@@ -1080,7 +1043,6 @@ a.cut
     max-height: 48px
     max-width: 48px
     border: none
-    box-shadow: none
     margin: 0 auto
     vertical-align: middle
     font-size: 7px
@@ -1149,7 +1111,6 @@ a.rss
 
 .highlight
   background-color: $base2
-  box-shadow: 0 0 2px $yellow inset
   padding: 0 3px
   height: 1.1em
   line-height: 1em
