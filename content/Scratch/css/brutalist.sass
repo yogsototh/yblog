@@ -87,7 +87,9 @@ h1, h2, h3, h4, h5, h6
     color: $mainBackgroundColor
 
 =innerblock
-  background: $base2
+  max-width: 80%
+  margin: 0 auto
+  padding: 0
   pre
     background: $base2
     border: solid 2px
@@ -100,17 +102,19 @@ h1, h2, h3, h4, h5, h6
     margin-left: 0
 
 =highlight
-  font-style: italic
-  padding: 1em
+  font-weight: bold
+  max-width: 80%
+  margin: 0 auto
+  padding: 0
   color: $highlightBlockColor
   a
-    font-style: normal
+    font-weight: normal
   a:hover
     color: $revealColor
   i, em
     font-weight: normal
     font-style: normal
-    color: $behindColor
+    color: $green
   strong, b
     font-weight: bold
     color: $behindColor
@@ -261,7 +265,7 @@ body, h1, h2, h3, h4, #entete, .tagname
       content: counter(niv02) "." counter(niv03) "." counter(niv04) ". "
 
 pre
-  border: solid 2px
+  border-left: dashed 1px $base1
   padding: 1em
   margin: 1em 0
 
@@ -272,9 +276,7 @@ pre > code
   blockquote
     +innerblock
     +highlight
-    margin: 1.5em 0
     line-height: 1.5em
-    padding: 0 2em
     &>ul, &>ol
       padding-left: 1.5em
 
