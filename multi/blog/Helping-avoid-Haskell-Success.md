@@ -108,13 +108,13 @@ Each of this term will hopefully be intimidating.
 
 Please don't provide an obvious first example like:
 
-~~~~.haskell
+~~~~haskell
 main = putStrLn "Hello World!"
 ~~~~
 
 Instead prefer a fully servant example:
 
-~~~~.haskell
+~~~~haskell
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE LambdaCase #-}
@@ -205,7 +205,7 @@ Servant.
 If you're afraid that this example might be too close to a real world product,
 you can simply use some advanced lenses examples:
 
-~~~~.haskell
+~~~~haskell
 {-# LANGUAGE DeriveGeneric   #-}
 {-# LANGUAGE TemplateHaskell #-}
 
