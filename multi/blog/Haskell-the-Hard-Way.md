@@ -2839,7 +2839,8 @@ action1             :: IO a
                     -- in this case, generally a = ()
 ~~~
 
-ou
+en: or
+fr: ou
 
 ~~~
 value <- action2    -- where
